@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<!-- Source: research/artifacts/enriched-tier2.jsonl + research/evaluations/*.md -->
+<!-- Data:   ../../data/triage.json -->
+<!-- Brand:  AppyDave (brand-dave:brand) — light-mode-primary -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dark Factory — Triage Console</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brand-brown: #342d2d;
+    --brand-gold: #ccba9d;
+    --brand-yellow: #ffde59;
+    --brand-amber: #c8841a;
+    --brand-muted: #7a6e5e;
+    --brand-near-white: #faf5ec;
+    --brand-surface: #f0ebe4;
+    --brand-linen: #e8e0d4;
+    --brand-border: #d4cdc4;
+    --brand-chrome: #1a1515;
+    --brand-dark-surface: #25201e;
+    --brand-blue: #2E91FC;
+
+    /* semantic for gap status — cream-compatible */
+    --status-strong:  #3d8a5a;
+    --status-covered: #5b6f86;
+    --status-partial: #c8841a;
+    --status-weak:    #a94a36;
+
+    --display: 'Bebas Neue', sans-serif;
+    --headline: 'Oswald', sans-serif;
+    --body: 'Roboto', sans-serif;
+    --mono: 'Roboto Mono', monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    background: var(--brand-near-white);
+    color: var(--brand-brown);
+    font-family: var(--body);
+    font-size: 13px;
+    line-height: 1.45;
+    padding: 18px 24px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  /* ---------- Header ---------- */
+  header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--brand-border);
+    flex-shrink: 0;
+  }
+  h1 {
+    font-family: var(--headline);
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--brand-brown);
+  }
+  h1 .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.2px;
+    padding: 4px 9px;
+    background: var(--brand-yellow);
+    color: var(--brand-brown);
+    border-radius: 3px;
+    margin-right: 12px;
+    vertical-align: middle;
+    text-transform: uppercase;
+  }
+  h1 .sub {
+    font-family: var(--body);
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--brand-muted);
+    text-transform: none;
+    letter-spacing: 0;
+    margin-left: 10px;
+  }
+  .nav { font-family: var(--mono); font-size: 12px; }
+  .nav a {
+    color: var(--brand-blue);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  .nav a:hover { border-bottom-color: var(--brand-blue); }
+  .nav .sep { color: var(--brand-border); margin: 0 6px; }
+
+  /* ---------- Filter bar ---------- */
+  .filters {
+    background: var(--brand-surface);
+    border: 1px solid var(--brand-border);
+    border-radius: 4px;
+    padding: 10px 12px;
+    margin-bottom: 12px;
+    flex-shrink: 0;
+  }
+  .filter-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 4px 0;
+    flex-wrap: wrap;
+  }
+  .filter-row + .filter-row { border-top: 1px solid var(--brand-border); }
+  .filter-label {
+    font-family: var(--headline);
+    font-weight: 500;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--brand-muted);
+    flex-shrink: 0;
+    min-width: 64px;
+  }
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    flex: 1;
+  }
+  .chip {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 3px 9px;
+    background: #ffffff;
+    border: 1px solid var(--brand-border);
+    border-radius: 12px;
+    color: var(--brand-brown);
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.1s, border-color 0.1s, color 0.1s;
+    white-space: nowrap;
+  }
+  .chip:hover { border-color: var(--brand-amber); }
+  .chip.active {
+    background: var(--brand-yellow);
+    border-color: var(--brand-amber);
+    color: var(--brand-brown);
+    font-weight: 500;
+  }
+  .chip .cnt { color: var(--brand-muted); font-size: 10px; margin-left: 4px; }
+  .chip.active .cnt { color: var(--brand-brown); }
+
+  .search-box {
+    flex: 1;
+    min-width: 260px;
+    font-family: var(--mono);
+    font-size: 12px;
+    padding: 6px 10px;
+    border: 1px solid var(--brand-border);
+    border-radius: 3px;
+    background: #ffffff;
+    color: var(--brand-brown);
+  }
+  .search-box:focus { outline: none; border-color: var(--brand-amber); }
+
+  .btn-clear {
+    font-family: var(--headline);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 5px 12px;
+    background: #ffffff;
+    border: 1px solid var(--brand-border);
+    color: var(--brand-muted);
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  .btn-clear:hover { border-color: var(--status-weak); color: var(--status-weak); }
+  .btn-clear.hidden { visibility: hidden; }
+
+  .summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 2px 0 2px;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--brand-muted);
+  }
+  .summary-row .count strong {
+    color: var(--brand-brown);
+    font-weight: 700;
+  }
+  .summary-row .count strong.filtered { color: var(--brand-amber); }
+  .summary-row .sort-info { font-size: 11px; }
+
+  /* ---------- Main split ---------- */
+  .main {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: 16px;
+    flex: 1;
+    min-height: 0;
+  }
+  @media (max-width: 1280px) {
+    .main { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); }
+  }
+
+  /* ---------- Table ---------- */
+  .table-wrap {
+    background: #ffffff;
+    border: 1px solid var(--brand-border);
+    border-radius: 4px;
+    overflow: auto;
+    min-height: 0;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+  thead th {
+    position: sticky;
+    top: 0;
+    background: var(--brand-linen);
+    border-bottom: 1px solid var(--brand-border);
+    font-family: var(--headline);
+    font-weight: 500;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: left;
+    padding: 9px 10px;
+    color: var(--brand-brown);
+    cursor: pointer;
+    user-select: none;
+    z-index: 2;
+    white-space: nowrap;
+  }
+  thead th:hover { background: var(--brand-surface); }
+  thead th.sorted { color: var(--brand-amber); }
+  thead th .arrow { display: inline-block; margin-left: 4px; font-size: 9px; opacity: 0.7; }
+  thead th.no-sort { cursor: default; }
+  thead th.no-sort:hover { background: var(--brand-linen); }
+
+  tbody tr {
+    border-bottom: 1px solid var(--brand-surface);
+    cursor: pointer;
+    transition: background 0.08s;
+  }
+  tbody tr:hover { background: var(--brand-near-white); }
+  tbody tr.selected { background: var(--brand-yellow); }
+  tbody tr.selected:hover { background: var(--brand-yellow); }
+  tbody td {
+    padding: 6px 10px;
+    vertical-align: middle;
+    font-size: 12px;
+  }
+  td.name {
+    font-family: var(--mono);
+    font-weight: 500;
+    color: var(--brand-brown);
+    max-width: 280px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  td.repo {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--brand-muted);
+    white-space: nowrap;
+  }
+  td.type, td.quality, td.adopt, td.gem {
+    font-family: var(--mono);
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  td.quality { color: var(--brand-amber); letter-spacing: 0.5px; }
+  td.quality .empty { color: var(--brand-linen); }
+  td.quality .none  { color: var(--brand-border); font-size: 10px; }
+  td.gem { text-align: center; }
+  td.stages-cell {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    line-height: 1;
+  }
+  .stage-pill {
+    display: inline-block;
+    padding: 2px 5px;
+    background: var(--brand-surface);
+    color: var(--brand-brown);
+    border-radius: 2px;
+    margin-right: 2px;
+    margin-bottom: 1px;
+  }
+  .type-chip {
+    display: inline-block;
+    padding: 1px 6px;
+    background: var(--brand-linen);
+    color: var(--brand-brown);
+    border-radius: 2px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .type-chip.agent   { background: #e2dcef; color: #4a3d6e; }
+  .type-chip.command { background: #dcecdc; color: #3a6a3a; }
+
+  .badge-adopt {
+    display: inline-block;
+    padding: 1px 7px;
+    border-radius: 2px;
+    font-size: 9.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    font-weight: 600;
+    color: #ffffff;
+  }
+  .badge-adopt.strong { background: var(--status-strong); }
+  .badge-adopt.mid    { background: var(--status-covered); }
+  .badge-adopt.weak   { background: var(--status-partial); }
+  .badge-adopt.skip   { background: var(--status-weak); }
+
+  .empty-state {
+    padding: 60px 24px;
+    text-align: center;
+    color: var(--brand-muted);
+    font-family: var(--mono);
+    font-size: 12px;
+  }
+
+  /* ---------- Drawer ---------- */
+  .drawer {
+    background: #ffffff;
+    border: 1px solid var(--brand-border);
+    border-radius: 4px;
+    padding: 0;
+    overflow: auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .drawer-empty {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--brand-muted);
+    font-family: var(--mono);
+    font-size: 12px;
+    padding: 36px 24px;
+    text-align: center;
+    line-height: 1.6;
+  }
+  .drawer-body {
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .drawer-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--brand-border);
+  }
+  .drawer-title {
+    font-family: var(--headline);
+    font-weight: 600;
+    font-size: 18px;
+    text-transform: none;
+    letter-spacing: 0.2px;
+    color: var(--brand-brown);
+    line-height: 1.3;
+    word-break: break-word;
+  }
+  .drawer-sub {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--brand-muted);
+    margin-top: 4px;
+  }
+  .drawer-close {
+    font-family: var(--mono);
+    font-size: 18px;
+    line-height: 1;
+    background: transparent;
+    border: 1px solid var(--brand-border);
+    color: var(--brand-muted);
+    border-radius: 3px;
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .drawer-close:hover { border-color: var(--status-weak); color: var(--status-weak); }
+
+  .section-label {
+    font-family: var(--headline);
+    font-weight: 500;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--brand-muted);
+    margin-bottom: 5px;
+  }
+
+  .copy-btn {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 5px 10px;
+    background: var(--brand-surface);
+    border: 1px solid var(--brand-border);
+    color: var(--brand-brown);
+    border-radius: 3px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .copy-btn:hover { border-color: var(--brand-amber); }
+  .copy-btn.copied { background: var(--status-strong); color: #ffffff; border-color: var(--status-strong); }
+  .file-path {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--brand-muted);
+    word-break: break-all;
+    margin-top: 4px;
+  }
+
+  .desc {
+    font-family: var(--body);
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--brand-brown);
+    padding: 10px 12px;
+    background: var(--brand-surface);
+    border-left: 3px solid var(--brand-amber);
+    border-radius: 3px;
+  }
+  .desc .normalized {
+    display: block;
+    margin-top: 8px;
+    color: var(--brand-muted);
+    font-size: 11.5px;
+    font-style: italic;
+  }
+
+  .facets {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 6px 12px;
+    font-size: 12px;
+  }
+  .facet-key {
+    font-family: var(--headline);
+    font-weight: 500;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--brand-muted);
+    padding-top: 2px;
+  }
+  .facet-val {
+    font-family: var(--mono);
+    color: var(--brand-brown);
+    word-break: break-word;
+  }
+  .pill {
+    display: inline-block;
+    padding: 2px 8px;
+    background: var(--brand-linen);
+    color: var(--brand-brown);
+    border-radius: 10px;
+    font-size: 10.5px;
+    margin-right: 4px;
+    margin-bottom: 3px;
+    font-family: var(--mono);
+  }
+  .pill.stage { background: var(--brand-surface); }
+  .facet-val.muted { color: var(--brand-muted); font-style: italic; }
+
+  .eval-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 14px;
+    padding: 10px 12px;
+    background: var(--brand-near-white);
+    border: 1px solid var(--brand-border);
+    border-radius: 3px;
+  }
+  .eval-cell { font-size: 12px; }
+  .eval-cell .k {
+    font-family: var(--headline);
+    font-weight: 500;
+    font-size: 9.5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--brand-muted);
+  }
+  .eval-cell .v {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--brand-brown);
+    margin-top: 2px;
+    word-break: break-word;
+  }
+  .eval-cell .stars {
+    color: var(--brand-amber);
+    letter-spacing: 1px;
+  }
+  .eval-cell .stars .empty { color: var(--brand-linen); }
+
+  .badge-insp, .badge-uniq {
+    display: inline-block;
+    padding: 1px 7px;
+    border-radius: 2px;
+    font-size: 9.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    font-weight: 600;
+  }
+  .badge-insp.high    { background: var(--brand-yellow); color: var(--brand-brown); }
+  .badge-insp.mid     { background: var(--brand-linen); color: var(--brand-brown); }
+  .badge-insp.low     { background: var(--brand-surface); color: var(--brand-muted); }
+  .badge-uniq.rare      { background: var(--brand-amber); color: #ffffff; }
+  .badge-uniq.uncommon  { background: var(--brand-gold); color: var(--brand-brown); }
+  .badge-uniq.commodity { background: var(--brand-linen); color: var(--brand-muted); }
+  .badge-uniq.duplicate { background: var(--brand-surface); color: var(--brand-muted); opacity: 0.75; }
+
+  .phrase {
+    font-family: var(--body);
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--brand-brown);
+    font-style: italic;
+    padding: 10px 14px;
+    background: var(--brand-near-white);
+    border-left: 3px solid var(--brand-amber);
+    border-radius: 3px;
+  }
+  .phrase::before { content: '“'; color: var(--brand-amber); font-size: 18px; vertical-align: -2px; font-style: normal; }
+  .phrase::after  { content: '”'; color: var(--brand-amber); font-size: 18px; vertical-align: -2px; font-style: normal; }
+
+  .eval-notes {
+    font-family: var(--body);
+    font-size: 12px;
+    line-height: 1.55;
+    color: var(--brand-muted);
+    padding: 8px 12px;
+    background: var(--brand-surface);
+    border-radius: 3px;
+    white-space: pre-wrap;
+  }
+
+  /* ---------- Loading / error ---------- */
+  .status-overlay {
+    position: fixed;
+    inset: 0;
+    background: var(--brand-near-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--mono);
+    color: var(--brand-muted);
+    font-size: 13px;
+    z-index: 100;
+  }
+  .status-overlay.error { color: var(--status-weak); }
+</style>
+</head>
+<body>
+
+<div id="loading" class="status-overlay">Loading triage.json…</div>
+
+<header>
+  <div>
+    <h1><span class="label">Dark-Factory</span>Triage Console<span class="sub">Filter, drill, analyze 1,100 artifacts</span></h1>
+  </div>
+  <div class="nav">
+    <a href="../">← gallery</a>
+    <span class="sep">·</span>
+    <a href="../01-pipeline-overview/">pipeline</a>
+    <span class="sep">·</span>
+    <a href="../02-mining-view/">mining</a>
+  </div>
+</header>
+
+<div class="filters" id="filters" style="display: none;">
+  <div class="filter-row">
+    <div class="filter-label">Stage</div>
+    <div class="chips" id="chips-stage"></div>
+  </div>
+  <div class="filter-row">
+    <div class="filter-label">Cluster</div>
+    <div class="chips" id="chips-cluster"></div>
+  </div>
+  <div class="filter-row">
+    <div class="filter-label">Repo</div>
+    <div class="chips" id="chips-repo"></div>
+  </div>
+  <div class="filter-row">
+    <div class="filter-label">Type</div>
+    <div class="chips" id="chips-type"></div>
+    <div class="filter-label" style="margin-left: 16px;">Quality</div>
+    <div class="chips" id="chips-quality"></div>
+  </div>
+  <div class="filter-row">
+    <div class="filter-label">Adoption</div>
+    <div class="chips" id="chips-adoption"></div>
+    <div class="filter-label" style="margin-left: 16px;">Toggles</div>
+    <div class="chips" id="chips-toggle"></div>
+  </div>
+  <div class="filter-row">
+    <input class="search-box" id="search" type="text" placeholder="🔍  Search name, description, mineable phrase…" autocomplete="off">
+    <button class="btn-clear hidden" id="btn-clear">Clear filters</button>
+  </div>
+</div>
+
+<div class="summary-row" id="summary" style="display: none;">
+  <div class="count">Showing <strong id="count-shown">0</strong> of <strong>0</strong> artifacts</div>
+  <div class="sort-info" id="sort-info">Sort: evaluated first, by quality</div>
+</div>
+
+<div class="main" id="main" style="display: none;">
+  <div class="table-wrap">
+    <table id="table">
+      <thead>
+        <tr>
+          <th data-sort="name">Name <span class="arrow"></span></th>
+          <th data-sort="repo">Repo <span class="arrow"></span></th>
+          <th data-sort="type" class="no-sort">Type</th>
+          <th data-sort="stages" class="no-sort">Stages</th>
+          <th data-sort="quality">Quality <span class="arrow"></span></th>
+          <th data-sort="adopt" class="no-sort">Adopt</th>
+          <th data-sort="phrase" class="no-sort">💎</th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+  <div class="drawer" id="drawer">
+    <div class="drawer-empty" id="drawer-empty">
+      Click any row to view the artifact's full detail —<br>
+      description, facets, evaluation, mineable phrase.
+    </div>
+    <div class="drawer-body" id="drawer-body" style="display: none;"></div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// STATE
+// ============================================================
+let allArtifacts = [];
+let filteredArtifacts = [];
+let filterMeta = null;
+let selectedId = null;
+
+const state = {
+  stages:   new Set(),
+  clusters: new Set(),
+  repos:    new Set(),
+  types:    new Set(),
+  quality:  new Set(),    // values: '5','4','3','le2','none'
+  adoption: new Set(),    // values: 'strong','mid','weak','skip'
+  hasPhrase: false,
+  evaluatedOnly: false,
+  search: '',
+  sort: { col: 'default', dir: 'desc' }
+};
+
+// ============================================================
+// HELPERS
+// ============================================================
+// Extract leading label from prose strings like "strong — Already in David's stack..."
+function leadingLabel(str) {
+  if (!str) return null;
+  const m = String(str).match(/^([a-z-]+)(?:\b|\s|—|:|$)/i);
+  return m ? m[1].toLowerCase() : null;
+}
+
+function qualityBucket(q) {
+  if (q === null || q === undefined) return 'none';
+  if (q >= 5) return '5';
+  if (q === 4) return '4';
+  if (q === 3) return '3';
+  return 'le2';
+}
+
+function adoptionLabel(a) {
+  // "strong — …", "mid — …", "weak — …", "skip — …"
+  const lbl = leadingLabel(a.adoption_fit_final);
+  if (!lbl) return null;
+  if (['strong','mid','weak','skip'].includes(lbl)) return lbl;
+  return null;
+}
+
+function inspirationLabel(s) {
+  const lbl = leadingLabel(s);
+  if (!lbl) return null;
+  return ['high','mid','low'].includes(lbl) ? lbl : null;
+}
+
+function uniquenessLabel(s) {
+  const lbl = leadingLabel(s);
+  if (!lbl) return null;
+  return ['rare','uncommon','commodity','duplicate'].includes(lbl) ? lbl : null;
+}
+
+function shortName(id) {
+  if (!id) return '';
+  const parts = String(id).split(':');
+  return parts[parts.length - 1] || id;
+}
+
+function stars(q) {
+  if (q === null || q === undefined) return '<span class="none">—</span>';
+  const filled = '★'.repeat(q);
+  const empty  = '★'.repeat(Math.max(0, 5 - q));
+  return filled + `<span class="empty">${empty}</span>`;
+}
+
+function escapeHtml(s) {
+  if (s === null || s === undefined) return '';
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+// ============================================================
+// FILTER LOGIC
+// ============================================================
+function matches(a) {
+  // Stage (OR within group)
+  if (state.stages.size > 0) {
+    const stages = a.phase_fit || [];
+    if (!stages.some(s => state.stages.has(s))) return false;
+  }
+  // Cluster
+  if (state.clusters.size > 0) {
+    const clusters = a.cluster_facet || [];
+    if (!clusters.some(c => state.clusters.has(c))) return false;
+  }
+  // Repo
+  if (state.repos.size > 0) {
+    if (!state.repos.has(a.repo)) return false;
+  }
+  // Type
+  if (state.types.size > 0) {
+    if (!state.types.has(a.type)) return false;
+  }
+  // Quality
+  if (state.quality.size > 0) {
+    if (!state.quality.has(qualityBucket(a.quality_score))) return false;
+  }
+  // Adoption
+  if (state.adoption.size > 0) {
+    const lbl = adoptionLabel(a);
+    if (!lbl || !state.adoption.has(lbl)) return false;
+  }
+  // Has mineable phrase
+  if (state.hasPhrase && !a.mineable_phrase) return false;
+  // Evaluated only
+  if (state.evaluatedOnly && !a.has_eval) return false;
+  // Search (case-insensitive substring over name + description + mineable phrase)
+  if (state.search) {
+    const q = state.search.toLowerCase();
+    const hay = [
+      a.name,
+      a.description_raw,
+      a.description_normalized,
+      a.mineable_phrase
+    ].filter(Boolean).join(' ').toLowerCase();
+    if (!hay.includes(q)) return false;
+  }
+  return true;
+}
+
+function activeFilterCount() {
+  return state.stages.size + state.clusters.size + state.repos.size +
+    state.types.size + state.quality.size + state.adoption.size +
+    (state.hasPhrase ? 1 : 0) + (state.evaluatedOnly ? 1 : 0) +
+    (state.search ? 1 : 0);
+}
+
+// ============================================================
+// SORT
+// ============================================================
+function compareDefault(a, b) {
+  // Evaluated first
+  if (a.has_eval && !b.has_eval) return -1;
+  if (!a.has_eval && b.has_eval) return 1;
+  // Both evaluated: by quality desc
+  if (a.has_eval && b.has_eval) {
+    const qa = a.quality_score || 0;
+    const qb = b.quality_score || 0;
+    if (qa !== qb) return qb - qa;
+    return (a.name || '').localeCompare(b.name || '');
+  }
+  // Both unevaluated: alphabetical
+  return (a.name || '').localeCompare(b.name || '');
+}
+
+function compareSorted(col, dir) {
+  const sign = dir === 'desc' ? -1 : 1;
+  return (a, b) => {
+    let av, bv;
+    if (col === 'name') { av = a.name || ''; bv = b.name || ''; return sign * av.localeCompare(bv); }
+    if (col === 'repo') { av = a.repo || ''; bv = b.repo || ''; return sign * av.localeCompare(bv); }
+    if (col === 'quality') {
+      av = a.quality_score === null || a.quality_score === undefined ? -1 : a.quality_score;
+      bv = b.quality_score === null || b.quality_score === undefined ? -1 : b.quality_score;
+      if (av !== bv) return sign * (av - bv);
+      return (a.name || '').localeCompare(b.name || '');
+    }
+    return 0;
+  };
+}
+
+function sortFiltered() {
+  if (state.sort.col === 'default') {
+    filteredArtifacts.sort(compareDefault);
+  } else {
+    filteredArtifacts.sort(compareSorted(state.sort.col, state.sort.dir));
+  }
+}
+
+// ============================================================
+// RENDER — CHIPS
+// ============================================================
+function renderChip(group, value, label, count) {
+  const active = state[group] instanceof Set ? state[group].has(value) : state[group] === value;
+  const cnt = count !== undefined ? `<span class="cnt">${count}</span>` : '';
+  return `<button class="chip ${active ? 'active' : ''}" data-group="${group}" data-value="${escapeHtml(String(value))}">${escapeHtml(label)}${cnt}</button>`;
+}
+
+function renderChips() {
+  // Stages
+  const stages = filterMeta.stages;
+  document.getElementById('chips-stage').innerHTML = stages.map(s =>
+    renderChip('stages', s.id, `${String(s.id).padStart(2, '0')} ${s.name}`, s.count)
+  ).join('');
+
+  // Clusters
+  document.getElementById('chips-cluster').innerHTML = filterMeta.clusters.map(c =>
+    renderChip('clusters', c.id, c.id, c.count)
+  ).join('');
+
+  // Repos
+  document.getElementById('chips-repo').innerHTML = filterMeta.repos.map(r =>
+    renderChip('repos', r.id, r.id, r.count)
+  ).join('');
+
+  // Types
+  document.getElementById('chips-type').innerHTML = filterMeta.types.map(t =>
+    renderChip('types', t.id, t.id, t.count)
+  ).join('');
+
+  // Quality (computed buckets across the corpus)
+  const qBuckets = {
+    '5':   allArtifacts.filter(a => a.quality_score === 5).length,
+    '4':   allArtifacts.filter(a => a.quality_score === 4).length,
+    '3':   allArtifacts.filter(a => a.quality_score === 3).length,
+    'le2': allArtifacts.filter(a => a.quality_score !== null && a.quality_score !== undefined && a.quality_score <= 2).length,
+    'none': allArtifacts.filter(a => a.quality_score === null || a.quality_score === undefined).length,
+  };
+  const qLabels = { '5': '★5', '4': '★4', '3': '★3', 'le2': '★≤2', 'none': 'unevaluated' };
+  document.getElementById('chips-quality').innerHTML = ['5','4','3','le2','none'].map(k =>
+    renderChip('quality', k, qLabels[k], qBuckets[k])
+  ).join('');
+
+  // Adoption
+  const aBuckets = {
+    'strong': allArtifacts.filter(a => adoptionLabel(a) === 'strong').length,
+    'mid':    allArtifacts.filter(a => adoptionLabel(a) === 'mid').length,
+    'weak':   allArtifacts.filter(a => adoptionLabel(a) === 'weak').length,
+    'skip':   allArtifacts.filter(a => adoptionLabel(a) === 'skip').length,
+  };
+  document.getElementById('chips-adoption').innerHTML = ['strong','mid','weak','skip'].map(k =>
+    renderChip('adoption', k, k, aBuckets[k])
+  ).join('');
+
+  // Toggles (single-select buttons that act like booleans)
+  const phraseCount = allArtifacts.filter(a => a.mineable_phrase).length;
+  const evalCount = allArtifacts.filter(a => a.has_eval).length;
+  document.getElementById('chips-toggle').innerHTML = `
+    <button class="chip ${state.hasPhrase ? 'active' : ''}" data-toggle="hasPhrase">💎 has phrase<span class="cnt">${phraseCount}</span></button>
+    <button class="chip ${state.evaluatedOnly ? 'active' : ''}" data-toggle="evaluatedOnly">evaluated only<span class="cnt">${evalCount}</span></button>
+  `;
+}
+
+// ============================================================
+// RENDER — TABLE
+// ============================================================
+function renderRow(a) {
+  const name = a.name || shortName(a.id);
+  const phaseFit = (a.phase_fit || []).map(s => `<span class="stage-pill">${String(s).padStart(2,'0')}</span>`).join('');
+  const adopt = adoptionLabel(a);
+  const adoptHtml = adopt ? `<span class="badge-adopt ${adopt}">${adopt}</span>` : '';
+  const typeCls = a.type === 'agent' ? 'agent' : a.type === 'command' ? 'command' : '';
+  const sel = a.id === selectedId ? 'selected' : '';
+  return `<tr class="${sel}" data-id="${escapeHtml(a.id)}">
+    <td class="name" title="${escapeHtml(name)}">${escapeHtml(name)}</td>
+    <td class="repo">${escapeHtml(a.repo || '')}</td>
+    <td class="type"><span class="type-chip ${typeCls}">${escapeHtml(a.type || '')}</span></td>
+    <td class="stages-cell">${phaseFit}</td>
+    <td class="quality">${stars(a.quality_score)}</td>
+    <td class="adopt">${adoptHtml}</td>
+    <td class="gem">${a.mineable_phrase ? '💎' : ''}</td>
+  </tr>`;
+}
+
+function renderTable() {
+  const tbody = document.getElementById('tbody');
+  if (filteredArtifacts.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="7"><div class="empty-state">No artifacts match these filters.</div></td></tr>`;
+    return;
+  }
+  // Render in one pass (1,100 rows is well within budget)
+  tbody.innerHTML = filteredArtifacts.map(renderRow).join('');
+}
+
+// ============================================================
+// RENDER — DRAWER
+// ============================================================
+function pills(arr, cls='pill') {
+  if (!arr || !arr.length) return '<span class="facet-val muted">—</span>';
+  return arr.map(x => `<span class="${cls}">${escapeHtml(String(x))}</span>`).join('');
+}
+
+function stagePillsWithName(arr) {
+  if (!arr || !arr.length) return '<span class="facet-val muted">—</span>';
+  const map = {};
+  filterMeta.stages.forEach(s => { map[s.id] = s.name; });
+  return arr.map(s => `<span class="pill stage">${String(s).padStart(2,'0')} ${escapeHtml(map[s] || '')}</span>`).join('');
+}
+
+function tier1Rows(t) {
+  if (!t || Object.keys(t).length === 0) return '<span class="facet-val muted">no tier-1 facets captured</span>';
+  return Object.entries(t).map(([k, v]) =>
+    `<div><span style="color:var(--brand-muted);font-size:10px;text-transform:uppercase;letter-spacing:0.8px">${escapeHtml(k)}</span>
+     <span style="font-family:var(--mono);font-size:11px;margin-left:6px;color:var(--brand-brown)">${escapeHtml(String(v))}</span></div>`
+  ).join('');
+}
+
+function renderDrawer(a) {
+  document.getElementById('drawer-empty').style.display = 'none';
+  const body = document.getElementById('drawer-body');
+  body.style.display = 'flex';
+
+  const name = a.name || shortName(a.id);
+  const adopt = adoptionLabel(a);
+  const insp = inspirationLabel(a.inspiration_value);
+  const uniq = uniquenessLabel(a.uniqueness_refined);
+
+  const filePathBlock = a.file_path ? `
+    <div>
+      <div class="section-label">Source file</div>
+      <button class="copy-btn" data-copy="${escapeHtml(a.file_path)}">📋 Copy file path</button>
+      <div class="file-path">${escapeHtml(a.file_path)}</div>
+    </div>
+  ` : '';
+
+  const evalBlock = a.has_eval ? `
+    <div>
+      <div class="section-label">Tier-2 Evaluation</div>
+      <div class="eval-grid">
+        ${a.intent ? `<div class="eval-cell" style="grid-column: span 2;"><div class="k">Intent</div><div class="v">${escapeHtml(a.intent)}</div></div>` : ''}
+        <div class="eval-cell"><div class="k">Quality</div><div class="v"><span class="stars">${stars(a.quality_score)}</span></div></div>
+        ${adopt ? `<div class="eval-cell"><div class="k">Adoption Fit</div><div class="v"><span class="badge-adopt ${adopt}">${adopt}</span></div></div>` : ''}
+        ${insp ? `<div class="eval-cell"><div class="k">Inspiration</div><div class="v"><span class="badge-insp ${insp}">${insp}</span></div></div>` : ''}
+        ${uniq ? `<div class="eval-cell"><div class="k">Uniqueness</div><div class="v"><span class="badge-uniq ${uniq}">${uniq}</span></div></div>` : ''}
+        ${a.composability ? `<div class="eval-cell" style="grid-column: span 2;"><div class="k">Composability</div><div class="v">${escapeHtml(a.composability)}</div></div>` : ''}
+        ${a.description_craft_refined ? `<div class="eval-cell" style="grid-column: span 2;"><div class="k">Description Craft</div><div class="v">${escapeHtml(a.description_craft_refined)}</div></div>` : ''}
+      </div>
+    </div>
+  ` : '';
+
+  const phraseBlock = a.mineable_phrase ? `
+    <div>
+      <div class="section-label">Mineable phrase</div>
+      <div class="phrase">${escapeHtml(a.mineable_phrase)}</div>
+    </div>
+  ` : '';
+
+  const notesBlock = a.eval_notes ? `
+    <div>
+      <div class="section-label">Eval notes</div>
+      <div class="eval-notes">${escapeHtml(a.eval_notes)}</div>
+    </div>
+  ` : '';
+
+  body.innerHTML = `
+    <div class="drawer-head">
+      <div>
+        <div class="drawer-title">${escapeHtml(name)}</div>
+        <div class="drawer-sub">${escapeHtml(a.repo || '')} · ${escapeHtml(a.type || '')}${a.retired ? ' · <span style="color:var(--status-weak)">retired</span>' : ''}</div>
+      </div>
+      <button class="drawer-close" id="drawer-close" title="Close">×</button>
+    </div>
+
+    <div>
+      <div class="section-label">Description</div>
+      <div class="desc">
+        ${escapeHtml(a.description_raw || '—')}
+        ${a.description_normalized && a.description_normalized !== a.description_raw ? `<span class="normalized">↳ ${escapeHtml(a.description_normalized)}</span>` : ''}
+      </div>
+    </div>
+
+    <div>
+      <div class="section-label">Facets</div>
+      <div class="facets">
+        <div class="facet-key">Stages</div>
+        <div class="facet-val">${stagePillsWithName(a.phase_fit)}</div>
+        <div class="facet-key">Clusters</div>
+        <div class="facet-val">${pills(a.cluster_facet)}</div>
+        <div class="facet-key">Tier 1</div>
+        <div class="facet-val">${tier1Rows(a.tier1)}</div>
+      </div>
+    </div>
+
+    ${evalBlock}
+    ${phraseBlock}
+    ${notesBlock}
+    ${filePathBlock}
+  `;
+
+  document.getElementById('drawer-close').addEventListener('click', closeDrawer);
+  const copyBtn = body.querySelector('[data-copy]');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', async (e) => {
+      const txt = copyBtn.getAttribute('data-copy');
+      try {
+        await navigator.clipboard.writeText(txt);
+        copyBtn.classList.add('copied');
+        copyBtn.textContent = '✓ Copied';
+        setTimeout(() => {
+          copyBtn.classList.remove('copied');
+          copyBtn.innerHTML = '📋 Copy file path';
+        }, 1400);
+      } catch (err) {
+        copyBtn.textContent = 'Copy failed';
+      }
+    });
+  }
+}
+
+function closeDrawer() {
+  selectedId = null;
+  document.getElementById('drawer-empty').style.display = 'flex';
+  document.getElementById('drawer-body').style.display = 'none';
+  document.getElementById('drawer-body').innerHTML = '';
+  // Clear row highlight
+  document.querySelectorAll('tbody tr.selected').forEach(r => r.classList.remove('selected'));
+}
+
+// ============================================================
+// RENDER — SUMMARY / SORT HEADER
+// ============================================================
+function renderSummary() {
+  const shownEl = document.getElementById('count-shown');
+  shownEl.textContent = filteredArtifacts.length.toLocaleString();
+  shownEl.classList.toggle('filtered', filteredArtifacts.length !== allArtifacts.length);
+  document.querySelector('.summary-row .count strong:last-child').textContent = allArtifacts.length.toLocaleString();
+
+  const info = document.getElementById('sort-info');
+  if (state.sort.col === 'default') {
+    info.textContent = 'Sort: evaluated first, by quality';
+  } else {
+    info.textContent = `Sort: ${state.sort.col} ${state.sort.dir === 'desc' ? '↓' : '↑'}`;
+  }
+
+  document.getElementById('btn-clear').classList.toggle('hidden', activeFilterCount() === 0);
+
+  // Sort arrows in header
+  document.querySelectorAll('thead th').forEach(th => {
+    th.classList.remove('sorted');
+    const arrow = th.querySelector('.arrow');
+    if (arrow) arrow.textContent = '';
+  });
+  if (state.sort.col !== 'default') {
+    const th = document.querySelector(`thead th[data-sort="${state.sort.col}"]`);
+    if (th) {
+      th.classList.add('sorted');
+      const arrow = th.querySelector('.arrow');
+      if (arrow) arrow.textContent = state.sort.dir === 'desc' ? '↓' : '↑';
+    }
+  }
+}
+
+// ============================================================
+// RE-RENDER ORCHESTRATION
+// ============================================================
+function applyFilters() {
+  filteredArtifacts = allArtifacts.filter(matches);
+  sortFiltered();
+  renderTable();
+  renderSummary();
+  renderChips(); // refresh active states
+}
+
+// ============================================================
+// EVENT HANDLERS
+// ============================================================
+function bindEvents() {
+  // Chip clicks (delegated)
+  document.getElementById('filters').addEventListener('click', (e) => {
+    const chip = e.target.closest('.chip');
+    if (!chip) return;
+
+    if (chip.dataset.toggle) {
+      state[chip.dataset.toggle] = !state[chip.dataset.toggle];
+    } else {
+      const group = chip.dataset.group;
+      const value = chip.dataset.value;
+      const set = state[group];
+      // Numeric for stages
+      const v = group === 'stages' ? parseInt(value, 10) : value;
+      if (set.has(v)) set.delete(v); else set.add(v);
+    }
+    applyFilters();
+  });
+
+  // Search box
+  let searchTimer;
+  document.getElementById('search').addEventListener('input', (e) => {
+    clearTimeout(searchTimer);
+    const v = e.target.value;
+    searchTimer = setTimeout(() => {
+      state.search = v.trim();
+      applyFilters();
+    }, 120);
+  });
+
+  // Clear filters
+  document.getElementById('btn-clear').addEventListener('click', () => {
+    state.stages.clear();
+    state.clusters.clear();
+    state.repos.clear();
+    state.types.clear();
+    state.quality.clear();
+    state.adoption.clear();
+    state.hasPhrase = false;
+    state.evaluatedOnly = false;
+    state.search = '';
+    document.getElementById('search').value = '';
+    applyFilters();
+  });
+
+  // Table row click → drawer
+  document.getElementById('tbody').addEventListener('click', (e) => {
+    const tr = e.target.closest('tr[data-id]');
+    if (!tr) return;
+    const id = tr.dataset.id;
+    if (id === selectedId) {
+      closeDrawer();
+      return;
+    }
+    selectedId = id;
+    document.querySelectorAll('tbody tr.selected').forEach(r => r.classList.remove('selected'));
+    tr.classList.add('selected');
+    const a = allArtifacts.find(x => x.id === id);
+    if (a) renderDrawer(a);
+  });
+
+  // Header sort
+  document.querySelector('thead').addEventListener('click', (e) => {
+    const th = e.target.closest('th[data-sort]');
+    if (!th || th.classList.contains('no-sort')) return;
+    const col = th.dataset.sort;
+    if (state.sort.col === col) {
+      state.sort.dir = state.sort.dir === 'desc' ? 'asc' : 'desc';
+    } else {
+      state.sort.col = col;
+      state.sort.dir = col === 'quality' ? 'desc' : 'asc';
+    }
+    applyFilters();
+  });
+
+  // Esc closes drawer
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && selectedId) closeDrawer();
+  });
+}
+
+// ============================================================
+// BOOT
+// ============================================================
+fetch('../../data/triage.json')
+  .then(r => {
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    return r.json();
+  })
+  .then(data => {
+    allArtifacts = data.artifacts || [];
+    filterMeta = data.filters || { stages: [], clusters: [], repos: [], types: [] };
+
+    document.getElementById('loading').remove();
+    document.getElementById('filters').style.display = 'block';
+    document.getElementById('summary').style.display = 'flex';
+    document.getElementById('main').style.display = 'grid';
+
+    renderChips();
+    bindEvents();
+    applyFilters();
+  })
+  .catch(err => {
+    const overlay = document.getElementById('loading');
+    overlay.classList.add('error');
+    overlay.textContent = 'Failed to load triage.json — ' + err.message;
+  });
+</script>
+</body>
+</html>

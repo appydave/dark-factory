@@ -1,0 +1,573 @@
+{
+  "meta": {
+    "source": "artifacts.jsonl + pipeline-matrix/stage-*.md + evaluations/*.md",
+    "canonical_chain": "phase-fit assignments \u2192 stage filter \u2192 evals top-N per stage",
+    "generated_at": "2026-05-18",
+    "generator": "Peter (Mochaccino dark-factory workspace)",
+    "corpus_total": 1100,
+    "stages_count": 11
+  },
+  "stages": [
+    {
+      "number": 0,
+      "name": "Research / Discovery",
+      "slug": "research-discovery",
+      "artifact_count": 197,
+      "gap_status": "partial",
+      "gap_note": "Bug investigation / code-archaeology absent. POEM Alex pre-greeting scan is the lone deployed system-comprehension instance.",
+      "top_winners": [
+        {
+          "id": "agent-skills-osmani:skill:source-driven-development",
+          "name": "source-driven-development",
+          "repo": "agent-skills-osmani",
+          "quality": 5,
+          "adoption_fit": "strong \u2014 Language-agnostic; supports all major stacks via dependency file detection. The principle (don't write from training data \u2014 verify) is universally applicable and especially important for rapidly-evolving frameworks.",
+          "phrase": "If you cannot find documentation for a pattern, say so explicitly. Honesty about what you couldn't verify is more valuab\u2026"
+        },
+        {
+          "id": "agent-skills-osmani:skill:context-engineering",
+          "name": "context-engineering",
+          "repo": "agent-skills-osmani",
+          "quality": 5,
+          "adoption_fit": null,
+          "phrase": "Context window size \u2260 attention budget. Focused context outperforms large context."
+        },
+        {
+          "id": "appydave-plugins:skill:brain-query",
+          "name": "brain-query",
+          "repo": "appydave-plugins",
+          "quality": 4,
+          "adoption_fit": null,
+          "phrase": "File discovery tool \u2014 returns paths for piping into llm_context. Different from focus (orientation) and brain-librarian \u2026"
+        },
+        {
+          "id": "appydave-plugins:skill:browse-with-me",
+          "name": "browse-with-me",
+          "repo": "appydave-plugins",
+          "quality": 4,
+          "adoption_fit": null,
+          "phrase": "David watches. You drive. Pick the right tool, then operate it."
+        },
+        {
+          "id": "appydave-plugins:skill:frontmatter-indexer",
+          "name": "frontmatter-indexer",
+          "repo": "appydave-plugins",
+          "quality": 4,
+          "adoption_fit": null,
+          "phrase": null
+        }
+      ],
+      "cluster_breakdown": []
+    },
+    {
+      "number": 1,
+      "name": "Spec & Requirements",
+      "slug": "spec-requirements",
+      "artifact_count": 257,
+      "gap_status": "covered",
+      "gap_note": "Heavy spec-first (BMAD/spec-kit) vs lightweight (you). Pre-spec elicitation (interview-me) is the gap.",
+      "top_winners": [
+        {
+          "id": "agent-skills-osmani:skill:api-and-interface-design",
+          "name": "api-and-interface-design",
+          "repo": "agent-skills-osmani",
+          "quality": 5,
+          "adoption_fit": null,
+          "phrase": "With a sufficient number of users of an API, all observable behaviors of your system will be depended on by somebody, re\u2026"
+        },
+        {
+          "id": "agent-skills-osmani:skill:idea-refine",
+          "name": "idea-refine",
+          "repo": "agent-skills-osmani",
+          "quality": 5,
+          "adoption_fit": null,
+          "phrase": "The 'Not Doing' list is arguably the most valuable part. Focus is about saying no to good ideas. Make the trade-offs exp\u2026"
+        },
+        {
+          "id": "agent-skills-osmani:skill:interview-me",
+          "name": "interview-me",
+          "repo": "agent-skills-osmani",
+          "quality": 5,
+          "adoption_fit": null,
+          "phrase": "If you didn't have to justify this to anyone, what would you actually want?"
+        },
+        {
+          "id": "agent-skills-osmani:skill:spec-driven-development",
+          "name": "spec-driven-development",
+          "repo": "agent-skills-osmani",
+          "quality": 5,
+          "adoption_fit": null,
+          "phrase": "Don't silently fill in ambiguous requirements. The spec's entire purpose is to surface misunderstandings *before* code g\u2026"
+        },
+        {
+          "id": "appydave-plugins:skill:architectural-review",
+          "name": "architectural-review",
+          "repo": "appydave-plugins",
+          "quality": 5,
+          "adoption_fit": "strong \u2014 Sits alongside code-quality-audit and test-quality-audit as the third lens; David already has both sisters. Clean integration story.",
+          "phrase": "code quality is reactive (what's wrong now). Architectural review is predictive (where is complexity heading, what struc\u2026"
+        }
+      ],
+      "cluster_breakdown": []
+    },
+    {
+      "number": 2,
+      "name": "Story Decomposition",
+      "slug": "story-decomposition",
+      "artifact_count": 248,
+      "gap_status": "covered",
+      "gap_note": "Mid-horizon sprint-level decomposition between BMAD epic and spec-kit task is the structural gap.",
+      "top_winners": [
+        {
+          "id": "appydave-plugins:skill:architectural-review",
+          "name": "architectural-review",
+          "repo": "appydave-plugins",
+          "quality": 5,
+          "adoption_fit": "strong \u2014 Sits alongside code-quality-audit and test-quality-audit as the third lens; David already has both sisters. Clean integration story.",
+          "phrase": "code quality is reactive (what's wrong now). Architectural review is predictive (where is complexity heading, what struc\u2026"
+        },
+        {
+          "id": "appydave-plugins:skill:bmad-story-lifecycle",
+          "name": "bmad-story-lifecycle",
+          "repo": "appydave-plugins",
+          "quality": 5,
+          "adoption_fit": null,
+          "phrase": "The invocation method (Skill tool vs tmux pane) is NOT a reliable signal \u2014 ignore it. Check the env vars."
+        },
+        {
+          "id": "appydave-plugins:skill:goal-plan",
+          "name": "goal-plan",
+          "repo": "appydave-plugins",
+          "quality": 5,
+          "adoption_fit": null,
+          "phrase": "Does NOT execute the plan; produces the inputs that /goal then runs."
+        },
+        {
+          "id": "appydave-plugins:skill:ralphy",
+          "name": "ralphy",
+          "repo": "appydave-plugins",
+          "quality": 5,
+          "adoption_fit": "strong \u2014 David's primary execution loop. No adoption required; it already runs campaigns. The profile system (Development/Analysis/Content) and Project Heal retroactive backlog builder are particularly mature.",
+          "phrase": "Subagents are defined by what they DON'T receive \u2014 task agents get task text + AGENTS.md only."
+        },
+        {
+          "id": "appydave-plugins:skill:agent-orchestrator",
+          "name": "agent-orchestrator",
+          "repo": "appydave-plugins",
+          "quality": 4,
+          "adoption_fit": null,
+          "phrase": null
+        }
+      ],
+      "cluster_breakdown": []
+    },
+    {
+      "number": 3,
+      "name": "Story Execution Loop",
+      "slug": "story-execution",
+      "artifact_count": 81,
+      "gap_status": "covered",
+      "gap_note": "Sparse cluster (81). BMAD Amelia is your developer persona \u2014 most artifacts are persona-related.",
+      "top_winners": [
+        {
+          "id": "agent-skills-osmani:skill:debugging-and-error-recovery",
+          "name": "debugging-and-error-recovery",
+          "repo": "agent-skills-osmani",
+          "quality": 5,
+          "adoption_fit": "strong \u2014 Language-agnostic debugging discipline; examples use TypeScript/Node but patterns apply universally. No stack lock. Directly composable with incremental-implementation and test-driven-development.",
+          "phrase": "Don't push past a failing test or broken build to work on the next feature. Errors compound."
+        },
+        {
+          "id": "agent-skills-osmani:skill:frontend-ui-engineering",
+          "name": "frontend-ui-engineering",
+          "repo": "agent-skills-osmani",
+          "quality": 5,
+          "adoption_fit": "strong \u2014 Language-agnostic principles; examples are React/Tailwind but the concepts (composition over configuration, data/presentation separation, state hierarchy, accessibility rules) transfer broadly. Not stack-locked.",
+          "phrase": "UI that looks like it was built by a design-aware engineer at a top company \u2014 not like it was generated by an AI."
+        },
+        {
+          "id": "agent-skills-osmani:skill:git-workflow-and-versioning",
+          "name": "git-workflow-and-versioning",
+          "repo": "agent-skills-osmani",
+          "quality": 5,
+          "adoption_fit": null,
+          "phrase": "THINGS I DIDN'T TOUCH (intentionally): ... This shows you exercised scope discipline and didn't go on an unsolicited ren\u2026"
+        },
+        {
+          "id": "agent-skills-osmani:skill:incremental-implementation",
+          "name": "incremental-implementation",
+          "repo": "agent-skills-osmani",
+          "quality": 5,
+          "adoption_fit": null,
+          "phrase": "If you notice something worth improving outside your task scope, note it \u2014 don't fix it."
+        },
+        {
+          "id": "agent-skills-osmani:skill:performance-optimization",
+          "name": "performance-optimization",
+          "repo": "agent-skills-osmani",
+          "quality": 5,
+          "adoption_fit": "strong \u2014 Language-agnostic measurement discipline; React/TypeScript examples but the measure\u2192identify\u2192fix\u2192verify\u2192guard workflow and the symptom-tree are universally applicable. Not stack-locked.",
+          "phrase": "Performance work without measurement is guessing \u2014 and guessing leads to premature optimization that adds complexity wit\u2026"
+        }
+      ],
+      "cluster_breakdown": []
+    },
+    {
+      "number": 4,
+      "name": "Develop + Unit Test",
+      "slug": "develop-unit-test",
+      "artifact_count": 141,
+      "gap_status": "partial",
+      "gap_note": "Systematic-debug skill missing entirely. Highest-leverage single gap.",
+      "top_winners": [
+        {
+          "id": "agent-skills-osmani:skill:browser-testing-with-devtools",
+          "name": "browser-testing-with-devtools",
+          "repo": "agent-skills-osmani",
+          "quality": 5,
+          "adoption_fit": "strong \u2014 David's stack includes FliVideo (React/Next.js) and AppyStack apps; chrome-devtools MCP is already listed in the system-reminder available tools.",
+          "phrase": "Instead of guessing what's happening at runtime, verify it."
+        },
+        {
+          "id": "agent-skills-osmani:skill:code-simplification",
+          "name": "code-simplification",
+          "repo": "agent-skills-osmani",
+          "quality": 5,
+          "adoption_fit": null,
+          "phrase": "Simplification that breaks project consistency is not simplification \u2014 it's churn."
+        },
+        {
+          "id": "agent-skills-osmani:skill:test-driven-development",
+          "name": "test-driven-development",
+          "repo": "agent-skills-osmani",
+          "quality": 5,
+          "adoption_fit": null,
+          "phrase": "Tests ARE the specification. They document what the code should do, not what it does."
+        },
+        {
+          "id": "agent-skills-osmani:skill:debugging-and-error-recovery",
+          "name": "debugging-and-error-recovery",
+          "repo": "agent-skills-osmani",
+          "quality": 5,
+          "adoption_fit": "strong \u2014 Language-agnostic debugging discipline; examples use TypeScript/Node but patterns apply universally. No stack lock. Directly composable with incremental-implementation and test-driven-development.",
+          "phrase": "Don't push past a failing test or broken build to work on the next feature. Errors compound."
+        },
+        {
+          "id": "agent-skills-osmani:skill:frontend-ui-engineering",
+          "name": "frontend-ui-engineering",
+          "repo": "agent-skills-osmani",
+          "quality": 5,
+          "adoption_fit": "strong \u2014 Language-agnostic principles; examples are React/Tailwind but the concepts (composition over configuration, data/presentation separation, state hierarchy, accessibility rules) transfer broadly. Not stack-locked.",
+          "phrase": "UI that looks like it was built by a design-aware engineer at a top company \u2014 not like it was generated by an AI."
+        }
+      ],
+      "cluster_breakdown": []
+    },
+    {
+      "number": 5,
+      "name": "UAT",
+      "slug": "uat",
+      "artifact_count": 160,
+      "gap_status": "covered",
+      "gap_note": "Covered by your review-acceptance-auditor + delivery-review.",
+      "top_winners": [
+        {
+          "id": "agent-skills-osmani:skill:browser-testing-with-devtools",
+          "name": "browser-testing-with-devtools",
+          "repo": "agent-skills-osmani",
+          "quality": 5,
+          "adoption_fit": "strong \u2014 David's stack includes FliVideo (React/Next.js) and AppyStack apps; chrome-devtools MCP is already listed in the system-reminder available tools.",
+          "phrase": "Instead of guessing what's happening at runtime, verify it."
+        },
+        {
+          "id": "agent-skills-osmani:skill:doubt-driven-development",
+          "name": "doubt-driven-development",
+          "repo": "agent-skills-osmani",
+          "quality": 5,
+          "adoption_fit": "strong \u2014 No equivalent in David's current stack. The orchestrator-only constraint (cannot be inside a persona) fits Claude Code's main-session model.",
+          "phrase": "Pass ARTIFACT + CONTRACT only. Do NOT pass the CLAIM. Handing the reviewer your conclusion biases it toward agreement."
+        },
+        {
+          "id": "appydave-plugins:skill:false-twins",
+          "name": "false-twins",
+          "repo": "appydave-plugins",
+          "quality": 5,
+          "adoption_fit": "strong \u2014 David uses this skill constantly for agentic-factory assessment work (BMAD vs Spec-Kit, Cognee vs LlamaIndex, Skool vs Circle). Already installed and active.",
+          "phrase": "Non-goals reveal values better than goals do."
+        },
+        {
+          "id": "agent-skills-osmani:skill:debugging-and-error-recovery",
+          "name": "debugging-and-error-recovery",
+          "repo": "agent-skills-osmani",
+          "quality": 5,
+          "adoption_fit": "strong \u2014 Language-agnostic debugging discipline; examples use TypeScript/Node but patterns apply universally. No stack lock. Directly composable with incremental-implementation and test-driven-development.",
+          "phrase": "Don't push past a failing test or broken build to work on the next feature. Errors compound."
+        },
+        {
+          "id": "agent-skills-osmani:skill:performance-optimization",
+          "name": "performance-optimization",
+          "repo": "agent-skills-osmani",
+          "quality": 5,
+          "adoption_fit": "strong \u2014 Language-agnostic measurement discipline; React/TypeScript examples but the measure\u2192identify\u2192fix\u2192verify\u2192guard workflow and the symptom-tree are universally applicable. Not stack-locked.",
+          "phrase": "Performance work without measurement is guessing \u2014 and guessing leads to premature optimization that adds complexity wit\u2026"
+        }
+      ],
+      "cluster_breakdown": []
+    },
+    {
+      "number": 6,
+      "name": "Audit / Review",
+      "slug": "audit-review",
+      "artifact_count": 455,
+      "gap_status": "covered",
+      "gap_note": "Densest stage in corpus (455). Your delivery-review + 6 specialists serve this; doubt-driven adversarial review is the gap.",
+      "top_winners": [
+        {
+          "id": "agent-skills-osmani:skill:browser-testing-with-devtools",
+          "name": "browser-testing-with-devtools",
+          "repo": "agent-skills-osmani",
+          "quality": 5,
+          "adoption_fit": "strong \u2014 David's stack includes FliVideo (React/Next.js) and AppyStack apps; chrome-devtools MCP is already listed in the system-reminder available tools.",
+          "phrase": "Instead of guessing what's happening at runtime, verify it."
+        },
+        {
+          "id": "agent-skills-osmani:skill:doubt-driven-development",
+          "name": "doubt-driven-development",
+          "repo": "agent-skills-osmani",
+          "quality": 5,
+          "adoption_fit": "strong \u2014 No equivalent in David's current stack. The orchestrator-only constraint (cannot be inside a persona) fits Claude Code's main-session model.",
+          "phrase": "Pass ARTIFACT + CONTRACT only. Do NOT pass the CLAIM. Handing the reviewer your conclusion biases it toward agreement."
+        },
+        {
+          "id": "appydave-plugins:skill:false-twins",
+          "name": "false-twins",
+          "repo": "appydave-plugins",
+          "quality": 5,
+          "adoption_fit": "strong \u2014 David uses this skill constantly for agentic-factory assessment work (BMAD vs Spec-Kit, Cognee vs LlamaIndex, Skool vs Circle). Already installed and active.",
+          "phrase": "Non-goals reveal values better than goals do."
+        },
+        {
+          "id": "agent-skills-osmani:command:ship",
+          "name": "ship",
+          "repo": "agent-skills-osmani",
+          "quality": 5,
+          "adoption_fit": null,
+          "phrase": "Issue all three Agent tool calls in a single assistant turn so they execute in parallel \u2014 sequential calls defeat the pu\u2026"
+        },
+        {
+          "id": "agent-skills-osmani:skill:code-review-and-quality",
+          "name": "code-review-and-quality",
+          "repo": "agent-skills-osmani",
+          "quality": 5,
+          "adoption_fit": null,
+          "phrase": "AI-generated code is probably fine"
+        }
+      ],
+      "cluster_breakdown": []
+    },
+    {
+      "number": 7,
+      "name": "KDD / Knowledge Capture",
+      "slug": "kdd",
+      "artifact_count": 272,
+      "gap_status": "covered",
+      "gap_note": "Quality gate on knowledge promotion missing \u2014 memories rot silently.",
+      "top_winners": [
+        {
+          "id": "appydave-plugins:skill:architectural-review",
+          "name": "architectural-review",
+          "repo": "appydave-plugins",
+          "quality": 5,
+          "adoption_fit": "strong \u2014 Sits alongside code-quality-audit and test-quality-audit as the third lens; David already has both sisters. Clean integration story.",
+          "phrase": "code quality is reactive (what's wrong now). Architectural review is predictive (where is complexity heading, what struc\u2026"
+        },
+        {
+          "id": "appydave-plugins:skill:capture-context",
+          "name": "capture-context",
+          "repo": "appydave-plugins",
+          "quality": 5,
+          "adoption_fit": "strong \u2014 David's own skill, already in use. No adoption friction.",
+          "phrase": "Gotchas are the most valuable section \u2014 capture anything that took effort to discover or would be easy to get wrong agai\u2026"
+        },
+        {
+          "id": "appydave-plugins:skill:dark-factory-catalog",
+          "name": "dark-factory-catalog",
+          "repo": "appydave-plugins",
+          "quality": 5,
+          "adoption_fit": "strong \u2014 This is the skill being used right now. Fully adopted.",
+          "phrase": "Schema discovery is a capability, not a precondition. No 'right' schema upfront. The schema is a living artifact this sk\u2026"
+        },
+        {
+          "id": "appydave-plugins:skill:doc-review",
+          "name": "doc-review",
+          "repo": "appydave-plugins",
+          "quality": 5,
+          "adoption_fit": "strong \u2014 David's own skill suite, already in production use.",
+          "phrase": "Deduplicate \u2014 findings from different dimensions may flag the same issue. Keep the most specific one, note which dimensi\u2026"
+        },
+        {
+          "id": "appydave-plugins:skill:lexi",
+          "name": "lexi",
+          "repo": "appydave-plugins",
+          "quality": 5,
+          "adoption_fit": "strong \u2014 David's own tool, central to the entire brains system. Already the canonical library maintenance tool.",
+          "phrase": "Negative knowledge audit \u2014 for any brain with 5+ files, check whether any file contains anti-patterns, pitfalls, or warn\u2026"
+        }
+      ],
+      "cluster_breakdown": []
+    },
+    {
+      "number": 8,
+      "name": "Self-learning Librarian",
+      "slug": "librarian",
+      "artifact_count": 201,
+      "gap_status": "strong",
+      "gap_note": "Your domain. Lexi + truth-trail + doc-review suite dominates.",
+      "top_winners": [
+        {
+          "id": "appydave-plugins:skill:capture-context",
+          "name": "capture-context",
+          "repo": "appydave-plugins",
+          "quality": 5,
+          "adoption_fit": "strong \u2014 David's own skill, already in use. No adoption friction.",
+          "phrase": "Gotchas are the most valuable section \u2014 capture anything that took effort to discover or would be easy to get wrong agai\u2026"
+        },
+        {
+          "id": "appydave-plugins:skill:dark-factory-catalog",
+          "name": "dark-factory-catalog",
+          "repo": "appydave-plugins",
+          "quality": 5,
+          "adoption_fit": "strong \u2014 This is the skill being used right now. Fully adopted.",
+          "phrase": "Schema discovery is a capability, not a precondition. No 'right' schema upfront. The schema is a living artifact this sk\u2026"
+        },
+        {
+          "id": "appydave-plugins:skill:lexi",
+          "name": "lexi",
+          "repo": "appydave-plugins",
+          "quality": 5,
+          "adoption_fit": "strong \u2014 David's own tool, central to the entire brains system. Already the canonical library maintenance tool.",
+          "phrase": "Negative knowledge audit \u2014 for any brain with 5+ files, check whether any file contains anti-patterns, pitfalls, or warn\u2026"
+        },
+        {
+          "id": "appydave-plugins:skill:near-compaction",
+          "name": "near-compaction",
+          "repo": "appydave-plugins",
+          "quality": 5,
+          "adoption_fit": "strong \u2014 David's own skill, directly solving a problem he faces regularly.",
+          "phrase": "Triage honestly \u2014 don't run all 5 steps on a 10-minute Q&A session; skip what doesn't apply"
+        },
+        {
+          "id": "appydave-plugins:skill:skill-miner",
+          "name": "skill-miner",
+          "repo": "appydave-plugins",
+          "quality": 5,
+          "adoption_fit": "strong \u2014 Already in David's stack. The friction \u00d7 frequency \u00d7 cost scoring model and the candidate decay system are uniquely his design. Highly relevant to stage 10 (observability of the harness itself).",
+          "phrase": "Friction > frequency. Pure repetition counts are weak signal. The same question asked twice is just normal work; a quest\u2026"
+        }
+      ],
+      "cluster_breakdown": []
+    },
+    {
+      "number": 9,
+      "name": "Harness / Orchestration",
+      "slug": "harness-orchestration",
+      "artifact_count": 414,
+      "gap_status": "partial",
+      "gap_note": "Tactical layer exists (bmad-story-lifecycle); strategic factory-level harness is the build goal \u2014 not yet built.",
+      "top_winners": [
+        {
+          "id": "agent-skills-osmani:command:ship",
+          "name": "ship",
+          "repo": "agent-skills-osmani",
+          "quality": 5,
+          "adoption_fit": null,
+          "phrase": "Issue all three Agent tool calls in a single assistant turn so they execute in parallel \u2014 sequential calls defeat the pu\u2026"
+        },
+        {
+          "id": "appydave-plugins:skill:bmad-story-lifecycle",
+          "name": "bmad-story-lifecycle",
+          "repo": "appydave-plugins",
+          "quality": 5,
+          "adoption_fit": null,
+          "phrase": "The invocation method (Skill tool vs tmux pane) is NOT a reliable signal \u2014 ignore it. Check the env vars."
+        },
+        {
+          "id": "appydave-plugins:skill:dark-factory-catalog",
+          "name": "dark-factory-catalog",
+          "repo": "appydave-plugins",
+          "quality": 5,
+          "adoption_fit": "strong \u2014 This is the skill being used right now. Fully adopted.",
+          "phrase": "Schema discovery is a capability, not a precondition. No 'right' schema upfront. The schema is a living artifact this sk\u2026"
+        },
+        {
+          "id": "appydave-plugins:skill:doc-review",
+          "name": "doc-review",
+          "repo": "appydave-plugins",
+          "quality": 5,
+          "adoption_fit": "strong \u2014 David's own skill suite, already in production use.",
+          "phrase": "Deduplicate \u2014 findings from different dimensions may flag the same issue. Keep the most specific one, note which dimensi\u2026"
+        },
+        {
+          "id": "appydave-plugins:skill:lexi",
+          "name": "lexi",
+          "repo": "appydave-plugins",
+          "quality": 5,
+          "adoption_fit": "strong \u2014 David's own tool, central to the entire brains system. Already the canonical library maintenance tool.",
+          "phrase": "Negative knowledge audit \u2014 for any brain with 5+ files, check whether any file contains anti-patterns, pitfalls, or warn\u2026"
+        }
+      ],
+      "cluster_breakdown": []
+    },
+    {
+      "number": 10,
+      "name": "Observability",
+      "slug": "observability",
+      "artifact_count": 110,
+      "gap_status": "weak",
+      "gap_note": "STARKEST gap in matrix. No cost tracking, fix-verification, or drift detection deployed.",
+      "top_winners": [
+        {
+          "id": "appydave-plugins:skill:skill-miner",
+          "name": "skill-miner",
+          "repo": "appydave-plugins",
+          "quality": 5,
+          "adoption_fit": "strong \u2014 Already in David's stack. The friction \u00d7 frequency \u00d7 cost scoring model and the candidate decay system are uniquely his design. Highly relevant to stage 10 (observability of the harness itself).",
+          "phrase": "Friction > frequency. Pure repetition counts are weak signal. The same question asked twice is just normal work; a quest\u2026"
+        },
+        {
+          "id": "compound-engineering:skill:ce-compound-refresh",
+          "name": "ce-compound-refresh",
+          "repo": "compound-engineering",
+          "quality": 5,
+          "adoption_fit": "mid \u2014 The skill is tightly coupled to the compound-engineering docs/solutions/ structure and workflow. The maintenance model (five outcomes",
+          "phrase": "Two docs covering the same ground will eventually drift apart and contradict each other \u2014 that is worse than a slightly \u2026"
+        },
+        {
+          "id": "compound-engineering:skill:ce-compound",
+          "name": "ce-compound",
+          "repo": "compound-engineering",
+          "quality": 5,
+          "adoption_fit": "mid \u2014 The skill is tightly coupled to the compound-engineering docs/solutions/ directory structure, YAML schema, and specialized subagents (ce-sessions, ce-performance-oracle, ce-security-sentinel, etc.). The dual-track classification, overlap detection, and discoverability check are directly portable. The full pipeline requires the compound-engineering plugin ecosystem \u2014 not a drop-in.",
+          "phrase": "Each unit of engineering work should make subsequent units of work easier\u2014not harder."
+        },
+        {
+          "id": "compound-engineering:skill:ce-optimize",
+          "name": "ce-optimize",
+          "repo": "compound-engineering-plugin",
+          "quality": 5,
+          "adoption_fit": "strong \u2014 Mechanism is fully portable (worktree",
+          "phrase": "The conversation context is NOT durable storage. Results that exist only in the conversation WILL be lost."
+        },
+        {
+          "id": "compound-knowledge:skill:kw-compound",
+          "name": "kw-compound",
+          "repo": "compound-knowledge-plugin",
+          "quality": 4,
+          "adoption_fit": null,
+          "phrase": "Nothing from this session seems worth saving as a standalone learning. The work is captured in the plan/deliverables."
+        }
+      ],
+      "cluster_breakdown": []
+    }
+  ]
+}

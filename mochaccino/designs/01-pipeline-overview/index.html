@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<!-- Source: ~/dev/ad/brains/agentic-factory/dark-factory-catalog/artifacts.jsonl + pipeline-matrix/stage-*.md -->
+<!-- Data:   ../../data/pipeline.json -->
+<!-- Brand:  AppyDave (brand-dave:brand) — light-mode-primary -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dark Factory — Pipeline Overview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brand-brown: #342d2d;
+    --brand-gold: #ccba9d;
+    --brand-yellow: #ffde59;
+    --brand-amber: #c8841a;
+    --brand-muted: #7a6e5e;
+    --brand-near-white: #faf5ec;
+    --brand-surface: #f0ebe4;
+    --brand-linen: #e8e0d4;
+    --brand-border: #d4cdc4;
+    --brand-chrome: #1a1515;
+    --brand-dark-surface: #25201e;
+    --brand-blue: #2E91FC;
+
+    /* semantic for gap status — cream-compatible */
+    --status-strong:  #3d8a5a;   /* green — your stack dominates */
+    --status-covered: #5b6f86;   /* slate-cool muted — adequate */
+    --status-partial: #c8841a;   /* brand amber — gaps present */
+    --status-weak:    #a94a36;   /* terracotta — biggest gaps */
+
+    --display: 'Bebas Neue', sans-serif;
+    --headline: 'Oswald', sans-serif;
+    --body: 'Roboto', sans-serif;
+    --mono: 'Roboto Mono', monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--brand-near-white);
+    color: var(--brand-brown);
+    font-family: var(--body);
+    font-size: 14px;
+    line-height: 1.5;
+    padding: 28px 36px;
+  }
+  header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--brand-border);
+  }
+  h1 {
+    font-family: var(--headline);
+    font-weight: 600;
+    font-size: 24px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--brand-brown);
+  }
+  h1 .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.2px;
+    padding: 4px 9px;
+    background: var(--brand-yellow);
+    color: var(--brand-brown);
+    border-radius: 3px;
+    margin-right: 14px;
+    vertical-align: middle;
+    text-transform: uppercase;
+  }
+  .meta {
+    color: var(--brand-muted);
+    font-family: var(--mono);
+    font-size: 11px;
+  }
+  .nav { font-family: var(--mono); font-size: 12px; }
+  .nav a {
+    color: var(--brand-blue);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  .nav a:hover { border-bottom-color: var(--brand-blue); }
+
+  .legend {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin-bottom: 22px;
+    font-family: var(--body);
+    font-size: 12px;
+    color: var(--brand-muted);
+  }
+  .legend .dot {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    margin-right: 5px;
+    vertical-align: middle;
+  }
+
+  .stages {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 16px;
+  }
+  .stage {
+    background: #ffffff;
+    border: 1px solid var(--brand-border);
+    border-radius: 4px;
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .stage:hover {
+    border-color: var(--brand-muted);
+    box-shadow: 0 2px 8px rgba(52, 45, 45, 0.06);
+  }
+  .stage.gap-strong   { border-left: 4px solid var(--status-strong); }
+  .stage.gap-covered  { border-left: 4px solid var(--status-covered); }
+  .stage.gap-partial  { border-left: 4px solid var(--status-partial); }
+  .stage.gap-weak     { border-left: 4px solid var(--status-weak); }
+
+  .stage-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .stage-name {
+    font-family: var(--headline);
+    font-weight: 500;
+    font-size: 17px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    color: var(--brand-brown);
+  }
+  .stage-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--brand-amber);
+    font-weight: 500;
+  }
+  .stage-count {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--brand-brown);
+  }
+  .stage-count .num { color: var(--brand-amber); font-weight: 700; }
+  .gap-badge {
+    font-family: var(--headline);
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 2px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    color: #ffffff;
+  }
+  .gap-strong  .gap-badge { background: var(--status-strong); }
+  .gap-covered .gap-badge { background: var(--status-covered); }
+  .gap-partial .gap-badge { background: var(--status-partial); }
+  .gap-weak    .gap-badge { background: var(--status-weak); }
+
+  .gap-note {
+    color: var(--brand-brown);
+    font-size: 13px;
+    line-height: 1.55;
+    font-style: italic;
+    padding: 10px 12px;
+    background: var(--brand-surface);
+    border-radius: 3px;
+  }
+
+  .section-label {
+    font-family: var(--headline);
+    font-weight: 500;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--brand-muted);
+    margin-bottom: 6px;
+  }
+
+  .winners {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .winner {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    font-size: 13px;
+  }
+  .winner-stars {
+    color: var(--brand-amber);
+    font-family: var(--mono);
+    font-size: 10px;
+    min-width: 38px;
+    letter-spacing: 1px;
+  }
+  .winner-name {
+    font-family: var(--mono);
+    font-weight: 500;
+    color: var(--brand-brown);
+  }
+  .winner-repo {
+    color: var(--brand-muted);
+    font-size: 10.5px;
+    font-family: var(--mono);
+  }
+  .winner-phrase {
+    color: var(--brand-muted);
+    font-size: 11.5px;
+    font-style: italic;
+    margin-top: 2px;
+    padding-left: 46px;
+    line-height: 1.45;
+  }
+
+  .clusters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .cluster {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    padding: 2px 8px;
+    background: var(--brand-linen);
+    border: 1px solid var(--brand-border);
+    border-radius: 3px;
+    color: var(--brand-brown);
+  }
+  .cluster .c-count {
+    color: var(--brand-amber);
+    margin-left: 5px;
+    font-weight: 600;
+  }
+
+  #loading {
+    padding: 24px;
+    color: var(--brand-muted);
+    font-family: var(--mono);
+    font-size: 12px;
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1><span class="label">Dark-Factory</span>Pipeline Overview — 11 SDLC Stages</h1>
+  <div class="nav"><a href="../">← gallery</a> · <a href="../02-mining-view/">mining view →</a></div>
+</header>
+
+<div class="legend">
+  <span><span class="dot" style="background: var(--status-strong)"></span>strong — your stack dominates</span>
+  <span><span class="dot" style="background: var(--status-covered)"></span>covered — adequate</span>
+  <span><span class="dot" style="background: var(--status-partial)"></span>partial — gaps present</span>
+  <span><span class="dot" style="background: var(--status-weak)"></span>weak — biggest gaps</span>
+  <span class="meta" id="meta-info"></span>
+</div>
+
+<div id="loading">Loading pipeline.json…</div>
+<div class="stages" id="stages" style="display:none"></div>
+
+<script>
+fetch('../../data/pipeline.json')
+  .then(r => r.json())
+  .then(data => {
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('stages').style.display = 'grid';
+    document.getElementById('meta-info').textContent =
+      `corpus: ${data.meta.corpus_total} artifacts · generated ${data.meta.generated_at}`;
+
+    const container = document.getElementById('stages');
+    data.stages.forEach(s => {
+      const winners = (s.top_winners || []).map(w => `
+        <div class="winner">
+          <span class="winner-stars">${'★'.repeat(w.quality || 0)}</span>
+          <span class="winner-name">${w.name}</span>
+          <span class="winner-repo">@${w.repo}</span>
+        </div>
+        ${w.phrase ? `<div class="winner-phrase">"${w.phrase}"</div>` : ''}
+      `).join('');
+
+      const clusters = (s.cluster_breakdown || []).map(c =>
+        `<span class="cluster">${c.cluster}<span class="c-count">${c.count}</span></span>`
+      ).join('');
+
+      const stageNum = String(s.number).padStart(2, '0');
+
+      container.insertAdjacentHTML('beforeend', `
+        <div class="stage gap-${s.gap_status}">
+          <div class="stage-head">
+            <div>
+              <span class="stage-num">stage ${stageNum}</span>
+              <div class="stage-name">${s.name}</div>
+            </div>
+            <div style="display:flex; gap:8px; align-items:baseline; white-space:nowrap">
+              <span class="stage-count"><span class="num">${s.artifact_count}</span> artifacts</span>
+              <span class="gap-badge">${s.gap_status}</span>
+            </div>
+          </div>
+          <div class="gap-note">${s.gap_note}</div>
+          ${winners ? `<div><div class="section-label">Top winners</div><div class="winners">${winners}</div></div>` : ''}
+          ${clusters ? `<div><div class="section-label">Cluster breakdown</div><div class="clusters">${clusters}</div></div>` : ''}
+        </div>
+      `);
+    });
+  })
+  .catch(e => {
+    document.getElementById('loading').textContent = 'Error loading data: ' + e.message;
+  });
+</script>
+</body>
+</html>

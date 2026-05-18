@@ -1,0 +1,35 @@
+{
+  "workspace": "dark-factory",
+  "workspace_type": "single",
+  "created": "2026-05-18",
+  "last_updated": "2026-05-18",
+  "designs": [
+    {
+      "id": "01-pipeline-overview",
+      "title": "Pipeline Overview",
+      "description": "Horizontal 11-stage strip. Each stage = card with artifact count + top winners + gap badge.",
+      "data_source": "data/pipeline.json",
+      "status": "active",
+      "view_type": "stage-strip",
+      "created": "2026-05-18"
+    },
+    {
+      "id": "02-mining-view",
+      "title": "Mining View",
+      "description": "Card grid of top ~30 standout artifacts. Quality, adoption-fit, mineable phrases visible per card.",
+      "data_source": "data/mining.json",
+      "status": "active",
+      "view_type": "card-grid",
+      "created": "2026-05-18"
+    },
+    {
+      "id": "03-triage-console",
+      "title": "Triage Console",
+      "description": "Interactive filter / drill / analyze interface over all 1,100 artifacts. Chip filters across stage, cluster, repo, type, quality, adoption. Sortable table + click-to-open detail drawer.",
+      "data_source": "data/triage.json",
+      "status": "active",
+      "view_type": "table-with-drawer",
+      "created": "2026-05-18"
+    }
+  ]
+}

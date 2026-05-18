@@ -1,0 +1,22 @@
+{
+  "pattern": "unknown",
+  "globs": {
+    "docs": ["docs/**/*.md", "README.md"],
+    "context": ["CLAUDE.md", "context/CONTEXT.md"],
+    "canonical": ["canonical/**/*.md", "canonical/**/provenance.json"],
+    "research": ["research/**/*.md"],
+    "planning": ["backlog/**/*.md"],
+    "mockups": ["mochaccino/designs/**/*.html"],
+    "config": ["mochaccino/data/*.json"]
+  },
+  "aliases": {
+    "specs": ["docs", "context"],
+    "build": ["canonical", "planning"],
+    "library": ["canonical", "research"]
+  },
+  "composites": {
+    "understand": ["context", "docs", "research"],
+    "codebase": ["canonical", "research", "planning"],
+    "full": ["*"]
+  }
+}

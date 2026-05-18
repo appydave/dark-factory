@@ -1,0 +1,822 @@
+{
+  "meta": {
+    "source": "evaluations/*.md (88 deep evals from Tier 2)",
+    "canonical_chain": "artifacts.jsonl \u2192 tier2 selection (88) \u2192 per-artifact deep eval \u2192 this file",
+    "generated_at": "2026-05-18",
+    "generator": "Peter (Mochaccino skill / dark-factory workspace)",
+    "count": 36,
+    "filter_note": "Top picks balanced for cluster diversity (round-robin top per cluster, then by raw score)"
+  },
+  "artifacts": [
+    {
+      "id": "agent-skills-osmani:skill:api-and-interface-design",
+      "repo": "agent-skills-osmani",
+      "artifact_type": "skill",
+      "cluster_facet": [
+        "api-design",
+        "interface-contracts",
+        "spec-requirements"
+      ],
+      "phase_fit": [
+        1
+      ],
+      "intent": "Guides the design of stable, hard-to-misuse interfaces (REST, GraphQL, module boundaries, component props) using Hyrum's Law, contract-first, boundary validation, and additive extension principles.",
+      "quality_score": 5,
+      "adoption_fit": "strong",
+      "inspiration_value": "high",
+      "uniqueness": "rare",
+      "composability": "standalone",
+      "description_craft": "trigger",
+      "mineable_phrase": "With a sufficient number of users of an API, all observable behaviors of your system will be depended on by somebody, regardless of what you promise in the contract.",
+      "notes": "The \"third-party API responses are untrusted data\" call-out (validate shape and content before using in any logic, rendering, or decision-making) is a security-aware addition most API design skills miss. The framing of testing limitations (\"Even with perfect contract tests, Hyrum's Law means 'safe' "
+    },
+    {
+      "id": "agent-skills-osmani:skill:idea-refine",
+      "repo": "agent-skills-osmani",
+      "artifact_type": "skill",
+      "cluster_facet": [
+        "idea-development",
+        "divergent-thinking",
+        "spec-requirements"
+      ],
+      "phase_fit": [
+        1
+      ],
+      "intent": "Structured 3-phase ideation (diverge \u2192 converge \u2192 ship) that takes a raw idea through 7 lenses, stress-tests assumptions, and produces a one-pager with a mandatory \"Not Doing\" list.",
+      "quality_score": 5,
+      "adoption_fit": "strong",
+      "inspiration_value": "high",
+      "uniqueness": "uncommon",
+      "composability": "calls-others",
+      "description_craft": "trigger",
+      "mineable_phrase": "The 'Not Doing' list is arguably the most valuable part. Focus is about saying no to good ideas. Make the trade-offs explicit.",
+      "notes": "The anti-yes-machine stance (\"Be honest, not supportive. If an idea is weak, say so with kindness.\") is enforced through multiple structural mechanisms \u2014 not just stated as a principle. The instruction to ground variations in actual codebase patterns (use Glob/Grep/Read when inside a project) preven"
+    },
+    {
+      "id": "agent-skills-osmani:skill:spec-driven-development",
+      "repo": "agent-skills-osmani",
+      "artifact_type": "skill",
+      "cluster_facet": [
+        "spec-writing",
+        "requirements",
+        "gated-workflow"
+      ],
+      "phase_fit": [
+        1
+      ],
+      "intent": "Four-phase gated workflow (Specify \u2192 Plan \u2192 Tasks \u2192 Implement) that writes a structured spec with six mandatory sections before any code is written, with human review gates at each phase.",
+      "quality_score": 5,
+      "adoption_fit": "strong",
+      "inspiration_value": "high",
+      "uniqueness": "uncommon",
+      "composability": "calls-others",
+      "description_craft": "trigger",
+      "mineable_phrase": "Don't silently fill in ambiguous requirements. The spec's entire purpose is to surface misunderstandings *before* code gets written \u2014 assumptions are the most dangerous form of misunderstanding.",
+      "notes": "The three-tier Boundaries section (Always / Ask First / Never) is one of the most reusable artifacts in the batch \u2014 a constraint classification system applicable to any agentic workflow. The \"spec is a living document\" section with commit-to-git and reference-in-PRs practices shows operational matur"
+    },
+    {
+      "id": "agent-skills-osmani:skill:context-engineering",
+      "repo": "agent-skills-osmani",
+      "artifact_type": "skill",
+      "cluster_facet": [
+        "session-setup",
+        "context-management",
+        "rules-files"
+      ],
+      "phase_fit": [
+        0
+      ],
+      "intent": "Guides deliberate curation of what context an agent sees, structured from persistent rules files down to per-iteration error output, with anti-patterns and confusion management protocols.",
+      "quality_score": 5,
+      "adoption_fit": "strong",
+      "inspiration_value": "high",
+      "uniqueness": "rare",
+      "composability": "called-by-others",
+      "description_craft": "trigger",
+      "mineable_phrase": "Context window size \u2260 attention budget. Focused context outperforms large context.",
+      "notes": "The trust-level classification (trusted / verify / untrusted) for loaded files is a rare security-aware addition that most context skills omit. The \"Confusion Management\" section \u2014 with structured CONFUSION: / Options: / \u2192 format \u2014 is directly mineable as a reusable pattern for any skill that encoun"
+    },
+    {
+      "id": "agent-skills-osmani:skill:interview-me",
+      "repo": "agent-skills-osmani",
+      "artifact_type": "skill",
+      "cluster_facet": [
+        "requirements-discovery",
+        "intent-extraction",
+        "spec-requirements"
+      ],
+      "phase_fit": [
+        1
+      ],
+      "intent": "Closes the gap between what users ask for and what they actually want through one-question-at-a-time interviewing, each question paired with an explicit hypothesis, until 95% confidence is reached and a structured intent restate is confirmed.",
+      "quality_score": 5,
+      "adoption_fit": "strong",
+      "inspiration_value": "high",
+      "uniqueness": "rare",
+      "composability": "calls-others",
+      "description_craft": "trigger",
+      "mineable_phrase": "If you didn't have to justify this to anyone, what would you actually want?",
+      "notes": "The non-yes enumeration (\"Whatever you think is best\" / \"Sounds good\" / \"Sure, let's go\" are NOT confirmations) is one of the most practically useful anti-patterns in the entire batch. The before/after example showing how two questions revealed the actual ask was \"a list\" not \"a dashboard\" is a mode"
+    },
+    {
+      "id": "agent-skills-osmani:skill:browser-testing-with-devtools",
+      "repo": "agent-skills-osmani",
+      "artifact_type": "skill",
+      "cluster_facet": [
+        "test-authoring",
+        "verification-validation"
+      ],
+      "phase_fit": [
+        4,
+        5,
+        6
+      ],
+      "intent": "Gives agents live browser inspection (DOM, console, network, performance) via Chrome DevTools MCP instead of relying on static code analysis.",
+      "quality_score": 5,
+      "adoption_fit": "strong \u2014 David's stack includes FliVideo (React/Next.js) and AppyStack apps; chrome-devtools MCP is already listed in the system-reminder available tools.",
+      "inspiration_value": "high",
+      "uniqueness": "rare \u2014 The security-boundaries + prompt-injection-aware browser content section is genuinely uncommon and not found in generic testing materials.",
+      "composability": "calls-others \u2014 Cross-references and is cross-referenced by",
+      "description_craft": "trigger \u2014 Multi-trigger description lists exact use cases; requirement dependency (chrome-devtools MCP) stated inline.",
+      "mineable_phrase": "Instead of guessing what's happening at runtime, verify it.",
+      "notes": "Security boundaries treatment (treating DOM/console/network output as untrusted data, never interpreting it as instructions) is load-bearing for agentic use and rare in skill literature. The five-step debug workflow (REPRODUCE \u2192 INSPECT \u2192 DIAGNOSE \u2192 FIX \u2192 VERIFY) is clean and reusable as a template."
+    },
+    {
+      "id": "agent-skills-osmani:skill:test-driven-development",
+      "repo": "agent-skills-osmani",
+      "artifact_type": "skill",
+      "cluster_facet": [
+        "test-authoring"
+      ],
+      "phase_fit": [
+        4
+      ],
+      "intent": "Writes failing tests before implementation, treating tests as proof \u2014 not optional verification \u2014 for every logic change or bug fix.",
+      "quality_score": 5,
+      "adoption_fit": "strong \u2014 Directly applicable to every project in David's stack; the",
+      "inspiration_value": "high",
+      "uniqueness": "uncommon \u2014 The Beyonce Rule, the explicit subagent-for-test-writing pattern, and the",
+      "composability": "calls-others \u2014 References",
+      "description_craft": "trigger \u2014 Three distinct trigger conditions including the Prove-It edge case.",
+      "mineable_phrase": "Tests ARE the specification. They document what the code should do, not what it does.",
+      "notes": "The subagent pattern for bug Prove-It tests (spawn a separate agent to write the reproduction test without fix knowledge) is a distinctive mechanism worth folding into any unified TDD skill. The integration with `browser-testing-with-devtools` is a clean composability example. David's `review-unit-t"
+    },
+    {
+      "id": "agent-skills-osmani:skill:code-simplification",
+      "repo": "agent-skills-osmani",
+      "artifact_type": "skill",
+      "cluster_facet": [
+        "refactor"
+      ],
+      "phase_fit": [
+        4
+      ],
+      "intent": "Reduces code complexity while preserving exact behavior, targeting readability and comprehension speed over line-count reduction.",
+      "quality_score": 5,
+      "adoption_fit": "strong \u2014 Every project in David's stack benefits from this; the",
+      "inspiration_value": "high",
+      "uniqueness": "uncommon \u2014 The Chesterton's Fence framing for refactoring and the explicit",
+      "composability": "called-by-others \u2014 The",
+      "description_craft": "trigger \u2014",
+      "mineable_phrase": "Simplification that breaks project consistency is not simplification \u2014 it's churn.",
+      "notes": "The \"DAMP over DRY in tests\" distinction (borrowed from TDD section) shows well-considered cross-skill coherence. The Rule of 500 for automation is a practical threshold rarely articulated anywhere. David's existing `simplify` skill likely overlaps significantly \u2014 this would be the winner mechanism "
+    },
+    {
+      "id": "agent-skills-osmani:skill:doubt-driven-development",
+      "repo": "agent-skills-osmani",
+      "artifact_type": "skill",
+      "cluster_facet": [
+        "verification-validation",
+        "code-review"
+      ],
+      "phase_fit": [
+        5,
+        6
+      ],
+      "intent": "Materializes a fresh-context adversarial reviewer biased to disprove before any non-trivial decision stands, with cross-model escalation.",
+      "quality_score": 5,
+      "adoption_fit": "strong \u2014 No equivalent in David's current stack. The orchestrator-only constraint (cannot be inside a persona) fits Claude Code's main-session model.",
+      "inspiration_value": "high",
+      "uniqueness": "rare \u2014 The CLAIM/EXTRACT separation (strip reasoning before handing to reviewer),",
+      "composability": "calls-others \u2014 Spawns fresh-context reviewers (personas or generic subagents); explicitly integrates with TDD (RED step = doubt made concrete).",
+      "description_craft": "trigger \u2014 High-specificity trigger with explicit",
+      "mineable_phrase": "Pass ARTIFACT + CONTRACT only. Do NOT pass the CLAIM. Handing the reviewer your conclusion biases it toward agreement.",
+      "notes": "The CLAIM/EXTRACT split is the load-bearing idea: strip your own reasoning chain from what you hand the reviewer so you get genuine adversarial review rather than confirmation. The cross-model escalation section (with shell-escaping safety notes for Gemini/Codex) shows production-level thinking. The"
+    },
+    {
+      "id": "appydave-plugins:skill:false-twins",
+      "repo": "appydave-plugins",
+      "artifact_type": "skill",
+      "cluster_facet": [
+        "code-review",
+        "verification-validation"
+      ],
+      "phase_fit": [
+        5,
+        6
+      ],
+      "intent": "Differential analysis for two systems that appear interchangeable on the surface but differ in mechanism, philosophy, economics, or operational shape \u2014 via eight lenses plus triangulation.",
+      "quality_score": 5,
+      "adoption_fit": "strong \u2014 David uses this skill constantly for agentic-factory assessment work (BMAD vs Spec-Kit, Cognee vs LlamaIndex, Skool vs Circle). Already installed and active.",
+      "inspiration_value": "high",
+      "uniqueness": "rare \u2014 The eight-lens framework with explicit",
+      "composability": "standalone \u2014 Self-contained analysis framework; produces a differential report.",
+      "description_craft": "trigger \u2014 Extremely rich trigger phrase list covering the full vocabulary of comparison requests.",
+      "mineable_phrase": "Non-goals reveal values better than goals do.",
+      "notes": "The \"crossover point\" verdict structure (what would you have to believe for each choice to be correct?) is more epistemically honest than feature-checklist comparisons and more useful for decision-making under uncertainty. The five-source triangulation rule (README, issue tracker, maintainer talk, b"
+    },
+    {
+      "id": "compound-engineering:skill:ce-optimize",
+      "repo": "compound-engineering-plugin",
+      "artifact_type": "skill",
+      "cluster_facet": [
+        "compound-engineering",
+        "optimization-loop",
+        "metric-driven",
+        "llm-as-judge"
+      ],
+      "phase_fit": "[stage-10]",
+      "intent": "Runs a multi-phase metric-driven optimization loop (hard metrics or LLM-as-judge) with crash-safe disk persistence and parallel git worktree experiments.",
+      "quality_score": 5,
+      "adoption_fit": "strong \u2014 Mechanism is fully portable (worktree + measurement command); not locked to any stack",
+      "inspiration_value": "high \u2014 Disk-first persistence discipline (",
+      "uniqueness": "rare \u2014 No other artifact in this catalog combines iterative experiment loops with judge-as-primary-metric and verifiable write-then-read checkpoints",
+      "composability": "calls-others \u2014 Dispatches",
+      "description_craft": "trigger \u2014 Description is long but precise; includes concrete optimization targets (clustering, search, build)",
+      "mineable_phrase": "The conversation context is NOT durable storage. Results that exist only in the conversation WILL be lost.",
+      "notes": "The persistence discipline section alone is worth extracting as a standalone dark-factory pattern: write-then-verify before presenting results, per-experiment crash-recovery markers, and re-read from disk at every phase boundary. The hard/judge metric decision tree (quantitative vs qualitative) is a"
+    },
+    {
+      "id": "agent-skills-osmani:command:ship",
+      "repo": "agent-skills-osmani",
+      "artifact_type": "command",
+      "cluster_facet": [
+        "delivery-readiness",
+        "orchestration"
+      ],
+      "phase_fit": [
+        6,
+        9
+      ],
+      "intent": "Fan-out orchestrator that spawns `code-reviewer`, `security-auditor`, and `test-engineer` subagents in parallel against the current change, then synthesizes their reports into a single go/no-go shipping decision with mandatory rollback plan.",
+      "quality_score": 5,
+      "adoption_fit": "strong \u2014 David's",
+      "inspiration_value": "high \u2014 The skip-fan-out rule (",
+      "uniqueness": "rare \u2014 The three-phase fan-out + merge + decision structure with explicit parallelism instructions (",
+      "composability": "calls-others \u2014 Orchestrates",
+      "description_craft": "trigger \u2014",
+      "mineable_phrase": "Issue all three Agent tool calls in a single assistant turn so they execute in parallel \u2014 sequential calls defeat the purpose of this command.",
+      "notes": "This is the highest-value orchestration artifact in the stage 6 batch. The three-phase structure (fan-out \u2192 merge \u2192 decision) with explicit parallelism enforcement and a quantified skip threshold is a concrete mechanism David does not have in his current stack. The persona resolution priority rule ("
+    },
+    {
+      "id": "appydave-plugins:skill:capture-context",
+      "repo": "appydave-plugins",
+      "artifact_type": "skill",
+      "cluster_facet": [
+        "knowledge-capture"
+      ],
+      "phase_fit": [
+        7,
+        8
+      ],
+      "intent": "Produce a structured session handover document that lets a new Claude session resume without re-reading the conversation or rediscovering key context.",
+      "quality_score": 5,
+      "adoption_fit": "strong \u2014 David's own skill, already in use. No adoption friction.",
+      "inspiration_value": "high \u2014",
+      "uniqueness": "uncommon \u2014 Most handover patterns exist but the explicit negative-knowledge section and the",
+      "composability": "called-by-others \u2014 Called by near-compaction as step 2. Can run standalone.",
+      "description_craft": "trigger \u2014 All trigger phrases are first-person natural language. Well-crafted.",
+      "mineable_phrase": "Gotchas are the most valuable section \u2014 capture anything that took effort to discover or would be easy to get wrong again",
+      "notes": "The three-skill disambiguation (capture-context / session-checkpoint / knowledge-capture) is the clearest skill-family boundary documentation in the corpus. The output template's STOP header (\"STOP \u2014 this is a handover from a previous session. Read everything before doing anything.\") is a clever mec"
+    },
+    {
+      "id": "agent-skills-osmani:skill:git-workflow-and-versioning",
+      "repo": "agent-skills-osmani",
+      "artifact_type": "skill",
+      "cluster_facet": [
+        "delivery-readiness",
+        "code-implementation"
+      ],
+      "phase_fit": [
+        3,
+        4,
+        6
+      ],
+      "intent": "Enforce disciplined git workflow (trunk-based development, atomic commits, descriptive messages, scope separation, worktrees for parallel agents) as the safety net for AI-accelerated code generation.",
+      "quality_score": 5,
+      "adoption_fit": "strong \u2014 Language/stack agnostic. The worktrees-for-parallel-agents section directly aligns with Ralphy's campaign model. The",
+      "inspiration_value": "high \u2014 The change summary format with",
+      "uniqueness": "uncommon \u2014 The agent-specific worktrees section and the structured change summary format (with deliberate non-touch declaration) are not found in other git skills. Core git principles are commodity; these additions are rare.",
+      "composability": "called-by-others \u2014 Referenced by incremental-implementation (Step 4: Commit) and the build command.",
+      "description_craft": "trigger \u2014 Description uses",
+      "mineable_phrase": "THINGS I DIDN'T TOUCH (intentionally): ... This shows you exercised scope discipline and didn't go on an unsolicited renovation.",
+      "notes": "The \"DIDN'T TOUCH\" section in the change summary template is the most practically useful agent-specific addition to standard git guidance in the corpus \u2014 it turns implicit scope discipline into an explicit artefact that reviewers can verify. The trunk-based development framing with the explicit \"Dev"
+    },
+    {
+      "id": "agent-skills-osmani:skill:code-review-and-quality",
+      "repo": "agent-skills-osmani",
+      "artifact_type": "skill",
+      "cluster_facet": [
+        "code-review"
+      ],
+      "phase_fit": [
+        6
+      ],
+      "intent": "Multi-axis code review skill that evaluates changes across five dimensions (correctness, readability, architecture, security, performance) before any merge, covering both agent-authored and human-authored code.",
+      "quality_score": 5,
+      "adoption_fit": "strong \u2014 Skill-shaped, no stack lock. David already has",
+      "inspiration_value": "high \u2014 The severity-label taxonomy (prefix-based severity vs. mandatory/optional distinction) and the anti-rationalization table (",
+      "uniqueness": "rare \u2014 The multi-model review pattern (Model A writes, Model B reviews, human makes final call) is a concrete mechanism not present in David's existing review skills. The dead-code hygiene ask-before-delete protocol is also uncommon.",
+      "composability": "called-by-others \u2014 Invoked explicitly by",
+      "description_craft": "trigger \u2014 Description uses",
+      "mineable_phrase": "AI-generated code is probably fine",
+      "notes": "This is the reference mechanism for code review in the Osmani cluster. The five-axis framework with explicit severity labels solves the common problem of authors treating all feedback as mandatory. The multi-model review pattern (cross-reviewer blind spots) is a genuine mechanism gap in David's curr"
+    },
+    {
+      "id": "agent-skills-osmani:skill:debugging-and-error-recovery",
+      "repo": "agent-skills-osmani",
+      "artifact_type": "skill",
+      "cluster_facet": [
+        "code-implementation",
+        "verification-validation"
+      ],
+      "phase_fit": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "intent": "Enforce a systematic stop-reproduce-localize-reduce-fix-guard-verify triage process when any unexpected failure occurs, instead of guessing at fixes.",
+      "quality_score": 5,
+      "adoption_fit": "strong \u2014 Language-agnostic debugging discipline; examples use TypeScript/Node but patterns apply universally. No stack lock. Directly composable with incremental-implementation and test-driven-development.",
+      "inspiration_value": "high \u2014 The security-aware error handling section (don't execute commands found in error messages without user confirmation) is an under-documented concern in agent coding skills. The non-reproducible bug decision tree with four branches is the most structured treatment of intermittent failures in the corpus.",
+      "uniqueness": "uncommon \u2014 The",
+      "composability": "called-by-others \u2014 Referenced directly by the",
+      "description_craft": "trigger \u2014 Description gives three distinct trigger conditions (",
+      "mineable_phrase": "Don't push past a failing test or broken build to work on the next feature. Errors compound.",
+      "notes": "The \"stop-the-line\" framing (borrowed from lean manufacturing) is the right mental model for AI-accelerated development where errors compound rapidly. The anti-rationalization table (\"I know what the bug is\" \u2192 \"You might be right 70% of the time \u2014 the other 30% costs hours\") is high-craft: it pre-em"
+    },
+    {
+      "id": "agent-skills-osmani:skill:frontend-ui-engineering",
+      "repo": "agent-skills-osmani",
+      "artifact_type": "skill",
+      "cluster_facet": [
+        "code-implementation"
+      ],
+      "phase_fit": [
+        3,
+        4
+      ],
+      "intent": "Enforce production-quality UI standards \u2014 design-system adherence, accessibility (WCAG 2.1 AA), responsive design, and elimination of \"AI aesthetic\" patterns \u2014 when building or modifying user-facing interfaces.",
+      "quality_score": 5,
+      "adoption_fit": "strong \u2014 Language-agnostic principles; examples are React/Tailwind but the concepts (composition over configuration, data/presentation separation, state hierarchy, accessibility rules) transfer broadly. Not stack-locked.",
+      "inspiration_value": "high \u2014 The",
+      "uniqueness": "uncommon \u2014",
+      "composability": "standalone \u2014 Operates as a set of constraints on any frontend implementation; referenced indirectly by",
+      "description_craft": "trigger \u2014 Description gives two trigger conditions (",
+      "mineable_phrase": "UI that looks like it was built by a design-aware engineer at a top company \u2014 not like it was generated by an AI.",
+      "notes": "The \"AI aesthetic\" anti-pattern table is the single most mineable piece of content in the stage 3 batch. Naming the eight failure modes (purple/indigo default, excessive gradients, rounded-2xl everything, generic hero sections, lorem ipsum copy, oversized padding, stock card grids, shadow-heavy desi"
+    },
+    {
+      "id": "agent-skills-osmani:skill:incremental-implementation",
+      "repo": "agent-skills-osmani",
+      "artifact_type": "skill",
+      "cluster_facet": [
+        "code-implementation"
+      ],
+      "phase_fit": [
+        3,
+        4
+      ],
+      "intent": "Enforce thin vertical-slice delivery \u2014 implement one complete piece, test it, verify it, commit it \u2014 never writing more than ~100 lines before testing.",
+      "quality_score": 5,
+      "adoption_fit": "strong \u2014 Language/stack agnostic. The",
+      "inspiration_value": "high \u2014",
+      "uniqueness": "uncommon \u2014 Scope discipline as a named rule with explicit",
+      "composability": "calls-others \u2014 References git-workflow-and-versioning for commit guidance; referenced by the",
+      "description_craft": "trigger \u2014 Description names both trigger (",
+      "mineable_phrase": "If you notice something worth improving outside your task scope, note it \u2014 don't fix it.",
+      "notes": "Rule 0 (simplicity first) and Rule 0.5 (scope discipline) together form a two-layer defence against the most common AI agent failure modes: over-engineering and scope creep. The simplicity check table (EventBus vs simple function call; abstract factory vs two components; config-driven form builder v"
+    },
+    {
+      "id": "agent-skills-osmani:skill:performance-optimization",
+      "repo": "agent-skills-osmani",
+      "artifact_type": "skill",
+      "cluster_facet": [
+        "code-implementation",
+        "verification-validation"
+      ],
+      "phase_fit": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "intent": "Enforce measure-before-optimise discipline \u2014 establish baseline, identify specific bottleneck, fix it, re-measure, guard against regression \u2014 never optimising without profiling evidence.",
+      "quality_score": 5,
+      "adoption_fit": "strong \u2014 Language-agnostic measurement discipline; React/TypeScript examples but the measure\u2192identify\u2192fix\u2192verify\u2192guard workflow and the symptom-tree are universally applicable. Not stack-locked.",
+      "inspiration_value": "mid \u2014 The",
+      "uniqueness": "uncommon \u2014 The structured symptom decision tree (what is slow \u2192 where to measure first) and the complete picture/img LCP pattern (art direction \u00d7 resolution switching) are not seen elsewhere at this depth.",
+      "composability": "standalone \u2014 Operates as a set of constraints and measurement procedures; no direct agent sub-invocations.",
+      "description_craft": "trigger \u2014 Description gives four distinct trigger conditions (performance requirements in spec, user reports, Core Web Vitals below thresholds, profiling reveals bottlenecks) plus an explicit",
+      "mineable_phrase": "Performance work without measurement is guessing \u2014 and guessing leads to premature optimization that adds complexity without improving what matters.",
+      "notes": "The measure-first discipline expressed as \"profiling reveals bottlenecks\" (not \"I suspect a bottleneck\") is the key invariant for preventing premature optimisation. The React.memo/useMemo red flag (\"overusing is as bad as underusing\") is a rare balanced statement in a field where most guidance only "
+    },
+    {
+      "id": "agent-skills-osmani:skill:security-and-hardening",
+      "repo": "agent-skills-osmani",
+      "artifact_type": "skill",
+      "cluster_facet": [
+        "code-implementation",
+        "verification-validation"
+      ],
+      "phase_fit": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "intent": "Apply security-first practices to every line of code touching user input, authentication, data storage, or external integrations \u2014 treating all external input as hostile and all secrets as sacred.",
+      "quality_score": 5,
+      "adoption_fit": "strong \u2014 Language-agnostic security principles; Express/TypeScript/Zod examples but the three-tier boundary model, OWASP coverage, and audit triage tree are universally applicable. Not stack-locked.",
+      "inspiration_value": "high \u2014 The three-tier boundary system (Always/Ask First/Never) is the most structured agent governance model for security decisions in the corpus \u2014 it converts security policy into a decision tree an agent can follow without human guidance. The npm audit triage tree (critical-reachable \u2192 fix immediately; critical-unreachable \u2192 fix soon; moderate-production \u2192 next cycle; dev-only \u2192 when convenient) is a pragmatic filter that prevents alert fatigue.",
+      "uniqueness": "uncommon \u2014 The",
+      "composability": "standalone \u2014 Security constraints applied during implementation; no sub-agent invocations.",
+      "description_craft": "trigger \u2014 Description gives six distinct trigger conditions covering input, auth, storage, integrations, file uploads, and payments.",
+      "mineable_phrase": "Security isn't a phase \u2014 it's a constraint on every line of code that touches user data, authentication, or external systems.",
+      "notes": "The \"Ask First\" tier (human approval required before adding auth flows, storing new PII categories, or changing CORS) is the most mature autonomy-boundary statement in the corpus for security. It distinguishes between decisions an agent can make independently (input validation, parameterised queries"
+    },
+    {
+      "id": "agent-skills-osmani:skill:shipping-and-launch",
+      "repo": "agent-skills-osmani",
+      "artifact_type": "skill",
+      "cluster_facet": [
+        "delivery-readiness"
+      ],
+      "phase_fit": [
+        6
+      ],
+      "intent": "Pre-launch readiness skill that ensures every production deployment is reversible, observable, and incremental \u2014 including feature flag strategy, staged rollout with numeric thresholds, rollback plan template, and post-launch verification protocol.",
+      "quality_score": 5,
+      "adoption_fit": "strong \u2014 David's",
+      "inspiration_value": "high \u2014 The rollout decision threshold table (numeric triggers for advance vs. hold vs. rollback) is immediately adoptable as a concrete mechanism. The",
+      "uniqueness": "uncommon \u2014 The combination of feature flag lifecycle rules with explicit expiration date enforcement, plus the quantified rollout thresholds, is more operationally specific than typical deployment checklists. Most deployment guides stop at",
+      "composability": "called-by-others \u2014 Invoked by",
+      "description_craft": "trigger \u2014",
+      "mineable_phrase": "Rolling back is admitting failure",
+      "notes": "The quantified rollout thresholds table is the highest-value unique mechanism here \u2014 it converts \"monitor after deploy\" from a vague instruction into a decision tree with numeric gates. The feature flag lifecycle (deploy with flag OFF \u2192 team \u2192 5% canary \u2192 gradual \u2192 clean up within 2 weeks) paired wi"
+    },
+    {
+      "id": "agent-skills-osmani:skill:source-driven-development",
+      "repo": "agent-skills-osmani",
+      "artifact_type": "skill",
+      "cluster_facet": [
+        "code-implementation",
+        "system-comprehension"
+      ],
+      "phase_fit": [
+        0,
+        3,
+        4
+      ],
+      "intent": "Ground every framework-specific implementation decision in official documentation by explicitly detecting stack versions, fetching the relevant docs page, implementing against documented patterns, and citing sources with full URLs.",
+      "quality_score": 5,
+      "adoption_fit": "strong \u2014 Language-agnostic; supports all major stacks via dependency file detection. The principle (don't write from training data \u2014 verify) is universally applicable and especially important for rapidly-evolving frameworks.",
+      "inspiration_value": "high \u2014 The",
+      "uniqueness": "rare \u2014 Systematic documentation-first coding with cite-in-code-comments + full-URL convention and explicit",
+      "composability": "called-by-others \u2014 The DETECT step naturally precedes any framework-specific implementation; composable as a pre-step for any coding skill.",
+      "description_craft": "trigger \u2014 Description gives both positive trigger (",
+      "mineable_phrase": "If you cannot find documentation for a pattern, say so explicitly. Honesty about what you couldn't verify is more valuable than false confidence.",
+      "notes": "The source hierarchy table (priority 1\u20134 with example URLs, \"never cite as primary\" section) is a formally structured epistemology for agent coding \u2014 this level of source governance is rare. The deep-link citation rule (\"prefer anchors to top-level pages \u2014 anchors survive doc restructuring better\") "
+    },
+    {
+      "id": "appydave-plugins:skill:architectural-review",
+      "repo": "appydave-plugins",
+      "artifact_type": "skill",
+      "cluster_facet": [
+        "code-review",
+        "documentation",
+        "planning"
+      ],
+      "phase_fit": [
+        1,
+        2,
+        6,
+        7
+      ],
+      "intent": "Predictive structural review of a codebase anchored to the next planned feature \u2014 not what's wrong now, but what structural traps will hurt next.",
+      "quality_score": 5,
+      "adoption_fit": "strong \u2014 Sits alongside code-quality-audit and test-quality-audit as the third lens; David already has both sisters. Clean integration story.",
+      "inspiration_value": "high \u2014 The feature-anchored review framing is the highest-signal idea in this stage.",
+      "uniqueness": "uncommon \u2014 Agent Skills Osmani has an architectural review skill but does not anchor to next feature explicitly. This framing is genuinely differentiated.",
+      "composability": "called-by-others \u2014 Designed to be run alongside code-quality-audit and test-quality-audit as part of a three-skill review set.",
+      "description_craft": "trigger \u2014 Description has strong trigger vocabulary (God class, responsibility review, before adding a major feature). The",
+      "mineable_phrase": "code quality is reactive (what's wrong now). Architectural review is predictive (where is complexity heading, what structural traps will hurt when the next feature arrives).",
+      "notes": "The principle of anchoring a structural review to a concrete future scenario rather than current state is the highest-quality idea in stages 7+8. The A\u2013D grade + top-5 structural concerns + readiness verdict pattern is directly portable to any review skill. The references/ architecture (criteria.md,"
+    },
+    {
+      "id": "appydave-plugins:skill:bmad-story-lifecycle",
+      "repo": "appydave-plugins",
+      "artifact_type": "skill",
+      "cluster_facet": [
+        "orchestration",
+        "planning"
+      ],
+      "phase_fit": [
+        1,
+        2,
+        9
+      ],
+      "intent": "Launches and manages the full BMAD story lifecycle via Claude Code multi-agent teammate orchestration \u2014 environment detection, agent chain spawning, gate protocol, and persistent Swagger log.",
+      "quality_score": 5,
+      "adoption_fit": "mid \u2014 The skill is tightly coupled to BMAD agent names (Bob, Amelia, Nate, Taylor, Lisa, Swagger) and the BMAD project structure (",
+      "inspiration_value": "high \u2014 The gate protocol design (synthesized recommendation, not a neutral menu;",
+      "uniqueness": "rare \u2014 Multi-agent orchestration with per-gate synthesis + persistence + env-based mode detection in a single skill is uncommon. Most orchestration skills either lack the gate synthesis or the persistence mechanism.",
+      "composability": "calls-others \u2014 Swagger orchestrates Bob/Amelia/Nate/Taylor/Lisa via TeamCreate + Agent tool. It is the root of a multi-agent tree.",
+      "description_craft": "trigger \u2014 Excellent trigger phrase coverage; also communicates the output deliverables (infrastructure start block, orchestrator prompt, paste-ready command sequence).",
+      "mineable_phrase": "The invocation method (Skill tool vs tmux pane) is NOT a reliable signal \u2014 ignore it. Check the env vars.",
+      "notes": "The Swagger gate protocol is the design pattern worth extracting: at every human gate, present full unfiltered agent output followed by a distinct \"Swagger's Take\" synthesis section with a concrete recommendation and a \"\u2192 say 'go'\" prompt. This prevents the most common multi-agent failure mode \u2014 rou"
+    },
+    {
+      "id": "appydave-plugins:skill:dark-factory-catalog",
+      "repo": "appydave-plugins",
+      "artifact_type": "skill",
+      "cluster_facet": [
+        "discovery-routing",
+        "knowledge-capture",
+        "orchestration"
+      ],
+      "phase_fit": [
+        7,
+        8,
+        9
+      ],
+      "intent": "Meta-skill \u2014 systematically discover, catalog, stage-tag, evaluate, and distill artifacts across 13 dark-factory repos to produce a composable unified skill set under David's system.",
+      "quality_score": 5,
+      "adoption_fit": "strong \u2014 This is the skill being used right now. Fully adopted.",
+      "inspiration_value": "high \u2014 The",
+      "uniqueness": "rare \u2014 A self-improving meta-skill that catalogs other skills with built-in schema evolution is a one-of-a-kind pattern in the corpus.",
+      "composability": "calls-others \u2014 Each capability calls others in sequence; self-improvement capability proposes edits to the skill itself.",
+      "description_craft": "trigger \u2014 Description is exhaustive with explicit per-capability triggers.",
+      "mineable_phrase": "Schema discovery is a capability, not a precondition. No 'right' schema upfront. The schema is a living artifact this skill maintains. Refactor it when reality demands.",
+      "notes": "The \"David is in assessment mode \u2014 don't recommend 'adopt X' or 'skip Y'\" operating principle is a rare and important constraint that prevents the skill from overstepping its advisory role. The append-only default with prior version preservation in schema-history.md is a good epistemic hygiene patte"
+    },
+    {
+      "id": "appydave-plugins:skill:doc-review",
+      "repo": "appydave-plugins",
+      "artifact_type": "skill",
+      "cluster_facet": [
+        "code-review",
+        "documentation",
+        "orchestration"
+      ],
+      "phase_fit": [
+        6,
+        7,
+        9
+      ],
+      "intent": "Orchestrate parallel documentation review across 6 quality dimensions, then triage and synthesize findings into a single deduplicated report.",
+      "quality_score": 5,
+      "adoption_fit": "strong \u2014 David's own skill suite, already in production use.",
+      "inspiration_value": "high \u2014 The",
+      "uniqueness": "uncommon \u2014 Multi-dimensional parallel documentation review with dimension-coded findings is uncommon in the corpus.",
+      "composability": "calls-others \u2014 Explicitly an orchestrator over 6 leaf skills. Background agent spawning is the mechanism.",
+      "description_craft": "trigger \u2014 Clean trigger list. Description is primarily summary, not trigger-first, but the description field is a single sentence summary which is appropriate for an orchestrator.",
+      "mineable_phrase": "Deduplicate \u2014 findings from different dimensions may flag the same issue. Keep the most specific one, note which dimensions flagged it.",
+      "notes": "The six-dimension taxonomy (CH/GL/CA/TS/PU/XR) is a complete and non-overlapping partition of documentation quality concerns. The per-dimension verdict (HEALTHY/NEEDS_ATTENTION/UNHEALTHY) aggregated to an overall verdict is a clean escalation pattern. The \"Praise\" section in the output report is int"
+    },
+    {
+      "id": "appydave-plugins:skill:goal-plan",
+      "repo": "appydave-plugins",
+      "artifact_type": "skill",
+      "cluster_facet": [
+        "planning",
+        "spec-writing",
+        "test-authoring"
+      ],
+      "phase_fit": [
+        1,
+        2,
+        4
+      ],
+      "intent": "Walk the user through a structured 6-section interview to produce both a plan markdown document and a paste-ready `/goal` condition for Claude Code's autonomous executor feature.",
+      "quality_score": 5,
+      "adoption_fit": "strong \u2014 Already David's own skill; no stack friction. Directly feeds Ralphy's Mode 2 / 3 handoff chain and the",
+      "inspiration_value": "high \u2014 The idea of producing two artefacts from one interview (human-readable plan + machine-readable /goal condition) is a compound output pattern worth mining.",
+      "uniqueness": "rare \u2014 Combining structured spec interview with /goal condition generation in a single skill is found nowhere else in the corpus; this is a named harness-version-specific pattern (v2.1.139+).",
+      "composability": "calls-others \u2014 References mode-specific question files and a plan template; designed to hand off to",
+      "description_craft": "trigger \u2014 Description lists nine distinct trigger phrases and four modes up front; correctly uses",
+      "mineable_phrase": "Does NOT execute the plan; produces the inputs that /goal then runs.",
+      "notes": "The explicit \"boundary statement\" (what the skill deliberately does NOT do) is a mature craft pattern \u2014 it prevents scope creep and clarifies the handoff contract. The two-artifact output (plan.md + goal.txt) is a reusable compound-output pattern applicable across any planning skill. The per-mode re"
+    },
+    {
+      "id": "appydave-plugins:skill:lexi",
+      "repo": "appydave-plugins",
+      "artifact_type": "skill",
+      "cluster_facet": [
+        "code-review",
+        "knowledge-capture",
+        "orchestration"
+      ],
+      "phase_fit": [
+        6,
+        7,
+        8,
+        9
+      ],
+      "intent": "Portable brain librarian \u2014 curate, onboard, maintain, and analyse second-brain knowledge collections, from a single brain to a full multi-brain collection.",
+      "quality_score": 5,
+      "adoption_fit": "strong \u2014 David's own tool, central to the entire brains system. Already the canonical library maintenance tool.",
+      "inspiration_value": "high \u2014 The negative-knowledge audit (find brains documenting only the happy path) is the highest-signal portable idea. The isolation audit (brains with zero inbound cross-references) and starter graduation tracking are also distinctive.",
+      "uniqueness": "rare \u2014 A multi-mode, self-configuring brain librarian with a full script suite, vocabulary-controlled tagging, and provenance tracking is genuinely unique in the corpus.",
+      "composability": "calls-others \u2014 Calls enrich-metadata for tag suggestions. Called by clipboard-intake. Central hub of the knowledge maintenance ecosystem.",
+      "description_craft": "trigger \u2014 The description is an exhaustive trigger list \u2014 almost too long, but every trigger is accurate and distinctive.",
+      "mineable_phrase": "Negative knowledge audit \u2014 for any brain with 5+ files, check whether any file contains anti-patterns, pitfalls, or warning sections. Brains with zero negative knowledge are documenting only the happy path.",
+      "notes": "Lexi is the most sophisticated artifact in stages 7+8. The \"brains vs upstreams\" distinction (brain = curated knowledge maintained by Lexi; upstream = raw source material Lexi ignores) is an architectural clarity that prevents a common confusion. The `.audit/` dotfolder convention (generated output,"
+    },
+    {
+      "id": "appydave-plugins:skill:near-compaction",
+      "repo": "appydave-plugins",
+      "artifact_type": "skill",
+      "cluster_facet": [
+        "delivery-readiness",
+        "knowledge-capture",
+        "orchestration"
+      ],
+      "phase_fit": [
+        6,
+        7,
+        8,
+        9
+      ],
+      "intent": "Orchestrate all context-saving actions before the Claude context window fills up \u2014 triage what matters, run session-checkpoint / capture-context / knowledge-capture in the right order, so nothing important is lost before compaction fires.",
+      "quality_score": 5,
+      "adoption_fit": "strong \u2014 David's own skill, directly solving a problem he faces regularly.",
+      "inspiration_value": "high \u2014 The triage-before-execution pattern (assess session type, decide which steps apply) is the highest-signal portable idea. It prevents a common anti-pattern: running all steps regardless of whether the session warrants them.",
+      "uniqueness": "rare \u2014 Compaction-aware orchestrator skills are rare in the corpus. ECC has compaction hooks but they're hook-based, not skill-based.",
+      "composability": "calls-others \u2014 Orchestrates session-checkpoint, capture-context, and knowledge-capture. Near-compaction IS the orchestration layer.",
+      "description_craft": "trigger \u2014",
+      "mineable_phrase": "Triage honestly \u2014 don't run all 5 steps on a 10-minute Q&A session; skip what doesn't apply",
+      "notes": "The triage table (question \u2192 if yes \u2192 run which skill) is a clean decision pattern that prevents wasted effort and inappropriate output. The \"after running\" guidance (tell user what was saved, how to resume, whether it's safe to /compact) closes the loop correctly. The distinction between session-ch"
+    },
+    {
+      "id": "appydave-plugins:skill:ralphy",
+      "repo": "appydave-plugins",
+      "artifact_type": "skill",
+      "cluster_facet": [
+        "orchestration",
+        "planning",
+        "spec-writing"
+      ],
+      "phase_fit": [
+        1,
+        2,
+        9
+      ],
+      "intent": "Run autonomous batch development campaigns on existing projects using a directive coordinator loop with four modes (Requirements, Plan, Build, Extend) and three campaign profiles (Development, Analysis, Content).",
+      "quality_score": 5,
+      "adoption_fit": "strong \u2014 David's primary execution loop. No adoption required; it already runs campaigns. The profile system (Development/Analysis/Content) and Project Heal retroactive backlog builder are particularly mature.",
+      "inspiration_value": "high \u2014 Multiple mineable patterns: hard-gate state machine, subagent context exclusion rules, AGENTS.md inheritance (never rebuild from scratch), campaign lifecycle artifacts (BACKLOG.md, assessment.md, next-round-brief.md), and the efficiency observer's three-dimension model.",
+      "uniqueness": "rare \u2014 The combination of profile-scoped AGENTS.md, hard gates with anti-rationalization tables, and loop meta-learning capture is not found as a complete system anywhere else in the evaluated corpus.",
+      "composability": "calls-others \u2014 Invokes delivery-review, architectural-review, code-quality-audit, and other skills as sub-systems at named lifecycle gates.",
+      "description_craft": "trigger \u2014 Description covers four modes, three profiles, and twelve trigger phrases; the",
+      "mineable_phrase": "Subagents are defined by what they DON'T receive \u2014 task agents get task text + AGENTS.md only.",
+      "notes": "The \"deliberate context exclusion\" principle (agents receive only task scope + AGENTS.md; no plan, no sibling results, no prior wave outcomes) is the single most transferable architectural insight in the stage 2 batch. It solves a real multi-agent integration failure mode: agents compensating for ea"
+    },
+    {
+      "id": "appydave-plugins:skill:skill-miner",
+      "repo": "appydave-plugins",
+      "artifact_type": "skill",
+      "cluster_facet": [
+        "knowledge-capture",
+        "self-improvement",
+        "skill-authoring"
+      ],
+      "phase_fit": [
+        7,
+        8,
+        9,
+        10
+      ],
+      "intent": "Mines Claude Code session transcripts (JSONL files) for recurring patterns and promotes them into skill candidates via a friction \u00d7 frequency \u00d7 cost scoring model, with decay over time.",
+      "quality_score": 5,
+      "adoption_fit": "strong \u2014 Already in David's stack. The friction \u00d7 frequency \u00d7 cost scoring model and the candidate decay system are uniquely his design. Highly relevant to stage 10 (observability of the harness itself).",
+      "inspiration_value": "high \u2014 The",
+      "uniqueness": "rare \u2014 Session-transcript mining with friction-weighted scoring and decay is not a common pattern. Most self-improvement skills capture in-session only; this adds a batch retrospective mode with statistical reasoning.",
+      "composability": "calls-others \u2014 Log mode integrates with AngelEye (live ingestion) and promotion feeds into skill-creator. Embedded in a larger pipeline.",
+      "description_craft": "trigger \u2014 Description is detailed and contains all trigger phrases across both modes. Slightly long but justified by the two-mode design.",
+      "mineable_phrase": "Friction > frequency. Pure repetition counts are weak signal. The same question asked twice is just normal work; a question that triggered a correction twice is a skill-shaped hole.",
+      "notes": "The friction-over-frequency principle is directly applicable to David's stage 10 (observability gap identification): the places where the harness causes corrections, dead ends, or high cost are where new skills are needed \u2014 not places where tasks are simply repeated. The decay model (60/120/180-day "
+    },
+    {
+      "id": "compound-engineering:skill:ce-compound-refresh",
+      "repo": "compound-engineering",
+      "artifact_type": "skill",
+      "cluster_facet": [
+        "knowledge-capture",
+        "self-improvement"
+      ],
+      "phase_fit": [
+        7,
+        8,
+        10
+      ],
+      "intent": "Maintains `docs/solutions/` by reviewing stale learning docs against the current codebase and applying Keep/Update/Consolidate/Replace/Delete classifications with headless mode for automation.",
+      "quality_score": 5,
+      "adoption_fit": "mid \u2014 The skill is tightly coupled to the compound-engineering docs/solutions/ structure and workflow. The maintenance model (five outcomes + Phase 1.75 document-set analysis) is fully portable. The headless mode and discoverability check are directly applicable to David's brains system. The platform-agnostic question-tool design (AskUserQuestion in Claude Code, request_user_input in Codex, etc.) shows cross-harness awareness.",
+      "inspiration_value": "high \u2014 The",
+      "uniqueness": "rare \u2014 Five-outcome maintenance model with document-set-level analysis and inbound-link graph traversal is not common in knowledge-maintenance skills. Most maintenance skills check for freshness only.",
+      "composability": "calls-others \u2014 Calls investigation subagents and replacement subagents. Can be called by ce-compound after writing a new learning.",
+      "description_craft": "trigger \u2014 Description covers the trigger cases well. The headless mode flag in argument-hint is load-bearing for automation use.",
+      "mineable_phrase": "Two docs covering the same ground will eventually drift apart and contradict each other \u2014 that is worse than a slightly longer single doc.",
+      "notes": "The document-set analysis layer (Phase 1.75) is the most portable design idea: before classifying individual documents, step back and ask whether the set as a whole is well-designed. For David's brains, this maps directly: multiple INDEX.md files across different brains can accumulate contradictory "
+    },
+    {
+      "id": "appydave-plugins:skill:browse-with-me",
+      "repo": "appydave-plugins",
+      "artifact_type": "skill",
+      "cluster_facet": [
+        "browser-automation",
+        "hitl",
+        "tool-selection"
+      ],
+      "phase_fit": [
+        0
+      ],
+      "intent": "Routes browser automation tasks to the right tool (Playwright MCP, agent-browser, Chrome DevTools, Chrome Extension) based on session length and context, with a HITL pause protocol.",
+      "quality_score": 4,
+      "adoption_fit": "mid",
+      "inspiration_value": "high",
+      "uniqueness": "uncommon",
+      "composability": "calls-others",
+      "description_craft": "trigger",
+      "mineable_phrase": "David watches. You drive. Pick the right tool, then operate it.",
+      "notes": "The \"Snapshot before screenshot\" rule (use accessibility tree first, screenshots only when visual confirmation needed) encodes a cost-aware practice that goes beyond most browser-automation skills. The HITL pause format is mineable verbatim. The headed-always rule is a strong example of encoding ope"
+    },
+    {
+      "id": "everything-claude-code:skill:agent-payment-x402",
+      "repo": "everything-claude-code",
+      "artifact_type": "skill",
+      "cluster_facet": [
+        "everything-claude-code",
+        "agent-payments",
+        "x402",
+        "spending-controls"
+      ],
+      "phase_fit": "[stage-10]",
+      "intent": "Adds x402 HTTP payment execution to AI agents with per-task/session budget caps, allowlisted recipients, non-custodial ERC-4337 wallets, and MCP tool integration.",
+      "quality_score": 4,
+      "adoption_fit": "weak \u2014 Tightly coupled to blockchain infrastructure (Base, X Layer, ERC-4337); only relevant if building agent-to-agent payment flows or paid API access",
+      "inspiration_value": "mid \u2014 The spending controls model (per-task budget + allowlisted recipients set by orchestrator, not agent) is a clean autonomy-limiting pattern applicable beyond payments",
+      "uniqueness": "rare \u2014 Agent-native payment execution with policy-gated budgets is genuinely novel in the skills catalog space",
+      "composability": "standalone \u2014 MCP server integration; no skill dependencies, but requires external wallet infrastructure",
+      "description_craft": "trigger \u2014",
+      "mineable_phrase": "Set budgets before delegation: When spawning sub-agents, attach a SpendingPolicy via your orchestration layer. Never give an agent unlimited spend.",
+      "notes": "The orchestrator-sets-policy-before-delegation pattern (not the agent itself) is the extractable governance idea for dark-factory: any high-privilege capability should be policy-bound at spawn time, not at execution time. The fail-closed preToolCheck implementation is production-grade. Adoption is n"
+    },
+    {
+      "id": "appydave-plugins:skill:app-query",
+      "repo": "appydave-plugins",
+      "artifact_type": "skill",
+      "cluster_facet": [
+        "file-discovery",
+        "context-assembly",
+        "app-navigation"
+      ],
+      "phase_fit": [
+        1
+      ],
+      "intent": "Queries app files using semantic glob categories (backend, frontend, understand, codebase) defined in context.globs.json, with 4-tier alias resolution, and outputs file paths for piping into llm_context.",
+      "quality_score": 4,
+      "adoption_fit": "mid",
+      "inspiration_value": "mid",
+      "uniqueness": "uncommon",
+      "composability": "calls-others",
+      "description_craft": "trigger",
+      "mineable_phrase": "`understand` \u2192 `context` + `docs` + `types` + `config`",
+      "notes": "The \"understand\" composite glob category encodes what information an agent needs to orient itself to an unfamiliar app \u2014 a useful vocabulary decision. The --pattern flag for cross-app queries (all RVETS backend code) shows that the same discovery model scales from single-app to multi-app patterns. T"
+    },
+    {
+      "id": "appydave-plugins:skill:brain-query",
+      "repo": "appydave-plugins",
+      "artifact_type": "skill",
+      "cluster_facet": [
+        "knowledge-discovery",
+        "file-pipeline",
+        "context-assembly"
+      ],
+      "phase_fit": [
+        0
+      ],
+      "intent": "CLI-backed skill that resolves brain names via 4-tier matching (exact \u2192 alias \u2192 substring \u2192 tag) and outputs file paths for piping into llm_context.",
+      "quality_score": 4,
+      "adoption_fit": "mid",
+      "inspiration_value": "mid",
+      "uniqueness": "uncommon",
+      "composability": "calls-others",
+      "description_craft": "trigger",
+      "mineable_phrase": "File discovery tool \u2014 returns paths for piping into llm_context. Different from focus (orientation) and brain-librarian (curation).",
+      "notes": "The role differentiation between brain-query (find), llm-context (assemble), focus (orient), and brain-bridge (write-back) is an unusually disciplined single-responsibility decomposition \u2014 each skill has one verb. That four-role pattern is worth capturing in any unified context-management skill desi"
+    }
+  ]
+}

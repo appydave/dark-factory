@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<!-- Source: ~/dev/ad/brains/agentic-factory/dark-factory-catalog/evaluations/*.md -->
+<!-- Data:   ../../data/mining.json -->
+<!-- Brand:  AppyDave (brand-dave:brand) — light-mode-primary -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dark Factory — Mining View</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brand-brown: #342d2d;
+    --brand-gold: #ccba9d;
+    --brand-yellow: #ffde59;
+    --brand-amber: #c8841a;
+    --brand-muted: #7a6e5e;
+    --brand-near-white: #faf5ec;
+    --brand-surface: #f0ebe4;
+    --brand-linen: #e8e0d4;
+    --brand-border: #d4cdc4;
+    --brand-chrome: #1a1515;
+    --brand-dark-surface: #25201e;
+    --brand-blue: #2E91FC;
+
+    --status-strong:  #3d8a5a;
+    --status-covered: #5b6f86;
+    --status-partial: #c8841a;
+    --status-weak:    #a94a36;
+
+    --display: 'Bebas Neue', sans-serif;
+    --headline: 'Oswald', sans-serif;
+    --body: 'Roboto', sans-serif;
+    --mono: 'Roboto Mono', monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--brand-near-white);
+    color: var(--brand-brown);
+    font-family: var(--body);
+    font-size: 14px;
+    line-height: 1.5;
+    padding: 28px 36px;
+  }
+  header {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: 18px; padding-bottom: 18px;
+    border-bottom: 1px solid var(--brand-border);
+  }
+  h1 {
+    font-family: var(--headline);
+    font-weight: 600;
+    font-size: 24px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--brand-brown);
+  }
+  h1 .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.2px;
+    padding: 4px 9px;
+    background: var(--brand-yellow);
+    color: var(--brand-brown);
+    border-radius: 3px;
+    margin-right: 14px;
+    vertical-align: middle;
+    text-transform: uppercase;
+  }
+  .meta { color: var(--brand-muted); font-family: var(--mono); font-size: 11px; }
+  .nav { font-family: var(--mono); font-size: 12px; }
+  .nav a { color: var(--brand-blue); text-decoration: none; border-bottom: 1px solid transparent; }
+  .nav a:hover { border-bottom-color: var(--brand-blue); }
+
+  .filters {
+    display: flex; gap: 14px; margin-bottom: 22px;
+    align-items: center; flex-wrap: wrap; font-size: 12px;
+  }
+  .filter-group { display: flex; gap: 4px; align-items: center; }
+  .filter-label {
+    font-family: var(--headline);
+    font-weight: 500;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--brand-muted);
+    margin-right: 6px;
+  }
+  .filter-btn {
+    background: #ffffff;
+    border: 1px solid var(--brand-border);
+    color: var(--brand-muted);
+    padding: 5px 11px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-family: var(--mono);
+    font-size: 11px;
+    transition: all 0.15s;
+  }
+  .filter-btn:hover {
+    border-color: var(--brand-muted);
+    color: var(--brand-brown);
+  }
+  .filter-btn.active {
+    background: var(--brand-yellow);
+    color: var(--brand-brown);
+    border-color: var(--brand-amber);
+    font-weight: 500;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 16px;
+  }
+
+  .card {
+    background: #ffffff;
+    border: 1px solid var(--brand-border);
+    border-radius: 4px;
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .card:hover {
+    border-color: var(--brand-muted);
+    box-shadow: 0 2px 8px rgba(52, 45, 45, 0.06);
+  }
+  .card.adopt-strong { border-left: 4px solid var(--status-strong); }
+  .card.adopt-mid    { border-left: 4px solid var(--status-covered); }
+  .card.adopt-weak   { border-left: 4px solid var(--status-partial); }
+  .card.adopt-skip   { border-left: 4px solid var(--status-weak); opacity: 0.6; }
+
+  .card-head {
+    display: flex; justify-content: space-between;
+    align-items: baseline; gap: 8px;
+  }
+  .card-title {
+    font-family: var(--mono);
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--brand-brown);
+  }
+  .card-repo {
+    color: var(--brand-muted);
+    font-family: var(--mono);
+    font-size: 10.5px;
+    margin-top: 2px;
+  }
+  .card-quality {
+    color: var(--brand-amber);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+  .card-quality .empty { color: var(--brand-border); }
+
+  .badges { display: flex; gap: 6px; flex-wrap: wrap; }
+  .badge {
+    font-family: var(--headline);
+    font-size: 9.5px;
+    padding: 3px 7px;
+    border-radius: 2px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+  }
+  .badge-adopt-strong { background: var(--status-strong); color: #ffffff; }
+  .badge-adopt-mid    { background: var(--status-covered); color: #ffffff; }
+  .badge-adopt-weak   { background: var(--status-partial); color: #ffffff; }
+  .badge-adopt-skip   { background: var(--status-weak); color: #ffffff; }
+  .badge-insp-high    { background: var(--brand-yellow); color: var(--brand-brown); }
+  .badge-insp-mid     { background: var(--brand-linen); color: var(--brand-brown); }
+  .badge-insp-low     { background: var(--brand-surface); color: var(--brand-muted); }
+  .badge-unique-rare      { background: var(--brand-amber); color: #ffffff; }
+  .badge-unique-uncommon  { background: var(--brand-gold); color: var(--brand-brown); }
+  .badge-unique-commodity { background: var(--brand-linen); color: var(--brand-muted); }
+  .badge-unique-duplicate { background: var(--brand-surface); color: var(--brand-muted); opacity: 0.7; }
+
+  .clusters { display: flex; gap: 4px; flex-wrap: wrap; }
+  .cluster {
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 2px 6px;
+    background: var(--brand-linen);
+    border-radius: 3px;
+    color: var(--brand-brown);
+  }
+
+  .phrase {
+    font-family: var(--body);
+    font-size: 13px;
+    font-style: italic;
+    color: var(--brand-brown);
+    padding: 11px 14px;
+    background: var(--brand-surface);
+    border-left: 3px solid var(--brand-amber);
+    line-height: 1.5;
+  }
+  .phrase::before { content: '“'; color: var(--brand-amber); font-size: 18px; vertical-align: -2px; font-style: normal; }
+  .phrase::after  { content: '”'; color: var(--brand-amber); font-size: 18px; vertical-align: -2px; font-style: normal; }
+  .no-phrase {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-style: italic;
+    color: var(--brand-muted);
+    padding: 4px 0;
+  }
+
+  #loading {
+    padding: 24px;
+    color: var(--brand-muted);
+    font-family: var(--mono);
+    font-size: 12px;
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1><span class="label">Dark-Factory</span>Mining View — Top Standouts</h1>
+  <div class="nav"><a href="../">← gallery</a> · <a href="../01-pipeline-overview/">← pipeline overview</a></div>
+</header>
+
+<div class="filters">
+  <span class="meta" id="meta-info"></span>
+  <span style="margin-left:auto"></span>
+  <div class="filter-group">
+    <span class="filter-label">Adoption</span>
+    <button class="filter-btn active" data-filter="adoption" data-value="all">all</button>
+    <button class="filter-btn" data-filter="adoption" data-value="strong">strong</button>
+    <button class="filter-btn" data-filter="adoption" data-value="mid">mid</button>
+    <button class="filter-btn" data-filter="adoption" data-value="weak">weak/skip</button>
+  </div>
+  <div class="filter-group">
+    <span class="filter-label">Quality</span>
+    <button class="filter-btn active" data-filter="quality" data-value="all">all</button>
+    <button class="filter-btn" data-filter="quality" data-value="5">★5 only</button>
+    <button class="filter-btn" data-filter="quality" data-value="4">★4+</button>
+  </div>
+</div>
+
+<div id="loading">Loading mining.json…</div>
+<div class="grid" id="grid" style="display:none"></div>
+
+<script>
+let allArtifacts = [];
+let filters = { adoption: 'all', quality: 'all' };
+
+function normalizeClusters(cf) {
+  if (Array.isArray(cf)) return cf;
+  if (typeof cf === 'string') {
+    return cf.replace(/[\[\]'"]/g, '').split(',').map(s => s.trim()).filter(Boolean);
+  }
+  return [];
+}
+
+fetch('../../data/mining.json')
+  .then(r => r.json())
+  .then(data => {
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('grid').style.display = 'grid';
+    document.getElementById('meta-info').textContent =
+      `${data.meta.count} standouts · generated ${data.meta.generated_at}`;
+    allArtifacts = data.artifacts;
+    render();
+  })
+  .catch(e => {
+    document.getElementById('loading').textContent = 'Error loading data: ' + e.message;
+  });
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const f = btn.dataset.filter, v = btn.dataset.value;
+    document.querySelectorAll(`.filter-btn[data-filter="${f}"]`).forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    filters[f] = v;
+    render();
+  });
+});
+
+function render() {
+  const grid = document.getElementById('grid');
+  grid.innerHTML = '';
+  let filtered = allArtifacts.filter(a => {
+    if (filters.adoption !== 'all') {
+      if (filters.adoption === 'weak') {
+        if (a.adoption_fit !== 'weak' && a.adoption_fit !== 'skip') return false;
+      } else if (a.adoption_fit !== filters.adoption) return false;
+    }
+    if (filters.quality === '5' && a.quality_score !== 5) return false;
+    if (filters.quality === '4' && a.quality_score < 4) return false;
+    return true;
+  });
+
+  filtered.forEach(a => {
+    const adopt = a.adoption_fit || 'mid';
+    const insp = a.inspiration_value || 'mid';
+    const uniq = a.uniqueness || 'commodity';
+    const phrase = a.mineable_phrase
+      ? `<div class="phrase">${a.mineable_phrase}</div>`
+      : `<div class="no-phrase">no mineable phrase captured</div>`;
+    const clusters = normalizeClusters(a.cluster_facet)
+      .map(c => `<span class="cluster">${c}</span>`).join('');
+    const q = a.quality_score || 0;
+    const stars = '★'.repeat(q) + `<span class="empty">${'★'.repeat(5 - q)}</span>`;
+    const name = (a.id || '').split(':').slice(-1)[0] || 'unknown';
+    const type = a.artifact_type || '';
+
+    grid.insertAdjacentHTML('beforeend', `
+      <div class="card adopt-${adopt}">
+        <div class="card-head">
+          <div>
+            <div class="card-title">${name}</div>
+            <div class="card-repo">${a.repo} · ${type}</div>
+          </div>
+          <div class="card-quality">${stars}</div>
+        </div>
+        <div class="badges">
+          <span class="badge badge-adopt-${adopt}">adopt: ${adopt}</span>
+          <span class="badge badge-insp-${insp}">inspire: ${insp}</span>
+          <span class="badge badge-unique-${uniq}">${uniq}</span>
+        </div>
+        ${clusters ? `<div class="clusters">${clusters}</div>` : ''}
+        ${phrase}
+      </div>
+    `);
+  });
+
+  if (!filtered.length) {
+    grid.innerHTML = '<div style="padding:32px; color:var(--brand-muted); font-family:var(--mono); font-size:12px">No artifacts match these filters.</div>';
+  }
+}
+</script>
+</body>
+</html>
