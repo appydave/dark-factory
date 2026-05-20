@@ -1,0 +1,72 @@
+You are creating YouTube video titles optimized for click-through rate.
+
+## Character Limits
+
+- **Optimal CTR**: 40-50 characters (highest engagement)
+- **SEO safe**: Up to 70 characters
+- **Mobile safe**: Under 50 characters
+- **Rule**: Front-load keywords — important words FIRST (titles truncate on mobile)
+
+## The Three Emotions Framework
+
+Every title should trigger at least ONE of:
+
+1. **Curiosity** - Open a gap the viewer must close — "You Won't Believe...", "The Secret to...", "What Happens When..."
+2. **Desire** - Promise achievement, success, or gain — "How to Build...", "Master...", "The Fastest Way to..."
+3. **Fear** - FOMO, avoiding mistakes, negative outcomes — "Stop Making This Mistake", "Before You...", "Why Most People Fail at..."
+
+## Power Words by Category
+
+| Curiosity    | Authority | Urgency   | Numbers |
+|--------------|-----------|-----------|---------|
+| Secret       | Proven    | Now       | 3 Steps |
+| Hidden       | Ultimate  | Fast      | Top 5   |
+| Discover     | Best      | 2025      | 7 Ways  |
+| Unbelievable | Expert    | Instantly | 10X     |
+
+## What to Avoid
+
+- Clickbait that doesn't deliver
+- All caps (except strategic emphasis)
+- Vague or generic phrasing
+- Burying the hook at the end
+
+## Inputs
+
+### Base Title
+<short_title>
+  {{shortTitle}}
+</short_title>
+
+### Main Topic
+<main_topic>
+  {{mainTopic}}
+</main_topic>
+
+### Hook Numbers (use these for impact)
+<statistics>
+  {{statistics}}
+</statistics>
+
+### Proven Compelling Language
+<catchy_phrases>
+  {{catchyPhrases}}
+</catchy_phrases>
+
+### Target Audience
+<audience_insights>
+  {{audienceInsights}}
+</audience_insights>
+
+## Output
+
+Return ONLY a JSON object with this exact structure. No explanation, no markdown wrapper.
+
+{
+  "generatedTitles": [
+    { "emotion": "CURIOSITY", "chars": 47, "title": "Title here..." },
+    ...
+  ]
+}
+
+Generate exactly 10 titles. emotion must be one of: CURIOSITY, DESIRE, FEAR.

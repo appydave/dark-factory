@@ -1,0 +1,98 @@
+{
+  "promptName": "generate-title",
+  "description": "Generate 10 analysis-informed YouTube titles using three-emotions framework (Curiosity/Desire/Fear)",
+  "dataSource": "video-transcript",
+  "outputType": "content",
+  "category": "youtube-optimization",
+  "section": "Title & Thumbnail",
+  "version": "2.0.0",
+  "author": "POEM Team",
+  "useCase": "Core title generation step. Uses all 3 content analysis outputs for richer, more targeted titles.",
+  "promptType": "content",
+  "modelType": "analysis",
+  "maxTokens": 800,
+  "temperature": 0.8,
+  "placeholders": {
+    "shortTitle": {
+      "type": "string",
+      "required": true,
+      "description": "Short working title from configure step (anchor/starting point)"
+    },
+    "mainTopic": {
+      "type": "string",
+      "required": true,
+      "description": "Primary topic or theme from analyze-main-topic step"
+    },
+    "statistics": {
+      "type": "string",
+      "required": false,
+      "description": "Important numbers or counts from analyze-statistics step (may be empty)"
+    },
+    "catchyPhrases": {
+      "type": "array",
+      "required": false,
+      "description": "Memorable direct quotes from transcript from analyze-catchy-phrases step",
+      "items": { "type": "string" }
+    },
+    "audienceInsights": {
+      "type": "array",
+      "required": false,
+      "description": "Audience characteristics from analyze-audience-insights step",
+      "items": { "type": "string" }
+    }
+  },
+  "outputSchema": {
+    "type": "object",
+    "required": [
+      "generatedTitles"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "generatedTitles": {
+        "type": "array",
+        "description": "10 title options with emotion classification and character count",
+        "items": {
+          "type": "object",
+          "required": [
+            "emotion",
+            "chars",
+            "title"
+          ],
+          "properties": {
+            "emotion": {
+              "type": "string",
+              "enum": [
+                "CURIOSITY",
+                "DESIRE",
+                "FEAR"
+              ],
+              "description": "Which of the three emotions this title triggers"
+            },
+            "chars": {
+              "type": "integer",
+              "description": "Character count of the title"
+            },
+            "title": {
+              "type": "string",
+              "description": "The title text (optimal 40-50 chars, max 70 chars for SEO)",
+              "maxLength": 100
+            }
+          }
+        },
+        "minItems": 10,
+        "maxItems": 10
+      }
+    }
+  },
+  "usageNotes": [
+    "Uses three-emotions framework (Curiosity/Desire/Fear)",
+    "Optimal CTR: 40-50 chars; SEO safe: up to 70 chars; mobile safe: under 50 chars",
+    "Front-load keywords — important words first (titles truncate on mobile)",
+    "Output feeds 5-2-select-title-shortlist (human curation checkpoint)"
+  ],
+  "integrationNotes": {
+    "workflow": "youtube-launch-optimizer",
+    "step": "generate-title",
+    "usagePattern": "Single LLM call — feeds human shortlist checkpoint"
+  }
+}

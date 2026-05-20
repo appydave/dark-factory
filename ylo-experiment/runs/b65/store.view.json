@@ -106,5 +106,60 @@
     "End-to-end pipeline construction in a single session, from raw CSV to structured per-surgeon folders with research, scorecard, and presence report stages",
     "Using test surgeons (publicly available, internationally diverse) as a safe iteration sandbox before applying the workflow to the actual 150-target list",
     "Gap analysis as a first-class workflow step — the system documents what information is missing and feeds that back into prompt improvement rather than silently skipping it"
-  ]
+  ],
+  "shortTitle": "Guy Monroe AI Marketing Plan",
+  "generatedTitles": [
+    {
+      "emotion": "CURIOSITY",
+      "chars": 47,
+      "title": "How Claude Code Built 150 Leads in 2 Days"
+    },
+    {
+      "emotion": "CURIOSITY",
+      "chars": 49,
+      "title": "Can AI Research 150 Surgeons While You Sleep?"
+    },
+    {
+      "emotion": "CURIOSITY",
+      "chars": 45,
+      "title": "What Happens When AI Runs Your Outreach?"
+    },
+    {
+      "emotion": "CURIOSITY",
+      "chars": 48,
+      "title": "I Let Claude Code Do My Marketing — Here Is Why"
+    },
+    {
+      "emotion": "CURIOSITY",
+      "chars": 46,
+      "title": "Does Context Engineering Replace Your SDR Team?"
+    },
+    {
+      "emotion": "DESIRE",
+      "chars": 44,
+      "title": "150 Warm Leads Without Hiring Anyone (Demo)"
+    },
+    {
+      "emotion": "DESIRE",
+      "chars": 47,
+      "title": "AI Coaching Outreach: 150 Leads, Zero Staff Needed"
+    },
+    {
+      "emotion": "DESIRE",
+      "chars": 46,
+      "title": "From Zero to 150 Leads Using Claude Code Agents"
+    },
+    {
+      "emotion": "FEAR",
+      "chars": 48,
+      "title": "Manual Outreach Is Costing Coaches More Than Time"
+    },
+    {
+      "emotion": "CURIOSITY",
+      "chars": 43,
+      "title": "Watch AI Write a Surgeon Presence Report Live"
+    }
+  ],
+  "titleCritiqueLog": "Rewrite with more curiosity-driven framing. Reduce FEAR titles to at most 2 of 10. Keep all titles under 50 chars.",
+  "selectedTitles": "Can AI Research 150 Surgeons While You Sleep?"
 }

@@ -1,0 +1,11 @@
+[2026-05-20T12:16:37Z] WORKFLOW  id=title-generation-refinement video=b65
+[2026-05-20T12:16:37Z] SEED      key=shortTitle
+[2026-05-20T12:16:37Z] DISPATCH  step=generate-title key=generatedTitles attempt=1
+[2026-05-20T12:17:41Z] ACK       step=generate-title key=generatedTitles attempt=1 status=ok
+[2026-05-20T12:17:41Z] CRITIQUE-LOGGED key:titleCritiqueLog
+[2026-05-20T12:17:41Z] REFINE     attempt:2 step:generate-title
+[2026-05-20T12:17:41Z] DISPATCH   step=refine-titles key=generatedTitles attempt=2
+[2026-05-20T12:18:39Z] ACK       step=refine-titles key=generatedTitles attempt=2 status=ok
+[2026-05-20T12:18:39Z] ACK       step=refine-titles key=selectedTitles status=ok (outputKeyMap)
+[2026-05-20T12:18:39Z] PROJECT   keys=18 view=store.view.json
+[2026-05-20T12:18:39Z] DONE      elapsed=56s steps=3 keys=18

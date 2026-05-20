@@ -40,9 +40,72 @@ on completion:
 
 1. **The orchestrator NEVER ingests full step payloads.** Workers write store directly; orchestrator sees only one-line acks. Violating this causes the Oscar failure (context poisoning).
 2. **The orchestrator NEVER reads the transcript.** The transcript path is passed to subagents; subagents read it. The orchestrator holds only the path string.
-3. **conductor-session.log contains only**: step dispatches, ack records, timing, error flags. No transcript fragments. No extraction text.
+3. **conductor-session.log contains only**: step dispatches, ack records, timing, error flags. No transcript fragments. No extraction text. No critique content. No title text.
 4. **Each subagent has a clean context.** No subagent inherits the parent conversation history.
 5. **Parallel fan-out**: all 12 Bulk Content Analysis steps share only `transcriptPath` as input and write to distinct keys. Spawn all 12 concurrently (Agent tool, parallel calls).
+
+## Refinement loop (stateless re-dispatch, §6)
+
+When a `checkpoint` step has a `refinement` block, the conductor runs the refinement loop:
+
+```
+1. Read the critique path (step.critiqueFixturePath) or critique from the human gate.
+2. Write the critique to the store as `critiqueStore` key — conductor appends the EAV record.
+   Log: [ISO-TS] CRITIQUE-LOGGED key:<critiqueKey>
+   IMPORTANT: the conductor writes the critique to the store but does NOT log the critique content.
+3. Increment attempt counter (starts at 1; refinement = attempt 2+).
+4. Spawn a FRESH subagent for the producing step:
+   - Pass: prior generatedTitles (as store path + key — NOT the actual values),
+     critiqueStore key (as store path + key — NOT the content), attempt number.
+   - The subagent reads both from disk; the conductor never holds the values.
+   Log: [ISO-TS] REFINE attempt:N step:<step-id>
+5. Subagent writes new EAV record with meta.attempt:N to the same store key.
+6. Subagent returns one-line ack. Conductor logs the ack. Never logs the payload.
+```
+
+### Refinement subagent task template
+
+```
+You are a title refinement worker. Your task is to produce refined YouTube titles
+using stored prior titles and a stored critique.
+
+Do NOT return the refined titles to me. Write them directly to the store.
+
+Inputs:
+  Store path: [STORE_PATH]
+  Prior titles key: generatedTitles  (read last record with this key from store)
+  Critique key: titleCritiqueLog     (read last record with this key from store)
+  Attempt number: [N]
+
+Instructions:
+1. Read prior titles: jq -r 'select(.key=="generatedTitles")|.value' STORE_PATH | tail -1 | jq .
+2. Read critique:     jq -r 'select(.key=="titleCritiqueLog")|.value' STORE_PATH | tail -1
+3. Apply the critique to produce 10 refined titles in the same JSON structure.
+4. Write TWO records to the store:
+   a. generatedTitles with meta.attempt:[N]
+   b. If outputKeyMap present: write outputKeyMap.to key using the mapped field value.
+
+Write both records using jq -nc >> [STORE_PATH].
+Return ONLY: "✓ wrote generatedTitles attempt:[N] and [mapped-key] to store.jsonl"
+```
+
+## outputKeyMap — key rename support
+
+When a step definition includes `"outputKeyMap": { "from": "sourceKey", "to": "storeKey" }`,
+the conductor instructs the subagent to additionally write the value at `result[from]` to the store under the key `to`.
+
+Example: refine step produces `{ "generatedTitles": [...], "topTitle": "..." }`. With
+`outputKeyMap: { "from": "topTitle", "to": "selectedTitles" }`, the conductor adds a
+second store write for `selectedTitles` in the same bash block:
+
+```bash
+# Primary write (generatedTitles attempt:2)
+jq -nc --arg key "generatedTitles" --argjson value "$REFINED_ARRAY" ... >> STORE_PATH
+# outputKeyMap write (selectedTitles)
+jq -nc --arg key "selectedTitles" --argjson value "$TOP_TITLE" ... >> STORE_PATH
+```
+
+Both records share the same `meta.step` and `meta.ts`; `meta.attempt` matches the refinement pass.
 
 ## Subagent task template (write-store-directly)
 
@@ -83,16 +146,18 @@ jq -nc \
 Write one line per event:
 
 ```
-[ISO-TS] DISPATCH step=analyze-main-topic key=mainTopic
-[ISO-TS] ACK      step=analyze-main-topic key=mainTopic status=ok
-[ISO-TS] DISPATCH step=analyze-keywords   key=keywords
-[ISO-TS] ACK      step=analyze-keywords   key=keywords   status=ok
+[ISO-TS] DISPATCH       step=analyze-main-topic  key=mainTopic
+[ISO-TS] ACK            step=analyze-main-topic  key=mainTopic         status=ok
+[ISO-TS] CRITIQUE-LOGGED key:titleCritiqueLog
+[ISO-TS] REFINE         attempt:2 step:generate-title
+[ISO-TS] ACK            step=refine-titles       key=generatedTitles   attempt=2 status=ok
+[ISO-TS] ACK            step=refine-titles       key=selectedTitles    status=ok (outputKeyMap)
 ...
-[ISO-TS] PROJECT  keys=12 view=store.view.json
-[ISO-TS] DONE     elapsed=Xs steps=12 keys=12
+[ISO-TS] PROJECT        keys=N view=store.view.json
+[ISO-TS] DONE           elapsed=Xs steps=N keys=N
 ```
 
-Never write payload content to this log.
+Never write payload content to this log. Never write critique text. Never write title text.
 
 ## Input resolution (isolation boundary)
 

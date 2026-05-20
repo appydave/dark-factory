@@ -1,0 +1,79 @@
+{
+  "id": "title-generation-refinement",
+  "name": "Title Generation + Refinement",
+  "version": "1.0.0",
+  "description": "Generates 10 candidate YouTube titles, applies a critique, then refines into a final set with one selected title. Exercises the stateless re-dispatch refinement loop (blackboard §6) and outputKeyMap key rename.",
+  "models": {
+    "quick": "claude-haiku-4-5",
+    "analysis": "claude-sonnet-4-6"
+  },
+  "store": {
+    "backend": "jsonl",
+    "path": "{workflowDir}/runs/{videoId}/store.jsonl",
+    "projection": "{workflowDir}/runs/{videoId}/store.view.json",
+    "writeCadence": "step"
+  },
+  "seed": [
+    { "key": "videoId", "from": "input" },
+    { "key": "shortTitle", "from": "input" }
+  ],
+  "steps": [
+    {
+      "id": "generate-title",
+      "name": "Generate 10 candidate titles (attempt 1)",
+      "type": "transform",
+      "section": "Title & Thumbnail",
+      "model": "analysis",
+      "promptFile": "prompts/generate-title.hbs",
+      "inputs": [
+        { "key": "mainTopic",       "required": true },
+        { "key": "statistics",      "required": false },
+        { "key": "catchyPhrases",   "required": false },
+        { "key": "audienceInsights","required": false },
+        { "key": "shortTitle",      "required": true }
+      ],
+      "stores": "generatedTitles",
+      "attempt": 1,
+      "workerContract": "write-store-directly",
+      "humanGate": false
+    },
+    {
+      "id": "apply-critique",
+      "name": "Log critique from fixture (automated checkpoint)",
+      "type": "checkpoint",
+      "section": "Title & Thumbnail",
+      "inputs": [
+        { "key": "generatedTitles", "required": true }
+      ],
+      "stores": "titleCritiqueLog",
+      "critiqueFixturePath": "runs/b65/critique-fixture.txt",
+      "workerContract": "conductor-writes",
+      "humanGate": false,
+      "refinement": {
+        "strategy": "stateless-redispatch",
+        "redispatchStep": "generate-title",
+        "critiqueStore": "titleCritiqueLog"
+      }
+    },
+    {
+      "id": "refine-titles",
+      "name": "Refine titles using critique (attempt 2) + select top title",
+      "type": "transform",
+      "section": "Title & Thumbnail",
+      "model": "analysis",
+      "inputs": [
+        { "key": "generatedTitles",  "required": true },
+        { "key": "titleCritiqueLog", "required": true }
+      ],
+      "stores": "generatedTitles",
+      "attempt": 2,
+      "outputKeyMap": { "from": "topTitle", "to": "selectedTitles" },
+      "workerContract": "write-store-directly",
+      "humanGate": false
+    }
+  ],
+  "output": {
+    "drop": ["titleCritiqueLog"],
+    "group": {}
+  }
+}
