@@ -1,0 +1,17 @@
+[2026-05-20T11:55:00Z] SEED    key=videoId value=b65
+[2026-05-20T11:55:00Z] SEED    key=transcriptPath value=[path]
+[2026-05-20T11:55:00Z] DISPATCH_PARALLEL steps=12
+[2026-05-20T11:55:00Z] ACK      step=analyze-main-topic        key=mainTopic         status=ok
+[2026-05-20T11:55:00Z] ACK      step=analyze-keywords           key=keywords          status=ok
+[2026-05-20T11:55:00Z] ACK      step=analyze-audience-insights  key=audienceInsights  status=ok
+[2026-05-20T11:55:00Z] ACK      step=analyze-emotional-triggers key=emotionalTriggers status=ok
+[2026-05-20T11:55:00Z] ACK      step=analyze-statistics         key=statistics        status=ok
+[2026-05-20T11:55:00Z] ACK      step=analyze-catchy-phrases     key=catchyPhrases     status=ok
+[2026-05-20T11:55:00Z] ACK      step=analyze-cta-phrases        key=ctaPhrases        status=ok
+[2026-05-20T11:55:00Z] ACK      step=analyze-key-takeaways      key=keyTakeaways      status=ok
+[2026-05-20T11:55:00Z] ACK      step=analyze-overall-tone       key=overallTone       status=ok
+[2026-05-20T11:55:00Z] ACK      step=analyze-questions-posed    key=questionsPosed    status=ok
+[2026-05-20T11:55:00Z] ACK      step=analyze-search-terms       key=searchTerms       status=ok
+[2026-05-20T11:55:00Z] ACK      step=analyze-usp                key=usp               status=ok
+[2026-05-20T11:56:47Z] PROJECT  keys=12 view=store.view.json
+[2026-05-20T11:56:47Z] DONE     elapsed=37s steps=12 keys=12

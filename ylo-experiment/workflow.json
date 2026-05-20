@@ -1,0 +1,194 @@
+{
+  "id": "bulk-content-analysis",
+  "name": "Bulk Content Analysis",
+  "version": "1.0.0",
+  "description": "Transcript → 12 parallel content-analysis fields (mainTopic, keywords, audienceInsights, emotionalTriggers, statistics, catchyPhrases, ctaPhrases, keyTakeaways, overallTone, questionsPosed, searchTerms, usp).",
+  "models": {
+    "quick": "claude-haiku-4-5",
+    "analysis": "claude-sonnet-4-6"
+  },
+  "store": {
+    "backend": "jsonl",
+    "path": "{workflowDir}/runs/{videoId}/store.jsonl",
+    "projection": "{workflowDir}/runs/{videoId}/store.view.json",
+    "writeCadence": "step"
+  },
+  "seed": [
+    { "key": "videoId", "from": "input" },
+    { "key": "transcriptPath", "from": "input" }
+  ],
+  "steps": [
+    {
+      "id": "analyze-main-topic",
+      "name": "Extract main topic",
+      "type": "transform",
+      "section": "Bulk Content Analysis",
+      "model": "analysis",
+      "promptFile": "prompts/analyze-main-topic.hbs",
+      "inputs": [
+        { "key": "transcriptPath", "required": true }
+      ],
+      "stores": "mainTopic",
+      "workerContract": "write-store-directly",
+      "humanGate": false
+    },
+    {
+      "id": "analyze-keywords",
+      "name": "Extract SEO keywords",
+      "type": "transform",
+      "section": "Bulk Content Analysis",
+      "model": "analysis",
+      "promptFile": "prompts/analyze-keywords.hbs",
+      "inputs": [
+        { "key": "transcriptPath", "required": true }
+      ],
+      "stores": "keywords",
+      "workerContract": "write-store-directly",
+      "humanGate": false
+    },
+    {
+      "id": "analyze-audience-insights",
+      "name": "Extract audience insights",
+      "type": "transform",
+      "section": "Bulk Content Analysis",
+      "model": "analysis",
+      "promptFile": "prompts/analyze-audience-insights.hbs",
+      "inputs": [
+        { "key": "transcriptPath", "required": true }
+      ],
+      "stores": "audienceInsights",
+      "workerContract": "write-store-directly",
+      "humanGate": false
+    },
+    {
+      "id": "analyze-emotional-triggers",
+      "name": "Extract emotional triggers",
+      "type": "transform",
+      "section": "Bulk Content Analysis",
+      "model": "analysis",
+      "promptFile": "prompts/analyze-emotional-triggers.hbs",
+      "inputs": [
+        { "key": "transcriptPath", "required": true }
+      ],
+      "stores": "emotionalTriggers",
+      "workerContract": "write-store-directly",
+      "humanGate": false
+    },
+    {
+      "id": "analyze-statistics",
+      "name": "Extract statistics and numbers",
+      "type": "transform",
+      "section": "Bulk Content Analysis",
+      "model": "analysis",
+      "promptFile": "prompts/analyze-statistics.hbs",
+      "inputs": [
+        { "key": "transcriptPath", "required": true }
+      ],
+      "stores": "statistics",
+      "workerContract": "write-store-directly",
+      "humanGate": false
+    },
+    {
+      "id": "analyze-catchy-phrases",
+      "name": "Extract catchy phrases",
+      "type": "transform",
+      "section": "Bulk Content Analysis",
+      "model": "analysis",
+      "promptFile": "prompts/analyze-catchy-phrases.hbs",
+      "inputs": [
+        { "key": "transcriptPath", "required": true }
+      ],
+      "stores": "catchyPhrases",
+      "workerContract": "write-store-directly",
+      "humanGate": false
+    },
+    {
+      "id": "analyze-cta-phrases",
+      "name": "Extract CTA phrases",
+      "type": "transform",
+      "section": "Bulk Content Analysis",
+      "model": "analysis",
+      "promptFile": "prompts/analyze-cta-phrases.hbs",
+      "inputs": [
+        { "key": "transcriptPath", "required": true }
+      ],
+      "stores": "ctaPhrases",
+      "workerContract": "write-store-directly",
+      "humanGate": false
+    },
+    {
+      "id": "analyze-key-takeaways",
+      "name": "Extract key takeaways",
+      "type": "transform",
+      "section": "Bulk Content Analysis",
+      "model": "analysis",
+      "promptFile": "prompts/analyze-key-takeaways.hbs",
+      "inputs": [
+        { "key": "transcriptPath", "required": true }
+      ],
+      "stores": "keyTakeaways",
+      "workerContract": "write-store-directly",
+      "humanGate": false
+    },
+    {
+      "id": "analyze-overall-tone",
+      "name": "Determine overall tone",
+      "type": "transform",
+      "section": "Bulk Content Analysis",
+      "model": "analysis",
+      "promptFile": "prompts/analyze-overall-tone.hbs",
+      "inputs": [
+        { "key": "transcriptPath", "required": true }
+      ],
+      "stores": "overallTone",
+      "workerContract": "write-store-directly",
+      "humanGate": false
+    },
+    {
+      "id": "analyze-questions-posed",
+      "name": "Extract questions posed or answered",
+      "type": "transform",
+      "section": "Bulk Content Analysis",
+      "model": "analysis",
+      "promptFile": "prompts/analyze-questions-posed.hbs",
+      "inputs": [
+        { "key": "transcriptPath", "required": true }
+      ],
+      "stores": "questionsPosed",
+      "workerContract": "write-store-directly",
+      "humanGate": false
+    },
+    {
+      "id": "analyze-search-terms",
+      "name": "Extract search terms",
+      "type": "transform",
+      "section": "Bulk Content Analysis",
+      "model": "analysis",
+      "promptFile": "prompts/analyze-search-terms.hbs",
+      "inputs": [
+        { "key": "transcriptPath", "required": true }
+      ],
+      "stores": "searchTerms",
+      "workerContract": "write-store-directly",
+      "humanGate": false
+    },
+    {
+      "id": "analyze-usp",
+      "name": "Extract unique selling points",
+      "type": "transform",
+      "section": "Bulk Content Analysis",
+      "model": "analysis",
+      "promptFile": "prompts/analyze-usp.hbs",
+      "inputs": [
+        { "key": "transcriptPath", "required": true }
+      ],
+      "stores": "usp",
+      "workerContract": "write-store-directly",
+      "humanGate": false
+    }
+  ],
+  "output": {
+    "drop": [],
+    "group": {}
+  }
+}
