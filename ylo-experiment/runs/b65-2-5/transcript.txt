@@ -1,0 +1,438 @@
+Are you an expert who can watch someone for 15 minutes and know exactly what to tweak
+or advice to give to take them to the next level?
+That's the superpower of an expert coach and today...
+In this video I want to show you how you could connect with 150 potentially target individuals
+and create maybe an outreach report or some sort of connection that gets you a foot in the door.
+Today we're going to use Claude Code and Context Engineering.
+I'm Happy Dave, let's get into it.
+So a little bit of a back story. We're today working with Guy Munro and he is
+someone who I work with for my public speaking on YouTube and also a little
+bit of singing lessons and he came to me recently and said David I'd like to
+target this group of people they were public. David I'd like to target this
+group of people they were plastic surgeons. I've already had a look at what
+they do online. They really do need a public speaking coach but I just don't
+know how to automate and reach out to 150 or more of these professional
+people. So I said to him why don't we use context engineering and see if we can
+automate the marketing workflow.
+Now as you can see Guy has done a lot of work. He's put together a spreadsheet with 150 people that he would like to connect with and he's already done a lot of the useful work up front.
+He's done prompt engineering in ChatGPT. He's worked out the sort of charisma points and the scorecards that he needs to evaluate different people on.
+He's done a couple of variations of that. He's also gone and checked out a couple of the plastic surgeons online. He's worked out whether they're good or whether they're a little bit average.
+And from there he started building these reports and all these reports were done in ChatGPT.
+And after that he developed a couple of prompts so that he could potentially turn it into HTML.
+He's given me the HTML in a Word document which is a little bit difficult to work with.
+But I said to him, look, why don't we start again and let's see if we can automate the complete process for evaluating each of the 150 plastic surgeons going through and simplifying the process for him to evaluate them.
+So I said to him, why don't we start again and what we could do is go through these 150 plastic surgeons.
+We'll automate the process that he can do the evaluations, create the reports, turn them into HTML and then send them off to each of these individuals.
+Maybe in a couple of days time have 150 really hot leads.
+So today we're going to work in Visual Studio and what I've done is I've downloaded all the documents he's given me.
+They're all here at the top and I've run a little bit of a conversation to figure out the structure.
+I've asked it to do a little bit of a flow chart for me.
+So if we have a look at it over here we can see that he has a lead generation phase where he's built his list of
+He's done a lead generation phase and he's got a list of plastic surgeons in a CSV file.
+From there he started doing a little bit of research with a particular prompt that searches the internet and finds out individual information about each plastic surgeon.
+Now this is a bit of a slow process. It works really well, the prompts that he's done, but he's only done two at the moment to get detailed information.
+From there he works through a score, from there he uses a scorecard sort of system to work out.
+From there he then goes online and watches some of their videos to see what their charisma index is.
+So he has a planning system, a scorecard and he just goes and evaluates each individual doctor as he goes.
+Now one of the things I'd like him to be able to do is as he's coming up with decision points we'd like to document it into the second brain so that some of this can become a little bit automated in the future.
+Now once he's done the evaluation page and what we want to do is write all that information out to a structured format that we can easily convert into a report.
+Maybe it'll be a PDF, maybe it'll be a web page. I think the web page will be the easiest way to go.
+And I also want to do it in such a way that if he wants to go and add his own video commentary for each of these doctors he can do that and we'll make sure there's an upload capability for him to do that.
+And we'll make sure there's a placement capability so he can put the video right next to the example that he's working with.
+And we'll have a video and we'll make sure there's a placement in the report and we'll make sure there's a side by side placement in the report so that we can see the online presence of the original surgeon versus his opinion of some of the tweaks and changes that could happen.
+So to get started, what I want to do is leave these documents that I got from Guy in the
+raw folder, but I want to take some of the others and put them into a working directory
+for now.
+So I'm just going to go into Cloud Code and I'm going to paste in, can you take the custom
+documents and just organize them.
+So hopefully we're going to see most of the new documents just added into the dots folder.
+And the great thing is, it was smart enough just to move the documents I'd been making
+myself, left all the raw ones.
+What I think we'll also do is take the actual CSV file and put it up into the dots directory
+because we're going to work with that a lot today.
+Now the first thing I want to do is take this really raw information that we've got here,
+come up with a little bit of a schema or a structure for what it should be and start
+segmenting out each doctor into their own folder, their own file.
+So what we'll do is we'll start a prompt that goes, can you read, and we'll put in the at
+symbol and we'll start typing top and that's the file that we want to read.
+And I've said, can it come up with a schema, can it extract the field names, plus can it
+come up with an output folder and the convention for any file names that we're about to write.
+Now the other thing I'm also going to do is ask it to search the current documentation
+I've received from Guy around any potential questions or research prompts that we could
+do to find out more information about these people, but if we can't find that information
+we'll get it to build our own research prompt.
+So Claude-Kurt has just finished, it's come up with a schema, it understands the columns,
+the number of surgeons, the basic information that's going on here, it's even come up with
+some naming conventions that we could use for the file names.
+Now these are the ones that are based on what Guy did himself, I don't particularly like
+this style so we may ask it to reshape that information.
+If we head in over here we should be able to see the schema right here and at the moment
+it's a little hard to read but we can press this button to give it more of a visual look
+and feel so we can see all the columns that it's come up with.
+This looks like useful information to me, we've got contact information going on and
+there's a whole lot of extra information which I think is probably too detailed but this
+is the information Guy already had so we'll keep that in place.
+And the good thing is we've got a little bit of a report about what is good quality data
+and what is data that probably needs to be improved over time.
+so we have a recommended file structure it's not quite what we want I'll just do
+a different prompt here can we get a different folder structure in that I
+would like each individual doctor to have their own folder I want them all to
+be prefixed with an indexed number so the first doctor would be zero zero one
+and then after that in lowercase just the name of the report it might also be
+useful to have another index number for the position of the report and I've just
+given it a little bit of and I've just given that an example to work with the
+other thing I think would be useful is understanding whether we've already got
+a research report in any of the documentation that's up here that we
+could use as a starting point a baseline
+So as this was going along we ended up with this red and green area. If you see
+this what you're seeing is a comparison between an old structure and a new
+structure. So we can see the old ones on the right it's quite a flat structure
+it's now become a little bit more hierarchy and we can see as we scroll
+down that it's got an updated structure that you can see in the report. The next
+thing it went on to do was to build this prompts and workflow document. The good
+thing is that Guy had already done a fair bit of work with ChatGPT around
+the prompts he wanted to get research information out of so we now have our
+own document here that we can go and look at and everything is in place.
+As we research each of the individual people, the doctors, we're going to build
+up a little bit of a fact sheet based on their public profile, just the stuff
+they've got readily available through online search. From that, we'll be able
+to go through and do a bit of a scorecard, like do an assessment of whether
+they're good at public speaking, any challenges that they need to improve on.
+From that, we can create an assessment or a presence report from there. The
+presence report is currently saying markdown, it may be freeform text, but
+we'll probably do it in a JSON or JSON structure so that it's much easier for
+future machine tools to generate stuff such as the HTML report or the PDF
+report.
+And so when we look at what it's currently got, we've got the idea of a fact sheet just
+being a placeholder for information, we've got the example that we could work with, and
+we'll probably do some examples from different regions of the world, one from England, one
+from Australia, just to see how well this system works out.
+After that, there's building the scorecard.
+I think looking at this, we got a little bit more work to do here.
+And then finally, there'll be the President's Report.
+And we can see an example of what it's doing right now.
+The final President's Report that we're seeing here is all the information about where this
+particular doctor might show up in public appearances, any memberships that they might
+have, anything in the media.
+Now because there will be searching going on, we need a bunch of search strings that
+it can look for information, a checklist, a checklist on the quality of the data that
+we're receiving, along with some few prompt examples.
+Now this last area, which again comes from Guy, is a version of how it should look as
+a HTML report.
+This is an area where we'll do a lot more improvement to it so that we can get something
+that's designed to be converting something like a sales lead magnet or landing page,
+something like that is the way we would like the HTML to be rendered.
+Now the next thing we're going to do is test this out with a couple of sample surgeons
+from other countries just to see how the information goes through.
+Now I've brought Guy in next to me to work with me.
+Let's do a little introduction first.
+So Guy, tell us a bit about yourself.
+Hi, I'm Guy Minow, the charisma coach, and my work is about seeking out people
+that I can help with their charisma and their confidence and their public
+speaking. And with David's help, I'm able to locate those people, reach out to them
+and give them the support that they need.
+So you've just heard from Guy. What I thought we'd do now is try and test out
+this system that we're putting together partly based on what he did and partly
+based on the context engineering and the automation that we're putting in place
+now and I think to get us started we really need some sample data so I've
+just put in this prompt that says find me a couple of top plastic surgeons we
+want one in we want a couple in Sydney Australia and a couple in London and
+from that we'll take this information off the internet and put it into a new
+file we've called it testplasticsurgeon.csv and we're going to put that
+down next to the existing file and what we'll do is we'll work through the two
+or three other and what we'll do is work through the two to four different
+plastic surgeons we've got to see if our prompts are actually accurate
+So the web search has gone off and found four plastic surgeons. We've got two
+from Sydney Australia, Jeremy Hunt and Ellis Choi, and we've got two from London.
+We've got Jan Steneck and Sijatha Tadapathy. Hopefully I said that right.
+We've got phone numbers, we've got websites and we've got email addresses
+and this is just standard publicly available information that can be found
+on the website. So when we go and have a look from our first just basic visual
+check we can see Dr. Jeremy Hunt here, we've got Dr. Ellis Choi and then we come
+up to Jan Steneck and we've got Sijatha here. So it looks like the basic search
+for information is good. What we'd like to do now is from these points of view
+go in deeper and find out what their YouTube presence is, their LinkedIn
+presence or any other sort of media information that might be available
+where we've seen them talking.
+So, I just want to point out a little house cleaning phase that I've done.
+I've gone and looked at the Claude document, which was a little bit out of date.
+It's now been brought up to date, and we can see some of the things that it did.
+So it worked out that the dots folder is the source of truth.
+The raw folder is where everything started from.
+It's not meant to be used anymore unless I explicitly ask for it.
+We've got the different folders now listed as to what they're going to do, but they don't all exist at the moment.
+At the moment, we've just got a dots folder and a raw folder, and it also understands the naming convention.
+So as we move forward, our Claude document, which is the system prompt, is kept in sync with what we want, and that's all listed in the documentation.
+Now, what I want to do is test how good this workflow is at maybe researching details about
+a surgeon, and we're going to work with the test surgeons first, which is all publicly
+available data.
+We know where to find it.
+We know that it's going to read the research prompt, which we can see the basic concepts
+it's going to pull out here, and we can see that it's going to do a bunch of web search,
+and fetch.
+We've got creation of the folders and naming them, and a bit of a format and validation
+area.
+It's identified a couple of blockers that might happen, such as it can't access the
+website, or the surgeon has no useful information.
+It's also got some key questions that it might ask about creating these folders, this should
+just work.
+We will see what happens when it gets there.
+It has an identity of who the first surgeon is going to be.
+The only thing that's a little bit not correct is where it's writing it out to the surgeons,
+because these are tests.
+What I'm going to do is just say, can we use an output folder that is test surgeon, since
+this happens to be test data, and we'll just press go on that, and see how detailed a fact
+sheet it can build around this particular person, which is Dr. Jeremy Hunt in Sydney,
+It's got a revised output structure, everything's perfect, it wants to know whether we need
+to update the Claude file.
+The answer is no, because this is only temporary, while we check things out.
+And it's asking me where it wants to create, and what it should do next, should it just
+read from CSV, or from the online presence.
+It feels like it's going to hit a web access limitation, so I'm not sure whether it will.
+What we'll do is a hybrid approach, we'll start from what we have, and then we'll see
+what other searches it can do.
+It's starting to make a folder for us, so we can see this new folder growing, we've
+got the first person that we're doing some research on, we've got a little bit of a fact
+sheet coming together.
+And notice we've also got a bit of a scorecard, or a status of where we're up to.
+And it's just doing general online Google searches for Jeremy Hunt, and different query
+parameters that it could use.
+So what we can see is that we've got two files being created. We've got the
+fact sheet number one and we've got the presence report number three. Now
+originally I thought it was going to create one file for us, basically a
+detailed fact sheet. It could also be called a presence report and the idea
+here is that you need this basic information from the original CSV file
+plus the basic research before we can start doing an assessment and the
+assessment is the scorecard. This is where Guy would go in and have a look at
+videos, watch them and using the scorecard work out does this client or
+potential client need help in certain areas. So what is number two, file number
+two, is actually not in the right location. It needs to come after these
+two and these two almost need to be combined. So I've just written a basic
+prompt letting it know that there's a bit of a misunderstanding. I also wanted
+it to realize that we don't currently have a simple workflow document. We have
+these two workflows called actual workflow analysis, we've got one called
+we've got another one called prompt some workflow, we've got one called workflow
+diagram but we don't have a simple workflow for it to work through. So I'm
+just going to get it to relook at the workflow that we've got, maybe combine
+those two files together we'll see. And this was the main reason why I wanted to
+have the test surgeons because I want to be able to try this over and over again
+on other sorts of information that's similar but not the target market so
+that we can see that we've got everything working correctly.
+So, from here it's worked out and read through the documentation.
+It's looked at my insight, it's looked at a little bit of the confusion in the documentation
+which is pretty important.
+And it's decided to come up with two options that we could try.
+Basically do we want a fat sheet and presence report?
+I think no, I think they're just two steps in the same problem.
+So what we'll go with is basically a number one research prompt MD.
+So what I'd like it to do is combine it into number one, a research output report.
+Now it's come up with a recommendation which is contrary to what I've said and I understand
+its idea.
+It's like there's a fat sheet, quick reference and we've got the deep analysis.
+And it's trying to say that it's two different purposes.
+I don't agree that it's two different purposes.
+I'll want all this information together if I was to do a report.
+I need the contact details if you're going to do an outreach, plus we need the presence
+information.
+We shouldn't need to look in two different locations.
+So I've essentially told it to go with the second option, option B, which is combining
+into one.
+I also do want it to do the workflow steps.
+It's asking if it should update the workflow diagram.
+We might just select that and paste it in and say yes.
+The way this works, by the way, with Claude code is that you can just pump in extra prompts
+and they'll run in sequence or they'll get combined into the current thinking.
+So the good thing is that even though it's a little late on doing this particular line,
+it'll work anyway.
+So we're seeing this red-green issue again and it can look a little bit ugly.
+What's going on here is basically saying that we've got a new file and so everything on
+the green is all new.
+There is nothing on the right.
+That's why we've just got one red line.
+So when we press yes here, what we should see is this new file called 1.research.
+Now notice we've still got a 1.fact sheet and we've got a 3.presence report.
+Hopefully we're going to see it automatically delete those.
+One of the ways you can work out whether that's going to happen is look at the to-do's that
+it's going to do and I notice that there's nothing in here talking about cleaning up
+after itself.
+So I might just remind it and say, please remember to clean up after yourself.
+I don't expect there to be a fact sheet or a presence report at the end of this session.
+You'll notice we've got a little cut-off from the dictation but it shouldn't matter.
+There's enough context in there.
+So let's just see.
+We've got a removal going on and so those two files are about to be removed.
+They are.
+Notice also that we've got this workflow steps being created.
+Let's go and click on that and get a visualization of what we're seeing.
+So we can see that our workflow steps has been updated.
+We've got one research, two scorecard and three assessment report but let's have a look
+at what it was doing over in Claude.
+This is the summary of everything.
+So there's the old structure that's been refactored.
+We've got the new structure in place.
+We can see our new file going in.
+The workflow steps have been updated as well and always keep the Claude file up to date
+because that's the system prompt that we're using all the time.
+We want to make sure it doesn't get too bloated but it should have indexes and references
+and things that it needs to know all the time updated.
+It's also going to remove the two files that we asked it to remove.
+So, the next thing I want to do here is I want to look at the master prompt.
+I actually want to check whether it's any good.
+Now firstly, I don't know where it is.
+I know it was embedded in certain documentation and I'd really like to see it as its own file.
+Also when you're looking down here, you might notice these symbols like we've got 36%.
+That's telling us how much context is left for Claude.
+We've still got enough to keep working.
+Now what it's told us here is that it doesn't have a prompts folder.
+It doesn't have a master area.
+So I'm going to tell it, can you make sure that we just have one comprehensive prompt
+based on what you've been working on and put it into the prompts folder?
+Make sure that our documentation is up to date with where it's located.
+You notice here it's making a directory and it's asking us to do this.
+One of the things I want to do is change this before asking for edits to just edit automatically.
+That way hopefully the files will update automatically.
+I usually use this from the terminal with the dangerous permission which gives it full
+write access and create and using tools.
+We don't have the same level of granularity on permissions but we've got some.
+Hopefully files being created in the future don't need my input every time.
+Now for yourself, if you're doing this and you don't know what you're doing, you might
+want to check everything individually but you'll get a little bit more confident once
+you understand what Claude can and can't do and where it can act a little bit dangerously.
+As it's been going, it's been making updates and edits to the Claude document as it moves
+or deletes it's happening.
+It's also gone and created a new folder.
+Let's have a look at that.
+We've got the prompts folder so we should be able to click on this file and expand it
+out and see what the online presence report is.
+As we go, if there's anything in our research that is not good enough and this will happen
+many, many times and we'll have the opportunity to improve over time, this is one of the prompts
+that would change.
+We don't necessarily have to go in and type it.
+We can just make Q&A sort of things saying, do you think this is good?
+It might say, no, I don't think it's good.
+What's the suggestion?
+And it can update the prompt for us.
+So, we've got a basic report in Markdown around this particular person.
+Let's change a couple of things as we go.
+So, the first thing is that it's not formatted correctly.
+I'm just going to put these little dashes here and we might do the same thing on this
+location.
+It'll just make it a little bit more readable for me at the moment.
+And then what I'd like to do is just have a look through this data and see if there's
+anything missing.
+So, we can see where some of his public appearances, his online presence, the tone and personality
+of who he is.
+And the important thing for me is whenever I notice something like a gap, because with
+the gap, what we're trying to assess is could we have filled the gap ourselves by improving
+our prompts?
+And interestingly, at the end of it, we've got the information we've researched.
+We can still see a status of what we haven't done.
+The next thing will be the scorecard, but this is such a manual process, this area where
+you go and check the quality and do an assessment.
+And this is what you, as an expert, a coach, would want to do for your potential clients
+is go figure this information out yourself.
+So, I've just spoken a prompt that's meant to improve two different things.
+Now, the first one is that there were gaps in the data, so I'm just asking if it can
+rewrite its own internal prompt to fill those gaps.
+So, we'll see what it can come up with.
+I'm pretty happy with the data, so it's not like it has to go too far, but there might
+be some obvious things.
+The other thing I said to it was that these dashes that we put in to make this information
+a little bit more readable, I would like it to consider that the next time it writes a
+report for me.
+But one of the things I was pretty clear not to do is to come up with a template.
+If we come up with a template, we kind of constrain the output to whatever the template
+is.
+And since different doctors will have different information and there'll be different sorts
+of output formats, we don't really want to constrain the large language model from getting
+the best data it can get.
+So I'm giving it more of a guideline in the form of the dashes.
+So we'll see what it comes up with when we press enter.
+So it's come up with a whole lot of observations around what's missing.
+It's talking about prompt improvements that it could do.
+It's also got some information around the template formatting, so we'll see what comes
+through.
+Notice the red and the green, so this is the old, this is the new coming in place.
+So they're just minor changes in the prompts.
+And I love this iteration process where you do something with a good prompt, but then
+you use feedback from the system to improve the prompt.
+And when you're doing something 150 times, which is the plan, we will get better over
+time.
+One of the things we also haven't done but becomes obvious when you go through this process
+is there could be very simple Q&A sorts of questions that could pop up.
+One of the things that happens when you do this sort of stuff is that you come across
+ideas that it'd be really good for Guy, in this case, to have, such as obvious questions
+and answers that could be prompted for him to look into.
+So here's what it's done.
+It's made some great enhancements to the online presence prompt.
+We can see them all listed here.
+And it's got a new formatting guideline, but not the full template, just ideas or general
+ideas like date formats, link guidelines, numbers and metrics, bullet points, stuff
+like that.
+Now, I've specifically told it to move on to the next surgeon rather than move on in
+the workflow, so we're moving on to number two, which is Dr. Ellis Choi, and it's doing
+a bunch of web searches at the moment.
+Now, the reason for this is that we could move forward in the flow and perfect some
+things there, but it might be better to have really good starter prompts as we go.
+We'll work through all of them, and then I'm going to hand this information off to Guy
+so that he can do an actual evaluation on people that he's not going to approach for
+business, but at least test out whether the information and the prompt engineering is
+working effectively for him.
+And there it is finished. We've got the next doctor.
+We've got one red cross. If we investigate, it says
+just missing. It's not a prompt failure. So there's nothing in here
+listing that there's any issues with our ability to get information.
+Just that sometimes there's not information available. If we click
+over here, we can actually see the information about this
+particular consultant, this particular
+document. And if we click on this document,
+and if we click over here, we can see
+information all collected around Dr Ellis Choi.
+And actually a bunch of gaps that
+maybe other areas that could be talked about in any sort of
+marketing document. Is there, would you like help with
+TikTok or social media or online sort of presence?
+And the issue may be, and so
+if we go and click on the information that's been collected, we've got all
+the basic details, contact, we've got recognition and credentials.
+We can find out where he's been available and
+there's also a list of gaps. So any sort of marketing outreach call,
+you've got all the information that you need to give a rich
+and engaging marketing campaign.
+So I've just got it moving on to number three but as I did I asked it to just
+confirm wherever there was anything missing. I wasn't expecting anything to
+be missing because it never stated it but it's given a complete list and given
+ideas for prompt enhancement which is taking those ideas as we go and so we
+can see a bunch of new updates happening for both the research prompt. We've got
+some few prompt examples coming through and then it's just going to move on to
+the third surgeon.
+Now I just want to point out that it's still in the middle of doing all the
+research for the third surgeon but I've queued up ahead of time the next person
+so the fourth surgeon should get researched but at the same time I also
+said do a gap analysis on the prompt so the great thing is as we're going we can
+move ahead with our searching while also backfilling each of the prompts with new
+information so here it's completed number three everything looks like it's
+worked well I wonder if it's going to come up with a gap approval needed
+because I did state for it to do that so these are very minor changes I don't know
+how useful they'll be for us but let's look at them we've got the no video
+content scenario and it's got this prompt that it's suggesting which is
+essentially a Q&A and if we go to the end we can see do we want to skip do we
+want to request a consultation recording or mark as insufficient digital presence
+so maybe that's a useful addition to the prompt maybe it's just adding extra
+workload so I think for gap number one we'll say don't approve and for gap
+number two let's have a look at what that is we'll say this is essentially
+annotation sort of information it can be useful we'll say yes and so we're just
+making these minor changes and while it's making the changes we'll just move
+on to search in number four we've got a little bit of a status update as we're
+going it's going into the new research now at this point what we'll do is when
+the video and in the next video we'll have done a bit of custom research which
+is analysis and we'll see what sort of and we'll see what sort of marketing
+report we could actually make for each of these people to see if there's an
+opportunity to do business
+So, at the conclusion of this, we've started to build a Bobc analysis tool using simple
+context engineering, Claude code to do some of the automation.
+As we were going, we're building out different prompt files, data files, and also statistic
+files to hold the different information.
+In the next video, what we'll do is, after we've done some human analysis on the data,
+we'll start building some context reports.
+I'm Appy Dave, see you in the next video.

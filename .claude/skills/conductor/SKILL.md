@@ -89,6 +89,50 @@ Write both records using jq -nc >> [STORE_PATH].
 Return ONLY: "✓ wrote generatedTitles attempt:[N] and [mapped-key] to store.jsonl"
 ```
 
+## Human gate — `humanGate: true` + `gateMode: "human-stdin"`
+
+When a `checkpoint` step has `"humanGate": true` and `"gateMode": "human-stdin"`, the conductor pauses the workflow and yields the turn back to the user.
+
+### Turn-yielding contract
+
+1. **Render the relevant input keys** to the user as conversation output. For an `apply-critique` checkpoint with `inputs: [{key: "generatedTitles"}]`, the conductor pretty-prints the current `generatedTitles` value (numbered list of titles with emotion + char count).
+2. **Print the critique prompt**: a one-line instruction telling the user what to do next — e.g. *"Type your critique, or type `accept` / `ok` to skip refinement and accept these titles."*
+3. **Log the gate-open event** to the conductor log:
+   ```
+   [ISO-TS] HUMAN-GATE-OPENED step:<step-id>
+   ```
+4. **End the turn cleanly** — emit no further tool calls. The `/goal` stop hook will see the workflow is incomplete and prevent the session from closing; the next user message is the gate response.
+
+### Gate response parsing (next turn)
+
+On the next user turn:
+
+1. **Take the user's full message text as the critique candidate.**
+2. **Accept-path detection**: if the message (trimmed, lowercased) equals `accept` or `ok`:
+   - Write `selectedTitles` directly from the top-ranked title in `generatedTitles` (first item, or the one matching a heuristic).
+   - Add `meta.skippedRefinement: true` to the `selectedTitles` record.
+   - Log: `HUMAN-GATE-CLOSED step:<id> critique-length:0 outcome:accepted`
+   - Skip the refine step.
+3. **Refine-path**: otherwise, treat the message as the critique:
+   - Compute `LENGTH=$(echo -n "$CRITIQUE" | wc -c | xargs)`.
+   - Append a `titleCritiqueLog` EAV record with `value` = the critique text, `meta.source: "human-stdin"`, `meta.attempt: 1`.
+   - Log: `HUMAN-GATE-CLOSED step:<id> critique-length:N outcome:refine` (N = byte length).
+   - Dispatch the refine-titles subagent (reads critique from store, writes attempt:2 + selectedTitles).
+
+### Log line formats
+
+```
+[ISO-TS] HUMAN-GATE-OPENED step:apply-critique
+[ISO-TS] HUMAN-GATE-CLOSED step:apply-critique critique-length:127 outcome:refine
+[ISO-TS] HUMAN-GATE-CLOSED step:apply-critique critique-length:0   outcome:accepted
+```
+
+The conductor log NEVER contains the critique text itself — only the byte length.
+
+### Why this is the load-bearing test
+
+Probes 1 and 2 used fixtures and parallel fan-out — both fully automated. The human-gate path is what makes this pattern different from AWB Gen 3: the human conversation **lives in the orchestrator turn**, and only the **distilled critique** moves forward into the store. Raw chat doesn't poison downstream workers because the critique is read from the store at refine-dispatch time, not from conversation history.
+
 ## outputKeyMap — key rename support
 
 When a step definition includes `"outputKeyMap": { "from": "sourceKey", "to": "storeKey" }`,

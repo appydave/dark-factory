@@ -1,0 +1,80 @@
+{
+  "id": "title-generation-refinement-human",
+  "name": "Title Generation + Human-Gated Refinement",
+  "version": "1.0.0",
+  "description": "Same 3-step shape as workflow-titles.json but apply-critique is a real human gate. Generate 10 titles, render to user, await typed critique, refine into attempt:2 + selectedTitles. Tests the orchestrator-hosts-conversation path (blackboard §6 opt-in human-in-the-loop).",
+  "models": {
+    "quick": "claude-haiku-4-5",
+    "analysis": "claude-sonnet-4-6"
+  },
+  "store": {
+    "backend": "jsonl",
+    "path": "{workflowDir}/runs/{videoId}/store.jsonl",
+    "projection": "{workflowDir}/runs/{videoId}/store.view.json",
+    "writeCadence": "step"
+  },
+  "seed": [
+    { "key": "videoId", "from": "input" },
+    { "key": "shortTitle", "from": "input" }
+  ],
+  "steps": [
+    {
+      "id": "generate-title",
+      "name": "Generate 10 candidate titles (attempt 1)",
+      "type": "transform",
+      "section": "Title & Thumbnail",
+      "model": "analysis",
+      "promptFile": "prompts/generate-title.hbs",
+      "inputs": [
+        { "key": "mainTopic",       "required": true },
+        { "key": "statistics",      "required": false },
+        { "key": "catchyPhrases",   "required": false },
+        { "key": "audienceInsights","required": false },
+        { "key": "shortTitle",      "required": true }
+      ],
+      "stores": "generatedTitles",
+      "attempt": 1,
+      "workerContract": "write-store-directly",
+      "humanGate": false
+    },
+    {
+      "id": "apply-critique",
+      "name": "Human reviews titles, types critique (or accepts)",
+      "type": "checkpoint",
+      "section": "Title & Thumbnail",
+      "inputs": [
+        { "key": "generatedTitles", "required": true }
+      ],
+      "stores": "titleCritiqueLog",
+      "workerContract": "conductor-writes",
+      "humanGate": true,
+      "gateMode": "human-stdin",
+      "refinement": {
+        "strategy": "stateless-redispatch",
+        "redispatchStep": "refine-titles",
+        "critiqueStore": "titleCritiqueLog",
+        "acceptKeywords": ["accept", "ok"]
+      }
+    },
+    {
+      "id": "refine-titles",
+      "name": "Refine titles using human critique (attempt 2) + select top",
+      "type": "transform",
+      "section": "Title & Thumbnail",
+      "model": "analysis",
+      "inputs": [
+        { "key": "generatedTitles",  "required": true },
+        { "key": "titleCritiqueLog", "required": true }
+      ],
+      "stores": "generatedTitles",
+      "attempt": 2,
+      "outputKeyMap": { "from": "topTitle", "to": "selectedTitles" },
+      "workerContract": "write-store-directly",
+      "humanGate": false
+    }
+  ],
+  "output": {
+    "drop": ["titleCritiqueLog"],
+    "group": {}
+  }
+}

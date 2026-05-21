@@ -1,0 +1,12 @@
+[2026-05-20T12:57:59Z] WORKFLOW  id=title-generation-refinement-human video=b65-2-5
+[2026-05-20T12:57:59Z] DISPATCH  step=generate-title key=generatedTitles attempt=1
+[2026-05-20T12:58:43Z] ACK              step=generate-title key=generatedTitles attempt=1 status=ok
+[2026-05-20T12:58:43Z] HUMAN-GATE-OPENED step:apply-critique
+[2026-05-20T13:30:27Z] HUMAN-GATE-CLOSED step:apply-critique critique-length:0 outcome:accepted
+[2026-05-20T13:30:27Z] DONE             outcome=accepted gate=human-stdin selectedTitles=1 attempts=1
+[2026-05-20T13:32:56Z] HUMAN-GATE-CLOSED step:apply-critique critique-length:56 outcome:refine
+[2026-05-20T13:32:56Z] REFINE            attempt:2 step:refine-titles
+[2026-05-20T13:32:56Z] DISPATCH          step=refine-titles key=generatedTitles attempt=2
+[2026-05-20T13:33:50Z] ACK               step=refine-titles key=generatedTitles attempt=2 status=ok
+[2026-05-20T13:33:50Z] ACK               step=refine-titles key=selectedTitles attempt=2 status=ok (outputKeyMap)
+[2026-05-20T13:33:50Z] DONE              outcome=refine attempts=2 selectedTitles=1
