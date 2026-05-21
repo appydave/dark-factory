@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<!-- Source: ~/dev/ad/brains/anthropic-claude/claude-code/blackboard-workflow-pattern.md + ylo-experiment/HANDOVER.md -->
+<!-- Data:   ../../data/blackboard-probes.json -->
+<!-- Brand:  AppyDave (brand-dave:brand) — light-mode-primary -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dark Factory — Blackboard Pattern Overview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brand-brown: #342d2d;
+    --brand-gold: #ccba9d;
+    --brand-yellow: #ffde59;
+    --brand-amber: #c8841a;
+    --brand-muted: #7a6e5e;
+    --brand-near-white: #faf5ec;
+    --brand-surface: #f0ebe4;
+    --brand-linen: #e8e0d4;
+    --brand-border: #d4cdc4;
+    --brand-dark-surface: #25201e;
+    --status-strong: #3d8a5a;
+    --status-warn: #c8841a;
+    --status-danger: #a94a36;
+    --display: 'Bebas Neue', sans-serif;
+    --headline: 'Oswald', sans-serif;
+    --body: 'Roboto', sans-serif;
+    --mono: 'Roboto Mono', monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--brand-near-white);
+    color: var(--brand-brown);
+    font-family: var(--body);
+    font-size: 14px;
+    line-height: 1.55;
+    padding: 28px 36px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  header {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: 28px; padding-bottom: 18px;
+    border-bottom: 1px solid var(--brand-border);
+  }
+  h1 {
+    font-family: var(--display);
+    font-size: 52px; letter-spacing: 1px; line-height: 1; color: var(--brand-brown);
+  }
+  h1 .yellow { color: var(--brand-amber); }
+  .breadcrumb {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--brand-muted); text-transform: uppercase; letter-spacing: 1.5px;
+  }
+  .breadcrumb a { color: var(--brand-amber); text-decoration: none; }
+  .tagline {
+    font-family: var(--headline); font-size: 13px;
+    text-transform: uppercase; letter-spacing: 2px;
+    color: var(--brand-amber); margin-top: 6px;
+  }
+
+  /* Section heading */
+  h2 {
+    font-family: var(--headline);
+    font-size: 20px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 1.5px;
+    color: var(--brand-brown); margin: 32px 0 14px;
+    padding-bottom: 6px; border-bottom: 1px solid var(--brand-border);
+  }
+  h2 .num {
+    color: var(--brand-amber); font-family: var(--display);
+    font-size: 24px; margin-right: 8px; letter-spacing: 0;
+  }
+
+  /* Architecture diagram */
+  .arch {
+    background: white; border: 1px solid var(--brand-border);
+    border-radius: 4px; padding: 32px 28px;
+    margin-top: 8px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+  .arch-row {
+    display: grid; gap: 18px;
+    align-items: stretch;
+  }
+  .arch-row.three { grid-template-columns: 1fr 1.4fr 1fr; }
+  .arch-row.single { grid-template-columns: 1fr; }
+
+  .node {
+    background: var(--brand-near-white);
+    border: 1px solid var(--brand-border);
+    border-radius: 4px; padding: 16px 18px;
+    position: relative;
+  }
+  .node.conductor {
+    background: var(--brand-dark-surface); color: var(--brand-near-white);
+    border-color: var(--brand-brown);
+  }
+  .node.conductor .node-title { color: var(--brand-yellow); }
+  .node.conductor .node-role { color: var(--brand-gold); }
+  .node.conductor .node-list li::marker { color: var(--brand-yellow); }
+
+  .node.subagent {
+    background: var(--brand-surface); border-left: 3px solid var(--brand-amber);
+  }
+  .node.subagent.muted { opacity: 0.6; }
+
+  .node.store {
+    background: white; border: 1px dashed var(--brand-amber);
+  }
+  .node.store .node-title { color: var(--brand-amber); }
+
+  .node-title {
+    font-family: var(--headline);
+    font-size: 14px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .node-role {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--brand-muted); margin-bottom: 10px;
+  }
+  .node-list {
+    list-style: none; padding: 0; margin: 0;
+    font-size: 12px; line-height: 1.6;
+  }
+  .node-list li {
+    padding-left: 12px; position: relative; margin-bottom: 4px;
+  }
+  .node-list li::before {
+    content: "▸"; position: absolute; left: 0; color: var(--brand-amber);
+  }
+  .node.conductor .node-list li::before { color: var(--brand-yellow); }
+
+  /* Arrows row */
+  .arrows-row {
+    display: grid; grid-template-columns: 1fr 1.4fr 1fr;
+    align-items: center; gap: 18px;
+    padding: 6px 0;
+  }
+  .arrow {
+    text-align: center; font-family: var(--mono); font-size: 11px;
+    color: var(--brand-amber); text-transform: uppercase; letter-spacing: 1px;
+  }
+  .arrow-line {
+    font-size: 22px; color: var(--brand-amber); line-height: 1;
+  }
+  .arrow-label { display: block; margin-top: 2px; color: var(--brand-muted); }
+
+  /* Contracts grid */
+  .contracts {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+    margin-top: 8px;
+  }
+  .contract {
+    background: white; border: 1px solid var(--brand-border);
+    border-left: 4px solid var(--brand-amber); border-radius: 4px;
+    padding: 18px 20px;
+  }
+  .contract-name {
+    font-family: var(--headline); font-size: 13px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 1px;
+    color: var(--brand-brown); margin-bottom: 6px;
+  }
+  .contract-where {
+    font-family: var(--mono); font-size: 10px; color: var(--brand-amber);
+    text-transform: uppercase; letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+  .contract-desc { font-size: 13px; line-height: 1.5; color: var(--brand-brown); }
+
+  /* Oscar callout */
+  .oscar {
+    background: var(--brand-dark-surface); color: var(--brand-near-white);
+    border-radius: 4px; padding: 24px 28px; margin-top: 12px;
+    border-left: 4px solid var(--brand-yellow);
+  }
+  .oscar-title {
+    font-family: var(--display); font-size: 30px; line-height: 1;
+    color: var(--brand-yellow); margin-bottom: 8px; letter-spacing: 1px;
+  }
+  .oscar-sub {
+    font-family: var(--headline); font-size: 12px;
+    color: var(--brand-gold); text-transform: uppercase; letter-spacing: 2px;
+    margin-bottom: 16px;
+  }
+  .oscar-rules {
+    list-style: none; padding: 0; margin: 0;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 10px 22px;
+  }
+  .oscar-rules li {
+    font-size: 13px; line-height: 1.5; padding-left: 18px; position: relative;
+  }
+  .oscar-rules li::before {
+    content: "✕"; position: absolute; left: 0; color: var(--brand-yellow);
+    font-weight: 700;
+  }
+  .oscar-rules li strong { color: var(--brand-yellow); font-weight: 600; }
+
+  /* EAV envelope */
+  .eav {
+    background: white; border: 1px solid var(--brand-border); border-radius: 4px;
+    padding: 22px 26px; margin-top: 8px;
+  }
+  .eav pre {
+    background: var(--brand-near-white); border: 1px solid var(--brand-border);
+    border-radius: 3px; padding: 18px; overflow-x: auto;
+    font-family: var(--mono); font-size: 12px; line-height: 1.55;
+    color: var(--brand-brown);
+  }
+  .eav-key { color: var(--brand-amber); }
+  .eav-string { color: var(--status-strong); }
+  .eav-comment { color: var(--brand-muted); font-style: italic; }
+
+  /* Skills strip */
+  .skills {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+    margin-top: 8px;
+  }
+  .skill {
+    background: white; border: 1px solid var(--brand-border);
+    border-radius: 4px; padding: 18px 20px;
+  }
+  .skill-name {
+    font-family: var(--mono); font-size: 13px; font-weight: 500;
+    color: var(--brand-amber); margin-bottom: 4px;
+  }
+  .skill-role { font-size: 13px; line-height: 1.5; color: var(--brand-brown); }
+  .skill-meta {
+    margin-top: 10px; padding-top: 10px;
+    border-top: 1px solid var(--brand-border);
+    font-family: var(--mono); font-size: 10px; color: var(--brand-muted);
+  }
+
+  footer {
+    color: var(--brand-muted); font-family: var(--mono); font-size: 11px;
+    margin-top: 40px; padding-top: 18px; border-top: 1px solid var(--brand-border);
+  }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>BLACKBOARD <span class="yellow">PATTERN</span></h1>
+    <div class="tagline">Architecture · Contracts · Isolation Discipline</div>
+  </div>
+  <div class="breadcrumb">
+    <a href="../">⟵ Gallery</a> · design 04 · data: blackboard-probes.json
+  </div>
+</header>
+
+<h2><span class="num">A</span>The Architecture</h2>
+<div class="arch">
+  <div class="arch-row single">
+    <div class="node">
+      <div class="node-title">workflow-&lt;name&gt;.json</div>
+      <div class="node-role">spec · ordered DAG of steps</div>
+      <ul class="node-list">
+        <li>seed[] — input keys</li>
+        <li>steps[] — id, type, inputs[], stores, prompt, workerContract</li>
+        <li>4 workflows authored so far · all in ylo-experiment/</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="arrows-row">
+    <div></div>
+    <div class="arrow"><span class="arrow-line">▼</span><span class="arrow-label">loads</span></div>
+    <div></div>
+  </div>
+
+  <div class="arch-row single">
+    <div class="node conductor">
+      <div class="node-title">CONDUCTOR · the Claude Code session</div>
+      <div class="node-role">orchestrator role — never a separate process</div>
+      <ul class="node-list">
+        <li>reads store keys + status (NOT payloads)</li>
+        <li>resolves step inputs from store</li>
+        <li>spawns one subagent per step (Agent tool)</li>
+        <li>logs dispatches + acks only</li>
+        <li>hosts human gates in its own turn</li>
+        <li>re-derives state from store on resume</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="arrows-row">
+    <div class="arrow"><span class="arrow-line">↙</span><span class="arrow-label">spawn (Agent)</span></div>
+    <div class="arrow"><span class="arrow-line">▼</span><span class="arrow-label">write log</span></div>
+    <div class="arrow"><span class="arrow-line">↘</span><span class="arrow-label">project view</span></div>
+  </div>
+
+  <div class="arch-row three">
+    <div class="node subagent">
+      <div class="node-title">Subagent</div>
+      <div class="node-role">clean context · fire-once · invisible function call</div>
+      <ul class="node-list">
+        <li>reads inputs from store (no parent history)</li>
+        <li>does its work in isolation</li>
+        <li>writes EAV record(s) to store.jsonl</li>
+        <li>returns 1-line ack to orchestrator</li>
+      </ul>
+    </div>
+    <div class="node">
+      <div class="node-title">conductor-session-&lt;wf&gt;.log</div>
+      <div class="node-role">audit trail · zero payloads · zero bytes</div>
+      <ul class="node-list">
+        <li>DISPATCH step=X key=Y</li>
+        <li>ACK step=X key=Y status=ok</li>
+        <li>CRITIQUE-LOGGED key:Y (no content)</li>
+        <li>REFINE attempt:N step:X</li>
+        <li>HUMAN-GATE-OPENED / CLOSED critique-length:N</li>
+        <li>PROJECT keys=N · DONE elapsed=Ns</li>
+      </ul>
+    </div>
+    <div class="node">
+      <div class="node-title">store.view.json</div>
+      <div class="node-role">projection · last-write-wins</div>
+      <ul class="node-list">
+        <li>jq -s 'reduce .[] as $r ({}; . + {($r.key): $r.value})'</li>
+        <li>written at end of run + after each step</li>
+        <li>scalar keys: latest value</li>
+        <li>collection keys: per group+index slot</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="arrows-row">
+    <div class="arrow"><span class="arrow-line">↘</span><span class="arrow-label">jq -nc &gt;&gt;</span></div>
+    <div></div>
+    <div class="arrow"><span class="arrow-line">↙</span><span class="arrow-label">jq fold</span></div>
+  </div>
+
+  <div class="arch-row single">
+    <div class="node store">
+      <div class="node-title">runs/&lt;videoId&gt;/store.jsonl · the blackboard</div>
+      <div class="node-role">EAV append-only log · the single source of truth</div>
+      <ul class="node-list">
+        <li>every line is one EAV record · same envelope, arbitrary payload</li>
+        <li>append-only — never edited in place</li>
+        <li>group + index for collections (e.g. 6 explorationImages)</li>
+        <li>refinement history preserved as later records</li>
+        <li>resumable from any point — re-read on restart</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<h2><span class="num">B</span>The Three Worker Contracts</h2>
+<div class="contracts">
+  <div class="contract">
+    <div class="contract-name">Write-Store-Directly</div>
+    <div class="contract-where">Default · all transform steps in probes 1–4</div>
+    <div class="contract-desc">
+      Worker writes the EAV record itself, returns a one-line ack.
+      Orchestrator never sees the payload. Max isolation.
+      The Oscar fix in practice.
+    </div>
+  </div>
+  <div class="contract">
+    <div class="contract-name">Conductor-Writes</div>
+    <div class="contract-where">Checkpoints · seeds · manifests</div>
+    <div class="contract-desc">
+      Conductor itself writes (no subagent). Used when the conductor needs to
+      mediate — reading a fixture file, recording a selection, writing the
+      final manifest. Still no payload leakage if conductor stays disciplined.
+    </div>
+  </div>
+  <div class="contract">
+    <div class="contract-name">Return-Summary</div>
+    <div class="contract-where">Reserved · not exercised yet</div>
+    <div class="contract-desc">
+      Worker returns the payload to the orchestrator, which writes the store.
+      Bounded poisoning — one step, not history. Reserved for cases where the
+      orchestrator must reason about the value mid-flight.
+    </div>
+  </div>
+</div>
+
+<h2><span class="num">C</span>The Oscar Fix — Isolation Discipline</h2>
+<div class="oscar">
+  <div class="oscar-title">THE ORCHESTRATOR NEVER INGESTS PAYLOADS</div>
+  <div class="oscar-sub">Five rules · proven across 4 probes · verified by grep at end of every run</div>
+  <ul class="oscar-rules">
+    <li><strong>Workers are subagents</strong> — clean context, return only one-line acks. No parent history.</li>
+    <li><strong>The conductor log captures only</strong> dispatches, acks, gate transitions, timing. Never the data itself.</li>
+    <li><strong>The transcript is on disk</strong> — workers read it via their own bash. Orchestrator holds only the path.</li>
+    <li><strong>Image bytes never leave disk</strong> — workers <code>curl -o</code> them locally. Store record carries only <code>localPath</code>.</li>
+    <li><strong>Critique text lives in the store</strong>, not the log. Log records only the byte length of the user's input.</li>
+  </ul>
+</div>
+
+<h2><span class="num">D</span>The EAV Envelope · Every Store Record</h2>
+<div class="eav">
+<pre><span class="eav-comment">// Every line of store.jsonl follows this exact shape.</span>
+<span class="eav-comment">// `value` is any JSON. `group` + `index` are null for scalars,</span>
+<span class="eav-comment">// or used together for collections (e.g. 6 explorationImages).</span>
+{
+  <span class="eav-key">"key"</span>:    <span class="eav-string">"&lt;string&gt;"</span>,            <span class="eav-comment">// the addressable name</span>
+  <span class="eav-key">"group"</span>:  <span class="eav-string">"&lt;string&gt;"</span> | null,     <span class="eav-comment">// for collections</span>
+  <span class="eav-key">"index"</span>:  &lt;int&gt; | null,           <span class="eav-comment">// slot within group</span>
+  <span class="eav-key">"value"</span>:  &lt;any JSON&gt;,             <span class="eav-comment">// the payload — opaque to addressing</span>
+  <span class="eav-key">"meta"</span>: {
+    <span class="eav-key">"step"</span>:    <span class="eav-string">"&lt;step-id&gt;"</span>,
+    <span class="eav-key">"by"</span>:      <span class="eav-string">"subagent:&lt;step-id&gt;"</span> | <span class="eav-string">"conductor"</span>,
+    <span class="eav-key">"ts"</span>:      <span class="eav-string">"&lt;ISO-8601&gt;"</span>,
+    <span class="eav-key">"attempt"</span>: &lt;int&gt;,
+    <span class="eav-key">"status"</span>:  <span class="eav-string">"ok"</span> | <span class="eav-string">"error"</span> | <span class="eav-string">"candidate"</span>,
+    <span class="eav-key">"source"</span>:  <span class="eav-string">"&lt;optional&gt;"</span>,         <span class="eav-comment">// e.g. "human-stdin", "fixture"</span>
+    <span class="eav-key">"note"</span>:    <span class="eav-string">"&lt;optional&gt;"</span>
+  }
+}</pre>
+</div>
+
+<h2><span class="num">E</span>The Three Skills · Project-Local</h2>
+<div class="skills">
+  <div class="skill">
+    <div class="skill-name">.claude/skills/conductor/SKILL.md</div>
+    <div class="skill-role">
+      The orchestrator role · §5 execution loop · hard isolation rules · subagent
+      task templates · log line formats · human gate (humanGate + gateMode) ·
+      outputKeyMap rename · refinement loop · resumability.
+    </div>
+    <div class="skill-meta">built across probes 1, 2, 3 · untouched by probe 4</div>
+  </div>
+  <div class="skill">
+    <div class="skill-name">.claude/skills/store/SKILL.md</div>
+    <div class="skill-role">
+      Bash+jq EAV operations — three primitives: remember (append one record),
+      recall (project last-write-wins for a key), project (fold entire log
+      into store.view.json).
+    </div>
+    <div class="skill-meta">built in probe 1 · stable since</div>
+  </div>
+  <div class="skill">
+    <div class="skill-name">.claude/skills/image-gen/SKILL.md</div>
+    <div class="skill-role">
+      kie.ai async wrapper · POST createTask → poll recordInfo → curl download →
+      write EAV record with localPath only · two model lanes (exploration / final) ·
+      bash+curl+jq only · no image bytes ever returned to orchestrator.
+    </div>
+    <div class="skill-meta">built in probe 4 · spec drift: references phantom flux-schnell model</div>
+  </div>
+</div>
+
+<footer>
+  Workspace: dark-factory · Pattern: blackboard-workflow (per ~/dev/ad/brains/anthropic-claude/claude-code/blackboard-workflow-pattern.md) · Brand: AppyDave light-mode-primary · Audience: solo
+</footer>
+</body>
+</html>

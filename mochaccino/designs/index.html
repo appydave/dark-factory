@@ -134,8 +134,10 @@
   <h1>DARK <span class="yellow">FACTORY</span></h1>
   <div class="tagline">Visual Index · Decision Support</div>
   <div class="intro">
-    Scannable visual layer over the dark-factory-catalog. <em>1,100 artifacts, 76 distillation drafts,
-    88 deep evaluations, 11 SDLC stages walked</em> — rendered for solo consumption.
+    Scannable visual layer over two stacks of work in this repo. <em>The catalog</em> (designs 01–03):
+    1,100 artifacts, 76 distillation drafts, 88 deep evaluations, 11 SDLC stages walked.
+    <em>The blackboard probes</em> (designs 04–05): four workflow probes (78/78 ACs), three
+    project-local skills, ready-for-production pattern for stateful agent workflows in Claude Code.
   </div>
 </header>
 
@@ -179,6 +181,34 @@
       Answers: <em>"Cull. Filter. Drill. Steal like an artist."</em>
     </div>
     <div class="design-meta">data: triage.json · interactive · 1,100 rows</div>
+  </a>
+
+  <a href="./04-blackboard-overview/" class="design">
+    <div class="design-head">
+      <div class="design-title">Blackboard Pattern Overview</div>
+      <div class="design-id">04</div>
+    </div>
+    <div class="design-desc">
+      Architecture diagram of the blackboard workflow pattern as built in <em>ylo-experiment</em>.
+      Shows the conductor / subagent / store relationship, the three worker contracts,
+      the Oscar fix isolation rules, and the EAV envelope every store record shares.
+      Answers: <em>"How does this pattern actually work?"</em>
+    </div>
+    <div class="design-meta">data: blackboard-probes.json · pattern: blackboard-workflow</div>
+  </a>
+
+  <a href="./05-probe-progression/" class="design">
+    <div class="design-head">
+      <div class="design-title">Probe Progression</div>
+      <div class="design-id">05</div>
+    </div>
+    <div class="design-desc">
+      The <em>four blackboard probes</em> as a visual timeline. Each probe added one new
+      dimension — parallel fan-out, scripted refinement, real human gates, async external
+      API + binary artifacts. 78/78 ACs passed. Open loops surfaced and tracked.
+      Answers: <em>"What's been proven, and what's left?"</em>
+    </div>
+    <div class="design-meta">data: blackboard-probes.json · test video: b65 · 4 probes, 4 workflows, 3 skills</div>
   </a>
 </div>
 

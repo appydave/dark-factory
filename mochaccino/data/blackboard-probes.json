@@ -1,0 +1,228 @@
+{
+  "meta": {
+    "source": "ylo-experiment/HANDOVER.md + workflow-*.json + runs/b65/* + runs/b65-2-5/*",
+    "canonical_chain": "blackboard-workflow-pattern.md → probe plans → workflow files → run outputs",
+    "generated_at": "2026-05-21",
+    "generator": "Peter (Mochaccino dark-factory workspace) — blackboard probes view",
+    "test_video": "b65 — Guy Monroe AI Marketing Plan",
+    "probes_total": 4,
+    "acs_total": 78,
+    "acs_passed": 78
+  },
+  "pattern": {
+    "name": "Blackboard Workflow Pattern",
+    "tagline": "Stateful, durable, stigmergic agent workflows in Claude Code",
+    "substrate_spec": "~/dev/ad/brains/anthropic-claude/claude-code/blackboard-workflow-pattern.md",
+    "elevator": "AWB replacement that runs inside Claude Code. Conductor (orchestrator role) delegates each step to isolated subagents coordinating through a durable JSONL store. Solves the Oscar context-poisoning problem by giving each worker a clean context and writing payloads directly to disk — orchestrator only sees acks.",
+    "core_components": [
+      {
+        "name": "workflow.json",
+        "role": "spec — DAG of steps, each declaring inputs and outputs"
+      },
+      {
+        "name": "Conductor",
+        "role": "orchestrator role (the Claude Code session you talk to) — never accumulates payloads"
+      },
+      {
+        "name": "Subagent",
+        "role": "isolated worker — clean context, write-store-directly contract"
+      },
+      {
+        "name": "Store",
+        "role": "EAV append-only JSONL — single source of truth, projected on read"
+      }
+    ],
+    "worker_contracts": [
+      {
+        "name": "write-store-directly",
+        "use": "Default. Worker writes the store, returns 1-line ack. Max isolation.",
+        "where_used": "All transform steps in probes 1, 2, 3, 4"
+      },
+      {
+        "name": "conductor-writes",
+        "use": "Conductor itself writes (no subagent). For checkpoint/seed/manifest steps.",
+        "where_used": "apply-critique fixture read (probe 2), apply-selection (probe 4), assemble-output (probe 4)"
+      },
+      {
+        "name": "return-summary",
+        "use": "Worker returns payload to orchestrator. Used only when orchestrator must reason about it (human gate). Bounded poisoning.",
+        "where_used": "Reserved — not exercised in any probe yet"
+      }
+    ],
+    "isolation_rules": [
+      "Workers are subagents — clean context, return only one-line acks",
+      "Conductor log captures only dispatches, acks, gate transitions, timing — never payloads",
+      "Transcript stays on disk; orchestrator holds only the path string",
+      "Image bytes never leave disk; store records carry localPath only",
+      "Critique text lives in store, not log; log records only byte length"
+    ]
+  },
+  "probes": [
+    {
+      "number": 1,
+      "id": "bulk-content-analysis",
+      "title": "Bulk Content Analysis",
+      "tested": "Parallel fan-out — 12 subagents extract distinct content-analysis fields concurrently",
+      "tagline": "Can the conductor stay clean under 12-way parallel writes?",
+      "workflow_file": "ylo-experiment/workflow.json",
+      "outputs_dir": "ylo-experiment/runs/b65/",
+      "steps_count": 12,
+      "step_type": "all transform, all parallel",
+      "subagent_dispatches": 12,
+      "ac_pass": "16/16",
+      "store_records_added": 12,
+      "store_keys_added": ["mainTopic","keywords","audienceInsights","emotionalTriggers","statistics","catchyPhrases","ctaPhrases","keyTakeaways","overallTone","questionsPosed","searchTerms","usp"],
+      "elapsed_seconds": 37,
+      "key_insight": "Distinct-key fan-out works. Each worker has clean context, writes its own EAV record, returns ack. Orchestrator log contains only 12 dispatches + 12 acks. Zero transcript fragments leaked.",
+      "skills_used": ["conductor", "store"],
+      "prompts_used": "12 .hbs files lifted verbatim from AWB Gen 3 content-analysis"
+    },
+    {
+      "number": 2,
+      "id": "title-generation-refinement",
+      "title": "Title Generation + Scripted Refinement",
+      "tested": "Sequential refinement loop with fixture-based critique + outputKeyMap key rename",
+      "tagline": "Does the refinement loop preserve attempt history while keeping orchestrator clean?",
+      "workflow_file": "ylo-experiment/workflow-titles.json",
+      "outputs_dir": "ylo-experiment/runs/b65/",
+      "steps_count": 3,
+      "step_type": "transform → checkpoint (conductor-writes from fixture) → transform with outputKeyMap",
+      "subagent_dispatches": 2,
+      "ac_pass": "21/21",
+      "store_records_added": 5,
+      "store_keys_added": ["generatedTitles (attempt:1)","titleCritiqueLog","generatedTitles (attempt:2)","selectedTitles","shortTitle"],
+      "elapsed_seconds": 56,
+      "key_insight": "Stateless re-dispatch refinement works. Fresh subagent reads prior attempt + critique from store, produces refined output. outputKeyMap allows one step to write two distinct store keys. Ordering GT1 → CL → GT2 → ST verified.",
+      "skills_used": ["conductor", "store"],
+      "prompts_used": "generate-title.hbs (AWB Gen 3 verbatim)",
+      "fixture": "ylo-experiment/runs/b65/critique-fixture.txt"
+    },
+    {
+      "number": 3,
+      "id": "human-gated-refinement",
+      "title": "Real Human-Gated Refinement",
+      "tested": "Live human-in-the-loop critique via stdin — both accept-path and refine-path branches",
+      "tagline": "Can the orchestrator host an interactive conversation without polluting the store-fed workers?",
+      "workflow_file": "ylo-experiment/workflow-titles-human.json",
+      "outputs_dir": "ylo-experiment/runs/b65-2-5/",
+      "steps_count": 3,
+      "step_type": "transform → checkpoint (humanGate human-stdin) → transform with outputKeyMap",
+      "subagent_dispatches": 2,
+      "ac_pass": "21/21",
+      "store_records_added": 8,
+      "store_keys_added": ["shortTitle","generatedTitles (attempt:1)","selectedTitles (accept-path, skippedRefinement)","titleCritiqueLog (source:human-stdin, 56 bytes)","generatedTitles (attempt:2)","selectedTitles (refine-path)"],
+      "elapsed_seconds": 5400,
+      "key_insight": "Both gate paths exercised in same run. Accept-path (typed 'ok') skipped refine and wrote selectedTitles with meta.skippedRefinement:true. Refine-path (real critique) wrote titleCritiqueLog with meta.source:human-stdin, dispatched fresh refine worker. Append-only store preserved both as audit history.",
+      "skills_used": ["conductor", "store"],
+      "prompts_used": "generate-title.hbs",
+      "footnote": "Probe surfaced a /goal-vs-human-gate friction (stop hook nudges against paused-gate state). Resolved architecturally: /goal is a build-time tool, conductor is the runtime — orthogonal layers."
+    },
+    {
+      "number": 4,
+      "id": "thumbnails",
+      "title": "kie.ai Thumbnails with Title Pairing",
+      "tested": "Async external API + binary artifacts + multi-stage flow + title-thumbnail pairing invariant",
+      "tagline": "Does the isolation hold for binary outputs from a long-running external API?",
+      "workflow_file": "ylo-experiment/workflow-thumbnails.json",
+      "outputs_dir": "ylo-experiment/runs/b65/thumbs/",
+      "steps_count": 5,
+      "step_type": "transform → 6× transform parallel (kie.ai) → checkpoint (fixture) → 3× transform parallel (kie.ai 2K) → action",
+      "subagent_dispatches": 12,
+      "ac_pass": "20/22 (2 annotated)",
+      "ac_notes": "AC22 cost $0.36 over $0.20 budget — flux-schnell substitution. AC21 baseline diff included probe 3's uncommitted skill edits.",
+      "store_records_added": 15,
+      "store_keys_added": ["designBriefs (6 entries)","explorationImages × 6","selectedExplorationIndices","finalImages × 3","thumbnailsManifest"],
+      "elapsed_seconds": 1200,
+      "key_insight": "Pattern works for external APIs and binary outputs. Workers curl -o JPGs to disk, store record carries localPath only. Title pairing invariant held end-to-end — every final's title_ref matches its source exploration's title_ref. Zero image bytes in store, zero kie.ai response bodies in conductor log.",
+      "skills_used": ["conductor", "store", "image-gen"],
+      "prompts_used": "generate-design-brief.hbs (written fresh, AppyDave brand-aware)",
+      "fixture": "ylo-experiment/runs/b65/selection-fixture.json",
+      "known_issues": [
+        "`flux-schnell` is not on kie.ai — workers fell back to flux-2/pro-text-to-image",
+        "First-pass exploration records (idx 2, 5) claim model:flux-schnell but used different models",
+        "nano-banana-2 returned square (1:1) for 2 of 3 finals — treats aspect_ratio as a hint, prompt body cues override"
+      ],
+      "cost_actual_usd": 0.36,
+      "cost_budget_usd": 0.20,
+      "binary_outputs": "6 exploration JPGs (~1344×752, 124–500KB), 3 final JPGs (2048×2048 or 2752×1536, 1.5–1.8MB)"
+    }
+  ],
+  "skills": [
+    {
+      "name": "conductor",
+      "path": ".claude/skills/conductor/SKILL.md",
+      "role": "Documents the orchestrator role — §5 execution loop, hard isolation rules, subagent task templates, log line formats, human gate semantics, outputKeyMap, resumability",
+      "built_in_probes": [1, 2, 3],
+      "modified_in_probe_4": false
+    },
+    {
+      "name": "store",
+      "path": ".claude/skills/store/SKILL.md",
+      "role": "Bash+jq EAV operations — remember (append), recall (last-write-wins), project (fold to view.json)",
+      "built_in_probes": [1],
+      "modified_in_probe_4": false
+    },
+    {
+      "name": "image-gen",
+      "path": ".claude/skills/image-gen/SKILL.md",
+      "role": "kie.ai async wrapper — POST createTask, poll recordInfo, curl download, write store record with localPath",
+      "built_in_probes": [4],
+      "spec_drift_note": "References flux-schnell which is not a kie.ai model; needs update to flux-2/pro-text-to-image or equivalent"
+    }
+  ],
+  "open_loops": [
+    {
+      "priority": "high",
+      "issue": "flux-schnell is a phantom model — referenced in image-gen skill + workflow-thumbnails.json but kie.ai rejects it",
+      "fix": "Update both files to flux-2/pro-text-to-image (verified working)"
+    },
+    {
+      "priority": "high",
+      "issue": "First-pass exploration records carry inaccurate model field",
+      "fix": "Append corrected EAV records (last-write-wins preserves honesty)"
+    },
+    {
+      "priority": "high",
+      "issue": "nano-banana-2 aspect-ratio drift on finals 0 and 2",
+      "fix": "Add explicit horizontal prompt language to generate-design-brief.hbs"
+    },
+    {
+      "priority": "medium",
+      "issue": "/goal vs human-gate cooperation",
+      "fix": "Document orthogonal-layers rule explicitly in conductor/SKILL.md"
+    },
+    {
+      "priority": "medium",
+      "issue": "runs/b65-2-5/ naming inconsistent with ordinal convention",
+      "fix": "Rename to runs/b65-humangate/ or similar (cosmetic only)"
+    },
+    {
+      "priority": "low",
+      "issue": "runs/b65/thumbnails-gallery.html stray dark-mode file",
+      "fix": "Delete; canonical viewer is runs/b65/thumbs/review.html"
+    },
+    {
+      "priority": "low",
+      "issue": "kie-models-research.md recommendations not yet applied",
+      "fix": "Apply per research report"
+    }
+  ],
+  "what_each_probe_enabled": [
+    {
+      "after_probe": 1,
+      "now_possible": "Run N parallel content-analysis or extraction tasks against any transcript-like input"
+    },
+    {
+      "after_probe": 2,
+      "now_possible": "Iterative refinement with fixture-driven critique; one step writing multiple distinct store keys"
+    },
+    {
+      "after_probe": 3,
+      "now_possible": "Real human-in-the-loop workflows where the orchestrator hosts the conversation and only distilled critique moves forward"
+    },
+    {
+      "after_probe": 4,
+      "now_possible": "Production-shaped workflows that call external APIs, persist binary artifacts to disk, and maintain cross-stage data integrity invariants like title-thumbnail pairing"
+    }
+  ]
+}
