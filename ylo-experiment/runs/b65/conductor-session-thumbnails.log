@@ -1,0 +1,15 @@
+[2026-05-21T00:26:45Z] WORKFLOW  id=thumbnails video=b65
+[2026-05-21T00:26:45Z] SEED      key=selectedTitles (3-title array)
+[2026-05-21T00:26:45Z] DISPATCH  step=generate-design-briefs key=designBriefs
+[2026-05-21T00:47:12Z] ACK       step=explore-cheap-batch key=explorationImages index=0 status=ok
+[2026-05-21T00:47:12Z] ACK       step=explore-cheap-batch key=explorationImages index=1 status=ok
+[2026-05-21T00:47:12Z] ACK       step=explore-cheap-batch key=explorationImages index=2 status=ok
+[2026-05-21T00:47:12Z] ACK       step=explore-cheap-batch key=explorationImages index=3 status=ok
+[2026-05-21T00:47:12Z] ACK       step=explore-cheap-batch key=explorationImages index=4 status=ok
+[2026-05-21T00:47:12Z] ACK       step=explore-cheap-batch key=explorationImages index=5 status=ok
+[2026-05-21T00:47:12Z] APPLY-SELECTION key=selectedExplorationIndices value=[0,2,4] source=fixture
+[2026-05-21T00:54:19Z] ACK       step=build-finals key=finalImages index=0 status=ok
+[2026-05-21T00:54:19Z] ACK       step=build-finals key=finalImages index=1 status=ok
+[2026-05-21T00:54:19Z] ACK       step=build-finals key=finalImages index=2 status=ok
+[2026-05-21T00:54:59Z] WRITE     manifest=thumbnails-manifest.md
+[2026-05-21T00:54:59Z] DONE      workflow=thumbnails images=9 cost~=$0.36

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Thumbnail Review — AppyDave</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Roboto', Arial, sans-serif;
+    background: #faf5ec;
+    color: #342d2d;
+    padding: 40px;
+  }
+  h1 {
+    font-family: 'Oswald', Arial, sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+  }
+  .subtitle {
+    font-size: 13px;
+    color: #7a6e5e;
+    margin-bottom: 32px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
+    gap: 32px;
+  }
+  .card {
+    background: #f0ebe4;
+    border: 2px solid #d4cdc4;
+    padding: 20px;
+    position: relative;
+    transition: border-color 0.15s;
+  }
+  .card.selected {
+    border-color: #342d2d;
+    background: #fff8e7;
+  }
+  .card img {
+    width: 100%;
+    display: block;
+    border-bottom: 2px solid #d4cdc4;
+    margin-bottom: 16px;
+  }
+  .card-id {
+    font-family: 'Oswald', Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #c8841a;
+    margin-bottom: 8px;
+  }
+  .prompt {
+    font-size: 12px;
+    line-height: 1.6;
+    color: #7a6e5e;
+    margin-bottom: 16px;
+    max-height: 80px;
+    overflow: hidden;
+    transition: max-height 0.3s;
+  }
+  .prompt.expanded { max-height: 500px; }
+  .expand-btn {
+    font-size: 11px;
+    color: #c8841a;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    margin-bottom: 12px;
+    display: block;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .select-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .select-row input[type=checkbox] {
+    width: 18px;
+    height: 18px;
+    accent-color: #342d2d;
+    cursor: pointer;
+  }
+  .select-label {
+    font-family: 'Oswald', Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .toolbar {
+    position: sticky;
+    top: 0;
+    background: #342d2d;
+    color: #ffde59;
+    padding: 14px 40px;
+    margin: -40px -40px 40px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    z-index: 100;
+  }
+  .toolbar h1 { color: #ffde59; margin-bottom: 0; font-size: 20px; }
+  .count { font-size: 13px; color: #ccba9d; flex: 1; }
+  .copy-btn {
+    background: #ffde59;
+    color: #342d2d;
+    border: none;
+    padding: 10px 24px;
+    font-family: 'Oswald', Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .copy-btn:hover { background: #ffe580; }
+  .toast {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    background: #342d2d;
+    color: #ffde59;
+    padding: 12px 24px;
+    font-size: 13px;
+    font-family: 'Oswald', Arial, sans-serif;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+  .toast.show { opacity: 1; }
+  .status-failed { opacity: 0.4; filter: grayscale(1); }
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <h1>Thumbnail Review</h1>
+  <span class="count" id="count">0 selected</span>
+  <button class="copy-btn" onclick="copySelected()">Copy Selected</button>
+</div>
+
+<div class="grid" id="grid">
+
+<div class="card " id="card-exp-1 — Can AI Research 150 Surgeons While You Sleep?">
+  <img src="exp-1.jpg" alt="exp-1 — Can AI Research 150 Surgeons While You Sleep?">
+  <div class="card-id">exp-1 — Can AI Research 150 Surgeons While You Sleep?</div>
+  <div class="prompt" id="prompt-exp-1 — Can AI Research 150 Surgeons While You Sleep?">Create a 1280x720 YouTube thumbnail in the AppyDave brand system. Ground is a flat cream #faf5ec background occupying the entire frame. Behind everything sits a massive ghost watermark of the word 'AGENTS' in Oswald uppercase, brown #342d2d at 12% opacity, bleeding off the right edge so only the left two-thirds of the word is visible. In the foreground, the hook text reads exactly '150 WHILE YOU SLEEP' set in Bebas Neue uppercase, dark brown #342d2d, left-aligned, occupying about 55% of frame width across two lines ('150' large on top, 'WHILE YOU SLEEP' below). A small simple flat gold #ccba9d crescent moon icon sits in the upper-right corner as the single yellow-family accent. No humans, no photorealism, no halftone, no neon, no comic outlines. Palette strictly limited to brown #342d2d, gold #ccba9d, yellow #ffde59, cream #faf5ec. Typography-first composition, generous negative space.</div>
+  <button class="expand-btn" id="expand-exp-1 — Can AI Research 150 Surgeons While You Sleep?" onclick="togglePrompt('exp-1 — Can AI Research 150 Surgeons While You Sleep?')">Show full prompt</button>
+  <div class="select-row">
+    <input type="checkbox" id="cb-exp-1 — Can AI Research 150 Surgeons While You Sleep?" onchange="toggleCard('exp-1 — Can AI Research 150 Surgeons While You Sleep?')">
+    <label class="select-label" for="cb-exp-1 — Can AI Research 150 Surgeons While You Sleep?">Select this concept</label>
+  </div>
+</div>
+
+<div class="card " id="card-exp-2 — Can AI Research 150 Surgeons While You Sleep?">
+  <img src="exp-2.jpg" alt="exp-2 — Can AI Research 150 Surgeons While You Sleep?">
+  <div class="card-id">exp-2 — Can AI Research 150 Surgeons While You Sleep?</div>
+  <div class="prompt" id="prompt-exp-2 — Can AI Research 150 Surgeons While You Sleep?">Create a 1280x720 YouTube thumbnail in the AppyDave brand system. Vertical split-panel composition: the left 60% of the frame is dark brown #25201e, the right 40% is cream #faf5ec. Behind everything on the left panel, a ghost watermark of the word 'OVERNIGHT' in Bebas Neue uppercase, cream #faf5ec at 10% opacity, bleeds off the bottom edge. On the left panel, the hook text reads exactly 'AI DID THE RESEARCH' in Bebas Neue uppercase, bright yellow #ffde59, left-aligned, three lines stacked, occupying about 50% of frame width. On the right cream panel, render a stylised vertical stack of approximately 150 thin horizontal brown #342d2d lines suggesting a dense list of prospect dossiers, with a small gold #ccba9d header bar at the top. No humans, no photorealism, no halftone, no neon, no comic outlines. Palette strictly limited to brown #342d2d/#25201e, gold #ccba9d, yellow #ffde59, cream #faf5ec.</div>
+  <button class="expand-btn" id="expand-exp-2 — Can AI Research 150 Surgeons While You Sleep?" onclick="togglePrompt('exp-2 — Can AI Research 150 Surgeons While You Sleep?')">Show full prompt</button>
+  <div class="select-row">
+    <input type="checkbox" id="cb-exp-2 — Can AI Research 150 Surgeons While You Sleep?" onchange="toggleCard('exp-2 — Can AI Research 150 Surgeons While You Sleep?')">
+    <label class="select-label" for="cb-exp-2 — Can AI Research 150 Surgeons While You Sleep?">Select this concept</label>
+  </div>
+</div>
+
+<div class="card " id="card-exp-3 — 150 Warm Leads Without Hiring Anyone (Demo)">
+  <img src="exp-3.jpg" alt="exp-3 — 150 Warm Leads Without Hiring Anyone (Demo)">
+  <div class="card-id">exp-3 — 150 Warm Leads Without Hiring Anyone (Demo)</div>
+  <div class="prompt" id="prompt-exp-3 — 150 Warm Leads Without Hiring Anyone (Demo)">Create a 1280x720 YouTube thumbnail in the AppyDave brand system. Ground is a flat cream #faf5ec background. Behind everything sits a massive ghost watermark of the word 'DEMO' in Bebas Neue uppercase, brown #342d2d at 13% opacity, bleeding off the left edge so only the right two-thirds is visible. In the upper-left, a brown #342d2d rounded pill badge sits at a slight tilt containing the text '01 / DEMO' in cream #faf5ec Bebas Neue uppercase. The main hook text reads exactly '150 WARM LEADS' in Bebas Neue uppercase, dark brown #342d2d, left-aligned, two lines, occupying about 55% of frame width and dominating the lower-centre of the frame. A small gold #ccba9d underline accent runs beneath the word 'LEADS'. No humans, no photorealism, no halftone, no neon, no comic outlines. Palette strictly limited to brown #342d2d, gold #ccba9d, yellow #ffde59, cream #faf5ec.</div>
+  <button class="expand-btn" id="expand-exp-3 — 150 Warm Leads Without Hiring Anyone (Demo)" onclick="togglePrompt('exp-3 — 150 Warm Leads Without Hiring Anyone (Demo)')">Show full prompt</button>
+  <div class="select-row">
+    <input type="checkbox" id="cb-exp-3 — 150 Warm Leads Without Hiring Anyone (Demo)" onchange="toggleCard('exp-3 — 150 Warm Leads Without Hiring Anyone (Demo)')">
+    <label class="select-label" for="cb-exp-3 — 150 Warm Leads Without Hiring Anyone (Demo)">Select this concept</label>
+  </div>
+</div>
+
+<div class="card " id="card-exp-4 — 150 Warm Leads Without Hiring Anyone (Demo)">
+  <img src="exp-4.jpg" alt="exp-4 — 150 Warm Leads Without Hiring Anyone (Demo)">
+  <div class="card-id">exp-4 — 150 Warm Leads Without Hiring Anyone (Demo)</div>
+  <div class="prompt" id="prompt-exp-4 — 150 Warm Leads Without Hiring Anyone (Demo)">Create a 1280x720 YouTube thumbnail in the AppyDave brand system. Ground is a flat dark brown #25201e background filling the entire frame. Behind everything, a ghost watermark of the word 'LEADS' in Oswald uppercase, cream #faf5ec at 11% opacity, bleeds off the top edge. On the right third of the frame, render a large flat geometric glyph of an empty office chair drawn in gold #ccba9d outline strokes, with a bold thick brown #342d2d 'X' crossing through it. The hook text reads exactly 'NO HIRES NEEDED' in Bebas Neue uppercase, bright yellow #ffde59, left-aligned across two lines, occupying about 50% of frame width in the left-centre of the frame. No humans, no photorealism, no halftone, no neon, no comic outlines. Palette strictly limited to brown #342d2d/#25201e, gold #ccba9d, yellow #ffde59, cream #faf5ec.</div>
+  <button class="expand-btn" id="expand-exp-4 — 150 Warm Leads Without Hiring Anyone (Demo)" onclick="togglePrompt('exp-4 — 150 Warm Leads Without Hiring Anyone (Demo)')">Show full prompt</button>
+  <div class="select-row">
+    <input type="checkbox" id="cb-exp-4 — 150 Warm Leads Without Hiring Anyone (Demo)" onchange="toggleCard('exp-4 — 150 Warm Leads Without Hiring Anyone (Demo)')">
+    <label class="select-label" for="cb-exp-4 — 150 Warm Leads Without Hiring Anyone (Demo)">Select this concept</label>
+  </div>
+</div>
+
+<div class="card " id="card-exp-5 — Manual Outreach Is Costing Coaches More Than Time">
+  <img src="exp-5.jpg" alt="exp-5 — Manual Outreach Is Costing Coaches More Than Time">
+  <div class="card-id">exp-5 — Manual Outreach Is Costing Coaches More Than Time</div>
+  <div class="prompt" id="prompt-exp-5 — Manual Outreach Is Costing Coaches More Than Time">Create a 1280x720 YouTube thumbnail in the AppyDave brand system. Ground is a flat cream #faf5ec background. The composition is Ghost-Forward: an enormous ghost watermark of the word 'MANUAL' in Bebas Neue uppercase, brown #342d2d at 14% opacity, spans nearly the full width of the frame and bleeds off the right edge — this watermark visually dominates the design. In front of the watermark, the hook text reads exactly 'COSTING MORE THAN TIME' in Bebas Neue uppercase, solid dark brown #342d2d, left-aligned across three lines, occupying about 50% of frame width in the lower-left. In the upper-right corner sits one small filled yellow #ffde59 circle containing a brown #342d2d exclamation mark as the single accent element. No humans, no photorealism, no halftone, no neon, no comic outlines. Palette strictly limited to brown #342d2d, gold #ccba9d, yellow #ffde59, cream #faf5ec.</div>
+  <button class="expand-btn" id="expand-exp-5 — Manual Outreach Is Costing Coaches More Than Time" onclick="togglePrompt('exp-5 — Manual Outreach Is Costing Coaches More Than Time')">Show full prompt</button>
+  <div class="select-row">
+    <input type="checkbox" id="cb-exp-5 — Manual Outreach Is Costing Coaches More Than Time" onchange="toggleCard('exp-5 — Manual Outreach Is Costing Coaches More Than Time')">
+    <label class="select-label" for="cb-exp-5 — Manual Outreach Is Costing Coaches More Than Time">Select this concept</label>
+  </div>
+</div>
+
+<div class="card " id="card-exp-6 — Manual Outreach Is Costing Coaches More Than Time">
+  <img src="exp-6.jpg" alt="exp-6 — Manual Outreach Is Costing Coaches More Than Time">
+  <div class="card-id">exp-6 — Manual Outreach Is Costing Coaches More Than Time</div>
+  <div class="prompt" id="prompt-exp-6 — Manual Outreach Is Costing Coaches More Than Time">Create a 1280x720 YouTube thumbnail in the AppyDave brand system. Horizontal split-panel composition: the top half is dark brown #25201e, the bottom half is cream #faf5ec. Behind everything on the top panel sits a ghost watermark of the word 'OUTREACH' in Oswald uppercase, cream #faf5ec at 10% opacity, bleeding off the bottom edge of the upper panel and continuing faintly into the cream half. On the top dark-brown panel, the hook text reads exactly 'TIME ISN'T THE COST' in Bebas Neue uppercase, bright yellow #ffde59, left-aligned across two lines, occupying about 55% of frame width. On the bottom cream panel, render a flat geometric hourglass glyph in gold #ccba9d on the left side next to a bold brown #342d2d downward-pointing arrow. No humans, no photorealism, no halftone, no neon, no comic outlines. Palette strictly limited to brown #342d2d/#25201e, gold #ccba9d, yellow #ffde59, cream #faf5ec.</div>
+  <button class="expand-btn" id="expand-exp-6 — Manual Outreach Is Costing Coaches More Than Time" onclick="togglePrompt('exp-6 — Manual Outreach Is Costing Coaches More Than Time')">Show full prompt</button>
+  <div class="select-row">
+    <input type="checkbox" id="cb-exp-6 — Manual Outreach Is Costing Coaches More Than Time" onchange="toggleCard('exp-6 — Manual Outreach Is Costing Coaches More Than Time')">
+    <label class="select-label" for="cb-exp-6 — Manual Outreach Is Costing Coaches More Than Time">Select this concept</label>
+  </div>
+</div>
+
+<div class="card " id="card-FINAL-1 — Can AI Research 150 Surgeons While You Sleep?">
+  <img src="final-1.jpg" alt="FINAL-1 — Can AI Research 150 Surgeons While You Sleep?">
+  <div class="card-id">FINAL-1 — Can AI Research 150 Surgeons While You Sleep?</div>
+  <div class="prompt" id="prompt-FINAL-1 — Can AI Research 150 Surgeons While You Sleep?">Create a 1280x720 YouTube thumbnail in the AppyDave brand system. Ground is a flat cream #faf5ec background occupying the entire frame. Behind everything sits a massive ghost watermark of the word 'AGENTS' in Oswald uppercase, brown #342d2d at 12% opacity, bleeding off the right edge so only the left two-thirds of the word is visible. In the foreground, the hook text reads exactly '150 WHILE YOU SLEEP' set in Bebas Neue uppercase, dark brown #342d2d, left-aligned, occupying about 55% of frame width across two lines ('150' large on top, 'WHILE YOU SLEEP' below). A small simple flat gold #ccba9d crescent moon icon sits in the upper-right corner as the single yellow-family accent. No humans, no photorealism, no halftone, no neon, no comic outlines. Palette strictly limited to brown #342d2d, gold #ccba9d, yellow #ffde59, cream #faf5ec. Typography-first composition, generous negative space.</div>
+  <button class="expand-btn" id="expand-FINAL-1 — Can AI Research 150 Surgeons While You Sleep?" onclick="togglePrompt('FINAL-1 — Can AI Research 150 Surgeons While You Sleep?')">Show full prompt</button>
+  <div class="select-row">
+    <input type="checkbox" id="cb-FINAL-1 — Can AI Research 150 Surgeons While You Sleep?" onchange="toggleCard('FINAL-1 — Can AI Research 150 Surgeons While You Sleep?')">
+    <label class="select-label" for="cb-FINAL-1 — Can AI Research 150 Surgeons While You Sleep?">Select this concept</label>
+  </div>
+</div>
+
+<div class="card " id="card-FINAL-2 — 150 Warm Leads Without Hiring Anyone (Demo)">
+  <img src="final-2.jpg" alt="FINAL-2 — 150 Warm Leads Without Hiring Anyone (Demo)">
+  <div class="card-id">FINAL-2 — 150 Warm Leads Without Hiring Anyone (Demo)</div>
+  <div class="prompt" id="prompt-FINAL-2 — 150 Warm Leads Without Hiring Anyone (Demo)">Create a 1280x720 YouTube thumbnail in the AppyDave brand system. Ground is a flat cream #faf5ec background. Behind everything sits a massive ghost watermark of the word 'DEMO' in Bebas Neue uppercase, brown #342d2d at 13% opacity, bleeding off the left edge so only the right two-thirds is visible. In the upper-left, a brown #342d2d rounded pill badge sits at a slight tilt containing the text '01 / DEMO' in cream #faf5ec Bebas Neue uppercase. The main hook text reads exactly '150 WARM LEADS' in Bebas Neue uppercase, dark brown #342d2d, left-aligned, two lines, occupying about 55% of frame width and dominating the lower-centre of the frame. A small gold #ccba9d underline accent runs beneath the word 'LEADS'. No humans, no photorealism, no halftone, no neon, no comic outlines. Palette strictly limited to brown #342d2d, gold #ccba9d, yellow #ffde59, cream #faf5ec.</div>
+  <button class="expand-btn" id="expand-FINAL-2 — 150 Warm Leads Without Hiring Anyone (Demo)" onclick="togglePrompt('FINAL-2 — 150 Warm Leads Without Hiring Anyone (Demo)')">Show full prompt</button>
+  <div class="select-row">
+    <input type="checkbox" id="cb-FINAL-2 — 150 Warm Leads Without Hiring Anyone (Demo)" onchange="toggleCard('FINAL-2 — 150 Warm Leads Without Hiring Anyone (Demo)')">
+    <label class="select-label" for="cb-FINAL-2 — 150 Warm Leads Without Hiring Anyone (Demo)">Select this concept</label>
+  </div>
+</div>
+
+<div class="card " id="card-FINAL-3 — Manual Outreach Is Costing Coaches More Than Time">
+  <img src="final-3.jpg" alt="FINAL-3 — Manual Outreach Is Costing Coaches More Than Time">
+  <div class="card-id">FINAL-3 — Manual Outreach Is Costing Coaches More Than Time</div>
+  <div class="prompt" id="prompt-FINAL-3 — Manual Outreach Is Costing Coaches More Than Time">Create a 1280x720 YouTube thumbnail in the AppyDave brand system. Ground is a flat cream #faf5ec background. The composition is Ghost-Forward: an enormous ghost watermark of the word 'MANUAL' in Bebas Neue uppercase, brown #342d2d at 14% opacity, spans nearly the full width of the frame and bleeds off the right edge — this watermark visually dominates the design. In front of the watermark, the hook text reads exactly 'COSTING MORE THAN TIME' in Bebas Neue uppercase, solid dark brown #342d2d, left-aligned across three lines, occupying about 50% of frame width in the lower-left. In the upper-right corner sits one small filled yellow #ffde59 circle containing a brown #342d2d exclamation mark as the single accent element. No humans, no photorealism, no halftone, no neon, no comic outlines. Palette strictly limited to brown #342d2d, gold #ccba9d, yellow #ffde59, cream #faf5ec.</div>
+  <button class="expand-btn" id="expand-FINAL-3 — Manual Outreach Is Costing Coaches More Than Time" onclick="togglePrompt('FINAL-3 — Manual Outreach Is Costing Coaches More Than Time')">Show full prompt</button>
+  <div class="select-row">
+    <input type="checkbox" id="cb-FINAL-3 — Manual Outreach Is Costing Coaches More Than Time" onchange="toggleCard('FINAL-3 — Manual Outreach Is Costing Coaches More Than Time')">
+    <label class="select-label" for="cb-FINAL-3 — Manual Outreach Is Costing Coaches More Than Time">Select this concept</label>
+  </div>
+</div>
+
+</div>
+
+<div class="toast" id="toast">Copied to clipboard</div>
+
+<script>
+const data = [{"id": "exp-1 \u2014 Can AI Research 150 Surgeons While You Sleep?", "prompt": "Create a 1280x720 YouTube thumbnail in the AppyDave brand system. Ground is a flat cream #faf5ec background occupying the entire frame. Behind everything sits a massive ghost watermark of the word 'AGENTS' in Oswald uppercase, brown #342d2d at 12% opacity, bleeding off the right edge so only the left two-thirds of the word is visible. In the foreground, the hook text reads exactly '150 WHILE YOU SLEEP' set in Bebas Neue uppercase, dark brown #342d2d, left-aligned, occupying about 55% of frame width across two lines ('150' large on top, 'WHILE YOU SLEEP' below). A small simple flat gold #ccba9d crescent moon icon sits in the upper-right corner as the single yellow-family accent. No humans, no photorealism, no halftone, no neon, no comic outlines. Palette strictly limited to brown #342d2d, gold #ccba9d, yellow #ffde59, cream #faf5ec. Typography-first composition, generous negative space.", "status": "ok", "path": "/Users/davidcruwys/dev/ad/apps/dark-factory/ylo-experiment/runs/b65/thumbs/exp-1.jpg"}, {"id": "exp-2 \u2014 Can AI Research 150 Surgeons While You Sleep?", "prompt": "Create a 1280x720 YouTube thumbnail in the AppyDave brand system. Vertical split-panel composition: the left 60% of the frame is dark brown #25201e, the right 40% is cream #faf5ec. Behind everything on the left panel, a ghost watermark of the word 'OVERNIGHT' in Bebas Neue uppercase, cream #faf5ec at 10% opacity, bleeds off the bottom edge. On the left panel, the hook text reads exactly 'AI DID THE RESEARCH' in Bebas Neue uppercase, bright yellow #ffde59, left-aligned, three lines stacked, occupying about 50% of frame width. On the right cream panel, render a stylised vertical stack of approximately 150 thin horizontal brown #342d2d lines suggesting a dense list of prospect dossiers, with a small gold #ccba9d header bar at the top. No humans, no photorealism, no halftone, no neon, no comic outlines. Palette strictly limited to brown #342d2d/#25201e, gold #ccba9d, yellow #ffde59, cream #faf5ec.", "status": "ok", "path": "/Users/davidcruwys/dev/ad/apps/dark-factory/ylo-experiment/runs/b65/thumbs/exp-2.jpg"}, {"id": "exp-3 \u2014 150 Warm Leads Without Hiring Anyone (Demo)", "prompt": "Create a 1280x720 YouTube thumbnail in the AppyDave brand system. Ground is a flat cream #faf5ec background. Behind everything sits a massive ghost watermark of the word 'DEMO' in Bebas Neue uppercase, brown #342d2d at 13% opacity, bleeding off the left edge so only the right two-thirds is visible. In the upper-left, a brown #342d2d rounded pill badge sits at a slight tilt containing the text '01 / DEMO' in cream #faf5ec Bebas Neue uppercase. The main hook text reads exactly '150 WARM LEADS' in Bebas Neue uppercase, dark brown #342d2d, left-aligned, two lines, occupying about 55% of frame width and dominating the lower-centre of the frame. A small gold #ccba9d underline accent runs beneath the word 'LEADS'. No humans, no photorealism, no halftone, no neon, no comic outlines. Palette strictly limited to brown #342d2d, gold #ccba9d, yellow #ffde59, cream #faf5ec.", "status": "ok", "path": "/Users/davidcruwys/dev/ad/apps/dark-factory/ylo-experiment/runs/b65/thumbs/exp-3.jpg"}, {"id": "exp-4 \u2014 150 Warm Leads Without Hiring Anyone (Demo)", "prompt": "Create a 1280x720 YouTube thumbnail in the AppyDave brand system. Ground is a flat dark brown #25201e background filling the entire frame. Behind everything, a ghost watermark of the word 'LEADS' in Oswald uppercase, cream #faf5ec at 11% opacity, bleeds off the top edge. On the right third of the frame, render a large flat geometric glyph of an empty office chair drawn in gold #ccba9d outline strokes, with a bold thick brown #342d2d 'X' crossing through it. The hook text reads exactly 'NO HIRES NEEDED' in Bebas Neue uppercase, bright yellow #ffde59, left-aligned across two lines, occupying about 50% of frame width in the left-centre of the frame. No humans, no photorealism, no halftone, no neon, no comic outlines. Palette strictly limited to brown #342d2d/#25201e, gold #ccba9d, yellow #ffde59, cream #faf5ec.", "status": "ok", "path": "/Users/davidcruwys/dev/ad/apps/dark-factory/ylo-experiment/runs/b65/thumbs/exp-4.jpg"}, {"id": "exp-5 \u2014 Manual Outreach Is Costing Coaches More Than Time", "prompt": "Create a 1280x720 YouTube thumbnail in the AppyDave brand system. Ground is a flat cream #faf5ec background. The composition is Ghost-Forward: an enormous ghost watermark of the word 'MANUAL' in Bebas Neue uppercase, brown #342d2d at 14% opacity, spans nearly the full width of the frame and bleeds off the right edge \u2014 this watermark visually dominates the design. In front of the watermark, the hook text reads exactly 'COSTING MORE THAN TIME' in Bebas Neue uppercase, solid dark brown #342d2d, left-aligned across three lines, occupying about 50% of frame width in the lower-left. In the upper-right corner sits one small filled yellow #ffde59 circle containing a brown #342d2d exclamation mark as the single accent element. No humans, no photorealism, no halftone, no neon, no comic outlines. Palette strictly limited to brown #342d2d, gold #ccba9d, yellow #ffde59, cream #faf5ec.", "status": "ok", "path": "/Users/davidcruwys/dev/ad/apps/dark-factory/ylo-experiment/runs/b65/thumbs/exp-5.jpg"}, {"id": "exp-6 \u2014 Manual Outreach Is Costing Coaches More Than Time", "prompt": "Create a 1280x720 YouTube thumbnail in the AppyDave brand system. Horizontal split-panel composition: the top half is dark brown #25201e, the bottom half is cream #faf5ec. Behind everything on the top panel sits a ghost watermark of the word 'OUTREACH' in Oswald uppercase, cream #faf5ec at 10% opacity, bleeding off the bottom edge of the upper panel and continuing faintly into the cream half. On the top dark-brown panel, the hook text reads exactly 'TIME ISN'T THE COST' in Bebas Neue uppercase, bright yellow #ffde59, left-aligned across two lines, occupying about 55% of frame width. On the bottom cream panel, render a flat geometric hourglass glyph in gold #ccba9d on the left side next to a bold brown #342d2d downward-pointing arrow. No humans, no photorealism, no halftone, no neon, no comic outlines. Palette strictly limited to brown #342d2d/#25201e, gold #ccba9d, yellow #ffde59, cream #faf5ec.", "status": "ok", "path": "/Users/davidcruwys/dev/ad/apps/dark-factory/ylo-experiment/runs/b65/thumbs/exp-6.jpg"}, {"id": "FINAL-1 \u2014 Can AI Research 150 Surgeons While You Sleep?", "prompt": "Create a 1280x720 YouTube thumbnail in the AppyDave brand system. Ground is a flat cream #faf5ec background occupying the entire frame. Behind everything sits a massive ghost watermark of the word 'AGENTS' in Oswald uppercase, brown #342d2d at 12% opacity, bleeding off the right edge so only the left two-thirds of the word is visible. In the foreground, the hook text reads exactly '150 WHILE YOU SLEEP' set in Bebas Neue uppercase, dark brown #342d2d, left-aligned, occupying about 55% of frame width across two lines ('150' large on top, 'WHILE YOU SLEEP' below). A small simple flat gold #ccba9d crescent moon icon sits in the upper-right corner as the single yellow-family accent. No humans, no photorealism, no halftone, no neon, no comic outlines. Palette strictly limited to brown #342d2d, gold #ccba9d, yellow #ffde59, cream #faf5ec. Typography-first composition, generous negative space.", "status": "ok", "path": "/Users/davidcruwys/dev/ad/apps/dark-factory/ylo-experiment/runs/b65/thumbs/final-1.jpg"}, {"id": "FINAL-2 \u2014 150 Warm Leads Without Hiring Anyone (Demo)", "prompt": "Create a 1280x720 YouTube thumbnail in the AppyDave brand system. Ground is a flat cream #faf5ec background. Behind everything sits a massive ghost watermark of the word 'DEMO' in Bebas Neue uppercase, brown #342d2d at 13% opacity, bleeding off the left edge so only the right two-thirds is visible. In the upper-left, a brown #342d2d rounded pill badge sits at a slight tilt containing the text '01 / DEMO' in cream #faf5ec Bebas Neue uppercase. The main hook text reads exactly '150 WARM LEADS' in Bebas Neue uppercase, dark brown #342d2d, left-aligned, two lines, occupying about 55% of frame width and dominating the lower-centre of the frame. A small gold #ccba9d underline accent runs beneath the word 'LEADS'. No humans, no photorealism, no halftone, no neon, no comic outlines. Palette strictly limited to brown #342d2d, gold #ccba9d, yellow #ffde59, cream #faf5ec.", "status": "ok", "path": "/Users/davidcruwys/dev/ad/apps/dark-factory/ylo-experiment/runs/b65/thumbs/final-2.jpg"}, {"id": "FINAL-3 \u2014 Manual Outreach Is Costing Coaches More Than Time", "prompt": "Create a 1280x720 YouTube thumbnail in the AppyDave brand system. Ground is a flat cream #faf5ec background. The composition is Ghost-Forward: an enormous ghost watermark of the word 'MANUAL' in Bebas Neue uppercase, brown #342d2d at 14% opacity, spans nearly the full width of the frame and bleeds off the right edge \u2014 this watermark visually dominates the design. In front of the watermark, the hook text reads exactly 'COSTING MORE THAN TIME' in Bebas Neue uppercase, solid dark brown #342d2d, left-aligned across three lines, occupying about 50% of frame width in the lower-left. In the upper-right corner sits one small filled yellow #ffde59 circle containing a brown #342d2d exclamation mark as the single accent element. No humans, no photorealism, no halftone, no neon, no comic outlines. Palette strictly limited to brown #342d2d, gold #ccba9d, yellow #ffde59, cream #faf5ec.", "status": "ok", "path": "/Users/davidcruwys/dev/ad/apps/dark-factory/ylo-experiment/runs/b65/thumbs/final-3.jpg"}];
+
+function updateCount() {
+  const n = document.querySelectorAll('input[type=checkbox]:checked').length;
+  document.getElementById('count').textContent = n + ' selected';
+}
+
+function toggleCard(id) {
+  const card = document.getElementById('card-' + id);
+  const cb = document.getElementById('cb-' + id);
+  card.classList.toggle('selected', cb.checked);
+  updateCount();
+}
+
+function togglePrompt(id) {
+  const p = document.getElementById('prompt-' + id);
+  const btn = document.getElementById('expand-' + id);
+  const expanded = p.classList.toggle('expanded');
+  btn.textContent = expanded ? 'Show less' : 'Show full prompt';
+}
+
+function copySelected() {
+  const selected = [];
+  data.forEach(item => {
+    const cb = document.getElementById('cb-' + item.id);
+    if (cb && cb.checked) {
+      selected.push({
+        id: item.id,
+        prompt: item.prompt,
+        liked: true
+      });
+    }
+  });
+  if (selected.length === 0) {
+    showToast('Nothing selected');
+    return;
+  }
+  const text = JSON.stringify(selected, null, 2);
+  navigator.clipboard.writeText(text).then(() => showToast('Copied ' + selected.length + ' concepts'));
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+updateCount();
+</script>
+</body>
+</html>

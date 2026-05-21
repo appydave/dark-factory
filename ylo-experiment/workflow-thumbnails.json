@@ -1,0 +1,117 @@
+{
+  "id": "thumbnails",
+  "name": "Thumbnail Generation Workflow",
+  "version": "1.0.0",
+  "description": "Five-step thumbnail workflow under the blackboard pattern. Tests async kie.ai polling (POST createTask → poll recordInfo → curl download), binary outputs (image files on disk + path in store), and the FliThumb title-thumbnail pairing invariant. Selection uses a deterministic fixture for v1; visual gate is a follow-up probe.",
+  "models": {
+    "exploration": "flux-schnell",
+    "finals": "nano-banana-2"
+  },
+  "store": {
+    "backend": "jsonl",
+    "path": "{workflowDir}/runs/{videoId}/store.jsonl",
+    "projection": "{workflowDir}/runs/{videoId}/store.view.json",
+    "writeCadence": "step"
+  },
+  "seed": [
+    { "key": "videoId", "from": "input" }
+  ],
+  "steps": [
+    {
+      "id": "generate-design-briefs",
+      "name": "Generate 6 design briefs (2 per selected title × 3 titles)",
+      "type": "transform",
+      "section": "Thumbnails",
+      "model": "analysis",
+      "promptFile": "prompts/generate-design-brief.hbs",
+      "inputs": [
+        { "key": "selectedTitles",   "required": true },
+        { "key": "mainTopic",        "required": true },
+        { "key": "audienceInsights", "required": true },
+        { "key": "emotionalTriggers","required": true }
+      ],
+      "stores": "designBriefs",
+      "workerContract": "write-store-directly",
+      "humanGate": false,
+      "validation": {
+        "count": 6,
+        "perItemFields": ["index", "title_ref", "composition_pattern", "ground", "hook_text", "ghost_watermark", "prompt"]
+      }
+    },
+    {
+      "id": "explore-cheap-batch",
+      "name": "Generate 6 exploration thumbnails (cheap, parallel)",
+      "type": "transform",
+      "section": "Thumbnails",
+      "model": "flux-schnell",
+      "resolution": "1K",
+      "aspectRatio": "16:9",
+      "displayResolution": "512x288",
+      "outputFormat": "jpg",
+      "inputs": [
+        { "key": "designBriefs", "required": true }
+      ],
+      "stores": "explorationImages",
+      "workerContract": "write-store-directly",
+      "humanGate": false,
+      "fanOut": 6,
+      "outputDir": "runs/{videoId}/thumbs/",
+      "filePattern": "exp-{n}.jpg"
+    },
+    {
+      "id": "apply-selection",
+      "name": "Apply fixture selection [0, 2, 4] (conductor-writes; visual gate deferred to probe #5)",
+      "type": "checkpoint",
+      "section": "Thumbnails",
+      "inputs": [
+        { "key": "explorationImages", "required": true }
+      ],
+      "stores": "selectedExplorationIndices",
+      "selectionFixturePath": "runs/{videoId}/selection-fixture.json",
+      "workerContract": "conductor-writes",
+      "humanGate": false
+    },
+    {
+      "id": "build-finals",
+      "name": "Generate 3 final thumbnails (2K nano-banana-2, parallel)",
+      "type": "transform",
+      "section": "Thumbnails",
+      "model": "nano-banana-2",
+      "resolution": "2K",
+      "outputResolution": "2048x1152",
+      "aspectRatio": "16:9",
+      "outputFormat": "jpg",
+      "inputs": [
+        { "key": "designBriefs",                "required": true },
+        { "key": "explorationImages",           "required": true },
+        { "key": "selectedExplorationIndices",  "required": true }
+      ],
+      "stores": "finalImages",
+      "workerContract": "write-store-directly",
+      "humanGate": false,
+      "fanOut": 3,
+      "outputDir": "runs/{videoId}/thumbs/",
+      "filePattern": "final-{n}.jpg"
+    },
+    {
+      "id": "assemble-output",
+      "name": "Write manifest with file paths, sizes, costs, phase timings",
+      "type": "action",
+      "section": "Thumbnails",
+      "inputs": [
+        { "key": "designBriefs",              "required": true },
+        { "key": "explorationImages",         "required": true },
+        { "key": "selectedExplorationIndices","required": true },
+        { "key": "finalImages",               "required": true }
+      ],
+      "stores": "thumbnailsManifest",
+      "outputFile": "runs/{videoId}/thumbnails-manifest.md",
+      "workerContract": "conductor-writes",
+      "humanGate": false
+    }
+  ],
+  "output": {
+    "drop": [],
+    "group": {}
+  }
+}

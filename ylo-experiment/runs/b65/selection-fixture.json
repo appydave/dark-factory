@@ -1,0 +1,4 @@
+{
+  "selectedIndices": [0, 2, 4],
+  "reason": "Deterministic fixture for probe #4. One exploration per title (briefs 0, 2, 4 each belong to a different title — index 0 → title[0], index 2 → title[1], index 4 → title[2]). Visual selection gate is deferred to probe #5."
+}
