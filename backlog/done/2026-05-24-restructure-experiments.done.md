@@ -94,3 +94,21 @@ The workflow scripts themselves (`.claude/workflows/*.workflow.js`) stay where t
 ## Open question (for the person doing this)
 
 Should `experiments/ylo/README.md` consolidate the recommendation (Hybrid: Workflow Tool for #1/#4, blackboard for #2/#3), or keep that in `workflow-tool/comparison.md` and have the README just link? Lean toward consolidate — the comparison file's purpose was to write up one substrate's run, not host the cross-cutting decision.
+
+---
+
+## Status — DONE ✅ (2026-05-25)
+
+Completed in session df-2-workflow-factory-convergence.
+
+**What landed:**
+- `git mv ylo-experiment → experiments/ylo/blackboard`
+- `git mv anthropic-workflow-experiment → experiments/ylo/workflow-tool`
+- All path references updated (backlog, docs, workflow scripts, mochaccino, brains/ylo)
+- `experiments/ylo/README.md` written — consolidated cross-substrate recommendation (Hybrid) per the open question's lean
+- `CLAUDE.md` updated with experiments/ writeable locations
+- Committed: `98a0cc7` "Restructure experiments/ — scenario-first layout, add YLO README and authoring notes"
+
+**Open question resolved**: consolidated the recommendation into `experiments/ylo/README.md`. The empirical comparison table stays in `workflow-tool/runs/b65/comparison.md`; the recommendation and substrate map live in the README.
+
+**Verification**: `grep -rln "ylo-experiment\|anthropic-workflow-experiment"` returned only the intentional `← was X` annotation in the README. Clean.

@@ -260,12 +260,236 @@ Key additions vs. naive version: `model: "haiku"` (cheap/fast for I/O), explicit
 
 ---
 
+## Part 4 — Primitives we didn't know about
+
+Discovered from Ray Amjad's introduction video and the workflow-creator skill (cloned at `/tmp/dark-factory-upstream/claude-code-workflow-creator/`). These are first-class workflow primitives.
+
+### P1 — `budget` (token-aware loop control)
+
+The workflow VM exposes a `budget` object with `budget.remaining()`. Use it to make loops self-terminating when token usage hits a cap.
+
+```js
+while (budget.remaining() > 50_000) {
+  await agent('find one more bug')
+}
+```
+
+The run scales itself to the budget you gave it — no fixed agent count, no manual stop condition. Perfect for:
+- **Shadow Runs** — keep running benchmark variants until budget exhausted
+- **Upstream Pulse** — scan provider repos until daily budget hit
+- **Dry-streak loops** — combined with a counter (see Part 5: P2-loop-until-dry)
+
+**Caveat**: still pair with a hard `MAX_ROUNDS` cap as a safety net. Budget can be wrong if a single agent spikes.
+
+### P2 — Pipeline streaming (not batched)
+
+`pipeline()` is not "do all of stage 1, then all of stage 2." It's truly streaming: as soon as item 0 finishes stage 1, item 0 enters stage 2 — while items 1..N are still in stage 1. This means a fan-out workflow gets natural pipeline parallelism for free.
+
+```js
+const results = await pipeline(
+  leads,                       // 8 items
+  lead => agent(`research`),   // stage 1 — runs concurrently per item
+  (research, lead) => agent(`write`)  // stage 2 — starts as soon as that item's research is done
+)
+```
+
+For 8 leads with research averaging 30s and write averaging 20s, naive batching would take 30+20=50s. Streaming pipeline is ~30s total (stage 2 of item 0 overlaps with stage 1 of items 1-7).
+
+Implication for our workflows: any time you have a multi-stage per-item operation, reach for `pipeline()` not `parallel()` + sequential.
+
+### P3 — Automatic agent retry (3×)
+
+The Workflow Tool automatically retries failed `agent()` calls up to 3 times. Confirmed in the video: "Claude code will retry each sub agent up to three times if it does fail."
+
+What this means:
+- You don't need a try/catch wrapper for transient failures
+- Schema mismatches trigger a retry with feedback (already known)
+- MCP server hiccups, network blips, transient model errors → retried automatically
+- After 3 failures, the agent call returns null/error
+
+Implication: our S2 "fail fast" pattern still applies for *known unrecoverable* failures (404 endpoints, missing keys) — return `{ ok: false }` immediately so the retry doesn't waste 2 more attempts. But for *transient* failures, let the retry handle it.
+
+---
+
+## Part 5 — Patterns from production workflow examples
+
+The workflow-creator skill ships 6 complete example workflows. Patterns worth lifting:
+
+### Pattern 1 — Model-per-phase (cost discipline)
+
+Declare the model on each phase or each agent call. Use cheap models for mechanical work, expensive models for quality-sensitive work.
+
+```js
+export const meta = {
+  phases: [
+    { title: 'Load leads',  model: 'haiku' },    // parsing — mechanical
+    { title: 'Research',    model: 'haiku' },    // gathering — cheap
+    { title: 'Write message', model: 'opus' },   // quality — expensive
+  ],
+}
+```
+
+**Rule of thumb**: Haiku for parsing/filtering/extraction/store-I/O. Sonnet for most reasoning. Opus only for final-quality outputs where the cost is justified by user-visible value.
+
+Applied to our YLO probes: `remember()`/`recall()` → haiku. `analyze-*` content extraction → haiku. Title generation, image generation → sonnet/opus.
+
+Estimated savings: cutting the 4 store-I/O agents in probe #2 from sonnet to haiku alone should drop wall-clock by ~50s.
+
+### Pattern 2 — Loop-until-dry (with safety net)
+
+The dead-code-sweep example uses a `DRY_STREAK` + `MAX_ROUNDS` pattern. Loop until N consecutive rounds find nothing, with a hard cap so it always terminates.
+
+```js
+const DRY_STREAK = 2  // stop after this many empty rounds in a row
+const MAX_ROUNDS = 8  // hard cap so the loop always terminates
+let emptyRounds = 0
+let round = 0
+
+while (emptyRounds < DRY_STREAK && round < MAX_ROUNDS) {
+  round++
+  const { items } = await agent(`Find unused symbols. Ignore: ${alreadyRemoved.join(', ')}`)
+  if (items.length === 0) { emptyRounds++; continue }
+  emptyRounds = 0
+  // ... process items ...
+}
+```
+
+Applies directly to Dark Factory:
+- **Upstream Pulse**: scan provider repos until 2 consecutive providers return no new artifacts
+- **Shadow Runs**: keep benchmarking until 2 consecutive runs produce no rubric change
+- **Recon discover loop**: stop when 2 consecutive clusters reveal no new patterns
+
+### Pattern 3 — Conditional escalation (cheap-first, expensive-fallback)
+
+Try a cheap model/method first. If it fails to find what's needed, escalate to a more expensive one. This is plain JS in the workflow file — no special primitive needed.
+
+```js
+let info = await agent(`research lead ${lead.name}`, { model: 'haiku' })
+if (!info || info.confidence < 0.5) {
+  // escalate
+  info = await agent(`research lead ${lead.name} thoroughly using web search`, { model: 'opus' })
+}
+```
+
+This is the architectural superpower of code-wrapper workflows — branching logic is free. In a model-wrapper system this conditional would be a tool call from the orchestrator; here it's an `if`.
+
+### Pattern 4 — Plain JS between phases (filter, transform, log)
+
+Between agent calls, the workflow can do ordinary JS — filter arrays, compute statistics, log progress, early-return. This is free (no tokens, no agent overhead).
+
+```js
+const { issues } = await agent(`pull sentry issues`)
+const bigOnes = issues.filter(i => i.userCount > threshold)
+log(`${bigOnes.length} of ${issues.length} issues affect more than ${threshold} users`)
+if (bigOnes.length === 0) return { fixed: 0, message: `No issues affect more than ${threshold} users` }
+// continue...
+```
+
+This pattern is everywhere in the examples. Anytime your data could be smaller before the next agent call, filter it in JS. Anytime you have a yes/no decision, branch in JS. Saves the orchestrator the cost of "remembering" intermediate state across agent calls.
+
+### Pattern 5 — args is a string, guard the parse
+
+`args` arrives as a JSON string when invoked from the Workflow tool, but slash commands can pass non-JSON strings ("do it then"). Always guard the parse:
+
+```js
+const opts = typeof args === 'string'
+  ? (() => { try { return JSON.parse(args) } catch { return {} } })()
+  : (args ?? {})
+const threshold = opts.minUsers ?? 20
+```
+
+We had this issue when probe #3 resume "lost args" — actually the args were never re-parsed correctly. The pattern above handles all invocation modes.
+
+### Pattern 6 — Workflow-launching pattern
+
+When you build a workflow that's invokable as a slash command, the description should make the trigger conditions clear and the doc-comment should show example args. From workflow-creator example:
+
+```js
+/**
+ * triage-sentry — fix the Sentry issues that affect the most users.
+ *
+ * Pull unresolved issues, keep only those over a user-count threshold
+ * (default 20), then fix and verify each one. The threshold is a single line
+ * of ordinary JavaScript — workflow files run real JS, if-statements and all.
+ *
+ * Workflow({ name: 'triage-sentry', args: { minUsers: 20 } })
+ */
+export const meta = { /* ... */ }
+```
+
+The Workflow line in the doc-comment becomes the invocation hint shown in `/workflows`.
+
+---
+
+## Part 6 — The framing that ties it all together
+
+From the video: **"Code wrapper vs model wrapper."** This is the central architectural concept.
+
+**Model wrapper** (the old way):
+- Claude is the orchestrator
+- Every subagent result returns to Claude's context
+- Claude reads the result, decides what to pass to the next subagent
+- Pays a "token tax" at every join
+- Orchestrator's context fills, eventually compacts, and starts forgetting
+
+**Code wrapper** (the Workflow Tool way):
+- A `.workflow.js` file is the orchestrator
+- Subagent results return to plain JS variables
+- The next subagent receives data through prompt template interpolation
+- Zero token tax at joins
+- No orchestrator context to fill
+
+This is why our YLO comparison showed Workflow Tool was actually **slower** than blackboard for probe #2 — we used `remember()` heavily, which converts code-wrapper back into model-wrapper at the I/O layer (every store write is a subagent call). The fix isn't to abandon Workflow Tool; it's to use it correctly: pass state through JS variables, write to store only when the data needs to persist beyond the workflow run.
+
+The Hybrid recommendation still holds for HITL-heavy and store-granular flows, but the boundary moves significantly toward Workflow Tool when workflows are redesigned to minimize cross-agent I/O.
+
+---
+
+## When is a workflow the right tool?
+
+From the workflow-creator skill (Step 1 — "Decide whether a workflow is even the right tool"):
+
+| The job | Right tool |
+|---|---|
+| One subagent, one task | The plain `Agent` tool — no workflow |
+| A reusable procedure where **Claude** picks the steps each run | A **Skill** |
+| Many subagents in a **fixed** shape (fan-out / pipeline / loop), same every run, worth resuming | A **Workflow** ✅ |
+
+A workflow earns its cost when **all** of these are true:
+- The work is parallel or multi-stage
+- You want the orchestration deterministic and resumable
+- Isolating each step in its own fresh context window is an advantage
+
+For dark-factory: most of our planned automation (ingestion, evaluation, upstream pulse, shadow runs) fits this profile. One-off reads and analyses do not.
+
+---
+
 ## Open research agenda
 
 | # | Question | Priority |
 |---|----------|----------|
 | R1 | Can workflow scripts call MCP tools directly (not via agent)? | High — would solve S1 if yes |
 | R2 | Does `env` in `.claude/settings.json` flow to workflow subagents? | High — would solve S3 cleanly |
-| R3 | Is `model: "haiku"` usable for `remember()`/`recall()` agents? What's the latency improvement? | Medium |
+| R3 | Is `model: "haiku"` usable for `remember()`/`recall()` agents? What's the latency improvement? | Medium — strong prior says yes, measure to confirm |
 | R4 | Is double-nesting (S4) consistent? Characterise with a type matrix test | Medium |
 | R5 | Does `isolation: "worktree"` work inside workflow `agent()` calls? | Low — needed for parallel file writers |
+| R6 | What's the max `parallel()` concurrency? Docs hint at `min(16, cpu-2)` — confirm | Medium — affects fan-out sizing |
+| R7 | Can workflows nest? Can a workflow call another workflow (not just agents)? | High — needed for compositional architecture |
+| R8 | `budget` API — is it the input budget or remaining-tokens of the run? Where's the cap defined? | High — needed for budget-driven loops |
+| R9 | What happens to `parallel()` retries when one item fails 3×? Whole batch fails, or one item returns null? | Medium |
+| R10 | Does the workflow-creator's `scripts/validate-workflow.mjs` linter catch our C1-C5 issues? | High — adopt as pre-run check |
+
+---
+
+## References
+
+- **Ray Amjad's introduction video transcript**: `/Users/davidcruwys/dev/ad/apps/dark-factory/x.txt` (full transcript from the "Anthropic Just Dropped the Update Claude Code Always Needed" video)
+- **workflow-creator skill** (cloned): `/tmp/dark-factory-upstream/claude-code-workflow-creator/`
+  - `SKILL.md` — full authoring procedure
+  - `references/api-reference.md` — every primitive, option, cap, constant
+  - `references/patterns.md` — copy-paste orchestration patterns
+  - `assets/examples/` — 6 complete runnable workflows (triage-sentry, dead-code-sweep, personalize-outreach, api-contract-drift-detector, implement-and-review, review-branch, customer-feedback-theme-extractor)
+  - `assets/templates/` — starter files for fan-out, pipeline, loop shapes
+  - `scripts/validate-workflow.mjs` — linter
+- **YLO empirical comparison**: `experiments/ylo/workflow-tool/runs/b65/comparison.md`
+- **Architecture context**: `docs/architecture.md` — how workflows fit into the Factory/Warehouse/Watchtower model
