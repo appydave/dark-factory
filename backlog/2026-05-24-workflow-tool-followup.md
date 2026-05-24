@@ -1,6 +1,6 @@
 # Workflow Tool — Follow-up Run + Recommendation
 
-> **PATH RENAME 2026-05-23**: `ylo-experiment/runs/b65-workflow-tool/` was moved to `anthropic-workflow-experiment/runs/b65/`. Wherever this file references the old path, mentally substitute the new one. See `backlog/2026-05-25-workflow-tool-run-and-compare.md` for the active handover.
+> **PATH RENAME 2026-05-23**: `experiments/ylo/blackboard/runs/b65-workflow-tool/` was moved to `experiments/ylo/workflow-tool/runs/b65/`. Wherever this file references the old path, mentally substitute the new one. See `backlog/2026-05-25-workflow-tool-run-and-compare.md` for the active handover.
 
 **Date**: 2026-05-24
 **Author**: Follow-on from `backlog/2026-05-23-workflow-tool-experiment.md`
@@ -11,7 +11,7 @@
 
 ## Why this exists
 
-The prior backlog item staged the experiment but couldn't execute it: the `Workflow` tool didn't surface mid-session because `.claude/workflows/*.workflow.js` files didn't exist when that session started. The empirical finding is in `ylo-experiment/runs/b65-workflow-tool/comparison.md`.
+The prior backlog item staged the experiment but couldn't execute it: the `Workflow` tool didn't surface mid-session because `.claude/workflows/*.workflow.js` files didn't exist when that session started. The empirical finding is in `experiments/ylo/blackboard/runs/b65-workflow-tool/comparison.md`.
 
 Everything needed to run is now staged. This item is the actual run + the strategic recommendation.
 
@@ -44,9 +44,9 @@ Ask the model to invoke:
 Workflow({
   name: "title-gen",
   args: {
-    transcriptPath:        "/Users/davidcruwys/dev/ad/apps/dark-factory/ylo-experiment/runs/b65-workflow-tool/transcript.txt",
-    storePath:             "/Users/davidcruwys/dev/ad/apps/dark-factory/ylo-experiment/runs/b65-workflow-tool/store.jsonl",
-    critiqueFixturePath:   "/Users/davidcruwys/dev/ad/apps/dark-factory/ylo-experiment/runs/b65-workflow-tool/critique-fixture.txt"
+    transcriptPath:        "/Users/davidcruwys/dev/ad/apps/dark-factory/experiments/ylo/blackboard/runs/b65-workflow-tool/transcript.txt",
+    storePath:             "/Users/davidcruwys/dev/ad/apps/dark-factory/experiments/ylo/blackboard/runs/b65-workflow-tool/store.jsonl",
+    critiqueFixturePath:   "/Users/davidcruwys/dev/ad/apps/dark-factory/experiments/ylo/blackboard/runs/b65-workflow-tool/critique-fixture.txt"
   }
 })
 ```
@@ -63,7 +63,7 @@ If the model says it needs to read `store.jsonl` → **isolation held**: workflo
 
 ### 5. Fill in the comparison table
 
-Open `ylo-experiment/runs/b65-workflow-tool/comparison.md` and fill all `TBD` cells from:
+Open `experiments/ylo/blackboard/runs/b65-workflow-tool/comparison.md` and fill all `TBD` cells from:
 - the wall-clock + token cost you just observed
 - the existing run's `runs/b65/conductor-session-titles.log` for the blackboard side
 - the isolation test result
@@ -86,7 +86,7 @@ Open `~/dev/ad/brains/ylo/recommendations.md` and add a section:
 ## 2026-05-24 — Workflow Tool vs Blackboard
 
 **Decision**: <one of: adopt / hybrid / bespoke>
-**Evidence**: `apps/dark-factory/ylo-experiment/runs/b65-workflow-tool/comparison.md`
+**Evidence**: `apps/dark-factory/experiments/ylo/blackboard/runs/b65-workflow-tool/comparison.md`
 **Rationale**: <2-3 sentences>
 **Next**: <e.g. "port probes #1, #3, #4 to workflows" or "keep blackboard, revisit when docs land">
 ```

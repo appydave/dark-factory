@@ -52,9 +52,9 @@ Should complete in ~3s with `{"greeting": "..."}`.
 Workflow({
   name: "title-gen",
   args: {
-    transcriptPath:      "/Users/davidcruwys/dev/ad/apps/dark-factory/anthropic-workflow-experiment/runs/b65/transcript.txt",
-    storePath:           "/Users/davidcruwys/dev/ad/apps/dark-factory/anthropic-workflow-experiment/runs/b65/store.jsonl",
-    critiqueFixturePath: "/Users/davidcruwys/dev/ad/apps/dark-factory/anthropic-workflow-experiment/runs/b65/critique-fixture.txt"
+    transcriptPath:      "/Users/davidcruwys/dev/ad/apps/dark-factory/experiments/ylo/workflow-tool/runs/b65/transcript.txt",
+    storePath:           "/Users/davidcruwys/dev/ad/apps/dark-factory/experiments/ylo/workflow-tool/runs/b65/store.jsonl",
+    critiqueFixturePath: "/Users/davidcruwys/dev/ad/apps/dark-factory/experiments/ylo/workflow-tool/runs/b65/critique-fixture.txt"
   }
 })
 ```
@@ -78,11 +78,11 @@ This is THE empirical question — it determines whether the Workflow Tool prese
 
 ### 5. Fill in `comparison.md`
 
-File: `anthropic-workflow-experiment/runs/b65/comparison.md`
+File: `experiments/ylo/workflow-tool/runs/b65/comparison.md`
 
 TBD cells that need real data:
 - Wall-clock time end-to-end (both substrates)
-- Total token cost — workflow side from your run; blackboard side from `ylo-experiment/runs/b65/conductor-session-titles.log`
+- Total token cost — workflow side from your run; blackboard side from `experiments/ylo/blackboard/runs/b65/conductor-session-titles.log`
 - Resumability — try Ctrl-C mid-run + re-invoke with same `scriptPath`
 - Subagent isolation — from step 4
 - Debuggability — check `~/.claude/projects/.../<session>/` for any workflow trace files post-run
@@ -97,7 +97,7 @@ At the bottom of `comparison.md`, pick one:
 
 ### 7. Sync the brain
 
-Update `~/dev/ad/brains/ylo/recommendations.md` — the `## 2026-05-24 — Workflow Tool vs Blackboard` section currently says "Stay bespoke (cannot evaluate)". Replace with the real recommendation + evidence pointer to `anthropic-workflow-experiment/runs/b65/comparison.md`.
+Update `~/dev/ad/brains/ylo/recommendations.md` — the `## 2026-05-24 — Workflow Tool vs Blackboard` section currently says "Stay bespoke (cannot evaluate)". Replace with the real recommendation + evidence pointer to `experiments/ylo/workflow-tool/runs/b65/comparison.md`.
 
 Update `~/dev/ad/brains/anthropic-claude/claude-code/workflow-tool.md`:
 - Status: ⚗️ Experimental → ✅ Verified-working
@@ -109,7 +109,7 @@ Update `~/dev/ad/brains/anthropic-claude/claude-code/workflow-tool.md`:
 
 - Don't re-investigate the gate — it's solved. Smoke test passed. If it works for `hello`, it works.
 - Don't migrate existing blackboard skills yet — that decision waits on this experiment.
-- Don't pollute `ylo-experiment/runs/b65/` — that's the blackboard baseline.
+- Don't pollute `experiments/ylo/blackboard/runs/b65/` — that's the blackboard baseline.
 - Don't run any OTHER workflow probes in this session. Single-variable test.
 
 ---
@@ -117,13 +117,13 @@ Update `~/dev/ad/brains/anthropic-claude/claude-code/workflow-tool.md`:
 ## 📂 Directory layout (post-restructure)
 
 ```
-ylo-experiment/
+experiments/ylo/blackboard/
 ├── runs/b65/                                  ← blackboard baseline (probe #2 done — DO NOT MODIFY)
 └── runs/b65-2-5/                              ← (other prior blackboard run)
 
-anthropic-workflow-experiment/                 ← NEW: Workflow Tool substrate
+experiments/ylo/workflow-tool/                 ← NEW: Workflow Tool substrate
 └── runs/b65/                                  ← this experiment
-    ├── transcript.txt                         ← same source as ylo-experiment/runs/b65/
+    ├── transcript.txt                         ← same source as experiments/ylo/blackboard/runs/b65/
     ├── critique-fixture.txt
     ├── store.jsonl                            ← empty; workflow populates
     └── comparison.md                          ← framework ready, TBD cells to fill
@@ -164,7 +164,7 @@ GitHub issue **#61637** at `anthropics/claude-code` was opened asking about the 
 
 1. **`backlog/2026-05-23-workflow-tool-experiment.md`** — original strategic context (full Read of § "What this session must verify" + § "Reference reading")
 2. **`backlog/2026-05-24-workflow-tool-followup.md`** — gate investigation (marked DONE)
-3. **`anthropic-workflow-experiment/runs/b65/comparison.md`** — the framework + TBD cells you'll fill in
+3. **`experiments/ylo/workflow-tool/runs/b65/comparison.md`** — the framework + TBD cells you'll fill in
 4. **`~/dev/ad/brains/anthropic-claude/claude-code/workflow-tool.md`** — API reference for `agent()`/`phase()`/`pipeline()`/`parallel()`
 5. **`~/dev/ad/brains/anthropic-claude/claude-code/blackboard-workflow-pattern.md`** — the pattern being compared
 
@@ -172,7 +172,7 @@ GitHub issue **#61637** at `anthropics/claude-code` was opened asking about the 
 
 ## ✅ End-of-session checklist
 
-- [x] `anthropic-workflow-experiment/runs/b65/comparison.md` has all TBD cells filled
+- [x] `experiments/ylo/workflow-tool/runs/b65/comparison.md` has all TBD cells filled
 - [x] One final recommendation committed at the bottom of comparison.md
 - [x] `brains/ylo/recommendations.md` § 2026-05-24 updated with the real call
 - [x] `brains/anthropic-claude/claude-code/workflow-tool.md` status moved out of ⚗️

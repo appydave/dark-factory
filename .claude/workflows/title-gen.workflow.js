@@ -15,7 +15,7 @@ if (!A.transcriptPath || !A.storePath || !A.critiqueFixturePath) {
 const RUN_TS = A.ts || "2026-05-25T00:00:00.000Z";
 
 // === EAV STORE HELPERS (no imports allowed — every I/O goes through agent()) ===
-// Format matches ylo-experiment/runs/b65/store.jsonl:
+// Format matches experiments/ylo/blackboard/runs/b65/store.jsonl:
 //   { key, group?, index?, value, meta: { step, ts, attempt, source, by, status } }
 
 async function remember(key, value, meta = {}) {

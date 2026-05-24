@@ -143,15 +143,15 @@ phase("Generate");
 
 // Read content-analysis fields from store (populated by content-analysis workflow)
 const [mainTopic, statistics, catchyPhrases, audienceInsights, shortTitle] = await parallel([
-  agent(`Read the JSONL file at ${A.storePath}. Find the LATEST line where key === "mainTopic". Return { value: <value field> } or { value: null }.`,
+  () => agent(`Read the JSONL file at ${A.storePath}. Find the LATEST line where key === "mainTopic". Return { value: <value field> } or { value: null }.`,
     { label: "recall:mainTopic", phase: "recall", schema: { type: "object", required: ["value"], properties: { value: {} } } }),
-  agent(`Read the JSONL file at ${A.storePath}. Find the LATEST line where key === "statistics". Return { value: <value field> } or { value: null }.`,
+  () => agent(`Read the JSONL file at ${A.storePath}. Find the LATEST line where key === "statistics". Return { value: <value field> } or { value: null }.`,
     { label: "recall:statistics", phase: "recall", schema: { type: "object", required: ["value"], properties: { value: {} } } }),
-  agent(`Read the JSONL file at ${A.storePath}. Find the LATEST line where key === "catchyPhrases". Return { value: <value field> } or { value: null }.`,
+  () => agent(`Read the JSONL file at ${A.storePath}. Find the LATEST line where key === "catchyPhrases". Return { value: <value field> } or { value: null }.`,
     { label: "recall:catchyPhrases", phase: "recall", schema: { type: "object", required: ["value"], properties: { value: {} } } }),
-  agent(`Read the JSONL file at ${A.storePath}. Find the LATEST line where key === "audienceInsights". Return { value: <value field> } or { value: null }.`,
+  () => agent(`Read the JSONL file at ${A.storePath}. Find the LATEST line where key === "audienceInsights". Return { value: <value field> } or { value: null }.`,
     { label: "recall:audienceInsights", phase: "recall", schema: { type: "object", required: ["value"], properties: { value: {} } } }),
-  agent(`Read the JSONL file at ${A.storePath}. Find the LATEST line where key === "shortTitle". Return { value: <value field> } or { value: null }.`,
+  () => agent(`Read the JSONL file at ${A.storePath}. Find the LATEST line where key === "shortTitle". Return { value: <value field> } or { value: null }.`,
     { label: "recall:shortTitle", phase: "recall", schema: { type: "object", required: ["value"], properties: { value: {} } } }),
 ]);
 

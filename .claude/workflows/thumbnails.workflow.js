@@ -70,23 +70,23 @@ async function loadFile(path, label) {
 // Mirrors the blackboard image-gen skill:
 //   POST /api/generate → poll /api/record/{taskId} → curl download
 
-async function generateImage(prompt, outputPath, label, model) {
+async function generateImage(prompt, outputPath, label, model, phase = "Explore") {
   const r = await agent(
     `You are calling the kie.ai image generation API to produce one thumbnail.\n\n` +
     `Steps:\n` +
-    `1. Read the KIE_API_KEY from the environment: \`echo $KIE_API_KEY\`\n` +
-    `2. POST to https://api.kie.ai/api/generate with body:\n` +
-    `   { "prompt": ${JSON.stringify(prompt)}, "model": "${model}", "aspect_ratio": "16:9", "output_format": "jpg" }\n` +
-    `   Header: Authorization: Bearer <KIE_API_KEY>\n` +
-    `3. Extract taskId from the response.\n` +
-    `4. Poll GET https://api.kie.ai/api/record/<taskId> every 10s until status === "completed".\n` +
+    `1. Read KIE_API_KEY: run \`grep KIE_API_KEY /Users/davidcruwys/dev/ad/apps/dark-factory/.env | cut -d= -f2\` to get the key.\n` +
+    `2. POST to https://api.kie.ai/api/v1/jobs/createTask with body:\n` +
+    `   { "prompt": ${JSON.stringify(prompt)}, "model": "${model}", "aspectRatio": "16:9", "outputFormat": "jpg" }\n` +
+    `   Header: Authorization: Bearer <KIE_API_KEY>, Content-Type: application/json\n` +
+    `3. Extract the taskId from the response (field may be called taskId, id, or data.taskId — inspect the full response).\n` +
+    `4. Poll GET https://api.kie.ai/api/v1/jobs/recordInfo/<taskId> with the same Authorization header every 10s until the response indicates completion (status === "completed" or similar). Stop after 20 polls (200s max).\n` +
     `5. Extract the image URL from the completed response.\n` +
     `6. Download the image to ${outputPath} using curl.\n` +
     `7. Return { ok: true, taskId: "<taskId>", path: "${outputPath}", bytes: <file size in bytes> }.\n\n` +
     `If any step fails, return { ok: false, error: "<reason>" }.`,
     {
       label:  `image:${label}`,
-      phase:  "image-gen",
+      phase,
       schema: {
         type: "object",
         required: ["ok"],
@@ -143,13 +143,13 @@ await agent(
 phase("Briefs");
 
 const [selectedTitlesR, mainTopicR, audienceInsightsR, emotionalTriggersR] = await parallel([
-  agent(`Read the JSONL at ${A.storePath}. Latest line where key==="selectedTitles". Return { value: <value> } or { value: null }.`,
+  () => agent(`Read the JSONL at ${A.storePath}. Latest line where key==="selectedTitles". Return { value: <value> } or { value: null }.`,
     { label: "recall:selectedTitles",   phase: "recall", schema: { type: "object", required: ["value"], properties: { value: {} } } }),
-  agent(`Read the JSONL at ${A.storePath}. Latest line where key==="mainTopic". Return { value: <value> } or { value: null }.`,
+  () => agent(`Read the JSONL at ${A.storePath}. Latest line where key==="mainTopic". Return { value: <value> } or { value: null }.`,
     { label: "recall:mainTopic",        phase: "recall", schema: { type: "object", required: ["value"], properties: { value: {} } } }),
-  agent(`Read the JSONL at ${A.storePath}. Latest line where key==="audienceInsights". Return { value: <value> } or { value: null }.`,
+  () => agent(`Read the JSONL at ${A.storePath}. Latest line where key==="audienceInsights". Return { value: <value> } or { value: null }.`,
     { label: "recall:audienceInsights", phase: "recall", schema: { type: "object", required: ["value"], properties: { value: {} } } }),
-  agent(`Read the JSONL at ${A.storePath}. Latest line where key==="emotionalTriggers". Return { value: <value> } or { value: null }.`,
+  () => agent(`Read the JSONL at ${A.storePath}. Latest line where key==="emotionalTriggers". Return { value: <value> } or { value: null }.`,
     { label: "recall:emotionalTriggers",phase: "recall", schema: { type: "object", required: ["value"], properties: { value: {} } } }),
 ]);
 
@@ -194,7 +194,7 @@ const explorePaths = designBriefs.map((b, i) => `${A.outputDir}/exp-${i}.jpg`);
 
 const explorationResults = await parallel(
   designBriefs.map((brief, i) =>
-    generateImage(brief.prompt, explorePaths[i], `exp-${i}`, KIE_MODEL_EXP)
+    () => generateImage(brief.prompt, explorePaths[i], `exp-${i}`, KIE_MODEL_EXP, "Explore")
   )
 );
 
@@ -225,7 +225,7 @@ const finalPaths     = selectedIndices.map((_, n) => `${A.outputDir}/final-${n}.
 
 const finalResults = await parallel(
   selectedBriefs.map((brief, n) =>
-    generateImage(brief.prompt, finalPaths[n], `final-${n}`, KIE_MODEL_FIN)
+    () => generateImage(brief.prompt, finalPaths[n], `final-${n}`, KIE_MODEL_FIN, "Finals")
   )
 );
 

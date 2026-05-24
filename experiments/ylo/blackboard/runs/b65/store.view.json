@@ -1,6 +1,6 @@
 {
   "videoId": "b65",
-  "transcriptPath": "/Users/davidcruwys/dev/ad/apps/dark-factory/ylo-experiment/runs/b65/transcript.txt",
+  "transcriptPath": "/Users/davidcruwys/dev/ad/apps/dark-factory/experiments/ylo/blackboard/runs/b65/transcript.txt",
   "mainTopic": "A tutorial demonstrating how to use Claude Code and context engineering to automate a lead generation and outreach workflow for a public speaking coach (Guy Monroe), specifically building a system to research, evaluate, and generate presence reports for 150 plastic surgeon prospects using web searches, structured data, and iterative prompt refinement.",
   "keywords": [
     "context engineering",

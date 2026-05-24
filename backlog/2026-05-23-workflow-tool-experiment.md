@@ -1,6 +1,6 @@
 # Workflow Tool Experiment — Handover
 
-> **PATH RENAME 2026-05-23**: `ylo-experiment/runs/b65-workflow-tool/` was moved to `anthropic-workflow-experiment/runs/b65/`. Wherever this file references the old path, mentally substitute the new one. See `backlog/2026-05-25-workflow-tool-run-and-compare.md` for the active handover.
+> **PATH RENAME 2026-05-23**: `experiments/ylo/blackboard/runs/b65-workflow-tool/` was moved to `experiments/ylo/workflow-tool/runs/b65/`. Wherever this file references the old path, mentally substitute the new one. See `backlog/2026-05-25-workflow-tool-run-and-compare.md` for the active handover.
 
 **Date**: 2026-05-23
 **Author**: Brain session (PO side), to be picked up by a fresh Claude Code session in `~/dev/ad/apps/dark-factory/`
@@ -11,7 +11,7 @@
 
 ## TL;DR for the new session
 
-Open a session in this repo. Set `CLAUDE_CODE_WORKFLOWS=1`. Verify the new native **Workflow Tool** primitive works on this machine. Build one workflow (`title-gen.workflow.js`) that replicates **YLO probe #2** behaviour using the native primitive instead of our bash+jq blackboard conductor. Wire it into the existing EAV store at `ylo-experiment/runs/b65/store.jsonl` via `remember()` / `recall()` helpers defined inline. Compare cost, complexity, resumability, and audit-trail against the existing blackboard implementation. Write a comparison report. Do not delete the existing blackboard conductor or store — both must keep working.
+Open a session in this repo. Set `CLAUDE_CODE_WORKFLOWS=1`. Verify the new native **Workflow Tool** primitive works on this machine. Build one workflow (`title-gen.workflow.js`) that replicates **YLO probe #2** behaviour using the native primitive instead of our bash+jq blackboard conductor. Wire it into the existing EAV store at `experiments/ylo/blackboard/runs/b65/store.jsonl` via `remember()` / `recall()` helpers defined inline. Compare cost, complexity, resumability, and audit-trail against the existing blackboard implementation. Write a comparison report. Do not delete the existing blackboard conductor or store — both must keep working.
 
 ---
 
@@ -32,8 +32,8 @@ Before we make that decision, we need to actually use the native tool against a 
   - `.claude/skills/conductor/` — orchestrator role spec (declarative — Claude reads SKILL.md and walks the loop)
   - `.claude/skills/store/` — bash `remember` / `recall` / `project` over JSONL
   - `.claude/skills/image-gen/` — kie.ai async polling wrapper
-- **Workflows declared and tested**: at `ylo-experiment/workflow*.json`
-- **Test asset**: `ylo-experiment/runs/b65/` (b65 = Guy Monroe Marketing Plan, full transcript + bulk-analysis outputs + titles + thumbnails)
+- **Workflows declared and tested**: at `experiments/ylo/blackboard/workflow*.json`
+- **Test asset**: `experiments/ylo/blackboard/runs/b65/` (b65 = Guy Monroe Marketing Plan, full transcript + bulk-analysis outputs + titles + thumbnails)
 - **Probes that passed**: 4 (see plans at `~/dev/ad/brains/plans/plan-ylo-blackboard-*.md`)
   - #1 bulk content analysis (12-parallel)
   - #2 title generation with scripted critique fixture
@@ -102,7 +102,7 @@ If this works, the substrate is operational on this machine. If it fails, the fa
 
 ### Step 3 — Build `title-gen.workflow.js` (the real probe)
 
-Replicate YLO probe #2 (title generation + scripted critique + refinement) as a native workflow. Wire it into the EAV store at `ylo-experiment/runs/b65/store.jsonl` so the audit trail is preserved.
+Replicate YLO probe #2 (title generation + scripted critique + refinement) as a native workflow. Wire it into the EAV store at `experiments/ylo/blackboard/runs/b65/store.jsonl` so the audit trail is preserved.
 
 #### Skeleton
 
@@ -120,7 +120,7 @@ if (!A.transcript || !A.storePath || !A.critiqueFixturePath) {
 }
 
 // === EAV STORE HELPERS — inline because no imports ===
-// Format matches existing ylo-experiment store.jsonl:
+// Format matches existing experiments/ylo/blackboard store.jsonl:
 //   { key, group?, index?, value, meta: { step, ts, attempt, source } }
 
 async function remember(key, value, meta = {}) {
@@ -199,8 +199,8 @@ return {
 ```json
 {
   "transcript": "<concat of runs/b65/transcript.txt>",
-  "storePath": "/Users/davidcruwys/dev/ad/apps/dark-factory/ylo-experiment/runs/b65-workflow-tool/store.jsonl",
-  "critiqueFixturePath": "/Users/davidcruwys/dev/ad/apps/dark-factory/ylo-experiment/runs/b65/critique-fixture.txt"
+  "storePath": "/Users/davidcruwys/dev/ad/apps/dark-factory/experiments/ylo/blackboard/runs/b65-workflow-tool/store.jsonl",
+  "critiqueFixturePath": "/Users/davidcruwys/dev/ad/apps/dark-factory/experiments/ylo/blackboard/runs/b65/critique-fixture.txt"
 }
 ```
 
@@ -208,7 +208,7 @@ Note: use `runs/b65-workflow-tool/` (a NEW directory) so the experiment doesn't 
 
 ### Step 4 — Compare and report
 
-After the run, write `~/dev/ad/apps/dark-factory/ylo-experiment/runs/b65-workflow-tool/comparison.md` covering:
+After the run, write `~/dev/ad/apps/dark-factory/experiments/ylo/blackboard/runs/b65-workflow-tool/comparison.md` covering:
 
 | Dimension | Blackboard (existing) | Workflow Tool (this run) | Notes |
 |-----------|----------------------|--------------------------|-------|
@@ -257,7 +257,7 @@ The big question: **does the orchestrator JS variable (`gen.titles` etc.) consti
 ## What NOT to do in this experiment
 
 - Don't delete the existing `.claude/skills/{conductor,store,image-gen}/` — they keep working
-- Don't write to `ylo-experiment/runs/b65/` — make a new sibling directory
+- Don't write to `experiments/ylo/blackboard/runs/b65/` — make a new sibling directory
 - Don't write to `~/dev/ad/brains/` from this session unless you specifically need to (it's a separate repo with its own discipline)
 - Don't attempt human-gated workflows under the new tool yet — that's a later probe once the substrate is proven
 - Don't migrate the bash+jq conductor unless this experiment provides strong evidence it should be retired
@@ -290,7 +290,7 @@ If the new session hits unknowns or surprises during the experiment, log them at
 
 ---
 
-**End of handover.** Once this experiment is complete, write the comparison report at `~/dev/ad/apps/dark-factory/ylo-experiment/runs/b65-workflow-tool/comparison.md` and create a follow-on backlog item with the recommendation.
+**End of handover.** Once this experiment is complete, write the comparison report at `~/dev/ad/apps/dark-factory/experiments/ylo/blackboard/runs/b65-workflow-tool/comparison.md` and create a follow-on backlog item with the recommendation.
 
 ---
 
@@ -301,8 +301,8 @@ If the new session hits unknowns or surprises during the experiment, log them at
 What was done:
 - Verified `claude --version` = 2.1.149 (≥ 2.1.147 ✓), `CLAUDE_CODE_WORKFLOWS=1` set in session env, gate logic in binary confirms `env var + tengu_workflows_enabled flag → enabled`.
 - Wrote `.claude/workflows/hello.workflow.js` (smoke test) and `.claude/workflows/title-gen.workflow.js` (the real probe, 144 lines, with inline `remember`/`recall`/`loadFile` helpers; format wire-compatible with existing `store.jsonl`).
-- Staged `ylo-experiment/runs/b65-workflow-tool/` with transcript, critique fixture, empty store.
-- Wrote `ylo-experiment/runs/b65-workflow-tool/comparison.md` with empirical findings and unfilled comparison cells.
+- Staged `experiments/ylo/blackboard/runs/b65-workflow-tool/` with transcript, critique fixture, empty store.
+- Wrote `experiments/ylo/blackboard/runs/b65-workflow-tool/comparison.md` with empirical findings and unfilled comparison cells.
 
 Blocker:
 - The `Workflow` tool **did not surface** in this session's tool list (verified via `ToolSearch select:Workflow` and full deferred-tool scan). Binary string inspection shows the invocation shape is `Workflow({name, args})`. Hypothesis: lazy registration — workflow files must exist at session boot. Empirically untested mid-session.

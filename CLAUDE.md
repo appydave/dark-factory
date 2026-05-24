@@ -47,6 +47,8 @@ This repo is operated PO ↔ Developer style:
 | Refresh mochaccino data | `mochaccino/data/<shape>.json` |
 | Re-render mochaccino HTML | `mochaccino/designs/<id>/index.html` |
 | Add a work item | `backlog/<date>-<slug>.md` (usually PO writes these, but you can add findings) |
+| YLO blackboard experiment runs | `experiments/ylo/blackboard/runs/<id>/` |
+| YLO Workflow Tool experiment runs | `experiments/ylo/workflow-tool/runs/<id>/` |
 
 ## What lives where (compat shims)
 

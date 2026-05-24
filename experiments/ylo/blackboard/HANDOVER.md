@@ -16,7 +16,7 @@ We've built a **bash + jq + curl** implementation of the **blackboard workflow p
 - coordinating via a **durable EAV store** (JSONL append-only) — the single source of truth
 - supporting **human-in-the-loop gates** without poisoning the orchestrator's context
 
-Four probes have run. Each tested a different dimension. The pattern works. All four probes' outputs live in `ylo-experiment/runs/`.
+Four probes have run. Each tested a different dimension. The pattern works. All four probes' outputs live in `experiments/ylo/blackboard/runs/`.
 
 ---
 
@@ -76,7 +76,7 @@ Step types: `transform` (LLM step), `checkpoint` (human-gated), `action` (side e
 
 ### 2.4 — Write the prompt template(s)
 
-`ylo-experiment/prompts/<name>.hbs` — plain text with `{{placeholder}}` markers for store keys the worker needs. Example:
+`experiments/ylo/blackboard/prompts/<name>.hbs` — plain text with `{{placeholder}}` markers for store keys the worker needs. Example:
 
 ```
 Analyse this transcript and extract X.
@@ -334,16 +334,16 @@ Listed by priority. None are blockers; all are visible.
 
 ### The workflows
 ```
-ylo-experiment/
-├── workflow-01-analysis.json                  ← probe #1: bulk content analysis
-├── workflow-02-titles.json           ← probe #2: scripted refinement
-├── workflow-03-titles-human.json     ← probe #3: real human gate
-└── workflow-04-thumbnails.json       ← probe #4: kie.ai thumbnails
+experiments/ylo/blackboard/
+├── workflow-01-analysis.json      ← probe #1: bulk content analysis
+├── workflow-02-titles.json        ← probe #2: scripted refinement
+├── workflow-03-titles-human.json  ← probe #3: real human gate
+└── workflow-04-thumbnails.json    ← probe #4: kie.ai thumbnails
 ```
 
 ### The prompts (15 .hbs + 1 .json)
 ```
-ylo-experiment/prompts/
+experiments/ylo/blackboard/prompts/
 ├── analyze-*.hbs                  ← 12 files, probe #1, verbatim AWB Gen 3
 ├── generate-title.hbs             ← probe #2, verbatim AWB Gen 3
 ├── generate-title.json            ← schema for above
@@ -352,7 +352,7 @@ ylo-experiment/prompts/
 
 ### The runs
 ```
-ylo-experiment/runs/
+experiments/ylo/blackboard/runs/
 ├── b65/                           ← probes #1, #2, #4 share this store
 │   ├── transcript.txt
 │   ├── store.jsonl                ← 33 records (all probes combined, audit history preserved)
@@ -381,7 +381,7 @@ ylo-experiment/runs/
 
 ### Documentation
 ```
-ylo-experiment/
+experiments/ylo/blackboard/
 ├── README.md                      ← brief intro, points to HANDOVER
 └── HANDOVER.md                    ← this document (canonical)
 

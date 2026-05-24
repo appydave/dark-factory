@@ -1,7 +1,7 @@
 # Workflow Tool vs Blackboard — Empirical Comparison
 
 **Date**: 2026-05-25
-**Run dir**: `anthropic-workflow-experiment/runs/b65/`
+**Run dir**: `experiments/ylo/workflow-tool/runs/b65/`
 **Backlog item**: `backlog/2026-05-25-workflow-tool-run-and-compare.md`
 **Status**: ✅ complete — recommendation committed
 
