@@ -215,22 +215,28 @@ Most likely failure modes and what they tell us:
 
 ## Status
 
-(Update this section after running the spikes.)
+**Run date**: 2026-05-24 · Claude Code v2.1.150 · Session: `df-3-spike-execution`
 
 ### Spike 1 results
-- [ ] 1a — Programmatic invocation: ___
-- [ ] 1b — Slash command: ___
-- [ ] 1c — Agent-invoked: ___
+- ✅ 1a — Programmatic invocation: `{ greeting: "Hello Spike1a, ready to run your experiment." }` — args parsed, 1 agent, ~5s
+- ✅ 1b — Slash command (R13): `{ greeting: "Hello Spike1b, ready to run some experiments in the dark factory." }` — JSON args landed cleanly as parsed object, not raw string
+- ✅ 1c — Agent-invoked (R14): `"Hello, Spike1c!"` — spawned agent called Workflow tool successfully
 
 ### Spike 2 results
-- [ ] MCP server connects: ___
-- [ ] Producer can call mcp__blackboard__bb_set: ___
-- [ ] Consumer can call mcp__blackboard__bb_get: ___
-- [ ] Round-trip data integrity: ___
-- [ ] R11 verdict: ___
-- [ ] R12 verdict: ___
+- ✅ MCP server connects: confirmed via `/mcp` at session start
+- ✅ Producer can call mcp__blackboard__bb_set: wrote key `hello-blackboard.spike2-first.titles` with 3 titles
+- ✅ Consumer can call mcp__blackboard__bb_get: read back all 3 titles, count=3, generatedBy="produce-agent"
+- ✅ Round-trip data integrity: `count === 3`, `generatedBy` matched, `bbKey` matched — verify phase returned `ok: true`
+- ✅ R11 verdict: **VERIFIED** — workflow VM never held title payload; only the key crossed the VM boundary
+- ✅ R12 verdict: **VERIFIED** — workflow subagents can call MCP tools; both bb_set and bb_get worked
+
+**Persisted store confirmed**: `~/.claude/blackboard/store.json` contained the correct key and 3 titles after run.
+
+**Performance**: 2 agents, ~23s, 40k tokens, 6 tool uses. Subjectively invisible MCP latency.
 
 ### Findings to fold back
-- (Things to add to `docs/workflow-tool-authoring-notes.md` Part 4 once verified)
-- (New gotchas discovered)
-- (Whether the MCP overhead is genuinely lower than `remember()` overhead — measure both)
+- `DISABLE_GROWTHBOOK=1` is required alongside `CLAUDE_CODE_WORKFLOWS=1` — without it, GrowthBook remote flag evaluation blocks the Workflow tool for accounts not in Anthropic's rollout cohort. Users who report it working without this flag are likely on a plan tier already in the rollout.
+- R13: slash command JSON args parse cleanly as an object (not a raw string). Penny can offer one-liner slash commands with structured args — no programmatic wrapper needed.
+- R14: spawned agents inherit the Workflow tool. Penny/Alex/Oscar can actually *run* workflows, not just recommend them. Gates the full persona architecture.
+- R12: the biggest open question is now answered. Architecture § 5.5 (MCP Blackboard) is a working pattern, not aspirational. The v2 architecture stands.
+- Next: Phase B — build `prepare-ingestion-brief.workflow.js` and `ingest.workflow.js` per `docs/architecture.md` §12.
