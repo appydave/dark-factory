@@ -1,8 +1,8 @@
 # Dark Factory Catalog
 
-**Purpose**: Cross-repo catalog of skills/agents/workflows/commands across the 13-repo agentic-factory cluster. End goal — a **composable set of single-responsibility skills** that solve legitimate dark-factory problems, follow a consistent pattern, and can compose into workflows / topologies. Number emerges from the work, not as a target.
+**Purpose**: Cross-repo catalog of skills/agents/workflows/commands across the 14-repo agentic-factory cluster. End goal — a **composable set of single-responsibility skills** that solve legitimate dark-factory problems, follow a consistent pattern, and can compose into workflows / topologies. Number emerges from the work, not as a target.
 
-**Phase**: recon ✓ → discover ✓ (1,100 artifacts) → distill `orchestration` ✓ (9) → distill `code-review` ✓ (6) → **2 skills built** (`pr-lifecycle` new, `ralphy` upgraded) → **template improvements applied** (schema 0.0.6) → distill `workflow-architecture` ✓ (6, 2026-05-17). **Next**: 12 remaining clusters OR build more drafts.
+**Phase**: recon ✓ → discover ✓ (1,100 artifacts) → distill `orchestration` ✓ (9) → distill `code-review` ✓ (6) → **2 skills built** (`pr-lifecycle` new, `ralphy` upgraded) → **template improvements applied** (schema 0.0.6) → distill `workflow-architecture` ✓ (6, 2026-05-17) → **repo #14 added** (`matt-pocock-skills`, recon 2026-05-23, ~18 artifacts). **Next**: discover run for repo #14 OR continue distilling remaining clusters.
 **Maintainer**: David Cruwys
 **Skill logic**: `~/dev/ad/appydave-plugins/appydave/skills/dark-factory-catalog/`
 
@@ -30,6 +30,7 @@
 ## Current status
 
 - **2026-05-16** — Bootstrap → Phase 1 recon 13/13 → schema 0.0.2 → 0.0.3 → Phase 2 discover 13/13 ✓ → schema 0.0.4. **Corpus: 1,100 artifacts (691 skills / 224 commands / 185 agents), 100% JSON-valid.** Awaiting David's review of cluster-vocabulary additions before tag/evaluate/distill.
+- **2026-05-23** — Repo #14 added: `matt-pocock-skills` (mattpocock/skills, ~97K stars). Remote-only recon complete. ~18 discoverable artifacts (14 promoted + 4 misc). New prompt patterns surfaced: `vocabulary-only-context`, `grill-first-alignment`, `feedback-loop-first`, `token-compression-mode`. Discover run pending.
 
 **→ For *meaning* — what each cluster/pattern is, where it concentrates, signature examples, and why each one is worth mining — read [phase-2-synthesis.md](./phase-2-synthesis.md).**
 
@@ -51,6 +52,7 @@
 | superpowers | 14 | densest prompt-pattern coverage in corpus |
 | compound-knowledge | 11 | 6 skills + 5 agents |
 | poem | 2 | Penny + Alex only |
+| matt-pocock-skills | ~18 | 14 promoted skills + 4 misc; discover run pending |
 
 **By cluster** (top 10):
 | Cluster | Count |
@@ -150,3 +152,4 @@
 | 11 | Spec Kit | `spec-kit` | `recon/spec-kit.md` |
 | 12 | GSD | `gsd` | `recon/gsd.md` |
 | 13 | POEM (Penny + Alec only) | `poem` | `recon/poem.md` |
+| 14 | Matt Pocock Skills | `matt-pocock-skills` | `recon/matt-pocock-skills.md` |
