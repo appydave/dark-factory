@@ -262,9 +262,19 @@ Key additions vs. naive version: `model: "haiku"` (cheap/fast for I/O), explicit
 
 ## Part 4 — Primitives we didn't know about
 
-Discovered from Ray Amjad's introduction video and the workflow-creator skill (cloned at `/tmp/dark-factory-upstream/claude-code-workflow-creator/`). These are first-class workflow primitives.
+Discovered from Ray Amjad's introduction video and the workflow-creator skill (now at `/Users/davidcruwys/dev/upstream/repos/claude-code-workflow-creator/`). These are first-class workflow primitives.
 
-### P1 — `budget` (token-aware loop control)
+### Verification status legend
+
+Used throughout the rest of this document. Trust accordingly.
+
+- **[tested]** — we ran it in a workflow this project and observed the behaviour
+- **[docs-only]** — described in the workflow-creator api-reference.md or patterns.md but not yet verified by us
+- **[inferred]** — extrapolated from related behaviour or third-party sources (the video). Lowest trust.
+
+When you write code based on a primitive, check the tag. `[inferred]` items deserve a 5-min spike before being depended on.
+
+### P1 — `budget` (token-aware loop control) **[docs-only]**
 
 The workflow VM exposes a `budget` object with `budget.remaining()`. Use it to make loops self-terminating when token usage hits a cap.
 
@@ -281,7 +291,7 @@ The run scales itself to the budget you gave it — no fixed agent count, no man
 
 **Caveat**: still pair with a hard `MAX_ROUNDS` cap as a safety net. Budget can be wrong if a single agent spikes.
 
-### P2 — Pipeline streaming (not batched)
+### P2 — Pipeline streaming (not batched) **[docs-only + video-shown]**
 
 `pipeline()` is not "do all of stage 1, then all of stage 2." It's truly streaming: as soon as item 0 finishes stage 1, item 0 enters stage 2 — while items 1..N are still in stage 1. This means a fan-out workflow gets natural pipeline parallelism for free.
 
@@ -297,9 +307,9 @@ For 8 leads with research averaging 30s and write averaging 20s, naive batching 
 
 Implication for our workflows: any time you have a multi-stage per-item operation, reach for `pipeline()` not `parallel()` + sequential.
 
-### P3 — Automatic agent retry (3×)
+### P3 — Automatic agent retry **[docs-only — 5×, not 3×]**
 
-The Workflow Tool automatically retries failed `agent()` calls up to 3 times. Confirmed in the video: "Claude code will retry each sub agent up to three times if it does fail."
+The Workflow Tool automatically retries failed `agent()` calls — per the workflow-creator's api-reference, **5×** for stall timeouts. The video said 3×; the docs say 5×. Trust the docs.
 
 What this means:
 - You don't need a try/catch wrapper for transient failures
@@ -478,6 +488,10 @@ For dark-factory: most of our planned automation (ingestion, evaluation, upstrea
 | R8 | `budget` API — is it the input budget or remaining-tokens of the run? Where's the cap defined? | High — needed for budget-driven loops |
 | R9 | What happens to `parallel()` retries when one item fails 3×? Whole batch fails, or one item returns null? | Medium |
 | R10 | Does the workflow-creator's `scripts/validate-workflow.mjs` linter catch our C1-C5 issues? | High — adopt as pre-run check |
+| R11 | MCP Blackboard pattern — does an MCP server-backed KV blackboard eliminate `remember()` overhead in practice? | **High — gates the v2 architecture upgrade** |
+| R12 | Can workflow subagents call MCP tools at all? (R11 depends on this) | **High — answers via Spike 2 (hello-blackboard)** |
+| R13 | Slash-command args (`/foo {json}`) — does the JSON string land cleanly in `args`? | Medium — answers via Spike 1 (hello-world) |
+| R14 | Agent-invoked workflow — can an agent's tool call `Workflow({name, args})` fire and return a result? | Medium — answers via Spike 1 (hello-world) — gates Penny/Alex/Oscar |
 
 ---
 

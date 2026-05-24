@@ -201,6 +201,82 @@ No human in the loop for the routine case. Human only intervenes to approve new 
 
 ---
 
+## 5.5 — Optional capability: MCP Blackboard pattern
+
+**Status**: opt-in capability, not v1-required. Build when a workflow needs cross-machine state sharing or wants to eliminate dedicated I/O agents.
+
+### The problem this solves
+
+The default `remember()` / `recall()` pattern uses dedicated subagents whose only job is to read or write the JSONL store. Each costs a full ~10s spawn for what should be a 100ms file operation. For workflows with many store operations, this dominates wall-clock time (see comparison.md — probe #2 spent the majority of its 284s wall-clock on store I/O).
+
+The architectural mismatch is using a heavyweight primitive (agent spawn) for a lightweight operation (file append).
+
+### The MCP Blackboard pattern
+
+Bundle the I/O into agents that already exist for real work. The workflow VM holds only a blackboard ID; agents read/write data via an MCP tool.
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│ Workflow VM (JS variables)                                       │
+│   const bbId = "ylo-run-2026-05-25-b65"                          │
+│                                                                   │
+│   Agent A (generates titles)                                     │
+│     prompt: "...write 10 titles to blackboard ${bbId}.titles"    │
+│     internally: mcp__bb__set("ylo-run-...titles", [...])         │
+│     returns: { ok: true } — small payload, no titles to VM       │
+│                                                                   │
+│   Agent B (consumes titles)                                      │
+│     prompt: "...read titles from blackboard ${bbId}.titles"      │
+│     internally: mcp__bb__get("ylo-run-...titles") → [...]        │
+│     returns: { thumbnails: [...] } — small payload               │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼ (HTTP over Tailscale)
+┌─────────────────────────────────────────────────────────────────┐
+│ MCP Blackboard Server (on M4 Pro or local)                       │
+│   Tools: bb_set, bb_get, bb_list, bb_delete                      │
+│   Storage: file-backed KV (single JSON file is fine for v1)      │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### What it costs and what it earns
+
+| Vs. `remember()` agents | MCP Blackboard pattern |
+|------------------------|------------------------|
+| Each store op = full agent spawn (~10s) | Op bundled into existing work agents (~200ms added) |
+| State in workflow's `store.jsonl` | State in shared MCP store, accessible from any machine |
+| Per-run isolation by default | Cross-run / cross-workflow / cross-machine sharing by default |
+| Schema enforcement scattered across workflows | Schema lives in MCP server |
+| Telemetry from store projections | Telemetry from same MCP store |
+
+**Real cost**: building and maintaining the MCP server. ~80 lines of Node.js for the minimal version (set/get/list/delete + file-backed JSON). The complexity is operational, not architectural.
+
+### Resume semantics
+
+The journal caches agent return values, including the blackboard ID. On resume:
+- Cached agents return their cached values (which include the blackboard ID)
+- The blackboard data is still in the MCP server from the original run
+- Downstream agents read the same ID, get the same data
+- No duplicate writes, no lost data
+
+**Edge case**: agent crashed mid-write (wrote to blackboard but didn't return). Handle with idempotent writes — use a deterministic blackboard ID derived from the workflow run ID + step label, with write-if-not-exists semantics.
+
+### When to adopt
+
+Build the MCP blackboard when you hit one of these:
+- A workflow has > 10 `remember()` / `recall()` calls and feels slow
+- Multiple workflows need to share state (the YLO pipeline reads upstream pulse data)
+- The factory expands to two machines and shared state crosses the boundary
+- Telemetry projections want a single source of truth instead of merging N JSONL files
+
+Don't build it just because it's elegant. v1 with minimized `remember()` is genuinely fine for small workflows.
+
+### Spike status
+
+A minimal MCP server + `hello-blackboard.workflow.js` spike validates the pattern. See backlog item `2026-05-25-spike-blackboard-mcp.md`. Until that spike confirms R11 and R12 (can workflow subagents call MCP tools at all?), this section describes an intended capability, not a verified one.
+
+---
+
 ## 6 — The conversational layer: Penny, Alex, Oscar
 
 Dark Factory has infrastructure but needs a human interface. The three POEM personas fit naturally:
