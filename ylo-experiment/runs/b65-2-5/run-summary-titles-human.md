@@ -2,7 +2,7 @@
 
 **Video**: b65 — Guy Monroe AI Marketing Plan
 **Run date**: 2026-05-20
-**Workflow**: `workflow-titles-human.json` (title-generation-refinement-human v1.0.0)
+**Workflow**: `workflow-03-titles-human.json` (title-generation-refinement-human v1.0.0)
 **Elapsed**: ~1h 30m wall-clock (most spent at the human gate awaiting critique)
 **Critique source**: `human-stdin` (typed in main session)
 **Critique length**: 56 bytes

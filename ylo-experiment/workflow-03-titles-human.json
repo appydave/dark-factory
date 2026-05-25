@@ -2,7 +2,7 @@
   "id": "title-generation-refinement-human",
   "name": "Title Generation + Human-Gated Refinement",
   "version": "1.0.0",
-  "description": "Same 3-step shape as workflow-titles.json but apply-critique is a real human gate. Generate 10 titles, render to user, await typed critique, refine into attempt:2 + selectedTitles. Tests the orchestrator-hosts-conversation path (blackboard §6 opt-in human-in-the-loop).",
+  "description": "Same 3-step shape as workflow-02-titles.json but apply-critique is a real human gate. Generate 10 titles, render to user, await typed critique, refine into attempt:2 + selectedTitles. Tests the orchestrator-hosts-conversation path (blackboard §6 opt-in human-in-the-loop).",
   "models": {
     "quick": "claude-haiku-4-5",
     "analysis": "claude-sonnet-4-6"

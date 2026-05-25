@@ -8,10 +8,10 @@ Bash + jq + curl implementation of the **blackboard workflow pattern** (per `~/d
 
 | # | Workflow file | Tested |
 |---|---------------|--------|
-| 1 | `workflow.json` | Parallel fan-out — 12 subagents extract content-analysis fields |
-| 2 | `workflow-titles.json` | Scripted refinement + `outputKeyMap` key rename |
-| 3 | `workflow-titles-human.json` | Real human-in-the-loop gate (typed critique) |
-| 4 | `workflow-thumbnails.json` | Async kie.ai API + binary artifacts + title-thumbnail pairing |
+| 1 | `workflow-01-analysis.json` | Parallel fan-out — 12 subagents extract content-analysis fields |
+| 2 | `workflow-02-titles.json` | Scripted refinement + `outputKeyMap` key rename |
+| 3 | `workflow-03-titles-human.json` | Real human-in-the-loop gate (typed critique) |
+| 4 | `workflow-04-thumbnails.json` | Async kie.ai API + binary artifacts + title-thumbnail pairing |
 
 All four passed acceptance criteria. Isolation discipline held in every run — orchestrator never ingested step payloads.
 

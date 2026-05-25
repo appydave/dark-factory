@@ -2,7 +2,7 @@
 
 **Video**: b65 — Guy Monroe AI Marketing Plan
 **Run date**: 2026-05-21
-**Workflow**: `workflow-thumbnails.json` v1.0.0
+**Workflow**: `workflow-04-thumbnails.json` v1.0.0
 **Selection**: fixture `selection-fixture.json` → `[0, 2, 4]` (visual gate deferred to probe #5)
 
 ---

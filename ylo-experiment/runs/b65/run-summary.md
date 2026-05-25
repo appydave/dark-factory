@@ -2,7 +2,7 @@
 
 **Video**: b65 — Guy Monroe Marketing Plan
 **Run date**: 2026-05-20
-**Workflow**: `workflow.json` (bulk-content-analysis v1.0.0)
+**Workflow**: `workflow-01-analysis.json` (bulk-content-analysis v1.0.0)
 **Elapsed**: ~37 seconds (12 parallel subagents)
 
 ## 12 keys populated

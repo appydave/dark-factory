@@ -2,7 +2,7 @@
 
 **Video**: b65 — Guy Monroe Marketing Plan
 **Run date**: 2026-05-20
-**Workflow**: `workflow-titles.json` (title-generation-refinement v1.0.0)
+**Workflow**: `workflow-02-titles.json` (title-generation-refinement v1.0.0)
 **Elapsed**: ~56 seconds (2 subagents + 1 conductor-writes checkpoint)
 **Critique fixture**: `runs/b65/critique-fixture.txt`
 **Attempt count**: 2 (attempt:1 = initial generation, attempt:2 = critique-driven refinement)

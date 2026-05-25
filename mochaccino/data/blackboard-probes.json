@@ -64,7 +64,7 @@
       "title": "Bulk Content Analysis",
       "tested": "Parallel fan-out — 12 subagents extract distinct content-analysis fields concurrently",
       "tagline": "Can the conductor stay clean under 12-way parallel writes?",
-      "workflow_file": "ylo-experiment/workflow.json",
+      "workflow_file": "ylo-experiment/workflow-01-analysis.json",
       "outputs_dir": "ylo-experiment/runs/b65/",
       "steps_count": 12,
       "step_type": "all transform, all parallel",
@@ -83,7 +83,7 @@
       "title": "Title Generation + Scripted Refinement",
       "tested": "Sequential refinement loop with fixture-based critique + outputKeyMap key rename",
       "tagline": "Does the refinement loop preserve attempt history while keeping orchestrator clean?",
-      "workflow_file": "ylo-experiment/workflow-titles.json",
+      "workflow_file": "ylo-experiment/workflow-02-titles.json",
       "outputs_dir": "ylo-experiment/runs/b65/",
       "steps_count": 3,
       "step_type": "transform → checkpoint (conductor-writes from fixture) → transform with outputKeyMap",
@@ -103,7 +103,7 @@
       "title": "Real Human-Gated Refinement",
       "tested": "Live human-in-the-loop critique via stdin — both accept-path and refine-path branches",
       "tagline": "Can the orchestrator host an interactive conversation without polluting the store-fed workers?",
-      "workflow_file": "ylo-experiment/workflow-titles-human.json",
+      "workflow_file": "ylo-experiment/workflow-03-titles-human.json",
       "outputs_dir": "ylo-experiment/runs/b65-2-5/",
       "steps_count": 3,
       "step_type": "transform → checkpoint (humanGate human-stdin) → transform with outputKeyMap",
@@ -123,7 +123,7 @@
       "title": "kie.ai Thumbnails with Title Pairing",
       "tested": "Async external API + binary artifacts + multi-stage flow + title-thumbnail pairing invariant",
       "tagline": "Does the isolation hold for binary outputs from a long-running external API?",
-      "workflow_file": "ylo-experiment/workflow-thumbnails.json",
+      "workflow_file": "ylo-experiment/workflow-04-thumbnails.json",
       "outputs_dir": "ylo-experiment/runs/b65/thumbs/",
       "steps_count": 5,
       "step_type": "transform → 6× transform parallel (kie.ai) → checkpoint (fixture) → 3× transform parallel (kie.ai 2K) → action",
@@ -173,7 +173,7 @@
   "open_loops": [
     {
       "priority": "high",
-      "issue": "flux-schnell is a phantom model — referenced in image-gen skill + workflow-thumbnails.json but kie.ai rejects it",
+      "issue": "flux-schnell is a phantom model — referenced in image-gen skill + workflow-04-thumbnails.json but kie.ai rejects it",
       "fix": "Update both files to flux-2/pro-text-to-image (verified working)"
     },
     {

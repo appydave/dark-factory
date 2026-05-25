@@ -107,10 +107,10 @@ Each probe added one new dimension to the pattern.
 
 | # | Workflow file | Tested | Outputs | Result |
 |---|---------------|--------|---------|--------|
-| 1 | `workflow.json` | **Parallel fan-out** — 12 subagents extracting content-analysis fields | `runs/b65/store.jsonl` (12 keys) | 16/16 ACs |
-| 2 | `workflow-titles.json` | **Scripted refinement loop** — generate → fixture critique → refine, plus `outputKeyMap` key rename | adds generatedTitles attempt:1+2, titleCritiqueLog, selectedTitles | 21/21 ACs |
-| 3 | `workflow-titles-human.json` | **Real human-in-the-loop gate** — generate → render to user → parse typed critique → refine; both accept-path and refine-path | `runs/b65-2-5/store.jsonl` (separate store to keep isolated) | 21/21 ACs |
-| 4 | `workflow-thumbnails.json` | **Async external API + binary artifacts + title-thumbnail pairing** — kie.ai polling, JPGs to disk, paths in store | `runs/b65/thumbs/` (6 exp + 3 final), 15 new store records | 20/22 ACs (2 annotated) |
+| 1 | `workflow-01-analysis.json` | **Parallel fan-out** — 12 subagents extracting content-analysis fields | `runs/b65/store.jsonl` (12 keys) | 16/16 ACs |
+| 2 | `workflow-02-titles.json` | **Scripted refinement loop** — generate → fixture critique → refine, plus `outputKeyMap` key rename | adds generatedTitles attempt:1+2, titleCritiqueLog, selectedTitles | 21/21 ACs |
+| 3 | `workflow-03-titles-human.json` | **Real human-in-the-loop gate** — generate → render to user → parse typed critique → refine; both accept-path and refine-path | `runs/b65-2-5/store.jsonl` (separate store to keep isolated) | 21/21 ACs |
+| 4 | `workflow-04-thumbnails.json` | **Async external API + binary artifacts + title-thumbnail pairing** — kie.ai polling, JPGs to disk, paths in store | `runs/b65/thumbs/` (6 exp + 3 final), 15 new store records | 20/22 ACs (2 annotated) |
 
 **The load-bearing claim — proven 4 times**: the orchestrator never ingests step payloads (transcript text, extracted values, titles, critique text, image bytes, kie.ai response bodies). The conductor logs are clean; the store holds the truth.
 
@@ -280,10 +280,10 @@ What does this workflow need that the four probes haven't already proven? (Or ar
 
 ### 8.3 — Author `workflow-<name>.json`
 Use the existing files as templates:
-- `workflow.json` — pure parallel fan-out
-- `workflow-titles.json` — sequential with scripted refinement + `outputKeyMap`
-- `workflow-titles-human.json` — sequential with real human gate
-- `workflow-thumbnails.json` — multi-phase (LLM → image → fixture select → image) with title pairing invariant
+- `workflow-01-analysis.json` — pure parallel fan-out
+- `workflow-02-titles.json` — sequential with scripted refinement + `outputKeyMap`
+- `workflow-03-titles-human.json` — sequential with real human gate
+- `workflow-04-thumbnails.json` — multi-phase (LLM → image → fixture select → image) with title pairing invariant
 
 ### 8.4 — Author `.hbs` prompts
 One per transform step. Use `{{placeholder}}` for store keys. Spell out exactly what JSON shape the worker should return — workers are LLMs and won't guess.
@@ -302,7 +302,7 @@ Listed by priority. None are blockers; all are visible.
 
 ### High — needs decision
 
-1. **`flux-schnell` is a phantom model.** Plan and `image-gen/SKILL.md` reference it. kie.ai's API rejects it. Probe #4 fell back to `flux-2/pro-text-to-image`. Action: update `image-gen/SKILL.md` and `workflow-thumbnails.json` to a verified model slug. See `runs/b65/kie-models-research.md` for alternatives.
+1. **`flux-schnell` is a phantom model.** Plan and `image-gen/SKILL.md` reference it. kie.ai's API rejects it. Probe #4 fell back to `flux-2/pro-text-to-image`. Action: update `image-gen/SKILL.md` and `workflow-04-thumbnails.json` to a verified model slug. See `runs/b65/kie-models-research.md` for alternatives.
 
 2. **First-pass exploration records in probe #4 carry inaccurate `model:"flux-schnell"`** when they actually used different models. The records exist in `runs/b65/store.jsonl` at indices 2, 5. Honesty issue, not functional. Could be corrected by appending new EAV records with the truth.
 
@@ -335,10 +335,10 @@ Listed by priority. None are blockers; all are visible.
 ### The workflows
 ```
 ylo-experiment/
-├── workflow.json                  ← probe #1: bulk content analysis
-├── workflow-titles.json           ← probe #2: scripted refinement
-├── workflow-titles-human.json     ← probe #3: real human gate
-└── workflow-thumbnails.json       ← probe #4: kie.ai thumbnails
+├── workflow-01-analysis.json                  ← probe #1: bulk content analysis
+├── workflow-02-titles.json           ← probe #2: scripted refinement
+├── workflow-03-titles-human.json     ← probe #3: real human gate
+└── workflow-04-thumbnails.json       ← probe #4: kie.ai thumbnails
 ```
 
 ### The prompts (15 .hbs + 1 .json)
