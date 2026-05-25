@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../components/copykit.css">
 <style>
   :root {
     --brand-brown: #342d2d;
@@ -334,7 +335,7 @@
     </div>
 
     <div class="probe-files">
-      <span class="label">workflow:</span> ylo-experiment/workflow.json
+      <span class="label">workflow:</span> ylo-experiment/workflow-01-analysis.json
       <br><span class="label">outputs:</span> runs/b65/store.jsonl · run-summary.md · conductor-session.log
     </div>
   </div>
@@ -380,7 +381,7 @@
     </div>
 
     <div class="probe-files">
-      <span class="label">workflow:</span> ylo-experiment/workflow-titles.json
+      <span class="label">workflow:</span> ylo-experiment/workflow-02-titles.json
       <br><span class="label">outputs:</span> runs/b65/store.jsonl (appended) · run-summary-titles.md · conductor-session-titles.log
     </div>
   </div>
@@ -426,7 +427,7 @@
     </div>
 
     <div class="probe-files">
-      <span class="label">workflow:</span> ylo-experiment/workflow-titles-human.json
+      <span class="label">workflow:</span> ylo-experiment/workflow-03-titles-human.json
       <br><span class="label">outputs:</span> runs/b65-2-5/store.jsonl · conductor-session-titles-human.log · run-summary-titles-human.md
       <br><span class="label">side effect:</span> surfaced /goal-vs-human-gate friction → resolved as orthogonal layers (goal is build-time, conductor is runtime)
     </div>
@@ -475,7 +476,7 @@
     </div>
 
     <div class="probe-files">
-      <span class="label">workflow:</span> ylo-experiment/workflow-thumbnails.json
+      <span class="label">workflow:</span> ylo-experiment/workflow-04-thumbnails.json
       <br><span class="label">outputs:</span> runs/b65/thumbs/ (6 exp + 3 final) · thumbnails-manifest.md · kie-models-research.md · conductor-session-thumbnails.log
       <br><span class="label">issues:</span> flux-schnell not on kie.ai (substituted) · nano-banana-2 aspect-ratio drift on 2 of 3 finals
     </div>
@@ -523,7 +524,7 @@
     <li class="loop">
       <span class="loop-pri high">High</span>
       <div>
-        flux-schnell is a phantom model — referenced in image-gen skill + workflow-thumbnails.json but kie.ai rejects it.
+        flux-schnell is a phantom model — referenced in image-gen skill + workflow-04-thumbnails.json but kie.ai rejects it.
         <div class="loop-fix"><span class="label">Fix:</span> update both files to flux-2/pro-text-to-image (verified working)</div>
       </div>
     </li>
@@ -575,5 +576,7 @@
 <footer>
   Workspace: dark-factory · Test asset: b65 (Guy Monroe AI Marketing Plan) · Pattern: blackboard-workflow · Brand: AppyDave light-mode-primary
 </footer>
+<script>window.COPYKIT_CONFIG = { blocks: ".probe", title: "Dark Factory — Probe Progression" };</script>
+<script src="../components/copykit.js"></script>
 </body>
 </html>

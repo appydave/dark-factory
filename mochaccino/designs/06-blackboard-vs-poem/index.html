@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<!-- Source: ylo-experiment/HANDOVER.md + poem-os/poem/ + clients/supportsignal/prompt.supportsignal.com.au/ (two deep-dive agent reports, 2026-05-21) -->
+<!-- Data:   ../../data/blackboard-vs-poem.json -->
+<!-- Brand:  AppyDave (brand-dave:brand) — light-mode-primary -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dark Factory — Blackboard vs POEM vs prompt.supportsignal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../components/copykit.css">
+<style>
+  :root {
+    --brand-brown: #342d2d;
+    --brand-gold: #ccba9d;
+    --brand-yellow: #ffde59;
+    --brand-amber: #c8841a;
+    --brand-muted: #7a6e5e;
+    --brand-near-white: #faf5ec;
+    --brand-surface: #f0ebe4;
+    --brand-linen: #e8e0d4;
+    --brand-border: #d4cdc4;
+    --brand-dark-surface: #25201e;
+    --status-strong: #3d8a5a;
+    --status-warn: #c8841a;
+    --status-danger: #a94a36;
+    /* per-medicine accents */
+    --acc-isolate: #c8841a;     /* YLO — the protagonist */
+    --acc-discipline: #a94a36;  /* POEM — the failed-then-legislated path */
+    --acc-remove: #3f6f8f;      /* supportsignal — cool, headless */
+    --display: 'Bebas Neue', sans-serif;
+    --headline: 'Oswald', sans-serif;
+    --body: 'Roboto', sans-serif;
+    --mono: 'Roboto Mono', monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--brand-near-white);
+    color: var(--brand-brown);
+    font-family: var(--body);
+    font-size: 14px;
+    line-height: 1.55;
+    padding: 28px 36px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  header {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: 26px; padding-bottom: 18px;
+    border-bottom: 1px solid var(--brand-border);
+  }
+  h1 {
+    font-family: var(--display);
+    font-size: 52px; letter-spacing: 1px; line-height: 1; color: var(--brand-brown);
+  }
+  h1 .yellow { color: var(--brand-amber); }
+  .breadcrumb {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--brand-muted); text-transform: uppercase; letter-spacing: 1.5px;
+    text-align: right;
+  }
+  .breadcrumb a { color: var(--brand-amber); text-decoration: none; }
+  .tagline {
+    font-family: var(--headline); font-size: 13px;
+    text-transform: uppercase; letter-spacing: 2px;
+    color: var(--brand-amber); margin-top: 6px;
+  }
+
+  h2 {
+    font-family: var(--headline);
+    font-size: 20px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 1.5px;
+    color: var(--brand-brown); margin: 34px 0 14px;
+    padding-bottom: 6px; border-bottom: 1px solid var(--brand-border);
+  }
+  h2 .num {
+    color: var(--brand-amber); font-family: var(--display);
+    font-size: 24px; margin-right: 8px; letter-spacing: 0;
+  }
+  .lead { color: var(--brand-muted); font-size: 13px; margin: -6px 0 14px; max-width: 940px; }
+
+  /* ---- HERO: same disease, three medicines ---- */
+  .hero {
+    background: var(--brand-dark-surface); color: var(--brand-near-white);
+    border-radius: 5px; padding: 30px 32px 28px; margin-top: 6px;
+    border-left: 5px solid var(--brand-yellow);
+  }
+  .hero-eyebrow {
+    font-family: var(--headline); font-size: 12px; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--brand-gold); margin-bottom: 6px;
+  }
+  .hero-title {
+    font-family: var(--display); font-size: 46px; line-height: 0.98;
+    color: var(--brand-yellow); letter-spacing: 1px; margin-bottom: 14px;
+  }
+  .disease {
+    font-size: 14px; line-height: 1.6; color: var(--brand-near-white);
+    max-width: 920px; margin-bottom: 24px;
+  }
+  .disease strong { color: var(--brand-yellow); font-weight: 600; }
+  .medicines {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  }
+  .med {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-top: 3px solid var(--mc, var(--brand-amber));
+    border-radius: 4px; padding: 18px 18px 16px;
+  }
+  .med-project {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--brand-gold); margin-bottom: 8px;
+  }
+  .med-verb {
+    font-family: var(--display); font-size: 34px; line-height: 0.95;
+    letter-spacing: 1px; color: var(--mc, var(--brand-amber)); margin-bottom: 10px;
+  }
+  .med-one { font-size: 12.5px; line-height: 1.5; color: var(--brand-near-white); margin-bottom: 12px; }
+  .med-bet {
+    font-family: var(--headline); font-size: 12px; letter-spacing: 0.5px;
+    color: var(--brand-gold); border-top: 1px solid rgba(255,255,255,0.12);
+    padding-top: 9px;
+  }
+  .med-bet b { color: var(--mc, var(--brand-amber)); font-weight: 600; }
+
+  /* ---- LENS MATRIX ---- */
+  .matrix { display: grid; gap: 16px; margin-top: 8px; }
+  .lens {
+    background: white; border: 1px solid var(--brand-border);
+    border-radius: 4px; overflow: hidden;
+  }
+  .lens-head {
+    display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
+    padding: 14px 20px; background: var(--brand-surface);
+    border-bottom: 1px solid var(--brand-border);
+  }
+  .lens-letter {
+    font-family: var(--display); font-size: 26px; color: var(--brand-amber);
+    line-height: 1;
+  }
+  .lens-label {
+    font-family: var(--headline); font-size: 16px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 1px; color: var(--brand-brown);
+  }
+  .lens-q { font-family: var(--mono); font-size: 11px; color: var(--brand-muted); }
+  .lens-verdict {
+    margin-left: auto; font-family: var(--headline); font-size: 12px;
+    letter-spacing: 0.5px; color: var(--brand-amber);
+    text-transform: uppercase;
+  }
+  .lens-verdict.fork { color: var(--status-danger); }
+  .lens-cells { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .cell {
+    padding: 16px 18px; border-right: 1px solid var(--brand-border);
+  }
+  .cell:last-child { border-right: none; }
+  .cell-top {
+    border-top: 3px solid var(--cc, var(--brand-border));
+    margin: -16px -18px 12px; padding: 12px 18px 0;
+  }
+  .cell-proj {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--brand-muted);
+  }
+  .cell-summary {
+    font-family: var(--headline); font-size: 14px; font-weight: 600;
+    color: var(--cc, var(--brand-brown)); margin: 3px 0 9px; line-height: 1.25;
+  }
+  .cell-detail { font-size: 12.5px; line-height: 1.5; color: var(--brand-brown); }
+  .tag {
+    display: inline-block; font-family: var(--mono); font-size: 9.5px;
+    letter-spacing: 0.5px; text-transform: uppercase; padding: 2px 7px;
+    border-radius: 3px; margin-top: 10px;
+  }
+  .tag.loose    { background: #f3e6cf; color: #8a5a12; }
+  .tag.rigorous { background: #d8e8df; color: #2c6043; }
+  .tag.lean     { background: #f3e6cf; color: #8a5a12; }
+  .tag.rich     { background: #d8e8df; color: #2c6043; }
+  .tag.isolate    { background: #f4e3c8; color: #8a5a12; }
+  .tag.discipline { background: #f0d8d1; color: #7e3324; }
+  .tag.remove     { background: #d7e3ea; color: #2f5468; }
+  .state-pill {
+    display: block; margin-top: 9px; font-family: var(--mono); font-size: 10.5px;
+    color: var(--brand-muted);
+  }
+  .state-pill b { color: var(--cc, var(--brand-brown)); }
+
+  /* ---- LINEAGE callout (dark) ---- */
+  .lineage {
+    background: var(--brand-dark-surface); color: var(--brand-near-white);
+    border-radius: 4px; padding: 24px 28px; margin-top: 8px;
+    border-left: 4px solid var(--status-danger);
+  }
+  .lineage-title {
+    font-family: var(--display); font-size: 28px; line-height: 1;
+    color: var(--brand-yellow); margin-bottom: 14px; letter-spacing: 1px;
+  }
+  .lineage ul { list-style: none; padding: 0; margin: 0;
+    display: grid; gap: 9px; }
+  .lineage li {
+    font-size: 13px; line-height: 1.5; padding-left: 20px; position: relative;
+  }
+  .lineage li::before {
+    content: "→"; position: absolute; left: 0; color: var(--brand-yellow); font-weight: 700;
+  }
+  .lineage li strong { color: var(--brand-yellow); font-weight: 600; }
+
+  /* ---- CONVERGENCE strip ---- */
+  .converge {
+    background: white; border: 1px solid var(--brand-border);
+    border-left: 4px solid var(--status-strong); border-radius: 4px;
+    padding: 20px 24px; margin-top: 8px;
+  }
+  .converge-head {
+    font-family: var(--headline); font-size: 14px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 1px; color: var(--brand-brown);
+    margin-bottom: 4px;
+  }
+  .converge-anc { font-family: var(--mono); font-size: 11px; color: var(--status-strong);
+    margin-bottom: 12px; }
+  .converge-anc b { color: var(--brand-brown); }
+  .converge ul { columns: 2; column-gap: 32px; list-style: none; padding: 0; margin: 0; }
+  .converge li {
+    font-size: 12.5px; line-height: 1.5; padding-left: 16px; position: relative;
+    margin-bottom: 6px; break-inside: avoid;
+  }
+  .converge li::before { content: "✓"; position: absolute; left: 0; color: var(--status-strong); font-weight: 700; }
+  .converge-note { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--brand-border);
+    font-size: 12.5px; color: var(--brand-muted); }
+  .converge-note b { color: var(--status-danger); }
+
+  /* ---- CROSS-POLLINATION ---- */
+  .xpoll { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px; }
+  .xcard {
+    background: white; border: 1px solid var(--brand-border);
+    border-radius: 4px; padding: 20px 22px;
+  }
+  .xcard.a { border-left: 4px solid var(--acc-isolate); }
+  .xcard.b { border-left: 4px solid var(--acc-remove); }
+  .xcard-head {
+    font-family: var(--headline); font-size: 14px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px;
+  }
+  .xcard.a .xcard-head { color: var(--acc-isolate); }
+  .xcard.b .xcard-head { color: var(--acc-remove); }
+  .xcard ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 9px; }
+  .xcard li { font-size: 12.5px; line-height: 1.5; padding-left: 16px; position: relative; }
+  .xcard li::before { content: "▸"; position: absolute; left: 0; }
+  .xcard.a li::before { color: var(--acc-isolate); }
+  .xcard.b li::before { color: var(--acc-remove); }
+
+  /* ---- VERDICT ---- */
+  .verdict {
+    background: var(--brand-surface); border: 1px solid var(--brand-border);
+    border-left: 5px solid var(--brand-amber); border-radius: 4px;
+    padding: 24px 28px; margin-top: 8px;
+  }
+  .verdict-head {
+    font-family: var(--display); font-size: 30px; line-height: 1.02;
+    color: var(--brand-brown); letter-spacing: 0.5px; margin-bottom: 16px;
+  }
+  .verdict-head .amber { color: var(--brand-amber); }
+  .align-rows { display: grid; gap: 10px; margin-bottom: 16px; }
+  .align {
+    display: grid; grid-template-columns: 230px 120px 1fr; gap: 14px; align-items: start;
+    padding: 12px 0; border-top: 1px solid var(--brand-border);
+  }
+  .align-layer { font-family: var(--headline); font-size: 13px; font-weight: 600; color: var(--brand-brown); }
+  .align-diff {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.5px; text-transform: uppercase;
+    padding: 3px 8px; border-radius: 3px; text-align: center; height: fit-content;
+  }
+  .align-diff.easy { background: #d8e8df; color: #2c6043; }
+  .align-diff.identity { background: #f0d8d1; color: #7e3324; }
+  .align-detail { font-size: 12.5px; line-height: 1.5; color: var(--brand-brown); }
+  .reco {
+    background: var(--brand-dark-surface); color: var(--brand-near-white);
+    border-radius: 4px; padding: 16px 20px; font-size: 13.5px; line-height: 1.55;
+  }
+  .reco b { color: var(--brand-yellow); }
+
+  footer {
+    color: var(--brand-muted); font-family: var(--mono); font-size: 11px;
+    margin-top: 40px; padding-top: 18px; border-top: 1px solid var(--brand-border);
+  }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>SAME DISEASE, <span class="yellow">THREE MEDICINES</span></h1>
+    <div class="tagline">YLO Blackboard · POEM OS · prompt.supportsignal</div>
+  </div>
+  <div class="breadcrumb">
+    <a href="../">⟵ Gallery</a> · design 06<br>data: blackboard-vs-poem.json
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<div class="hero">
+  <div class="hero-eyebrow">The thesis</div>
+  <div class="hero-title">ONE FAILURE MODE · THREE CURES</div>
+  <div class="disease">
+    All three projects independently hit the same wall: <strong>an orchestrator that poisons itself
+    by accumulating every step's payloads</strong> — transcripts, intermediate values, wrong attempts —
+    until it summarises, editorialises, or fabricates instead of passing data through. They prescribed
+    three different cures.
+  </div>
+  <div class="medicines">
+    <div class="med" style="--mc: var(--acc-isolate);">
+      <div class="med-project">YLO Blackboard</div>
+      <div class="med-verb">ISOLATE</div>
+      <div class="med-one">Keep the LLM orchestrator, but take it out of the data path — workers are
+        subagents with clean context that write the store directly and return one-line acks.</div>
+      <div class="med-bet">Bet: <b>Architecture beats willpower.</b></div>
+    </div>
+    <div class="med" style="--mc: var(--acc-discipline);">
+      <div class="med-project">POEM OS</div>
+      <div class="med-verb">DISCIPLINE</div>
+      <div class="med-one">Keep the LLM orchestrator in the data path, and legislate good behaviour —
+        ~600 lines of Oscar agent rules: no summarising, no augmentation, mechanical gate evaluation.</div>
+      <div class="med-bet">Bet: <b>Rules can hold the line.</b></div>
+    </div>
+    <div class="med" style="--mc: var(--acc-remove);">
+      <div class="med-project">prompt.supportsignal</div>
+      <div class="med-verb">REMOVE</div>
+      <div class="med-one">Delete the LLM from the orchestration seat entirely — compile the workflow to
+        plain JavaScript that calls stateless <code>provider.call(prompt, schema)</code> per step.</div>
+      <div class="med-bet">Bet: <b>No LLM orchestrator, no poisoning.</b></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ LENS MATRIX ============ -->
+<h2><span class="num">▤</span>The Three Lenses</h2>
+<div class="lead">View each project as three separable things. They agree almost completely on lenses 1 + 2 — and diverge entirely on lens 3.</div>
+<div class="matrix">
+
+  <!-- LENS 1 -->
+  <div class="lens">
+    <div class="lens-head">
+      <span class="lens-letter">1</span>
+      <span class="lens-label">Prompt Engineering</span>
+      <span class="lens-q">How are prompts authored, parameterised, versioned?</span>
+      <span class="lens-verdict">~90% aligned · all .hbs descendants of AWB Gen 3</span>
+    </div>
+    <div class="lens-cells">
+      <div class="cell">
+        <div class="cell-top" style="--cc: var(--acc-isolate);">
+          <div class="cell-proj">YLO Blackboard</div>
+          <div class="cell-summary">.hbs with bare {{markers}}</div>
+        </div>
+        <div class="cell-detail">Output shape described in prose (“Return ONLY JSON: {…}”). No co-located schema (one exception). Informal file-level versioning. Lifted verbatim from AWB Gen 3.</div>
+        <span class="tag loose">loose contract</span>
+      </div>
+      <div class="cell">
+        <div class="cell-top" style="--cc: var(--acc-discipline);">
+          <div class="cell-proj">POEM OS</div>
+          <div class="cell-summary">.hbs + co-located .json schema</div>
+        </div>
+        <div class="cell-detail">Schema carries placeholders{type,required,example}, outputSchema, version. Statically type-checked: {{var}} / {{#each}} compatibility validated <em>before</em> any step runs.</div>
+        <span class="tag rigorous">validated contract</span>
+      </div>
+      <div class="cell">
+        <div class="cell-top" style="--cc: var(--acc-remove);">
+          <div class="cell-proj">prompt.supportsignal</div>
+          <div class="cell-summary">.hbs + .json (it IS a POEM install)</div>
+        </div>
+        <div class="cell-detail">Each prompt pairs .hbs with .json carrying modelType (“quick”/“analysis”), maxTokens, temperature, outputSchema validated at runtime. Versioned + .old/ archives + git.</div>
+        <span class="tag rigorous">validated contract</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- LENS 2 -->
+  <div class="lens">
+    <div class="lens-head">
+      <span class="lens-letter">2</span>
+      <span class="lens-label">Workflow Data Shape</span>
+      <span class="lens-q">How is the multi-step pipeline declared?</span>
+      <span class="lens-verdict">Same DAG vocabulary · POEM richer control flow</span>
+    </div>
+    <div class="lens-cells">
+      <div class="cell">
+        <div class="cell-top" style="--cc: var(--acc-isolate);">
+          <div class="cell-proj">YLO Blackboard</div>
+          <div class="cell-summary">JSON DAG</div>
+        </div>
+        <div class="cell-detail">steps[]{ type, inputs[], stores, workerContract, humanGate, outputKeyMap }. Five step types. Pure dataflow dependency; gate exists, conditional-parallel not first-class.</div>
+        <span class="tag lean">lean</span>
+      </div>
+      <div class="cell">
+        <div class="cell-top" style="--cc: var(--acc-discipline);">
+          <div class="cell-proj">POEM OS</div>
+          <div class="cell-summary">YAML DAG (richer)</div>
+        </div>
+        <div class="cell-detail">action: llm / llm-parallel / llm-conditional-parallel, gate checks[] with onPass/onFail routing, skipIf / condition, active:false disable cascades. Materially richer branching.</div>
+        <span class="tag rich">rich control flow</span>
+      </div>
+      <div class="cell">
+        <div class="cell-top" style="--cc: var(--acc-remove);">
+          <div class="cell-proj">prompt.supportsignal</div>
+          <div class="cell-summary">YAML DAG · new-incident.yaml v1.4.0</div>
+        </div>
+        <div class="cell-detail">Gate (invisible auto data-readiness) vs Checkpoint (visible human decision) categorically split. seed.mapping snake→camel, output.{drop,group} reshape. The production exemplar.</div>
+        <span class="tag rich">rich control flow</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- LENS 3 -->
+  <div class="lens">
+    <div class="lens-head">
+      <span class="lens-letter">3</span>
+      <span class="lens-label">Architecture · Runner · Isolation</span>
+      <span class="lens-q">What executes it? How is state held? How is context isolated?</span>
+      <span class="lens-verdict fork">⚡ The fork — they diverge entirely</span>
+    </div>
+    <div class="lens-cells">
+      <div class="cell">
+        <div class="cell-top" style="--cc: var(--acc-isolate);">
+          <div class="cell-proj">YLO Blackboard</div>
+          <div class="cell-summary">Orchestrator IS an LLM · isolation is BEHAVIOURAL</div>
+        </div>
+        <div class="cell-detail">The Claude Code session is the conductor. Isolation enforced by subagent spawning + ack-only logs — <em>provable by grep</em> (no payload in log, no bytes in store).</div>
+        <span class="state-pill">state: <b>append-only EAV JSONL</b> · immutable history</span>
+        <span class="tag isolate">isolate</span>
+      </div>
+      <div class="cell">
+        <div class="cell-top" style="--cc: var(--acc-discipline);">
+          <div class="cell-proj">POEM OS</div>
+          <div class="cell-summary">THREE runtimes · Oscar (LLM) failed</div>
+        </div>
+        <div class="cell-detail">(1) render-only TS engine — <em>no LLM call at all</em>; (2) Oscar conversational agent — the LLM orchestrator that failed in field tests; (3) poem-executor CLI — compiled JS.</div>
+        <span class="state-pill">state: <b>single mutable complete.json</b> · snapshot</span>
+        <span class="tag discipline">discipline</span>
+      </div>
+      <div class="cell">
+        <div class="cell-top" style="--cc: var(--acc-remove);">
+          <div class="cell-proj">prompt.supportsignal</div>
+          <div class="cell-summary">Orchestrator is COMPILED JS · isolation STRUCTURAL &amp; free</div>
+        </div>
+        <div class="cell-detail">Compiler emits .compiled.js; run() calls provider.call(renderedPrompt, schema) per step. Each LLM touch is a stateless single-shot — no conversational context to poison.</div>
+        <span class="state-pill">state: <b>flat in-memory store</b> · saved once</span>
+        <span class="tag remove">remove</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ LINEAGE ============ -->
+<h2><span class="num">⛓</span>The Oscar Lineage</h2>
+<div class="lineage">
+  <div class="lineage-title">YLO'S “OSCAR” IS LITERALLY POEM'S OSCAR</div>
+  <ul>
+    <li>YLO's “Oscar” — the naive <em>just-run-it-in-main-context</em> failure the blackboard pattern fixes — <strong>is literally POEM's Oscar agent</strong>.</li>
+    <li>POEM's docs never contain the words <strong>“context poisoning”</strong> — zero hits in the repo. That phrase is YLO's retro-label.</li>
+    <li>What POEM <em>actually</em> documented (Oscar.md, Rounds 1–3): completing workflows with <strong>fabricated data</strong>, condensing 800-word observations to 150, injecting restrictive qualifiers into predicate questions.</li>
+    <li>Same pathology, two vocabularies: YLO calls it <strong>“context poisoning”</strong>; POEM calls it <strong>“interpretation / fabrication.”</strong></li>
+    <li>Governance scar: Oscar + Alex exist <strong>only</strong> in the client's <code>.claude/commands/</code> — not in POEM core (poem-001 blocker, severity high). Field improvements have no sync path home.</li>
+  </ul>
+</div>
+
+<!-- ============ CONVERGENCE ============ -->
+<h2><span class="num">⋈</span>Where All Three Agree</h2>
+<div class="converge">
+  <div class="converge-head">Common ancestor</div>
+  <div class="converge-anc">All three descend from <b>AWB Gen 3</b></div>
+  <ul>
+    <li>Same .hbs Handlebars templates with {{placeholder}} injection</li>
+    <li>Same five step types — transform / checkpoint / action / gate / elicit</li>
+    <li>Same declared inputs[] / outputs (stores) name-matched dataflow</li>
+    <li>Same output.{drop,group} final-projection reshape</li>
+    <li>Same “human gates forward decisions, not chatter” discipline</li>
+  </ul>
+  <div class="converge-note">Agreement is total on lenses 1 + 2 (prompts + workflow shape). <b>Divergence is total on lens 3 (architecture).</b></div>
+</div>
+
+<!-- ============ CROSS-POLLINATION ============ -->
+<h2><span class="num">⇄</span>Cross-Pollination — What Each Should Steal</h2>
+<div class="xpoll">
+  <div class="xcard a">
+    <div class="xcard-head">YLO should steal from POEM</div>
+    <ul>
+      <li><strong>Co-located .json output schemas</strong> — validate worker writes mechanically instead of hoping the worker returns the right shape. YLO's single biggest gap.</li>
+      <li><strong>A preflight / validate pass</strong> (validate-workflow.yaml) — catch type mismatches and dangling refs before any step runs.</li>
+      <li><strong>A modelType alias layer</strong> (“analysis”/“quick” → concrete slug) — would have prevented the flux-schnell phantom-model bug (open loop #1).</li>
+    </ul>
+  </div>
+  <div class="xcard b">
+    <div class="xcard-head">POEM / supportsignal should steal from YLO</div>
+    <ul>
+      <li><strong>Append-only EAV audit store</strong> — every attempt, error, and human decision preserved. A compliance asset for the NDIS / safety-regulated domain, not just a nicety.</li>
+      <li><strong>Resumability from the store</strong> — re-read, skip done steps, append a fresh attempt.</li>
+      <li><strong>Structural isolation for the Oscar-as-LLM path</strong> — replace 600 lines of “don't summarise” rules with subagent isolation, where the rules become unnecessary.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ VERDICT ============ -->
+<h2><span class="num">§</span>The Verdict</h2>
+<div class="verdict">
+  <div class="verdict-head">YLO is a working prototype of what POEM's <span class="amber">Oscar was trying to be.</span></div>
+  <div class="align-rows">
+    <div class="align">
+      <div class="align-layer">Lenses 1 + 2<br><span style="font-weight:400;color:var(--brand-muted);font-size:11px;">prompts + workflow spec</span></div>
+      <div class="align-diff easy">easy</div>
+      <div class="align-detail">~90% shared already — both descend from AWB Gen 3. POEM YAML ↔ YLO JSON is mechanically convertible. They could share one schema.</div>
+    </div>
+    <div class="align">
+      <div class="align-layer">Lens 3<br><span style="font-weight:400;color:var(--brand-muted);font-size:11px;">runner / architecture</span></div>
+      <div class="align-diff identity">identity decision</div>
+      <div class="align-detail">Not a tweak — a choice of which POEM runtime survives: in-session conductor (YLO) vs external compiled CLI (poem-executor).</div>
+    </div>
+  </div>
+  <div class="reco">
+    <b>Recommendation:</b> If POEM commits to in-session execution, adopt YLO's conductor as POEM's runtime
+    and demote poem-executor to the headless / CI lane. The four probes have already de-risked it.
+  </div>
+</div>
+
+<footer>
+  Workspace: dark-factory · design 06 · synthesised from two deep-dive agent reports (2026-05-21) ·
+  sources: ylo-experiment/HANDOVER.md · poem-os/poem/ · clients/supportsignal/prompt.supportsignal.com.au/ ·
+  Brand: AppyDave light-mode-primary · Audience: solo
+</footer>
+<script>window.COPYKIT_CONFIG = { blocks: ".hero, .lens, .lineage, .converge, .xpoll, .verdict", title: "Same Disease, Three Medicines — YLO vs POEM vs prompt.supportsignal" };</script>
+<script src="../components/copykit.js"></script>
+</body>
+</html>

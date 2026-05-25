@@ -1,0 +1,161 @@
+{
+  "meta": {
+    "source": "ylo-experiment/workflow-01-analysis.json + workflow-02-titles.json + workflow-03-titles-human.json + workflow-04-thumbnails.json (verbatim spec read 2026-05-21)",
+    "canonical_chain": "blackboard-workflow-pattern.md §11 JSON contract → 4 workflow files → run outputs in runs/b65 + runs/b65-2-5",
+    "generated_at": "2026-05-21",
+    "generator": "Peter (Mochaccino dark-factory workspace) — workflow flowcharts view",
+    "workflows_total": 4,
+    "node_legend": {
+      "seed": "input key seeded into the store before any step",
+      "transform": "LLM step — subagent, clean context, writes store, returns ack",
+      "checkpoint": "decision point — fixture-driven or human gate",
+      "action": "side-effect step — writes a file (manifest)",
+      "project": "fold store.jsonl → store.view.json (last-write-wins)"
+    }
+  },
+  "workflows": [
+    {
+      "file": "workflow-01-analysis.json",
+      "probe": 1,
+      "id": "bulk-content-analysis",
+      "name": "Bulk Content Analysis",
+      "shape": "Parallel fan-out",
+      "dimension": "Tests N concurrent subagents with shared input + distinct output keys",
+      "result": "16/16 ACs",
+      "seed": ["videoId", "transcriptPath"],
+      "models": { "analysis": "claude-sonnet-4-6" },
+      "structure": "fan-out",
+      "shared_input": "transcriptPath",
+      "fan": [
+        { "id": "analyze-main-topic",         "label": "Main topic",        "stores": "mainTopic" },
+        { "id": "analyze-keywords",           "label": "SEO keywords",      "stores": "keywords" },
+        { "id": "analyze-audience-insights",  "label": "Audience insights", "stores": "audienceInsights" },
+        { "id": "analyze-emotional-triggers", "label": "Emotional triggers","stores": "emotionalTriggers" },
+        { "id": "analyze-statistics",         "label": "Statistics",        "stores": "statistics" },
+        { "id": "analyze-catchy-phrases",     "label": "Catchy phrases",    "stores": "catchyPhrases" },
+        { "id": "analyze-cta-phrases",        "label": "CTA phrases",       "stores": "ctaPhrases" },
+        { "id": "analyze-key-takeaways",      "label": "Key takeaways",     "stores": "keyTakeaways" },
+        { "id": "analyze-overall-tone",       "label": "Overall tone",      "stores": "overallTone" },
+        { "id": "analyze-questions-posed",    "label": "Questions posed",   "stores": "questionsPosed" },
+        { "id": "analyze-search-terms",       "label": "Search terms",      "stores": "searchTerms" },
+        { "id": "analyze-usp",                "label": "Unique selling pts","stores": "usp" }
+      ],
+      "note": "All 12 read only transcriptPath and write a distinct key. No dependencies between them — spawned concurrently, joined at the projection."
+    },
+    {
+      "file": "workflow-02-titles.json",
+      "probe": 2,
+      "id": "title-generation-refinement",
+      "name": "Title Generation + Refinement",
+      "shape": "Sequential refinement loop",
+      "dimension": "Tests stateless re-dispatch refinement (blackboard §6) + outputKeyMap rename",
+      "result": "21/21 ACs",
+      "seed": ["videoId", "shortTitle"],
+      "models": { "analysis": "claude-sonnet-4-6" },
+      "structure": "linear-loop",
+      "nodes": [
+        {
+          "id": "generate-title", "type": "transform", "label": "Generate 10 candidate titles",
+          "attempt": 1, "stores": "generatedTitles", "contract": "write-store-directly",
+          "inputs": ["mainTopic", "statistics?", "catchyPhrases?", "audienceInsights?", "shortTitle"]
+        },
+        {
+          "id": "apply-critique", "type": "checkpoint", "label": "Log critique from fixture",
+          "subtitle": "automated · conductor-writes", "stores": "titleCritiqueLog",
+          "inputs": ["generatedTitles"], "humanGate": false,
+          "critique_source": "runs/b65/critique-fixture.txt"
+        },
+        {
+          "id": "refine-titles", "type": "transform", "label": "Refine titles + select top",
+          "attempt": 2, "stores": "generatedTitles", "contract": "write-store-directly",
+          "inputs": ["generatedTitles", "titleCritiqueLog"],
+          "outputKeyMap": "topTitle → selectedTitles"
+        }
+      ],
+      "loop_note": "Refinement is a stateless re-dispatch: attempt:2 is a fresh subagent fed the prior titles + the critique. The old attempt stays on the store as audit.",
+      "drops": ["titleCritiqueLog"]
+    },
+    {
+      "file": "workflow-03-titles-human.json",
+      "probe": 3,
+      "id": "title-generation-refinement-human",
+      "name": "Title Generation + Human-Gated Refinement",
+      "shape": "Human-gated branch",
+      "dimension": "Tests the orchestrator-hosts-conversation path — real human-in-the-loop gate with accept/refine branch",
+      "result": "21/21 ACs",
+      "seed": ["videoId", "shortTitle"],
+      "models": { "analysis": "claude-sonnet-4-6" },
+      "structure": "linear-branch",
+      "nodes": [
+        {
+          "id": "generate-title", "type": "transform", "label": "Generate 10 candidate titles",
+          "attempt": 1, "stores": "generatedTitles", "contract": "write-store-directly",
+          "inputs": ["mainTopic", "statistics?", "catchyPhrases?", "audienceInsights?", "shortTitle"]
+        },
+        {
+          "id": "apply-critique", "type": "checkpoint", "label": "Render titles to user · await typed input",
+          "subtitle": "HUMAN GATE · gateMode: human-stdin", "stores": "titleCritiqueLog",
+          "inputs": ["generatedTitles"], "humanGate": true,
+          "accept_keywords": ["accept", "ok"]
+        },
+        {
+          "id": "refine-titles", "type": "transform", "label": "Refine using human critique + select top",
+          "attempt": 2, "stores": "generatedTitles", "contract": "write-store-directly",
+          "inputs": ["generatedTitles", "titleCritiqueLog"],
+          "outputKeyMap": "topTitle → selectedTitles"
+        }
+      ],
+      "branches": [
+        { "on": "types 'accept' / 'ok'", "goes": "DONE — selectedTitles written, refinement skipped" },
+        { "on": "types a critique", "goes": "refine-titles (attempt 2)" }
+      ],
+      "drops": ["titleCritiqueLog"]
+    },
+    {
+      "file": "workflow-04-thumbnails.json",
+      "probe": 4,
+      "id": "thumbnails",
+      "name": "Thumbnail Generation Workflow",
+      "shape": "Multi-phase pipeline",
+      "dimension": "Tests async kie.ai polling, binary outputs (JPGs on disk + path in store), title-thumbnail pairing invariant",
+      "result": "20/22 ACs (2 annotated)",
+      "seed": ["videoId"],
+      "models": { "exploration": "flux-schnell", "finals": "nano-banana-2" },
+      "structure": "linear-pipeline",
+      "nodes": [
+        {
+          "id": "generate-design-briefs", "type": "transform", "label": "Generate 6 design briefs",
+          "subtitle": "2 per title × 3 titles", "stores": "designBriefs", "contract": "write-store-directly",
+          "inputs": ["selectedTitles", "mainTopic", "audienceInsights", "emotionalTriggers"]
+        },
+        {
+          "id": "explore-cheap-batch", "type": "transform", "label": "6 exploration thumbnails",
+          "subtitle": "flux-schnell · 512×288 · cheap", "fanOut": 6, "stores": "explorationImages",
+          "contract": "write-store-directly", "inputs": ["designBriefs"],
+          "writes_files": "thumbs/exp-{n}.jpg"
+        },
+        {
+          "id": "apply-selection", "type": "checkpoint", "label": "Apply fixture selection [0, 2, 4]",
+          "subtitle": "conductor-writes · visual gate deferred to probe #5", "stores": "selectedExplorationIndices",
+          "inputs": ["explorationImages"], "humanGate": false,
+          "selection_source": "runs/{videoId}/selection-fixture.json"
+        },
+        {
+          "id": "build-finals", "type": "transform", "label": "3 final thumbnails",
+          "subtitle": "nano-banana-2 · 2048×1152", "fanOut": 3, "stores": "finalImages",
+          "contract": "write-store-directly",
+          "inputs": ["designBriefs", "explorationImages", "selectedExplorationIndices"],
+          "writes_files": "thumbs/final-{n}.jpg"
+        },
+        {
+          "id": "assemble-output", "type": "action", "label": "Write manifest",
+          "subtitle": "paths · sizes · costs · timings", "stores": "thumbnailsManifest",
+          "contract": "conductor-writes",
+          "inputs": ["designBriefs", "explorationImages", "selectedExplorationIndices", "finalImages"],
+          "writes_files": "thumbnails-manifest.md"
+        }
+      ],
+      "note": "Two fan-out points (×6 explore, ×3 finals) inside an otherwise sequential pipeline. Binary bytes never enter the conductor — workers curl -o to disk, store carries localPath only."
+    }
+  ]
+}

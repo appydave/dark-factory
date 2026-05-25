@@ -1,0 +1,191 @@
+{
+  "meta": {
+    "source": "ylo-experiment/HANDOVER.md + blackboard-workflow-pattern.md + poem-os/poem/ + clients/supportsignal/prompt.supportsignal.com.au/ — synthesised from two deep-dive agent reports 2026-05-21",
+    "canonical_chain": "YLO probes (proven) → POEM OS docs (Oscar agent, poem-executor) → prompt.supportsignal (POEM install, new-incident.yaml)",
+    "generated_at": "2026-05-21",
+    "generator": "Peter (Mochaccino dark-factory workspace) — three-way comparison view",
+    "subjects": 3,
+    "lenses": 3
+  },
+  "thesis": {
+    "headline": "Same disease, three medicines",
+    "disease": "An orchestrator that poisons itself by accumulating every step's payloads — transcripts, intermediate values, wrong attempts — until it summarises, editorialises, or fabricates instead of passing data through.",
+    "medicines": [
+      {
+        "project": "YLO blackboard",
+        "verb": "ISOLATES",
+        "one_liner": "Keep the LLM orchestrator, but take it out of the data path — workers are subagents with clean context that write the store directly and return one-line acks.",
+        "bet": "Architecture beats willpower."
+      },
+      {
+        "project": "POEM OS",
+        "verb": "DISCIPLINES",
+        "one_liner": "Keep the LLM orchestrator in the data path, and legislate good behaviour — ~600 lines of Oscar agent rules: no summarising, no augmentation, mechanical gate evaluation.",
+        "bet": "Rules can hold the line."
+      },
+      {
+        "project": "prompt.supportsignal",
+        "verb": "REMOVES",
+        "one_liner": "Delete the LLM from the orchestration seat entirely — compile the workflow to plain JavaScript that calls stateless provider.call(prompt, schema) per step.",
+        "bet": "No LLM orchestrator, no poisoning."
+      }
+    ]
+  },
+  "subjects": [
+    {
+      "id": "ylo",
+      "name": "YLO Blackboard",
+      "tagline": "In-session conductor + isolated subagents",
+      "kind": "proven experiment · 4 probes · 78/78 ACs",
+      "accent": "isolate"
+    },
+    {
+      "id": "poem",
+      "name": "POEM OS",
+      "tagline": "BMAD method + Oscar agent + poem-executor",
+      "kind": "framework · part spec, part runtime",
+      "accent": "discipline"
+    },
+    {
+      "id": "supportsignal",
+      "name": "prompt.supportsignal",
+      "tagline": "A POEM install, compiled to JS",
+      "kind": "client workspace · NDIS incident analysis · ~140 tests",
+      "accent": "remove"
+    }
+  ],
+  "lenses": [
+    {
+      "id": "prompt-engineering",
+      "label": "Prompt Engineering",
+      "letter": "1",
+      "question": "How are prompts authored, parameterised, versioned?",
+      "verdict": "~90% aligned — all three are .hbs descendants of AWB Gen 3",
+      "cells": [
+        {
+          "subject": "ylo",
+          "summary": ".hbs with bare {{markers}}",
+          "detail": "Output shape described in prose (\"Return ONLY JSON: {...}\"). No co-located schema (one exception). Informal, file-level versioning. Prompts lifted verbatim from AWB Gen 3.",
+          "tone": "loose"
+        },
+        {
+          "subject": "poem",
+          "summary": ".hbs + co-located .json schema",
+          "detail": "Schema carries placeholders{type,required,example}, outputSchema, version. Statically type-checked: {{var}} / {{var.prop}} / {{#each}} compatibility validated against the runtime value before any step runs.",
+          "tone": "rigorous"
+        },
+        {
+          "subject": "supportsignal",
+          "summary": ".hbs + .json (same as POEM — it is one)",
+          "detail": "Each prompt pairs a .hbs with a .json carrying modelType (\"quick\"/\"analysis\"), maxTokens, temperature, and outputSchema validated at runtime via SchemaValidator. Versioned + .old/ archive dirs + git.",
+          "tone": "rigorous"
+        }
+      ]
+    },
+    {
+      "id": "workflow-shape",
+      "label": "Workflow Data Shape",
+      "letter": "2",
+      "question": "How is the multi-step pipeline declared? What's the data shape?",
+      "verdict": "Same DAG vocabulary, different serialisation — POEM has richer control flow",
+      "cells": [
+        {
+          "subject": "ylo",
+          "summary": "JSON DAG",
+          "detail": "steps[]{ type, inputs[], stores, workerContract, humanGate, promptFile, outputKeyMap }. Five step types: transform / checkpoint / action / gate / elicit. Pure dataflow dependency. Gate type exists; conditional-parallel not first-class.",
+          "tone": "lean"
+        },
+        {
+          "subject": "poem",
+          "summary": "YAML DAG (richer)",
+          "detail": "steps[] with action: llm | llm-parallel | llm-conditional-parallel, gate checks[] with onPass/onFail routing, skipIf / condition (starts_with/contains/equals), active:false disable cascades. Materially richer branching than YLO.",
+          "tone": "rich"
+        },
+        {
+          "subject": "supportsignal",
+          "summary": "YAML DAG (new-incident.yaml v1.4.0)",
+          "detail": "Gate (invisible auto data-readiness) vs Checkpoint (visible human decision) categorically split. seed.mapping[] snake→camel, sections[].steps[], output.{drop,group} reshape. The production exemplar of the POEM shape.",
+          "tone": "rich"
+        }
+      ]
+    },
+    {
+      "id": "architecture",
+      "label": "Architecture · Runner · Isolation",
+      "letter": "3",
+      "question": "What executes the workflow? How is state held? How is context isolated?",
+      "verdict": "THE FORK — they diverge entirely here",
+      "cells": [
+        {
+          "subject": "ylo",
+          "summary": "Orchestrator IS an LLM · isolation is BEHAVIOURAL",
+          "detail": "The Claude Code session is the conductor. Isolation enforced by subagent spawning + ack-only logs — provable by grep (no payload in conductor log, no bytes in store). State = append-only EAV JSONL, projected last-write-wins.",
+          "tone": "isolate",
+          "state_model": "append-only EAV JSONL (immutable history)"
+        },
+        {
+          "subject": "poem",
+          "summary": "THREE runtimes · Oscar (LLM) failed",
+          "detail": "(1) render-only TS engine — no LLM call at all; (2) Oscar conversational agent — the LLM orchestrator that failed in field testing; (3) poem-executor CLI — compiled JS. State = one mutable complete.json (last-state-wins, history lost to a separate event log).",
+          "tone": "discipline",
+          "state_model": "single mutable complete.json (snapshot)"
+        },
+        {
+          "subject": "supportsignal",
+          "summary": "Orchestrator is COMPILED JS · isolation is STRUCTURAL & free",
+          "detail": "Compiler emits .compiled.js; run(incidentData, provider) calls provider.call(renderedPrompt, schema) per step. Each LLM touch is a stateless single-shot — no conversational context to poison. State = flat in-memory store, saved once at the end.",
+          "tone": "remove",
+          "state_model": "flat in-memory store, saved once"
+        }
+      ]
+    }
+  ],
+  "lineage": {
+    "title": "The Oscar lineage",
+    "beats": [
+      "YLO's \"Oscar\" — the naive 'just run it in main context' failure the blackboard pattern fixes — IS literally POEM's Oscar agent.",
+      "POEM's docs never contain the words \"context poisoning\" (zero hits in the repo). That phrase is YLO's retro-label.",
+      "What POEM actually documented (Oscar.md Rounds 1–3): completing workflows with fabricated data, condensing 800-word observations to 150, injecting restrictive qualifiers into predicate questions.",
+      "Same root pathology, two vocabularies: YLO calls it 'context poisoning'; POEM calls it 'interpretation / fabrication'.",
+      "Governance scar: Oscar + Alex exist only in the client's .claude/commands/ — not in POEM core (poem-001 blocker, severity high). The field improvements have no sync path home."
+    ]
+  },
+  "convergence": {
+    "title": "Where all three agree",
+    "common_ancestor": "AWB Gen 3",
+    "shared": [
+      "Same .hbs Handlebars prompt templates with {{placeholder}} injection",
+      "Same five step types — transform / checkpoint / action / gate / elicit",
+      "Same declared inputs[] / outputs (stores) name-matched dataflow contract",
+      "Same output.{drop,group} final-projection reshape concept",
+      "Same 'human gates forward decisions, not chatter' discipline"
+    ],
+    "note": "Agreement is total on lenses 1 + 2 (prompts + workflow shape). Divergence is total on lens 3 (architecture)."
+  },
+  "cross_pollination": [
+    {
+      "direction": "YLO should steal from POEM",
+      "items": [
+        "Co-located .json output schemas — validate worker writes mechanically instead of hoping the worker returns the right shape (YLO's single biggest gap).",
+        "A preflight / validate pass (validate-workflow.yaml) — catch type mismatches and dangling refs before any step runs.",
+        "A modelType alias layer (\"analysis\"/\"quick\" → concrete slug) — would have prevented the flux-schnell phantom-model bug (open loop #1)."
+      ]
+    },
+    {
+      "direction": "POEM / supportsignal should steal from YLO",
+      "items": [
+        "Append-only EAV audit store — every attempt, error, and human decision preserved (a compliance asset for the NDIS / safety-regulated domain, not just a nicety).",
+        "Resumability from the store — re-read, skip done steps, append a fresh attempt.",
+        "Structural isolation for the Oscar-as-LLM path — replace 600 lines of 'don't summarise' rules with subagent isolation, where the rules become unnecessary."
+      ]
+    }
+  ],
+  "verdict": {
+    "headline": "YLO is a working prototype of what POEM's Oscar was trying to be",
+    "alignment": [
+      { "layer": "Lenses 1 + 2 (prompts + workflow spec)", "difficulty": "easy", "detail": "~90% shared already — both descend from AWB Gen 3. POEM YAML ↔ YLO JSON is mechanically convertible. They could share one schema." },
+      { "layer": "Lens 3 (runner / architecture)", "difficulty": "identity decision", "detail": "Not a tweak — a choice of which POEM runtime survives: in-session conductor (YLO) vs external compiled CLI (poem-executor)." }
+    ],
+    "recommendation": "If POEM commits to in-session execution, adopt YLO's conductor as POEM's runtime and demote poem-executor to the headless / CI lane. The probes have already de-risked it."
+  }
+}

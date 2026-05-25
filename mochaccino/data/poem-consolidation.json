@@ -1,0 +1,81 @@
+{
+  "meta": {
+    "source": "docs/ylo-to-poem-blueprint.md (2026-05-22) — captured working session over YLO ↔ POEM ↔ AWB G1/G3",
+    "canonical_chain": "blueprint doc §3 (state model) + §8 (punchlist) + §5 (Penny→Agent Engineer) + roster naming convention",
+    "generated_at": "2026-05-22",
+    "generator": "Peter (Mochaccino dark-factory workspace) — POEM consolidation decision board",
+    "doc": "docs/ylo-to-poem-blueprint.md"
+  },
+  "frame": {
+    "headline": "POEM Consolidation — Decision Board",
+    "thesis": "YLO dies as a testing ground; its learnings consolidate into POEM, which becomes an Anthropic plugin. dark-factory gets a .poem/ folder and YLO's four workflows are rebuilt in POEM.",
+    "pillars": [
+      { "k": "YLO", "v": "Freeze + harvest + archive. Always a testing ground." },
+      { "k": "POEM", "v": "The home. Authoring surface. Repackaged as an Anthropic plugin." },
+      { "k": "AWB G3", "v": "Stays the runtime (WomPackage + engine). State model simplified." },
+      { "k": "dark-factory", "v": "First consumer — gets a .poem/ folder, rebuilds YLO workflows in POEM." }
+    ]
+  },
+  "punchlist": [
+    { "n": 1, "system": "POEM", "change": "Adopt append-only log + projections + validators as the state model", "why": "Kills AWB's mutability-enum complexity; audit + race-safety for free", "ref": "§3" },
+    { "n": 2, "system": "POEM", "change": "Add QuickArchitect (v1 7-step formula) as a fluid facade over Alex", "why": "Restores workflow-on-demand; keeps Alex for hardening", "ref": "§4" },
+    { "n": 3, "system": "POEM", "change": "Add a new Agent Engineer; keep Penny pure Prompt Engineer", "why": "Capability units (prompt+schema+tools+model) become portable skills/subagents", "ref": "§5" },
+    { "n": 4, "system": "POEM", "change": "Own the workflow-definition format (move it back from the AWB boundary)", "why": "Authoring belongs to the authoring layer", "ref": "§1" },
+    { "n": 5, "system": "POEM", "change": "Repackage as an Anthropic plugin (skills/agents/commands/MCP/hooks)", "why": "Distribution, hook-based enforcement, MCP tools, versioned install", "ref": "§6" },
+    { "n": 6, "system": "AWB G3", "change": "Drop the per-slot mutability enum; express as projection policies + validators", "why": "Same guarantees, simpler substrate, shared with POEM", "ref": "§3" },
+    { "n": 7, "system": "AWB G3", "change": "Keep WomPackage as compiled runtime contract; consume POEM-owned definition", "why": "Clean runtime/authoring split", "ref": "§1" },
+    { "n": 8, "system": "YLO", "change": "Freeze + harvest + archive once the .poem/ rebuild proves out", "why": "It was always a testing ground", "ref": "§7" },
+    { "n": 9, "system": "Brain", "change": "Freshness-check claude-code-plugins.md past v2.1.14 only", "why": "Coverage already strong — apply, don't rewrite", "ref": "§6" }
+  ],
+  "state_model": {
+    "title": "Event sourcing + projections — delete the mutability enum",
+    "claim": "In event sourcing, mutability is not a storage property — it's a projection (roll-up) policy. 5 write-time mutation behaviours collapse into 5 read-time folds over one append-only log.",
+    "mutability_map": [
+      { "mode": "mutable", "fold": "last-write-wins" },
+      { "mode": "immutable-after-first-write", "fold": "first-write-wins" },
+      { "mode": "append-only", "fold": "keep-all" },
+      { "mode": "replace-with-review", "fold": "last-write-wins gated by a review event" },
+      { "mode": "derived", "fold": "computed fold over other keys" }
+    ],
+    "layers": [
+      { "n": 1, "name": "Append-only log", "role": "one write model — YLO's blackboard substrate (every fact immutable)" },
+      { "n": 2, "name": "Projection policies", "role": "the read-side fold — replaces the mutability MODES; relational output is just a projection shape" },
+      { "n": 3, "name": "Write-time validators", "role": "optional guard rails as checks over the log (e.g. immutable key folds to >1 ok-event → raise) — where AWB's 'shaped appropriately' guarantee lives" }
+    ],
+    "caveat": "A projection changes how you READ — it can't reject a bad WRITE. That's why layer 3 (validators) exists. But validators are rules over the log, not storage modes — the substrate stays dumb."
+  },
+  "roster": {
+    "title": "The agent roster + the naming snag",
+    "convention": "[R]ole = [N]ame initial",
+    "agents": [
+      { "role": "Prompt Engineer", "name": "Penny", "initial": "P", "owns": "prompt (.hbs) + co-located output schema (.json)", "status": "keep — stays pure" },
+      { "role": "Architect", "name": "Alex", "initial": "A", "owns": "workflow definition (heavy / compile-first) + cross-step I/O validation", "status": "keep (the press)" },
+      { "role": "Orchestrator", "name": "Oscar", "initial": "O", "owns": "runtime execution; reads workflow + prompts + data, executes", "status": "→ the conductor role" },
+      { "role": "Validator", "name": "Victor", "initial": "V", "owns": "capability / regression validation across workflows", "status": "keep" },
+      { "role": "Field-tester", "name": "Felix", "initial": "F", "owns": "logs blockers from external POEM installs back to core", "status": "keep" }
+    ],
+    "new_role": {
+      "role": "Agent Engineer",
+      "wants_initial": "A",
+      "collision": "A is already Alex (Architect) — [R]=[N] forbids two A's",
+      "unit": "input → prompt(hbs) → output  +  tools + model + capabilities",
+      "decision": "keep Penny pure + add this as a NEW persona (may absorb some Penny responsibilities — TBD)"
+    },
+    "name_options": [
+      { "role_word": "Agent", "name": "—", "initial": "A", "note": "preferred term, but COLLIDES with Alex/Architect" },
+      { "role_word": "Capability Engineer", "name": "Cara / Carl", "initial": "C", "note": "free initial; 'capability' matches the expanded unit" },
+      { "role_word": "Composer", "name": "Cleo", "initial": "C", "note": "composes prompt+tools+model into one agent" },
+      { "role_word": "Integrator", "name": "Iris / Ian", "initial": "I", "note": "free initial; emphasises wiring tools+model" },
+      { "role_word": "Builder", "name": "Bo / Bella", "initial": "B", "note": "free initial; plainest" }
+    ]
+  },
+  "open_questions": [
+    "Agent Engineer NAME — reword the role to free an initial, or break the one-initial rule?",
+    "Which of Penny's responsibilities (if any) move to the Agent Engineer?",
+    "Projection-fold ownership — Penny (prompt level) or Alex (workflow level)?",
+    "QuickArchitect output — POEM YAML directly, or a lighter runnable form Alex upgrades?",
+    "Validator placement — plugin hook, runtime check, or compile-time check?",
+    "MCP vs skill for kie/image-gen — first-class MCP tool or Bash-shelling skill?",
+    ".poem/ layout — mirror .mochaccino/ workspace conventions?"
+  ]
+}

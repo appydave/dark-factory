@@ -2,7 +2,7 @@
   "workspace": "dark-factory",
   "workspace_type": "single",
   "created": "2026-05-18",
-  "last_updated": "2026-05-18",
+  "last_updated": "2026-05-21",
   "designs": [
     {
       "id": "01-pipeline-overview",
@@ -30,6 +30,51 @@
       "status": "active",
       "view_type": "table-with-drawer",
       "created": "2026-05-18"
+    },
+    {
+      "id": "04-blackboard-overview",
+      "title": "Blackboard Pattern Overview",
+      "description": "Architecture diagram of the blackboard workflow pattern: conductor / subagent / store, three worker contracts, Oscar-fix isolation rules, EAV envelope.",
+      "data_source": "data/blackboard-probes.json",
+      "status": "active",
+      "view_type": "architecture-diagram",
+      "created": "2026-05-21"
+    },
+    {
+      "id": "05-probe-progression",
+      "title": "Probe Progression",
+      "description": "The four blackboard probes as a visual timeline. Each added one dimension — parallel fan-out, scripted refinement, human gate, async API + binary artifacts. 78/78 ACs.",
+      "data_source": "data/blackboard-probes.json",
+      "status": "active",
+      "view_type": "timeline",
+      "created": "2026-05-21"
+    },
+    {
+      "id": "06-blackboard-vs-poem",
+      "title": "Same Disease, Three Medicines",
+      "description": "Three-way comparison: YLO blackboard vs POEM OS vs prompt.supportsignal across three lenses (prompt engineering / workflow shape / architecture-runner-isolation). Thesis: same orchestrator-poisoning failure, three cures — isolate / discipline / remove.",
+      "data_source": "data/blackboard-vs-poem.json",
+      "status": "active",
+      "view_type": "comparison-matrix",
+      "created": "2026-05-21"
+    },
+    {
+      "id": "07-workflow-flows",
+      "title": "The Four Workflows",
+      "description": "Each of the four YLO probes rendered as a flow diagram: parallel fan-out (×12), sequential refinement loop, human-gated branch, multi-phase pipeline (×6 explore → select → ×3 finals). Node-typed, store-keys labelled, transcribed verbatim from the workflow JSON specs.",
+      "data_source": "data/blackboard-workflows.json",
+      "status": "active",
+      "view_type": "flow-diagram",
+      "created": "2026-05-21"
+    },
+    {
+      "id": "08-poem-consolidation",
+      "title": "POEM Consolidation",
+      "description": "Decision board for folding YLO's learnings into POEM: the 9-item cross-system punchlist (POEM/AWB G3/YLO/brain), the event-sourcing state model (mutability modes → projection folds + 3-layer architecture), and the agent roster with the Penny-vs-new-Agent-Engineer naming decision.",
+      "data_source": "data/poem-consolidation.json",
+      "status": "active",
+      "view_type": "decision-board",
+      "created": "2026-05-22"
     }
   ]
 }

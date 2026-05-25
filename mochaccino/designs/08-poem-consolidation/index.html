@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<!-- Source: docs/ylo-to-poem-blueprint.md (2026-05-22) -->
+<!-- Data:   ../../data/poem-consolidation.json -->
+<!-- Brand:  AppyDave (brand-dave:brand) — light-mode-primary -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dark Factory — POEM Consolidation Decision Board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../components/copykit.css">
+<style>
+  :root {
+    --brand-brown: #342d2d;
+    --brand-gold: #ccba9d;
+    --brand-yellow: #ffde59;
+    --brand-amber: #c8841a;
+    --brand-muted: #7a6e5e;
+    --brand-near-white: #faf5ec;
+    --brand-surface: #f0ebe4;
+    --brand-linen: #e8e0d4;
+    --brand-border: #d4cdc4;
+    --brand-dark-surface: #25201e;
+    --status-strong: #3d8a5a;
+    --status-warn: #c8841a;
+    --status-danger: #a94a36;
+    /* per-system accents */
+    --sys-poem: #c8841a;
+    --sys-awb: #3f6f8f;
+    --sys-ylo: #a94a36;
+    --sys-brain: #6b5e8f;
+    --display: 'Bebas Neue', sans-serif;
+    --headline: 'Oswald', sans-serif;
+    --body: 'Roboto', sans-serif;
+    --mono: 'Roboto Mono', monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--brand-near-white); color: var(--brand-brown);
+    font-family: var(--body); font-size: 14px; line-height: 1.55;
+    padding: 28px 36px; max-width: 1280px; margin: 0 auto;
+  }
+  header {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: 24px; padding-bottom: 18px; border-bottom: 1px solid var(--brand-border);
+  }
+  h1 { font-family: var(--display); font-size: 50px; letter-spacing: 1px; line-height: 1; }
+  h1 .yellow { color: var(--brand-amber); }
+  .tagline { font-family: var(--headline); font-size: 13px; text-transform: uppercase; letter-spacing: 2px; color: var(--brand-amber); margin-top: 6px; }
+  .breadcrumb { font-family: var(--mono); font-size: 11px; color: var(--brand-muted); text-transform: uppercase; letter-spacing: 1.5px; text-align: right; }
+  .breadcrumb a { color: var(--brand-amber); text-decoration: none; }
+
+  h2 { font-family: var(--headline); font-size: 20px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--brand-brown); margin: 32px 0 6px; padding-bottom: 6px; border-bottom: 1px solid var(--brand-border); }
+  h2 .num { color: var(--brand-amber); font-family: var(--display); font-size: 24px; margin-right: 8px; }
+  .lead { color: var(--brand-muted); font-size: 13px; margin: 0 0 14px; max-width: 940px; }
+
+  /* hero */
+  .hero { background: var(--brand-dark-surface); color: var(--brand-near-white); border-radius: 5px; padding: 26px 30px; border-left: 5px solid var(--brand-yellow); }
+  .hero-title { font-family: var(--display); font-size: 40px; line-height: 1; color: var(--brand-yellow); letter-spacing: 1px; margin-bottom: 12px; }
+  .hero-thesis { font-size: 14px; line-height: 1.6; max-width: 940px; margin-bottom: 20px; }
+  .pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .pillar { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); border-top: 3px solid var(--pc, var(--brand-amber)); border-radius: 4px; padding: 14px 16px; }
+  .pillar-k { font-family: var(--display); font-size: 24px; color: var(--pc, var(--brand-amber)); line-height: 1; margin-bottom: 6px; letter-spacing: 0.5px; }
+  .pillar-v { font-size: 12px; line-height: 1.45; color: var(--brand-near-white); }
+
+  /* punchlist */
+  .punch { display: grid; gap: 9px; margin-top: 6px; }
+  .row { display: grid; grid-template-columns: 34px 92px 1fr 1fr 42px; gap: 14px; align-items: center; background: white; border: 1px solid var(--brand-border); border-left: 4px solid var(--rc, var(--brand-amber)); border-radius: 4px; padding: 12px 16px; }
+  .row-n { font-family: var(--display); font-size: 24px; color: var(--brand-muted); line-height: 1; }
+  .row-sys { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; padding: 3px 8px; border-radius: 3px; text-align: center; color: #fff; background: var(--rc, var(--brand-amber)); }
+  .row-change { font-family: var(--headline); font-size: 14px; font-weight: 600; color: var(--brand-brown); line-height: 1.25; }
+  .row-why { font-size: 12px; color: var(--brand-muted); line-height: 1.4; }
+  .row-ref { font-family: var(--mono); font-size: 10px; color: var(--brand-amber); text-align: right; }
+
+  /* state model */
+  .sm-wrap { display: grid; grid-template-columns: 1.1fr 1fr; gap: 16px; margin-top: 6px; align-items: start; }
+  .panel { background: white; border: 1px solid var(--brand-border); border-radius: 4px; padding: 18px 20px; }
+  .panel.dark { background: var(--brand-dark-surface); color: var(--brand-near-white); border-color: var(--brand-brown); }
+  .panel-h { font-family: var(--headline); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--brand-amber); margin-bottom: 12px; }
+  table.map { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  table.map td { padding: 7px 6px; border-bottom: 1px solid var(--brand-border); vertical-align: top; }
+  table.map tr:last-child td { border-bottom: none; }
+  table.map .mode { font-family: var(--mono); font-size: 11px; color: var(--brand-danger, #a94a36); white-space: nowrap; }
+  table.map .arrow { color: var(--brand-amber); text-align: center; width: 22px; }
+  table.map .fold { font-family: var(--mono); font-size: 11px; color: var(--status-strong); }
+  .layers { display: grid; gap: 10px; }
+  .layer { border-left: 3px solid var(--brand-yellow); padding: 8px 12px; background: rgba(255,255,255,0.04); border-radius: 3px; }
+  .layer-n { font-family: var(--mono); font-size: 10px; color: var(--brand-gold); }
+  .layer-name { font-family: var(--headline); font-size: 13px; font-weight: 600; color: var(--brand-yellow); margin: 2px 0 4px; }
+  .layer-role { font-size: 12px; line-height: 1.45; color: var(--brand-near-white); }
+  .caveat { margin-top: 12px; font-size: 12px; color: var(--brand-near-white); border-top: 1px solid rgba(255,255,255,0.15); padding-top: 10px; }
+  .caveat b { color: var(--brand-yellow); }
+  .sm-claim { font-size: 12.5px; color: var(--brand-brown); margin-bottom: 12px; line-height: 1.5; }
+  .sm-claim b { color: var(--brand-amber); }
+
+  /* roster */
+  .roster-conv { font-family: var(--mono); font-size: 12px; color: var(--brand-amber); margin-bottom: 12px; }
+  .roster-conv b { color: var(--brand-brown); }
+  .roster { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+  .agent { background: white; border: 1px solid var(--brand-border); border-radius: 4px; padding: 14px; text-align: center; position: relative; }
+  .agent.keep { border-top: 3px solid var(--status-strong); }
+  .agent-initial { font-family: var(--display); font-size: 40px; color: var(--brand-amber); line-height: 1; }
+  .agent-name { font-family: var(--headline); font-size: 15px; font-weight: 600; color: var(--brand-brown); }
+  .agent-role { font-family: var(--mono); font-size: 10px; color: var(--brand-muted); text-transform: uppercase; letter-spacing: 0.5px; margin: 2px 0 8px; }
+  .agent-owns { font-size: 11px; line-height: 1.4; color: var(--brand-brown); text-align: left; }
+  .agent-status { margin-top: 8px; font-family: var(--mono); font-size: 9.5px; color: var(--status-strong); text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* the new-role collision callout + name options */
+  .collision { background: var(--brand-dark-surface); color: var(--brand-near-white); border-radius: 4px; padding: 20px 24px; margin-top: 16px; border-left: 4px solid var(--status-danger); }
+  .collision-title { font-family: var(--display); font-size: 26px; color: var(--brand-yellow); letter-spacing: 0.5px; line-height: 1; margin-bottom: 8px; }
+  .collision-sub { font-size: 13px; line-height: 1.5; margin-bottom: 16px; }
+  .collision-sub b { color: var(--brand-yellow); }
+  .collision-sub code { font-family: var(--mono); color: var(--brand-gold); }
+  .opts { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+  .opt { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 4px; padding: 12px; }
+  .opt.bad { border-color: var(--status-danger); opacity: 0.7; }
+  .opt-role { font-family: var(--headline); font-size: 12px; font-weight: 600; color: var(--brand-yellow); }
+  .opt-name { font-family: var(--display); font-size: 22px; color: var(--brand-near-white); line-height: 1.1; margin: 4px 0; }
+  .opt-init { font-family: var(--mono); font-size: 10px; color: var(--brand-gold); }
+  .opt-note { font-size: 10.5px; line-height: 1.4; color: var(--brand-near-white); margin-top: 6px; }
+  .opt.bad .opt-note { color: #e0a99e; }
+
+  /* open questions */
+  .oq { list-style: none; padding: 0; margin: 6px 0 0; display: grid; gap: 8px; }
+  .oq li { background: var(--brand-surface); border: 1px solid var(--brand-border); border-left: 3px solid var(--brand-amber); border-radius: 4px; padding: 10px 14px; font-size: 13px; line-height: 1.45; }
+  .oq li::before { content: "? "; color: var(--brand-amber); font-weight: 700; font-family: var(--mono); }
+
+  footer { color: var(--brand-muted); font-family: var(--mono); font-size: 11px; margin-top: 40px; padding-top: 18px; border-top: 1px solid var(--brand-border); }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>POEM <span class="yellow">CONSOLIDATION</span></h1>
+    <div class="tagline">Decision Board · what changes, where, who</div>
+  </div>
+  <div class="breadcrumb">
+    <a href="../">⟵ Gallery</a> · design 08<br>data: poem-consolidation.json
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-title">YLO DIES · LEARNINGS GO TO POEM</div>
+  <div class="hero-thesis">
+    YLO was always a testing ground. Its learnings consolidate into <strong>POEM</strong>, which becomes an
+    <strong>Anthropic plugin</strong>. <strong>dark-factory</strong> gets a <code>.poem/</code> folder and YLO's four
+    workflows are rebuilt in POEM — not ported as-is. AWB Gen 3 stays the runtime, with a simplified state model.
+  </div>
+  <div class="pillars">
+    <div class="pillar" style="--pc: var(--sys-ylo);"><div class="pillar-k">YLO</div><div class="pillar-v">Freeze + harvest + archive. Always a testing ground.</div></div>
+    <div class="pillar" style="--pc: var(--sys-poem);"><div class="pillar-k">POEM</div><div class="pillar-v">The home. Authoring surface. Repackaged as an Anthropic plugin.</div></div>
+    <div class="pillar" style="--pc: var(--sys-awb);"><div class="pillar-k">AWB G3</div><div class="pillar-v">Stays the runtime (WomPackage + engine). State model simplified.</div></div>
+    <div class="pillar" style="--pc: var(--brand-amber);"><div class="pillar-k">.poem/</div><div class="pillar-v">dark-factory is first consumer — rebuild YLO workflows in POEM.</div></div>
+  </div>
+</div>
+
+<!-- PUNCHLIST -->
+<h2><span class="num">A</span>The Cross-System Punchlist</h2>
+<div class="lead">Nine changes across four systems. POEM absorbs the bulk; AWB simplifies; YLO retires; the brain gets a freshness check.</div>
+<div class="punch">
+  <div class="row" style="--rc: var(--sys-poem);"><div class="row-n">1</div><div class="row-sys">POEM</div><div class="row-change">Adopt append-only log + projections + validators as the state model</div><div class="row-why">Kills AWB's mutability-enum complexity; audit + race-safety free</div><div class="row-ref">§3</div></div>
+  <div class="row" style="--rc: var(--sys-poem);"><div class="row-n">2</div><div class="row-sys">POEM</div><div class="row-change">Add QuickArchitect (v1 7-step formula) as a fluid facade over Alex</div><div class="row-why">Restores workflow-on-demand; keeps Alex for hardening</div><div class="row-ref">§4</div></div>
+  <div class="row" style="--rc: var(--sys-poem);"><div class="row-n">3</div><div class="row-sys">POEM</div><div class="row-change">Add a new Agent Engineer; keep Penny a pure Prompt Engineer</div><div class="row-why">Capability units (prompt+schema+tools+model) become portable skills/subagents</div><div class="row-ref">§5</div></div>
+  <div class="row" style="--rc: var(--sys-poem);"><div class="row-n">4</div><div class="row-sys">POEM</div><div class="row-change">Own the workflow-definition format (move it back from the AWB boundary)</div><div class="row-why">Authoring belongs to the authoring layer</div><div class="row-ref">§1</div></div>
+  <div class="row" style="--rc: var(--sys-poem);"><div class="row-n">5</div><div class="row-sys">POEM</div><div class="row-change">Repackage as an Anthropic plugin (skills/agents/commands/MCP/hooks)</div><div class="row-why">Distribution, hook-based enforcement, MCP tools, versioned install</div><div class="row-ref">§6</div></div>
+  <div class="row" style="--rc: var(--sys-awb);"><div class="row-n">6</div><div class="row-sys">AWB G3</div><div class="row-change">Drop the per-slot mutability enum; express as projection policies + validators</div><div class="row-why">Same guarantees, simpler substrate, shared with POEM</div><div class="row-ref">§3</div></div>
+  <div class="row" style="--rc: var(--sys-awb);"><div class="row-n">7</div><div class="row-sys">AWB G3</div><div class="row-change">Keep WomPackage as compiled runtime contract; consume POEM-owned definition</div><div class="row-why">Clean runtime / authoring split</div><div class="row-ref">§1</div></div>
+  <div class="row" style="--rc: var(--sys-ylo);"><div class="row-n">8</div><div class="row-sys">YLO</div><div class="row-change">Freeze + harvest + archive once the .poem/ rebuild proves out</div><div class="row-why">It was always a testing ground</div><div class="row-ref">§7</div></div>
+  <div class="row" style="--rc: var(--sys-brain);"><div class="row-n">9</div><div class="row-sys">BRAIN</div><div class="row-change">Freshness-check claude-code-plugins.md past v2.1.14 only</div><div class="row-why">Coverage already strong — apply, don't rewrite</div><div class="row-ref">§6</div></div>
+</div>
+
+<!-- STATE MODEL -->
+<h2><span class="num">B</span>State Model — Delete the Mutability Enum</h2>
+<div class="lead">In event sourcing, mutability isn't a storage property — it's a projection (roll-up) policy. Five write-time modes collapse into five read-time folds over one append-only log.</div>
+<div class="sm-wrap">
+  <div class="panel">
+    <div class="panel-h">AWB mutability mode → projection fold</div>
+    <table class="map">
+      <tr><td class="mode">mutable</td><td class="arrow">→</td><td class="fold">last-write-wins</td></tr>
+      <tr><td class="mode">immutable-after-first-write</td><td class="arrow">→</td><td class="fold">first-write-wins</td></tr>
+      <tr><td class="mode">append-only</td><td class="arrow">→</td><td class="fold">keep-all</td></tr>
+      <tr><td class="mode">replace-with-review</td><td class="arrow">→</td><td class="fold">last-write-wins, gated by a review event</td></tr>
+      <tr><td class="mode">derived</td><td class="arrow">→</td><td class="fold">computed fold over other keys</td></tr>
+    </table>
+    <div class="sm-claim" style="margin-top:14px;">A <b>relational-looking output record</b> (titles, suggestedTitles as columns) is just a projection shape. "Mutating" a value = append an event + re-project. <b>No mutation logic in the store.</b></div>
+  </div>
+  <div class="panel dark">
+    <div class="panel-h" style="color: var(--brand-yellow);">The three separable layers</div>
+    <div class="layers">
+      <div class="layer"><div class="layer-n">layer 1</div><div class="layer-name">Append-only log</div><div class="layer-role">one write model — YLO's blackboard substrate. Every fact immutable.</div></div>
+      <div class="layer"><div class="layer-n">layer 2</div><div class="layer-name">Projection policies</div><div class="layer-role">the read-side fold — replaces the mutability MODES. Relational output is a projection shape.</div></div>
+      <div class="layer"><div class="layer-n">layer 3</div><div class="layer-name">Write-time validators</div><div class="layer-role">optional guard rails as checks over the log (immutable key folds to &gt;1 ok-event → raise). Where AWB's "shaped appropriately" lives.</div></div>
+    </div>
+    <div class="caveat">A projection changes how you <b>read</b> — it can't reject a bad <b>write</b>. That's why layer 3 exists. But validators are rules over the log, not storage modes — <b>the substrate stays dumb.</b></div>
+  </div>
+</div>
+
+<!-- ROSTER -->
+<h2><span class="num">C</span>The Roster + the Naming Snag</h2>
+<div class="roster-conv">Convention: <b>[R]ole = [N]ame initial</b></div>
+<div class="roster">
+  <div class="agent keep"><div class="agent-initial">P</div><div class="agent-name">Penny</div><div class="agent-role">Prompt Engineer</div><div class="agent-owns">prompt (.hbs) + co-located output schema (.json)</div><div class="agent-status">keep — stays pure</div></div>
+  <div class="agent keep"><div class="agent-initial">A</div><div class="agent-name">Alex</div><div class="agent-role">Architect</div><div class="agent-owns">workflow definition (heavy / compile-first) + cross-step I/O validation</div><div class="agent-status">keep — the press</div></div>
+  <div class="agent keep"><div class="agent-initial">O</div><div class="agent-name">Oscar</div><div class="agent-role">Orchestrator</div><div class="agent-owns">runtime execution; reads workflow + prompts + data, executes</div><div class="agent-status">→ conductor role</div></div>
+  <div class="agent keep"><div class="agent-initial">V</div><div class="agent-name">Victor</div><div class="agent-role">Validator</div><div class="agent-owns">capability / regression validation across workflows</div><div class="agent-status">keep</div></div>
+  <div class="agent keep"><div class="agent-initial">F</div><div class="agent-name">Felix</div><div class="agent-role">Field-tester</div><div class="agent-owns">logs blockers from external POEM installs back to core</div><div class="agent-status">keep</div></div>
+</div>
+
+<div class="collision">
+  <div class="collision-title">NEW: AGENT ENGINEER — BUT WHAT'S ITS NAME?</div>
+  <div class="collision-sub">
+    Decision: <b>keep Penny pure + add a new Agent Engineer</b> (may absorb some of Penny's responsibilities — TBD).
+    Its unit expands hers: <code>input → prompt(hbs) → output  +  tools + model + capabilities</code>.
+    Snag: <b>"Agent" wants initial A — but A is already Alex (Architect).</b> [R]=[N] forbids two A's. Pick a role-word that frees an initial:
+  </div>
+  <div class="opts">
+    <div class="opt bad"><div class="opt-role">Agent</div><div class="opt-name">—</div><div class="opt-init">A · taken</div><div class="opt-note">Preferred term, but collides with Alex.</div></div>
+    <div class="opt"><div class="opt-role">Capability Eng.</div><div class="opt-name">Cara / Carl</div><div class="opt-init">C · free</div><div class="opt-note">"Capability" matches the expanded unit.</div></div>
+    <div class="opt"><div class="opt-role">Composer</div><div class="opt-name">Cleo</div><div class="opt-init">C · free</div><div class="opt-note">Composes prompt+tools+model into one agent.</div></div>
+    <div class="opt"><div class="opt-role">Integrator</div><div class="opt-name">Iris / Ian</div><div class="opt-init">I · free</div><div class="opt-note">Emphasises wiring tools + model.</div></div>
+    <div class="opt"><div class="opt-role">Builder</div><div class="opt-name">Bo / Bella</div><div class="opt-init">B · free</div><div class="opt-note">Plainest option.</div></div>
+  </div>
+</div>
+
+<!-- OPEN QUESTIONS -->
+<h2><span class="num">D</span>Open Questions</h2>
+<ul class="oq">
+  <li><b>Agent Engineer name</b> — reword the role to free an initial, or break the one-initial rule? And which of Penny's responsibilities (if any) move to it?</li>
+  <li><b>Projection-fold ownership</b> — Penny (prompt/output level) or Alex (workflow level)?</li>
+  <li><b>QuickArchitect output</b> — emit POEM YAML directly, or a lighter runnable form Alex later upgrades?</li>
+  <li><b>Validator placement</b> — plugin hook, runtime check, or compile-time check?</li>
+  <li><b>MCP vs skill for kie/image-gen</b> — first-class MCP tool, or Bash-shelling skill?</li>
+  <li><b>.poem/ layout</b> — mirror .mochaccino/ workspace conventions (data/ + governance + manifest)?</li>
+</ul>
+
+<footer>
+  Workspace: dark-factory · design 08 · source: docs/ylo-to-poem-blueprint.md (2026-05-22) ·
+  Brand: AppyDave light-mode-primary · Audience: solo
+</footer>
+<script>window.COPYKIT_CONFIG = { blocks: ".hero, .punch .row, .sm-wrap .panel, .roster .agent, .collision, .oq", title: "POEM Consolidation — Decision Board" };</script>
+<script src="../components/copykit.js"></script>
+</body>
+</html>

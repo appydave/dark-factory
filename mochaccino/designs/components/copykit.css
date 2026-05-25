@@ -1,0 +1,73 @@
+/* Mochaccino Copy Kit — shared across dark-factory designs.
+   Per-section checkboxes + a floating toolbar to copy selected (or all)
+   block text to the clipboard as markdown, for pasting back as context. */
+
+.copykit-chip {
+  position: absolute;
+  top: 8px; right: 8px;
+  z-index: 20;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid #d4cdc4;
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0.45;
+  transition: opacity 0.12s, border-color 0.12s, background 0.12s;
+}
+.copykit-chip:hover { opacity: 1; border-color: #c8841a; }
+.copykit-chip input { cursor: pointer; accent-color: #c8841a; margin: 0; width: 14px; height: 14px; }
+/* a checked box should stay visible */
+.copykit-chip:has(input:checked) { opacity: 1; border-color: #c8841a; background: #fff5e0; }
+/* dark blocks get a lighter chip */
+.copykit-chip.on-dark { background: rgba(37, 32, 30, 0.85); border-color: #7a6e5e; }
+
+.copykit-bar {
+  position: fixed;
+  right: 18px; bottom: 18px;
+  z-index: 9999;
+  display: flex; align-items: center; gap: 10px;
+  background: #25201e;
+  color: #faf5ec;
+  border: 1px solid #342d2d;
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-family: 'Roboto Mono', ui-monospace, monospace;
+  font-size: 12px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.22);
+}
+.copykit-bar .ck-all {
+  display: flex; align-items: center; gap: 6px;
+  color: #ccba9d; cursor: pointer; user-select: none;
+  padding-right: 10px; border-right: 1px solid rgba(255,255,255,0.15);
+}
+.copykit-bar .ck-all input { accent-color: #ffde59; cursor: pointer; }
+.copykit-bar .ck-count { color: #ffde59; min-width: 74px; }
+.copykit-bar button {
+  font-family: inherit; font-size: 12px;
+  background: #c8841a; color: #fff;
+  border: none; border-radius: 5px;
+  padding: 6px 12px; cursor: pointer;
+  letter-spacing: 0.3px;
+  transition: background 0.12s, transform 0.08s;
+}
+.copykit-bar button:hover { background: #e0961f; }
+.copykit-bar button:active { transform: translateY(1px); }
+.copykit-bar button.ck-all-btn { background: transparent; color: #ccba9d; border: 1px solid #7a6e5e; }
+.copykit-bar button.ck-all-btn:hover { background: rgba(255,255,255,0.06); color: #faf5ec; }
+
+.copykit-toast {
+  position: fixed;
+  right: 18px; bottom: 70px;
+  z-index: 10000;
+  background: #3d8a5a; color: #fff;
+  font-family: 'Roboto Mono', ui-monospace, monospace; font-size: 12px;
+  padding: 9px 14px; border-radius: 6px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+  opacity: 0; transform: translateY(8px);
+  transition: opacity 0.18s, transform 0.18s;
+  pointer-events: none;
+}
+.copykit-toast.show { opacity: 1; transform: translateY(0); }
+
+@media print { .copykit-chip, .copykit-bar, .copykit-toast { display: none !important; } }

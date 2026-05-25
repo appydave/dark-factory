@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./components/copykit.css">
 <style>
   :root {
     --brand-brown: #342d2d;
@@ -138,6 +139,9 @@
     1,100 artifacts, 76 distillation drafts, 88 deep evaluations, 11 SDLC stages walked.
     <em>The blackboard probes</em> (designs 04–05): four workflow probes (78/78 ACs), three
     project-local skills, ready-for-production pattern for stateful agent workflows in Claude Code.
+    <em>The comparison</em> (design 06): YLO vs POEM vs prompt.supportsignal across three lenses.
+    <em>The flows</em> (design 07): each of the four workflows as a flow diagram.
+    <em>The consolidation</em> (design 08): the YLO→POEM decision board.
   </div>
 </header>
 
@@ -210,10 +214,55 @@
     </div>
     <div class="design-meta">data: blackboard-probes.json · test video: b65 · 4 probes, 4 workflows, 3 skills</div>
   </a>
+
+  <a href="./06-blackboard-vs-poem/" class="design">
+    <div class="design-head">
+      <div class="design-title">Same Disease, Three Medicines</div>
+      <div class="design-id">06</div>
+    </div>
+    <div class="design-desc">
+      Three-way architectural comparison: <em>YLO blackboard vs POEM OS vs prompt.supportsignal</em>,
+      across three lenses — prompt engineering, workflow data shape, architecture/runner/isolation.
+      All three hit the same orchestrator-poisoning failure; YLO isolates, POEM disciplines,
+      supportsignal removes the LLM orchestrator.
+      Answers: <em>"Why is YLO different — and could POEM align with it?"</em>
+    </div>
+    <div class="design-meta">data: blackboard-vs-poem.json · 3 subjects · 3 lenses · verdict: YLO ≈ Oscar-done-right</div>
+  </a>
+
+  <a href="./07-workflow-flows/" class="design">
+    <div class="design-head">
+      <div class="design-title">The Four Workflows</div>
+      <div class="design-id">07</div>
+    </div>
+    <div class="design-desc">
+      Each of the <em>four YLO probes as a flow diagram</em> — read like a flowchart, seed to projection.
+      Parallel fan-out (×12), sequential refinement loop, human-gated branch, and multi-phase pipeline
+      (×6 explore → select → ×3 finals). Node-typed, store-keys labelled, transcribed from the workflow JSON.
+      Answers: <em>"What does each workflow actually do, step by step?"</em>
+    </div>
+    <div class="design-meta">data: blackboard-workflows.json · 4 workflows · 4 distinct shapes</div>
+  </a>
+
+  <a href="./08-poem-consolidation/" class="design">
+    <div class="design-head">
+      <div class="design-title">POEM Consolidation</div>
+      <div class="design-id">08</div>
+    </div>
+    <div class="design-desc">
+      Decision board for folding <em>YLO's learnings into POEM</em>: the 9-item cross-system punchlist
+      (POEM / AWB G3 / YLO / brain), the event-sourcing state model (mutability modes → projection folds),
+      and the agent roster with the Penny-vs-new-Agent-Engineer naming decision.
+      Answers: <em>"What changes, where, and who owns it?"</em>
+    </div>
+    <div class="design-meta">data: poem-consolidation.json · doc: ylo-to-poem-blueprint.md · 9 changes · 6 open questions</div>
+  </a>
 </div>
 
 <footer>
   Workspace: dark-factory · Brand: AppyDave (light-mode primary) · Mode: text-to-documentation · Audience: solo
 </footer>
+<script>window.COPYKIT_CONFIG = { blocks: ".design", title: "Dark Factory — Gallery" };</script>
+<script src="./components/copykit.js"></script>
 </body>
 </html>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<!-- Source: ylo-experiment/workflow-01-analysis.json + workflow-02-titles.json + workflow-03-titles-human.json + workflow-04-thumbnails.json -->
+<!-- Data:   ../../data/blackboard-workflows.json -->
+<!-- Brand:  AppyDave (brand-dave:brand) — light-mode-primary -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dark Factory — The Four Workflows (Flow Diagrams)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../components/copykit.css">
+<style>
+  :root {
+    --brand-brown: #342d2d;
+    --brand-gold: #ccba9d;
+    --brand-yellow: #ffde59;
+    --brand-amber: #c8841a;
+    --brand-muted: #7a6e5e;
+    --brand-near-white: #faf5ec;
+    --brand-surface: #f0ebe4;
+    --brand-linen: #e8e0d4;
+    --brand-border: #d4cdc4;
+    --brand-dark-surface: #25201e;
+    --status-strong: #3d8a5a;
+    --status-warn: #c8841a;
+    --status-danger: #a94a36;
+    --node-human: #2f6f8f;
+    --display: 'Bebas Neue', sans-serif;
+    --headline: 'Oswald', sans-serif;
+    --body: 'Roboto', sans-serif;
+    --mono: 'Roboto Mono', monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--brand-near-white);
+    color: var(--brand-brown);
+    font-family: var(--body);
+    font-size: 14px;
+    line-height: 1.55;
+    padding: 28px 36px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  header {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: 22px; padding-bottom: 18px;
+    border-bottom: 1px solid var(--brand-border);
+  }
+  h1 { font-family: var(--display); font-size: 52px; letter-spacing: 1px; line-height: 1; }
+  h1 .yellow { color: var(--brand-amber); }
+  .tagline {
+    font-family: var(--headline); font-size: 13px; text-transform: uppercase;
+    letter-spacing: 2px; color: var(--brand-amber); margin-top: 6px;
+  }
+  .breadcrumb {
+    font-family: var(--mono); font-size: 11px; color: var(--brand-muted);
+    text-transform: uppercase; letter-spacing: 1.5px; text-align: right;
+  }
+  .breadcrumb a { color: var(--brand-amber); text-decoration: none; }
+
+  /* legend */
+  .legend {
+    display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: center;
+    background: white; border: 1px solid var(--brand-border); border-radius: 4px;
+    padding: 12px 18px; margin-bottom: 8px; font-size: 11.5px;
+  }
+  .legend .li { display: flex; align-items: center; gap: 7px; font-family: var(--mono); color: var(--brand-muted); }
+  .swatch { width: 22px; height: 14px; border-radius: 3px; display: inline-block; }
+  .sw-transform { background: var(--brand-surface); border-left: 3px solid var(--brand-amber); }
+  .sw-checkpoint { background: white; border: 1px dashed var(--brand-muted); }
+  .sw-human { background: white; border: 1px dashed var(--node-human); }
+  .sw-action { background: var(--brand-dark-surface); }
+  .sw-seed { background: white; border: 1px dashed var(--brand-amber); }
+
+  /* workflow block */
+  .wf {
+    background: white; border: 1px solid var(--brand-border); border-radius: 5px;
+    padding: 22px 26px 26px; margin-top: 18px;
+    border-top: 4px solid var(--brand-amber);
+  }
+  .wf-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 4px; }
+  .wf-probe {
+    font-family: var(--display); font-size: 30px; color: var(--brand-amber); line-height: 1;
+  }
+  .wf-name { font-family: var(--headline); font-size: 22px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+  .wf-shape {
+    margin-left: auto; font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px;
+    background: var(--brand-yellow); color: var(--brand-brown); padding: 4px 10px; border-radius: 3px;
+    text-transform: uppercase;
+  }
+  .wf-meta { font-family: var(--mono); font-size: 11px; color: var(--brand-muted); margin-bottom: 4px; }
+  .wf-dim { font-size: 12.5px; color: var(--brand-brown); margin-bottom: 18px; }
+  .wf-dim b { color: var(--brand-amber); }
+  .wf-result { color: var(--status-strong); font-weight: 600; }
+
+  /* nodes (shared) */
+  .node {
+    border-radius: 4px; padding: 11px 15px; position: relative;
+    background: var(--brand-surface); border-left: 3px solid var(--brand-amber);
+  }
+  .node.seed { background: white; border: 1px dashed var(--brand-amber); border-left: 1px dashed var(--brand-amber); }
+  .node.checkpoint { background: white; border: 1px dashed var(--brand-muted); border-left: 3px dashed var(--brand-muted); }
+  .node.human { background: #eef4f7; border: 1px dashed var(--node-human); border-left: 3px solid var(--node-human); }
+  .node.action { background: var(--brand-dark-surface); color: var(--brand-near-white); border-left: 3px solid var(--brand-yellow); }
+  .node.action .n-store, .node.action .n-sub { color: var(--brand-gold); }
+  .node-label { font-family: var(--headline); font-size: 13px; font-weight: 600; line-height: 1.2; }
+  .n-sub { font-family: var(--mono); font-size: 10px; color: var(--brand-muted); margin-top: 3px; }
+  .n-store {
+    font-family: var(--mono); font-size: 10.5px; color: var(--brand-amber); margin-top: 6px;
+  }
+  .n-store::before { content: "→ stores "; color: var(--brand-muted); }
+  .n-badge {
+    position: absolute; top: -9px; right: 10px; font-family: var(--mono); font-size: 10px;
+    background: var(--brand-amber); color: white; padding: 2px 7px; border-radius: 3px; letter-spacing: 0.5px;
+  }
+  .n-badge.attempt { background: var(--brand-brown); }
+  .n-badge.files { background: var(--status-strong); }
+  .n-attempt-tag { font-family: var(--mono); font-size: 10px; color: var(--brand-muted); }
+
+  .down { text-align: center; color: var(--brand-amber); font-size: 20px; line-height: 1; padding: 5px 0; }
+  .down .lbl { display:block; font-family: var(--mono); font-size: 10px; color: var(--brand-muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 1px; }
+
+  .flow-linear { display: grid; gap: 0; max-width: 560px; }
+
+  /* fan-out (WF1, and parallel groups) */
+  .fan-seed { max-width: 420px; margin: 0 auto; }
+  .fan-banner {
+    text-align: center; font-family: var(--mono); font-size: 11px; color: var(--brand-amber);
+    text-transform: uppercase; letter-spacing: 1.5px; margin: 4px 0;
+  }
+  .fan-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 4px;
+  }
+  .chip {
+    background: var(--brand-surface); border-left: 3px solid var(--brand-amber);
+    border-radius: 4px; padding: 9px 11px;
+  }
+  .chip-label { font-family: var(--headline); font-size: 12px; font-weight: 600; line-height: 1.15; }
+  .chip-store { font-family: var(--mono); font-size: 9.5px; color: var(--brand-amber); margin-top: 3px; }
+  .join {
+    text-align: center; font-family: var(--mono); font-size: 11px; color: var(--brand-muted);
+    margin-top: 12px; padding-top: 10px; border-top: 1px dashed var(--brand-border);
+  }
+  .join b { color: var(--brand-amber); }
+
+  /* refinement loop-back */
+  .loopback {
+    background: var(--brand-near-white); border: 1px dashed var(--brand-amber);
+    border-radius: 4px; padding: 9px 14px; margin: 8px 0 0; max-width: 560px;
+    font-size: 11.5px; color: var(--brand-brown);
+  }
+  .loopback b { color: var(--brand-amber); font-family: var(--mono); }
+
+  /* branch (WF3) */
+  .branch { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; max-width: 560px; margin-top: 6px; }
+  .br {
+    border-radius: 4px; padding: 12px 14px; font-size: 12px; line-height: 1.45;
+  }
+  .br.accept { background: #e3efe7; border: 1px solid #b9d6c4; }
+  .br.refine { background: var(--brand-surface); border: 1px solid var(--brand-border); }
+  .br-on { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 5px; }
+  .br.accept .br-on { color: var(--status-strong); }
+  .br.refine .br-on { color: var(--brand-amber); }
+  .br-go { font-family: var(--headline); font-size: 13px; font-weight: 600; }
+
+  .seed-inline { font-family: var(--mono); font-size: 10.5px; color: var(--brand-muted); }
+  .seed-inline b { color: var(--brand-amber); }
+
+  footer {
+    color: var(--brand-muted); font-family: var(--mono); font-size: 11px;
+    margin-top: 40px; padding-top: 18px; border-top: 1px solid var(--brand-border);
+  }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>THE FOUR <span class="yellow">WORKFLOWS</span></h1>
+    <div class="tagline">Each YLO probe as a flow diagram</div>
+  </div>
+  <div class="breadcrumb">
+    <a href="../">⟵ Gallery</a> · design 07<br>data: blackboard-workflows.json
+  </div>
+</header>
+
+<div class="legend">
+  <span class="li"><span class="swatch sw-seed"></span> seed (input)</span>
+  <span class="li"><span class="swatch sw-transform"></span> transform (subagent · LLM)</span>
+  <span class="li"><span class="swatch sw-checkpoint"></span> checkpoint (fixture)</span>
+  <span class="li"><span class="swatch sw-human"></span> checkpoint (human gate)</span>
+  <span class="li"><span class="swatch sw-action"></span> action (writes file)</span>
+  <span class="li">│ every transform writes the store + returns a 1-line ack</span>
+</div>
+
+<!-- ============ WF1 — BULK CONTENT ANALYSIS ============ -->
+<div class="wf">
+  <div class="wf-head">
+    <span class="wf-probe">1</span>
+    <span class="wf-name">Bulk Content Analysis</span>
+    <span class="wf-shape">Parallel fan-out</span>
+  </div>
+  <div class="wf-meta">workflow-01-analysis.json · seed: videoId + transcriptPath · model: claude-sonnet-4-6 · <span class="wf-result">16/16 ACs</span></div>
+  <div class="wf-dim"><b>Dimension tested:</b> N concurrent subagents, one shared input, distinct output keys — no inter-step dependencies.</div>
+
+  <div class="fan-seed">
+    <div class="node seed">
+      <div class="node-label">SEED</div>
+      <div class="seed-inline"><b>videoId</b> · <b>transcriptPath</b></div>
+    </div>
+  </div>
+  <div class="down">▼<span class="lbl">transcriptPath fans out to all 12</span></div>
+  <div class="fan-banner">━━ spawn 12 subagents concurrently ━━</div>
+  <div class="fan-grid">
+    <div class="chip"><div class="chip-label">Main topic</div><div class="chip-store">mainTopic</div></div>
+    <div class="chip"><div class="chip-label">SEO keywords</div><div class="chip-store">keywords</div></div>
+    <div class="chip"><div class="chip-label">Audience insights</div><div class="chip-store">audienceInsights</div></div>
+    <div class="chip"><div class="chip-label">Emotional triggers</div><div class="chip-store">emotionalTriggers</div></div>
+    <div class="chip"><div class="chip-label">Statistics</div><div class="chip-store">statistics</div></div>
+    <div class="chip"><div class="chip-label">Catchy phrases</div><div class="chip-store">catchyPhrases</div></div>
+    <div class="chip"><div class="chip-label">CTA phrases</div><div class="chip-store">ctaPhrases</div></div>
+    <div class="chip"><div class="chip-label">Key takeaways</div><div class="chip-store">keyTakeaways</div></div>
+    <div class="chip"><div class="chip-label">Overall tone</div><div class="chip-store">overallTone</div></div>
+    <div class="chip"><div class="chip-label">Questions posed</div><div class="chip-store">questionsPosed</div></div>
+    <div class="chip"><div class="chip-label">Search terms</div><div class="chip-store">searchTerms</div></div>
+    <div class="chip"><div class="chip-label">Unique selling pts</div><div class="chip-store">usp</div></div>
+  </div>
+  <div class="join">12 store writes → <b>project</b> store.jsonl → store.view.json (last-write-wins)</div>
+</div>
+
+<!-- ============ WF2 — TITLE GEN + REFINEMENT ============ -->
+<div class="wf">
+  <div class="wf-head">
+    <span class="wf-probe">2</span>
+    <span class="wf-name">Title Generation + Refinement</span>
+    <span class="wf-shape">Sequential refinement loop</span>
+  </div>
+  <div class="wf-meta">workflow-02-titles.json · seed: videoId + shortTitle · <span class="wf-result">21/21 ACs</span></div>
+  <div class="wf-dim"><b>Dimension tested:</b> stateless re-dispatch refinement (blackboard §6) + outputKeyMap rename. Reads keys produced by WF1.</div>
+
+  <div class="flow-linear">
+    <div class="node">
+      <span class="n-badge attempt">attempt 1</span>
+      <div class="node-label">Generate 10 candidate titles</div>
+      <div class="n-sub">inputs: mainTopic · statistics? · catchyPhrases? · audienceInsights? · shortTitle</div>
+      <div class="n-store">generatedTitles</div>
+    </div>
+    <div class="down">▼</div>
+    <div class="node checkpoint">
+      <div class="node-label">Log critique from fixture</div>
+      <div class="n-sub">checkpoint · conductor-writes · critique-fixture.txt</div>
+      <div class="n-store">titleCritiqueLog</div>
+    </div>
+    <div class="down">▼<span class="lbl">re-dispatch with critique</span></div>
+    <div class="node">
+      <span class="n-badge attempt">attempt 2</span>
+      <div class="node-label">Refine titles + select top</div>
+      <div class="n-sub">inputs: generatedTitles · titleCritiqueLog &nbsp;·&nbsp; outputKeyMap: topTitle → selectedTitles</div>
+      <div class="n-store">generatedTitles · selectedTitles</div>
+    </div>
+  </div>
+  <div class="loopback">↻ <b>stateless-redispatch</b> — attempt 2 is a fresh subagent fed the prior titles + critique. The attempt-1 record stays on the store as audit (append-only).</div>
+</div>
+
+<!-- ============ WF3 — TITLE GEN + HUMAN GATE ============ -->
+<div class="wf">
+  <div class="wf-head">
+    <span class="wf-probe">3</span>
+    <span class="wf-name">Title Gen + Human-Gated Refinement</span>
+    <span class="wf-shape">Human-gated branch</span>
+  </div>
+  <div class="wf-meta">workflow-03-titles-human.json · seed: videoId + shortTitle · separate store (runs/b65-2-5) · <span class="wf-result">21/21 ACs</span></div>
+  <div class="wf-dim"><b>Dimension tested:</b> the orchestrator-hosts-conversation path — a real human-in-the-loop gate with an accept / refine branch.</div>
+
+  <div class="flow-linear">
+    <div class="node">
+      <span class="n-badge attempt">attempt 1</span>
+      <div class="node-label">Generate 10 candidate titles</div>
+      <div class="n-sub">inputs: mainTopic · statistics? · catchyPhrases? · audienceInsights? · shortTitle</div>
+      <div class="n-store">generatedTitles</div>
+    </div>
+    <div class="down">▼</div>
+    <div class="node human">
+      <span class="n-badge" style="background: var(--node-human);">HUMAN</span>
+      <div class="node-label">Render titles to user · await typed input</div>
+      <div class="n-sub">checkpoint · gateMode: human-stdin · accept keywords: “accept” / “ok”</div>
+      <div class="n-store">titleCritiqueLog</div>
+    </div>
+    <div class="down">▼<span class="lbl">branch on user input</span></div>
+  </div>
+  <div class="branch">
+    <div class="br accept">
+      <div class="br-on">if “accept” / “ok”</div>
+      <div class="br-go">DONE — selectedTitles written, refinement skipped</div>
+    </div>
+    <div class="br refine">
+      <div class="br-on">if a critique typed</div>
+      <div class="br-go">→ Refine titles (attempt 2) + select top</div>
+    </div>
+  </div>
+  <div class="loopback" style="margin-top:14px;">Refine path: fresh subagent · inputs generatedTitles + titleCritiqueLog · outputKeyMap <b>topTitle → selectedTitles</b>. Only the distilled critique forwards downstream — never the raw chat.</div>
+</div>
+
+<!-- ============ WF4 — THUMBNAILS ============ -->
+<div class="wf">
+  <div class="wf-head">
+    <span class="wf-probe">4</span>
+    <span class="wf-name">Thumbnail Generation</span>
+    <span class="wf-shape">Multi-phase pipeline</span>
+  </div>
+  <div class="wf-meta">workflow-04-thumbnails.json · seed: videoId · models: flux-schnell (explore) + nano-banana-2 (finals) · <span class="wf-result">20/22 ACs</span></div>
+  <div class="wf-dim"><b>Dimension tested:</b> async kie.ai polling, binary outputs (JPGs to disk + path in store), title-thumbnail pairing. Two fan-out points inside a sequential pipeline.</div>
+
+  <div class="flow-linear" style="max-width:620px;">
+    <div class="node">
+      <div class="node-label">Generate 6 design briefs</div>
+      <div class="n-sub">2 per title × 3 titles · inputs: selectedTitles · mainTopic · audienceInsights · emotionalTriggers</div>
+      <div class="n-store">designBriefs</div>
+    </div>
+    <div class="down">▼</div>
+    <div class="node">
+      <span class="n-badge">fan-out ×6</span>
+      <span class="n-badge files" style="right:90px;">→ exp-{n}.jpg</span>
+      <div class="node-label">6 exploration thumbnails</div>
+      <div class="n-sub">flux-schnell · 512×288 · cheap · parallel · bytes curl-o to disk</div>
+      <div class="n-store">explorationImages</div>
+    </div>
+    <div class="down">▼</div>
+    <div class="node checkpoint">
+      <div class="node-label">Apply fixture selection [0, 2, 4]</div>
+      <div class="n-sub">checkpoint · conductor-writes · visual gate deferred to probe #5</div>
+      <div class="n-store">selectedExplorationIndices</div>
+    </div>
+    <div class="down">▼</div>
+    <div class="node">
+      <span class="n-badge">fan-out ×3</span>
+      <span class="n-badge files" style="right:90px;">→ final-{n}.jpg</span>
+      <div class="node-label">3 final thumbnails</div>
+      <div class="n-sub">nano-banana-2 · 2048×1152 · parallel · inputs: designBriefs · explorationImages · selectedExplorationIndices</div>
+      <div class="n-store">finalImages</div>
+    </div>
+    <div class="down">▼</div>
+    <div class="node action">
+      <span class="n-badge files">→ manifest.md</span>
+      <div class="node-label">Write manifest</div>
+      <div class="n-sub">action · conductor-writes · paths · sizes · costs · timings</div>
+      <div class="n-store">thumbnailsManifest</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Workspace: dark-factory · design 07 · diagrams transcribed verbatim from the 4 workflow JSON specs in ylo-experiment/ ·
+  Brand: AppyDave light-mode-primary · Audience: solo
+</footer>
+<script>window.COPYKIT_CONFIG = { blocks: ".legend, .wf", title: "The Four Workflows — YLO blackboard flow diagrams" };</script>
+<script src="../components/copykit.js"></script>
+</body>
+</html>
