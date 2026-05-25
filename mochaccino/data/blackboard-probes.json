@@ -1,6 +1,6 @@
 {
   "meta": {
-    "source": "ylo-experiment/HANDOVER.md + workflow-*.json + runs/b65/* + runs/b65-2-5/*",
+    "source": "experiments/ylo/blackboard/HANDOVER.md + workflow-*.json + runs/b65/* + runs/b65-2-5/*",
     "canonical_chain": "blackboard-workflow-pattern.md → probe plans → workflow files → run outputs",
     "generated_at": "2026-05-21",
     "generator": "Peter (Mochaccino dark-factory workspace) — blackboard probes view",
@@ -64,8 +64,8 @@
       "title": "Bulk Content Analysis",
       "tested": "Parallel fan-out — 12 subagents extract distinct content-analysis fields concurrently",
       "tagline": "Can the conductor stay clean under 12-way parallel writes?",
-      "workflow_file": "ylo-experiment/workflow-01-analysis.json",
-      "outputs_dir": "ylo-experiment/runs/b65/",
+      "workflow_file": "experiments/ylo/blackboard/workflow-01-analysis.json",
+      "outputs_dir": "experiments/ylo/blackboard/runs/b65/",
       "steps_count": 12,
       "step_type": "all transform, all parallel",
       "subagent_dispatches": 12,
@@ -83,8 +83,8 @@
       "title": "Title Generation + Scripted Refinement",
       "tested": "Sequential refinement loop with fixture-based critique + outputKeyMap key rename",
       "tagline": "Does the refinement loop preserve attempt history while keeping orchestrator clean?",
-      "workflow_file": "ylo-experiment/workflow-02-titles.json",
-      "outputs_dir": "ylo-experiment/runs/b65/",
+      "workflow_file": "experiments/ylo/blackboard/workflow-02-titles.json",
+      "outputs_dir": "experiments/ylo/blackboard/runs/b65/",
       "steps_count": 3,
       "step_type": "transform → checkpoint (conductor-writes from fixture) → transform with outputKeyMap",
       "subagent_dispatches": 2,
@@ -95,7 +95,7 @@
       "key_insight": "Stateless re-dispatch refinement works. Fresh subagent reads prior attempt + critique from store, produces refined output. outputKeyMap allows one step to write two distinct store keys. Ordering GT1 → CL → GT2 → ST verified.",
       "skills_used": ["conductor", "store"],
       "prompts_used": "generate-title.hbs (AWB Gen 3 verbatim)",
-      "fixture": "ylo-experiment/runs/b65/critique-fixture.txt"
+      "fixture": "experiments/ylo/blackboard/runs/b65/critique-fixture.txt"
     },
     {
       "number": 3,
@@ -103,8 +103,8 @@
       "title": "Real Human-Gated Refinement",
       "tested": "Live human-in-the-loop critique via stdin — both accept-path and refine-path branches",
       "tagline": "Can the orchestrator host an interactive conversation without polluting the store-fed workers?",
-      "workflow_file": "ylo-experiment/workflow-03-titles-human.json",
-      "outputs_dir": "ylo-experiment/runs/b65-2-5/",
+      "workflow_file": "experiments/ylo/blackboard/workflow-03-titles-human.json",
+      "outputs_dir": "experiments/ylo/blackboard/runs/b65-2-5/",
       "steps_count": 3,
       "step_type": "transform → checkpoint (humanGate human-stdin) → transform with outputKeyMap",
       "subagent_dispatches": 2,
@@ -123,8 +123,8 @@
       "title": "kie.ai Thumbnails with Title Pairing",
       "tested": "Async external API + binary artifacts + multi-stage flow + title-thumbnail pairing invariant",
       "tagline": "Does the isolation hold for binary outputs from a long-running external API?",
-      "workflow_file": "ylo-experiment/workflow-04-thumbnails.json",
-      "outputs_dir": "ylo-experiment/runs/b65/thumbs/",
+      "workflow_file": "experiments/ylo/blackboard/workflow-04-thumbnails.json",
+      "outputs_dir": "experiments/ylo/blackboard/runs/b65/thumbs/",
       "steps_count": 5,
       "step_type": "transform → 6× transform parallel (kie.ai) → checkpoint (fixture) → 3× transform parallel (kie.ai 2K) → action",
       "subagent_dispatches": 12,
@@ -136,7 +136,7 @@
       "key_insight": "Pattern works for external APIs and binary outputs. Workers curl -o JPGs to disk, store record carries localPath only. Title pairing invariant held end-to-end — every final's title_ref matches its source exploration's title_ref. Zero image bytes in store, zero kie.ai response bodies in conductor log.",
       "skills_used": ["conductor", "store", "image-gen"],
       "prompts_used": "generate-design-brief.hbs (written fresh, AppyDave brand-aware)",
-      "fixture": "ylo-experiment/runs/b65/selection-fixture.json",
+      "fixture": "experiments/ylo/blackboard/runs/b65/selection-fixture.json",
       "known_issues": [
         "`flux-schnell` is not on kie.ai — workers fell back to flux-2/pro-text-to-image",
         "First-pass exploration records (idx 2, 5) claim model:flux-schnell but used different models",
@@ -173,7 +173,7 @@
   "open_loops": [
     {
       "priority": "high",
-      "issue": "flux-schnell is a phantom model — referenced in image-gen skill + workflow-04-thumbnails.json but kie.ai rejects it",
+      "issue": "flux-schnell is a phantom model — referenced in image-gen skill + workflow-thumbnails.json but kie.ai rejects it",
       "fix": "Update both files to flux-2/pro-text-to-image (verified working)"
     },
     {
