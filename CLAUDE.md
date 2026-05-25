@@ -2,6 +2,8 @@
 
 You're in **`~/dev/ad/apps/dark-factory/`** — David Cruwys's canonical skill library project. The 1,100-artifact research phase is complete (see `research/`); the build phase ingests artifacts from upstream repos into `canonical/`, rewriting each in David's voice with full provenance back to source.
 
+**Two threads live here.** (1) **Canonical ingestion** — the original charter above (`research/` → `canonical/`). (2) **The blackboard → POEM line** — a workflow-pattern experiment in `ylo-experiment/` (the YLO blackboard probes) whose learnings are being consolidated into POEM. YLO is a testing ground destined to retire; the consolidation plan is `docs/ylo-to-poem-blueprint.md`, and dark-factory will gain a `.poem/` folder where YLO's workflows get rebuilt in POEM. Most of the Mochaccino gallery (designs 04–08) visualises this second thread.
+
 ## How sessions are organized
 
 This repo is operated PO ↔ Developer style:
@@ -53,7 +55,7 @@ This repo is operated PO ↔ Developer style:
 
 ## Mochaccino server
 
-A Python http.server runs on **:7420** rooted at `mochaccino/`. Pages: `/designs/` (gallery), `/designs/01-pipeline-overview/`, `/designs/02-mining-view/`. If it's not running, restart with:
+A Python http.server runs on **:7420** rooted at `mochaccino/`. Pages: `/designs/` (gallery) plus eight designs — `01-pipeline-overview`, `02-mining-view`, `03-triage-console` (canonical-ingestion thread); `04-blackboard-overview`, `05-probe-progression`, `06-blackboard-vs-poem`, `07-workflow-flows`, `08-poem-consolidation` (blackboard→POEM thread). Every design carries a copy-kit (per-section checkboxes + a copy toolbar, via `designs/components/copykit.{css,js}`). If it's not running, restart with:
 ```bash
 cd ~/dev/ad/apps/dark-factory/mochaccino && nohup python3 -m http.server 7420 > .serve.log 2>&1 &
 ```

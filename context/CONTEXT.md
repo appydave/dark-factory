@@ -23,6 +23,8 @@ regenerate: "Run /system-context in the repo root"
 ## Purpose
 A staging library that ingests ~1,100 skill/agent/command artifacts from 13 upstream methodology repos and re-authors the best of them in David Cruwys's voice — with a verbatim copy and JSON provenance chain attached to every canonical rewrite, so no origin is ever lost and every choice is auditable back to source.
 
+**The repo now hosts two threads.** The above is thread 1 (**canonical ingestion**). Thread 2 is the **blackboard → POEM line**: `ylo-experiment/` holds the "YLO" blackboard workflow probes (a bash+jq+curl implementation of the blackboard workflow pattern — a conductor + isolated subagents + an append-only EAV store, run inside a single Claude Code session). YLO is explicitly a **testing ground destined to retire**; its learnings consolidate into **POEM** (the prompt-orchestration framework) and AWB Gen 3 (the runtime). The consolidation plan lives in `docs/ylo-to-poem-blueprint.md`; dark-factory will gain a `.poem/` folder where YLO's workflows are rebuilt in POEM. Mochaccino designs 04–08 visualise this thread. Anything in this CONTEXT below the "Visual decision-support" workflow describes thread 1; thread 2's authoritative doc is the blueprint, not this file.
+
 ## Core Abstractions
 - **Canonical artifact** — a SKILL.md / agent.md / command.md under `canonical/<type>/<name>/`, written in David's voice (terse operator tone, trigger-only descriptions, no marketing). The build target. Every canonical has exactly one `provenance.json` and a populated `_source/` folder beside it; the three together form the durable unit.
 - **Provenance chain** — `provenance.json` schema (canonical_id, version, rewrite_status, origins[], research_sources, version_history). The `origins[]` array — each entry with `kept` / `modified` / `set_aside` — is the audit surface: it records not just what fed the rewrite, but what the author deliberately discarded. The chain is what makes the library "verifiable canonical," not just "another opinionated skill set."
@@ -53,8 +55,8 @@ How they compose: a *backlog item* points to a *distillation*, which proposes fo
 
 ### Visual decision-support (Mochaccino)
 1. Restart the local Python server if needed: `cd mochaccino && nohup python3 -m http.server 7420 > .serve.log 2>&1 &`.
-2. Open `http://localhost:7420/designs/` — gallery of pipeline-overview (`01-pipeline-overview`, SDLC-strip lens over 11 stages) and mining-view (`02-mining-view`, top-artifacts-per-cluster lens).
-3. Designs render from JSON in `mochaccino/data/` (pipeline.json, mining.json) synthesised by Peter from artifacts.jsonl + pipeline-matrix + evaluations. Re-render after refreshing data; never hand-edit the HTML to reflect new data.
+2. Open `http://localhost:7420/designs/` — gallery of eight designs. Thread 1 (ingestion): `01-pipeline-overview` (SDLC-strip lens over 11 stages), `02-mining-view` (top-artifacts-per-cluster), `03-triage-console` (interactive filter over all 1,100). Thread 2 (blackboard→POEM): `04-blackboard-overview` (pattern architecture), `05-probe-progression` (the 4 probes), `06-blackboard-vs-poem` (3-way comparison), `07-workflow-flows` (each workflow as a flow diagram), `08-poem-consolidation` (the decision board).
+3. Designs render from JSON in `mochaccino/data/` (thread 1: pipeline.json, mining.json, triage.json; thread 2: blackboard-probes.json, blackboard-vs-poem.json, blackboard-workflows.json, poem-consolidation.json) synthesised by Peter. Re-render after refreshing data; never hand-edit the HTML to reflect new data. Every design includes the shared copy-kit (`designs/components/copykit.{css,js}`).
 
 ### Version a ratified canonical
 1. Bump `provenance.json` `version` field (e.g. 1 → 2) and update `rewrite_date`.

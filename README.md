@@ -8,6 +8,13 @@ The 13-repo cluster ships ~1,100 skills/agents/commands. Most overlap. Many are 
 
 The Dark Factory takes the best mechanisms from those 1,100, **preserves the originals verbatim** (so nothing is lost), and produces a unified canonical set re-authored in David's style. Every canonical artifact carries a provenance chain back to the source files it was mined from.
 
+## Two threads
+
+The repo hosts two lines of work:
+
+1. **Canonical ingestion** (the charter above) — `research/` → `canonical/`.
+2. **The blackboard → POEM line** — `ylo-experiment/` holds the "YLO" blackboard workflow probes (a bash+jq+curl take on the blackboard workflow pattern: a conductor + isolated subagents + an append-only EAV store, run inside one Claude Code session). YLO is a **testing ground destined to retire**; its learnings consolidate into POEM (authoring) + AWB Gen 3 (runtime). Plan: [`docs/ylo-to-poem-blueprint.md`](docs/ylo-to-poem-blueprint.md). Mochaccino designs 04–08 visualise this thread.
+
 ## Layout
 
 ```
@@ -33,8 +40,10 @@ The Dark Factory takes the best mechanisms from those 1,100, **preserves the ori
 │   ├── agents/<name>/
 │   └── commands/<name>/
 │
-├── mochaccino/              — visual decision-support workspace
-│   └── designs/01-pipeline-overview, 02-mining-view (served on :7420)
+├── ylo-experiment/         — thread 2: the YLO blackboard probes (workflows + runs + HANDOVER.md)
+│
+├── mochaccino/              — visual decision-support workspace (served on :7420)
+│   └── designs/01–03 (ingestion) · 04–08 (blackboard→POEM) · components/copykit (per-section copy)
 │
 ├── backlog/                 — discrete work items (PO ↔ Dev handover)
 │   └── YYYY-MM-DD-<slug>.md
@@ -43,7 +52,8 @@ The Dark Factory takes the best mechanisms from those 1,100, **preserves the ori
 │   ├── canonical-form-spec.md     what canonical SKILL.md must contain
 │   ├── provenance-spec.md         provenance.json schema + rules
 │   ├── ingestion-workflow.md      step-by-step ingest procedure
-│   └── david-style-patterns.md    voice and template guide
+│   ├── david-style-patterns.md    voice and template guide
+│   └── ylo-to-poem-blueprint.md   thread 2: YLO→POEM consolidation plan
 │
 └── tools/                   — scripts for ingest, verify, style-check
 ```
@@ -60,7 +70,8 @@ A compat symlink at `~/dev/ad/brains/agentic-factory/dark-factory-catalog` → `
 
 - **Research phase**: complete (1,100 artifacts, 76 distill drafts, 88 deep evals, 11 stage walks).
 - **Canonical phase**: not started. Backlog has the first ingestion task.
-- **Mochaccino**: live at `http://localhost:7420/designs/`.
+- **Blackboard → POEM thread**: 4 probes proven (78/78 ACs), blueprint captured (`docs/ylo-to-poem-blueprint.md`); next is the `.poem/` rebuild. YLO retires after.
+- **Mochaccino**: live at `http://localhost:7420/designs/` (8 designs).
 
 ---
 
