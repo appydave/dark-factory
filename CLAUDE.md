@@ -21,6 +21,7 @@ This repo is operated PO ↔ Developer style:
    - `provenance-spec.md` — provenance.json schema + verbatim source preservation rules
    - `ingestion-workflow.md` — step-by-step procedure for ingesting an artifact
    - `david-style-patterns.md` — David's voice and template patterns
+   - `phase-b-next-steps.md` — **START HERE if Phase B hasn't begun** — open questions, PO decisions needed, what to build
 4. Read the backlog item's referenced research sources (under `research/distillations/`, `research/evaluations/`).
 5. Execute the work per the spec.
 
