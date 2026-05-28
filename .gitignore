@@ -19,6 +19,12 @@ node_modules/
 # Mochaccino server logs
 mochaccino/.serve.log
 
+# Git worktrees
+.claude/worktrees/
+
+# JSONL backups
+research/*.bak-*
+
 # Claude Code local machine-specific overrides
 CLAUDE.local.md
 .context/

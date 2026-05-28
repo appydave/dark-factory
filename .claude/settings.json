@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "blackboard": {
+      "command": "node",
+      "args": ["/Users/davidcruwys/dev/ad/apps/dark-factory/spikes/blackboard-mcp/server.mjs"]
+    }
+  }
+}
