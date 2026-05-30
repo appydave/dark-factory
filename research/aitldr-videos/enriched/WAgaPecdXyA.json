@@ -1,0 +1,33 @@
+{
+  "title": "Dzine AI Podcasting Tutorial: Create Content and Make Money Online",
+  "slug": "dzine-ai-podcasting-tutorial-create-content-and-make-money-online",
+  "youtubeId": "WAgaPecdXyA",
+  "format": "short",
+  "duration": "0:50",
+  "published": "2026-05-14",
+  "category": "video-creation",
+  "description": "Build AI podcast videos in Dzine: talking avatar hosts and a realistic studio backdrop you can sell as a service.",
+  "tags": [
+    "artificial intelligence",
+    "ai video",
+    "ai avatar",
+    "virtual studio",
+    "ai content creation",
+    "ai podcast",
+    "dzine",
+    "dzine ai"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "format",
+    "duration",
+    "published"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ]
+}

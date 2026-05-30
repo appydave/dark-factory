@@ -1,0 +1,30 @@
+{
+  "title": "Domo AI: Turn basic clips into animated gems! 🎞️✨ #DomoAI #VideoToVideo #AIAnimation",
+  "slug": "domo-ai-turn-basic-clips-into-animated-gems",
+  "youtubeId": "4WMvwkaajoo",
+  "format": "short",
+  "duration": "0:30",
+  "published": "2024-10-31",
+  "category": "video-creation",
+  "description": "DomoAI turns plain footage into stylized animation. Quick video-to-video demo showing the transform from basic clip to animated gem.",
+  "tags": [
+    "domoai",
+    "video-to-video",
+    "ai-animation",
+    "animation",
+    "video"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "format",
+    "duration",
+    "published"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ]
+}

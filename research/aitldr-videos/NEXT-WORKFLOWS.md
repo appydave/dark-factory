@@ -55,4 +55,27 @@ No new technique — just `subset: all` + a longer fetch + a wider fan-out.
 ~10 M tokens for 324; ~57 s wall for 25 (capped at ~14 concurrent) → a few minutes
 for 324. Still in-session, still no metered billing, still trivial disk (metadata only).
 
-**Status:** READY. One word ("run the full channel") triggers it.
+**Status:** IN PROGRESS (paced). 65/165 enriched. See lesson C below.
+
+---
+
+## C. LESSON — wide schema fan-outs hit a burst throttle (~40)
+
+**Observed 2026-05-30:** a single 100-wide enrich fan-out (140 agents, ~14 concurrent)
+succeeded for the first ~40 then shed the remaining 100 — all failing identically with
+"subagent completed without calling StructuredOutput." Not data, not the script (the
+same script enriched 65 cleanly); it's cumulative burst pressure on the schema/StructuredOutput
+path tripping a rate limit around the 40-completion mark.
+
+**The robust pattern (now in use):**
+- **Batch size ~20** per run (half the safe ceiling).
+- **Pace one batch every 30 min** via in-session `ScheduleWakeup` (NOT headless cron —
+  that path is metered billing, which we avoid; see Watchtower trigger-architecture note).
+- **Idempotent skip** — recompute todo from `enriched/` each run; never reprocess.
+- **Persist between batches** — write `enriched/<slug>.json` before the next batch so a
+  throttle costs at most one batch.
+- **Self-terminate** — when todo is empty, assemble and stop re-arming.
+- **Per-agent retry once** — a lone schema miss retries without re-running the batch.
+
+100 remaining ÷ 20 = ~5 runs ≈ 2.5 h, unattended, in-session, no metered billing.
+Trade-off: session must stay alive across the window (in-session wakeups die on quit).

@@ -1,0 +1,33 @@
+{
+  "title": "Next-Level AI Movie Trailers",
+  "slug": "next-level-ai-movie-trailers",
+  "youtubeId": "cTsk_SPZqpw",
+  "format": "short",
+  "duration": "0:57",
+  "published": "2025-04-04",
+  "category": "video-creation",
+  "description": "Build a cinematic AI movie trailer end to end: script in ChatGPT, visuals in Leonardo and Dzine, voiceover in ElevenLabs, edit in CapCut.",
+  "tags": [
+    "ai generated trailer",
+    "text to video",
+    "ai video",
+    "ai video editing",
+    "cinematic trailer with ai",
+    "ai movie trailer",
+    "ai storytelling",
+    "image to video"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "format",
+    "duration",
+    "published"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "title": "Creating an Ad With Higgsfield",
+  "slug": "creating-an-ad-with-higgsfield",
+  "youtubeId": "H5FcJN-As1k",
+  "format": "short",
+  "duration": "0:47",
+  "published": "2026-02-10",
+  "category": "video-creation",
+  "description": "Make a luxury CGI perfume ad with AI: generate the visual in Higgsfield, animate it, then smooth motion with Kling 2.0. No studio.",
+  "tags": [
+    "higgsfield",
+    "klingai",
+    "aivideo",
+    "cgiads",
+    "aicreators",
+    "luxurycgi",
+    "aicommercial",
+    "aivideogeneration"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "format",
+    "duration",
+    "published"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ]
+}

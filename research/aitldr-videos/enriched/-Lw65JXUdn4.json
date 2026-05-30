@@ -1,0 +1,33 @@
+{
+  "title": "Building Your VERY OWN AI Influencer From Scratch",
+  "slug": "building-your-very-own-ai-influencer-from-scratch",
+  "youtubeId": "-Lw65JXUdn4",
+  "format": "short",
+  "duration": "0:51",
+  "published": "2025-02-06",
+  "category": "content",
+  "description": "Build a consistent AI influencer from scratch in 5 steps with Dzine — generate the character, train for realism, and post AI-made social content.",
+  "tags": [
+    "text to image ai",
+    "free ai image generator",
+    "consistent character",
+    "ai influencer creation",
+    "ai-generated characters",
+    "ai content creation",
+    "ai character generator",
+    "dzine ai"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "format",
+    "duration",
+    "published"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ]
+}

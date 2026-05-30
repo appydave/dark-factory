@@ -1,0 +1,34 @@
+{
+  "title": "I Tried Making Money with AI Podcasting Using Dzine AI",
+  "slug": "i-tried-making-money-with-ai-podcasting-using-dzine-ai",
+  "youtubeId": "BPNCI9U8ZAY",
+  "duration": "9:21",
+  "published": "2026-05-14",
+  "category": "ai-tools",
+  "description": "Build AI podcast hosts and a realistic studio in Dzine AI, then package it as a paid service for businesses.",
+  "tags": [
+    "artificial intelligence",
+    "ai video",
+    "ai avatar",
+    "virtual studio",
+    "ai content creation",
+    "ai tools for content creation",
+    "ai podcast",
+    "dzine ai"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "duration",
+    "published",
+    "format"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ],
+  "featured": true,
+  "format": "video"
+}

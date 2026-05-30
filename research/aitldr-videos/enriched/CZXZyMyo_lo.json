@@ -1,0 +1,33 @@
+{
+  "title": "Build REMOTION videos in 60s | Step by Step Tutorial",
+  "slug": "build-remotion-videos-in-60s-step-by-step-tutorial",
+  "youtubeId": "CZXZyMyo_lo",
+  "duration": "7:19",
+  "published": "2026-02-03",
+  "category": "video-creation",
+  "description": "Use Claude Code to generate Remotion animations and ship pro YouTube intros with no After Effects, no editing, no coding.",
+  "tags": [
+    "remotion",
+    "how to make motion graphics",
+    "claude code",
+    "remotion tutorial",
+    "how to use claude code",
+    "remotion agent skills",
+    "claude code setup",
+    "claude code tutorial"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "duration",
+    "published",
+    "format"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ],
+  "format": "video"
+}

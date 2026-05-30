@@ -1,0 +1,33 @@
+{
+  "title": "These Mini Worlds Will Blow Your Mind!",
+  "slug": "these-mini-worlds-will-blow-your-mind",
+  "youtubeId": "cDsvW3NVBjg",
+  "format": "video",
+  "duration": "11:55",
+  "published": "2025-07-13",
+  "category": "video-creation",
+  "description": "A tour of 40 AI-generated diorama worlds — tiny scenes in Ghibli, cyberpunk, claymation and steampunk styles, built with Midjourney and Leonardo.",
+  "tags": [
+    "diorama art",
+    "ai dioramas",
+    "miniature worlds",
+    "tiny worlds",
+    "ai art video",
+    "ghibli diorama",
+    "cyberpunk diorama",
+    "leonardo ai"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "format",
+    "duration",
+    "published"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ]
+}

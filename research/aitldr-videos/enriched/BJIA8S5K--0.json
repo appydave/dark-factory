@@ -1,0 +1,29 @@
+{
+  "title": "META SAM 3",
+  "slug": "meta-sam-3",
+  "youtubeId": "BJIA8S5K--0",
+  "format": "short",
+  "duration": "0:43",
+  "published": "2025-12-24",
+  "category": "ai-tools",
+  "description": "Meta drops SAM 3, the next leap in Segment Anything image and video object segmentation. Here's what's new.",
+  "tags": [
+    "meta",
+    "sam-3",
+    "segment-anything",
+    "ai-tools"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "format",
+    "duration",
+    "published"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ]
+}

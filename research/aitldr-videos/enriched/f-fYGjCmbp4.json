@@ -1,0 +1,33 @@
+{
+  "title": "In KlueLess: The Clue is to do Less",
+  "slug": "in-klueless-the-clue-is-to-do-less",
+  "youtubeId": "f-fYGjCmbp4",
+  "format": "video",
+  "duration": "5:11",
+  "published": "2024-09-27",
+  "category": "ai-tools",
+  "description": "Tour of KlueLess: turn tiny inputs into apps, docs, and workflows via Docs/Agent/Polyglot/Voice as Code.",
+  "tags": [
+    "klueless",
+    "automation tools",
+    "no-code platform",
+    "ai workflows",
+    "task-specific languages",
+    "voice as code",
+    "docs as code",
+    "agent as code"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "format",
+    "duration",
+    "published"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ]
+}

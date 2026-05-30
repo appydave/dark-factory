@@ -1,0 +1,32 @@
+{
+  "title": "AI Animations You Can Build with Claude + Remotion (Part 2)",
+  "slug": "ai-animations-you-can-build-with-claude-remotion-part-2",
+  "youtubeId": "RQWb0LyCDKo",
+  "duration": "8:09",
+  "published": "2026-02-05",
+  "category": "workflows",
+  "description": "Part 2: build reusable video animations with Claude Code + Remotion — lower thirds, step indicators, CTA end screens, no After Effects.",
+  "tags": [
+    "remotion",
+    "claudeai",
+    "aivideo",
+    "aivideoediting",
+    "aimotiondesign",
+    "remotiontutorial",
+    "claudecode"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "duration",
+    "published",
+    "format"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ],
+  "format": "video"
+}

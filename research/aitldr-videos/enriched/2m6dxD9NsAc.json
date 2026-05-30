@@ -1,0 +1,33 @@
+{
+  "title": "This AI Cat Broke the Internet – Here's How We Made It",
+  "slug": "this-ai-cat-broke-the-internet-heres-how-we-made-it",
+  "youtubeId": "2m6dxD9NsAc",
+  "format": "short",
+  "duration": "0:35",
+  "published": "2025-06-26",
+  "category": "video-creation",
+  "description": "Recreating the viral guitar-playing sunset cat entirely with Dzine AI — no Photoshop, no filming, just prompts to generate and animate.",
+  "tags": [
+    "ai video",
+    "dzine ai",
+    "viral cat video",
+    "guitar cat",
+    "ai animation",
+    "ai generated video",
+    "cat playing guitar",
+    "sunset cat"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "format",
+    "duration",
+    "published"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ]
+}

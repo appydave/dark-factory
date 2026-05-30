@@ -1,43 +1,16 @@
-// aitldr-enrich.js — Dark Factory enrich workflow for AI-TLDR videos.
-//
-// This is the version-controlled copy of the workflow the harness ran.
-// To run it: invoke the Workflow tool with { scriptPath: "<this file>" }.
-//
-// ─────────────────────────────────────────────────────────────────────────
-// HOW SKIPPING / RESUME WORKS — read this before scaling to 324.
-//
-//   Layer 1 — harness resume (automatic):
-//     Workflow({ scriptPath, resumeFromRunId: "<prior run id>" }) returns the
-//     CACHED result of every agent() call whose (prompt, opts) is unchanged,
-//     and only re-runs new/edited calls. Same script + same args = 100% cache
-//     hit. This is how you recover from a crash mid-run for free.
-//
-//   Layer 2 — content idempotency (driver's job, NOT this script's):
-//     Workflow scripts have NO filesystem access, so this script CANNOT look
-//     at enriched/*.json to decide what's already done. That decision is made
-//     ONE LAYER UP by the inline driver before launch: it lists which
-//     youtubeIds already have an enriched/<slug>.json, and passes ONLY the
-//     remaining line numbers in via `LINES`. So "skip already-processed" =
-//     the driver hands this script a shorter LINES array. The script itself
-//     faithfully processes whatever line-list it is given.
-// ─────────────────────────────────────────────────────────────────────────
-
+// batch run (GENERATED) — 30 videos.
 export const meta = {
-  name: 'aitldr-enrich',
-  description: 'Enrich AI-TLDR videos: classify category, summarize, normalize — one agent per video',
-  phases: [{ title: 'Enrich', detail: 'one sub-agent per video row' }],
+  name: 'aitldr-enrich-batch',
+  description: 'Enrich a paced batch of 30 AI-TLDR videos (idempotent)',
+  phases: [{ title: 'Enrich', detail: 'one sub-agent per video' }],
 }
 
-const PATH = (args && args.path) || '/Users/davidcruwys/dev/ad/apps/dark-factory/research/aitldr-videos/raw/videos.jsonl'
-
-// LINES = the 1-indexed line numbers in videos.jsonl to process this run.
-// Default: all 1..count. The driver overrides this with only the NOT-YET-DONE
-// lines to make the run idempotent/resumable (see "Layer 2" above).
-const COUNT = (args && args.count) || 25
-const LINES = (args && args.lines) || Array.from({ length: COUNT }, (_, i) => i + 1)
-log(`enrich start: path=${PATH} lines=${LINES.length}`)
+const PATH = "/Users/davidcruwys/dev/ad/apps/dark-factory/research/aitldr-videos/raw/videos.jsonl"
+const LINES = [285, 286, 287, 288, 289, 290, 291, 292, 293, 294, 295, 296, 297, 298, 299, 300, 301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312, 313, 314]
+log(`batch start: lines=${LINES.length}`)
 
 const CATS = 'ai-tools | workflows | video-creation | content | automation | community'
+
 
 const SCHEMA = {
   type: 'object',
@@ -58,6 +31,7 @@ const SCHEMA = {
     generated: { type: 'array', items: { type: 'string' } },
   },
 }
+
 
 phase('Enrich')
 

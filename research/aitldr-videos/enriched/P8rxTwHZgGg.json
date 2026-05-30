@@ -1,0 +1,30 @@
+{
+  "title": "Grok Just Broke Animation – Consistent Characters with One Trick",
+  "slug": "grok-just-broke-animation-consistent-characters-with-one-trick",
+  "youtubeId": "P8rxTwHZgGg",
+  "format": "short",
+  "duration": "0:37",
+  "published": "2025-12-03",
+  "category": "video-creation",
+  "description": "One trick to keep characters consistent across animations in Grok. Lock the look, generate frame after frame without drift.",
+  "tags": [
+    "grok",
+    "animation",
+    "consistent-characters",
+    "ai-video",
+    "character-design"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "format",
+    "duration",
+    "published"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ]
+}

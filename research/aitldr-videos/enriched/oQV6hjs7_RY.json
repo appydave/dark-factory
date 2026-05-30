@@ -1,0 +1,33 @@
+{
+  "title": "Claude Code Just Made Remotion Animation Ridiculously Easy",
+  "slug": "claude-code-just-made-remotion-animation-ridiculously-easy",
+  "youtubeId": "oQV6hjs7_RY",
+  "duration": "6:56",
+  "published": "2026-02-18",
+  "category": "automation",
+  "description": "Package 15 Remotion animations into one-line commands with a Claude Code skill — no more long prompts to generate motion graphics.",
+  "tags": [
+    "remotion",
+    "claude code",
+    "claude skills",
+    "ai animation",
+    "code based animation",
+    "ai video automation",
+    "skill.md",
+    "ai coding workflow"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "duration",
+    "published",
+    "format"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ],
+  "format": "video"
+}

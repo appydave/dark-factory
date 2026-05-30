@@ -1,0 +1,33 @@
+{
+  "title": "Design your dream home in seconds with PROME AI! Just type your idea, and let the magic happen.",
+  "slug": "design-your-dream-home-in-seconds-with-prome-ai",
+  "youtubeId": "Lr5q7tJYSRY",
+  "format": "short",
+  "duration": "0:36",
+  "published": "2024-11-28",
+  "category": "ai-tools",
+  "description": "Type a prompt, get a 3D home render in seconds with Prome AI's text-to-image. No CAD, no skills needed.",
+  "tags": [
+    "prome ai",
+    "3d design",
+    "ai design tool",
+    "text to 3d",
+    "3d rendering",
+    "home design ai",
+    "ai rendering tool",
+    "architecture"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "format",
+    "duration",
+    "published"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ]
+}

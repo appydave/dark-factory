@@ -1,0 +1,31 @@
+{
+  "title": "Google's Nano Banana Will Blow Your Mind!",
+  "slug": "googles-nano-banana-will-blow-your-mind",
+  "youtubeId": "yu6LGgAlm7g",
+  "format": "short",
+  "duration": "1:06",
+  "published": "2025-10-15",
+  "category": "ai-tools",
+  "description": "Google's Nano Banana (Gemini 2.5 Flash Image) turns static avatars into cinematic video scenes — built for faceless YouTube creators.",
+  "tags": [
+    "google nano banana tutorial",
+    "google nano banana",
+    "gemini 2.5 flash image",
+    "generative ai",
+    "dzine ai",
+    "dzine tutorial"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "format",
+    "duration",
+    "published"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ]
+}

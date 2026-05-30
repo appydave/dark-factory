@@ -1,0 +1,29 @@
+{
+  "title": "Recreate Your Favorite Youtuber's Thumbnails with Just your Selfie?",
+  "slug": "recreate-your-favorite-youtubers-thumbnails-with-just-your-selfie",
+  "youtubeId": "ITaC3KbBP0g",
+  "format": "short",
+  "duration": "0:51",
+  "published": "2025-07-10",
+  "category": "content",
+  "description": "Turn one selfie into a top YouTuber's thumbnail style using AI image generation. Fast face-swap thumbnail trick.",
+  "tags": [
+    "thumbnails",
+    "ai-image",
+    "selfie",
+    "youtube"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "format",
+    "duration",
+    "published"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ]
+}

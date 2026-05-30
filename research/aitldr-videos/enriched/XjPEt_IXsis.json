@@ -1,0 +1,33 @@
+{
+  "title": "AI Turns Ideas Into Crazy Cinematic Clips",
+  "slug": "ai-turns-ideas-into-crazy-cinematic-clips",
+  "youtubeId": "XjPEt_IXsis",
+  "format": "short",
+  "duration": "0:38",
+  "published": "2025-10-01",
+  "category": "video-creation",
+  "description": "Hailuo 2 from MiniMax turns text and images into cinematic AI clips, climbing the video-gen leaderboard past bigger names.",
+  "tags": [
+    "ai video",
+    "ai filmmaking",
+    "cinematic ai",
+    "minimax ai video generator",
+    "hailuo 2 ai",
+    "hailuo 2 tutorial",
+    "hailuo text to video",
+    "hailuo image to video"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "format",
+    "duration",
+    "published"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ]
+}

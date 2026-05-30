@@ -1,0 +1,34 @@
+{
+  "title": "I Let AI Design Infographics - Here's What Happened",
+  "slug": "i-let-ai-design-infographics-heres-what-happened",
+  "youtubeId": "oZAeMhhSgUY",
+  "duration": "5:30",
+  "published": "2026-03-11",
+  "category": "content",
+  "description": "Testing Nano Banana 2 to generate infographics from data — what it nails, where it slips, and why you still verify every number.",
+  "tags": [
+    "ai image generator",
+    "infographic design",
+    "ai infographic",
+    "nano banana",
+    "ai tools",
+    "claude code tutorial",
+    "claude code",
+    "nano banana 2"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "duration",
+    "published",
+    "format"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ],
+  "featured": false,
+  "format": "video"
+}

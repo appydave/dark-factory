@@ -1,0 +1,30 @@
+{
+  "title": "Napkin AI : Turn Text Into Visuals Automatically",
+  "slug": "napkin-ai-turn-text-into-visuals-automatically",
+  "youtubeId": "ZWahMkvRZiM",
+  "format": "short",
+  "duration": "0:54",
+  "published": "2026-01-28",
+  "category": "ai-tools",
+  "description": "Turn plain text into clean diagrams and visuals with Napkin AI's Drafts feature. Fast way to make slides and tutorials less text-heavy.",
+  "tags": [
+    "napkinai",
+    "aitools",
+    "texttovisuals",
+    "aivisuals",
+    "presentationdesign"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "format",
+    "duration",
+    "published"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ]
+}

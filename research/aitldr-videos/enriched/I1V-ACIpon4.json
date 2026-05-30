@@ -1,0 +1,33 @@
+{
+  "title": "I Built 50 Real Cities Using AI | ChatGPT + Seedance World Map Animation",
+  "slug": "i-built-50-real-cities-using-ai-chatgpt-seedance-world-map-animation",
+  "youtubeId": "I1V-ACIpon4",
+  "duration": "9:28",
+  "published": "2025-10-20",
+  "category": "video-creation",
+  "description": "50 real city skylines built from a flat map with ChatGPT, styled in Dzine, animated as tilt-shift dioramas in Seedance.",
+  "tags": [
+    "ai city animation",
+    "chatgpt world building",
+    "seedance animation tutorial",
+    "dzine ai visuals",
+    "ai travel series",
+    "miniature diorama animation",
+    "cinematic ai art",
+    "ai-generated cities"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "duration",
+    "published",
+    "format"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ],
+  "format": "video"
+}

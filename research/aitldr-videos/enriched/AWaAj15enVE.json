@@ -1,0 +1,33 @@
+{
+  "title": "AI Does It ALL: Script, Visuals & Editing! (Next-Level AI Movie Trailers)",
+  "slug": "ai-does-it-all-script-visuals-editing-next-level-ai-movie-trailers",
+  "youtubeId": "AWaAj15enVE",
+  "format": "video",
+  "duration": "9:52",
+  "published": "2025-04-02",
+  "category": "video-creation",
+  "description": "Build a cinematic AI movie trailer end to end: script in ChatGPT, visuals in Leonardo and Dzine, voiceover in ElevenLabs, edit in CapCut.",
+  "tags": [
+    "ai generated trailer",
+    "text to video",
+    "ai video",
+    "ai video editing",
+    "ai movie trailer",
+    "ai content creation",
+    "ai storytelling",
+    "image to video"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "format",
+    "duration",
+    "published"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ]
+}

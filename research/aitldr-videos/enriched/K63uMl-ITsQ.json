@@ -1,0 +1,33 @@
+{
+  "title": "NotebookLM Podcast Series | Building KoziCafe: From Concept to Community | Ep.3",
+  "slug": "notebooklm-podcast-series-building-kozicafe-from-concept-to-community-ep3",
+  "youtubeId": "K63uMl-ITsQ",
+  "format": "video",
+  "duration": "3:24",
+  "published": "2024-11-02",
+  "category": "content",
+  "description": "Turn a KoziCafe business plan into an AI-generated podcast with NotebookLM — market research, financials, and strategy as conversation.",
+  "tags": [
+    "kozikafe",
+    "cafe",
+    "coffe shop",
+    "podcast",
+    "notebooklm",
+    "aipodcasting",
+    "business plan",
+    "coffee shop business"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "format",
+    "duration",
+    "published"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ]
+}

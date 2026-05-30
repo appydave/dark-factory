@@ -1,0 +1,30 @@
+{
+  "title": "Copy These Cards and Make Your Own Epic Deck!",
+  "slug": "copy-these-cards-and-make-your-own-epic-deck",
+  "youtubeId": "fc8PmR30hQ4",
+  "format": "short",
+  "duration": "1:02",
+  "published": "2025-09-12",
+  "category": "content",
+  "description": "15 of 50 legendary AI fantasy cards revealed, each built with prompts you can copy to summon your own deck in any AI image tool.",
+  "tags": [
+    "aicards",
+    "fantasydeck",
+    "createwithai",
+    "aitldr",
+    "legendsunleashed"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "format",
+    "duration",
+    "published"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ]
+}

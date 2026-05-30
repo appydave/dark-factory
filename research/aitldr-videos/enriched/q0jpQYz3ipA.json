@@ -1,0 +1,30 @@
+{
+  "title": "This AI Turns Images Into INSANE Videos 😳",
+  "slug": "this-ai-turns-images-into-insane-videos",
+  "youtubeId": "q0jpQYz3ipA",
+  "format": "short",
+  "duration": "0:53",
+  "published": "2026-01-16",
+  "category": "video-creation",
+  "description": "An AI tool that animates still images into wild, motion-packed videos. See the image-to-video transformation in action.",
+  "tags": [
+    "ai",
+    "image-to-video",
+    "video",
+    "animation",
+    "ai-video"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "format",
+    "duration",
+    "published"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ]
+}

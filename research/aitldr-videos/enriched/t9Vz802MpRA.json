@@ -1,0 +1,33 @@
+{
+  "title": "Microsoft Copilot Is The AI Assistant You Have Been Waiting For",
+  "slug": "microsoft-copilot-is-the-ai-assistant-you-have-been-waiting-for",
+  "youtubeId": "t9Vz802MpRA",
+  "format": "video",
+  "duration": "4:34",
+  "published": "2025-04-11",
+  "category": "ai-tools",
+  "description": "A walkthrough of Microsoft Copilot in Microsoft 365 — task automation, creative prompts, image generation, and productivity inside Teams and Edge.",
+  "tags": [
+    "copilot in teams",
+    "microsoft copilot",
+    "microsoft 365",
+    "microsoft copilot app",
+    "microsoft ai",
+    "how to use microsoft copilot",
+    "edge browser",
+    "image generator"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "format",
+    "duration",
+    "published"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "title": "I Connected ChatGPT Images 2.0 to Claude (Insane Results)",
+  "slug": "i-connected-chatgpt-images-2-0-to-claude-insane-results",
+  "youtubeId": "7O_-z6xaFi4",
+  "duration": "10:09",
+  "published": "2026-05-03",
+  "category": "content",
+  "description": "Build a Claude skill on top of ChatGPT Images 2.0 to generate pro YouTube thumbnails from plain-English prompts.",
+  "tags": [
+    "chatgpt",
+    "claude ai tutorial",
+    "anthropic claude",
+    "how to use claude ai",
+    "claude cowork",
+    "thumbnail design",
+    "how to make thumbnails",
+    "chatgpt image 2"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "duration",
+    "published",
+    "format"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ],
+  "featured": false,
+  "format": "video"
+}

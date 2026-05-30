@@ -1,0 +1,34 @@
+{
+  "title": "I Turned Static Infographics Into Motion Using AI (Nano Banana + Veo 3)",
+  "slug": "i-turned-static-infographics-into-motion-using-ai-nano-banana-veo-3",
+  "youtubeId": "ciRCM-SRZII",
+  "duration": "5:08",
+  "published": "2026-03-26",
+  "category": "workflows",
+  "description": "Turn static AI infographics into animated explainers using Nano Banana, Veo 3, and DaVinci Resolve — step by step.",
+  "tags": [
+    "infographic animation",
+    "motion graphics",
+    "animated infographic",
+    "infographic video",
+    "nanobanana",
+    "veo 3",
+    "static to motion",
+    "motion graphics infographics"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "duration",
+    "published",
+    "format"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ],
+  "featured": false,
+  "format": "video"
+}

@@ -1,0 +1,33 @@
+{
+  "title": "ElevenLabs Studio Trick: Instantly Add Multiple Voices to Your AI Stories!",
+  "slug": "elevenlabs-studio-trick-instantly-add-multiple-voices-to-your-ai-stories",
+  "youtubeId": "Zzf7yAJywRQ",
+  "format": "video",
+  "duration": "3:44",
+  "published": "2025-05-23",
+  "category": "ai-tools",
+  "description": "Use the ElevenLabs Studio trick to assign multiple distinct character voices inside a single AI story in one pass.",
+  "tags": [
+    "eleven labs ai",
+    "elevenlabs",
+    "ai voices",
+    "multi-voice storytelling",
+    "text to speech",
+    "voice cloning",
+    "ai narration",
+    "character voices"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "format",
+    "duration",
+    "published"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ]
+}

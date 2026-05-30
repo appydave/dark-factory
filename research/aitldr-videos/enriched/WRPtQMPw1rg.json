@@ -1,0 +1,34 @@
+{
+  "title": "I Created an AI Action Movie in Higgsfield Cinema Studio 3.5",
+  "slug": "i-created-an-ai-action-movie-in-higgsfield-cinema-studio-3-5",
+  "youtubeId": "WRPtQMPw1rg",
+  "duration": "9:15",
+  "published": "2026-05-08",
+  "category": "video-creation",
+  "description": "Building a cinematic AI action scene in Higgsfield Cinema Studio 3.5 — process and prompting that keep character consistency intact.",
+  "tags": [
+    "higgsfield ai",
+    "cinematic video",
+    "higgsfield tutorial",
+    "ai video generator",
+    "ai short film",
+    "higgsfield ai guide",
+    "higgsfield ai tutorial",
+    "ai movie"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "duration",
+    "published",
+    "format"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ],
+  "featured": true,
+  "format": "video"
+}

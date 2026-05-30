@@ -1,0 +1,33 @@
+{
+  "title": "Create Your Own Magical World with ChatGPT or Sora",
+  "slug": "create-your-own-magical-world-with-chatgpt-or-sora",
+  "youtubeId": "GGooGkzJkHA",
+  "format": "short",
+  "duration": "0:51",
+  "published": "2025-08-06",
+  "category": "video-creation",
+  "description": "Prompt ChatGPT or Sora to conjure glowing forests, fairy ponds, and candlelit treehouses — fantasy worlds hidden in unexpected places.",
+  "tags": [
+    "chatgpt",
+    "sora",
+    "ai art",
+    "hidden realms",
+    "fantasy world",
+    "prompt design",
+    "text to image",
+    "ai creativity"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "format",
+    "duration",
+    "published"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ]
+}

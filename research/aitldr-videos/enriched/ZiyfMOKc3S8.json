@@ -1,0 +1,33 @@
+{
+  "title": "NotebookLM Podcast Series | Building KoziCafe: From Concept to Community | Ep.2",
+  "slug": "notebooklm-podcast-series-building-kozicafe-from-concept-to-community-ep-2",
+  "youtubeId": "ZiyfMOKc3S8",
+  "format": "video",
+  "duration": "3:25",
+  "published": "2024-10-22",
+  "category": "ai-tools",
+  "description": "NotebookLM turns the KoziCafe business plan into a podcast episode — market research, financials, and growth phases as AI-generated audio.",
+  "tags": [
+    "notebook llm",
+    "ai podcast creation",
+    "cafe planning tools",
+    "turn notes into podcasts",
+    "ai business tools",
+    "business plan organization",
+    "podcasts for entrepreneurs",
+    "ai for small business"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "format",
+    "duration",
+    "published"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ]
+}

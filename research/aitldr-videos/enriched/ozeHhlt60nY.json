@@ -1,0 +1,33 @@
+{
+  "title": "Create a Podcast in Minutes with AI | ElevenLabs Tutorial",
+  "slug": "create-a-podcast-in-minutes-with-ai-elevenlabs-tutorial",
+  "youtubeId": "ozeHhlt60nY",
+  "format": "video",
+  "duration": "3:59",
+  "published": "2025-04-15",
+  "category": "ai-tools",
+  "description": "Walkthrough of ElevenLabs AI voices: spin up a realistic podcast from text, plus the benefits and ethical risks of synthetic audio.",
+  "tags": [
+    "podcast ai",
+    "elevenlabs",
+    "ai voice generation",
+    "ai podcasting",
+    "text-to-speech ai",
+    "synthetic voices",
+    "ai audio tools",
+    "podcast automation"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "format",
+    "duration",
+    "published"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ]
+}

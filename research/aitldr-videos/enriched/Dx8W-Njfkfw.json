@@ -1,0 +1,28 @@
+{
+  "title": "This New AI feels ILLEGAL",
+  "slug": "this-new-ai-feels-illegal",
+  "youtubeId": "Dx8W-Njfkfw",
+  "format": "short",
+  "duration": "0:57",
+  "published": "2025-11-26",
+  "category": "ai-tools",
+  "description": "A new AI tool so powerful it feels like cheating. Quick look at what makes it stand out.",
+  "tags": [
+    "ai",
+    "ai tools",
+    "new ai"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "format",
+    "duration",
+    "published"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ]
+}

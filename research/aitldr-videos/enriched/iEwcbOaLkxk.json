@@ -1,0 +1,33 @@
+{
+  "title": "Why YouTubers Are Switching to AI Avatars",
+  "slug": "why-youtubers-are-switching-to-ai-avatars",
+  "youtubeId": "iEwcbOaLkxk",
+  "duration": "3:30",
+  "published": "2025-07-29",
+  "category": "workflows",
+  "description": "Build a consistent AI avatar for a faceless channel: image in ChatGPT and Leonardo, animate in DZINE, edit in CapCut.",
+  "tags": [
+    "ai avatar",
+    "faceless youtube channel",
+    "create ai avatar",
+    "talking ai avatar",
+    "ai avatar tutorial",
+    "leonardo ai",
+    "chatgpt",
+    "capcut editing"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "duration",
+    "published",
+    "format"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ],
+  "format": "video"
+}

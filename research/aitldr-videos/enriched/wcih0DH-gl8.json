@@ -1,0 +1,33 @@
+{
+  "title": "Creating TALKING AI Avatars Is EASIER Than You Think",
+  "slug": "creating-talking-ai-avatars-is-easier-than-you-think",
+  "youtubeId": "wcih0DH-gl8",
+  "format": "video",
+  "duration": "2:57",
+  "published": "2025-02-12",
+  "category": "video-creation",
+  "description": "Build a talking AI avatar end to end: base image in Dzine, voiceover in ElevenLabs, lip-sync and motion in Hedra.",
+  "tags": [
+    "talking ai avatar",
+    "how to create ai avatar",
+    "ai talking avatar",
+    "ai avatar",
+    "dzine ai",
+    "hedra",
+    "elevenlabs",
+    "faceless youtube channel"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "format",
+    "duration",
+    "published"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ]
+}

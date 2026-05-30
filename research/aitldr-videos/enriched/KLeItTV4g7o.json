@@ -1,0 +1,33 @@
+{
+  "title": "STOP Wasting Content! Repurpose Videos into Podcasts with ElevenLabs",
+  "slug": "stop-wasting-content-repurpose-videos-into-podcasts-with-elevenlabs",
+  "youtubeId": "KLeItTV4g7o",
+  "format": "short",
+  "duration": "0:39",
+  "published": "2025-05-13",
+  "category": "ai-tools",
+  "description": "Turn videos into podcasts with ElevenLabs AI voices. How it works, the benefits, and the ethical concerns of synthetic voice.",
+  "tags": [
+    "podcast ai",
+    "elevenlabs",
+    "ai voice generation",
+    "elevenlabs ai",
+    "ai podcasting",
+    "text-to-speech ai",
+    "ai voice technology",
+    "best ai voice generator"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "format",
+    "duration",
+    "published"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ]
+}

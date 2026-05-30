@@ -1,0 +1,33 @@
+{
+  "title": "Dzine AI Tutorial: From Text to Image to Lip Sync",
+  "slug": "dzine-ai-tutorial-from-text-to-image-to-lip-sync",
+  "youtubeId": "cwAMvSowPyw",
+  "duration": "5:42",
+  "published": "2026-01-21",
+  "category": "ai-tools",
+  "description": "Walk through Dzine AI end to end: Text to Image, Chat Editor, Lip Sync and Pro Mode to build clean multi-character animated scenes.",
+  "tags": [
+    "dzine ai",
+    "lip sync ai",
+    "ai lip sync tool",
+    "#dzinetutorial",
+    "#tipsonlipsync",
+    "#dzine",
+    "#howtoanimate",
+    "#howtolipsync"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "duration",
+    "published",
+    "format"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ],
+  "format": "video"
+}

@@ -1,0 +1,33 @@
+{
+  "title": "This AI Fruit Drama Is Going Viral… Here’s How It’s Made",
+  "slug": "this-ai-fruit-drama-is-going-viral-heres-how-its-made",
+  "youtubeId": "YubMTKOFE7Y",
+  "format": "short",
+  "duration": "0:58",
+  "published": "2026-04-07",
+  "category": "video-creation",
+  "description": "The exact no-film workflow behind viral AI fruit drama shorts: Claude Code scripts, Nano Banana visuals, Dzine lip-sync, CapCut edit.",
+  "tags": [
+    "aishorts",
+    "aivideo",
+    "facelessyoutube",
+    "aianimation",
+    "contentcreation",
+    "aitools",
+    "dzineai",
+    "nanobanana"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "format",
+    "duration",
+    "published"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ]
+}

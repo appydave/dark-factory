@@ -1,0 +1,33 @@
+{
+  "title": "Tutorial on How to Create AI Videos for Beginners Using Haiper",
+  "slug": "tutorial-on-how-to-create-ai-videos-for-beginners-using-haiper",
+  "youtubeId": "YWK3A9nNxDA",
+  "format": "video",
+  "duration": "2:15",
+  "published": "2024-08-23",
+  "category": "video-creation",
+  "description": "Beginner walkthrough of Haiper AI: generate anime-style videos from text, images, and video using text-to-image, image-to-video, and video-to-video.",
+  "tags": [
+    "ai video creation for beginners",
+    "haiper ai tutorial",
+    "create anime videos with ai",
+    "text-to-image ai guide",
+    "image-to-video ai tutorial",
+    "video-to-video transformation ai",
+    "haiper ai features",
+    "ai-generated anime content"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "format",
+    "duration",
+    "published"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ]
+}

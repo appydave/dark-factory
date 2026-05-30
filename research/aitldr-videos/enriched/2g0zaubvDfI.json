@@ -1,0 +1,30 @@
+{
+  "title": "Can You Make These Epic Fantasy Cards?",
+  "slug": "can-you-make-these-epic-fantasy-cards",
+  "youtubeId": "2g0zaubvDfI",
+  "format": "short",
+  "duration": "1:04",
+  "published": "2025-09-16",
+  "category": "content",
+  "description": "Five new legendary AI fantasy cards revealed—20 done, 30 to go. Grab the prompts and build your own deck with any AI image tool.",
+  "tags": [
+    "aicards",
+    "fantasydeck",
+    "createwithai",
+    "aitldr",
+    "legendsunleashed"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "format",
+    "duration",
+    "published"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ]
+}

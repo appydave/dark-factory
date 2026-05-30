@@ -1,0 +1,33 @@
+{
+  "title": "How I Made My Dream Car Model With AI!",
+  "slug": "how-i-made-my-dream-car-model-with-ai",
+  "youtubeId": "wSvxkZHIQGQ",
+  "format": "short",
+  "duration": "0:50",
+  "published": "2025-09-04",
+  "category": "video-creation",
+  "description": "Design a realistic 1/7 scale model of your dream car using Google Gemini for the concept and ZBrush to sculpt the details.",
+  "tags": [
+    "car model design",
+    "google gemini tutorial",
+    "zbrush car modeling",
+    "1/7 scale car model",
+    "sports car model",
+    "3d car design tutorial",
+    "model making tutorial",
+    "realistic car models"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "format",
+    "duration",
+    "published"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ]
+}

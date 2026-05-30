@@ -1,0 +1,33 @@
+{
+  "title": "Turn Any YouTube Video Into a Podcast in Minutes!",
+  "slug": "turn-any-youtube-video-into-a-podcast-in-minutes",
+  "youtubeId": "Sz-h9wb7EnM",
+  "duration": "3:20",
+  "published": "2025-07-25",
+  "category": "ai-tools",
+  "description": "Drop any YouTube link into ElevenLabs and get a studio-quality podcast in under 90 seconds. No mic, no editing.",
+  "tags": [
+    "turn youtube video into podcast",
+    "youtube to podcast",
+    "elevenlabs tutorial",
+    "podcast with ai",
+    "ai podcast generator",
+    "repurpose youtube video",
+    "content repurposing with ai",
+    "ai content creation"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "duration",
+    "published",
+    "format"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ],
+  "format": "video"
+}
