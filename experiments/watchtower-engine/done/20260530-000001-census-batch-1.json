@@ -1,0 +1,15 @@
+{
+  "queue_id": "q-20260530-000001-census-batch-1",
+  "workflow": "level-1-census",
+  "harness": ".claude/workflows/level-1-census.workflow.js",
+  "experiment_id": "exp-20260530-census-batch-1",
+  "args": {
+    "artifactsPath": "/Users/davidcruwys/dev/ad/apps/dark-factory/research/artifacts.jsonl",
+    "censusPath": "/Users/davidcruwys/dev/ad/apps/dark-factory/research/census.jsonl",
+    "batchStart": 5,
+    "batchSize": 5,
+    "ts": "2026-05-30T00:00:00+10:00"
+  },
+  "requested_at": "2026-05-30T00:00:00+10:00",
+  "requested_by": "watchtower"
+}

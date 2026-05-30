@@ -1,0 +1,36 @@
+{
+  "id": "run-census-batch-1-001",
+  "kind": "run",
+  "schema_version": "0.1",
+  "experiment_id": "exp-20260530-census-batch-1",
+  "queue_id": "q-20260530-000001-census-batch-1",
+  "workflow": "level-1-census",
+  "wf_run_id": "wf_27203916-cf8",
+  "status": "complete",
+  "started_at": "2026-05-30T00:00:00+10:00",
+  "ended_at": "2026-05-30T00:01:01+10:00",
+  "duration_ms": 60963,
+  "cost": {
+    "subagent_tokens": 259366,
+    "agent_count": 7
+  },
+  "args": {
+    "artifactsPath": "/Users/davidcruwys/dev/ad/apps/dark-factory/research/artifacts.jsonl",
+    "censusPath": "/Users/davidcruwys/dev/ad/apps/dark-factory/research/census.jsonl",
+    "batchStart": 5,
+    "batchSize": 5,
+    "ts": "2026-05-30T00:00:00+10:00"
+  },
+  "result": {
+    "records_appended": 5,
+    "verdict_breakdown": { "adopt": 1, "evaluate": 4, "skip": 0, "defer": 0 },
+    "artifact_ids": [
+      "agent-skills-osmani:skill:context-engineering",
+      "agent-skills-osmani:skill:debugging-and-error-recovery",
+      "agent-skills-osmani:skill:deprecation-and-migration",
+      "agent-skills-osmani:skill:documentation-and-adrs",
+      "agent-skills-osmani:skill:doubt-driven-development"
+    ]
+  },
+  "error": null
+}
