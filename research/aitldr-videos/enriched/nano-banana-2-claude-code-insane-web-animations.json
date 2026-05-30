@@ -1,0 +1,32 @@
+{
+  "title": "Nano Banana 2 + Claude Code = Insane Web Animations",
+  "slug": "nano-banana-2-claude-code-insane-web-animations",
+  "youtubeId": "sh-Q8CBAIo4",
+  "duration": "6:02",
+  "published": "2026-03-05",
+  "category": "workflows",
+  "description": "Build smooth scroll-effect web animations by pairing Nano Banana 2 with Claude Code — the core mechanics behind high-end product-page motion.",
+  "tags": [
+    "scroll effect",
+    "css animation",
+    "web development",
+    "smooth scrolling",
+    "website animation",
+    "ai coding",
+    "claude code",
+    "ai 3d design"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "duration",
+    "published"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ],
+  "featured": false
+}

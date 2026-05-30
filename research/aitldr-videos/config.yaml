@@ -1,0 +1,36 @@
+# config.yaml — AI-TLDR video ingestion run
+# Consumed by Phase 1 (fetch). Answers to the four open questions are locked below.
+
+channel_url: "https://www.youtube.com/@AITLDR"
+
+# Subset of the channel to ingest.
+#   all            — every public video (~324)
+#   recent:N       — most-recent N videos
+#   since:YYYY-MM-DD — videos published on/after the date
+subset: all
+
+# Featured selection rule, applied in Phase 3 (assemble).
+#   top_recent     — mark the N newest videos featured (count below)
+#   best_per_category — one featured video per category slug
+#   hand_picked    — explicit youtube_ids list (ids below)
+featured_rule: top_recent
+featured_count: 6
+# featured_ids: []   # only used when featured_rule: hand_picked
+
+# Description policy, applied in Phase 2 (enrich).
+#   trim_verbatim  — truncate the real YouTube description to <=160 (stays VERIFIED)
+#   fresh_summary  — write a clean <=160-char summary (becomes GENERATED)
+description_policy: fresh_summary
+description_max_chars: 160
+
+# Category vocabulary is DERIVED (the channel has no native topic tags),
+# so `category` is recorded under provenance.generated[], never verified[].
+# Allowed slugs are sourced live from schema.md categories[]; do not hardcode.
+category_source: "/Users/davidcruwys/dev/aitldr/aitldr-skool/recipes/astro-website/examples/aitldr/schema.md"
+category_slugs:
+  - ai-tools
+  - workflows
+  - video-creation
+  - content
+  - automation
+  - community

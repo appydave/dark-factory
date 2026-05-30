@@ -1,0 +1,32 @@
+{
+  "title": "I Replaced Every Design Tool Using Claude + Nano Banana… (This Is Insane)",
+  "slug": "i-replaced-every-design-tool-using-claude-nano-banana",
+  "youtubeId": "nEbLVhZSvfo",
+  "duration": "6:34",
+  "published": "2026-04-02",
+  "category": "workflows",
+  "description": "Generate AI images straight from your terminal. Claude Code plus Nano Banana kills tool-switching and folds design into your coding workflow.",
+  "tags": [
+    "claude code tutorial",
+    "ai coding",
+    "coding with ai",
+    "software development",
+    "ai automation",
+    "nanobanana",
+    "nanobananapro",
+    "ai assisted coding"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "duration",
+    "published"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ],
+  "featured": false
+}

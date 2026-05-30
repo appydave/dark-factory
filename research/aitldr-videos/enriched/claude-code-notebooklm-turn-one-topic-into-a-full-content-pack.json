@@ -1,0 +1,32 @@
+{
+  "title": "Claude Code + NotebookLM: Turn One Topic Into a Full Content Pack",
+  "slug": "claude-code-notebooklm-turn-one-topic-into-a-full-content-pack",
+  "youtubeId": "kmx3ilohXvQ",
+  "duration": "5:59",
+  "published": "2026-04-17",
+  "category": "workflows",
+  "description": "Chain Claude Code and NotebookLM to spin one topic into podcasts, slide decks, infographics, and videos automatically.",
+  "tags": [
+    "claude code",
+    "new ai coder claude code",
+    "ai productivity",
+    "notebooklm",
+    "ai workflow tutorial",
+    "autopilot",
+    "claude code tutorial",
+    "notebook ml automation"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "duration",
+    "published"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ],
+  "featured": false
+}

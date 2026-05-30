@@ -1,0 +1,32 @@
+{
+  "title": "Copied a Viral AI Video… Here's What Happened",
+  "slug": "copied-a-viral-ai-video-heres-what-happened",
+  "youtubeId": "tvgRqE3AfGo",
+  "duration": "4:13",
+  "published": "2026-04-21",
+  "category": "workflows",
+  "description": "Recreating a viral AI video using only Google Gemini and Flow — one workflow, no tool stack, simple prompts to a full AI film.",
+  "tags": [
+    "nano banana",
+    "google gemini",
+    "googlw flow",
+    "image generation",
+    "video generation",
+    "free ai tools",
+    "ai video generator",
+    "ai filmmaking"
+  ],
+  "verified": [
+    "title",
+    "youtubeId",
+    "duration",
+    "published"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags"
+  ],
+  "featured": false
+}

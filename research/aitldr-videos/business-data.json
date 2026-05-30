@@ -1,0 +1,524 @@
+{
+  "source": {
+    "channel": "https://www.youtube.com/@AITLDR",
+    "fetched_via": "yt-dlp 2026.02.21",
+    "subset": "recent:25 (proving pass)",
+    "schema_ref": "/Users/davidcruwys/dev/aitldr/aitldr-skool/recipes/astro-website/examples/aitldr/schema.md"
+  },
+  "verified": [
+    "title",
+    "youtubeId",
+    "duration",
+    "published"
+  ],
+  "generated": [
+    "slug",
+    "category",
+    "description",
+    "tags",
+    "featured"
+  ],
+  "count": 25,
+  "records": [
+    {
+      "title": "Claude Built This Entire Website In One Shot — Here's How",
+      "slug": "claude-built-this-entire-website-in-one-shot-heres-how",
+      "published": "2026-05-29",
+      "category": "workflows",
+      "description": "Schema doc + design doc + recipe feed one Claude prompt that spits out 27 files and a live site. Same recipe, three different brands.",
+      "youtubeId": "NSlNngeJpjs",
+      "duration": "4:42",
+      "tags": [
+        "website builder",
+        "claude ai",
+        "claude code",
+        "claude design",
+        "website",
+        "one shot prompt",
+        "one shot",
+        "single prompt"
+      ],
+      "featured": true
+    },
+    {
+      "title": "Cloudflare Just Revealed Its WordPress Alternative",
+      "slug": "cloudflare-just-revealed-its-wordpress-alternative",
+      "published": "2026-05-28",
+      "category": "ai-tools",
+      "description": "Cloudflare bought Astro and paired it with EmDash, Workers, R2 and D1 — an AI-ready, faster stack aiming to replace WordPress.",
+      "youtubeId": "fS1W44lYHDs",
+      "duration": "4:09",
+      "tags": [
+        "cloudflare",
+        "astro",
+        "cloudflare astro",
+        "cloudflare wordpress alternative",
+        "wordpress alternative",
+        "cloudflare cms",
+        "emdash cms",
+        "astro cms"
+      ],
+      "featured": true
+    },
+    {
+      "title": "Is Gemini Omni The Ultimate Video Generator? (First Look)",
+      "slug": "is-gemini-omni-the-ultimate-video-generator-first-look",
+      "published": "2026-05-24",
+      "category": "video-creation",
+      "description": "First look at Google's Gemini Omni: turn text prompts into cinematic video, transforming ordinary scenes into volcanoes and ancient weapons.",
+      "youtubeId": "NTkvuUQRgeg",
+      "duration": "6:24",
+      "tags": [
+        "google omni",
+        "text to video ai",
+        "ai video creation",
+        "ai video generator",
+        "ai video editor",
+        "text to video ai free",
+        "free ai tools",
+        "image to video ai"
+      ],
+      "featured": true
+    },
+    {
+      "title": "I Use AI to Make Thumbnails People Actually Click",
+      "slug": "i-use-ai-to-make-thumbnails-people-actually-click",
+      "published": "2026-05-19",
+      "category": "content",
+      "description": "Build click-worthy YouTube thumbnails with AI: clear subject, strong emotion, readable text. The scroll-stopping process for small channels.",
+      "youtubeId": "pdVuBMZpcRU",
+      "duration": "6:41",
+      "tags": [
+        "thumbnail design",
+        "how to make thumbnails for youtube videos",
+        "youtube growth",
+        "ai thumbnail maker",
+        "how to make thumbnail with ai",
+        "youtube thumbnail tutorial",
+        "thumbnail maker",
+        "dzine ai"
+      ],
+      "featured": true
+    },
+    {
+      "title": "I Tried Making Money with AI Podcasting Using Dzine AI",
+      "slug": "i-tried-making-money-with-ai-podcasting-using-dzine-ai",
+      "published": "2026-05-14",
+      "category": "ai-tools",
+      "description": "Build AI podcast hosts and a realistic studio in Dzine AI, then package it as a paid service for businesses.",
+      "youtubeId": "BPNCI9U8ZAY",
+      "duration": "9:21",
+      "tags": [
+        "artificial intelligence",
+        "ai video",
+        "ai avatar",
+        "virtual studio",
+        "ai content creation",
+        "ai tools for content creation",
+        "ai podcast",
+        "dzine ai"
+      ],
+      "featured": true
+    },
+    {
+      "title": "I Created an AI Action Movie in Higgsfield Cinema Studio 3.5",
+      "slug": "i-created-an-ai-action-movie-in-higgsfield-cinema-studio-3-5",
+      "published": "2026-05-08",
+      "category": "video-creation",
+      "description": "Building a cinematic AI action scene in Higgsfield Cinema Studio 3.5 — process and prompting that keep character consistency intact.",
+      "youtubeId": "WRPtQMPw1rg",
+      "duration": "9:15",
+      "tags": [
+        "higgsfield ai",
+        "cinematic video",
+        "higgsfield tutorial",
+        "ai video generator",
+        "ai short film",
+        "higgsfield ai guide",
+        "higgsfield ai tutorial",
+        "ai movie"
+      ],
+      "featured": true
+    },
+    {
+      "title": "I Connected ChatGPT Images 2.0 to Claude (Insane Results)",
+      "slug": "i-connected-chatgpt-images-2-0-to-claude-insane-results",
+      "published": "2026-05-03",
+      "category": "content",
+      "description": "Build a Claude skill on top of ChatGPT Images 2.0 to generate pro YouTube thumbnails from plain-English prompts.",
+      "youtubeId": "7O_-z6xaFi4",
+      "duration": "10:09",
+      "tags": [
+        "chatgpt",
+        "claude ai tutorial",
+        "anthropic claude",
+        "how to use claude ai",
+        "claude cowork",
+        "thumbnail design",
+        "how to make thumbnails",
+        "chatgpt image 2"
+      ],
+      "featured": false
+    },
+    {
+      "title": "ChatGPT Images 2.0: How Creators and Businesses Can Use It",
+      "slug": "chatgpt-images-2-0-how-creators-and-businesses-can-use-it",
+      "published": "2026-05-02",
+      "category": "ai-tools",
+      "description": "Turn prompts into real marketing visuals with ChatGPT Images 2.0 — thumbnails, carousels, product photos, ads, and infographics.",
+      "youtubeId": "wO1bmy21_TQ",
+      "duration": "7:53",
+      "tags": [
+        "chatgpt",
+        "chatgpt 4o",
+        "ai",
+        "chat gpt 2.0",
+        "ai images",
+        "ai image generator",
+        "free ai image generator",
+        "chatgpt 5"
+      ],
+      "featured": false
+    },
+    {
+      "title": "Claude Design Built My Website (From Scratch)",
+      "slug": "claude-design-built-my-website-from-scratch",
+      "published": "2026-04-24",
+      "category": "workflows",
+      "description": "Build a full website from scratch in one Claude session using only prompts: brand file, layout, glassmorphism, and premium sections. No code.",
+      "youtubeId": "kCZtG4qVv10",
+      "duration": "3:59",
+      "tags": [
+        "make money with claude",
+        "claude code",
+        "make money online",
+        "website",
+        "ai website",
+        "claude",
+        "claude design",
+        "claude ai"
+      ],
+      "featured": false
+    },
+    {
+      "title": "Can Claude build a website from scratch?",
+      "slug": "can-claude-build-a-website-from-scratch",
+      "published": "2026-04-23",
+      "category": "ai-tools",
+      "description": "Rebuilding a full website in one session with Claude Design. Prompts to premium layouts, auto branding, refined by conversation. No Figma, no designer.",
+      "youtubeId": "BHAb5n3P0W4",
+      "duration": "5:59",
+      "tags": [
+        "claude code vscode",
+        "claude code",
+        "build websites with ai",
+        "web design",
+        "website design",
+        "claude",
+        "claude design",
+        "ai website builder"
+      ],
+      "featured": false
+    },
+    {
+      "title": "Copied a Viral AI Video… Here's What Happened",
+      "slug": "copied-a-viral-ai-video-heres-what-happened",
+      "published": "2026-04-21",
+      "category": "workflows",
+      "description": "Recreating a viral AI video using only Google Gemini and Flow — one workflow, no tool stack, simple prompts to a full AI film.",
+      "youtubeId": "tvgRqE3AfGo",
+      "duration": "4:13",
+      "tags": [
+        "nano banana",
+        "google gemini",
+        "googlw flow",
+        "image generation",
+        "video generation",
+        "free ai tools",
+        "ai video generator",
+        "ai filmmaking"
+      ],
+      "featured": false
+    },
+    {
+      "title": "Claude Code + NotebookLM: Turn One Topic Into a Full Content Pack",
+      "slug": "claude-code-notebooklm-turn-one-topic-into-a-full-content-pack",
+      "published": "2026-04-17",
+      "category": "workflows",
+      "description": "Chain Claude Code and NotebookLM to spin one topic into podcasts, slide decks, infographics, and videos automatically.",
+      "youtubeId": "kmx3ilohXvQ",
+      "duration": "5:59",
+      "tags": [
+        "claude code",
+        "new ai coder claude code",
+        "ai productivity",
+        "notebooklm",
+        "ai workflow tutorial",
+        "autopilot",
+        "claude code tutorial",
+        "notebook ml automation"
+      ],
+      "featured": false
+    },
+    {
+      "title": "I Automated Nano Banana With Claude Code Skills",
+      "slug": "i-automated-nano-banana-with-claude-code-skills",
+      "published": "2026-04-13",
+      "category": "automation",
+      "description": "Skip the JSON prompt math. Drive Nano Banana with Claude Code Skills for clean, consistent image outputs from one idea, fast.",
+      "youtubeId": "lWKzuIjwQvQ",
+      "duration": "5:31",
+      "tags": [
+        "claude code for beginners",
+        "boris cherny claude code workflow",
+        "vs code claude code extension",
+        "ai tools for new developers",
+        "claude code",
+        "claude code skills",
+        "nano banana",
+        "nano banana tutorial"
+      ],
+      "featured": false
+    },
+    {
+      "title": "Cinematic AI Videos Made EASY (Clean Workflow with ChatGPT + Higgsfield)",
+      "slug": "cinematic-ai-videos-made-easy-clean-workflow-with-chatgpt-higgsfield",
+      "published": "2026-04-11",
+      "category": "video-creation",
+      "description": "A clean idea-to-screen workflow pairing ChatGPT and Higgsfield to produce polished cinematic AI videos with less friction.",
+      "youtubeId": "yXG3bEJrdwg",
+      "duration": "4:33",
+      "tags": [
+        "higgsfield ai",
+        "ai video generator",
+        "ai video workflow",
+        "chatgpt plus",
+        "ai content creation",
+        "ai",
+        "image to video ai",
+        "nano banana"
+      ],
+      "featured": false
+    },
+    {
+      "title": "Steal the Look: This AI Fruit Drama Hack Is Breaking YouTube Right Now",
+      "slug": "steal-the-look-this-ai-fruit-drama-hack-is-breaking-youtube-right-now",
+      "published": "2026-04-04",
+      "category": "workflows",
+      "description": "Build viral AI fruit drama shorts with a 3-tool stack: Claude Code for scripts, Nano Banana for characters, Dzine for lip sync.",
+      "youtubeId": "8MldxUB4Efw",
+      "duration": "4:40",
+      "tags": [
+        "claude code",
+        "nano banana",
+        "nano banana tutorial",
+        "claude code tutorial",
+        "dzine ai",
+        "dzine",
+        "lip sync",
+        "ai viral shorts"
+      ],
+      "featured": false
+    },
+    {
+      "title": "I Replaced Every Design Tool Using Claude + Nano Banana… (This Is Insane)",
+      "slug": "i-replaced-every-design-tool-using-claude-nano-banana",
+      "published": "2026-04-02",
+      "category": "workflows",
+      "description": "Generate AI images straight from your terminal. Claude Code plus Nano Banana kills tool-switching and folds design into your coding workflow.",
+      "youtubeId": "nEbLVhZSvfo",
+      "duration": "6:34",
+      "tags": [
+        "claude code tutorial",
+        "ai coding",
+        "coding with ai",
+        "software development",
+        "ai automation",
+        "nanobanana",
+        "nanobananapro",
+        "ai assisted coding"
+      ],
+      "featured": false
+    },
+    {
+      "title": "JSON + NANO BANANA HACK",
+      "slug": "json-nano-banana-hack",
+      "published": "2026-03-29",
+      "category": "content",
+      "description": "Why plain prompts fail and JSON ones win: separate data from instructions to get consistent, repeatable Nano Banana infographics.",
+      "youtubeId": "EPT04sS8fno",
+      "duration": "6:15",
+      "tags": [
+        "ai tools",
+        "prompt structure",
+        "infographic design",
+        "ai infographic",
+        "prompt engineering",
+        "nano banana",
+        "json prompting",
+        "nano banana tutorial"
+      ],
+      "featured": false
+    },
+    {
+      "title": "I Turned Static Infographics Into Motion Using AI (Nano Banana + Veo 3)",
+      "slug": "i-turned-static-infographics-into-motion-using-ai-nano-banana-veo-3",
+      "published": "2026-03-26",
+      "category": "workflows",
+      "description": "Turn static AI infographics into animated explainers using Nano Banana, Veo 3, and DaVinci Resolve — step by step.",
+      "youtubeId": "ciRCM-SRZII",
+      "duration": "5:08",
+      "tags": [
+        "infographic animation",
+        "motion graphics",
+        "animated infographic",
+        "infographic video",
+        "nanobanana",
+        "veo 3",
+        "static to motion",
+        "motion graphics infographics"
+      ],
+      "featured": false
+    },
+    {
+      "title": "Don’t Make AI Infographics Until You Watch This (Gemini Flash + Nano Banana)",
+      "slug": "dont-make-ai-infographics-until-you-watch-this-gemini-flash-nano-banana",
+      "published": "2026-03-20",
+      "category": "content",
+      "description": "Turn basic AI infographics into cinematic visuals. Prompt structure and design direction for Gemini Flash + Nano Banana that control style, layout, and…",
+      "youtubeId": "nzvaL3zSx6U",
+      "duration": "5:27",
+      "tags": [
+        "ai tools",
+        "ai infographics",
+        "cinematic infographics",
+        "ai infographic tutorial",
+        "gemini flash",
+        "nano banana",
+        "ai design tutorial",
+        "infographic design ai"
+      ],
+      "featured": false
+    },
+    {
+      "title": "Nano Banana + Gemini Flash: Turn Live Data Into Infographics Instantly",
+      "slug": "nano-banana-gemini-flash-turn-live-data-into-infographics-instantly",
+      "published": "2026-03-19",
+      "category": "workflows",
+      "description": "Pair Gemini Flash for live data with Nano Banana to spin raw numbers into clean infographics fast — plus prompt structure and accuracy checks.",
+      "youtubeId": "T8qZh31QckA",
+      "duration": "5:59",
+      "tags": [
+        "ai tools",
+        "infographic generator",
+        "nano banana",
+        "data analytics",
+        "visualize data",
+        "nano banana ai",
+        "gemini flash",
+        "ai infographics"
+      ],
+      "featured": false
+    },
+    {
+      "title": "Your AI Infographics Look Bad… Until You Do This (Gemini Flash + Nano Banana)",
+      "slug": "your-ai-infographics-look-bad-until-you-do-this-gemini-flash-nano-banana",
+      "published": "2026-03-12",
+      "category": "content",
+      "description": "A 5-part prompt formula that turns messy AI infographics into clean, professional layouts with controlled style and hierarchy.",
+      "youtubeId": "R4UvXoL2cxE",
+      "duration": "5:05",
+      "tags": [
+        "nano banana 2",
+        "nano banana",
+        "ai infographic prompt",
+        "ai infographic generator",
+        "ai design prompts",
+        "ai prompt engineering",
+        "ai tools for creators",
+        "ai graphics tutorial"
+      ],
+      "featured": false
+    },
+    {
+      "title": "I Let AI Design Infographics - Here's What Happened",
+      "slug": "i-let-ai-design-infographics-heres-what-happened",
+      "published": "2026-03-11",
+      "category": "content",
+      "description": "Testing Nano Banana 2 to generate infographics from data — what it nails, where it slips, and why you still verify every number.",
+      "youtubeId": "oZAeMhhSgUY",
+      "duration": "5:30",
+      "tags": [
+        "ai image generator",
+        "infographic design",
+        "ai infographic",
+        "nano banana",
+        "ai tools",
+        "claude code tutorial",
+        "claude code",
+        "nano banana 2"
+      ],
+      "featured": false
+    },
+    {
+      "title": "Nano Banana 2 + Claude Code = Insane Web Animations",
+      "slug": "nano-banana-2-claude-code-insane-web-animations",
+      "published": "2026-03-05",
+      "category": "workflows",
+      "description": "Build smooth scroll-effect web animations by pairing Nano Banana 2 with Claude Code — the core mechanics behind high-end product-page motion.",
+      "youtubeId": "sh-Q8CBAIo4",
+      "duration": "6:02",
+      "tags": [
+        "scroll effect",
+        "css animation",
+        "web development",
+        "smooth scrolling",
+        "website animation",
+        "ai coding",
+        "claude code",
+        "ai 3d design"
+      ],
+      "featured": false
+    },
+    {
+      "title": "Leonardo AI: The Blueprint Feature That Saves Hours of Prompt Engineering",
+      "slug": "leonardo-ai-blueprint-feature-saves-hours-of-prompt-engineering",
+      "published": "2026-03-03",
+      "category": "ai-tools",
+      "description": "Leonardo AI's Blueprint feature generates studio-grade images without endless prompt tweaking. Magazine covers to cinematic shots, fast.",
+      "youtubeId": "KokEMyHsg78",
+      "duration": "4:54",
+      "tags": [
+        "free ai image generator",
+        "ai image generator",
+        "best ai image generator",
+        "ai generated images",
+        "ai art generator",
+        "leonardo ai tutorial",
+        "leonardo ai prompts guide",
+        "leonardo ai"
+      ],
+      "featured": false
+    },
+    {
+      "title": "From Generic to BRANDED Animations | Claude + Remotion",
+      "slug": "from-generic-to-branded-animations-claude-remotion",
+      "published": "2026-02-25",
+      "category": "video-creation",
+      "description": "Go beyond generic animation commands. Build brand-aware Claude skills that generate custom animated logos in Remotion.",
+      "youtubeId": "LoVyLaaLSbc",
+      "duration": "6:24",
+      "tags": [
+        "logo animation",
+        "custom logo animation",
+        "animated logo",
+        "logo motion design",
+        "animated logo design",
+        "logo animation template",
+        "remotion",
+        "claude code"
+      ],
+      "featured": false
+    }
+  ]
+}
