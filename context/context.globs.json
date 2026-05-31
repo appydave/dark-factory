@@ -10,6 +10,8 @@
     "experiments": ["experiments/**/*.md", "experiments/**/*.json"],
     "spikes": ["spikes/**/*.md", "spikes/**/*.mjs", "spikes/**/package.json"],
     "workflows": [".claude/workflows/*.js"],
+    "watchtower": ["docs/watchtower/**/*.md", "experiments/watchtower-engine/**/*.md", "experiments/watchtower-engine/**/*.sh", "experiments/watchtower-engine/skills/**/SKILL.md"],
+    "app": ["apps/**/*.ts", "apps/**/*.tsx", "apps/**/CLAUDE.md", "apps/**/README.md"],
     "mockups": ["mochaccino/designs/**/*.html"],
     "config": ["mochaccino/data/*.json"]
   },
@@ -17,11 +19,11 @@
     "specs": ["docs", "context"],
     "build": ["canonical", "planning"],
     "library": ["canonical", "research"],
-    "platform": ["workflows", "spikes", "experiments"]
+    "platform": ["workflows", "spikes", "experiments", "watchtower"]
   },
   "composites": {
     "understand": ["context", "docs", "research"],
-    "codebase": ["canonical", "research", "planning", "workflows"],
+    "codebase": ["canonical", "research", "planning", "workflows", "app"],
     "full": ["*"]
   }
 }
