@@ -10,7 +10,8 @@ One line per doc. Start at the top. This index is the fix for doc-sprawl — whe
 1. **`../README.md`** — charter, repo layout, status.
 2. **`architecture.md`** — ★ the full statement: Factory / Warehouse / Watchtower, the self-improvement loop, design principles (§13).
 3. **`dark-factory-living-system-spec.md`** — the operational spec: 5 eval levels, 3 trigger types, schemas, SkillOpt grounding.
-4. **`../context/CONTEXT.md`** — deep orientation doc (what external systems read first).
+
+> **`context/` is deliberately not in this list.** `CONTEXT.md` and `context.globs.json` are **generated output** of the `system-context` skill — external orientation for outside consumers, regenerated on demand. They are *not* working docs and *not* part of the system. Refresh by running the skill; never hand-edit.
 
 > **architecture.md vs spec.md — how they relate.** They overlap on purpose but are *not* peers. `architecture.md` is the **parent** (the whole system, the metaphor, the principles). `dark-factory-living-system-spec.md` is the **operational child** (how evaluation actually runs, level by level, with schemas). If they ever disagree, architecture.md wins on framing; spec.md wins on eval mechanics. *(A full merge is proposed, not done — see PROBLEMS register.)*
 
