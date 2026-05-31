@@ -1,0 +1,44 @@
+# Dark Factory — Docs Index
+
+**Status**: living index — 2026-06-01
+One line per doc. Start at the top. This index is the fix for doc-sprawl — when a new design doc lands, it gets a line here or it doesn't exist.
+
+---
+
+## Read order (the factory's shape & purpose)
+
+1. **`../README.md`** — charter, repo layout, status.
+2. **`architecture.md`** — ★ the full statement: Factory / Warehouse / Watchtower, the self-improvement loop, design principles (§13).
+3. **`dark-factory-living-system-spec.md`** — the operational spec: 5 eval levels, 3 trigger types, schemas, SkillOpt grounding.
+4. **`../context/CONTEXT.md`** — deep orientation doc (what external systems read first).
+
+> **architecture.md vs spec.md — how they relate.** They overlap on purpose but are *not* peers. `architecture.md` is the **parent** (the whole system, the metaphor, the principles). `dark-factory-living-system-spec.md` is the **operational child** (how evaluation actually runs, level by level, with schemas). If they ever disagree, architecture.md wins on framing; spec.md wins on eval mechanics. *(A full merge is proposed, not done — see PROBLEMS register.)*
+
+## The human side (how David stays the director)
+
+- **`intake.md`** — the front door. Ideas/papers/others' work enter here; nothing is trusted until validated.
+- **`human-comms.md`** — communication is first-class, both directions: audio (talk + listen) and visual (dashboards + presentation).
+- **`systemic-fixes.md`** — the problem register + "fix the class not the instance" + "good/bad is a hypothesis, not gospel."
+- **`tool-registry.md`** — tools/scripts are first-class; the index of platform + repo tooling; how it stays fresh.
+
+## The contracts (govern the build)
+
+- **`canonical-form-spec.md`** — what a canonical SKILL.md must contain.
+- **`provenance-spec.md`** — provenance.json schema + verbatim-source rules.
+- **`ingestion-workflow.md`** — the 11-step ingest procedure.
+- **`david-style-patterns.md`** — David's voice + templates.
+
+## Operating layer & threads
+
+- **`watchtower/`** — the v0 observation surface (sub-project): `spec.md`, `plan.md`, `schemas.md`, `context.md` (the ticket-driven conductor), `chatgpt-brief.md` (record shapes), `DECISIONS.md`, `REVIEW.md`, `HANDOVER.md`.
+- **`sop-lifecycle.md`** — workflows as SOPs-in-data; state levels; the drift problem; spike→main-flow promotion; decision lineage.
+- **`phase-b-next-steps.md`** — the next build move (first dog-food workflow).
+- **`ylo-to-poem-blueprint.md`** — thread 2: YLO → POEM consolidation.
+- **`workflow-tool-authoring-notes.md`** — hard-won Workflow Tool craft.
+
+## Outside docs/ but load-bearing
+
+- **`../backlog/`** — active tickets + **`problems.md`** (the problem register).
+- **`../research/`** — the frozen Warehouse corpus (read-only): `INDEX.md`, `insights.md`, distillations (⚠️ provisional).
+- **`../mochaccino/designs/`** — the visual layer, live at `:7420`.
+- **`~/dev/ad/brains/machine-control/`** — the 4-Panel Session Layout (outside this repo).

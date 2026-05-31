@@ -24,6 +24,8 @@ Earlier framings collapsed Dark Factory to "skill library" or "workflow platform
 
 You don't pick between them. They're three layers of the same thing. The Platform reads from the Warehouse, produces the Library, and uses the Library to do the production work.
 
+**Before all three sits the Intake** — the front door where raw ideas, papers, and others' work land before they're factory-worthy. Intake is open; the gate into the Warehouse/Library is not. See `intake.md`.
+
 ---
 
 ## 2 — Metaphor: Factory, Warehouse, Watchtower
@@ -461,8 +463,12 @@ Each phase produces something usable; you don't have to wait for the whole archi
 - **Lights off by default.** The factory runs without human attention. Watchtower observes; sign-off booths gate where needed.
 - **Workflows for workflows.** The factory eats its own dog food. Ingestion is a workflow. Evaluation is a workflow. The factory creates the workflows that create the factory.
 - **Provenance is non-negotiable.** No canonical artifact without `provenance.json` and verbatim `_source/` copies. Every promotion preserves the chain.
-- **One winner per station, all alternatives kept.** Canonical is the production line; variants/ is the bench. Nothing is destroyed.
+- **One winner per station, all alternatives kept.** Canonical is the production line; variants/ is the bench. Nothing is destroyed. **This applies to workflows/SOPs too, not just skills** — a cool new path enters as a variant and is promoted deliberately, never auto-locked. See `sop-lifecycle.md`.
 - **Code wrapper over model wrapper.** Use Workflow Tool primitives. Pass state through JS variables, not through Claude.
 - **Stack-agnostic skills.** Stack specifics live in consuming projects, not in canonical artifacts.
+- **Human comms are first-class, both directions.** The factory runs dark, but the human is never out of the loop — they steer and stay informed through two channels: audio (talk + listen) and visual (dashboards + presentation). Lights-off and first-class human comms are not in tension. See `human-comms.md`.
+- **Fix the class, not the instance.** Every fix considers system cohesion — the output is often a workflow/skill/agent that fixes the whole class, not a patch. But pick the *smallest* move that does it; name the altitude you chose. See `systemic-fixes.md`.
+- **Good/bad is a hypothesis, not gospel.** David reports feelings, not verdicts. Challenge is required — a sycophant who ships the suggestion creates ten new problems. Every good/bad is a claim to validate. See `systemic-fixes.md`.
+- **Tools and scripts are first-class.** Before doing a job, ask what tooling makes it efficient and whether to build that first. Keep an indexed, *current* registry of both platform tools (Claude Code: Workflow, /loop, /simplify, ultracode…) and repo tools — and automate its refresh, or it rots. See `tool-registry.md`.
 
 These principles are stable. Implementation evolves. Architecture is the contract.

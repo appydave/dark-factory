@@ -35,6 +35,8 @@ The system has three coexisting roles. Choosing between them is a mistake — th
 | **The Warehouse** | `research/` | All raw material: 1,100+ artifacts from 14 upstream repos, frozen corpus plus continuous refresh. |
 | **The Platform** | `.claude/workflows/` | The factory: creates, runs, evaluates, and promotes skills. Uses the Library to do the production work. |
 
+**The Intake (the front door).** The three roles assume the material already exists. Ideas — David's, papers, others' work — land first in **Intake** (`backlog/` + `experiments/` for now), get tested as experiments, and only cross into the Warehouse/Library through the validation gate. Anything can enter Intake; nothing is trusted until validated. See `intake.md`.
+
 ### Naming: `canonical/` stays
 
 `canonical/` is the authoritative reference — the version everything else defers to. It is derived from sources but it IS the source of truth for David's toolset. The deployed artifact (projected to appydave-plugins) is a derivative of `canonical/`, not the other way around.
