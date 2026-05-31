@@ -5,18 +5,23 @@
     "context": ["CLAUDE.md", "context/CONTEXT.md"],
     "canonical": ["canonical/**/*.md", "canonical/**/provenance.json"],
     "research": ["research/**/*.md"],
+    "research_data": ["research/**/*.json", "research/**/*.jsonl"],
     "planning": ["backlog/**/*.md"],
+    "experiments": ["experiments/**/*.md", "experiments/**/*.json"],
+    "spikes": ["spikes/**/*.md", "spikes/**/*.mjs", "spikes/**/package.json"],
+    "workflows": [".claude/workflows/*.js"],
     "mockups": ["mochaccino/designs/**/*.html"],
     "config": ["mochaccino/data/*.json"]
   },
   "aliases": {
     "specs": ["docs", "context"],
     "build": ["canonical", "planning"],
-    "library": ["canonical", "research"]
+    "library": ["canonical", "research"],
+    "platform": ["workflows", "spikes", "experiments"]
   },
   "composites": {
     "understand": ["context", "docs", "research"],
-    "codebase": ["canonical", "research", "planning"],
+    "codebase": ["canonical", "research", "planning", "workflows"],
     "full": ["*"]
   }
 }
