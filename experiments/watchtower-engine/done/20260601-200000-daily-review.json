@@ -1,0 +1,9 @@
+{
+  "queue_id": "q-20260601-200000-daily-review",
+  "workflow": "daily-review",
+  "harness": ".claude/workflows/daily-review.workflow.js",
+  "experiment_id": "exp-20260601-daily-review",
+  "args": {},
+  "requested_at": "2026-06-01T20:00:00Z",
+  "requested_by": "david (via queue-workflow producer)"
+}

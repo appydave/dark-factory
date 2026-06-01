@@ -1,5 +1,7 @@
 # Dark Factory
 
+> **Orienting frame:** see [`docs/north-star.md`](docs/north-star.md). Current priority is **Path 1 — building the factory machinery**; the canonical-ingestion charter described below is **Path 2 (deferred cargo)**, not abandoned.
+
 A canonical skill library being mined from 13 upstream methodology frameworks (BMAD, gstack, GSD, Spec Kit, Compound Engineering, Agent Skills, Superpowers, Everything Claude Code, Ruflo, gbrain, AppyDave Plugins, POEM, Compound Knowledge), distilled into **David's likeness** — David's patterns, templates, and voice — with **full provenance** back to every origin file.
 
 ## Why this exists

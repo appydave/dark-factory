@@ -7,6 +7,7 @@ One line per doc. Start at the top. This index is the fix for doc-sprawl — whe
 
 ## Read order (the factory's shape & purpose)
 
+0. **`north-star.md`** — ★ the North Star + the two major paths (build the factory vs run the content). Read first.
 1. **`../README.md`** — charter, repo layout, status.
 2. **`architecture.md`** — ★ the full statement: Factory / Warehouse / Watchtower, the self-improvement loop, design principles (§13).
 3. **`dark-factory-living-system-spec.md`** — the operational spec: 5 eval levels, 3 trigger types, schemas, SkillOpt grounding.

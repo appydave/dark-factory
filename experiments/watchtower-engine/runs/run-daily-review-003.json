@@ -1,0 +1,20 @@
+{
+  "id": "run-daily-review-003",
+  "kind": "run",
+  "experiment_id": "exp-20260601-daily-review",
+  "queue_id": "q-20260601-200000-daily-review",
+  "workflow": "daily-review",
+  "status": "complete",
+  "started_at": "2026-06-01T20:00:05Z",
+  "ended_at": "2026-06-01T20:00:56Z",
+  "driven_by": "loop tick (run-next-workflow procedure; queue Monitor b9ekc4bau woke the loop on the queued entry, run in the main design session)",
+  "usage": { "agents": 1, "subagent_tokens": 32988, "tool_uses": 8, "duration_ms": 51230 },
+  "result": {
+    "date": "2026-06-01 (since 1 day ago)",
+    "headline": "Factory-machinery (Path 1) push: north-star set, Producer skill born, daily-review loop self-running; cargo pipeline still parked.",
+    "needs_review_top": "DIVERGENCE: north-star.md hard-reprioritises to Path 1 (factory machinery) and defers the original repo charter (research/ -> canonical/ ingestion) as Path 2 'cargo'; the 7 prior ingestion/experiment backlog tickets were ignored today. Confirm intended pivot, not two-workers drift.",
+    "blocking_decision": "Problem #15 (in-session autonomous trigger) still unsolved and explicitly blocks the North Star; Producer + Consumer both built but firing them autonomously in-session has no answer.",
+    "idle": "Canonical ingestion thread fully idle today (zero commits touch canonical/ or research/); 6 open backlog tickets unworked. Stale scheduled_tasks.lock from a May 31 22:51 session.",
+    "self_observation": "Workflow saw its own entry (q-20260601-200000) mid-flight in running/ and flagged it; expected — moved to done/ on completion."
+  }
+}
