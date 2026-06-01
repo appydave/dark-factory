@@ -11,9 +11,13 @@ This is the front door to the North Star — "talk to it and tell it what to do"
 
 ## Procedure
 
-### 1. Identify the workflow
-Match the request to a workflow in `.claude/workflows/*.workflow.js`. Known: `daily-review`, `level-1-census`, `content-analysis`, `title-gen`, `titles-human`, `thumbnails`, `nail-salon-video`, `hello`.
-- Ambiguous or unknown → **ask** which one. Don't guess.
+### 1. Identify the job + kind
+Pick the `kind` that fits the request:
+- **`workflow`** — a pre-built SOP in `.claude/workflows/*.workflow.js` (`daily-review`, `level-1-census`, `content-analysis`, `title-gen`, `titles-human`, `thumbnails`, `nail-salon-video`, `hello`).
+- **`skill`** — an existing skill should do it (e.g. `refresh-claude-brain`).
+- **`instruction`** — free-form "do X" with no pre-built workflow/skill. The "get shit done" path.
+
+Ambiguous → **ask**. Don't guess.
 
 ### 2. Determine args
 - Use the workflow's **own defaults** when the request doesn't specify (e.g. `daily-review` defaults `since` to "1 day ago" — don't override unless asked).
@@ -24,14 +28,18 @@ Write `experiments/watchtower-engine/queue/<UTC-timestamp>-<slug>.json` (timesta
 ```json
 {
   "queue_id": "q-<ts>-<slug>",
-  "workflow": "<name>",
-  "harness": ".claude/workflows/<name>.workflow.js",
+  "kind": "workflow | skill | instruction",
+  "workflow": "<name>",                       // kind=workflow
+  "harness": ".claude/workflows/<name>.workflow.js",  // kind=workflow
+  "skill": "<skill-name>",                     // kind=skill
+  "prompt": "<free-form task>",                // kind=instruction
   "experiment_id": "exp-<YYYYMMDD>-<slug>",
   "args": { },
   "requested_at": "<iso>",
   "requested_by": "<who asked>"
 }
 ```
+Include only the field(s) for the chosen `kind`.
 
 ### 4. Report
 One line: what was queued, the `queue_id`, and that the loop/runner will pick it up. Then stop.

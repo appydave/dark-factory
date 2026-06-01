@@ -1,84 +1,65 @@
 ---
 name: run-next-workflow
-description: "Claim and run the next queued Dark Factory workflow. Use when the user says 'run next workflow', 'process the queue', 'run the watchtower queue', or when invoked on a /loop to drain the workflow queue. Reads experiments/watchtower-engine/queue/, atomically claims the oldest entry, runs the named workflow inline (visible via /workflows), writes a run record, and moves the entry to done/ or failed/."
+description: "Claim and run the next queued Dark Factory job — the Consumer half of the engine. Use when the user says 'run next workflow', 'process the queue', 'run the watchtower queue', or when invoked on a /loop to drain the queue. Recovers stranded entries, atomically claims the oldest, executes it (workflow | skill | instruction), writes a run record, and moves the entry to done/ or failed/. On an idle queue it arms a queue Monitor so it wakes the instant a ticket lands."
 ---
 
-# run-next-workflow
+# run-next-workflow (the Consumer)
 
-The polling half of the Watchtower engine. Runs **inside an ordinary interactive session** (on David's subscription — never headless, never `claude -p`). One invocation processes **at most one** workflow, then returns. A `/loop` calls it on an interval; up to 4 staggered sessions can run it concurrently — the atomic claim guarantees no entry runs twice.
+The **polling half** of the Watchtower engine. Runs **inside an ordinary interactive session** (on David's subscription — never headless, never `claude -p`). One invocation processes **at most one** job, then returns. A `/loop` calls it on an interval; up to 4 staggered sessions ("listeners") can run it concurrently — the atomic claim guarantees no entry runs twice.
 
 ## Engine paths
 
 Base: `experiments/watchtower-engine/`
-- `queue/`   — pending entries (`*.json`)
-- `running/` — claimed, in-flight
-- `done/`    — completed
-- `failed/`  — errored
-- `runs/`    — run records written here
+- `queue/` pending · `running/` claimed/in-flight · `done/` completed · `failed/` errored · `runs/` run records
 
 ## Procedure
 
+### 0. Recover stranded entries (reaper — #16)
+Before claiming, sweep `running/` for **abandoned** entries: any file in `running/` **older than ~10 min** with **no matching `runs/` record** is stranded (a dead listener). Move it back to `queue/`:
+```bash
+find experiments/watchtower-engine/running -name '*.json' -mmin +10
+```
+For each, if no `runs/run-*` references its `queue_id`, `mv` it back to `queue/`. Keeps a dead tick from stranding work forever.
+
 ### 1. Claim the next entry (atomic)
-
-Run the claim helper. It moves the oldest entry from `queue/` to `running/` with `rename(2)` — the mutex. If another session already claimed it, this returns nothing.
-
 ```bash
 experiments/watchtower-engine/bin/claim-next.sh "session-$(date +%s)"
 ```
-
-- **Exit 1 / no output** → queue is empty. Report "queue empty, nothing to run" and **stop**. (On a `/loop`, this is the normal idle tick.)
-- **Prints a path** → that file in `running/` is yours. Continue.
+- **Prints a path** → that file in `running/` is yours. Continue to step 2.
+- **Exit 1 / no output** → queue empty. **Arm a persistent queue Monitor (#18)** on `experiments/watchtower-engine/queue/` (if one isn't already running) so this loop wakes the instant a ticket lands — then report "queue empty" and stop this tick. On a `/loop`, this is the normal idle state.
 
 ### 2. Read the claimed entry
+Fields: `kind` (workflow | skill | instruction; default workflow), `experiment_id`, `args`, plus the kind-specific field below.
 
-Read the claimed JSON. Fields:
-- `workflow` — the workflow name
-- `harness` — path to the `.workflow.js`
-- `experiment_id` — parent experiment
-- `args` — passed verbatim to the workflow
+### 3. Execute by `kind` (#17 — generalized)
+Run it **inline** (visible in `/workflows` / this session) — never bury it in a blind sub-agent.
 
-### 3. Run the workflow inline (visible)
-
-Invoke the **Workflow tool** with the entry's `args`. Run it inline so the user can watch progress in the `/workflows` panel — do **not** bury it in a blind Task sub-agent. The Workflow tool already isolates the heavy sub-agent context; only the compact result returns to this session.
-
-For `level-1-census`, that means calling `Workflow({ name: "level-1-census", args: <entry.args> })`.
+- **`workflow`** — `harness` names the `.workflow.js`. Invoke the **Workflow tool**: `Workflow({ name: <entry.workflow>, args: <entry.args> })`.
+- **`skill`** — `skill` names a skill. Invoke it via the Skill tool with `entry.args` (e.g. `refresh-claude-brain`).
+- **`instruction`** — `prompt` is a free-form task. Do it directly, with judgment, using `entry.args` as context. This is the "get shit done" path.
 
 ### 4. Write the run record
-
-Write `experiments/watchtower-engine/runs/<run_id>.json` where `run_id` is `run-<experiment-suffix>-NNN` (experiment-keyed, per DECISIONS.md D2). Capture:
-
+`experiments/watchtower-engine/runs/run-<experiment-suffix>-NNN.json`:
 ```json
-{
-  "id": "run-census-batch-1-001",
-  "kind": "run",
-  "experiment_id": "<entry.experiment_id>",
-  "queue_id": "<entry.queue_id>",
-  "status": "complete",
-  "started_at": "<iso>",
-  "ended_at": "<iso>",
-  "result": { "...": "compact summary returned by the workflow" }
-}
+{ "id": "...", "kind": "run", "experiment_id": "...", "queue_id": "...",
+  "executed": "workflow|skill|instruction", "status": "complete",
+  "started_at": "<iso>", "ended_at": "<iso>", "result": { } }
 ```
 
 ### 5. Move the entry out of running/
-
 - Success → `mv running/<file> done/<file>`
-- Failure → `mv running/<file> failed/<file>` and set `run.status: "failed"`, record the error.
+- Failure → `mv running/<file> failed/<file>`, set `run.status: "failed"`, record the error.
 
-An entry must **never** be left in `running/` after this skill returns — that would strand it (no other session will re-claim it). If the workflow errored, still move the entry to `failed/`.
+An entry must **never** be left in `running/` after this skill returns.
 
 ### 6. Report
-
-One line: what ran, the verdict summary, where the run record landed. Then stop — one invocation, one workflow.
+One line: what kind ran, the verdict, where the run record landed. Then stop — one invocation, one job.
 
 ## Invariants
-
-- One invocation runs at most one workflow.
-- An entry in `running/` is owned; never claim from `running/`.
+- One invocation runs **at most one** job.
+- An entry in `running/` is owned; never claim from `running/` (the reaper only requeues *stranded* ones).
 - Every claimed entry ends in `done/` or `failed/` before return.
-- Run IDs are experiment-keyed (D2).
-- Promotion / canonical writes are NOT this skill's job (D3) — it only runs and records.
+- Promotion / canonical writes are NOT this skill's job — it only runs and records.
 
 ## Spike status
-
-This is a probe in `experiments/watchtower-engine/`, not installed product. The atomic-claim mutex is proven by `bin/test-atomic-claim.sh`. Promote to a real project skill only after the end-to-end run is validated.
+Probe in `experiments/watchtower-engine/`. The atomic-claim mutex is proven (`bin/test-atomic-claim.sh`, 200×8 clean). Reaper + kind-dispatch + Monitor added 2026-06-01; not yet stress-tested.

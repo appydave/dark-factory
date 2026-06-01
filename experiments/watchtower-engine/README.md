@@ -34,10 +34,13 @@ The claim is `rename(2)`: moving an entry from `queue/` to `running/` is atomic.
 ```json
 {
   "queue_id": "q-<ts>-<slug>",
+  "kind": "workflow | skill | instruction",
   "workflow": "level-1-census",
   "harness": ".claude/workflows/level-1-census.workflow.js",
+  "skill": "<skill-name>",
+  "prompt": "<free-form task>",
   "experiment_id": "exp-<YYYYMMDD>-<slug>",
-  "args": { "...": "passed verbatim to the workflow" },
+  "args": { "...": "passed verbatim" },
   "requested_at": "<iso>",
   "requested_by": "watchtower"
 }
