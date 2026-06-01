@@ -1,0 +1,9 @@
+{
+  "queue_id": "q-20260601-210001-instr-test-b",
+  "kind": "instruction",
+  "prompt": "Append one line to experiments/watchtower-engine/INSTRUCTION-TEST.md (create if missing): the current UTC time + ' — instruction-path B executed'. Second ticket, proves the queue drains more than one entry.",
+  "experiment_id": "exp-20260601-loop-proof",
+  "args": {},
+  "requested_at": "2026-06-01T21:00:01Z",
+  "requested_by": "orc (loop-close proof)"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "run-loop-proof-001",
+  "kind": "run",
+  "experiment_id": "exp-20260601-loop-proof",
+  "queue_id": "q-20260601-210000-instr-test-a",
+  "entry_kind": "instruction",
+  "status": "complete",
+  "started_at": "2026-06-01T21:00:05Z",
+  "ended_at": "2026-06-01T21:00:20Z",
+  "driven_by": "loop tick (run-next-workflow; Monitor b9ekc4bau woke the loop on the queued entry, run in the main session)",
+  "result": {
+    "dispatch_path": "kind:instruction (prompt executed inline, not via Workflow tool)",
+    "action": "Appended one line to experiments/watchtower-engine/INSTRUCTION-TEST.md (created file).",
+    "line_written": "2026-06-01T09:02:15Z — instruction-path A executed",
+    "proves": "kind:instruction dispatch works end-to-end through the same claim -> execute -> record -> done path as kind:workflow."
+  }
+}

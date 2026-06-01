@@ -1,0 +1,9 @@
+{
+  "queue_id": "q-20260601-210000-instr-test-a",
+  "kind": "instruction",
+  "prompt": "Append one line to experiments/watchtower-engine/INSTRUCTION-TEST.md (create if missing): the current UTC time + ' — instruction-path A executed'. This proves the kind:instruction dispatch works end-to-end.",
+  "experiment_id": "exp-20260601-loop-proof",
+  "args": {},
+  "requested_at": "2026-06-01T21:00:00Z",
+  "requested_by": "orc (loop-close proof)"
+}

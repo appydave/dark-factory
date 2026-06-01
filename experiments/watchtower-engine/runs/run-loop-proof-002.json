@@ -1,0 +1,17 @@
+{
+  "id": "run-loop-proof-002",
+  "kind": "run",
+  "experiment_id": "exp-20260601-loop-proof",
+  "queue_id": "q-20260601-210001-instr-test-b",
+  "entry_kind": "instruction",
+  "status": "complete",
+  "started_at": "2026-06-01T21:00:25Z",
+  "ended_at": "2026-06-01T21:00:40Z",
+  "driven_by": "loop tick (run-next-workflow; second entry claimed in the same loop turn after A drained)",
+  "result": {
+    "dispatch_path": "kind:instruction (prompt executed inline)",
+    "action": "Appended second line to experiments/watchtower-engine/INSTRUCTION-TEST.md.",
+    "line_written": "2026-06-01T09:02:34Z — instruction-path B executed",
+    "proves": "Queue drains more than one entry per wake; INSTRUCTION-TEST.md now holds both A and B lines in order."
+  }
+}
