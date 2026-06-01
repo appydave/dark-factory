@@ -32,6 +32,8 @@ const DIGEST_SCHEMA = {
   },
 }
 
+// Canonical default window is "1 day ago" — it's a DAILY review. Tickets need
+// not pass `since`; override only for a deliberate catch-up run.
 const since = (args && args.since) || '1 day ago'
 
 const digest = await agent(
