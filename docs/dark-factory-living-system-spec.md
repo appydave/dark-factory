@@ -29,6 +29,8 @@ Build and operate a **self-improving capability factory** — a living system th
 
 The system has three coexisting roles. Choosing between them is a mistake — they are three layers of the same thing.
 
+> Defined in full in `architecture.md` §2 (the parent). Recapped here only as grounding for the eval levels below. This spec is the *what we're building*; architecture is the *how it's structured* — they are kept separate on purpose, not merged.
+
 | Role | Location | Job |
 |------|----------|-----|
 | **The Library** | `canonical/` | Master records: one winner per capability station, in David's voice, with provenance. Projects out to appydave-plugins and other targets. |
