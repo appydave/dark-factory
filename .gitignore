@@ -22,6 +22,9 @@ mochaccino/.serve.log
 # Git worktrees
 .claude/worktrees/
 
+# Claude Code scheduled-tasks daemon lock (runtime artifact)
+.claude/scheduled_tasks.lock
+
 # JSONL backups
 research/*.bak-*
 
