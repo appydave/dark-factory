@@ -95,6 +95,8 @@ Put the **single** `Monitor` on **one lead**; workers never watch the queue. The
 
 The file-lock claim becomes **belt-and-suspenders**, not the primary distribution mechanism.
 
+> **Correction (2026-06-02, grounded against `~/dev/ad/brains/anthropic-claude/claude-code/native-automation-loops.md`):** This "lead dispatcher" framing implicitly borrows **Agent Teams** machinery (`TeammateIdle`, peer messaging) — which is for *coordinated* work. The Dark Factory's jobs are **independent** (different clients/projects). The authoritative doc is explicit: the native primitive for *independent* fan-out is **`/batch`**, whose workers *"are independent and don't talk to each other"* (`native-automation-loops.md:134`); Agent Teams is the *coordinated/messaging* family (`native-automation-loops.md:163`). So for our independent jobs, use the **independent family** (`/batch` / subagents / isolated sessions) — the lead+`Monitor` dispatch *shape* is fine, but don't import team-coordination semantics. See `runtime-model.md`.
+
 ### Operational facts that bound the design
 - **~5–7 simultaneous sessions is a concurrency wall** on consumer plans (a dispatch cap, not quota). A lead + 4 workers = 5 sessions — at the edge. Don't plan to scale workers much past this.
 - **The reaper is load-bearing**: stale `running/` entries (dead listener) must requeue. Field pools use adaptive timeouts (≈ 3× median cycle); the spike uses a fixed 10-min sweep. **The lead must verify the file landed in `done/`** — status/"done" messages lag and lie.
@@ -136,7 +138,7 @@ The Watchtower (`experiments/watchtower-engine/`) is the **external queue layer*
 
 **Decisions this capability map points to** (not yet locked in `DECISIONS.md`):
 1. **Runtime now = sequential, 1 leader + 1 child.** That's the natural shape of a single-item pipeline / chained `await agent()`. Not a limitation — the right default.
-2. **When concurrency is wanted → lead-dispatcher, push-to-idle**, *not* N competing-consumers on one queue. Reuse the atomic claim as a safety net.
+2. **When concurrency is wanted → lead-dispatcher, push-to-idle**, *not* N competing-consumers on one queue. Reuse the atomic claim as a safety net. **But (grounded):** for *independent* jobs (our case) this is the `/batch`/independent family, **not** Agent Teams coordination (`native-automation-loops.md:134`) — `TeammateIdle`/peer-messaging are coordination features we don't need.
 3. **`kind:workflow` jobs = `.workflow.js` pipelines** for fixed role chains; serial sub-steps inside one `agent()` unless a reset is wanted.
 4. **Gates & fix-loops = job boundaries**, not in-workflow constructs. The queue is the gate seam and the re-entry.
 5. **Visibility (#19) = a heartbeat-age dashboard** fed by the lead; workers run in `defaultMode`.
