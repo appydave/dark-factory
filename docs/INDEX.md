@@ -37,6 +37,8 @@ One line per doc. Start at the top. This index is the fix for doc-sprawl — whe
 - **`phase-b-next-steps.md`** — the next build move (first dog-food workflow).
 - **`ylo-to-poem-blueprint.md`** — thread 2: YLO → POEM consolidation.
 - **`workflow-tool-authoring-notes.md`** — hard-won Workflow Tool craft.
+- **`agent-orchestration-capabilities.md`** — ★ what Claude Code's coordination primitives actually are (subagents / Agent Teams / Workflow tool / external queue), tmux visibility, dispatcher-vs-competing-consumers, and how each maps to the Watchtower runtime + topology build order.
+- **`runtime-model.md`** — ★ who runs what: the Conductor (daily orchestrator, routes jobs) → Swagger (job-agent, judgment per job) → workflows/sub-agents (execution). Resolves the isolation-vs-coordination question.
 
 ## Outside docs/ but load-bearing
 
