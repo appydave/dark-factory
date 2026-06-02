@@ -22,8 +22,10 @@ mochaccino/.serve.log
 # Git worktrees
 .claude/worktrees/
 
-# Claude Code scheduled-tasks daemon lock (runtime artifact)
-.claude/scheduled_tasks.lock
+# Claude Code runtime artifacts at .claude/ root (locks, logs) — never track.
+# Targets root-level files only: settings.json and skills/ + workflows/ stay tracked.
+.claude/*.lock
+.claude/*.log
 
 # JSONL backups
 research/*.bak-*
