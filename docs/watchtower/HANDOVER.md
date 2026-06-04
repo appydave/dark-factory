@@ -25,6 +25,8 @@ David hit overwhelm at N=5 census records on the Mochaccino dashboard. Visualisa
 
 ## What's already done (do NOT rebuild)
 
+> **Correction (2026-06-05):** two claims below are out of date. (1) The engine's **end-to-end job path** (claim→execute→record→done) was **not** proven until **C1, 2026-06-05** — before that only the *mutex* was stress-proven; the job never actually ran. (2) The "**`/loop`, up to 4 staggered sessions**" firing model in locked decision #1 is **superseded** — competing self-watchers don't distribute work. The trigger's target shape is now **Marshall → Swagger** (`docs/runtime-model.md`); the mutex is kept only as a safety net. See `docs/north-star.md` → "The build spine".
+
 - **The trigger engine** — `experiments/watchtower-engine/`. The queue + atomic-claim mutex is built and stress-proven (200 entries × 8 claimers, zero double-claims). This is the *trigger half* of Watchtower. The app's "Run" button just writes a queue entry into `experiments/watchtower-engine/queue/` (or its promoted location); the engine + `run-next-workflow` skill do the rest.
 - **The four record schemas** — defined in `schemas.md`. Generate JSON Schema files from it.
 - **The 4 design decisions** — in `DECISIONS.md`.

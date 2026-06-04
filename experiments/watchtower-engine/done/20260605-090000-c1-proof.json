@@ -1,0 +1,9 @@
+{
+  "queue_id": "q-20260605-c1-proof",
+  "kind": "instruction",
+  "prompt": "Write a proof artifact at experiments/watchtower-engine/proof/c1-first-real-run.md. It must state, in plain English: this is the FIRST end-to-end run of the Watchtower consumer (claim -> execute -> record -> done); include the queue_id, the experiment_id, and confirm the job moved through queue/ -> running/ -> done/. Keep it under 12 lines.",
+  "experiment_id": "exp-20260605-watchtower-c1",
+  "args": { "label": "internal", "purpose": "prove the consumer spine end-to-end, by hand, no loop/mutex/monitor" },
+  "requested_at": "2026-06-05T09:00:00+07:00",
+  "requested_by": "david"
+}
