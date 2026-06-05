@@ -32,7 +32,7 @@ One line per doc. Start at the top. This index is the fix for doc-sprawl — whe
 
 ## Operating layer & threads
 
-- **`watchtower/`** — the v0 observation surface (sub-project): `spec.md`, `plan.md`, `schemas.md`, `context.md` (the ticket-driven conductor), `chatgpt-brief.md` (record shapes), `DECISIONS.md`, `REVIEW.md`, `HANDOVER.md`.
+- **`watchtower/`** — the v0 observation surface (sub-project): **`build-state.md`** (★ the single "where we are / what's next / the rules" doc for the C-spine runtime build — read first), `spec.md`, `plan.md`, `schemas.md`, `context.md` (the ticket-driven conductor), `chatgpt-brief.md` (record shapes), `DECISIONS.md`, `REVIEW.md`, `HANDOVER.md`.
 - **`sop-lifecycle.md`** — workflows as SOPs-in-data; state levels; the drift problem; spike→main-flow promotion; decision lineage.
 - **`phase-b-next-steps.md`** — the next build move (first dog-food workflow).
 - **`doc-organiser-proposal.md`** — proposal (2026-06-05): a recurring audit skill that reports doc-drift (orphans, stale dates, broken refs) and never edits. **Decided** (defaults locked); build parked in `backlog/2026-06-05-doc-organiser.md`.
