@@ -30,18 +30,19 @@ tmux new-window -n swagger-<slug> "claude --dangerously-skip-permissions 'You ar
 - **Permissions (temp):** the Swagger uses `--dangerously-skip-permissions` because it's **unattended** — nobody can approve its prompts. Acceptable for low-risk spike jobs only; **harden to an auto-mode / pre-approved-allowlist Swagger in C3 (open #3).** Marshall itself (attended) should run **auto mode**, not bypass.
 - A new iTerm tab appears = the Swagger working. You do **not** read inside it.
 
-### 3. Watch `done/` for completion
-Poll `experiments/watchtower-engine/done/` for a file whose name/`queue_id` matches this ticket.
-**Completion = the ticket landing in `done/`, NOT the Swagger window exiting** (interactive Claude idles at the REPL forever — it never exits on its own).
+### 3. Watch `reports/` for the handback (C3b)
+Poll for `experiments/watchtower-engine/reports/<queue_id>.json` — glob-safe so the wait is silent until it lands:
+```bash
+find experiments/watchtower-engine/reports -name '<queue_id>.json' -print -quit
+```
+**Completion = the handback file appearing**, NOT the Swagger window exiting (interactive Claude idles at the REPL forever). The Swagger writes this as its **last act**, after the ticket is in `done/`/`failed/`. (You read the terse handback — you never read inside the Swagger's session.)
 
-### 4. On landing — surface, then CLOSE the window
-1. Read the run record in `runs/` (or the `done/` ticket) → get `status` + artifact path.
-2. Surface **one line** to David: `✅ <queue_id> <status> → <artifact>`.
-3. **Close the Swagger window**: `tmux kill-window -t swagger-<slug>`. This is the cleanup — never `-p`.
+### 4. On the handback — surface, then CLOSE (or keep on failure)
+1. Read `reports/<queue_id>.json` → its `status` + one-line `outcome`.
+2. Surface **one line** to David from `outcome` (`✅` if complete, `❌` if failed).
+3. If `status: complete` → **close the Swagger window**: `tmux kill-window -t swagger-<slug>` (the cleanup — never `-p`).
+   If `status: failed` → **leave the window open** for inspection (do NOT kill).
 4. Verify the invariant: `running/` is empty.
-
-### 5. On failure
-If the ticket landed in `failed/` instead of `done/`: surface `❌ <queue_id> failed — <error>` and **leave the window open** for inspection (do NOT kill it).
 
 ## Rules (invariants)
 - **Routes, never executes.** Marshall does not claim or run jobs; Swaggers do.

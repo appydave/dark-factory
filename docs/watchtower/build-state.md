@@ -17,7 +17,7 @@ We are proving the factory runtime **one mechanism per session, N=1, do-not-theo
 | **C2** | Producer: talk → schema-valid ticket; ran across two sessions | ✅ proven (`skills/producer/`, `proof/` + doc-organiser run) |
 | **C3a** | Marshall spawns a Swagger via `tmux new-window` | ✅ proven (`proof/c3a-spawn-proof.md`) |
 | **C3-close** | Marshall closes the Swagger window (`tmux kill-window`) on `done/` landing | ✅ proven (`proof/c3-close-proof.md`; 2 windows → 1) |
-| **C3b** | Report-back: Swagger result → `reports/` → Marshall surfaces it (kills the manual relay) | ⬜ next |
+| **C3b** | Report-back: Swagger result → `reports/` → Marshall surfaces it (kills the manual relay) | 🔨 **built, unproven** — `reports/<queue_id>.json` handback wired into both skills (`run-next-workflow` step 5b writes it; `marshall` step 3–4 reads it). Prove in one operator run. |
 | **C3c** | Monitor: Marshall auto-wakes on a ticket (replaces "you say process the queue") | ⬜ |
 | **C3d** | `marshall` skill hardened: liveness cap (~4 Swaggers), Swagger permissions (auto/allowlist, not bypass), graduate to `.claude/skills/marshall/` | ⬜ |
 | **C4** | Return-leg / dashboard so nothing runs silently (#19) | later |

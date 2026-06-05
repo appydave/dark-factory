@@ -52,11 +52,20 @@ Run it **inline** (visible in `/workflows` / this session) — never bury it in 
 
 An entry must **never** be left in `running/` after this skill returns.
 
+### 5b. Write the handback (`reports/`) — the terse return-leg (C3b)
+After the entry is in `done/`/`failed/`, write a **one-shot terse handback** to `experiments/watchtower-engine/reports/<queue_id>.json`:
+```json
+{ "queue_id": "...", "status": "complete|failed",
+  "outcome": "<one line: what ran + artifact / run-record path>", "ended_at": "<iso>" }
+```
+This is what **Marshall reads** to surface the result and decide whether to close the window — a purpose-built terse handback, distinct from the detailed run record in `runs/`. **Write it last** (success *or* failure), so its appearance = "job finished, here's the summary."
+
 ### 6. Report
 One line: what kind ran, the verdict, where the run record landed. Then stop — one invocation, one job.
 
 ## Invariants
 - One invocation runs **at most one** job.
+- A `reports/<queue_id>.json` handback is written for **every** job (the return-leg Marshall reads) — last, after `done/`/`failed/`.
 - An entry in `running/` is owned; never claim from `running/` (the reaper only requeues *stranded* ones).
 - Every claimed entry ends in `done/` or `failed/` before return.
 - Promotion / canonical writes are NOT this skill's job — it only runs and records.
