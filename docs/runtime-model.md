@@ -73,5 +73,13 @@ claude   # Marshall skill
 ```
 Permissions: autonomous Swaggers need a **pre-approved allowlist (`defaultMode`)** — **never** `--dangerously-skip-permissions` unattended (that's the documented destructive-action risk).
 
+**Spawn interactive, NEVER `-p` (billing-critical — proven 2026-06-05).** Spawn with interactive `claude "<prompt>"`, not `claude -p`. As of **2026-06-15**, `-p`/headless/SDK-mode runs on a **separate metered API credit pool**, *not* the Max plan; interactive `claude` runs on the **Max subscription**. So `-p` costs real money; interactive doesn't. (The `$x.xx` an interactive session shows is the *notional* would-be-API figure, not a charge — verified on Roamy with no API key/Bedrock/Vertex set.) Matches the North Star "in sessions, never cron/API" and `watchtower/HANDOVER.md` decision #1.
+
+**Window lifecycle (locked 2026-06-05).** Interactive Claude does **not** exit after its turn — it sits at the REPL, so a spawned Swagger window **won't self-close**. Do **not** "fix" that with `-p` (see above). The pattern:
+1. completion = **the ticket landing in `done/`**, *not* the window exiting;
+2. **the watcher (Marshall) runs `tmux kill-window`** on that window the instant `done/` lands.
+- **Open item:** fold kill-on-`done/` into Marshall's spawn-and-watch step (C3d).
+- **Alternative to weigh at C3d:** the Swagger `tmux kill-window`s *itself* as its last action — simpler, no watcher-race; Marshall's reaper covers crash-before-cleanup. (Decision currently = watcher-kills; revisit when building the skill.)
+
 ### Recommendation
 **Always launch inside `tmux -CC` from the start** — even in Mode A. It costs nothing for manual use and means **no environment switch** when you move to auto-spawn: hand-opened panes and Marshall's `new-window` spawns both live in the same tmux session.

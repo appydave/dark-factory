@@ -1,0 +1,14 @@
+{
+  "id": "run-c3a-spawn-test-001",
+  "kind": "run",
+  "experiment_id": "exp-20260605-c3a-spawn-test",
+  "queue_id": "q-20260605-c3a-spawn-test",
+  "executed": "instruction",
+  "status": "complete",
+  "started_at": "2026-06-05T07:34:01Z",
+  "ended_at": "2026-06-05T07:34:01Z",
+  "result": {
+    "artifact": "experiments/watchtower-engine/proof/c3a-spawn-proof.md",
+    "note": "Swagger-spawned-by-Marshall ran end-to-end; proof written"
+  }
+}

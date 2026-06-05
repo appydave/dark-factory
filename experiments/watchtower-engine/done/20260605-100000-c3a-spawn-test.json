@@ -1,0 +1,9 @@
+{
+  "queue_id": "q-20260605-c3a-spawn-test",
+  "kind": "instruction",
+  "prompt": "Write experiments/watchtower-engine/proof/c3a-spawn-proof.md (max 4 lines) confirming a Swagger session spawned by Marshall ran this job end-to-end through the engine. Include the queue_id and a timestamp.",
+  "experiment_id": "exp-20260605-c3a-spawn-test",
+  "args": { "label": "internal" },
+  "requested_at": "2026-06-05T10:00:00+07:00",
+  "requested_by": "david"
+}
