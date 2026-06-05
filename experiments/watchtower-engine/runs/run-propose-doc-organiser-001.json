@@ -1,0 +1,18 @@
+{
+  "id": "run-propose-doc-organiser-001",
+  "kind": "run",
+  "experiment_id": "exp-20260605-propose-doc-organiser",
+  "queue_id": "q-20260605-propose-doc-organiser",
+  "executed": "instruction",
+  "status": "complete",
+  "started_at": "2026-06-05T09:35:00+07:00",
+  "ended_at": "2026-06-05T00:43:08Z",
+  "result": {
+    "artifact": "docs/doc-organiser-proposal.md",
+    "index_updated": "docs/INDEX.md (added proposal line — dogfood)",
+    "recommendation": "Recurring audit skill (doc-organiser) dispatched as a Watchtower job; audit-only, never autofix",
+    "open_questions": 4,
+    "live_evidence": "docs/watchtower/symphony-spec.md and watchtower-from-symphony.md are on-disk orphans missing from INDEX.md",
+    "built": false
+  }
+}

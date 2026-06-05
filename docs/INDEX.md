@@ -35,6 +35,7 @@ One line per doc. Start at the top. This index is the fix for doc-sprawl — whe
 - **`watchtower/`** — the v0 observation surface (sub-project): `spec.md`, `plan.md`, `schemas.md`, `context.md` (the ticket-driven conductor), `chatgpt-brief.md` (record shapes), `DECISIONS.md`, `REVIEW.md`, `HANDOVER.md`.
 - **`sop-lifecycle.md`** — workflows as SOPs-in-data; state levels; the drift problem; spike→main-flow promotion; decision lineage.
 - **`phase-b-next-steps.md`** — the next build move (first dog-food workflow).
+- **`doc-organiser-proposal.md`** — proposal (2026-06-05): a recurring audit skill that reports doc-drift (orphans, stale dates, broken refs) and never edits. **Decided** (defaults locked); build parked in `backlog/2026-06-05-doc-organiser.md`.
 - **`ylo-to-poem-blueprint.md`** — thread 2: YLO → POEM consolidation.
 - **`workflow-tool-authoring-notes.md`** — hard-won Workflow Tool craft.
 - **`agent-orchestration-capabilities.md`** — ★ what Claude Code's coordination primitives actually are (subagents / Agent Teams / Workflow tool / external queue), tmux visibility, dispatcher-vs-competing-consumers, and how each maps to the Watchtower runtime + topology build order.

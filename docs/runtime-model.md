@@ -32,3 +32,46 @@ The factory **builds / improves / runs** workflows. Conductor and Swaggers opera
 - Teammates can't spawn sub-*teams* — but a Swagger CAN run workflows + sub-agents. Fits.
 - ~5–7 concurrent-session ceiling → **Conductor + ~4 Swaggers** max.
 - Task status lags → the Conductor **verifies the artifact**, never trusts a "done" message.
+
+---
+
+## Launch modes — how to start it each time
+
+The only thing that changes between "now" and "C3" is **who opens the worker session**. That single fact decides whether you need tmux.
+
+| Who opens the worker | tmux needed? | When |
+|----------------------|--------------|------|
+| **You, by hand** | No — any iTerm pane/tab/window | C1, C2, manual C3 preview (today) |
+| **Marshall, automatically** | **Yes** — `tmux new-window` *is* the spawn mechanism | C3+ (Marshall does the spawning) |
+
+A Claude session can't conjure a new iTerm pane on its own; it shells out to **tmux** to do it. So tmux is required *only* when the software (Marshall) opens workers — not when your hands do.
+
+### Mode A — Manual worker (now)
+You are the talk-session; you open the worker yourself.
+```bash
+# 1) talk session: wherever you already are (this becomes Marshall later)
+# 2) open a SECOND iTerm pane/tab/window, then:
+cd ~/dev/ad/apps/dark-factory
+claude
+# 3) tell that worker session:
+#    "Process the next ticket in experiments/watchtower-engine/queue/ by following
+#     experiments/watchtower-engine/skills/run-next-workflow/SKILL.md."
+```
+Permissions: for a **watched, one-off** run, `--dangerously-skip-permissions` is tolerable. For anything repeated/unattended, use **`defaultMode` + a pre-approved allowlist** instead.
+
+### Mode B — Auto-spawn (C3+)
+Marshall opens Swaggers itself, so Marshall must run **inside tmux**.
+```bash
+# 1) open iTerm, start tmux control mode (gives native iTerm tabs per pane)
+tmux -CC
+# 2) launch Marshall (arms the single Monitor on queue/)
+cd ~/dev/ad/apps/dark-factory
+claude   # Marshall skill
+# 3) Marshall, on a ticket, runs:
+#    tmux new-window -n swagger-<job> "claude '<swagger prompt>'"
+#    -> a new iTerm TAB appears = the Swagger. Its sub-agents = panes inside that tab.
+```
+Permissions: autonomous Swaggers need a **pre-approved allowlist (`defaultMode`)** — **never** `--dangerously-skip-permissions` unattended (that's the documented destructive-action risk).
+
+### Recommendation
+**Always launch inside `tmux -CC` from the start** — even in Mode A. It costs nothing for manual use and means **no environment switch** when you move to auto-spawn: hand-opened panes and Marshall's `new-window` spawns both live in the same tmux session.

@@ -1,0 +1,9 @@
+{
+  "queue_id": "q-20260605-propose-doc-organiser",
+  "kind": "instruction",
+  "prompt": "Write a short proposal doc for a dark-factory documentation organiser. Cover: (1) what 'organised' means for dark-factory docs; (2) the choice between a one-time organise pass vs a recurring skill vs a Marshall job; (3) what it should check — sprawl, stale dates, overlap/duplication, orphans not in docs/INDEX.md, broken cross-references; (4) where it should live. DONE = a proposal doc to decide from. Do NOT build it — propose only.",
+  "experiment_id": "exp-20260605-propose-doc-organiser",
+  "args": { "label": "dark-factory" },
+  "requested_at": "2026-06-05T09:30:00+07:00",
+  "requested_by": "david"
+}
