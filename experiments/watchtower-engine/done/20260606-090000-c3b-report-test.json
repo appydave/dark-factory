@@ -1,0 +1,9 @@
+{
+  "queue_id": "q-20260606-c3b-report-test",
+  "kind": "instruction",
+  "prompt": "Write experiments/watchtower-engine/proof/c3b-report-proof.md (max 4 lines) confirming the report-back return-leg worked. Include the queue_id and a timestamp.",
+  "experiment_id": "exp-20260606-c3b-report-test",
+  "args": { "label": "internal" },
+  "requested_at": "2026-06-06T09:00:00+07:00",
+  "requested_by": "david"
+}

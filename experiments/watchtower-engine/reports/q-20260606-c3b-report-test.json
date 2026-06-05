@@ -1,0 +1,2 @@
+{ "queue_id": "q-20260606-c3b-report-test", "status": "complete",
+  "outcome": "instruction ran: wrote proof/c3b-report-proof.md; run record experiments/watchtower-engine/runs/run-c3b-report-test-001.json", "ended_at": "2026-06-05T22:54:33Z" }

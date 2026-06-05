@@ -7,11 +7,12 @@ description: "Marshall — the Watchtower Conductor. The one session David talks
 
 The **one place David talks to**. Marshall **routes** work to isolated job-agents (Swaggers) and stays **lean** — only one-line results enter its context, never job detail. It **never executes a job itself.**
 
-> Status: spike skill (2026-06-05). Graduates to `.claude/skills/marshall/` later. C3c will add a `Monitor` on `queue/` for auto-wake; C3d adds a liveness cap. Right now Marshall is driven by you saying "process the queue".
+> Status: spike skill. Graduates to `.claude/skills/marshall/` later. **C3b (report-back) + C3d permission model proven 2026-06-06** — non-bypass spawn on an allowlist boundary. C3c will add a `Monitor` on `queue/` for auto-wake; C3d still owes a liveness cap. Right now Marshall is driven by you saying "process the queue".
 
 ## Hard prerequisites
 - **Run inside `tmux -CC`** — Marshall spawns windows; it can't without tmux.
 - **Spawn interactive `claude`, NEVER `claude -p`.** `-p`/headless bills the metered SDK pool (from 2026-06-15); interactive runs on Max. See `docs/runtime-model.md` → Launch modes.
+- **The permission boundary must already exist** in `.claude/settings.local.json` → `permissions.allow` (a one-time human grant — Marshall can't self-grant under auto mode). Needs `Bash(tmux new-window*|kill-window*|list-windows*)` so Marshall can spawn/close, plus `Read/Write/Edit(experiments/watchtower-engine/**)` + scoped engine Bash so the Swagger runs unattended without prompts. Proven 2026-06-06 (build-state "Permission model").
 
 ## Engine paths
 `experiments/watchtower-engine/` → `queue/` `running/` `done/` `failed/` `runs/`
@@ -24,10 +25,11 @@ Take the **oldest** file in `queue/` (lexical sort = time order). If empty, say 
 ### 2. Spawn a Swagger — do NOT execute the job yourself
 Run, via Bash:
 ```bash
-tmux new-window -n swagger-<slug> "claude --dangerously-skip-permissions 'You are a Swagger. Process the next ticket in experiments/watchtower-engine/queue/ by following experiments/watchtower-engine/skills/run-next-workflow/SKILL.md. Report ONE line and STOP. Do not ask questions.'"
+tmux new-window -n swagger-<slug> "claude 'You are a Swagger. Process the next ticket in experiments/watchtower-engine/queue/ by following experiments/watchtower-engine/skills/run-next-workflow/SKILL.md. Report ONE line and STOP. Do not ask questions.'"
 ```
 - **Interactive** (no `-p`). The Swagger claims the ticket itself (atomic `rename`), so you don't hand it a path.
-- **Permissions (temp):** the Swagger uses `--dangerously-skip-permissions` because it's **unattended** — nobody can approve its prompts. Acceptable for low-risk spike jobs only; **harden to an auto-mode / pre-approved-allowlist Swagger in C3 (open #3).** Marshall itself (attended) should run **auto mode**, not bypass.
+- **Permissions: plain `claude`, NO `--dangerously-skip-permissions`** (bypass is retired — incompatible with an auto-mode Marshall, and self-escalation is classifier-blocked). The Swagger runs unattended because its ops are pre-approved in the `permissions.allow` boundary (see Hard prerequisites). Proven 2026-06-06.
+- **Known gap (⚠️):** a `kind:instruction` job that writes *outside* `experiments/watchtower-engine/` will prompt and hang. Correct fail-safe; widen the boundary deliberately when a real job needs it.
 - A new iTerm tab appears = the Swagger working. You do **not** read inside it.
 
 ### 3. Watch `reports/` for the handback (C3b)
