@@ -23,6 +23,8 @@ We are proving the factory runtime **one mechanism per session, N=1, do-not-theo
 | **C3d (rest)** | `marshall` hardened: liveness cap (~4 Swaggers), graduate to `.claude/skills/marshall/` | ⬜ |
 | **Concurrency (N>1)** | Multiple Swaggers run at once on a shared queue | ✅ proven 2026-06-06 (`proof/concurrency-demo-result.md`; 3 Swaggers, real-mtime 22s interleaved window, atomic claim 1:1, clean teardown). Caveat: agent self-reported timestamps were hallucinated — real timing came from filesystem mtimes (capability-placement lesson). Auto-reaper still owed (reaped manually). |
 | **Watchtower board v1** | Live read-only view of the floor (#19 surface) | ✅ spike 2026-06-06 (`experiments/watchtower-board/server.mjs`, :7430; reads engine + tmux; eventual home = AppyStack Watchtower instance) |
+| **Board v2 — Concept Lanes** | Render `backlog/concepts.md` as visual lanes | ✅ 2026-06-06 (`parse-concepts.mjs` + `/api/concepts` + Floor/Lanes toggle; 8 lanes/48 items; Floor untouched) |
+| **First real dispatched build** | A non-trivial build (not a proof ticket) executed end-to-end by a Swagger via the loop | ✅ 2026-06-06 — board-v2 built by `swagger-board-v2` unattended within a one-time-granted boundary (`experiments/watchtower-board/**` + `backlog/concepts.md` + scoped `node`), verified + reaped clean. The loop does real work, not just demos. |
 | **C4** | Return-leg / dashboard so nothing runs silently (#19) | later |
 | **C5** | One real `kind:workflow` job end-to-end, triggered by talking | later |
 

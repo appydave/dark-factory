@@ -1,0 +1,6 @@
+{
+  "queue_id": "q-20260606-board-v2-lanes",
+  "status": "complete",
+  "outcome": "Board v2 Concept Lanes view added: parse-concepts.mjs + GET /api/concepts + Floor/Lanes toggle; self-test = 8 lanes, 48 items; Floor view untouched. run: runs/run-board-v2-001.json, proof: proof/board-v2-lanes.md",
+  "ended_at": "2026-06-06T11:48:50.431Z"
+}

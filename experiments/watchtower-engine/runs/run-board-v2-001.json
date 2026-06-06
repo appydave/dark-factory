@@ -1,0 +1,21 @@
+{
+  "id": "run-board-v2-001",
+  "kind": "run",
+  "experiment_id": "exp-20260606-board-v2",
+  "queue_id": "q-20260606-board-v2-lanes",
+  "executed": "instruction",
+  "status": "complete",
+  "started_at": "2026-06-06T11:45:00.000Z",
+  "ended_at": "2026-06-06T11:48:50.431Z",
+  "result": {
+    "feature": "concept-lanes-view",
+    "added": [
+      "experiments/watchtower-board/parse-concepts.mjs (exports parseConcepts)",
+      "server.mjs GET /api/concepts endpoint",
+      "Floor/Lanes header toggle + Lanes card-group view (reuses existing CSS vars + .card)"
+    ],
+    "self_test": "node parse-concepts.mjs -> 8 lanes, 48 items",
+    "floor_view": "untouched (additive only; node --check passes)",
+    "proof": "experiments/watchtower-engine/proof/board-v2-lanes.md"
+  }
+}

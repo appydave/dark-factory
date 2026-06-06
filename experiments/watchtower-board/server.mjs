@@ -18,9 +18,12 @@ import { readdir, readFile, stat } from 'node:fs/promises';
 import { execFile } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
+import { parseConcepts } from './parse-concepts.mjs';
 
 const PORT = 7430;
-const ENGINE = resolve(dirname(fileURLToPath(import.meta.url)), '..', 'watchtower-engine');
+const HERE = dirname(fileURLToPath(import.meta.url));
+const ENGINE = resolve(HERE, '..', 'watchtower-engine');
+const CONCEPTS_MD = resolve(HERE, '..', '..', 'backlog', 'concepts.md');
 
 const execP = (cmd, args) =>
   new Promise((res) => execFile(cmd, args, { timeout: 4000 }, (e, out) => res(e ? '' : out)));
@@ -84,24 +87,33 @@ const PAGE = `<!doctype html><html><head><meta charset="utf8"><title>Watchtower 
  .p{color:#aeb9cc;font-size:11px;margin-top:3px} .badge{float:right;font-size:10px;padding:0 6px;border-radius:8px}
  .badge.complete{background:#11331c;color:var(--ok)} .badge.failed{background:#3d1418;color:#ff7b72}
  .empty{color:#46506180;font-style:italic;padding:6px 2px}
+ .toggle{display:flex;gap:4px} .toggle button{font:inherit;cursor:pointer;color:var(--mut);background:#222b38;border:1px solid #2b3445;border-radius:7px;padding:2px 10px}
+ .toggle button.on{color:var(--txt);background:#2b3445;border-color:var(--q)}
+ .lanes{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;padding:16px;align-items:start}
+ .lane h2{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);margin:0 0 8px}
+ .card.concept{border-left-color:#bc8cff} .badges{float:right;font-size:13px;letter-spacing:2px}
 </style></head><body>
-<header><b>🗼 Watchtower</b><span class="muted">factory floor · live</span>
+<header><b>🗼 Watchtower</b><span class="muted" id="subtitle">factory floor · live</span>
+ <span class="toggle"><button id="tab-floor" class="on">Floor</button><button id="tab-lanes">Lanes</button></span>
  <span class="muted" id="counts"></span><span class="muted" style="margin-left:auto" id="upd"></span></header>
-<div class="cols">
+<div class="cols" id="view-floor">
  <div class="col"><h2>Queued (<span id="cq">0</span>)</h2><div id="queue"></div></div>
  <div class="col"><h2>Running (<span id="cr">0</span>)</h2><div id="running"></div></div>
  <div class="col"><h2>Done · recent</h2><div id="done"></div></div>
  <div class="col"><h2>Live Swaggers (tmux) (<span id="cs">0</span>)</h2><div id="swg"></div></div>
 </div>
+<div class="lanes" id="view-lanes" style="display:none"></div>
 <script>
 const el=(id)=>document.getElementById(id);
 const esc=(s)=>(s||'').replace(/[<&]/g,(c)=>({'<':'&lt;','&':'&amp;'}[c]));
+let view='floor';
 function ticket(t,cls){return '<div class="card '+cls+'">'+
   (t.report?'<span class="badge '+t.report+'">'+t.report+'</span>':'')+
   '<div class="qid">'+esc(t.queue_id)+'</div><div class="k">'+esc(t.kind)+'</div>'+
   (t.prompt?'<div class="p">'+esc(t.prompt)+'</div>':'')+'</div>';}
 function fill(id,rows,cls){el(id).innerHTML=rows.length?rows.map((r)=>ticket(r,cls)).join(''):'<div class="empty">— empty —</div>';}
 async function tick(){
+ if(view!=='floor')return;            // pause floor polling while Lanes is shown
  try{const s=await (await fetch('/api/state')).json();
   fill('queue',s.queue,'q');fill('running',s.running,'run');fill('done',s.done,'done');
   el('swg').innerHTML=s.swaggers.length?s.swaggers.map((w)=>'<div class="card swg"><div class="qid">'+esc(w.window)+'</div><div class="k">'+esc(w.session)+'</div></div>').join(''):'<div class="empty">— none —</div>';
@@ -111,9 +123,41 @@ async function tick(){
  }catch(e){el('upd').textContent='server unreachable';}
 }
 tick();setInterval(tick,2000);
+
+// --- Lanes view (concept register) — additive; does not touch Floor above ---
+function laneCard(it){return '<div class="card concept">'+
+  '<span class="badges">'+esc(it.status)+' '+esc(it.pri)+'</span>'+
+  '<div class="qid">'+esc(it.concept)+'</div></div>';}
+async function tickLanes(){
+ try{const s=await (await fetch('/api/concepts')).json();
+  el('view-lanes').innerHTML=s.lanes.map((l)=>'<div class="lane"><h2>'+esc(l.lane)+
+    ' ('+l.items.length+')</h2>'+(l.items.length?l.items.map(laneCard).join(''):'<div class="empty">— empty —</div>')+'</div>').join('');
+  el('counts').innerHTML='<span class="pill">'+s.counts.lanes+' lanes</span> <span class="pill">'+s.counts.items+' concepts</span>';
+ }catch(e){el('view-lanes').innerHTML='<div class="empty">concepts unreachable</div>';}
+}
+function show(v){view=v;
+ el('view-floor').style.display=v==='floor'?'':'none';
+ el('view-lanes').style.display=v==='lanes'?'':'none';
+ el('tab-floor').classList.toggle('on',v==='floor');
+ el('tab-lanes').classList.toggle('on',v==='lanes');
+ el('subtitle').textContent=v==='floor'?'factory floor · live':'concept lanes · backlog/concepts.md';
+ if(v==='lanes'){tickLanes();}else{tick();}
+}
+el('tab-floor').onclick=()=>show('floor');
+el('tab-lanes').onclick=()=>show('lanes');
 </script></body></html>`;
 
 const server = http.createServer(async (req, res) => {
+  if (req.url.startsWith('/api/concepts')) {
+    try {
+      const lanes = parseConcepts(await readFile(CONCEPTS_MD, 'utf8'));
+      res.writeHead(200, { 'Content-Type': 'application/json', 'Cache-Control': 'no-cache' });
+      res.end(JSON.stringify({ lanes, counts: { lanes: lanes.length, items: lanes.reduce((n, l) => n + l.items.length, 0) } }));
+    } catch (e) {
+      res.writeHead(500); res.end(JSON.stringify({ error: String(e) }));
+    }
+    return;
+  }
   if (req.url.startsWith('/api/state')) {
     try {
       const data = JSON.stringify(await snapshot());
