@@ -1,0 +1,14 @@
+{
+  "id": "run-reaper-001",
+  "kind": "run",
+  "experiment_id": "exp-20260607-reaper",
+  "queue_id": "q-20260607-reaperlive",
+  "executed": "instruction",
+  "status": "complete",
+  "started_at": "2026-06-07T06:42:00+07:00",
+  "ended_at": "2026-06-07T06:42:30+07:00",
+  "result": {
+    "artifact": "experiments/watchtower-engine/proof/reaper-live.md",
+    "note": "Wrote one-line proof file for reaper live test."
+  }
+}

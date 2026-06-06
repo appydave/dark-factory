@@ -1,0 +1,9 @@
+{
+  "queue_id": "q-20260607-reaperlive",
+  "kind": "instruction",
+  "prompt": "Reaper live test. Write the file experiments/watchtower-engine/proof/reaper-live.md with one line: 'Swagger ran for the reaper live test (q-20260607-reaperlive).' Then complete run-next-workflow bookkeeping (run record, move to done/, reports/ handback). Do not call any shell command outside the engine scripts.",
+  "experiment_id": "exp-20260607-reaper",
+  "args": { "label": "reaper-live" },
+  "requested_at": "2026-06-07T06:25:00+07:00",
+  "requested_by": "marshall"
+}

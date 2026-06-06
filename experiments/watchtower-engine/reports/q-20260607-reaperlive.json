@@ -1,0 +1,6 @@
+{
+  "queue_id": "q-20260607-reaperlive",
+  "status": "complete",
+  "outcome": "instruction ran: wrote proof/reaper-live.md; run record runs/run-reaper-001.json",
+  "ended_at": "2026-06-07T06:42:30+07:00"
+}
