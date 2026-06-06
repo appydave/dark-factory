@@ -56,6 +56,7 @@
 | **Periodic REFRESH + recategorization pass** — re-read all concepts, re-bucket, merge/split lanes, re-rank. A standing task, not one-off (David 2026-06-06). | 📋 | 🟡 |
 | **Design resolution — LLM *and* data structures, not either/or (David's open Q):** JSON + schema = the **source of truth** (lanes, per-item last-touched → staleness is date math, counts, stable shape Watchtower can render; **NO database — files are fine**, "schemas and JSON and scaffold applications"). **LLM = the maintainer/judge** that does the fuzzy work on a refresh pass: categorize a new idea into a lane, detect overlap/merges, propose a new lane, flag stale-but-important vs stale-and-droppable. Deterministic state in the schema; judgment from the LLM. | 📋 | 🟡 |
 | **Recursion noted:** managing the concepts is itself a concept; this is the Symphony work-mgmt layer + Watchtower visual layer meeting. A "think-do." | 💡 | 🟡 |
+| **Fragment → convergence funnel (front of the work pipeline)** — David 2026-06-07: lots of loose questions / idea-thoughts that aren't tickets; need to QUEUE them and later bring a related cluster together into ONE cohesive **research brief / architecture-decision / coding epic**. Stages: **capture** (cheap inbox) → **accrete** (loosely tagged) → **converge** (a JUDGMENT pass = dispatchable Swagger / reflective-review job: cluster + synthesize) → **promote** to dispatched work. Distinct from lanes (categorized concepts); fragments are PRE-concept. | 💡 | 🟡 |
 
 ## Robustness & observability
 | Concept | Status | Pri |
@@ -93,6 +94,18 @@
 | **Capability-placement principle** — for any capability, consciously choose the LOCUS: model-in-session vs harness/runtime vs MCP vs external API vs which-app-owns-it. Worked example: a true timestamp belongs to the OS/harness/engine (mtime, `date`), NOT a language model — blocking `date` pushed time-of-truth into the model, which hallucinated it. Wrong-locus. | 📋 | 🟡 |
 | **Reassessment loop** — a built-in mechanism that revisits past decisions later, with DISTANCE, and reassesses for better capability. Make it INTEGRAL, not ad-hoc. Likely a separate-perspective agent (builder can't review itself well). | 📋 | 🟡 |
 | **Convergence:** recategorize-ideas + mine-chronicle-fresh-eyes + idea-staleness + architecture-reassessment = ONE reflective-review pattern (a later pass re-judges in-the-moment work). Build once, apply many places. | 💡 | 🟡 |
+
+## Constellation: interfaces, ownership & capability gaps — NEW 2026-06-07
+*David thinking out loud: with 4-5 cooperating apps we need to understand what each solves, where each is deficient, and patch holes in the overall capability surface. Unifying frame (Marshall's synthesis, David broadly agreed): **the sentinel apps OBSERVE + ANSWER queries; only the factory floor (Marshall/Swaggers) ACTS.***
+| Concept | Status | Pri |
+|---|---|---|
+| **Observers answer, the floor acts** — AngelEye/AppyCtrl/Switchboard = queryable sources of truth, NOT actors. "Stuck Swagger — whose job?" → mostly just **query capability** (AngelEye answers "is session X alive?"); Marshall queries + reaps. New tooling only if the query doesn't exist yet. | 💡 | 🟡 |
+| **Every app = API + MCP-over-API** — API for harnesses/Monitors (curl); MCP for skills/agents (conversational). AngelEye HAS the API (`/api/sessions`); the MCP wrapper is the missing half. | 📋 | 🟡 |
+| **AppyCtrl owns process/tmux state** — could hold all tmux sessions in memory, queryable by any system ("state of the tmux sessions now?"), paired with AngelEye's claude-session state. The clean home for the window→liveness mapping the reaper needs (process-tree is dead). | 💡 | 🟡 |
+| **App owns its own features; build them THERE** — a cross-app need (e.g. AngelEye roll-ups/summaries) is written up as a requirement IN the target app and built with that app's own dev technique. Not all work flows through the factory (now; maybe later). | 💡 | 🟡 |
+| **Capability-surface gap analysis** — periodically map each app's capabilities + deficiencies, decide which gap to fill where. The reflective-review/reassessment pattern applied to the CONSTELLATION (AngelEye already has a `gap-analysis-data-capture.md`). | 💡 | 🟢 |
+| **AngelEye roll-ups/summaries** — capture is linear/temporal; rich roll-ups are an AngelEye feature (requirement in AngelEye, built there). Factory-controlled later, not now. | 💡 | 🟢 |
+| **AngelEye doc port drift** — docs say `:5501`, server runs `:5051`; fix in AngelEye (fold into hook-refresh requirement), not from here. | 📋 | 🟢 |
 
 ---
 *Add freely. Re-categorize as understanding sharpens. Expand a 📋 into a real spec when it reaches the top of the priority list — not before.*
