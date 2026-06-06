@@ -21,6 +21,8 @@ We are proving the factory runtime **one mechanism per session, N=1, do-not-theo
 | **C3c** | Monitor: Marshall auto-wakes on a ticket (replaces "you say process the queue") | 🟡 **mechanism proven 2026-06-06** — Marshall's `Monitor` subscribed to the daemonized **Switchboard** SSE (`?subscribe=process.snapshot`) and woke on real live events (incl. a fresh `id:26` ~15s after connect) + replayed the buffered backlog. Topic-filtering + durable-log replay work. **Remaining:** point it at a *job/ticket* topic once Switchboard carries the queue, and have Marshall track `Last-Event-ID` so it only gets NEW work (replaying all old tickets would re-process done jobs). |
 | **C3d (perm)** | Swagger permissions: **non-bypass allowlist, not `--dangerously-skip-permissions`** | ✅ proven 2026-06-06 — see "Permission model" below. Replaces open #3. |
 | **C3d (rest)** | `marshall` hardened: liveness cap (~4 Swaggers), graduate to `.claude/skills/marshall/` | ⬜ |
+| **Concurrency (N>1)** | Multiple Swaggers run at once on a shared queue | ✅ proven 2026-06-06 (`proof/concurrency-demo-result.md`; 3 Swaggers, real-mtime 22s interleaved window, atomic claim 1:1, clean teardown). Caveat: agent self-reported timestamps were hallucinated — real timing came from filesystem mtimes (capability-placement lesson). Auto-reaper still owed (reaped manually). |
+| **Watchtower board v1** | Live read-only view of the floor (#19 surface) | ✅ spike 2026-06-06 (`experiments/watchtower-board/server.mjs`, :7430; reads engine + tmux; eventual home = AppyStack Watchtower instance) |
 | **C4** | Return-leg / dashboard so nothing runs silently (#19) | later |
 | **C5** | One real `kind:workflow` job end-to-end, triggered by talking | later |
 
