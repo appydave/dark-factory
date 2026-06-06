@@ -1,0 +1,6 @@
+{
+  "queue_id": "q-20260606-live2",
+  "status": "complete",
+  "outcome": "instruction ran: wrote proof/live-demo-b.md (Swagger B live board demo line); run record runs/run-liveboard-live2-001.json",
+  "ended_at": "2026-06-06T18:31:30+07:00"
+}

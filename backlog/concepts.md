@@ -38,6 +38,9 @@
 | Daemonize it (no manual start) | 📋 | 🟡 |
 | Session liveness/stall detection for Swaggers | 💡 | 🟡 |
 | dark-factory classification overlay | 💡 | 🟢 |
+| **Tool USAGE telemetry** — count invocations of self-made tools (command/skill/plugin/MCP/workflow). Two undecided mechanisms: (a) retrospective read in AngelEye, (b) real-time hook counters (David 2026-06-06). | 📋 | 🟡 |
+| **Usage → self-evolution:** heavily-used = optimize more often; rarely-used = deprecate / repurpose / fix the description-header (bad "Use when…" = under-invocation). The DATA that drives reassessment of the tool catalog + manages the "flood of skills" (measure what's used). See memory `tool-usage-telemetry-for-self-evolution`. | 📋 | 🟡 |
+| **Open Q:** are the reflective-review concepts (recategorize/chronicle/staleness/reassessment) deterministic *code* or *skills*? If skills, they add to the flood → usage telemetry becomes the management handle. | 💡 | 🟡 |
 
 ## Work-management / priority (Symphony)
 *David 2026-06-06: the system now spawns concepts faster than we can organize them (4 apps + documentary + many loose ends) and there's **no way to SEE them, know which have gone stale, or tell what lane an idea fits in**. This markdown register is the MVP that the items below supersede. Cross-cuts **Watchtower** (the visual board that renders the lanes) — "being able to visualise stuff will be important."*

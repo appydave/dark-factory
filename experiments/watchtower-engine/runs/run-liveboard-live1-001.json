@@ -1,0 +1,14 @@
+{
+  "id": "run-liveboard-live1-001",
+  "kind": "run",
+  "experiment_id": "exp-20260606-liveboard",
+  "queue_id": "q-20260606-live1",
+  "executed": "instruction",
+  "status": "complete",
+  "started_at": "2026-06-06T18:31:30+07:00",
+  "ended_at": "2026-06-06T18:31:45+07:00",
+  "result": {
+    "artifact": "experiments/watchtower-engine/proof/live-demo-a.md",
+    "note": "Swagger A live board demo proof written"
+  }
+}

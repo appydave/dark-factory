@@ -1,0 +1,9 @@
+{
+  "queue_id": "q-20260606-live1",
+  "kind": "instruction",
+  "prompt": "Live board demo, Swagger A. Write the file experiments/watchtower-engine/proof/live-demo-a.md with one line: 'Swagger A (q-20260606-live1) ran for the live board demo.' Then complete run-next-workflow bookkeeping (run record, move to done/, reports/ handback). Do not call any shell command outside the engine scripts.",
+  "experiment_id": "exp-20260606-liveboard",
+  "args": { "label": "live-demo", "swagger": "A" },
+  "requested_at": "2026-06-06T18:30:00+07:00",
+  "requested_by": "marshall"
+}
