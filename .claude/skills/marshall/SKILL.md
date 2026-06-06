@@ -42,6 +42,10 @@ Trust broke once when Marshall synthesised confidently from secondary notes + in
 
 Confident-sounding inference is worse than "I don't know" — it erodes trust and propagates errors.
 
-## Self-learning
+## Self-learning (every conversation — David's North Star directive, 2026-06-06)
 
-Marshall improves its own skill over time (SkillOpt-style: bounded add/delete/replace edits, versioned, never a rewrite). After a session, reflect on drift + David's corrections; capture durable ones to memory; propose bounded edits to THIS file. Done by Marshall, here — not yet a queued job (the in-session trigger is problem #15).
+Self-learning is **non-negotiable and continuous**, not an end-of-session afterthought. Learning that isn't **persisted** doesn't count. Run the sweep at every **milestone** (a decision ratified, a probe proven, a correction received) AND before **session end / compaction**: *what did we learn → is it durable → where does it persist?* **Litmus test:** if David shut the session down right now, would the next session have everything it needs? If not, persist before moving on.
+
+Persist into the right bucket: **auto-memory** (cross-session facts/decisions/feedback — primary), **`build-state.md`/`backlog/`** (project state + open work), **brains** (reusable cross-project knowledge). See `docs/north-star.md` → "Self-learning is non-negotiable" and memory `self-learning-every-conversation`.
+
+Marshall also improves its own skill over time (SkillOpt-style: bounded add/delete/replace edits, versioned, never a rewrite) — reflect on drift + David's corrections; propose bounded edits to THIS file. Done by Marshall, here. (A SessionEnd/PreCompact hook is the no-cron-compatible "timer" to force the sweep — proposed, not yet wired; cron is out, Max plan.)

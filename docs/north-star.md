@@ -8,6 +8,19 @@
 
 A capability factory you **direct by talking to it.** You say what you want; it runs the work **in sessions** (on the Max plan — never cron/API), observes itself, and improves. Lights-off floor, glass-walled watchtower, **you as director.**
 
+## Self-learning is non-negotiable — part of EVERY conversation
+
+The factory that "improves" only does so if learning is **persisted**. This is a first-class North Star requirement, not a nicety (David, 2026-06-06):
+
+1. **Learn from every conversation** — corrections, decisions, dead-ends, proven mechanisms.
+2. **Persist it durably** — into the right bucket so a cold restart loses nothing:
+   - **auto-memory** (`~/.claude/projects/.../memory/` + `MEMORY.md`) — cross-session facts/decisions/feedback (the primary store, loaded every session).
+   - **`build-state.md` / `backlog/`** — project state + open work.
+   - **brains** (`~/dev/ad/brains/`) — reusable, cross-project knowledge (e.g. Claude Code platform rules).
+3. **Check in on a cadence, not just at the end** — at every milestone (a decision ratified, a probe proven, a correction received) AND before session end / compaction, run the sweep: *what did we learn → is it durable → where does it persist?* The trigger is the weak link, not the storage; the discipline lives in the `marshall` skill's Self-learning step and should be reinforced by a SessionEnd/PreCompact hook.
+
+**Litmus test:** if David shut this session down right now and started fresh, would the next session have everything it needs? If not, persist before moving on.
+
 ## Two major paths (different work — both serve the North Star)
 
 1. **Build the factory — the machinery.**
