@@ -14,9 +14,11 @@
 | Queue/job-ingest (`POST /jobs` → `job.queued`) | ✅ | 🔴 |
 | Durable + claimable tickets (bus = wake, file = exactly-once claim) | ✅ (proven live; earlier "fail" was a stale daemon, not a bug) | 🔴 |
 | **Swagger SELF-CLOSE on success** (baked into marshall spawn doctrine 2026-06-06) + reaper backstop — teardown must NOT depend on Marshall remembering (proven to fail) | 🔨 self-close in skill; reaper 📋 | 🔴 |
-| Verify-reload-after-deploy + daemon version visibility (launchctl kickstart reload is racy — test hit stale code) | 📋 | 🟡 |
-| `Last-Event-ID` / dedup so Marshall only gets NEW work | 📋 | 🟡 |
-| Reaper for stray agents/processes (orphan cleanup) — pairs with self-close above | 📋 | 🔴 |
+| Topic-selective durable log (job/session/alert logged+replayed; process.snapshot pushed live, never persisted) | ✅ **proven live 2026-06-06** (post-compact: restarted daemon PID 23883; raw SSE shows process.snapshot flows live every 15s but durable log stays empty of it; job.queued POST → ticket + durable-log entry + replay-from-id-0 all ✅) | 🔴 |
+| Verify-reload-after-deploy + daemon version visibility (launchctl kickstart reload is racy — test hit stale code) | 📋 **lesson reinforced 2026-06-06** — the committed refactor (`d1506ba`) was NOT live; old daemon kept bloating the log until `launchctl kickstart -k` deployed PID 23883. Committed ≠ deployed. Want: daemon exposes its running git-sha on /health so "is the refactor live?" is one curl, not a forensic log-grep. | 🟡 |
+| `Last-Event-ID` / dedup so Marshall only gets NEW work | 📋 (replay mechanism proven; Marshall-side cursor tracking still owed) | 🟡 |
+| Reaper = harness-driven, NOT remembered: **staleness detector in Switchboard** (polls own process state + queries AngelEye session liveness; rule "no activity >10min + job done = stale") → pushes `session.stale`/`alert.*` → **Marshall's Monitor wakes + reaps**. Switchboard detects+tells (observe-only); Marshall acts. | 📋 | 🔴 |
+| Marshall's Monitor = FEEDBACK channel (senses), not just jobs: subscribe `job.queued` + `alert.*`/`session.stale` | 📋 | 🟡 |
 | Event-log pruning (unbounded growth) | 💡 | 🟢 |
 
 ## Visual communication (Watchtower) — NEW 2026-06-06

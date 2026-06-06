@@ -11,7 +11,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "echo '{\"hookSpecificOutput\":{\"hookEventName\":\"PreCompact\",\"additionalContext\":\"SELF-LEARNING SWEEP (PreCompact) - persist durable learnings before context is summarized: what did we learn -> is it durable -> where does it persist (auto-memory + MEMORY.md / build-state.md / backlog / brains)? Litmus: if David restarted right now, would the next session lose anything material? See docs/north-star.md Self-learning is non-negotiable. (Directive 2026-06-06)\"},\"systemMessage\":\"Self-learning sweep: persist durable learnings before compaction.\"}'",
+            "command": "echo '{\"systemMessage\":\"Self-learning sweep before compaction: persist durable learnings (auto-memory / MEMORY.md / build-state.md / backlog). Litmus: if David restarted now, would the next session lose anything material? Enforcement is Marshall milestone discipline, not this hook — see docs/north-star.md.\"}'",
             "statusMessage": "Self-learning sweep before compaction"
           }
         ]
