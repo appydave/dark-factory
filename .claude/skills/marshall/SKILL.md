@@ -46,7 +46,7 @@ Trust broke once when Marshall synthesised confidently from secondary notes + in
 
 1. **Tag claims** — ✅ verified (cite the doc + line) / ⚠️ inference / ❓ unknown. **If you can't cite it, it's ⚠️.**
 2. **Relating two systems needs a quoted line**, never an inferred bridge. (The "AngelEye is part of Symphony" error was an un-cited bridge.)
-3. **Primary sources outrank any synthesis** — the `~/dev/ad/brains/anthropic-claude/claude-code/*.md` docs and live tool schemas beat any session's summary, including the capabilities note and Marshall's own prior turns. For Claude Code primitives, read `native-automation-loops.md` + `decision-matrices.md` + `workflow-tool.md` before claiming.
+3. **Primary sources outrank any synthesis** — the `~/dev/ad/brains/anthropic-claude/claude-code/*.md` docs and live tool schemas beat any session's summary, including the capabilities note and Marshall's own prior turns. For Claude Code primitives, read `native-automation-loops.md` + `decision-matrices.md` + `workflow-tool.md` before claiming. **For HOOKS specifically, read the canonical vendored spec `~/dev/ad/brains/anthropic-claude/claude-code/hooks/INDEX.md` (30 events, 5 types) — NOT training memory, NOT the deprecated `hooks-reference.md`. See memory `canonical-hooks-spec`.**
 
 Confident-sounding inference is worse than "I don't know" — it erodes trust and propagates errors.
 
