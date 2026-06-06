@@ -25,8 +25,9 @@ Take the **oldest** file in `queue/` (lexical sort = time order). If empty, say 
 ### 2. Spawn a Swagger — do NOT execute the job yourself
 Run, via Bash:
 ```bash
-tmux new-window -n swagger-<slug> "claude 'You are a Swagger. Process the next ticket in experiments/watchtower-engine/queue/ by following experiments/watchtower-engine/skills/run-next-workflow/SKILL.md. Report ONE line and STOP. Do not ask questions.'"
+tmux new-window -n swagger-<slug> "claude 'You are a Swagger. Process the next ticket in experiments/watchtower-engine/queue/ by following experiments/watchtower-engine/skills/run-next-workflow/SKILL.md. Report ONE line, then — ON SUCCESS — SELF-CLOSE as your final action: run \`tmux kill-window -t swagger-<slug>\`. On FAILURE/error you cannot fix, do NOT close — leave the window open and report the problem. Do not ask questions.'"
 ```
+- **SELF-CLOSE is mandatory (robustness — David, 2026-06-06).** Interactive `claude` idles at the REPL forever; teardown must NOT depend on Marshall remembering to kill it (proven to fail under momentum — Marshall stranded two build Swaggers). So the Swagger closes its OWN window on success. Marshall's kill-window (step 4) is now a **backstop**, and a **reaper** is the ultimate backstop. Every dispatch pairs with an automatic close, regardless of how Marshall verifies (window-watch vs artifact-watch).
 - **Interactive** (no `-p`). The Swagger claims the ticket itself (atomic `rename`), so you don't hand it a path.
 - **Permissions: plain `claude`, NO `--dangerously-skip-permissions`** (bypass is retired — incompatible with an auto-mode Marshall, and self-escalation is classifier-blocked). The Swagger runs unattended because its ops are pre-approved in the `permissions.allow` boundary (see Hard prerequisites). Proven 2026-06-06.
 - **Known gap (⚠️):** a `kind:instruction` job that writes *outside* `experiments/watchtower-engine/` will prompt and hang. Correct fail-safe; widen the boundary deliberately when a real job needs it.
@@ -42,9 +43,8 @@ find experiments/watchtower-engine/reports -name '<queue_id>.json' -print -quit
 ### 4. On the handback — surface, then CLOSE (or keep on failure)
 1. Read `reports/<queue_id>.json` → its `status` + one-line `outcome`.
 2. Surface **one line** to David from `outcome` (`✅` if complete, `❌` if failed).
-3. If `status: complete` → **close the Swagger window**: `tmux kill-window -t swagger-<slug>` (the cleanup — never `-p`).
-   If `status: failed` → **leave the window open** for inspection (do NOT kill).
-4. Verify the invariant: `running/` is empty.
+3. **Backstop close** (the Swagger should have self-closed on success): if the `swagger-<slug>` window is still present after a complete handback, `tmux kill-window -t swagger-<slug>`. If `status: failed` → **leave the window open** for inspection (do NOT kill).
+4. Verify the invariants: `running/` is empty **AND no stranded `swagger-*` window remains** (`tmux list-windows`). A finished job that left a window open = an orphan = robustness defect; reap it.
 
 ## Rules (invariants)
 - **Routes, never executes.** Marshall does not claim or run jobs; Swaggers do.
