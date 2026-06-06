@@ -82,6 +82,9 @@
 | Raw material ALREADY EXISTS, unmined: session transcripts (.jsonl), git history (= literal change/rollback log), concepts.md, build-state.md, proof/ files, auto-memories | ✅ sources exist | — |
 | Proposed first cut: **retrospective transcript-mining** (low-risk, doesn't interrupt build) → a `docs/chronicle/` narrative; on-the-fly hooks come later | 💡 | 🟡 |
 | Define an ORDER/method for how we document (David's explicit ask) | 📋 | 🟡 |
+| **Factory-metaphor storytelling** — Floor/Lanes/Swaggers/Marshall/Watchtower is a deliberate NARRATIVE asset for David's YouTube; keep naming + metaphor coherent; develops over time (see memory `factory-metaphor-storytelling`). | 💡 | 🟡 |
+| **Floor↔Lanes bridge** — "promote a lane item → a floor job" (the unbuilt planning→execution link; where the two board views become one workflow). | 📋 | 🟡 |
+| **Storytelling spans the whole constellation** — every app + their relationships are one journey; aspiration to GENERATE an animated/3D graphic of the factory from a structured system-model (David 2026-06-06). Structured model → drives both the live board AND a future render. | 💡 | 🟢 |
 
 ## Architecture principles & reassessment — NEW 2026-06-06
 *David: we need stated principles for (1) WHERE a capability should live, and (2) HOW we re-judge past decisions with distance — the builder is too close to judge their own architecture; it's better observed later. See memory `capability-placement-and-reassessment`.*

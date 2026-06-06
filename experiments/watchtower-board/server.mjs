@@ -18,12 +18,44 @@ import { readdir, readFile, stat } from 'node:fs/promises';
 import { execFile } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
-import { parseConcepts } from './parse-concepts.mjs';
+import { parseConcepts, attachStaleness } from './parse-concepts.mjs';
 
 const PORT = 7430;
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ENGINE = resolve(HERE, '..', 'watchtower-engine');
-const CONCEPTS_MD = resolve(HERE, '..', '..', 'backlog', 'concepts.md');
+const REPO_ROOT = resolve(HERE, '..', '..');           // two levels up from the board dir
+const CONCEPTS_MD = resolve(REPO_ROOT, 'backlog', 'concepts.md');
+const STALE_DAYS = 14;
+
+// gitLineDates — RUNTIME helper (server only): git blame committer-times per line
+// of backlog/concepts.md → {lineNumber: epochMs}. Lines 'not committed yet' are
+// omitted (→ treated as fresh by attachStaleness). On ANY git failure returns {}.
+function gitLineDates() {
+  return new Promise((res) => {
+    execFile('git', ['blame', '--line-porcelain', 'backlog/concepts.md'],
+      { cwd: REPO_ROOT, timeout: 4000, maxBuffer: 8 * 1024 * 1024 }, (e, out) => {
+        if (e || !out) return res({});
+        const map = {};
+        let lineNo = 0, committerTime = null, notCommitted = false;
+        for (const ln of out.split('\n')) {
+          if (/^[0-9a-f]{40} /.test(ln)) {
+            // header: "<sha> <origLine> <finalLine> [<group>]" → final line is 3rd field
+            lineNo = parseInt(ln.split(' ')[2], 10);
+            committerTime = null;
+            notCommitted = false;
+          } else if (ln.startsWith('committer-time ')) {
+            committerTime = parseInt(ln.slice('committer-time '.length).trim(), 10) * 1000;
+          } else if (ln.startsWith('committer ')) {
+            if (ln.slice('committer '.length).trim() === 'Not Committed Yet') notCommitted = true;
+          } else if (ln.startsWith('\t')) {
+            // the actual source line terminates this blame block
+            if (lineNo && committerTime != null && !notCommitted) map[lineNo] = committerTime;
+          }
+        }
+        res(map);
+      });
+  });
+}
 
 const execP = (cmd, args) =>
   new Promise((res) => execFile(cmd, args, { timeout: 4000 }, (e, out) => res(e ? '' : out)));
@@ -92,6 +124,9 @@ const PAGE = `<!doctype html><html><head><meta charset="utf8"><title>Watchtower 
  .lanes{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;padding:16px;align-items:start}
  .lane h2{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);margin:0 0 8px}
  .card.concept{border-left-color:#bc8cff} .badges{float:right;font-size:13px;letter-spacing:2px}
+ .card.stale{opacity:.5;border-left-color:#46506180;border-color:#3a4252}
+ .age{font-size:10px;color:var(--mut);margin-top:3px} .age.warn{color:var(--run)}
+ .lane h2 .stalehint{font-size:10px;color:var(--run);text-transform:none;letter-spacing:0;margin-left:6px}
 </style></head><body>
 <header><b>🗼 Watchtower</b><span class="muted" id="subtitle">factory floor · live</span>
  <span class="toggle"><button id="tab-floor" class="on">Floor</button><button id="tab-lanes">Lanes</button></span>
@@ -125,13 +160,16 @@ async function tick(){
 tick();setInterval(tick,2000);
 
 // --- Lanes view (concept register) — additive; does not touch Floor above ---
-function laneCard(it){return '<div class="card concept">'+
+function ageLabel(it){return (it.ageDays===0)?'new':(it.ageDays+'d');}
+function laneCard(it){return '<div class="card concept'+(it.stale?' stale':'')+'">'+
   '<span class="badges">'+esc(it.status)+' '+esc(it.pri)+'</span>'+
-  '<div class="qid">'+esc(it.concept)+'</div></div>';}
+  '<div class="qid">'+esc(it.concept)+'</div>'+
+  '<div class="age'+(it.stale?' warn':'')+'">'+ageLabel(it)+'</div></div>';}
 async function tickLanes(){
  try{const s=await (await fetch('/api/concepts')).json();
   el('view-lanes').innerHTML=s.lanes.map((l)=>'<div class="lane"><h2>'+esc(l.lane)+
-    ' ('+l.items.length+')</h2>'+(l.items.length?l.items.map(laneCard).join(''):'<div class="empty">— empty —</div>')+'</div>').join('');
+    ' ('+l.items.length+')'+(l.stale?'<span class="stalehint">cold · '+l.ageDays+'d</span>':'')+
+    '</h2>'+(l.items.length?l.items.map(laneCard).join(''):'<div class="empty">— empty —</div>')+'</div>').join('');
   el('counts').innerHTML='<span class="pill">'+s.counts.lanes+' lanes</span> <span class="pill">'+s.counts.items+' concepts</span>';
  }catch(e){el('view-lanes').innerHTML='<div class="empty">concepts unreachable</div>';}
 }
@@ -151,6 +189,8 @@ const server = http.createServer(async (req, res) => {
   if (req.url.startsWith('/api/concepts')) {
     try {
       const lanes = parseConcepts(await readFile(CONCEPTS_MD, 'utf8'));
+      const lineDates = await gitLineDates();        // {} on any git failure → all fresh
+      attachStaleness(lanes, lineDates, Date.now(), STALE_DAYS);
       res.writeHead(200, { 'Content-Type': 'application/json', 'Cache-Control': 'no-cache' });
       res.end(JSON.stringify({ lanes, counts: { lanes: lanes.length, items: lanes.reduce((n, l) => n + l.items.length, 0) } }));
     } catch (e) {

@@ -1,0 +1,6 @@
+{
+  "queue_id": "q-20260606-board-v3-staleness",
+  "status": "complete",
+  "outcome": "board v3 idea-staleness shipped: pure attachStaleness() + line-numbers in parse-concepts.mjs, runtime git-blame gitLineDates() + Lanes age/stale UI in server.mjs (Floor & /api/state untouched, git-failsafe). self-test 'staleness ok: 8 stale of 51'. run-record runs/run-board-v3-001.json, proof proof/board-v3-staleness.md",
+  "ended_at": "2026-06-06T19:20:00+07:00"
+}

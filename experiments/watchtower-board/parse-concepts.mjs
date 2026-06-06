@@ -33,8 +33,10 @@ const stripBold = (s) => s.replace(/\*+/g, '').trim();
 export function parseConcepts(md) {
   const lanes = [];
   let current = null;
-  for (const raw of md.split('\n')) {
-    const line = raw.trim();
+  const rows = md.split('\n');
+  for (let i = 0; i < rows.length; i++) {
+    const line = rows[i].trim();
+    const lineNo = i + 1;                     // 1-based source line in concepts.md
     if (line.startsWith('## ')) {
       current = { lane: line.slice(3).trim(), items: [] };
       lanes.push(current);
@@ -49,8 +51,34 @@ export function parseConcepts(md) {
         concept: stripBold(cells[0]),
         status: cells[1],
         pri: cells[2],
+        line: lineNo,
       });
     }
+  }
+  return lanes;
+}
+
+// attachStaleness — PURE (no git, no IO): enrich lanes with idea-staleness using
+// a precomputed lineDateMap {lineNumber: epochMs} (e.g. from git blame committer
+// times). For each item: lastTouched (map[line] or nowMs if absent), ageDays, and
+// stale (ageDays >= staleDays). Per-lane: lastTouched = max(item.lastTouched),
+// with the lane's own ageDays/stale derived from that. Returns the same lanes,
+// mutated and returned for convenience. Unit-testable with a mock map.
+export function attachStaleness(lanes, lineDateMap, nowMs, staleDays) {
+  const DAY = 86400000;
+  for (const lane of lanes) {
+    let laneTouched = 0;
+    for (const it of lane.items) {
+      const lt = (lineDateMap && lineDateMap[it.line] != null) ? lineDateMap[it.line] : nowMs;
+      it.lastTouched = lt;
+      it.ageDays = Math.floor((nowMs - lt) / DAY);
+      it.stale = it.ageDays >= staleDays;
+      if (lt > laneTouched) laneTouched = lt;
+    }
+    // lane freshness = its most-recently-touched item (or nowMs if empty)
+    lane.lastTouched = lane.items.length ? laneTouched : nowMs;
+    lane.ageDays = Math.floor((nowMs - lane.lastTouched) / DAY);
+    lane.stale = lane.ageDays >= staleDays;
   }
   return lanes;
 }
@@ -64,4 +92,16 @@ if (isMain) {
   const lanes = parseConcepts(md);
   const items = lanes.reduce((n, l) => n + l.items.length, 0);
   console.log(`${lanes.length} lanes, ${items} items`);
+
+  // staleness self-test — INLINE MOCK lineDateMap (no git, no IO): mark the
+  // first item in each lane "old" (35d ago) and the rest "recent" (1d ago).
+  const NOW = 1_700_000_000_000;            // fixed epoch ms — deterministic, not Date.now()
+  const DAY = 86400000;
+  const mock = {};
+  for (const l of lanes) {
+    l.items.forEach((it, idx) => { mock[it.line] = NOW - (idx === 0 ? 35 : 1) * DAY; });
+  }
+  attachStaleness(lanes, mock, NOW, 14);
+  const staleN = lanes.reduce((n, l) => n + l.items.filter((it) => it.stale).length, 0);
+  console.log(`staleness ok: ${staleN} stale of ${items}`);
 }

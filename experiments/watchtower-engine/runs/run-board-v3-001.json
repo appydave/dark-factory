@@ -1,0 +1,23 @@
+{
+  "id": "run-board-v3-001",
+  "kind": "run",
+  "experiment_id": "exp-20260606-board-v3",
+  "queue_id": "q-20260606-board-v3-staleness",
+  "executed": "instruction",
+  "status": "complete",
+  "started_at": "2026-06-06T19:05:00+07:00",
+  "ended_at": "2026-06-06T19:20:00+07:00",
+  "result": {
+    "feature": "idea-staleness (Lanes view)",
+    "changed": [
+      "experiments/watchtower-board/parse-concepts.mjs (line numbers + pure attachStaleness + mock self-test)",
+      "experiments/watchtower-board/server.mjs (gitLineDates runtime helper + /api/concepts wiring + additive Lanes UI)"
+    ],
+    "pure_fn": "attachStaleness(lanes, lineDateMap, nowMs, staleDays) — no git/IO",
+    "self_test": "8 lanes, 51 items / staleness ok: 8 stale of 51",
+    "node_check": "both files pass node --check",
+    "floor_untouched": true,
+    "endpoint_git_failsafe": "git failure -> empty map (all fresh), never crashes",
+    "proof": "experiments/watchtower-engine/proof/board-v3-staleness.md"
+  }
+}
