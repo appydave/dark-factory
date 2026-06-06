@@ -80,5 +80,13 @@
 | Proposed first cut: **retrospective transcript-mining** (low-risk, doesn't interrupt build) → a `docs/chronicle/` narrative; on-the-fly hooks come later | 💡 | 🟡 |
 | Define an ORDER/method for how we document (David's explicit ask) | 📋 | 🟡 |
 
+## Architecture principles & reassessment — NEW 2026-06-06
+*David: we need stated principles for (1) WHERE a capability should live, and (2) HOW we re-judge past decisions with distance — the builder is too close to judge their own architecture; it's better observed later. See memory `capability-placement-and-reassessment`.*
+| Concept | Status | Pri |
+|---|---|---|
+| **Capability-placement principle** — for any capability, consciously choose the LOCUS: model-in-session vs harness/runtime vs MCP vs external API vs which-app-owns-it. Worked example: a true timestamp belongs to the OS/harness/engine (mtime, `date`), NOT a language model — blocking `date` pushed time-of-truth into the model, which hallucinated it. Wrong-locus. | 📋 | 🟡 |
+| **Reassessment loop** — a built-in mechanism that revisits past decisions later, with DISTANCE, and reassesses for better capability. Make it INTEGRAL, not ad-hoc. Likely a separate-perspective agent (builder can't review itself well). | 📋 | 🟡 |
+| **Convergence:** recategorize-ideas + mine-chronicle-fresh-eyes + idea-staleness + architecture-reassessment = ONE reflective-review pattern (a later pass re-judges in-the-moment work). Build once, apply many places. | 💡 | 🟡 |
+
 ---
 *Add freely. Re-categorize as understanding sharpens. Expand a 📋 into a real spec when it reaches the top of the priority list — not before.*
