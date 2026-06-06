@@ -4,6 +4,11 @@
 
 **Start state (preflight):** Switchboard ✅ · AngelEye ✅ (backfill only, no live hook) · Watchtower board ✅ · AppyCtrl ❓
 
+## 🔒 LOCKED next two steps (2026-06-07 ~06:15) — things will morph after these
+1. **F — Converge the reaper cluster → one brief** (`docs/watchtower/reaper-brief.md`). First real use of the fragment→convergence funnel. Marshall-inline (I hold the design context).
+2. **A — Build + live-test the engine-state reaper** (Marshall's privileged Monitor) from that brief: dispatch a quick real job, let it finish, watch the reaper auto-close its window. Tests the reaper AND the loop.
+*After these two: re-decide (AppyCtrl / AngelEye live-hook / real backlog batch / Chronicle). Direction persisted; steps stay loose.*
+
 ## The menu (grouped)
 
 **Robustness — harden the loop**
