@@ -40,6 +40,7 @@
 | dark-factory classification overlay | 💡 | 🟢 |
 
 ## Work-management / priority (Symphony)
+*David 2026-06-06: the system now spawns concepts faster than we can organize them (4 apps + documentary + many loose ends) and there's **no way to SEE them, know which have gone stale, or tell what lane an idea fits in**. This markdown register is the MVP that the items below supersede. Cross-cuts **Watchtower** (the visual board that renders the lanes) — "being able to visualise stuff will be important."*
 | Concept | Status | Pri |
 |---|---|---|
 | Projects (folders) → epics → stories/tickets → importance | 📋 | 🟡 |
@@ -47,6 +48,11 @@
 | Idle-time low-hanging-fruit triage (capture, don't distract) | 💡 | 🟡 |
 | Port Symphony state machine (§7/§16) to the factory floor | 📋 | 🟡 |
 | **This concepts register** (categorize ideas → specs over time) | 🔨 | 🟡 |
+| **Lane/epic structure for IDEAS (not just jobs)** — BMAD analogy: epics = lanes, stories under them; "open a new lane = create a new epic"; every loose-end / concept / app / idea belongs to a lane. Natural lanes today = the apps (Watchtower/Switchboard/AngelEye/AppyCtrl/Chronicle) + cross-cutting (robustness, observability, distribution). | 📋 | 🟡 |
+| **Idea-staleness** — surface which concepts haven't been touched (per-item last-modified). Stale ≠ dead: needs a "still relevant?" judgment, not auto-reaping. (Mirror of the SESSION staleness-detector, applied to ideas.) | 📋 | 🟡 |
+| **Periodic REFRESH + recategorization pass** — re-read all concepts, re-bucket, merge/split lanes, re-rank. A standing task, not one-off (David 2026-06-06). | 📋 | 🟡 |
+| **Design resolution — LLM *and* data structures, not either/or (David's open Q):** JSON + schema = the **source of truth** (lanes, per-item last-touched → staleness is date math, counts, stable shape Watchtower can render; **NO database — files are fine**, "schemas and JSON and scaffold applications"). **LLM = the maintainer/judge** that does the fuzzy work on a refresh pass: categorize a new idea into a lane, detect overlap/merges, propose a new lane, flag stale-but-important vs stale-and-droppable. Deterministic state in the schema; judgment from the LLM. | 📋 | 🟡 |
+| **Recursion noted:** managing the concepts is itself a concept; this is the Symphony work-mgmt layer + Watchtower visual layer meeting. A "think-do." | 💡 | 🟡 |
 
 ## Robustness & observability
 | Concept | Status | Pri |
@@ -61,6 +67,18 @@
 | M4 Mini as a remote Swagger worker (SSH+tmux, tested-reachable) | 📋 | 🟡 |
 | Per-machine Switchboard (each agent-running box daemonized) | 📋 | 🟡 |
 | Other minis (M2, jan, mary) as workers | 💡 | 🟢 |
+
+## Story / build-documentary (the "Chronicle" — provisional name, David to rename) — NEW 2026-06-06
+*David's Tesla-Gigafactory analogy: a complex system being built deserves a **documentary** — the decisions, the rollbacks, the changes, the journey, the growing complexity. Captures the STORY OF BUILDING the factory, distinct from the factory's own runtime/telemetry. **Capture-and-understand stage — not building yet** (David wants the ORDER/method first, not ad-hoc agent-spraying). Can be spun up as separate parallel tasks (not system-build work).*
+| Concept | Status | Pri |
+|---|---|---|
+| The Chronicle concept: record/narrate the build journey (decisions, rollbacks, changes) | 💡 (North-Star-adjacent direction) | 🟡 |
+| Mechanism A — **parallel "story" agents that just run** (observe + narrate, separate from build tasks) | 💡 | 🟡 |
+| Mechanism B — **hooks baked into regular agents** (capture moments on-the-fly, inline) | 💡 | 🟡 |
+| Timing — on-the-fly capture vs **retrospective mining** (track all build conversations, revisit later with fresh eyes) | 💡 | 🟡 |
+| Raw material ALREADY EXISTS, unmined: session transcripts (.jsonl), git history (= literal change/rollback log), concepts.md, build-state.md, proof/ files, auto-memories | ✅ sources exist | — |
+| Proposed first cut: **retrospective transcript-mining** (low-risk, doesn't interrupt build) → a `docs/chronicle/` narrative; on-the-fly hooks come later | 💡 | 🟡 |
+| Define an ORDER/method for how we document (David's explicit ask) | 📋 | 🟡 |
 
 ---
 *Add freely. Re-categorize as understanding sharpens. Expand a 📋 into a real spec when it reaches the top of the priority list — not before.*

@@ -1,0 +1,14 @@
+{
+  "id": "run-concurrency-conc3-001",
+  "kind": "run",
+  "experiment_id": "exp-20260606-concurrency",
+  "queue_id": "q-20260606-conc3",
+  "executed": "instruction",
+  "status": "complete",
+  "started_at": "2026-06-06T17:45:05+07:00",
+  "ended_at": "2026-06-06T17:45:18+07:00",
+  "result": {
+    "artifact": "experiments/watchtower-engine/proof/concurrency-conc3.md",
+    "note": "Concurrency demo Swagger 3 — wrote 3-line proof file"
+  }
+}

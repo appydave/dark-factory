@@ -1,0 +1,9 @@
+{
+  "queue_id": "q-20260606-conc1",
+  "kind": "instruction",
+  "prompt": "Concurrency demo, Swagger 1. Write the file experiments/watchtower-engine/proof/concurrency-conc1.md with at most 3 lines: line 1 = your queue_id (q-20260606-conc1); line 2 = an ISO timestamp (generate it inline from context — do NOT call the `date` shell command); line 3 = the literal text 'concurrent Swagger 1 ran'. Then complete the run-next-workflow bookkeeping (run record, move to done/, reports/ handback).",
+  "experiment_id": "exp-20260606-concurrency",
+  "args": { "label": "concurrency-demo", "n": 1 },
+  "requested_at": "2026-06-06T17:40:00+07:00",
+  "requested_by": "marshall"
+}

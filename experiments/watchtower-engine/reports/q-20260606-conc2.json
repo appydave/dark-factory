@@ -1,0 +1,6 @@
+{
+  "queue_id": "q-20260606-conc2",
+  "status": "complete",
+  "outcome": "instruction ran: wrote proof/concurrency-conc2.md; run record runs/run-concurrency-conc2-001.json",
+  "ended_at": "2026-06-06T17:42:35+07:00"
+}

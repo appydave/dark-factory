@@ -1,0 +1,11 @@
+{
+  "id": "run-concurrency-conc1-001",
+  "kind": "run",
+  "experiment_id": "exp-20260606-concurrency",
+  "queue_id": "q-20260606-conc1",
+  "executed": "instruction",
+  "status": "complete",
+  "started_at": "2026-06-06T17:41:30+07:00",
+  "ended_at": "2026-06-06T17:41:35+07:00",
+  "result": { "artifact": "experiments/watchtower-engine/proof/concurrency-conc1.md", "label": "concurrency-demo", "n": 1 }
+}
