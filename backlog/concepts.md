@@ -64,6 +64,7 @@
 | Robustness bar: comms/return/shutdown/no-leaks, clean teardown | ✅ (doctrine) | 🔴 |
 | Verify the 60GB Claude-Code RAM-leak claim with our own numbers | 📋 | 🟢 |
 | System-health view (per-process RAM/CPU, open-Swagger count) | 💡 | 🟡 |
+| **Untracked-file / worktree ROT detector** — abandoned/uncommitted git state piles up across many terminals/systems (David 2026-06-07: "just always happens"). Worst in the brains area (sub-brains edited-in-a-window then not committed/pushed); also agent-teams/worktrees/Claude-space views. Detect+tell across known repos/worktrees (uncommitted, untracked, stale worktrees) → surface for commit/cleanup. Same observers-answer/detect-tell family as preflight + reaper; natural **AppyCtrl** capability (cross-machine observer). | 💡 | 🟡 |
 
 ## Distribution
 | Concept | Status | Pri |
