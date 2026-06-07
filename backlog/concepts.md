@@ -85,7 +85,7 @@
 | Proposed first cut: **retrospective transcript-mining** (low-risk, doesn't interrupt build) → a `docs/chronicle/` narrative; on-the-fly hooks come later | 💡 | 🟡 |
 | Define an ORDER/method for how we document (David's explicit ask) | 📋 | 🟡 |
 | **Factory-metaphor storytelling** — Floor/Lanes/Swaggers/Marshall/Watchtower is a deliberate NARRATIVE asset for David's YouTube; keep naming + metaphor coherent; develops over time (see memory `factory-metaphor-storytelling`). | 💡 | 🟡 |
-| **Floor↔Lanes bridge** — "promote a lane item → a floor job" (the unbuilt planning→execution link; where the two board views become one workflow). | 📋 | 🟡 |
+| **Floor↔Lanes bridge → CONVERGENCE flow** — v4 shipped a per-card "promote" button (on EVERY card incl. done/notes → a vague "elaborate" ticket): confusing UX + wrong shape (skips the cluster-synthesis that is the funnel's whole point). **Rebuilt v5 as the funnel's CONVERGE step:** multi-select related concepts → ONE "converge → brief" job. Lesson: don't read "promote a lane item → a floor job" too literally; the bridge IS cluster-convergence. | 🔨 | 🟡 |
 | **Storytelling spans the whole constellation** — every app + their relationships are one journey; aspiration to GENERATE an animated/3D graphic of the factory from a structured system-model (David 2026-06-06). Structured model → drives both the live board AND a future render. | 💡 | 🟢 |
 
 ## Architecture principles & reassessment — NEW 2026-06-06
