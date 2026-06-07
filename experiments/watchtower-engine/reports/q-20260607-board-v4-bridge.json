@@ -1,0 +1,6 @@
+{
+  "queue_id": "q-20260607-board-v4-bridge",
+  "status": "complete",
+  "outcome": "Built board v4 Floor↔Lanes bridge — POST /api/promote writes a valid floor queue ticket + Lanes 'promote ▶' button; additive, Floor/api/state/api/concepts/staleness untouched; proof at experiments/watchtower-engine/proof/board-v4-bridge.md, run record runs/run-board-v4-001.json",
+  "ended_at": "2026-06-07T00:32:48.500Z"
+}

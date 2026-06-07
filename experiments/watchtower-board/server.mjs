@@ -14,7 +14,7 @@
 // Run:  node experiments/watchtower-board/server.mjs   (then open http://localhost:7430)
 
 import http from 'node:http';
-import { readdir, readFile, stat } from 'node:fs/promises';
+import { readdir, readFile, stat, writeFile } from 'node:fs/promises';
 import { execFile } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
@@ -55,6 +55,30 @@ function gitLineDates() {
         res(map);
       });
   });
+}
+
+// --- v4 Floor↔Lanes BRIDGE (additive) — promote a lane concept → a floor job ---
+// slugify — sanitize a concept into a safe queue_id fragment: lowercase, only
+// [a-z0-9-], no '/', no '..', collapsed/trimmed dashes, capped at 40 chars.
+export function slugify(s) {
+  return String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 40) || 'concept';
+}
+
+// buildPromoteTicket — PURE: (concept, lane, nowMs) → {queue_id, ticket}. No I/O,
+// so it is self-checkable. All time comes from nowMs (the caller passes Date.now()).
+export function buildPromoteTicket(concept, lane, nowMs) {
+  const slug = slugify(concept);
+  const queue_id = 'q-' + nowMs + '-promoted-' + slug;
+  const ticket = {
+    queue_id,
+    kind: 'instruction',
+    prompt: 'Elaborate this concept into a short brief: ' + concept + ' (lane: ' + lane + ')',
+    experiment_id: 'exp-promoted',
+    args: { from: 'lanes-board', lane },
+    requested_at: new Date(nowMs).toISOString(),
+    requested_by: 'watchtower-board',
+  };
+  return { queue_id, ticket };
 }
 
 const execP = (cmd, args) =>
@@ -127,6 +151,9 @@ const PAGE = `<!doctype html><html><head><meta charset="utf8"><title>Watchtower 
  .card.stale{opacity:.5;border-left-color:#46506180;border-color:#3a4252}
  .age{font-size:10px;color:var(--mut);margin-top:3px} .age.warn{color:var(--run)}
  .lane h2 .stalehint{font-size:10px;color:var(--run);text-transform:none;letter-spacing:0;margin-left:6px}
+ .promote{font:inherit;cursor:pointer;color:var(--q);background:#222b38;border:1px solid #2b3445;border-radius:7px;padding:1px 8px;margin-top:6px;font-size:11px}
+ .promote:hover{background:#2b3445} .promote:disabled{opacity:.5;cursor:default}
+ .promoted{font-size:10px;color:var(--ok);margin-left:8px}
 </style></head><body>
 <header><b>🗼 Watchtower</b><span class="muted" id="subtitle">factory floor · live</span>
  <span class="toggle"><button id="tab-floor" class="on">Floor</button><button id="tab-lanes">Lanes</button></span>
@@ -141,6 +168,7 @@ const PAGE = `<!doctype html><html><head><meta charset="utf8"><title>Watchtower 
 <script>
 const el=(id)=>document.getElementById(id);
 const esc=(s)=>(s||'').replace(/[<&]/g,(c)=>({'<':'&lt;','&':'&amp;'}[c]));
+const escA=(s)=>(s||'').replace(/[<&"]/g,(c)=>({'<':'&lt;','&':'&amp;','"':'&quot;'}[c]));
 let view='floor';
 function ticket(t,cls){return '<div class="card '+cls+'">'+
   (t.report?'<span class="badge '+t.report+'">'+t.report+'</span>':'')+
@@ -161,15 +189,17 @@ tick();setInterval(tick,2000);
 
 // --- Lanes view (concept register) — additive; does not touch Floor above ---
 function ageLabel(it){return (it.ageDays===0)?'new':(it.ageDays+'d');}
-function laneCard(it){return '<div class="card concept'+(it.stale?' stale':'')+'">'+
+function laneCard(it,lane){return '<div class="card concept'+(it.stale?' stale':'')+'">'+
   '<span class="badges">'+esc(it.status)+' '+esc(it.pri)+'</span>'+
   '<div class="qid">'+esc(it.concept)+'</div>'+
-  '<div class="age'+(it.stale?' warn':'')+'">'+ageLabel(it)+'</div></div>';}
+  '<div class="age'+(it.stale?' warn':'')+'">'+ageLabel(it)+'</div>'+
+  '<button class="promote" data-concept="'+escA(it.concept)+'" data-lane="'+escA(lane)+'">promote ▶</button>'+
+  '<span class="promoted"></span></div>';}
 async function tickLanes(){
  try{const s=await (await fetch('/api/concepts')).json();
   el('view-lanes').innerHTML=s.lanes.map((l)=>'<div class="lane"><h2>'+esc(l.lane)+
     ' ('+l.items.length+')'+(l.stale?'<span class="stalehint">cold · '+l.ageDays+'d</span>':'')+
-    '</h2>'+(l.items.length?l.items.map(laneCard).join(''):'<div class="empty">— empty —</div>')+'</div>').join('');
+    '</h2>'+(l.items.length?l.items.map((it)=>laneCard(it,l.lane)).join(''):'<div class="empty">— empty —</div>')+'</div>').join('');
   el('counts').innerHTML='<span class="pill">'+s.counts.lanes+' lanes</span> <span class="pill">'+s.counts.items+' concepts</span>';
  }catch(e){el('view-lanes').innerHTML='<div class="empty">concepts unreachable</div>';}
 }
@@ -183,9 +213,40 @@ function show(v){view=v;
 }
 el('tab-floor').onclick=()=>show('floor');
 el('tab-lanes').onclick=()=>show('lanes');
+// promote ▶ — delegated (innerHTML is rebuilt each tickLanes); writes a floor job
+el('view-lanes').addEventListener('click',async(ev)=>{
+ const b=ev.target.closest('.promote');if(!b)return;
+ b.disabled=true;
+ const res=b.parentElement.querySelector('.promoted');
+ try{const r=await fetch('/api/promote',{method:'POST',headers:{'Content-Type':'application/json'},
+   body:JSON.stringify({concept:b.dataset.concept,lane:b.dataset.lane})});
+  const j=await r.json();
+  if(j.accepted){res.textContent='promoted → '+j.queue_id;}else{res.textContent='failed: '+(j.error||'?');b.disabled=false;}
+ }catch(e){res.textContent='failed';b.disabled=false;}
+});
 </script></body></html>`;
 
 const server = http.createServer(async (req, res) => {
+  if (req.method === 'POST' && req.url.startsWith('/api/promote')) {
+    try {
+      let body = '';
+      for await (const chunk of req) body += chunk;
+      const { concept, lane } = JSON.parse(body || '{}');
+      if (!concept || !String(concept).trim()) {
+        res.writeHead(400, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ accepted: false, error: 'concept required' }));
+        return;
+      }
+      const { queue_id, ticket } = buildPromoteTicket(String(concept), String(lane || 'unsorted'), Date.now());
+      await writeFile(join(ENGINE, 'queue', queue_id + '.json'), JSON.stringify(ticket, null, 2));
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ accepted: true, queue_id }));
+    } catch (e) {
+      res.writeHead(500, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ accepted: false, error: String(e) }));
+    }
+    return;
+  }
   if (req.url.startsWith('/api/concepts')) {
     try {
       const lanes = parseConcepts(await readFile(CONCEPTS_MD, 'utf8'));
@@ -211,4 +272,9 @@ const server = http.createServer(async (req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
   res.end(PAGE);
 });
-server.listen(PORT, () => console.log(`watchtower-board on http://localhost:${PORT} (engine: ${ENGINE})`));
+// Only bind the port when run directly (node server.mjs), not when imported
+// (e.g. by selfcheck-promote.mjs) — so importing the pure functions can't
+// collide with the already-running :7430 server.
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  server.listen(PORT, () => console.log(`watchtower-board on http://localhost:${PORT} (engine: ${ENGINE})`));
+}

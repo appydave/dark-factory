@@ -1,0 +1,19 @@
+{
+  "id": "run-board-v4-001",
+  "kind": "run",
+  "experiment_id": "exp-20260607-board-v4",
+  "queue_id": "q-20260607-board-v4-bridge",
+  "executed": "instruction",
+  "status": "complete",
+  "started_at": "2026-06-07T00:30:00.000Z",
+  "ended_at": "2026-06-07T00:32:48.500Z",
+  "result": {
+    "summary": "Built v4 Floor↔Lanes bridge: POST /api/promote writes a valid floor queue ticket; Lanes cards gained a 'promote ▶' button. Additive only; Floor/api/state/api/concepts/staleness untouched.",
+    "files": [
+      "experiments/watchtower-board/server.mjs",
+      "experiments/watchtower-board/selfcheck-promote.mjs",
+      "experiments/watchtower-engine/proof/board-v4-bridge.md"
+    ],
+    "tested": "node --check clean; node selfcheck-promote.mjs OK (ticket shape + temp-dir JSON round-trip); listen() guarded so import never binds :7430; running server not disturbed"
+  }
+}
