@@ -65,6 +65,7 @@
 | Verify the 60GB Claude-Code RAM-leak claim with our own numbers | 📋 | 🟢 |
 | System-health view (per-process RAM/CPU, open-Swagger count) | 💡 | 🟡 |
 | **Untracked-file / worktree ROT detector** — abandoned/uncommitted git state piles up across many terminals/systems (David 2026-06-07: "just always happens"). Worst in the brains area (sub-brains edited-in-a-window then not committed/pushed); also agent-teams/worktrees/Claude-space views. Detect+tell across known repos/worktrees (uncommitted, untracked, stale worktrees) → surface for commit/cleanup. Same observers-answer/detect-tell family as preflight + reaper; natural **AppyCtrl** capability (cross-machine observer). | 💡 | 🟡 |
+| **Consumer bookkeeping reliability** — a Swagger can finish the build but botch run-next-workflow bookkeeping: skip the `reports/` handback; leave the ticket in `running/` + duplicate into `done/` (seen 2026-06-07, swagger-board-v5). Mitigations: reaper keys off `done/` (window won't orphan); **reconcile rule** `running ∩ done → drop running` (prevents re-run of completed work); harden run-next-workflow adherence. | 🔨 (reaper done) | 🟡 |
 
 ## Distribution
 | Concept | Status | Pri |
