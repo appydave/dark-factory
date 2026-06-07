@@ -1,0 +1,18 @@
+{
+  "id": "run-board-v5-001",
+  "kind": "run",
+  "experiment_id": "exp-20260607-board-v5",
+  "queue_id": "q-20260607-board-v5-converge",
+  "executed": "instruction",
+  "status": "complete",
+  "started_at": "2026-06-07T00:55:45.157Z",
+  "ended_at": "2026-06-07T00:55:45.157Z",
+  "result": {
+    "feature": "converge-bridge-fix",
+    "removed": ["per-card promote ▶ button", "POST /api/promote", "buildPromoteTicket", "selfcheck-promote.mjs"],
+    "added": ["click-to-toggle multi-select on Lanes cards", "sticky 'Converge N → brief' bar (shows only when >=2 selected)", "POST /api/converge", "buildConvergeTicket (pure)", "selfcheck-converge.mjs"],
+    "tested": "node --check both files clean; selfcheck-converge asserts ticket shape + slug-safety + empty-guard + TEMP-dir JSON round-trip; passes. No server started/killed.",
+    "untouched": ["Floor view", "/api/state", "/api/concepts", "staleness logic"],
+    "proof": "experiments/watchtower-engine/proof/board-v5-converge.md"
+  }
+}

@@ -57,26 +57,41 @@ function gitLineDates() {
   });
 }
 
-// --- v4 Floor↔Lanes BRIDGE (additive) — promote a lane concept → a floor job ---
+// --- v5 Floor↔Lanes BRIDGE (additive) — CONVERGE a cluster of lane concepts → ONE brief ---
+// (v4's per-card 'promote' button + /api/promote endpoint were REMOVED: they skipped
+//  the cluster-synthesis that is the whole point. A convergence selects >=2 related
+//  concepts and emits ONE synthesis ticket instead of N vague 'elaborate' ones.)
+//
 // slugify — sanitize a concept into a safe queue_id fragment: lowercase, only
 // [a-z0-9-], no '/', no '..', collapsed/trimmed dashes, capped at 40 chars.
 export function slugify(s) {
   return String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 40) || 'concept';
 }
 
-// buildPromoteTicket — PURE: (concept, lane, nowMs) → {queue_id, ticket}. No I/O,
-// so it is self-checkable. All time comes from nowMs (the caller passes Date.now()).
-export function buildPromoteTicket(concept, lane, nowMs) {
-  const slug = slugify(concept);
-  const queue_id = 'q-' + nowMs + '-promoted-' + slug;
+// buildConvergeTicket — PURE: (items, nowMs) → {queue_id, ticket}. No I/O, so it is
+// self-checkable. items = [{concept, lane}, ...] (>=1). All time comes from nowMs (the
+// caller passes Date.now()). The slug is derived from the first concept (sanitized, short).
+export function buildConvergeTicket(items, nowMs) {
+  const list = (Array.isArray(items) ? items : []).filter((it) => it && String(it.concept || '').trim());
+  if (!list.length) throw new Error('converge needs at least one concept');
+  const n = list.length;
+  const slug = slugify(list[0].concept);
+  const queue_id = 'q-' + nowMs + '-converge-' + slug;
+  const lines = list.map((it, i) => (i + 1) + ') ' + String(it.lane || 'unsorted') + ': ' + String(it.concept)).join('\n');
+  const prompt =
+    'Converge these ' + n + ' related concepts into ONE cohesive brief. ' +
+    'Decide the form (research brief | architecture decision | coding epic). Concepts:\n' +
+    lines + '\n' +
+    'Identify the through-line, what they collectively imply, and the concrete next work; ' +
+    'write the brief to docs/watchtower/converged-briefs/' + slug + '.md.';
   const ticket = {
     queue_id,
     kind: 'instruction',
-    prompt: 'Elaborate this concept into a short brief: ' + concept + ' (lane: ' + lane + ')',
-    experiment_id: 'exp-promoted',
-    args: { from: 'lanes-board', lane },
-    requested_at: new Date(nowMs).toISOString(),
+    experiment_id: 'exp-converge',
     requested_by: 'watchtower-board',
+    requested_at: new Date(nowMs).toISOString(),
+    args: { from: 'lanes-converge', count: n },
+    prompt,
   };
   return { queue_id, ticket };
 }
@@ -151,9 +166,16 @@ const PAGE = `<!doctype html><html><head><meta charset="utf8"><title>Watchtower 
  .card.stale{opacity:.5;border-left-color:#46506180;border-color:#3a4252}
  .age{font-size:10px;color:var(--mut);margin-top:3px} .age.warn{color:var(--run)}
  .lane h2 .stalehint{font-size:10px;color:var(--run);text-transform:none;letter-spacing:0;margin-left:6px}
- .promote{font:inherit;cursor:pointer;color:var(--q);background:#222b38;border:1px solid #2b3445;border-radius:7px;padding:1px 8px;margin-top:6px;font-size:11px}
- .promote:hover{background:#2b3445} .promote:disabled{opacity:.5;cursor:default}
- .promoted{font-size:10px;color:var(--ok);margin-left:8px}
+ .card.concept{cursor:pointer} .card.concept.sel{border-color:var(--q);border-left-color:var(--q);background:#1d2738;box-shadow:inset 0 0 0 1px var(--q)}
+ .card.concept .chk{float:left;margin-right:8px;color:var(--mut);font-size:13px;user-select:none}
+ .card.concept.sel .chk{color:var(--q)}
+ #convbar{position:fixed;left:0;right:0;bottom:0;display:none;justify-content:center;align-items:center;gap:14px;
+   padding:12px 18px;background:#11182480;backdrop-filter:blur(6px);border-top:1px solid var(--q);z-index:20}
+ #convbar.show{display:flex} #convbtn{font:inherit;cursor:pointer;color:#06210f;background:var(--ok);border:0;border-radius:8px;padding:6px 16px;font-weight:600}
+ #convbtn:hover{filter:brightness(1.08)} #convbtn:disabled{opacity:.5;cursor:default}
+ #convmsg{position:fixed;left:50%;bottom:64px;transform:translateX(-50%);background:#11331c;color:var(--ok);
+   border:1px solid var(--ok);border-radius:8px;padding:6px 14px;font-size:12px;opacity:0;transition:opacity .3s;pointer-events:none;z-index:21}
+ #convmsg.show{opacity:1}
 </style></head><body>
 <header><b>🗼 Watchtower</b><span class="muted" id="subtitle">factory floor · live</span>
  <span class="toggle"><button id="tab-floor" class="on">Floor</button><button id="tab-lanes">Lanes</button></span>
@@ -165,6 +187,8 @@ const PAGE = `<!doctype html><html><head><meta charset="utf8"><title>Watchtower 
  <div class="col"><h2>Live Swaggers (tmux) (<span id="cs">0</span>)</h2><div id="swg"></div></div>
 </div>
 <div class="lanes" id="view-lanes" style="display:none"></div>
+<div id="convbar"><span class="muted">cluster selected</span><button id="convbtn">Converge <span id="convn">0</span> concepts → brief ▶</button></div>
+<div id="convmsg"></div>
 <script>
 const el=(id)=>document.getElementById(id);
 const esc=(s)=>(s||'').replace(/[<&]/g,(c)=>({'<':'&lt;','&':'&amp;'}[c]));
@@ -188,19 +212,27 @@ async function tick(){
 tick();setInterval(tick,2000);
 
 // --- Lanes view (concept register) — additive; does not touch Floor above ---
+// v5: click-to-toggle multi-SELECT (no per-card button). Selection survives the
+// innerHTML rebuild each tickLanes via the sel Map, keyed concept then lane.
+const sel=new Map();                                   // key -> {concept, lane}
+const selKey=(concept,lane)=>concept+'␟'+lane;
 function ageLabel(it){return (it.ageDays===0)?'new':(it.ageDays+'d');}
-function laneCard(it,lane){return '<div class="card concept'+(it.stale?' stale':'')+'">'+
+function laneCard(it,lane){const k=selKey(it.concept,lane);const on=sel.has(k);
+ return '<div class="card concept'+(it.stale?' stale':'')+(on?' sel':'')+'"'+
+  ' data-concept="'+escA(it.concept)+'" data-lane="'+escA(lane)+'">'+
+  '<span class="chk">'+(on?'☑':'☐')+'</span>'+
   '<span class="badges">'+esc(it.status)+' '+esc(it.pri)+'</span>'+
   '<div class="qid">'+esc(it.concept)+'</div>'+
-  '<div class="age'+(it.stale?' warn':'')+'">'+ageLabel(it)+'</div>'+
-  '<button class="promote" data-concept="'+escA(it.concept)+'" data-lane="'+escA(lane)+'">promote ▶</button>'+
-  '<span class="promoted"></span></div>';}
+  '<div class="age'+(it.stale?' warn':'')+'">'+ageLabel(it)+'</div></div>';}
+function refreshConvBar(){const n=sel.size;el('convn').textContent=n;
+ el('convbar').classList.toggle('show',view==='lanes'&&n>=2);}
 async function tickLanes(){
  try{const s=await (await fetch('/api/concepts')).json();
   el('view-lanes').innerHTML=s.lanes.map((l)=>'<div class="lane"><h2>'+esc(l.lane)+
     ' ('+l.items.length+')'+(l.stale?'<span class="stalehint">cold · '+l.ageDays+'d</span>':'')+
     '</h2>'+(l.items.length?l.items.map((it)=>laneCard(it,l.lane)).join(''):'<div class="empty">— empty —</div>')+'</div>').join('');
   el('counts').innerHTML='<span class="pill">'+s.counts.lanes+' lanes</span> <span class="pill">'+s.counts.items+' concepts</span>';
+  refreshConvBar();
  }catch(e){el('view-lanes').innerHTML='<div class="empty">concepts unreachable</div>';}
 }
 function show(v){view=v;
@@ -210,34 +242,52 @@ function show(v){view=v;
  el('tab-lanes').classList.toggle('on',v==='lanes');
  el('subtitle').textContent=v==='floor'?'factory floor · live':'concept lanes · backlog/concepts.md';
  if(v==='lanes'){tickLanes();}else{tick();}
+ refreshConvBar();
 }
 el('tab-floor').onclick=()=>show('floor');
 el('tab-lanes').onclick=()=>show('lanes');
-// promote ▶ — delegated (innerHTML is rebuilt each tickLanes); writes a floor job
-el('view-lanes').addEventListener('click',async(ev)=>{
- const b=ev.target.closest('.promote');if(!b)return;
- b.disabled=true;
- const res=b.parentElement.querySelector('.promoted');
- try{const r=await fetch('/api/promote',{method:'POST',headers:{'Content-Type':'application/json'},
-   body:JSON.stringify({concept:b.dataset.concept,lane:b.dataset.lane})});
-  const j=await r.json();
-  if(j.accepted){res.textContent='promoted → '+j.queue_id;}else{res.textContent='failed: '+(j.error||'?');b.disabled=false;}
- }catch(e){res.textContent='failed';b.disabled=false;}
+// click-to-toggle SELECT — delegated (innerHTML is rebuilt each tickLanes)
+el('view-lanes').addEventListener('click',(ev)=>{
+ const c=ev.target.closest('.card.concept');if(!c)return;
+ const concept=c.dataset.concept,lane=c.dataset.lane,k=selKey(concept,lane);
+ if(sel.has(k)){sel.delete(k);}else{sel.set(k,{concept,lane});}
+ c.classList.toggle('sel');
+ c.querySelector('.chk').textContent=sel.has(k)?'☑':'☐';
+ refreshConvBar();
 });
+let convToast;
+function toast(msg){const m=el('convmsg');m.textContent=msg;m.classList.add('show');
+ clearTimeout(convToast);convToast=setTimeout(()=>m.classList.remove('show'),4000);}
+// Converge N → ONE brief: emits a single converge ticket, then clears the selection
+el('convbtn').onclick=async()=>{
+ const items=[...sel.values()];if(items.length<2)return;
+ const btn=el('convbtn');btn.disabled=true;
+ try{const r=await fetch('/api/converge',{method:'POST',headers:{'Content-Type':'application/json'},
+   body:JSON.stringify({items})});
+  const j=await r.json();
+  if(j.accepted){const n=items.length;sel.clear();tickLanes();
+   toast('converged '+n+' concepts → '+j.queue_id);}
+  else{toast('failed: '+(j.error||'?'));}
+ }catch(e){toast('failed');}
+ finally{btn.disabled=false;refreshConvBar();}
+};
 </script></body></html>`;
 
 const server = http.createServer(async (req, res) => {
-  if (req.method === 'POST' && req.url.startsWith('/api/promote')) {
+  if (req.method === 'POST' && req.url.startsWith('/api/converge')) {
     try {
       let body = '';
       for await (const chunk of req) body += chunk;
-      const { concept, lane } = JSON.parse(body || '{}');
-      if (!concept || !String(concept).trim()) {
+      const { items } = JSON.parse(body || '{}');
+      const list = (Array.isArray(items) ? items : [])
+        .filter((it) => it && String(it.concept || '').trim())
+        .map((it) => ({ concept: String(it.concept), lane: String(it.lane || 'unsorted') }));
+      if (list.length < 2) {
         res.writeHead(400, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ accepted: false, error: 'concept required' }));
+        res.end(JSON.stringify({ accepted: false, error: 'converge needs >=2 concepts' }));
         return;
       }
-      const { queue_id, ticket } = buildPromoteTicket(String(concept), String(lane || 'unsorted'), Date.now());
+      const { queue_id, ticket } = buildConvergeTicket(list, Date.now());
       await writeFile(join(ENGINE, 'queue', queue_id + '.json'), JSON.stringify(ticket, null, 2));
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ accepted: true, queue_id }));
@@ -273,7 +323,7 @@ const server = http.createServer(async (req, res) => {
   res.end(PAGE);
 });
 // Only bind the port when run directly (node server.mjs), not when imported
-// (e.g. by selfcheck-promote.mjs) — so importing the pure functions can't
+// (e.g. by selfcheck-converge.mjs) — so importing the pure functions can't
 // collide with the already-running :7430 server.
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   server.listen(PORT, () => console.log(`watchtower-board on http://localhost:${PORT} (engine: ${ENGINE})`));

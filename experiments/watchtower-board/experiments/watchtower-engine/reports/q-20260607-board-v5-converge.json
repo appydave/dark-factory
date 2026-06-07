@@ -1,0 +1,6 @@
+{
+  "queue_id": "q-20260607-board-v5-converge",
+  "status": "complete",
+  "outcome": "board v5: removed per-card promote + /api/promote; added Lanes multi-select + sticky Converge-N→brief bar + POST /api/converge (one synthesis ticket). Proof: experiments/watchtower-engine/proof/board-v5-converge.md; run: runs/run-board-v5-001.json",
+  "ended_at": "2026-06-07T00:55:45.157Z"
+}

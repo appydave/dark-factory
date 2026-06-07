@@ -1,28 +1,32 @@
 #!/usr/bin/env bash
 # reaper.sh — engine-state reaper (runs as Marshall's privileged Monitor).
 #
-# Closes the COMMON orphan: a Swagger whose handback landed in reports/ but whose
-# tmux window is still open. PROCESS-INDEPENDENT — process-tree detection is dead
+# Closes the COMMON orphan: a Swagger whose ticket reached done/ but whose tmux
+# window is still open. PROCESS-INDEPENDENT — process-tree detection is dead
 # (Claude Code reparents the session to its daemon; see proof/reaper-livefire-finding.md).
 # Keys off the engine's OWN artifacts:
-#   reports/<queue_id>.json  (handback; its mtime = when the job finished)
+#   done/<queue_id>.json     (ticket COMPLETED; its mtime = when the job finished).
+#                            done/ lands BEFORE the reports/ handback (run-next-workflow
+#                            step 5 then 5b), so a Swagger that skips the handback can't
+#                            orphan its window. Only successes land in done/ (failures →
+#                            failed/, deliberately left open for inspection).
 #   registry/<window>.json   ({"queue_id": "..."}; written by Marshall on dispatch)
-# → once the handback is older than the grace period, if the window still exists,
-#   tmux kill-window it and deregister. Idempotent: reaping an absent window is a no-op.
+# → once the ticket has been in done/ longer than the grace period, if the window still
+#   exists, tmux kill-window it and deregister. Idempotent: reaping an absent window is a no-op.
 #
 # Run via the Monitor tool in Marshall's session (Marshall alone holds tmux perms).
 # Env: REAPER_GRACE_SECONDS (default 60), REAPER_POLL_SECONDS (default 5),
 #      REAPER_ONCE=1 (run a single pass and exit — for testing).
 set -uo pipefail
 BASE="$(cd "$(dirname "$0")/.." && pwd)"
-REPORTS="$BASE/reports"; REG="$BASE/registry"
+DONE="$BASE/done"; REG="$BASE/registry"
 GRACE="${REAPER_GRACE_SECONDS:-60}"; POLL="${REAPER_POLL_SECONDS:-5}"
 mkdir -p "$REG"
 shopt -s nullglob
 
 while true; do
   now=$(date +%s)
-  for f in "$REPORTS"/*.json; do
+  for f in "$DONE"/*.json; do
     qid=$(basename "$f" .json)
     landed=$(stat -f %m "$f" 2>/dev/null || echo "$now")
     [ $(( now - landed )) -lt "$GRACE" ] && continue

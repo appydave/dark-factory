@@ -1,0 +1,7 @@
+# board-v5 — Floor↔Lanes bridge fixed: per-card promote → cluster CONVERGE
+
+- **Removed**: the per-card `promote ▶` button (was on every card incl. done/status-notes), the `/api/promote` endpoint, `buildPromoteTicket`, and `selfcheck-promote.mjs` — they emitted N vague "elaborate" tickets and skipped cluster-synthesis.
+- **Select+converge UX**: Lanes cards are now click-to-toggle multi-SELECT (☐/☑, blue highlight; selection survives the 2s re-render via a `sel` Map). A single sticky bottom bar appears ONLY when ≥2 are selected — "Converge N concepts → brief ▶" (live count) — and clears the selection + shows a transient toast on success.
+- **`/api/converge`** accepts `{items:[{concept,lane},…]}` (≥2) → writes ONE engine-queue ticket `q-<Date.now()>-converge-<slug>` `{kind:'instruction', experiment_id:'exp-converge', requested_by:'watchtower-board', requested_at:<OS ISO>, args:{from:'lanes-converge',count:N}, prompt:'Converge these N… → docs/watchtower/converged-briefs/<slug>.md'}`; returns `{accepted:true,queue_id}`.
+- **Tested**: ticket builder factored into PURE `buildConvergeTicket(items,nowMs)`; `selfcheck-converge.mjs` asserts shape/slug-safety/numbered-prompt/empty-guard + TEMP-dir JSON round-trip — passes; `node --check` clean on both files. No server started or killed (:7430 untouched).
+- **Untouched (confirmed)**: Floor view, `/api/state`, `/api/concepts`, staleness logic (`gitLineDates`/`attachStaleness`/STALE_DAYS) — all changes additive to the Lanes view only.
