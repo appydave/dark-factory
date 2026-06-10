@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mocha Census — taste board</title>
+<style>
+  :root{
+    --bg:#14110f; --panel:#1d1916; --line:#2c2622; --ink:#ece6dd; --dim:#9a9088;
+    --love:#e0568f; --good:#3fb27f; --avg:#caa44a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:15px/1.5 ui-sans-serif,-apple-system,"Segoe UI",sans-serif;}
+  header{position:sticky;top:0;z-index:5;background:rgba(20,17,15,.92);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
+    padding:14px 22px;display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+  h1{font-size:16px;margin:0;letter-spacing:.04em;font-weight:650}
+  .tally{display:flex;gap:14px;font-size:13px;color:var(--dim)}
+  .tally b{color:var(--ink)}
+  .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;vertical-align:1px}
+  .hint{font-size:12px;color:var(--dim)}
+  .hint kbd{font-family:ui-monospace,monospace;background:var(--panel);border:1px solid var(--line);
+    border-radius:5px;padding:1px 6px;color:var(--ink)}
+  .spacer{flex:1}
+  select,button,input{font:inherit;font-size:13px;background:var(--panel);color:var(--ink);
+    border:1px solid var(--line);border-radius:8px;padding:6px 11px}
+  select,button{cursor:pointer}
+  button:hover,select:hover{border-color:#48403a}
+  main{padding:22px;display:grid;gap:22px;
+    grid-template-columns:repeat(auto-fill,minmax(330px,1fr))}
+  figure{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:12px;
+    overflow:hidden;display:flex;flex-direction:column;transition:border-color .15s}
+  figure[data-r=love]{border-color:var(--love)}
+  figure[data-r=good]{border-color:var(--good)}
+  figure[data-r=average]{border-color:var(--avg)}
+  .thumb{aspect-ratio:4/3;overflow:hidden;background:#0d0b0a;cursor:zoom-in;border-bottom:1px solid var(--line)}
+  .thumb img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+  figcaption{padding:10px 12px;display:flex;flex-direction:column;gap:8px}
+  .meta{min-height:34px}
+  .title{font-size:13px;font-weight:600;line-height:1.3}
+  .sub{font-size:11px;color:var(--dim);font-family:ui-monospace,monospace}
+  .lbl{font-size:11px;color:var(--avg);font-style:italic;min-height:14px}
+  .rate{display:flex;gap:6px}
+  .rate button{flex:1;padding:6px 0;border-radius:7px;font-weight:600;opacity:.5;font-size:12px}
+  .rate button.on{opacity:1}
+  .rate .lv.on{background:color-mix(in oklch,var(--love) 24%,transparent);border-color:var(--love);color:var(--love)}
+  .rate .g.on{background:color-mix(in oklch,var(--good) 24%,transparent);border-color:var(--good);color:var(--good)}
+  .rate .av.on{background:color-mix(in oklch,var(--avg) 24%,transparent);border-color:var(--avg);color:var(--avg)}
+  /* lightbox */
+  dialog{border:1px solid var(--line);background:var(--panel);border-radius:14px;
+    max-width:97vw;max-height:97vh;padding:0;overflow:hidden}
+  dialog[data-r=love]{border-color:var(--love)}
+  dialog[data-r=good]{border-color:var(--good)}
+  dialog[data-r=average]{border-color:var(--avg)}
+  dialog::backdrop{background:rgba(8,6,5,.92)}
+  .lbwrap{display:flex;flex-direction:column;max-height:97vh}
+  .lbimg{flex:1;min-height:0;overflow:auto;background:#0d0b0a;display:flex;justify-content:center}
+  .lbimg img{max-width:100%;height:auto;display:block;align-self:flex-start}
+  .lbbar{display:flex;align-items:center;gap:14px;padding:11px 16px;border-top:1px solid var(--line);
+    background:var(--panel);flex-wrap:wrap}
+  .pos{font-family:ui-monospace,monospace;font-size:13px;color:var(--dim);min-width:78px}
+  .lbrate{display:flex;gap:8px}
+  .lbrate button{display:flex;align-items:center;gap:7px;padding:7px 13px;font-weight:600;opacity:.6}
+  .lbrate button kbd{font-family:ui-monospace,monospace;font-size:11px;background:#0d0b0a;
+    border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+  .lbrate button.on{opacity:1}
+  .lbrate .lv.on{background:color-mix(in oklch,var(--love) 26%,transparent);border-color:var(--love);color:var(--love)}
+  .lbrate .g.on{background:color-mix(in oklch,var(--good) 26%,transparent);border-color:var(--good);color:var(--good)}
+  .lbrate .av.on{background:color-mix(in oklch,var(--avg) 26%,transparent);border-color:var(--avg);color:var(--avg)}
+  #lblabel{flex:1;min-width:160px}
+  .lbcap{font-size:12px;color:var(--dim);font-family:ui-monospace,monospace;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:240px}
+  .nav{background:transparent;border:none;color:var(--dim);font-size:22px;padding:0 8px;cursor:pointer}
+  .nav:hover{color:var(--ink)}
+  .empty{color:var(--dim);padding:40px;grid-column:1/-1;text-align:center}
+</style>
+</head>
+<body>
+<header>
+  <h1>MOCHA CENSUS · taste board</h1>
+  <div class="tally" id="tally"></div>
+  <span class="hint">open an image · <kbd>A</kbd> love <kbd>S</kbd> good <kbd>D</kbd> average · <kbd>←</kbd><kbd>→</kbd> step · type a label</span>
+  <span class="spacer"></span>
+  <select id="repo"><option value="">all repos</option></select>
+  <select id="filter">
+    <option value="">show all</option>
+    <option value="unrated">unrated only</option>
+    <option value="love">love it</option><option value="good">good</option><option value="average">average</option>
+    <option value="labeled">labeled</option>
+  </select>
+  <button id="export">copy ratings JSON</button>
+</header>
+<main id="grid"></main>
+
+<dialog id="lb">
+  <div class="lbwrap">
+    <div class="lbimg"><img id="lbimg" alt=""></div>
+    <div class="lbbar">
+      <button class="nav" id="lbprev" title="previous (←)">‹</button>
+      <span class="pos" id="lbpos"></span>
+      <span class="lbrate">
+        <button class="lv" data-v="love"><kbd>A</kbd> love</button>
+        <button class="g" data-v="good"><kbd>S</kbd> good</button>
+        <button class="av" data-v="average"><kbd>D</kbd> average</button>
+      </span>
+      <input id="lblabel" type="text" placeholder="label / why (optional)" autocomplete="off">
+      <span class="lbcap" id="lbcap"></span>
+      <button class="nav" id="lbnext" title="next (→)">›</button>
+    </div>
+  </div>
+</dialog>
+
+<script>
+const KEY="mocha-census-ratings-v2";
+let store=JSON.parse(localStorage.getItem(KEY)||"null");   // {id:{r,label}}
+let shots=[], viewList=[], cur=-1;
+const grid=document.getElementById("grid"), repoSel=document.getElementById("repo"),
+      filterSel=document.getElementById("filter"), tally=document.getElementById("tally"),
+      lb=document.getElementById("lb"), lbimg=document.getElementById("lbimg"),
+      lbcap=document.getElementById("lbcap"), lbpos=document.getElementById("lbpos"),
+      lblabel=document.getElementById("lblabel");
+const id=s=>s.repo+"//"+s.design_id;
+const RATINGS=["love","good","average"];
+
+function save(){localStorage.setItem(KEY,JSON.stringify(store))}
+function rec(s){const k=id(s);return store[k]||(store[k]={r:"",label:""})}
+function getR(s){return (store[id(s)]||{}).r||""}
+function getL(s){return (store[id(s)]||{}).label||""}
+function setR(s,v){const o=rec(s);o.r=(o.r===v?"":v);save();drawGrid();renderTally()}
+function setL(s,v){rec(s).label=v;save();renderTally()}
+
+function counts(){const c={love:0,good:0,average:0,rated:0,labeled:0};
+  for(const k in store){const o=store[k];if(o.r){c[o.r]++;c.rated++}if(o.label&&o.label.trim())c.labeled++}return c}
+function renderTally(){const c=counts();tally.innerHTML=
+  `<span><span class="dot" style="background:var(--love)"></span><b>${c.love}</b> love</span>`+
+  `<span><span class="dot" style="background:var(--good)"></span><b>${c.good}</b> good</span>`+
+  `<span><span class="dot" style="background:var(--avg)"></span><b>${c.average}</b> average</span>`+
+  `<span><b>${c.labeled}</b> labeled</span>`+
+  `<span><b>${c.rated}</b>/${shots.length} rated</span>`;}
+
+function drawGrid(){
+  const rf=repoSel.value, ff=filterSel.value;
+  const list=shots.filter(s=>{
+    if(rf&&s.repo!==rf)return false;
+    const r=getR(s);
+    if(ff==="unrated")return !r;
+    if(ff==="labeled")return !!getL(s).trim();
+    if(RATINGS.includes(ff))return r===ff;
+    return true;
+  });
+  if(!lb.open) viewList=list;
+  grid.innerHTML="";
+  if(!list.length){grid.innerHTML='<div class="empty">nothing here</div>';return;}
+  list.forEach((s,i)=>{
+    const r=getR(s), l=getL(s);
+    const fig=document.createElement("figure");
+    if(r)fig.dataset.r=r;
+    fig.innerHTML=`
+      <div class="thumb"><img loading="lazy" src="${s.img}" alt=""></div>
+      <figcaption>
+        <div class="meta"><div class="title">${s.title||s.design_id}</div>
+          <div class="sub">${s.repo} · ${s.machine}</div></div>
+        <div class="lbl">${l?("“"+l+"”"):""}</div>
+        <div class="rate">
+          <button class="lv ${r==='love'?'on':''}">love</button>
+          <button class="g ${r==='good'?'on':''}">good</button>
+          <button class="av ${r==='average'?'on':''}">average</button>
+        </div></figcaption>`;
+    fig.querySelector(".thumb").onclick=()=>openLB(i);
+    const[lv,g,av]=fig.querySelectorAll(".rate button");
+    lv.onclick=()=>setR(s,"love");g.onclick=()=>setR(s,"good");av.onclick=()=>setR(s,"average");
+    grid.appendChild(fig);
+  });
+}
+function draw(){drawGrid();renderTally()}
+
+/* ---- lightbox ---- */
+function openLB(i){cur=i;lb.showModal();renderLB()}
+function renderLB(){
+  if(cur<0||!viewList.length)return;
+  const s=viewList[cur], r=getR(s);
+  lbimg.src=s.img;
+  lbcap.textContent=s.repo+" · "+s.design_id;
+  lbpos.textContent=(cur+1)+" / "+viewList.length;
+  lb.dataset.r=r;
+  lblabel.value=getL(s);
+  lb.querySelectorAll(".lbrate button").forEach(b=>b.classList.toggle("on",b.dataset.v===r));
+  lbimg.parentElement.scrollTop=0;
+}
+function navLB(d){if(cur<0||!viewList.length)return;cur=(cur+d+viewList.length)%viewList.length;renderLB()}
+function rateLB(v){if(cur<0)return;setR(viewList[cur],v);renderLB()}
+
+lb.querySelectorAll(".lbrate button").forEach(b=>b.onclick=()=>rateLB(b.dataset.v));
+document.getElementById("lbprev").onclick=()=>navLB(-1);
+document.getElementById("lbnext").onclick=()=>navLB(1);
+lblabel.addEventListener("input",()=>{if(cur>=0)setL(viewList[cur],lblabel.value)});
+lblabel.addEventListener("keydown",e=>e.stopPropagation());   // typing never triggers shortcuts
+
+document.addEventListener("keydown",e=>{
+  if(!lb.open)return;
+  if(e.target===lblabel)return;
+  if(e.key==="ArrowLeft"){navLB(-1);e.preventDefault();return}
+  if(e.key==="ArrowRight"){navLB(1);e.preventDefault();return}
+  const k=e.key.toLowerCase();
+  if(k==="a"){rateLB("love");e.preventDefault()}
+  else if(k==="s"){rateLB("good");e.preventDefault()}
+  else if(k==="d"){rateLB("average");e.preventDefault()}
+});
+
+document.getElementById("export").onclick=async()=>{
+  const out=shots.map(s=>({repo:s.repo,design_id:s.design_id,rating:getR(s)||null,label:getL(s)||null}));
+  await navigator.clipboard.writeText(JSON.stringify(out,null,2));
+  const b=document.getElementById("export");b.textContent="copied ✓";
+  setTimeout(()=>b.textContent="copy ratings JSON",1400);
+};
+repoSel.onchange=draw;filterSel.onchange=draw;
+
+async function init(){
+  shots=await (await fetch("shots.json")).json();
+  if(!store){                                   // first load: seed from round-01 (good→good, meh→average)
+    store={};
+    try{
+      const seed=await (await fetch("../ratings/round-01.json")).json();
+      const map={good:"good",meh:"average"};     // shit (broken) + null start unrated; love starts empty
+      for(const s of seed){if(map[s.rating])store[s.repo+"//"+s.design_id]={r:map[s.rating],label:""}}
+    }catch(e){}
+    save();
+  }
+  [...new Set(shots.map(s=>s.repo))].sort().forEach(r=>{
+    const o=document.createElement("option");o.value=o.textContent=r;repoSel.appendChild(o)});
+  draw();
+}
+init();
+</script>
+</body>
+</html>

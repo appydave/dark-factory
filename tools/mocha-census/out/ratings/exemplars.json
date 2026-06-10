@@ -1,0 +1,324 @@
+[
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "reference-landscape",
+    "archetype": "diagram-flow",
+    "img": "ad-apps-angeleye__reference-landscape.png",
+    "note": "I don't like the orange on brown text, but the use of colours throughout is good"
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "wave-bar",
+    "archetype": "diagram-flow",
+    "img": "ad-apps-angeleye__wave-bar.png",
+    "note": null
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "wave-subagents",
+    "archetype": "diagram-flow",
+    "img": "ad-apps-angeleye__wave-subagents.png",
+    "note": "wonderful use of color with the greens, blues, purple and orange for highlights"
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "wave-handover",
+    "archetype": "diagram-flow",
+    "img": "ad-apps-angeleye__wave-handover.png",
+    "note": "lovel this, great use of color"
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "wave-infographic",
+    "archetype": "dashboard",
+    "img": "ad-apps-angeleye__wave-infographic.png",
+    "note": "love it, accept for the orange on the banner"
+  },
+  {
+    "repo": "ad-appydave.com",
+    "design_id": "homepage-community",
+    "archetype": "structured-layout",
+    "img": "ad-appydave.com__homepage-community.png",
+    "note": "there is an overuse of dark brown down near the footer"
+  },
+  {
+    "repo": "ad-appydave.com",
+    "design_id": "homepage-builder",
+    "archetype": "structured-layout",
+    "img": "ad-appydave.com__homepage-builder.png",
+    "note": null
+  },
+  {
+    "repo": "ad-appydave.com",
+    "design_id": "homepage-authority",
+    "archetype": "structured-layout",
+    "img": "ad-appydave.com__homepage-authority.png",
+    "note": null
+  },
+  {
+    "repo": "ad-appydave.com",
+    "design_id": "layout-29",
+    "archetype": "structured-layout",
+    "img": "ad-appydave.com__layout-29.png",
+    "note": "wondwerful cloth color and angular ghost text, really good use of block colors"
+  },
+  {
+    "repo": "ad-brains-agentic-os",
+    "design_id": "05-application-typology",
+    "archetype": "structured-layout",
+    "img": "ad-brains-agentic-os__05-application-typology.png",
+    "note": "a litttle busy, but many great elments"
+  },
+  {
+    "repo": "ad-appydave.com",
+    "design_id": "layout-28",
+    "archetype": "structured-layout",
+    "img": "ad-appydave.com__layout-28.png",
+    "note": "unique elements going on in the yellow area"
+  },
+  {
+    "repo": "ad-appydave.com",
+    "design_id": "layout-07",
+    "archetype": "structured-layout",
+    "img": "ad-appydave.com__layout-07.png",
+    "note": null
+  },
+  {
+    "repo": "ad-brains-agentic-os",
+    "design_id": "04-agent-orchestration",
+    "archetype": "structured-layout",
+    "img": "ad-brains-agentic-os__04-agent-orchestration.png",
+    "note": "samantha through to agents is cool with the curvey lines"
+  },
+  {
+    "repo": "ad-apps-dark-factory",
+    "design_id": "08-poem-consolidation",
+    "archetype": "structured-layout",
+    "img": "ad-apps-dark-factory__08-poem-consolidation.png",
+    "note": null
+  },
+  {
+    "repo": "ad-apps-dark-factory",
+    "design_id": "05-probe-progression",
+    "archetype": "structured-layout",
+    "img": "ad-apps-dark-factory__05-probe-progression.png",
+    "note": null
+  },
+  {
+    "repo": "ad-apps-dark-factory",
+    "design_id": "06-blackboard-vs-poem",
+    "archetype": "structured-layout",
+    "img": "ad-apps-dark-factory__06-blackboard-vs-poem.png",
+    "note": "one failur mode three ures was a little dark"
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "wave-audit-panel",
+    "archetype": "app-shell",
+    "img": "ad-apps-angeleye__wave-audit-panel.png",
+    "note": "a bit information dense, but great"
+  },
+  {
+    "repo": "ad-brains-agentic-os",
+    "design_id": "01-layer-stack",
+    "archetype": "structured-layout",
+    "img": "ad-brains-agentic-os__01-layer-stack.png",
+    "note": "a bit busy"
+  },
+  {
+    "repo": "ad-brains-agentic-os",
+    "design_id": "02-node-topology",
+    "archetype": "structured-layout",
+    "img": "ad-brains-agentic-os__02-node-topology.png",
+    "note": "a bit busy towards the both"
+  },
+  {
+    "repo": "ad-appydave.com",
+    "design_id": "layout-26",
+    "archetype": "dashboard",
+    "img": "ad-appydave.com__layout-26.png",
+    "note": null
+  },
+  {
+    "repo": "ad-appydave.com",
+    "design_id": "layout-05",
+    "archetype": "structured-layout",
+    "img": "ad-appydave.com__layout-05.png",
+    "note": null
+  },
+  {
+    "repo": "ad-appydave-plugins",
+    "design_id": "01-lexi-profile",
+    "archetype": "dashboard",
+    "img": "ad-appydave-plugins__01-lexi-profile.png",
+    "note": "this is really good use of light brown / yellow on lexi and excelent ghost text, one of the best versions of mixed block/section colors I've seend"
+  },
+  {
+    "repo": "ad-appydave.com",
+    "design_id": "layout-17",
+    "archetype": "composed",
+    "img": "ad-appydave.com__layout-17.png",
+    "note": null
+  },
+  {
+    "repo": "ad-apps-dark-factory",
+    "design_id": "09-census-progress",
+    "archetype": "dashboard",
+    "img": "ad-apps-dark-factory__09-census-progress.png",
+    "note": null
+  },
+  {
+    "repo": "ad-apps-dark-factory",
+    "design_id": "07-workflow-flows",
+    "archetype": "composed",
+    "img": "ad-apps-dark-factory__07-workflow-flows.png",
+    "note": "realy love the section at the top with see, trans form etc, the legend I guess"
+  },
+  {
+    "repo": "ad-appydave.com",
+    "design_id": "layout-16",
+    "archetype": "composed",
+    "img": "ad-appydave.com__layout-16.png",
+    "note": null
+  },
+  {
+    "repo": "ad-appydave.com",
+    "design_id": "layout-06",
+    "archetype": "composed",
+    "img": "ad-appydave.com__layout-06.png",
+    "note": null
+  },
+  {
+    "repo": "ad-appydave-plugins",
+    "design_id": "02-frontmatter-examples",
+    "archetype": "dashboard",
+    "img": "ad-appydave-plugins__02-frontmatter-examples.png",
+    "note": "again, awesome use of block colours with contrasst"
+  },
+  {
+    "repo": "ad-apps-dark-factory",
+    "design_id": "04-brain-sleeps",
+    "archetype": "composed",
+    "img": "ad-apps-dark-factory__04-brain-sleeps.png",
+    "note": null
+  },
+  {
+    "repo": "ad-apps-dark-factory",
+    "design_id": "01-pipeline-overview",
+    "archetype": "composed",
+    "img": "ad-apps-dark-factory__01-pipeline-overview.png",
+    "note": null
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "wave-sprint-board",
+    "archetype": "app-shell",
+    "img": "ad-apps-angeleye__wave-sprint-board.png",
+    "note": null
+  },
+  {
+    "repo": "ad-appydave.com",
+    "design_id": "layout-03",
+    "archetype": "app-shell",
+    "img": "ad-appydave.com__layout-03.png",
+    "note": null
+  },
+  {
+    "repo": "ad-flivideo-flihub",
+    "design_id": "project-list-02-kanban-pipeline",
+    "archetype": "composed",
+    "img": "ad-flivideo-flihub__project-list-02-kanban-pipeline.png",
+    "note": null
+  },
+  {
+    "repo": "ad-appydave.com",
+    "design_id": "layout-15",
+    "archetype": "composed",
+    "img": "ad-appydave.com__layout-15.png",
+    "note": null
+  },
+  {
+    "repo": "ad-brains-ruflo",
+    "design_id": "06-swarm-topologies",
+    "archetype": "dashboard",
+    "img": "ad-brains-ruflo__06-swarm-topologies.png",
+    "note": null
+  },
+  {
+    "repo": "ad-brains-ruflo",
+    "design_id": "08-phase-2-fanout",
+    "archetype": "app-shell",
+    "img": "ad-brains-ruflo__08-phase-2-fanout.png",
+    "note": null
+  },
+  {
+    "repo": "ad-appydave.com",
+    "design_id": "layout-02",
+    "archetype": "dashboard",
+    "img": "ad-appydave.com__layout-02.png",
+    "note": null
+  },
+  {
+    "repo": "ad-brains-ruflo",
+    "design_id": "07-phase-1-agent-roster",
+    "archetype": "dashboard",
+    "img": "ad-brains-ruflo__07-phase-1-agent-roster.png",
+    "note": null
+  },
+  {
+    "repo": "ad-brains-ruflo",
+    "design_id": "10-swarm-playbook",
+    "archetype": "dashboard",
+    "img": "ad-brains-ruflo__10-swarm-playbook.png",
+    "note": null
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "sync-ux-a",
+    "archetype": "app-shell",
+    "img": "ad-apps-angeleye__sync-ux-a.png",
+    "note": "well balanced"
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "sync-ux-d",
+    "archetype": "app-shell",
+    "img": "ad-apps-angeleye__sync-ux-d.png",
+    "note": "orange issue"
+  },
+  {
+    "repo": "ad-brains-ruflo",
+    "design_id": "09-phase-3-bridge-webview",
+    "archetype": "dashboard",
+    "img": "ad-brains-ruflo__09-phase-3-bridge-webview.png",
+    "note": null
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "sync-ux-b",
+    "archetype": "app-shell",
+    "img": "ad-apps-angeleye__sync-ux-b.png",
+    "note": "orange is not that good"
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "sync-ux-c",
+    "archetype": "app-shell",
+    "img": "ad-apps-angeleye__sync-ux-c.png",
+    "note": null
+  },
+  {
+    "repo": "ad-brains-ruflo",
+    "design_id": "03-topology-comparison",
+    "archetype": "dashboard",
+    "img": "ad-brains-ruflo__03-topology-comparison.png",
+    "note": null
+  },
+  {
+    "repo": "ad-brains-ruflo",
+    "design_id": "01-what-ruflo-is",
+    "archetype": "dashboard",
+    "img": "ad-brains-ruflo__01-what-ruflo-is.png",
+    "note": null
+  }
+]

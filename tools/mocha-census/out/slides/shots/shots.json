@@ -1,0 +1,2445 @@
+[
+  {
+    "corpus": "bmad-agents",
+    "slug": "appydave-workflow",
+    "file": "bmad-agents__appydave-workflow.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-agents/appydave-workflow.html",
+    "full_page": false
+  },
+  {
+    "corpus": "bmad-agents",
+    "slug": "bob",
+    "file": "bmad-agents__bob.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-agents/bob.html",
+    "full_page": true
+  },
+  {
+    "corpus": "bmad-agents",
+    "slug": "cheatsheet",
+    "file": "bmad-agents__cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-agents/cheatsheet.html",
+    "full_page": false
+  },
+  {
+    "corpus": "bmad-agents",
+    "slug": "comparison",
+    "file": "bmad-agents__comparison.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-agents/comparison.html",
+    "full_page": false
+  },
+  {
+    "corpus": "bmad-agents",
+    "slug": "handoff-flow",
+    "file": "bmad-agents__handoff-flow.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-agents/handoff-flow.html",
+    "full_page": true
+  },
+  {
+    "corpus": "bmad-agents",
+    "slug": "james",
+    "file": "bmad-agents__james.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-agents/james.html",
+    "full_page": true
+  },
+  {
+    "corpus": "bmad-agents",
+    "slug": "john",
+    "file": "bmad-agents__john.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-agents/john.html",
+    "full_page": true
+  },
+  {
+    "corpus": "bmad-agents",
+    "slug": "mary",
+    "file": "bmad-agents__mary.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-agents/mary.html",
+    "full_page": true
+  },
+  {
+    "corpus": "bmad-agents",
+    "slug": "pipeline",
+    "file": "bmad-agents__pipeline.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-agents/pipeline.html",
+    "full_page": true
+  },
+  {
+    "corpus": "bmad-agents",
+    "slug": "quinn",
+    "file": "bmad-agents__quinn.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-agents/quinn.html",
+    "full_page": true
+  },
+  {
+    "corpus": "bmad-agents",
+    "slug": "sarah",
+    "file": "bmad-agents__sarah.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-agents/sarah.html",
+    "full_page": true
+  },
+  {
+    "corpus": "bmad-agents",
+    "slug": "taylor",
+    "file": "bmad-agents__taylor.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-agents/taylor.html",
+    "full_page": true
+  },
+  {
+    "corpus": "bmad-agents",
+    "slug": "winston",
+    "file": "bmad-agents__winston.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-agents/winston.html",
+    "full_page": true
+  },
+  {
+    "corpus": "bmad-agents",
+    "slug": "zero-to-app-chapters",
+    "file": "bmad-agents__zero-to-app-chapters.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-agents/zero-to-app-chapters.html",
+    "full_page": false
+  },
+  {
+    "corpus": "bmad-agents",
+    "slug": "zero-to-app-overview",
+    "file": "bmad-agents__zero-to-app-overview.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-agents/zero-to-app-overview.html",
+    "full_page": false
+  },
+  {
+    "corpus": "bmad-old",
+    "slug": "bmad-agents-presentation",
+    "file": "bmad-old__bmad-agents-presentation.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brains/bmad-method/bmad-agents-presentation.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "analyst-complete-handoff",
+    "file": "poem__analyst-complete-handoff.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/analyst-complete-handoff.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "analyst-workflow-intro",
+    "file": "poem__analyst-workflow-intro.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/analyst-workflow-intro.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "api-cards",
+    "file": "poem__api-cards.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/api-cards.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "api-cheatsheet",
+    "file": "poem__api-cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/api-cheatsheet.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "api-decision-tree",
+    "file": "poem__api-decision-tree.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/api-decision-tree.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "architect-checklist-readiness",
+    "file": "poem__architect-checklist-readiness.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/architect-checklist-readiness.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "checklist-owner-notes",
+    "file": "poem__checklist-owner-notes.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/checklist-owner-notes.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "checklist-readiness-scorecard",
+    "file": "poem__checklist-readiness-scorecard.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/checklist-readiness-scorecard.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "checklist-recommendations",
+    "file": "poem__checklist-recommendations.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/checklist-recommendations.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "checklist-risk-matrix",
+    "file": "poem__checklist-risk-matrix.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/checklist-risk-matrix.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "checklist-section-grid",
+    "file": "poem__checklist-section-grid.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/checklist-section-grid.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "cicd-combined-roadmap",
+    "file": "poem__cicd-combined-roadmap.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/cicd-combined-roadmap.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "cicd-manual-checklist",
+    "file": "poem__cicd-manual-checklist.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/cicd-manual-checklist.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "cicd-mental-model",
+    "file": "poem__cicd-mental-model.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/cicd-mental-model.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "cicd-phased-rollout",
+    "file": "poem__cicd-phased-rollout.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/cicd-phased-rollout.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "cicd-philosophy",
+    "file": "poem__cicd-philosophy.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/cicd-philosophy.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "cicd-validation-comparison",
+    "file": "poem__cicd-validation-comparison.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/cicd-validation-comparison.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "cicd-where-things-live",
+    "file": "poem__cicd-where-things-live.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/cicd-where-things-live.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "cicd-workflow-pipeline",
+    "file": "poem__cicd-workflow-pipeline.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/cicd-workflow-pipeline.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "components-cards",
+    "file": "poem__components-cards.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/components-cards.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "components-cheatsheet",
+    "file": "poem__components-cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/components-cheatsheet.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "constraints-assumptions",
+    "file": "poem__constraints-assumptions.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/constraints-assumptions.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "data-models-cards",
+    "file": "poem__data-models-cards.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/data-models-cards.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "data-models-er-diagram",
+    "file": "poem__data-models-er-diagram.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/data-models-er-diagram.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "data-models-interfaces",
+    "file": "poem__data-models-interfaces.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/data-models-interfaces.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "dev-commands-cheatsheet",
+    "file": "poem__dev-commands-cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/dev-commands-cheatsheet.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "dev-environment-config",
+    "file": "poem__dev-environment-config.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/dev-environment-config.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "dev-workflow-cards",
+    "file": "poem__dev-workflow-cards.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/dev-workflow-cards.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "epic-dependencies-flow",
+    "file": "poem__epic-dependencies-flow.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/epic-dependencies-flow.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "epic-overview-grid",
+    "file": "poem__epic-overview-grid.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/epic-overview-grid.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "epic0-overview",
+    "file": "poem__epic0-overview.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/epic0-overview.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "epic1-dev-flow",
+    "file": "poem__epic1-dev-flow.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/epic1-dev-flow.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "epic1-overview",
+    "file": "poem__epic1-overview.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/epic1-overview.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "epic3-overview",
+    "file": "poem__epic3-overview.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/epic3-overview.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "epic4-kdd-alignment",
+    "file": "poem__epic4-kdd-alignment.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/epic4-kdd-alignment.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "epic4-kdd-discovery",
+    "file": "poem__epic4-kdd-discovery.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/epic4-kdd-discovery.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "epic4-kdd-patterns",
+    "file": "poem__epic4-kdd-patterns.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/epic4-kdd-patterns.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "epic4-kdd-testing",
+    "file": "poem__epic4-kdd-testing.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/epic4-kdd-testing.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "epic4-overview",
+    "file": "poem__epic4-overview.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/epic4-overview.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "epic4-retro-actions",
+    "file": "poem__epic4-retro-actions.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/epic4-retro-actions.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "epic4-retro-challenges",
+    "file": "poem__epic4-retro-challenges.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/epic4-retro-challenges.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "epic4-retro-insights",
+    "file": "poem__epic4-retro-insights.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/epic4-retro-insights.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "epic4-retro-wins-1",
+    "file": "poem__epic4-retro-wins-1.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/epic4-retro-wins-1.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "epic4-retro-wins-2",
+    "file": "poem__epic4-retro-wins-2.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/epic4-retro-wins-2.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "epic4-retro-wins-3",
+    "file": "poem__epic4-retro-wins-3.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/epic4-retro-wins-3.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "framework-vs-app",
+    "file": "poem__framework-vs-app.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/framework-vs-app.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "functional-requirements-grid",
+    "file": "poem__functional-requirements-grid.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/functional-requirements-grid.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "kdd-00-why-kdd",
+    "file": "poem__kdd-00-why-kdd.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/kdd-00-why-kdd.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "kdd-01-overview",
+    "file": "poem__kdd-01-overview.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/kdd-01-overview.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "kdd-02-three-phase-process",
+    "file": "poem__kdd-02-three-phase-process.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/kdd-02-three-phase-process.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "kdd-03-patterns",
+    "file": "poem__kdd-03-patterns.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/kdd-03-patterns.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "kdd-04-adrs",
+    "file": "poem__kdd-04-adrs.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/kdd-04-adrs.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "kdd-05-learnings",
+    "file": "poem__kdd-05-learnings.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/kdd-05-learnings.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "kdd-06-examples",
+    "file": "poem__kdd-06-examples.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/kdd-06-examples.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "kdd-07-outcomes",
+    "file": "poem__kdd-07-outcomes.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/kdd-07-outcomes.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "kdd-08-how-to-execute",
+    "file": "poem__kdd-08-how-to-execute.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/kdd-08-how-to-execute.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "key-differentiators",
+    "file": "poem__key-differentiators.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/key-differentiators.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "maintenance-discovery",
+    "file": "poem__maintenance-discovery.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/maintenance-discovery.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "maintenance-proposal",
+    "file": "poem__maintenance-proposal.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/maintenance-proposal.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "maintenance-solution",
+    "file": "poem__maintenance-solution.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/maintenance-solution.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "mvp-scope-grid",
+    "file": "poem__mvp-scope-grid.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/mvp-scope-grid.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "next-steps-decision",
+    "file": "poem__next-steps-decision.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/next-steps-decision.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "non-functional-requirements",
+    "file": "poem__non-functional-requirements.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/non-functional-requirements.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "pain-points-card",
+    "file": "poem__pain-points-card.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/pain-points-card.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "pm-complete-handoff",
+    "file": "poem__pm-complete-handoff.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/pm-complete-handoff.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "pm-workflow-intro",
+    "file": "poem__pm-workflow-intro.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/pm-workflow-intro.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "poem-agent-roles",
+    "file": "poem__poem-agent-roles.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/poem-agent-roles.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "poem-architecture-diagram",
+    "file": "poem__poem-architecture-diagram.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/poem-architecture-diagram.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "poem-decision-tree",
+    "file": "poem__poem-decision-tree.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/poem-decision-tree.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "poem-lifecycle-stages",
+    "file": "poem__poem-lifecycle-stages.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/poem-lifecycle-stages.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "poem-quality-metrics",
+    "file": "poem__poem-quality-metrics.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/poem-quality-metrics.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "poem-technical-summary",
+    "file": "poem__poem-technical-summary.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/poem-technical-summary.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "poem-workflow-overview",
+    "file": "poem__poem-workflow-overview.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/poem-workflow-overview.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "prd-background-context",
+    "file": "poem__prd-background-context.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/prd-background-context.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "prd-checklist-results",
+    "file": "poem__prd-checklist-results.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/prd-checklist-results.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "prd-completion-report",
+    "file": "poem__prd-completion-report.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/prd-completion-report.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "prd-goals",
+    "file": "poem__prd-goals.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/prd-goals.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "problem-impact",
+    "file": "poem__problem-impact.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/problem-impact.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "proposed-solution-overview",
+    "file": "poem__proposed-solution-overview.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/proposed-solution-overview.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "regression-1-hero",
+    "file": "poem__regression-1-hero.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/regression-1-hero.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "regression-2-problem",
+    "file": "poem__regression-2-problem.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/regression-2-problem.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "regression-3-cycle",
+    "file": "poem__regression-3-cycle.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/regression-3-cycle.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "regression-4-matrix",
+    "file": "poem__regression-4-matrix.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/regression-4-matrix.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "regression-5-artifacts",
+    "file": "poem__regression-5-artifacts.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/regression-5-artifacts.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "regression-6-two-systems",
+    "file": "poem__regression-6-two-systems.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/regression-6-two-systems.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "regression-7-victor-output",
+    "file": "poem__regression-7-victor-output.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/regression-7-victor-output.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "requirement-categories",
+    "file": "poem__requirement-categories.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/requirement-categories.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "requirements-summary",
+    "file": "poem__requirements-summary.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/requirements-summary.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "sharding-overview",
+    "file": "poem__sharding-overview.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/sharding-overview.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "solutioning-alignment-report",
+    "file": "poem__solutioning-alignment-report.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/solutioning-alignment-report.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "standards-code-cards",
+    "file": "poem__standards-code-cards.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/standards-code-cards.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "standards-critical-rules",
+    "file": "poem__standards-critical-rules.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/standards-critical-rules.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "standards-naming-cheatsheet",
+    "file": "poem__standards-naming-cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/standards-naming-cheatsheet.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-0-1-complete",
+    "file": "poem__story-0-1-complete.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-0-1-complete.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-0-1-intake",
+    "file": "poem__story-0-1-intake.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-0-1-intake.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-0-1-qa-review",
+    "file": "poem__story-0-1-qa-review.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-0-1-qa-review.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-0-1-sat",
+    "file": "poem__story-0-1-sat.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-0-1-sat.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-0-1-sat-cheatsheet",
+    "file": "poem__story-0-1-sat-cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-0-1-sat-cheatsheet.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-0-2-complete",
+    "file": "poem__story-0-2-complete.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-0-2-complete.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-0-2-intake",
+    "file": "poem__story-0-2-intake.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-0-2-intake.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-0-2-qa-review",
+    "file": "poem__story-0-2-qa-review.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-0-2-qa-review.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-0-2-sat",
+    "file": "poem__story-0-2-sat.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-0-2-sat.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-0-2-sat-cheatsheet",
+    "file": "poem__story-0-2-sat-cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-0-2-sat-cheatsheet.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-0-2-sat-human-tests",
+    "file": "poem__story-0-2-sat-human-tests.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-0-2-sat-human-tests.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-0-3-complete",
+    "file": "poem__story-0-3-complete.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-0-3-complete.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-0-3-intake",
+    "file": "poem__story-0-3-intake.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-0-3-intake.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-0-3-qa-review",
+    "file": "poem__story-0-3-qa-review.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-0-3-qa-review.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-0-3-sat",
+    "file": "poem__story-0-3-sat.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-0-3-sat.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-0-3-sat-cheatsheet",
+    "file": "poem__story-0-3-sat-cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-0-3-sat-cheatsheet.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-0-4-complete",
+    "file": "poem__story-0-4-complete.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-0-4-complete.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-0-4-intake",
+    "file": "poem__story-0-4-intake.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-0-4-intake.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-0-4-qa-review",
+    "file": "poem__story-0-4-qa-review.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-0-4-qa-review.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-0-4-sat",
+    "file": "poem__story-0-4-sat.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-0-4-sat.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-0-4-sat-cheatsheet",
+    "file": "poem__story-0-4-sat-cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-0-4-sat-cheatsheet.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-0-5-complete",
+    "file": "poem__story-0-5-complete.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-0-5-complete.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-0-5-intake",
+    "file": "poem__story-0-5-intake.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-0-5-intake.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-0-5-qa-review",
+    "file": "poem__story-0-5-qa-review.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-0-5-qa-review.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-0-5-sat",
+    "file": "poem__story-0-5-sat.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-0-5-sat.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-0-5-sat-cheatsheet",
+    "file": "poem__story-0-5-sat-cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-0-5-sat-cheatsheet.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-0-6-complete",
+    "file": "poem__story-0-6-complete.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-0-6-complete.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-0-6-intake",
+    "file": "poem__story-0-6-intake.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-0-6-intake.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-0-6-qa-review",
+    "file": "poem__story-0-6-qa-review.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-0-6-qa-review.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-0-6-sat",
+    "file": "poem__story-0-6-sat.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-0-6-sat.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-0-6-sat-cheatsheet",
+    "file": "poem__story-0-6-sat-cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-0-6-sat-cheatsheet.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-0-7-complete",
+    "file": "poem__story-0-7-complete.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-0-7-complete.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-0-7-knowledge",
+    "file": "poem__story-0-7-knowledge.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-0-7-knowledge.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-0-7-matrix",
+    "file": "poem__story-0-7-matrix.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-0-7-matrix.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-0-7-metrics",
+    "file": "poem__story-0-7-metrics.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-0-7-metrics.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-0-7-overview",
+    "file": "poem__story-0-7-overview.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-0-7-overview.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-0-7-problem",
+    "file": "poem__story-0-7-problem.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-0-7-problem.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-0-7-tasks",
+    "file": "poem__story-0-7-tasks.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-0-7-tasks.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-1-checklist",
+    "file": "poem__story-1-1-checklist.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-1-checklist.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-1-complete",
+    "file": "poem__story-1-1-complete.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-1-complete.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-1-monorepo",
+    "file": "poem__story-1-1-monorepo.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-1-monorepo.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-1-qa-review",
+    "file": "poem__story-1-1-qa-review.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-1-qa-review.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-10-complete",
+    "file": "poem__story-1-10-complete.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-10-complete.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-10-intake",
+    "file": "poem__story-1-10-intake.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-10-intake.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-10-qa-review",
+    "file": "poem__story-1-10-qa-review.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-10-qa-review.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-10-sat",
+    "file": "poem__story-1-10-sat.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-10-sat.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-10-sat-cheatsheet",
+    "file": "poem__story-1-10-sat-cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-10-sat-cheatsheet.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-11-knowledge",
+    "file": "poem__story-1-11-knowledge.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-11-knowledge.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-11-overview",
+    "file": "poem__story-1-11-overview.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-11-overview.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-11-process",
+    "file": "poem__story-1-11-process.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-11-process.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-11-technical",
+    "file": "poem__story-1-11-technical.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-11-technical.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-2-checklist",
+    "file": "poem__story-1-2-checklist.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-2-checklist.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-2-complete",
+    "file": "poem__story-1-2-complete.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-2-complete.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-2-package-structure",
+    "file": "poem__story-1-2-package-structure.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-2-package-structure.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-2-qa-review",
+    "file": "poem__story-1-2-qa-review.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-2-qa-review.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-3-checklist",
+    "file": "poem__story-1-3-checklist.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-3-checklist.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-3-complete",
+    "file": "poem__story-1-3-complete.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-3-complete.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-3-intake",
+    "file": "poem__story-1-3-intake.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-3-intake.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-3-poem-app",
+    "file": "poem__story-1-3-poem-app.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-3-poem-app.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-3-qa-review",
+    "file": "poem__story-1-3-qa-review.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-3-qa-review.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-3-sat",
+    "file": "poem__story-1-3-sat.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-3-sat.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-4-complete",
+    "file": "poem__story-1-4-complete.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-4-complete.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-4-intake",
+    "file": "poem__story-1-4-intake.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-4-intake.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-4-qa-review",
+    "file": "poem__story-1-4-qa-review.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-4-qa-review.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-4-sat",
+    "file": "poem__story-1-4-sat.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-4-sat.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-4-sat-cheatsheet",
+    "file": "poem__story-1-4-sat-cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-4-sat-cheatsheet.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-5-complete",
+    "file": "poem__story-1-5-complete.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-5-complete.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-5-intake",
+    "file": "poem__story-1-5-intake.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-5-intake.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-5-qa-review",
+    "file": "poem__story-1-5-qa-review.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-5-qa-review.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-5-sat",
+    "file": "poem__story-1-5-sat.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-5-sat.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-5-sat-cheatsheet",
+    "file": "poem__story-1-5-sat-cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-5-sat-cheatsheet.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-6-complete",
+    "file": "poem__story-1-6-complete.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-6-complete.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-6-intake",
+    "file": "poem__story-1-6-intake.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-6-intake.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-6-qa-review",
+    "file": "poem__story-1-6-qa-review.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-6-qa-review.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-6-sat",
+    "file": "poem__story-1-6-sat.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-6-sat.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-6-sat-cheatsheet",
+    "file": "poem__story-1-6-sat-cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-6-sat-cheatsheet.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-7-complete",
+    "file": "poem__story-1-7-complete.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-7-complete.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-7-intake",
+    "file": "poem__story-1-7-intake.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-7-intake.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-7-qa-review",
+    "file": "poem__story-1-7-qa-review.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-7-qa-review.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-7-sat",
+    "file": "poem__story-1-7-sat.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-7-sat.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-7-sat-cheatsheet",
+    "file": "poem__story-1-7-sat-cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-7-sat-cheatsheet.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-8-complete",
+    "file": "poem__story-1-8-complete.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-8-complete.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-8-intake",
+    "file": "poem__story-1-8-intake.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-8-intake.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-8-qa-review",
+    "file": "poem__story-1-8-qa-review.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-8-qa-review.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-8-sat",
+    "file": "poem__story-1-8-sat.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-8-sat.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-8-sat-cheatsheet",
+    "file": "poem__story-1-8-sat-cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-8-sat-cheatsheet.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-8-sat-human-tests",
+    "file": "poem__story-1-8-sat-human-tests.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-8-sat-human-tests.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-9-complete",
+    "file": "poem__story-1-9-complete.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-9-complete.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-9-intake",
+    "file": "poem__story-1-9-intake.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-9-intake.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-9-qa-review",
+    "file": "poem__story-1-9-qa-review.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-9-qa-review.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-9-sat",
+    "file": "poem__story-1-9-sat.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-9-sat.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-9-sat-cheatsheet",
+    "file": "poem__story-1-9-sat-cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-9-sat-cheatsheet.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-1-9-sat-human-tests",
+    "file": "poem__story-1-9-sat-human-tests.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-1-9-sat-human-tests.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-2-1-complete",
+    "file": "poem__story-2-1-complete.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-2-1-complete.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-2-1-intake",
+    "file": "poem__story-2-1-intake.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-2-1-intake.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-2-1-qa-review",
+    "file": "poem__story-2-1-qa-review.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-2-1-qa-review.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-2-1-sat",
+    "file": "poem__story-2-1-sat.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-2-1-sat.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-2-1-sat-cheatsheet",
+    "file": "poem__story-2-1-sat-cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-2-1-sat-cheatsheet.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-2-2-complete",
+    "file": "poem__story-2-2-complete.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-2-2-complete.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-2-2-intake",
+    "file": "poem__story-2-2-intake.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-2-2-intake.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-2-2-qa-review",
+    "file": "poem__story-2-2-qa-review.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-2-2-qa-review.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-2-2-sat",
+    "file": "poem__story-2-2-sat.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-2-2-sat.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-2-2-sat-cheatsheet",
+    "file": "poem__story-2-2-sat-cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-2-2-sat-cheatsheet.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-2-3-complete",
+    "file": "poem__story-2-3-complete.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-2-3-complete.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-2-3-intake",
+    "file": "poem__story-2-3-intake.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-2-3-intake.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-2-3-qa-review",
+    "file": "poem__story-2-3-qa-review.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-2-3-qa-review.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-2-3-sat",
+    "file": "poem__story-2-3-sat.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-2-3-sat.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-2-3-sat-cheatsheet",
+    "file": "poem__story-2-3-sat-cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-2-3-sat-cheatsheet.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-2-4-complete",
+    "file": "poem__story-2-4-complete.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-2-4-complete.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-2-4-intake",
+    "file": "poem__story-2-4-intake.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-2-4-intake.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-2-4-qa-review",
+    "file": "poem__story-2-4-qa-review.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-2-4-qa-review.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-2-4-sat",
+    "file": "poem__story-2-4-sat.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-2-4-sat.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-2-4-sat-cheatsheet",
+    "file": "poem__story-2-4-sat-cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-2-4-sat-cheatsheet.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-2-5-complete",
+    "file": "poem__story-2-5-complete.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-2-5-complete.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-2-5-intake",
+    "file": "poem__story-2-5-intake.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-2-5-intake.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-2-5-qa-review",
+    "file": "poem__story-2-5-qa-review.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-2-5-qa-review.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-2-5-sat",
+    "file": "poem__story-2-5-sat.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-2-5-sat.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-2-5-sat-cheatsheet",
+    "file": "poem__story-2-5-sat-cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-2-5-sat-cheatsheet.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-2-6-complete",
+    "file": "poem__story-2-6-complete.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-2-6-complete.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-2-6-intake",
+    "file": "poem__story-2-6-intake.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-2-6-intake.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-2-6-qa-review",
+    "file": "poem__story-2-6-qa-review.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-2-6-qa-review.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-2-6-sat",
+    "file": "poem__story-2-6-sat.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-2-6-sat.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-2-6-sat-cheatsheet",
+    "file": "poem__story-2-6-sat-cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-2-6-sat-cheatsheet.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-1-5-complete",
+    "file": "poem__story-3-1-5-complete.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-1-5-complete.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-1-5-intake",
+    "file": "poem__story-3-1-5-intake.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-1-5-intake.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-1-5-qa-review",
+    "file": "poem__story-3-1-5-qa-review.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-1-5-qa-review.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-1-5-sat",
+    "file": "poem__story-3-1-5-sat.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-1-5-sat.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-1-5-sat-cheatsheet",
+    "file": "poem__story-3-1-5-sat-cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-1-5-sat-cheatsheet.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-1-complete",
+    "file": "poem__story-3-1-complete.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-1-complete.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-1-intake",
+    "file": "poem__story-3-1-intake.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-1-intake.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-1-qa-review",
+    "file": "poem__story-3-1-qa-review.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-1-qa-review.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-1-sat",
+    "file": "poem__story-3-1-sat.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-1-sat.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-1-sat-cheatsheet",
+    "file": "poem__story-3-1-sat-cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-1-sat-cheatsheet.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-2-5-complete",
+    "file": "poem__story-3-2-5-complete.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-2-5-complete.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-2-5-intake",
+    "file": "poem__story-3-2-5-intake.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-2-5-intake.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-2-5-qa-review",
+    "file": "poem__story-3-2-5-qa-review.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-2-5-qa-review.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-2-5-sat",
+    "file": "poem__story-3-2-5-sat.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-2-5-sat.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-2-5-sat-cheatsheet",
+    "file": "poem__story-3-2-5-sat-cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-2-5-sat-cheatsheet.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-2-9-complete",
+    "file": "poem__story-3-2-9-complete.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-2-9-complete.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-2-9-intake",
+    "file": "poem__story-3-2-9-intake.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-2-9-intake.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-2-9-qa-review",
+    "file": "poem__story-3-2-9-qa-review.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-2-9-qa-review.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-2-complete",
+    "file": "poem__story-3-2-complete.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-2-complete.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-2-intake",
+    "file": "poem__story-3-2-intake.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-2-intake.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-2-qa-review",
+    "file": "poem__story-3-2-qa-review.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-2-qa-review.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-2-sat",
+    "file": "poem__story-3-2-sat.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-2-sat.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-2-sat-cheatsheet",
+    "file": "poem__story-3-2-sat-cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-2-sat-cheatsheet.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-3-complete",
+    "file": "poem__story-3-3-complete.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-3-complete.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-3-intake",
+    "file": "poem__story-3-3-intake.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-3-intake.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-3-penny-output",
+    "file": "poem__story-3-3-penny-output.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-3-penny-output.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-3-qa-review",
+    "file": "poem__story-3-3-qa-review.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-3-qa-review.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-3-sat",
+    "file": "poem__story-3-3-sat.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-3-sat.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-3-sat-cheatsheet",
+    "file": "poem__story-3-3-sat-cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-3-sat-cheatsheet.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-4-complete",
+    "file": "poem__story-3-4-complete.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-4-complete.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-4-context",
+    "file": "poem__story-3-4-context.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-4-context.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-4-intake",
+    "file": "poem__story-3-4-intake.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-4-intake.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-4-qa-review",
+    "file": "poem__story-3-4-qa-review.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-4-qa-review.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-4-sat",
+    "file": "poem__story-3-4-sat.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-4-sat.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-4-sat-cheatsheet",
+    "file": "poem__story-3-4-sat-cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-4-sat-cheatsheet.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-5-complete",
+    "file": "poem__story-3-5-complete.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-5-complete.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-5-intake",
+    "file": "poem__story-3-5-intake.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-5-intake.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-5-qa-review",
+    "file": "poem__story-3-5-qa-review.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-5-qa-review.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-5-sat",
+    "file": "poem__story-3-5-sat.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-5-sat.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-5-sat-cheatsheet",
+    "file": "poem__story-3-5-sat-cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-5-sat-cheatsheet.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-6-complete",
+    "file": "poem__story-3-6-complete.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-6-complete.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-6-intake",
+    "file": "poem__story-3-6-intake.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-6-intake.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-6-qa-review",
+    "file": "poem__story-3-6-qa-review.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-6-qa-review.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-6-sat",
+    "file": "poem__story-3-6-sat.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-6-sat.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-6-sat-cheatsheet",
+    "file": "poem__story-3-6-sat-cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-6-sat-cheatsheet.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-7-1-complete",
+    "file": "poem__story-3-7-1-complete.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-7-1-complete.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-7-1-intake",
+    "file": "poem__story-3-7-1-intake.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-7-1-intake.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-7-1-qa-review",
+    "file": "poem__story-3-7-1-qa-review.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-7-1-qa-review.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-7-1-sat",
+    "file": "poem__story-3-7-1-sat.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-7-1-sat.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-7-1-sat-cheatsheet",
+    "file": "poem__story-3-7-1-sat-cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-7-1-sat-cheatsheet.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-7-complete",
+    "file": "poem__story-3-7-complete.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-7-complete.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-7-intake",
+    "file": "poem__story-3-7-intake.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-7-intake.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-7-qa-review",
+    "file": "poem__story-3-7-qa-review.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-7-qa-review.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-7-sat",
+    "file": "poem__story-3-7-sat.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-7-sat.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-7-sat-cheatsheet",
+    "file": "poem__story-3-7-sat-cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-7-sat-cheatsheet.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-8-complete",
+    "file": "poem__story-3-8-complete.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-8-complete.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-8-intake",
+    "file": "poem__story-3-8-intake.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-8-intake.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-8-qa-review",
+    "file": "poem__story-3-8-qa-review.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-8-qa-review.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-8-sat",
+    "file": "poem__story-3-8-sat.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-8-sat.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-8-sat-cheatsheet",
+    "file": "poem__story-3-8-sat-cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-8-sat-cheatsheet.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-9-architecture",
+    "file": "poem__story-3-9-architecture.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-9-architecture.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-9-decision-tree",
+    "file": "poem__story-3-9-decision-tree.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-9-decision-tree.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-9-performance",
+    "file": "poem__story-3-9-performance.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-9-performance.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-cc-background",
+    "file": "poem__story-3-cc-background.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-cc-background.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-cc-gap-analysis",
+    "file": "poem__story-3-cc-gap-analysis.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-cc-gap-analysis.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-cc-outcome",
+    "file": "poem__story-3-cc-outcome.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-cc-outcome.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-cc-schema-conflict",
+    "file": "poem__story-3-cc-schema-conflict.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-cc-schema-conflict.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-cc-workflow-architecture",
+    "file": "poem__story-3-cc-workflow-architecture.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-cc-workflow-architecture.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-wf-test-architecture",
+    "file": "poem__story-3-wf-test-architecture.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-wf-test-architecture.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-wf-test-intro",
+    "file": "poem__story-3-wf-test-intro.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-wf-test-intro.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-wf-test-pipeline",
+    "file": "poem__story-3-wf-test-pipeline.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-wf-test-pipeline.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-3-wf-test-prompts",
+    "file": "poem__story-3-wf-test-prompts.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-3-wf-test-prompts.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-4-1-complete",
+    "file": "poem__story-4-1-complete.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-4-1-complete.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-4-1-intake",
+    "file": "poem__story-4-1-intake.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-4-1-intake.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-4-1-qa-review",
+    "file": "poem__story-4-1-qa-review.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-4-1-qa-review.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-4-1-sat",
+    "file": "poem__story-4-1-sat.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-4-1-sat.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-4-1-sat-cheatsheet",
+    "file": "poem__story-4-1-sat-cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-4-1-sat-cheatsheet.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-4-2-complete",
+    "file": "poem__story-4-2-complete.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-4-2-complete.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-4-2-intake",
+    "file": "poem__story-4-2-intake.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-4-2-intake.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-4-2-qa-review",
+    "file": "poem__story-4-2-qa-review.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-4-2-qa-review.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-4-2-sat",
+    "file": "poem__story-4-2-sat.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-4-2-sat.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-4-2-sat-cheatsheet",
+    "file": "poem__story-4-2-sat-cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-4-2-sat-cheatsheet.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-4-3-complete",
+    "file": "poem__story-4-3-complete.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-4-3-complete.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-4-3-intake",
+    "file": "poem__story-4-3-intake.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-4-3-intake.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-4-3-qa-review",
+    "file": "poem__story-4-3-qa-review.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-4-3-qa-review.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-4-3-sat",
+    "file": "poem__story-4-3-sat.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-4-3-sat.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-4-3-sat-cheatsheet",
+    "file": "poem__story-4-3-sat-cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-4-3-sat-cheatsheet.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-4-4-complete",
+    "file": "poem__story-4-4-complete.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-4-4-complete.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-4-4-intake",
+    "file": "poem__story-4-4-intake.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-4-4-intake.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-4-4-qa-review",
+    "file": "poem__story-4-4-qa-review.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-4-4-qa-review.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-4-4-sat",
+    "file": "poem__story-4-4-sat.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-4-4-sat.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-4-4-sat-cheatsheet",
+    "file": "poem__story-4-4-sat-cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-4-4-sat-cheatsheet.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-4-5-complete",
+    "file": "poem__story-4-5-complete.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-4-5-complete.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-4-5-intake",
+    "file": "poem__story-4-5-intake.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-4-5-intake.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-4-5-qa-review",
+    "file": "poem__story-4-5-qa-review.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-4-5-qa-review.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-4-5-sat",
+    "file": "poem__story-4-5-sat.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-4-5-sat.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-4-5-sat-cheatsheet",
+    "file": "poem__story-4-5-sat-cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-4-5-sat-cheatsheet.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-4-6-complete",
+    "file": "poem__story-4-6-complete.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-4-6-complete.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-4-6-intake",
+    "file": "poem__story-4-6-intake.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-4-6-intake.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-4-6-qa-review",
+    "file": "poem__story-4-6-qa-review.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-4-6-qa-review.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-4-6-sat",
+    "file": "poem__story-4-6-sat.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-4-6-sat.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-4-6-sat-cheatsheet",
+    "file": "poem__story-4-6-sat-cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-4-6-sat-cheatsheet.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "story-breakdown",
+    "file": "poem__story-breakdown.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/story-breakdown.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "structure-cheatsheet",
+    "file": "poem__structure-cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/structure-cheatsheet.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "structure-transformation",
+    "file": "poem__structure-transformation.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/structure-transformation.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "target-users-personas",
+    "file": "poem__target-users-personas.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/target-users-personas.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "tech-decision-cards",
+    "file": "poem__tech-decision-cards.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/tech-decision-cards.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "tech-stack-cheatsheet",
+    "file": "poem__tech-stack-cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/tech-stack-cheatsheet.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "tech-stack-diagram",
+    "file": "poem__tech-stack-diagram.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/tech-stack-diagram.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "technical-assumptions",
+    "file": "poem__technical-assumptions.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/technical-assumptions.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "technology-stack-brief",
+    "file": "poem__technology-stack-brief.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/technology-stack-brief.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "testing-coverage-cheatsheet",
+    "file": "poem__testing-coverage-cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/testing-coverage-cheatsheet.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "testing-organization-cards",
+    "file": "poem__testing-organization-cards.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/testing-organization-cards.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "testing-pyramid",
+    "file": "poem__testing-pyramid.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/testing-pyramid.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "three-part-architecture",
+    "file": "poem__three-part-architecture.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/three-part-architecture.html",
+    "full_page": false
+  },
+  {
+    "corpus": "poem",
+    "slug": "workflows-cards",
+    "file": "poem__workflows-cards.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/workflows-cards.html",
+    "full_page": true
+  },
+  {
+    "corpus": "poem",
+    "slug": "workflows-cheatsheet",
+    "file": "poem__workflows-cheatsheet.png",
+    "src_path": "/Users/davidcruwys/dev/ad/brand-artifacts/presentation-assets/bmad-poem/workflows-cheatsheet.html",
+    "full_page": false
+  }
+]

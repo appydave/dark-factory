@@ -1,0 +1,1050 @@
+[
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "analytics-dashboard",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "campaign-dashboard-hybrid",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "campaign-infographic-hybrid",
+    "rating": "good",
+    "broken": true,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "chain-session-detail",
+    "rating": "shit",
+    "broken": true,
+    "stuck": false,
+    "console_errs": 1
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "chain-sprint-board",
+    "rating": "shit",
+    "broken": true,
+    "stuck": true,
+    "console_errs": 1
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "chain-story-pipeline",
+    "rating": "shit",
+    "broken": true,
+    "stuck": false,
+    "console_errs": 1
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "chat-panel",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "chat-panel-a",
+    "rating": "meh",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "chat-panel-b",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "chat-panel-refined",
+    "rating": "meh",
+    "broken": true,
+    "stuck": true,
+    "console_errs": 1
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "classification-status",
+    "rating": "good",
+    "broken": true,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "data-schema",
+    "rating": "meh",
+    "broken": true,
+    "stuck": true,
+    "console_errs": 1
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "logo-variations",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "named-rows-options",
+    "rating": "meh",
+    "broken": true,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "named-rows-v2-tight",
+    "rating": "meh",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "named-rows-v3-columns",
+    "rating": "meh",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "named-rows-v4-linen-evolved",
+    "rating": "meh",
+    "broken": true,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "named-rows-v5-aligned",
+    "rating": "meh",
+    "broken": true,
+    "stuck": false,
+    "console_errs": 1
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "named-session-rows",
+    "rating": "meh",
+    "broken": true,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "reference-landscape",
+    "rating": "meh",
+    "broken": true,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "settings-unified",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "settings-unified-b",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "settings-unified-c",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "story-walkthrough",
+    "rating": "meh",
+    "broken": true,
+    "stuck": true,
+    "console_errs": 1
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "sync-ux-a",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "sync-ux-b",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "sync-ux-c",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "sync-ux-d",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "sync-ux-e",
+    "rating": "meh",
+    "broken": true,
+    "stuck": false,
+    "console_errs": 1
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "wave-audit-panel",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "wave-bar",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "wave-handover",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "wave-infographic",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "wave-sprint-board",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "wave-subagents",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-apps-angeleye",
+    "design_id": "wave-three-panel",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-apps-appyradar",
+    "design_id": "ai-activity",
+    "rating": "meh",
+    "broken": true,
+    "stuck": false,
+    "console_errs": 2
+  },
+  {
+    "repo": "ad-apps-appyradar",
+    "design_id": "angeleye-fleet",
+    "rating": "meh",
+    "broken": true,
+    "stuck": false,
+    "console_errs": 2
+  },
+  {
+    "repo": "ad-apps-appyradar",
+    "design_id": "app-status-grid",
+    "rating": "good",
+    "broken": true,
+    "stuck": false,
+    "console_errs": 1
+  },
+  {
+    "repo": "ad-apps-appyradar",
+    "design_id": "brain-activity",
+    "rating": "good",
+    "broken": true,
+    "stuck": false,
+    "console_errs": 2
+  },
+  {
+    "repo": "ad-apps-appyradar",
+    "design_id": "brain-health",
+    "rating": "good",
+    "broken": true,
+    "stuck": false,
+    "console_errs": 2
+  },
+  {
+    "repo": "ad-apps-dark-factory",
+    "design_id": "01-pipeline-overview",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-apps-dark-factory",
+    "design_id": "02-mining-view",
+    "rating": "good",
+    "broken": true,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-apps-dark-factory",
+    "design_id": "03-triage-console",
+    "rating": "good",
+    "broken": true,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-apps-dark-factory",
+    "design_id": "04-blackboard-overview",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-apps-dark-factory",
+    "design_id": "05-probe-progression",
+    "rating": "good",
+    "broken": true,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-apps-dark-factory",
+    "design_id": "06-blackboard-vs-poem",
+    "rating": "good",
+    "broken": true,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-apps-dark-factory",
+    "design_id": "07-workflow-flows",
+    "rating": "good",
+    "broken": true,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-apps-dark-factory",
+    "design_id": "08-poem-consolidation",
+    "rating": "good",
+    "broken": true,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-apps-dark-factory",
+    "design_id": "09-census-progress",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-apps-dark-factory",
+    "design_id": "01-session-journey",
+    "rating": "good",
+    "broken": true,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-apps-dark-factory",
+    "design_id": "03-four-memories",
+    "rating": "good",
+    "broken": true,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-apps-dark-factory",
+    "design_id": "04-brain-sleeps",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-apps-dark-factory",
+    "design_id": "05-dark-factory",
+    "rating": "meh",
+    "broken": true,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-appydave-plugins",
+    "design_id": "01-lexi-profile",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-appydave-plugins",
+    "design_id": "02-frontmatter-examples",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-appydave.com",
+    "design_id": "homepage-authority",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-appydave.com",
+    "design_id": "homepage-builder",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-appydave.com",
+    "design_id": "homepage-community",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-appydave.com",
+    "design_id": "layout-21",
+    "rating": "meh",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-appydave.com",
+    "design_id": "layout-22",
+    "rating": "meh",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-appydave.com",
+    "design_id": "layout-23",
+    "rating": "meh",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-appydave.com",
+    "design_id": "layout-24",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-appydave.com",
+    "design_id": "layout-25",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-appydave.com",
+    "design_id": "layout-26",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-appydave.com",
+    "design_id": "layout-27",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-appydave.com",
+    "design_id": "layout-28",
+    "rating": "meh",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-appydave.com",
+    "design_id": "layout-29",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-appydave.com",
+    "design_id": "layout-30",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-appydave.com",
+    "design_id": "layout-01",
+    "rating": "meh",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-appydave.com",
+    "design_id": "layout-02",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-appydave.com",
+    "design_id": "layout-03",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-appydave.com",
+    "design_id": "layout-04",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-appydave.com",
+    "design_id": "layout-05",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-appydave.com",
+    "design_id": "layout-06",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-appydave.com",
+    "design_id": "layout-07",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-appydave.com",
+    "design_id": "layout-11",
+    "rating": "meh",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-appydave.com",
+    "design_id": "layout-12",
+    "rating": "meh",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-appydave.com",
+    "design_id": "layout-13",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-appydave.com",
+    "design_id": "layout-14",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-appydave.com",
+    "design_id": "layout-15",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-appydave.com",
+    "design_id": "layout-16",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-appydave.com",
+    "design_id": "layout-17",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-brains-agentic-os",
+    "design_id": "01-layer-stack",
+    "rating": "good",
+    "broken": true,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-brains-agentic-os",
+    "design_id": "02-node-topology",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-brains-agentic-os",
+    "design_id": "03-data-flow",
+    "rating": "good",
+    "broken": true,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-brains-agentic-os",
+    "design_id": "04-agent-orchestration",
+    "rating": "good",
+    "broken": true,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-brains-agentic-os",
+    "design_id": "05-application-typology",
+    "rating": "good",
+    "broken": true,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-brains-ruflo",
+    "design_id": "01-what-ruflo-is",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-brains-ruflo",
+    "design_id": "02-two-operating-modes",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-brains-ruflo",
+    "design_id": "03-topology-comparison",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-brains-ruflo",
+    "design_id": "04-marketing-vs-reality",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-brains-ruflo",
+    "design_id": "05-five-operations",
+    "rating": "good",
+    "broken": true,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-brains-ruflo",
+    "design_id": "06-swarm-topologies",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-brains-ruflo",
+    "design_id": "07-phase-1-agent-roster",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-brains-ruflo",
+    "design_id": "08-phase-2-fanout",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-brains-ruflo",
+    "design_id": "09-phase-3-bridge-webview",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-brains-ruflo",
+    "design_id": "10-swarm-playbook",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-flivideo-flihub",
+    "design_id": "chapter-separator",
+    "rating": "meh",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-flivideo-flihub",
+    "design_id": "project-list-01-filterable-table",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-flivideo-flihub",
+    "design_id": "project-list-02-kanban-pipeline",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-flivideo-flihub",
+    "design_id": "project-list-06-split-focus",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-flivideo-flihub",
+    "design_id": "project-list-10-hybrid-table-drawer",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-flivideo-flihub",
+    "design_id": "project-list-a-table-drawer",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-flivideo-flihub",
+    "design_id": "project-list-b-table-hover",
+    "rating": "meh",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-flivideo-flihub",
+    "design_id": "project-list-c-table-kanban",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-flivideo-flihub",
+    "design_id": "project-list-d-table-inline",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-flivideo-flihub",
+    "design_id": "sync-hub-v2",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-flivideo-flihub-storage-panel",
+    "design_id": "chapter-separator",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-flivideo-flihub-storage-panel",
+    "design_id": "project-list-01-filterable-table",
+    "rating": "meh",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-flivideo-flihub-storage-panel",
+    "design_id": "project-list-02-kanban-pipeline",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-flivideo-flihub-storage-panel",
+    "design_id": "project-list-06-split-focus",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-flivideo-flihub-storage-panel",
+    "design_id": "project-list-10-hybrid-table-drawer",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-flivideo-flihub-storage-panel",
+    "design_id": "project-list-a-table-drawer",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-flivideo-flihub-storage-panel",
+    "design_id": "project-list-b-table-hover",
+    "rating": "meh",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-flivideo-flihub-storage-panel",
+    "design_id": "project-list-c-table-kanban",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-flivideo-flihub-storage-panel",
+    "design_id": "project-list-d-table-inline",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-flivideo-flilaunch",
+    "design_id": "01-als-learnings",
+    "rating": "meh",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-flivideo-flilaunch",
+    "design_id": "02-als-runbook",
+    "rating": "meh",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-flivideo-flilaunch",
+    "design_id": "03-als-module-state",
+    "rating": "meh",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-flivideo-flilaunch",
+    "design_id": "04-als-primitives",
+    "rating": "meh",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-flivideo-flilaunch",
+    "design_id": "05-workflows",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-flivideo-flilaunch",
+    "design_id": "06-prompts",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-flivideo-storyline-app",
+    "design_id": "boardroom-agent-seats",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-flivideo-storyline-app",
+    "design_id": "boardroom-cinema",
+    "rating": "meh",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-flivideo-storyline-app",
+    "design_id": "boardroom-classic",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-flivideo-storyline-app",
+    "design_id": "boardroom-command",
+    "rating": "meh",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-flivideo-storyline-app",
+    "design_id": "boardroom-focus",
+    "rating": "meh",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-flivideo-storyline-app",
+    "design_id": "boardroom-living-library",
+    "rating": "meh",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "ad-flivideo-storyline-app",
+    "design_id": "boardroom-v7",
+    "rating": "good",
+    "broken": false,
+    "stuck": false,
+    "console_errs": 0
+  },
+  {
+    "repo": "app-ideas-.screentour",
+    "design_id": "01-screentour-gallery",
+    "rating": "meh",
+    "broken": true,
+    "stuck": false,
+    "console_errs": 28
+  }
+]

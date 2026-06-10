@@ -1,0 +1,2440 @@
+[
+  {
+    "repo": "ad/apps/angeleye",
+    "design_id": "analytics-dashboard",
+    "title": "AngelEye \u2014 Analytics Dashboard",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/apps/angeleye/.mochaccino/designs/analytics-dashboard/index.html",
+    "mtime": 1778064801,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/apps/angeleye",
+    "design_id": "campaign-dashboard-hybrid",
+    "title": "AngelEye Campaign Dashboard \u2014 Hybrid View",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/apps/angeleye/.mochaccino/designs/campaign-dashboard-hybrid/index.html",
+    "mtime": 1778064801,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/apps/angeleye",
+    "design_id": "campaign-infographic-hybrid",
+    "title": "AngelEye \u2014 Hybrid Campaign Infographic",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/apps/angeleye/.mochaccino/designs/campaign-infographic-hybrid/index.html",
+    "mtime": 1778064801,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/apps/angeleye",
+    "design_id": "chain-session-detail",
+    "title": "Chain Session Detail \u2014 Mochaccino",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/apps/angeleye/.mochaccino/designs/chain-session-detail/index.html",
+    "mtime": 1774680867,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/apps/angeleye",
+    "design_id": "chain-sprint-board",
+    "title": "AngelEye \u2014 Sprint Board \u2014 Mochaccino",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/apps/angeleye/.mochaccino/designs/chain-sprint-board/index.html",
+    "mtime": 1774680867,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/apps/angeleye",
+    "design_id": "chain-story-pipeline",
+    "title": "Chain Story Pipeline \u2014 Mochaccino",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/apps/angeleye/.mochaccino/designs/chain-story-pipeline/index.html",
+    "mtime": 1774743540,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/apps/angeleye",
+    "design_id": "chat-panel",
+    "title": "AngelEye \u2014 Observer + Chat Panel",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/apps/angeleye/.mochaccino/designs/chat-panel/index.html",
+    "mtime": 1774521954,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/apps/angeleye",
+    "design_id": "chat-panel-a",
+    "title": "Mochaccino \u2014 chat-panel-a (Dual Position)",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/apps/angeleye/.mochaccino/designs/chat-panel-a/index.html",
+    "mtime": 1774521954,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/apps/angeleye",
+    "design_id": "chat-panel-b",
+    "title": "AngelEye \u2014 Observer + Fixed Position Panel (B)",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/apps/angeleye/.mochaccino/designs/chat-panel-b/index.html",
+    "mtime": 1774521954,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/apps/angeleye",
+    "design_id": "chat-panel-refined",
+    "title": "AngelEye \u2014 Chat Panel Refined",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/apps/angeleye/.mochaccino/designs/chat-panel-refined/index.html",
+    "mtime": 1774680867,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/apps/angeleye",
+    "design_id": "classification-status",
+    "title": "AngelEye \u2014 Classification Status",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/apps/angeleye/.mochaccino/designs/classification-status/index.html",
+    "mtime": 1778064801,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/apps/angeleye",
+    "design_id": "data-schema",
+    "title": "AngelEye \u2014 Data Schema",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/apps/angeleye/.mochaccino/designs/data-schema/index.html",
+    "mtime": 1778064801,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/apps/angeleye",
+    "design_id": "logo-variations",
+    "title": "AngelEye Logo Variations \u2014 Mochaccino",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/apps/angeleye/.mochaccino/designs/logo-variations/index.html",
+    "mtime": 1774680867,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/apps/angeleye",
+    "design_id": "named-rows-options",
+    "title": "Named Row Options \u2014 Mochaccino",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/apps/angeleye/.mochaccino/designs/named-rows-options/index.html",
+    "mtime": 1774521954,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/apps/angeleye",
+    "design_id": "named-rows-v2-tight",
+    "title": "Named Rows v2: Tight \u2014 Mochaccino",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/apps/angeleye/.mochaccino/designs/named-rows-v2-tight/index.html",
+    "mtime": 1774521954,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/apps/angeleye",
+    "design_id": "named-rows-v3-columns",
+    "title": "Named Rows v3: Columns \u2014 Mochaccino",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/apps/angeleye/.mochaccino/designs/named-rows-v3-columns/index.html",
+    "mtime": 1774521954,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/apps/angeleye",
+    "design_id": "named-rows-v4-linen-evolved",
+    "title": "Named Rows v4: Linen Evolved \u2014 Mochaccino",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/apps/angeleye/.mochaccino/designs/named-rows-v4-linen-evolved/index.html",
+    "mtime": 1774521954,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/apps/angeleye",
+    "design_id": "named-rows-v5-aligned",
+    "title": "Named Rows v5: Aligned \u2014 Mochaccino",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/apps/angeleye/.mochaccino/designs/named-rows-v5-aligned/index.html",
+    "mtime": 1774680867,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/apps/angeleye",
+    "design_id": "named-session-rows",
+    "title": "Named Session Rows \u2014 Mochaccino",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/apps/angeleye/.mochaccino/designs/named-session-rows/index.html",
+    "mtime": 1774521954,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/apps/angeleye",
+    "design_id": "reference-landscape",
+    "title": "Reference Landscape \u2014 AngelEye",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/apps/angeleye/.mochaccino/designs/reference-landscape/index.html",
+    "mtime": 1774680867,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/apps/angeleye",
+    "design_id": "settings-unified",
+    "title": "AngelEye \u2014 Settings: Session Management",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/apps/angeleye/.mochaccino/designs/settings-unified/index.html",
+    "mtime": 1778064801,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/apps/angeleye",
+    "design_id": "settings-unified-b",
+    "title": "AngelEye \u2014 Settings: Session Sync (Accordion)",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/apps/angeleye/.mochaccino/designs/settings-unified-b/index.html",
+    "mtime": 1778064801,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/apps/angeleye",
+    "design_id": "settings-unified-c",
+    "title": "AngelEye \u2014 Settings: Dashboard Grid",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/apps/angeleye/.mochaccino/designs/settings-unified-c/index.html",
+    "mtime": 1778064801,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/apps/angeleye",
+    "design_id": "story-walkthrough",
+    "title": "AngelEye \u2014 Story Walkthrough",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/apps/angeleye/.mochaccino/designs/story-walkthrough/index.html",
+    "mtime": 1774680867,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/apps/angeleye",
+    "design_id": "sync-ux-a",
+    "title": "Sync UX A: Changelog Feed \u2014 Mochaccino",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/apps/angeleye/.mochaccino/designs/sync-ux-a/index.html",
+    "mtime": 1774521954,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/apps/angeleye",
+    "design_id": "sync-ux-b",
+    "title": "Sync UX B: Stacked Bar Delta \u2014 Mochaccino",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/apps/angeleye/.mochaccino/designs/sync-ux-b/index.html",
+    "mtime": 1774521954,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/apps/angeleye",
+    "design_id": "sync-ux-c",
+    "title": "Sync UX C: Compact Toast \u2014 Mochaccino",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/apps/angeleye/.mochaccino/designs/sync-ux-c/index.html",
+    "mtime": 1774521954,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/apps/angeleye",
+    "design_id": "sync-ux-d",
+    "title": "Sync UX D: Inline Diff Table \u2014 Mochaccino",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/apps/angeleye/.mochaccino/designs/sync-ux-d/index.html",
+    "mtime": 1774521954,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/apps/angeleye",
+    "design_id": "sync-ux-e",
+    "title": "Sync UX E: Narrative Summary \u2014 Mochaccino",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/apps/angeleye/.mochaccino/designs/sync-ux-e/index.html",
+    "mtime": 1774680867,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/apps/angeleye",
+    "design_id": "wave-audit-panel",
+    "title": "AngelEye \u2014 Wave Audit Panel \u2014 Mochaccino",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/apps/angeleye/.mochaccino/designs/wave-audit-panel/index.html",
+    "mtime": 1774743540,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/apps/angeleye",
+    "design_id": "wave-bar",
+    "title": "AngelEye \u2014 Wave Bar \u2014 Mochaccino",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/apps/angeleye/.mochaccino/designs/wave-bar/index.html",
+    "mtime": 1774743540,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/apps/angeleye",
+    "design_id": "wave-handover",
+    "title": "AngelEye \u2014 Wave Handover \u2014 Mochaccino",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/apps/angeleye/.mochaccino/designs/wave-handover/index.html",
+    "mtime": 1774743540,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/apps/angeleye",
+    "design_id": "wave-infographic",
+    "title": "AngelEye \u2014 Wave Visualization Design System",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/apps/angeleye/.mochaccino/designs/wave-infographic/index.html",
+    "mtime": 1774743540,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/apps/angeleye",
+    "design_id": "wave-sprint-board",
+    "title": "AngelEye \u2014 Wave Sprint Board \u2014 Mochaccino",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/apps/angeleye/.mochaccino/designs/wave-sprint-board/index.html",
+    "mtime": 1774743540,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/apps/angeleye",
+    "design_id": "wave-subagents",
+    "title": "AngelEye \u2014 Wave Sub-Agents \u2014 Mochaccino",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/apps/angeleye/.mochaccino/designs/wave-subagents/index.html",
+    "mtime": 1774743540,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/apps/angeleye",
+    "design_id": "wave-three-panel",
+    "title": "AngelEye \u2014 Wave Three-Panel \u2014 Mochaccino",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/apps/angeleye/.mochaccino/designs/wave-three-panel/index.html",
+    "mtime": 1774743540,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/apps/appyradar",
+    "design_id": "ai-activity",
+    "title": "AppyRadar \u2014 AI Activity",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/apps/appyradar/.mochaccino/designs/ai-activity/index.html",
+    "mtime": 1775660454,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/apps/appyradar",
+    "design_id": "angeleye-fleet",
+    "title": "AppyRadar \u2014 AngelEye Fleet",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/apps/appyradar/.mochaccino/designs/angeleye-fleet/index.html",
+    "mtime": 1775660515,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/apps/appyradar",
+    "design_id": "app-status-grid",
+    "title": "AppyRadar \u2014 App Status Grid",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/apps/appyradar/.mochaccino/designs/app-status-grid/index.html",
+    "mtime": 1775660530,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/apps/appyradar",
+    "design_id": "brain-activity",
+    "title": "AppyRadar \u2014 Brain Activity",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/apps/appyradar/.mochaccino/designs/brain-activity/index.html",
+    "mtime": 1775660695,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/apps/appyradar",
+    "design_id": "brain-health",
+    "title": "AppyRadar \u2014 Brain Health",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/apps/appyradar/.mochaccino/designs/brain-health/index.html",
+    "mtime": 1775660646,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/apps/appyradar",
+    "design_id": "brew-outdated",
+    "title": "AppyRadar \u2014 Brew Outdated",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/apps/appyradar/.mochaccino/designs/brew-outdated/index.html",
+    "mtime": 1775660584,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/apps/appyradar",
+    "design_id": "claude-versions",
+    "title": "AppyRadar \u2014 Claude Versions",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/apps/appyradar/.mochaccino/designs/claude-versions/index.html",
+    "mtime": 1775660588,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/apps/appyradar",
+    "design_id": "command-center",
+    "title": "AppyRadar \u2014 Command Center",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/apps/appyradar/.mochaccino/designs/command-center/index.html",
+    "mtime": 1775660866,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/apps/appyradar",
+    "design_id": "disk-archaeology",
+    "title": "AppyRadar \u2014 Disk Archaeology",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/apps/appyradar/.mochaccino/designs/disk-archaeology/index.html",
+    "mtime": 1775660671,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/apps/appyradar",
+    "design_id": "disk-drives",
+    "title": "AppyRadar \u2014 Disk Drives",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/apps/appyradar/.mochaccino/designs/disk-drives/index.html",
+    "mtime": 1775660772,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/apps/appyradar",
+    "design_id": "fleet-alerts",
+    "title": "AppyRadar \u2014 Fleet Alerts",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/apps/appyradar/.mochaccino/designs/fleet-alerts/index.html",
+    "mtime": 1775661069,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/apps/appyradar",
+    "design_id": "fleet-command",
+    "title": "AppyRadar \u2014 Fleet Command",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/apps/appyradar/.mochaccino/designs/fleet-command/index.html",
+    "mtime": 1775658958,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/apps/appyradar",
+    "design_id": "flivideo-suite",
+    "title": "AppyRadar \u2014 FliVideo Suite",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/apps/appyradar/.mochaccino/designs/flivideo-suite/index.html",
+    "mtime": 1775660639,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/apps/appyradar",
+    "design_id": "m2-profile",
+    "title": "AppyRadar \u2014 Mac Mini M2 Profile",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/apps/appyradar/.mochaccino/designs/m2-profile/index.html",
+    "mtime": 1775661012,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/apps/appyradar",
+    "design_id": "m4-deep-dive",
+    "title": "AppyRadar \u2014 M4 Deep Dive",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/apps/appyradar/.mochaccino/designs/m4-deep-dive/index.html",
+    "mtime": 1775660647,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/apps/appyradar",
+    "design_id": "macbook-pro-profile",
+    "title": "AppyRadar \u2014 MacBook Pro Profile",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/apps/appyradar/.mochaccino/designs/macbook-pro-profile/index.html",
+    "mtime": 1775660839,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/apps/appyradar",
+    "design_id": "memory-crisis",
+    "title": "AppyRadar \u2014 Memory Crisis",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/apps/appyradar/.mochaccino/designs/memory-crisis/index.html",
+    "mtime": 1775660483,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/apps/appyradar",
+    "design_id": "morning-briefing",
+    "title": "AppyRadar \u2014 Morning Briefing",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/apps/appyradar/.mochaccino/designs/morning-briefing/index.html",
+    "mtime": 1775660631,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/apps/appyradar",
+    "design_id": "omi-monthly",
+    "title": "AppyRadar \u2014 OMI Monthly",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/apps/appyradar/.mochaccino/designs/omi-monthly/index.html",
+    "mtime": 1775660590,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/apps/appyradar",
+    "design_id": "omi-pipeline",
+    "title": "AppyRadar \u2014 OMI Pipeline",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/apps/appyradar/.mochaccino/designs/omi-pipeline/index.html",
+    "mtime": 1775660658,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/apps/appyradar",
+    "design_id": "relay-status",
+    "title": "AppyRadar \u2014 Relay Status",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/apps/appyradar/.mochaccino/designs/relay-status/index.html",
+    "mtime": 1775660714,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/apps/appyradar",
+    "design_id": "running-now",
+    "title": "AppyRadar \u2014 Running Now",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/apps/appyradar/.mochaccino/designs/running-now/index.html",
+    "mtime": 1775660584,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/apps/appyradar",
+    "design_id": "tools-matrix",
+    "title": "AppyRadar \u2014 Tools Matrix",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/apps/appyradar/.mochaccino/designs/tools-matrix/index.html",
+    "mtime": 1775660765,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/apps/appyradar",
+    "design_id": "uptime-comparison",
+    "title": "AppyRadar \u2014 Uptime Comparison",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/apps/appyradar/.mochaccino/designs/uptime-comparison/index.html",
+    "mtime": 1775660703,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/apps/appyradar",
+    "design_id": "what-needs-attention",
+    "title": "AppyRadar \u2014 What Needs Attention",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/apps/appyradar/.mochaccino/designs/what-needs-attention/index.html",
+    "mtime": 1775660690,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/apps/dark-factory",
+    "design_id": "01-pipeline-overview",
+    "title": "Dark Factory \u2014 Pipeline Overview",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/apps/dark-factory/mochaccino/designs/01-pipeline-overview/index.html",
+    "mtime": 1779759524,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/apps/dark-factory",
+    "design_id": "01-session-journey",
+    "title": "Designing Comprehend \u2192 Visualise \u2014 Session Journey",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/apps/dark-factory/.mochaccino/designs/01-session-journey/index.html",
+    "mtime": 1780872426,
+    "machines": [
+      "m4pro"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/apps/dark-factory",
+    "design_id": "02-brain-remembers",
+    "title": "How a brain remembers &amp; recalls",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/apps/dark-factory/.mochaccino/designs/02-brain-remembers/index.html",
+    "mtime": 1780875514,
+    "machines": [
+      "m4pro"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/apps/dark-factory",
+    "design_id": "02-mining-view",
+    "title": "Dark Factory \u2014 Mining View",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/apps/dark-factory/mochaccino/designs/02-mining-view/index.html",
+    "mtime": 1779759524,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/apps/dark-factory",
+    "design_id": "03-four-memories",
+    "title": "A brain has four kinds of memory",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/apps/dark-factory/.mochaccino/designs/03-four-memories/index.html",
+    "mtime": 1780875564,
+    "machines": [
+      "m4pro"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/apps/dark-factory",
+    "design_id": "03-triage-console",
+    "title": "Dark Factory \u2014 Triage Console",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/apps/dark-factory/mochaccino/designs/03-triage-console/index.html",
+    "mtime": 1779759524,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/apps/dark-factory",
+    "design_id": "04-blackboard-overview",
+    "title": "Dark Factory \u2014 Blackboard Pattern Overview",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/apps/dark-factory/mochaccino/designs/04-blackboard-overview/index.html",
+    "mtime": 1779961683,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/apps/dark-factory",
+    "design_id": "04-brain-sleeps",
+    "title": "The brain that sleeps",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/apps/dark-factory/.mochaccino/designs/04-brain-sleeps/index.html",
+    "mtime": 1780875540,
+    "machines": [
+      "m4pro"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/apps/dark-factory",
+    "design_id": "05-dark-factory",
+    "title": "The Dark Factory \u2014 a factory you run by talking to it",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/apps/dark-factory/.mochaccino/designs/05-dark-factory/index.html",
+    "mtime": 1780891806,
+    "machines": [
+      "m4pro"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/apps/dark-factory",
+    "design_id": "05-probe-progression",
+    "title": "Dark Factory \u2014 Probe Progression",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/apps/dark-factory/mochaccino/designs/05-probe-progression/index.html",
+    "mtime": 1779961683,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/apps/dark-factory",
+    "design_id": "06-blackboard-vs-poem",
+    "title": "Dark Factory \u2014 Blackboard vs POEM vs prompt.supportsignal",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/apps/dark-factory/mochaccino/designs/06-blackboard-vs-poem/index.html",
+    "mtime": 1779759524,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/apps/dark-factory",
+    "design_id": "07-workflow-flows",
+    "title": "Dark Factory \u2014 The Four Workflows (Flow Diagrams)",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/apps/dark-factory/mochaccino/designs/07-workflow-flows/index.html",
+    "mtime": 1779759524,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/apps/dark-factory",
+    "design_id": "08-poem-consolidation",
+    "title": "Dark Factory \u2014 POEM Consolidation Decision Board",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/apps/dark-factory/mochaccino/designs/08-poem-consolidation/index.html",
+    "mtime": 1779759524,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/apps/dark-factory",
+    "design_id": "09-census-progress",
+    "title": "Dark Factory \u2014 Census Progress",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/apps/dark-factory/mochaccino/designs/09-census-progress/index.html",
+    "mtime": 1779961683,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/appydave-plugins",
+    "design_id": "01-lexi-profile",
+    "title": "Lexi \u2014 Portable Brain Librarian",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/appydave-plugins/.mochaccino/designs/01-lexi-profile/index.html",
+    "mtime": 1777549115,
+    "machines": [
+      "m4pro"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/appydave-plugins",
+    "design_id": "02-frontmatter-examples",
+    "title": "Frontmatter Patterns \u2014 Lexi Reference",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/appydave-plugins/.mochaccino/designs/02-frontmatter-examples/index.html",
+    "mtime": 1777549094,
+    "machines": [
+      "m4pro"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/appydave.com",
+    "design_id": "homepage-authority",
+    "title": "AppyDave \u2014 Homepage Authority",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/appydave.com/.mochaccino/designs/homepage-authority/index.html",
+    "mtime": 1774515800,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/appydave.com",
+    "design_id": "homepage-builder",
+    "title": "AppyDave \u2014 Homepage Builder",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/appydave.com/.mochaccino/designs/homepage-builder/index.html",
+    "mtime": 1774515856,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/appydave.com",
+    "design_id": "homepage-community",
+    "title": "AppyDave \u2014 Community",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/appydave.com/.mochaccino/designs/homepage-community/index.html",
+    "mtime": 1774515876,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/appydave.com",
+    "design_id": "layout-01",
+    "title": "AppyDave \u2014 Dark Agentic OS",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/appydave.com/.mochaccino/designs/layout-01/index.html",
+    "mtime": 1774449494,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/appydave.com",
+    "design_id": "layout-02",
+    "title": "AppyDave \u2014 Warm Editorial",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/appydave.com/.mochaccino/designs/layout-02/index.html",
+    "mtime": 1774449494,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/appydave.com",
+    "design_id": "layout-03",
+    "title": "AppyDave \u2014 Sidebar Nav Minimalist",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/appydave.com/.mochaccino/designs/layout-03/index.html",
+    "mtime": 1774449494,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/appydave.com",
+    "design_id": "layout-04",
+    "title": "AppyDave \u2014 Split Dark/Cream",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/appydave.com/.mochaccino/designs/layout-04/index.html",
+    "mtime": 1774449494,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/appydave.com",
+    "design_id": "layout-05",
+    "title": "AppyDave \u2014 From Coder to Agentic OS",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/appydave.com/.mochaccino/designs/layout-05/index.html",
+    "mtime": 1774449494,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/appydave.com",
+    "design_id": "layout-06",
+    "title": "AppyDave \u2014 Brutalist Typography",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/appydave.com/.mochaccino/designs/layout-06/index.html",
+    "mtime": 1774449494,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/appydave.com",
+    "design_id": "layout-07",
+    "title": "AppyDave \u2014 Swiss Grid",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/appydave.com/.mochaccino/designs/layout-07/index.html",
+    "mtime": 1774449494,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/appydave.com",
+    "design_id": "layout-11",
+    "title": "AppyDave \u2014 Manifesto",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/appydave.com/.mochaccino/designs/layout-11/index.html",
+    "mtime": 1774449494,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/appydave.com",
+    "design_id": "layout-12",
+    "title": "AppyDave \u2014 Dashboard",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/appydave.com/.mochaccino/designs/layout-12/index.html",
+    "mtime": 1774449494,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/appydave.com",
+    "design_id": "layout-13",
+    "title": "AppyDave \u2014 Creator Hub",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/appydave.com/.mochaccino/designs/layout-13/index.html",
+    "mtime": 1774449494,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/appydave.com",
+    "design_id": "layout-14",
+    "title": "AppyDave \u2014 Case Study / Proof",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/appydave.com/.mochaccino/designs/layout-14/index.html",
+    "mtime": 1774449494,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/appydave.com",
+    "design_id": "layout-15",
+    "title": "AppyDave \u2014 Layout 15 \u2014 Single-Scroll Narrative",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/appydave.com/.mochaccino/designs/layout-15/index.html",
+    "mtime": 1774449494,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/appydave.com",
+    "design_id": "layout-16",
+    "title": "AppyDave \u2014 Layout 16 \u2014 Ultra-Minimal",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/appydave.com/.mochaccino/designs/layout-16/index.html",
+    "mtime": 1774449494,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/appydave.com",
+    "design_id": "layout-17",
+    "title": "AppyDave \u2014 Layout 17 \u2014 Zine / Poster",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/appydave.com/.mochaccino/designs/layout-17/index.html",
+    "mtime": 1774449494,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/appydave.com",
+    "design_id": "layout-21",
+    "title": "AppyDave \u2014 V1 Editorial Magazine",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/appydave.com/.mochaccino/designs/layout-21/index.html",
+    "mtime": 1774450971,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/appydave.com",
+    "design_id": "layout-22",
+    "title": "AppyDave \u2014 V2 Dark Immersive",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/appydave.com/.mochaccino/designs/layout-22/index.html",
+    "mtime": 1774450971,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/appydave.com",
+    "design_id": "layout-23",
+    "title": "AppyDave \u2014 V3 Split Panel",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/appydave.com/.mochaccino/designs/layout-23/index.html",
+    "mtime": 1774450971,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/appydave.com",
+    "design_id": "layout-24",
+    "title": "AppyDave \u2014 V4 Card Mosaic",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/appydave.com/.mochaccino/designs/layout-24/index.html",
+    "mtime": 1774450971,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/appydave.com",
+    "design_id": "layout-25",
+    "title": "AppyDave \u2014 V5 Storytelling Scroll",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/appydave.com/.mochaccino/designs/layout-25/index.html",
+    "mtime": 1774450981,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/appydave.com",
+    "design_id": "layout-26",
+    "title": "AppyDave \u2014 V6 Editorial Refined",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/appydave.com/.mochaccino/designs/layout-26/index.html",
+    "mtime": 1774450981,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/appydave.com",
+    "design_id": "layout-27",
+    "title": "AppyDave \u2014 V7 Dark Premium",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/appydave.com/.mochaccino/designs/layout-27/index.html",
+    "mtime": 1774450981,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/appydave.com",
+    "design_id": "layout-28",
+    "title": "AppyDave \u2014 V8 Bold Asymmetric",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/appydave.com/.mochaccino/designs/layout-28/index.html",
+    "mtime": 1774450981,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/appydave.com",
+    "design_id": "layout-29",
+    "title": "AppyDave \u2014 V9 Warm Mosaic",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/appydave.com/.mochaccino/designs/layout-29/index.html",
+    "mtime": 1774450981,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/appydave.com",
+    "design_id": "layout-30",
+    "title": "AppyDave \u2014 V10 Cinematic Narrative",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/appydave.com/.mochaccino/designs/layout-30/index.html",
+    "mtime": 1774450981,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/brains/agentic-os",
+    "design_id": "01-layer-stack",
+    "title": "Mochaccino \u2014 Layer Stack \u2014 2026-04-24",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/brains/agentic-os/.mochaccino/designs/01-layer-stack/index.html",
+    "mtime": 1777164085,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/brains/agentic-os",
+    "design_id": "02-node-topology",
+    "title": "Mochaccino \u2014 Node Topology \u2014 2026-04-24",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/brains/agentic-os/.mochaccino/designs/02-node-topology/index.html",
+    "mtime": 1777164085,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/brains/agentic-os",
+    "design_id": "03-data-flow",
+    "title": "Mochaccino \u2014 Data Flow \u2014 2026-04-24",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/brains/agentic-os/.mochaccino/designs/03-data-flow/index.html",
+    "mtime": 1777164085,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/brains/agentic-os",
+    "design_id": "04-agent-orchestration",
+    "title": "Mochaccino \u2014 Agent Orchestration \u2014 2026-04-27",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/brains/agentic-os/.mochaccino/designs/04-agent-orchestration/index.html",
+    "mtime": 1777458857,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/brains/agentic-os",
+    "design_id": "05-application-typology",
+    "title": "Mochaccino \u2014 Application Typology \u2014 2026-04-24",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/brains/agentic-os/.mochaccino/designs/05-application-typology/index.html",
+    "mtime": 1777164085,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/brains/ruflo",
+    "design_id": "01-what-ruflo-is",
+    "title": "01 \u2014 What Ruflo Actually Is",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/brains/ruflo/.mochaccino/designs/01-what-ruflo-is/index.html",
+    "mtime": 1778292794,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/brains/ruflo",
+    "design_id": "02-two-operating-modes",
+    "title": "02 \u2014 Two Operating Modes",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/brains/ruflo/.mochaccino/designs/02-two-operating-modes/index.html",
+    "mtime": 1778292794,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/brains/ruflo",
+    "design_id": "03-topology-comparison",
+    "title": "03 \u2014 Topology Comparison",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/brains/ruflo/.mochaccino/designs/03-topology-comparison/index.html",
+    "mtime": 1778292794,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/brains/ruflo",
+    "design_id": "04-marketing-vs-reality",
+    "title": "04 \u2014 Marketing vs Reality",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/brains/ruflo/.mochaccino/designs/04-marketing-vs-reality/index.html",
+    "mtime": 1778292794,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/brains/ruflo",
+    "design_id": "05-five-operations",
+    "title": "05 \u2014 The Six Operations",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/brains/ruflo/.mochaccino/designs/05-five-operations/index.html",
+    "mtime": 1778292794,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/brains/ruflo",
+    "design_id": "06-swarm-topologies",
+    "title": "06 \u2014 Swarm Topologies",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/brains/ruflo/.mochaccino/designs/06-swarm-topologies/index.html",
+    "mtime": 1778292794,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/brains/ruflo",
+    "design_id": "07-phase-1-agent-roster",
+    "title": "07 \u2014 Phase 1 Agent Roster",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/brains/ruflo/.mochaccino/designs/07-phase-1-agent-roster/index.html",
+    "mtime": 1778292794,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/brains/ruflo",
+    "design_id": "08-phase-2-fanout",
+    "title": "08 \u2014 Phase 2 Fan-out",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/brains/ruflo/.mochaccino/designs/08-phase-2-fanout/index.html",
+    "mtime": 1778292794,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/brains/ruflo",
+    "design_id": "09-phase-3-bridge-webview",
+    "title": "09 \u2014 Phase 3 Bridge + Webview",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/brains/ruflo/.mochaccino/designs/09-phase-3-bridge-webview/index.html",
+    "mtime": 1778292794,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/brains/ruflo",
+    "design_id": "10-swarm-playbook",
+    "title": "10 \u2014 Swarm Playbook",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/brains/ruflo/.mochaccino/designs/10-swarm-playbook/index.html",
+    "mtime": 1778292794,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/flivideo/flihub",
+    "design_id": "chapter-separator",
+    "title": "Mochaccino \u2014 Chapter Separator Redesign",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/flivideo/flihub/.mochaccino/designs/chapter-separator/index.html",
+    "mtime": 1774353828,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/flivideo/flihub",
+    "design_id": "project-list-01-filterable-table",
+    "title": "Project List \u2014 Filterable Table",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/flivideo/flihub/.mochaccino/designs/project-list-01-filterable-table/index.html",
+    "mtime": 1774529258,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/flivideo/flihub",
+    "design_id": "project-list-02-kanban-pipeline",
+    "title": "Project List \u2014 Kanban Pipeline Board",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/flivideo/flihub/.mochaccino/designs/project-list-02-kanban-pipeline/index.html",
+    "mtime": 1774529258,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/flivideo/flihub",
+    "design_id": "project-list-06-split-focus",
+    "title": "Mochaccino \u2014 project-list-06-split-focus",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/flivideo/flihub/.mochaccino/designs/project-list-06-split-focus/index.html",
+    "mtime": 1774529258,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/flivideo/flihub",
+    "design_id": "project-list-10-hybrid-table-drawer",
+    "title": "Mochaccino \u2014 project-list-10-hybrid-table-drawer",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/flivideo/flihub/.mochaccino/designs/project-list-10-hybrid-table-drawer/index.html",
+    "mtime": 1774529258,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/flivideo/flihub",
+    "design_id": "project-list-a-table-drawer",
+    "title": "Mochaccino \u2014 project-list-a-table-drawer",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/flivideo/flihub/.mochaccino/designs/project-list-a-table-drawer/index.html",
+    "mtime": 1774529258,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/flivideo/flihub",
+    "design_id": "project-list-b-table-hover",
+    "title": "Project List \u2014 Table + Hover Card",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/flivideo/flihub/.mochaccino/designs/project-list-b-table-hover/index.html",
+    "mtime": 1774529258,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/flivideo/flihub",
+    "design_id": "project-list-c-table-kanban",
+    "title": "Mochaccino \u2014 project-list-c-table-kanban",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/flivideo/flihub/.mochaccino/designs/project-list-c-table-kanban/index.html",
+    "mtime": 1774529258,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/flivideo/flihub",
+    "design_id": "project-list-d-table-inline",
+    "title": "Mochaccino \u2014 project-list-d-table-inline",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/flivideo/flihub/.mochaccino/designs/project-list-d-table-inline/index.html",
+    "mtime": 1774529258,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/flivideo/flihub",
+    "design_id": "recording-editor",
+    "title": "Recording Editor \u2014 Inline Rename & Renumber",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/flivideo/flihub/.mochaccino/designs/recording-editor/index.html",
+    "mtime": 1774353828,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/flivideo/flihub",
+    "design_id": "relay-redesign",
+    "title": "Relay Redesign v3 \u2014 FliHub Mochaccino",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/flivideo/flihub/.mochaccino/designs/relay-redesign/index.html",
+    "mtime": 1774353828,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/flivideo/flihub",
+    "design_id": "sync-hub",
+    "title": "Sync Hub \u2014 B044 Mockup",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/flivideo/flihub/.mochaccino/designs/sync-hub/index.html",
+    "mtime": 1774353828,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/flivideo/flihub",
+    "design_id": "sync-hub-v2",
+    "title": "Mochaccino \u2014 sync-hub-v2",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/ad/flivideo/flihub/.mochaccino/designs/sync-hub-v2/index.html",
+    "mtime": 1774353828,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/flivideo/flihub-storage-panel",
+    "design_id": "chapter-separator",
+    "title": "Mochaccino \u2014 Chapter Separator Redesign",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/flivideo/flihub-storage-panel/.mochaccino/designs/chapter-separator/index.html",
+    "mtime": 1776164955,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/flivideo/flihub-storage-panel",
+    "design_id": "project-list-01-filterable-table",
+    "title": "Project List \u2014 Filterable Table",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/flivideo/flihub-storage-panel/.mochaccino/designs/project-list-01-filterable-table/index.html",
+    "mtime": 1776164955,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/flivideo/flihub-storage-panel",
+    "design_id": "project-list-02-kanban-pipeline",
+    "title": "Project List \u2014 Kanban Pipeline Board",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/flivideo/flihub-storage-panel/.mochaccino/designs/project-list-02-kanban-pipeline/index.html",
+    "mtime": 1776164955,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/flivideo/flihub-storage-panel",
+    "design_id": "project-list-06-split-focus",
+    "title": "Mochaccino \u2014 project-list-06-split-focus",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/flivideo/flihub-storage-panel/.mochaccino/designs/project-list-06-split-focus/index.html",
+    "mtime": 1776164955,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/flivideo/flihub-storage-panel",
+    "design_id": "project-list-10-hybrid-table-drawer",
+    "title": "Mochaccino \u2014 project-list-10-hybrid-table-drawer",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/flivideo/flihub-storage-panel/.mochaccino/designs/project-list-10-hybrid-table-drawer/index.html",
+    "mtime": 1776164955,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/flivideo/flihub-storage-panel",
+    "design_id": "project-list-a-table-drawer",
+    "title": "Mochaccino \u2014 project-list-a-table-drawer",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/flivideo/flihub-storage-panel/.mochaccino/designs/project-list-a-table-drawer/index.html",
+    "mtime": 1776164955,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/flivideo/flihub-storage-panel",
+    "design_id": "project-list-b-table-hover",
+    "title": "Project List \u2014 Table + Hover Card",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/flivideo/flihub-storage-panel/.mochaccino/designs/project-list-b-table-hover/index.html",
+    "mtime": 1776164955,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/flivideo/flihub-storage-panel",
+    "design_id": "project-list-c-table-kanban",
+    "title": "Mochaccino \u2014 project-list-c-table-kanban",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/flivideo/flihub-storage-panel/.mochaccino/designs/project-list-c-table-kanban/index.html",
+    "mtime": 1776164955,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/flivideo/flihub-storage-panel",
+    "design_id": "project-list-d-table-inline",
+    "title": "Mochaccino \u2014 project-list-d-table-inline",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/flivideo/flihub-storage-panel/.mochaccino/designs/project-list-d-table-inline/index.html",
+    "mtime": 1776164955,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/flivideo/flihub-storage-panel",
+    "design_id": "recording-editor",
+    "title": "Recording Editor \u2014 Inline Rename & Renumber",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/flivideo/flihub-storage-panel/.mochaccino/designs/recording-editor/index.html",
+    "mtime": 1776164955,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/flivideo/flihub-storage-panel",
+    "design_id": "relay-redesign",
+    "title": "Relay Redesign v3 \u2014 FliHub Mochaccino",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/flivideo/flihub-storage-panel/.mochaccino/designs/relay-redesign/index.html",
+    "mtime": 1776164955,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/flivideo/flihub-storage-panel",
+    "design_id": "sync-hub",
+    "title": "Sync Hub \u2014 B044 Mockup",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/flivideo/flihub-storage-panel/.mochaccino/designs/sync-hub/index.html",
+    "mtime": 1776164955,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/flivideo/flihub-storage-panel",
+    "design_id": "sync-hub-v2",
+    "title": "Mochaccino \u2014 sync-hub-v2",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/flivideo/flihub-storage-panel/.mochaccino/designs/sync-hub-v2/index.html",
+    "mtime": 1776164955,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/flivideo/flilaunch",
+    "design_id": "01-als-learnings",
+    "title": "ALS Learnings Catalog",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/flivideo/flilaunch/.mochaccino/designs/01-als-learnings/index.html",
+    "mtime": 1778376258,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/flivideo/flilaunch",
+    "design_id": "02-als-runbook",
+    "title": "ALS Operator Runbook",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/flivideo/flilaunch/.mochaccino/designs/02-als-runbook/index.html",
+    "mtime": 1778376303,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/flivideo/flilaunch",
+    "design_id": "03-als-module-state",
+    "title": "fli-launch Module State",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/flivideo/flilaunch/.mochaccino/designs/03-als-module-state/index.html",
+    "mtime": 1778376347,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/flivideo/flilaunch",
+    "design_id": "04-als-primitives",
+    "title": "ALS Primitives Reference",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/flivideo/flilaunch/.mochaccino/designs/04-als-primitives/index.html",
+    "mtime": 1778376390,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "ad/flivideo/flilaunch",
+    "design_id": "05-workflows",
+    "title": "Workflows & BI Sources",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/flivideo/flilaunch/.mochaccino/designs/05-workflows/index.html",
+    "mtime": 1778381472,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/flivideo/flilaunch",
+    "design_id": "06-prompts",
+    "title": "Prompts &amp; Techniques",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/flivideo/flilaunch/.mochaccino/designs/06-prompts/index.html",
+    "mtime": 1778381442,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/flivideo/storyline-app",
+    "design_id": "boardroom-agent-seats",
+    "title": "Mochaccino \u2014 boardroom-agent-seats",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/flivideo/storyline-app/.mochaccino/designs/boardroom-agent-seats/index.html",
+    "mtime": 1776523928,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/flivideo/storyline-app",
+    "design_id": "boardroom-cinema",
+    "title": "Mochaccino \u2014 boardroom-cinema",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/flivideo/storyline-app/.mochaccino/designs/boardroom-cinema/index.html",
+    "mtime": 1776523668,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/flivideo/storyline-app",
+    "design_id": "boardroom-classic",
+    "title": "Mochaccino \u2014 boardroom-classic",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/flivideo/storyline-app/.mochaccino/designs/boardroom-classic/index.html",
+    "mtime": 1776523605,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/flivideo/storyline-app",
+    "design_id": "boardroom-command",
+    "title": "Mochaccino \u2014 boardroom-command",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/flivideo/storyline-app/.mochaccino/designs/boardroom-command/index.html",
+    "mtime": 1776523785,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/flivideo/storyline-app",
+    "design_id": "boardroom-focus",
+    "title": "Mochaccino \u2014 boardroom-focus",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/flivideo/storyline-app/.mochaccino/designs/boardroom-focus/index.html",
+    "mtime": 1776523722,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/flivideo/storyline-app",
+    "design_id": "boardroom-living-library",
+    "title": "Mochaccino \u2014 boardroom-living-library",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/flivideo/storyline-app/.mochaccino/designs/boardroom-living-library/index.html",
+    "mtime": 1776523859,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "ad/flivideo/storyline-app",
+    "design_id": "boardroom-v7",
+    "title": "Mochaccino \u2014 boardroom-v7",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/ad/flivideo/storyline-app/.mochaccino/designs/boardroom-v7/index.html",
+    "mtime": 1776525075,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "app-ideas/.screentour",
+    "design_id": "01-screentour-gallery",
+    "title": "ScreenTour Gallery \u2014 FliHub",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/app-ideas/.screentour/.mochaccino/designs/01-screentour-gallery/index.html",
+    "mtime": 1777683681,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "clients/supportsignal/app.supportsignal.com.au",
+    "design_id": "components/analysis-row-table",
+    "title": "Component \u00b7 Analysis row table",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/clients/supportsignal/app.supportsignal.com.au/.mochaccino/designs/components/analysis-row-table/index.html",
+    "mtime": 1776170451,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "clients/supportsignal/app.supportsignal.com.au",
+    "design_id": "components/compact-workflow-progress",
+    "title": "Component \u00b7 Compact workflow progress",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/clients/supportsignal/app.supportsignal.com.au/.mochaccino/designs/components/compact-workflow-progress/index.html",
+    "mtime": 1776170451,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "clients/supportsignal/app.supportsignal.com.au",
+    "design_id": "components/final-document-summary",
+    "title": "Component \u00b7 Final document summary",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/clients/supportsignal/app.supportsignal.com.au/.mochaccino/designs/components/final-document-summary/index.html",
+    "mtime": 1776170451,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "clients/supportsignal/app.supportsignal.com.au",
+    "design_id": "components/live-pipeline-sidebar",
+    "title": "Component \u00b7 Live pipeline sidebar",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/clients/supportsignal/app.supportsignal.com.au/.mochaccino/designs/components/live-pipeline-sidebar/index.html",
+    "mtime": 1776170451,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "clients/supportsignal/app.supportsignal.com.au",
+    "design_id": "components/narrative-four-grid-expand",
+    "title": "Component \u00b7 Narrative four-grid (expand view)",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/clients/supportsignal/app.supportsignal.com.au/.mochaccino/designs/components/narrative-four-grid-expand/index.html",
+    "mtime": 1776170451,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "clients/supportsignal/app.supportsignal.com.au",
+    "design_id": "components/narrative-four-grid-modal",
+    "title": "Component \u00b7 Narrative four-grid (modal view)",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/clients/supportsignal/app.supportsignal.com.au/.mochaccino/designs/components/narrative-four-grid-modal/index.html",
+    "mtime": 1776170451,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "clients/supportsignal/app.supportsignal.com.au",
+    "design_id": "components/participant-context-strip",
+    "title": "Component \u00b7 Participant context strip",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/clients/supportsignal/app.supportsignal.com.au/.mochaccino/designs/components/participant-context-strip/index.html",
+    "mtime": 1776170451,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "clients/supportsignal/app.supportsignal.com.au",
+    "design_id": "components/sign-off-document",
+    "title": "Component \u00b7 Sign-off document",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/clients/supportsignal/app.supportsignal.com.au/.mochaccino/designs/components/sign-off-document/index.html",
+    "mtime": 1776170451,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "clients/supportsignal/app.supportsignal.com.au",
+    "design_id": "components/split-pane-layout",
+    "title": "Component \u00b7 Split-pane layout",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/clients/supportsignal/app.supportsignal.com.au/.mochaccino/designs/components/split-pane-layout/index.html",
+    "mtime": 1776170451,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "clients/supportsignal/app.supportsignal.com.au",
+    "design_id": "components/timeline-canvas-zones",
+    "title": "Component \u00b7 Timeline canvas zones",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/clients/supportsignal/app.supportsignal.com.au/.mochaccino/designs/components/timeline-canvas-zones/index.html",
+    "mtime": 1776170451,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "clients/supportsignal/app.supportsignal.com.au",
+    "design_id": "new-incident-01-classic-stepper",
+    "title": "Mochaccino \u2014 new-incident-01-classic-stepper",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/clients/supportsignal/app.supportsignal.com.au/.mochaccino/designs/new-incident-01-classic-stepper/index.html",
+    "mtime": 1776170451,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "clients/supportsignal/app.supportsignal.com.au",
+    "design_id": "new-incident-02-single-scroll-document",
+    "title": "Mochaccino \u2014 new-incident-02-single-scroll-document \u2014 2026-04-14",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/clients/supportsignal/app.supportsignal.com.au/.mochaccino/designs/new-incident-02-single-scroll-document/index.html",
+    "mtime": 1776170451,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "clients/supportsignal/app.supportsignal.com.au",
+    "design_id": "new-incident-03-split-pane",
+    "title": "Mochaccino \u2014 new-incident-03-split-pane \u2014 2026-04-14",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/clients/supportsignal/app.supportsignal.com.au/.mochaccino/designs/new-incident-03-split-pane/index.html",
+    "mtime": 1776170451,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "clients/supportsignal/app.supportsignal.com.au",
+    "design_id": "new-incident-04-conversational",
+    "title": "Mochaccino \u2014 new-incident-04-conversational \u2014 2026-04-14",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/clients/supportsignal/app.supportsignal.com.au/.mochaccino/designs/new-incident-04-conversational/index.html",
+    "mtime": 1776170451,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "clients/supportsignal/app.supportsignal.com.au",
+    "design_id": "new-incident-05-checkpoint-ceremony",
+    "title": "Mochaccino \u2014 new-incident-05-checkpoint-ceremony \u2014 2026-04-14",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/clients/supportsignal/app.supportsignal.com.au/.mochaccino/designs/new-incident-05-checkpoint-ceremony/index.html",
+    "mtime": 1776170451,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "clients/supportsignal/app.supportsignal.com.au",
+    "design_id": "new-incident-06-live-pipeline",
+    "title": "Mochaccino \u2014 new-incident-06-live-pipeline \u2014 2026-04-14",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/clients/supportsignal/app.supportsignal.com.au/.mochaccino/designs/new-incident-06-live-pipeline/index.html",
+    "mtime": 1776170451,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "clients/supportsignal/app.supportsignal.com.au",
+    "design_id": "new-incident-07-focus-mode",
+    "title": "Mochaccino \u2014 new-incident-07-focus-mode \u2014 2026-04-14",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/clients/supportsignal/app.supportsignal.com.au/.mochaccino/designs/new-incident-07-focus-mode/index.html",
+    "mtime": 1776170451,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "clients/supportsignal/app.supportsignal.com.au",
+    "design_id": "new-incident-08-timeline-canvas",
+    "title": "Mochaccino \u2014 new-incident-08-timeline-canvas \u2014 2026-04-14",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/clients/supportsignal/app.supportsignal.com.au/.mochaccino/designs/new-incident-08-timeline-canvas/index.html",
+    "mtime": 1776170451,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "clients/supportsignal/app.supportsignal.com.au",
+    "design_id": "new-incident-09-dense-power-user",
+    "title": "Mochaccino \u2014 new-incident-09-dense-power-user \u2014 2026-04-14",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/clients/supportsignal/app.supportsignal.com.au/.mochaccino/designs/new-incident-09-dense-power-user/index.html",
+    "mtime": 1776170451,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "clients/supportsignal/app.supportsignal.com.au",
+    "design_id": "new-incident-10-narrative-spine",
+    "title": "Mochaccino \u2014 new-incident-10-narrative-spine",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/clients/supportsignal/app.supportsignal.com.au/.mochaccino/designs/new-incident-10-narrative-spine/index.html",
+    "mtime": 1776170451,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "clients/supportsignal/app.supportsignal.com.au",
+    "design_id": "new-incident-poc-stepper",
+    "title": "Mochaccino \u2014 new-incident-poc-stepper",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/clients/supportsignal/app.supportsignal.com.au/.mochaccino/designs/new-incident-poc-stepper/index.html",
+    "mtime": 1776170451,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "clients/supportsignal/app.supportsignal.com.au",
+    "design_id": "participant-analytics",
+    "title": "Participant Analytics \u2014 Sunshine Disability Services",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/clients/supportsignal/app.supportsignal.com.au/.mochaccino/designs/participant-analytics/index.html",
+    "mtime": 1774972307,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "clients/supportsignal/app.supportsignal.com.au",
+    "design_id": "participant-contacts-network",
+    "title": "Contacts &amp; Notifications \u2014 Priya Sharma",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/clients/supportsignal/app.supportsignal.com.au/.mochaccino/designs/participant-contacts-network/index.html",
+    "mtime": 1774972307,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "clients/supportsignal/app.supportsignal.com.au",
+    "design_id": "participant-directory",
+    "title": "Participant Directory \u2014 SupportSignal",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/clients/supportsignal/app.supportsignal.com.au/.mochaccino/designs/participant-directory/index.html",
+    "mtime": 1774972307,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "clients/supportsignal/app.supportsignal.com.au",
+    "design_id": "participant-ews-dashboard",
+    "title": "EWS Dashboard \u2014 Priya Sharma",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/clients/supportsignal/app.supportsignal.com.au/.mochaccino/designs/participant-ews-dashboard/index.html",
+    "mtime": 1774972307,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "clients/supportsignal/app.supportsignal.com.au",
+    "design_id": "participant-health-overview",
+    "title": "Health Conditions \u2014 Priya Sharma",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/clients/supportsignal/app.supportsignal.com.au/.mochaccino/designs/participant-health-overview/index.html",
+    "mtime": 1774972307,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "clients/supportsignal/app.supportsignal.com.au",
+    "design_id": "participant-onboarding",
+    "title": "Participant Onboarding \u2014 Mochaccino",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/clients/supportsignal/app.supportsignal.com.au/.mochaccino/designs/participant-onboarding/index.html",
+    "mtime": 1774972307,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "clients/supportsignal/app.supportsignal.com.au",
+    "design_id": "participant-profile",
+    "title": "Participant Profile \u2014 Priya Sharma",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/clients/supportsignal/app.supportsignal.com.au/.mochaccino/designs/participant-profile/index.html",
+    "mtime": 1774972307,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "clients/supportsignal/app.supportsignal.com.au",
+    "design_id": "participant-restrictive-practices",
+    "title": "Restrictive Practices \u2014 Priya Sharma",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/clients/supportsignal/app.supportsignal.com.au/.mochaccino/designs/participant-restrictive-practices/index.html",
+    "mtime": 1774972307,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "clients/supportsignal/app.supportsignal.com.au",
+    "design_id": "participant-risk-matrix",
+    "title": "Risk Assessment \u2014 Priya Sharma",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/clients/supportsignal/app.supportsignal.com.au/.mochaccino/designs/participant-risk-matrix/index.html",
+    "mtime": 1774972307,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "clients/supportsignal/app.supportsignal.com.au",
+    "design_id": "participant-support-goals",
+    "title": "Support Goals \u2014 Priya Sharma",
+    "machine": "m4pro",
+    "path": "/Users/davidcruwys/dev/clients/supportsignal/app.supportsignal.com.au/.mochaccino/designs/participant-support-goals/index.html",
+    "mtime": 1774972307,
+    "machines": [
+      "m4mini",
+      "m4pro"
+    ],
+    "diverged": true
+  },
+  {
+    "repo": "raw-intake/omi",
+    "design_id": "01-signal-timeline",
+    "title": "OMI Signal Timeline \u2014 AppyDave",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/raw-intake/omi/.mochaccino/designs/01-signal-timeline/index.html",
+    "mtime": 1777359100,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "raw-intake/omi",
+    "design_id": "02-brain-cooccurrence",
+    "title": "Brain Co-occurrence \u2014 AppyDave",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/raw-intake/omi/.mochaccino/designs/02-brain-cooccurrence/index.html",
+    "mtime": 1777359162,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  },
+  {
+    "repo": "raw-intake/omi",
+    "design_id": "03-entity-web",
+    "title": "Entity Web \u2014 AppyDave",
+    "machine": "m4mini",
+    "path": "/tmp/mocha-mini-mirror/Users/davidcruwys/dev/raw-intake/omi/.mochaccino/designs/03-entity-web/index.html",
+    "mtime": 1777359218,
+    "machines": [
+      "m4mini"
+    ],
+    "diverged": false
+  }
+]

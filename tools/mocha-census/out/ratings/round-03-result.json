@@ -1,0 +1,7 @@
+{
+  "round": 3,
+  "note": "eval-loop validation re-rate (mostly unlabeled)",
+  "result": "05-dark-factory-v2 = LOVE (only love in the round) \u2014 good/busy(v1) -> love(v2) confirms the v2 spec",
+  "v2_label": "I like the green, orange, blue on the box, but not so much on the lines, simpler lines would have been fine, but over all it is wonderful.",
+  "recalibration": "David tightened 'love' hard this round: round-02 had 47 loves, round-03 has 1. Absolute tiers drift between sessions; anchor on LABELS + relative order, not tier counts."
+}

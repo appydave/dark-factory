@@ -63,6 +63,36 @@ A Python http.server runs on **:7420** rooted at `mochaccino/`. Pages: `/designs
 cd ~/dev/ad/apps/dark-factory/mochaccino && nohup python3 -m http.server 7420 > .serve.log 2>&1 &
 ```
 
+## Mocha Census (design audit + taste board)
+
+First-class tool at **`tools/mocha-census/`** — finds every Mochaccino design across **both machines**
+(M4 Pro local + M4 Mini over Tailscale), screenshots them, and serves a **rate-and-label board**
+(love/good/average + free-text labels) whose verdicts distill into the design spec
+**`docs/david-design-patterns.md`** + the love-tier exemplar pack. This is the self-improving design
+loop: *render → rate → distill → re-render* (proven: `05-dark-factory` good→ `05-dark-factory-v2` love).
+
+- **Operator manual:** `tools/mocha-census/README.md` (how it works, how to run, refresh, modes).
+- **Run:** `bash tools/mocha-census/run-full.sh` (full both-machine refresh); board on **:7440** at
+  `/out/shots/gallery.html`. The pages are static HTML — `shoot.py` spins up throwaway per-repo servers
+  only during capture, nothing stays running.
+- **Two modes:** *census* (audit everything, bulk-rate — built now) and *bench* (rate N specific
+  variants of one idea side-by-side — planned; the right shape for 1–2 pages).
+
+## Design-Lint (the post-render self-check / "design-loop pass")
+
+First-class tool at **`tools/design-lint/`** — the *machine* half of the taste loop (Mocha Census is the
+*human* half). After a render, it screenshots the output (`shoot-one.py`, reuses the census Playwright
+pattern) and a **lint agent** critiques it against `RUBRIC.md` (operational extract of
+`docs/david-design-patterns.md`), returning a `pass`/`flag` JSON verdict. Flags ONLY three reliable
+failures: `cool-on-content`, `missing-warm-anchor`, `amber-orange-on-brown`. **Flags only — no
+auto-fix, never policing diagram/colour counts** (avoids the round-04 Goodhart trap).
+
+- **Operator manual / two modes (inline gate · batch audit):** `tools/design-lint/README.md`.
+- **⚠️ OPEN placement question (David, 2026-06-10):** built here as the *staged* form (dark-factory
+  stages skill code; Shelly/Mochaccino live in tracked appydave-plugins). The likely true home is
+  **inside Mochaccino** — Shelly's automated `review`/self-lint mode — not a standalone tool. To
+  reconsider before promotion: `backlog/2026-06-10-design-lint-placement-question.md`.
+
 ## End-of-session
 
 If you completed a backlog item: mark it complete (rename to `<slug>.done.md` or move to `backlog/done/`) and write a 5-line summary at the bottom of the file.
