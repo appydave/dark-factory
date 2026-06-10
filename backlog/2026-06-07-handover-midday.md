@@ -29,7 +29,7 @@ Two standing Marshall **Monitors run in the session and will NOT survive a compa
 - **Reaper STUCK-case** — build from AngelEye liveness: `GET :5051/api/sessions/:id/liveness` → `last_active`+`server_now`; stall = `(server_now-last_active)>timeout`; key on `last_active` NOT `status`. **Blocker:** registry is window→queue_id but AngelEye is by `session_id` → record the Swagger's `$CLAUDE_SESSION_ID` in the registry on dispatch.
 - **`running ∩ done` reconcile rule** + harden run-next-workflow (a Swagger botched bookkeeping: skipped handback + left a `running/` stray).
 - **Symphony lifts** — explicit claim-states + ONE consolidated reconcile loop (unify reaper+retry+stuck).
-- **AppyCtrl** — investigate in its own window; could own tmux/process state (window→liveness, rot detector).
+- **AppyRadar** (was "AppyCtrl" — corrected 2026-06-10, see docs/appyradar.md) — investigate in its own window; could own tmux/process state (window→liveness, rot detector).
 - **Auto-dispatch** of re-queued tickets (queue-Monitor / C3c) — retry re-queues but nothing auto-runs it yet.
 - **Architecture visualisation** — do it structure-first (schema/JSON → Mochaccino), not started.
 - **AngelEye** — M4-vs-Roamy hook target (parked); daemonize after Sentinel/control-plane split.
@@ -39,7 +39,7 @@ Two standing Marshall **Monitors run in the session and will NOT survive a compa
 2. **Reaper stuck-case** (AngelEye liveness; handback in hand).
 3. **Map view (v6)** — dispatch, or fold into #1.
 4. **`running ∩ done` reconcile** + harden run-next-workflow.
-5. **AppyCtrl** investigation (own window).
+5. **AppyRadar** investigation (own window).
 6. **Symphony lifts** (claim-states / consolidated reconcile).
 
 ## Key pointers
