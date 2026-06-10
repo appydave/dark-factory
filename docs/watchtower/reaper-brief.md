@@ -1,6 +1,6 @@
 # Reaper — design brief (converged 2026-06-07)
 
-*First output of the **fragment→convergence funnel**: scattered reaper fragments (the live-fire finding, the observers-answer frame, the harness-driven-cleanup doctrine, the two-case split, AppyCtrl/AngelEye liveness) synthesized into one cohesive brief that drives the build.*
+*First output of the **fragment→convergence funnel**: scattered reaper fragments (the live-fire finding, the observers-answer frame, the harness-driven-cleanup doctrine, the two-case split, AppyRadar (was "AppyCtrl" — corrected 2026-06-10, see docs/appyradar.md)/AngelEye liveness) synthesized into one cohesive brief that drives the build.*
 
 ## Problem
 Swagger windows strand: a Swagger finishes (or hangs) and its tmux window stays alive, idling at the REPL. Manual reaping has failed repeatedly (Marshall forgetting; Swagger self-close has no permission). Orphans accumulate → fragile loop.
@@ -10,11 +10,11 @@ Swagger windows strand: a Swagger finishes (or hangs) and its tmux window stays 
 - **Cleanup is harness-driven, not remembered**: detect → tell → reap. Self-action fails both ways (Marshall forgets; Swagger can't kill itself).
 
 ## Frame
-**Observers answer; the floor acts.** Sentinel apps (AngelEye, AppyCtrl, Switchboard) are queryable sources of truth — they don't kill. **Marshall's privileged Monitor reaps** (it alone holds tmux perms). David confirmed: Marshall's Monitor runs the reaper.
+**Observers answer; the floor acts.** Sentinel apps (AngelEye, AppyRadar, Switchboard) are queryable sources of truth — they don't kill. **Marshall's privileged Monitor reaps** (it alone holds tmux perms). David confirmed: Marshall's Monitor runs the reaper.
 
 ## Two cases (split the problem)
 1. **Common — finished-but-open** (the orphan we keep hitting): the handback landed in `reports/` (job done) but the window is still open. **Signal = engine state** (the engine's own artifacts). No process detection, no AngelEye needed. **← BUILD NOW.**
-2. **Stuck — no handback** (hung mid-job): no engine signal exists. Needs **session liveness** — query AngelEye (claude-session last-active) and/or AppyCtrl (process/tmux state). **← DEFER** until AngelEye live-hook + AppyCtrl-state exist.
+2. **Stuck — no handback** (hung mid-job): no engine signal exists. Needs **session liveness** — query AngelEye (claude-session last-active) and/or AppyRadar (process/tmux state). **← DEFER** until AngelEye live-hook + AppyRadar-state exist.
 
 ## Decision (v1 = engine-state reaper)
 Build the **engine-state reaper** now; defer the stuck-case.
@@ -34,7 +34,7 @@ The reaper must map a handback (`queue_id`) → its tmux window. Window names (`
 Dispatch one quick real job → it finishes (handback lands) → confirm the reaper auto-closes its window after grace, registry cleaned, 0 orphans. This tests the reaper AND exercises the loop.
 
 ## Explicitly out of scope (v1)
-Stuck/no-handback detection (→ AngelEye/AppyCtrl liveness, later); Switchboard-emits-`session.reapable` SRP-purist variant (more moving parts than v1 warrants — Marshall's Monitor reads engine state directly for now).
+Stuck/no-handback detection (→ AngelEye/AppyRadar liveness, later); Switchboard-emits-`session.reapable` SRP-purist variant (more moving parts than v1 warrants — Marshall's Monitor reads engine state directly for now).
 
 ## Open questions
 - Grace period: 60s a good default? (tunable)
