@@ -1,0 +1,25 @@
+{
+  "id": "run-cortex-render-002",
+  "kind": "run",
+  "experiment_id": "exp-20260608-cortex-visualise",
+  "queue_id": "q-20260608-cortex-brain-v2",
+  "executed": "instruction",
+  "status": "complete",
+  "started_at": "2026-06-08T20:13:00+07:00",
+  "ended_at": "2026-06-08T20:21:00+07:00",
+  "result": {
+    "audience_framing": "how does a brain actually work — framed around the BRAIN concept, NOT packages/monorepo/deps (cortex is the worked example)",
+    "hero": ".mochaccino/designs/06-brain-anatomy/index.html — 'Anatomy of a Brain' (NEW). Ties the whole brain into one picture: (1) YOU FEED IT ingest mouth; (2) FOUR KINDS OF MEMORY as regions — Episodic/timeline · Semantic/knowledge-graph/entity-graph · Associative/vectors/recall-by-meaning · Housekeeping/sleep; (3) IT RECALLS BY MEANING lighting all four regions; (4) IT SLEEPS to consolidate; (5) SWAPPABLE ORGANS — Storage/Embedding/LLM seams you swap without touching the mind (the thesis none of the fragments showed). Links out to the 3 fragments as drill-downs.",
+    "fragments_regenerated": [
+      ".mochaccino/designs/02-brain-remembers/index.html — cross-linked back to hero",
+      ".mochaccino/designs/03-four-memories/index.html — data reconciled to hero's region names (Semantic=knowledge-graph, Associative=recall-by-meaning) + cross-linked back to hero",
+      ".mochaccino/designs/04-brain-sleeps/index.html — cross-linked back to hero"
+    ],
+    "data": "all designs MVC — index.html ALWAYS fetches ../../data/NN-*.json, never inlines. NEW .mochaccino/data/06-brain-anatomy.json; edited 03-four-memories.json.",
+    "provenance": "every design meta.source = '~/dev/kybernesis/cortex @ a129a5d50ba8a140c288b6f2eb03ddadcee873a9 (M4)' + commit_sha (refreshable; preserved)",
+    "gallery": ".mochaccino/designs/index.html regenerated — cortex cluster grouped FIRST with hero (06) on top + 02/03/04 as drill-downs; kept 01-session-journey and 05-dark-factory",
+    "brand": "AppyDave light-mode — brown #342d2d, gold #ccba9d, yellow #ffde59; Bebas Neue / Oswald / Roboto; Orient strip (why/who/what-question) atop each",
+    "served": "http://localhost:7422 (existing port; files regenerated, no new server)",
+    "verified": "curl 200 on /designs/, /designs/06-brain-anatomy/, /designs/02-brain-remembers/, /designs/03-four-memories/, /designs/04-brain-sleeps/, /data/06-brain-anatomy.json ; all 4 data JSON parse-valid ; gallery shows hero-first + drill-downs"
+  }
+}

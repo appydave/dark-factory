@@ -1,0 +1,19 @@
+{
+  "id": "run-comprehend-visualise-001",
+  "kind": "run",
+  "experiment_id": "exp-20260607-comprehend-visualise",
+  "queue_id": "q-20260607-comprehend-visualise-skill",
+  "executed": "instruction",
+  "status": "complete",
+  "started_at": "2026-06-07T16:00:00+07:00",
+  "ended_at": "2026-06-07T16:20:00+07:00",
+  "result": {
+    "built_skill": ".claude/skills/comprehend-visualise/SKILL.md",
+    "self_test_target": "experiments/watchtower-board",
+    "commit_sha": "ce9bad99de9c94e4c0dab577b0e6d07ed6247336",
+    "digest": "experiments/watchtower-engine/proof/cv-selftest/digest.md (29 lines)",
+    "brief": "experiments/watchtower-engine/proof/cv-selftest/brief.json (valid JSON, 4 visualisations: layer-stack, card-grid, lifecycle-flow, timeline)",
+    "proof": "experiments/watchtower-engine/proof/comprehend-visualise-phase1.md",
+    "phase2_handoff": "target.path + target.commit_sha = meta.source provenance for Peter"
+  }
+}

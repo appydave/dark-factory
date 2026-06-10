@@ -1,0 +1,217 @@
+{
+  "meta": {
+    "id": "cortex-system",
+    "version": "1.0.0",
+    "extracted": "2026-06-08",
+    "source": "~/dev/kybernesis/cortex @ a129a5d50ba8a140c288b6f2eb03ddadcee873a9 (M4)",
+    "prompt": "Comprehend the cortex system for visualisation"
+  },
+  "system": {
+    "name": "cortex",
+    "summary": "A portable second-brain library (`@kybernesis/brain-*`) — a family of ESM-only TypeScript npm packages that give an application persistent, portable memory. You feed it conversations, notes, transcripts and files; it stores them on a timeline, recalls them by meaning (not keywords), and builds a knowledge graph of people, facts and relationships in the background. Provider-pluggable by design: the kernel (brain-core) holds the algorithms; three swappable seams (Storage, Embedding, LLM) wire in concrete backends at startup. SQLite + OpenAI + Claude today; anything else tomorrow without touching the kernel. Powers the memory layer in KyberAgent Desktop (KAD) and KyberAgent Enterprise (KBDE).",
+    "package_count": 7,
+    "db_count": 4,
+    "language": "TypeScript (ESM-only, strict)",
+    "monorepo": "pnpm workspace, 7 packages versioned in lockstep (current 0.8.2)",
+    "seams": [
+      { "name": "Storage", "wired_with": "setStorageProvider()", "default_impl": "brain-storage-sqlite (+ brain-storage-vec)", "powers": "All persistence — timeline, entities, facts, sleep, vectors" },
+      { "name": "Embedding", "wired_with": "setEmbeddingProvider()", "default_impl": "brain-embed-openai", "powers": "Semantic indexing + recall (indexChunk, semanticSearch, hybridSearch)" },
+      { "name": "LLM", "wired_with": "setLLMProvider()", "default_impl": "brain-llm-claude", "powers": "Relationship/fact extraction, contradiction detection, profiles, sleep reasoning" }
+    ]
+  },
+  "packages": [
+    {
+      "name": "@kybernesis/brain-core",
+      "role": "kernel",
+      "what": "The kernel — timeline, entity-graph, facts, vectors, retrieval, and sleep consolidation. Holds all algorithms; has no built-in backends. Consumers wire the three provider seams at startup, then call kernel methods. ✅verified",
+      "key_files": [
+        "src/index.ts — public API surface (flat async exports by subsystem)",
+        "src/storage.ts — Storage DI seam (defaults to bundled SQLite; load-bearing)",
+        "src/vectors.ts — Embedding DI seam + semanticSearch (no-op when unset)",
+        "src/claude-call.ts — LLM DI seam (graceful degradation when unset)",
+        "src/timeline.ts — timeline event ops + addConversationToTimeline",
+        "src/entity-graph.ts — entity CRUD, mentions, typed relationships, profiles, insights, contradictions",
+        "src/fact-store.ts / fact-extractor.ts / fact-retrieval.ts / fact-contradiction.ts / fact-temporal.ts — fact lifecycle",
+        "src/hybrid-search.ts — semantic+keyword+temporal fusion via Reciprocal Rank Fusion (RRF k=60)",
+        "src/store-conversation.ts — fire-and-forget ingest orchestrator",
+        "src/relationship-extractor.ts — Haiku-backed relationship extraction",
+        "src/user-profile.ts — LLM-backed profile synthesis from facts",
+        "src/queue.ts — per-tenant single-fiber write queue (SQLite WAL single-writer)",
+        "src/sleep/ — 9-step sleep consolidation cycle"
+      ],
+      "deps": ["@kybernesis/brain-contracts", "@kybernesis/brain-storage-sqlite (default)", "@kybernesis/brain-storage-vec (lazy)", "node:crypto"],
+      "data_shapes": ["TimelineEvent", "Entity / EntityMention / TypedRelationship / EntityInsight / Contradiction", "Fact (8 categories)", "HybridSearchResult", "FactSearchResult", "SleepConfig / RunMetrics", "UserProfile", "SearchResult / IndexChunkMeta"]
+    },
+    {
+      "name": "@kybernesis/brain-contracts",
+      "role": "seam definitions",
+      "what": "The seam definition package — Zod schemas, provider interfaces, shared constants. Every consumer depends on it; it depends only on Zod. Two-plane StorageProvider (Repositories = CRUD; Domain = business-logic SQL). Domain rows are snake_case by design (match KAD DB columns), enforced by a schema-naming guard test. ✅verified",
+      "key_files": [
+        "src/storage.ts — StorageProvider interface (TimelineRepository, EntityRepository, FactRepository, SleepRepository, VectorRepository + domain: SearchQueries, FactRetrievalQueries, SleepMaintenance)",
+        "src/constants.ts — enums (Tier, EventType, FactCategory, EntityType, RelationshipType…), SOURCE_CONFIDENCE, EMBEDDING_MODEL/DIM (1536)/INPUT_CAP (8192), RRF_K=60, CLAUDE_MODEL_ALIASES",
+        "src/entity.ts / fact.ts / sleep.ts / timeline.ts — Zod row schemas",
+        "src/tenant.ts — TenantContext + TenantPaths + pathsFor(slug, root, brainSubdir) helper",
+        "src/schema-naming.test.ts — snake_case guard"
+      ],
+      "deps": ["zod"],
+      "data_shapes": ["StorageProvider / EmbeddingProvider / LLMProvider seam types", "Entity / EntityMention / EntityRelation / EntityProfile / EntityInsight / Contradiction", "Fact / FactInput", "SleepRun / MemoryEdge / MaintenanceQueueItem / SleepTelemetry / TierTransition", "TimelineEvent / TimelineEventInput", "TenantContext / TenantPaths"]
+    },
+    {
+      "name": "@kybernesis/brain-storage-sqlite",
+      "role": "provider (Storage seam)",
+      "what": "Default StorageProvider — a better-sqlite3 backend persisting timeline, entity-graph, facts and sleep across separate SQLite files per tenant; bundles the vector store (lazy-loaded from brain-storage-vec). Per-slug per-kind connection pooling. ✅verified",
+      "key_files": [
+        "src/provider.ts — StorageProvider factory; lazy-loads vector store",
+        "src/index.ts — getDb() pooling + database lifecycle",
+        "src/timeline.ts — TimelineRepository (timeline_events, facts)",
+        "src/entity-graph.ts — EntityRepository (7 entity tables)",
+        "src/fact-store.ts — FactRepository (facts_fts + triggers)",
+        "src/sleep-store.ts / sleep-maintenance.ts — SleepRepository + maintenance domain queries",
+        "src/fact-retrieval-queries.ts / search-queries.ts — domain-plane SQL",
+        "src/fts-sanitizer.ts — FTS5 query sanitization"
+      ],
+      "deps": ["@kybernesis/brain-contracts", "better-sqlite3", "@kybernesis/brain-storage-vec (dynamic/lazy)"],
+      "data_shapes": ["timeline.db tables", "entity-graph.db tables", "sleep.db tables", "(lazy) vectors.db via brain-storage-vec"]
+    },
+    {
+      "name": "@kybernesis/brain-storage-vec",
+      "role": "provider (Vector seam)",
+      "what": "VectorRepository seam — a sqlite-vec backend for vector persistence and brute-force semantic search (vec_distance_l2). 1536-dim, fixed. Lazy-loaded by the SQLite provider; degrades to no-op if the native binary can't load. ✅verified",
+      "key_files": [
+        "src/index.ts — getVectorDb()/closeVectorDb(), connection pool, schema DDL",
+        "src/vector-store.ts — sqliteVecStore: available/hasOrigin/insertChunk/search/stats"
+      ],
+      "deps": ["@kybernesis/brain-contracts", "better-sqlite3 (peer)", "sqlite-vec (peer)"],
+      "data_shapes": ["chunks (vec0 virtual table, embedding float[1536])", "chunk_meta (rowid, ts, source, content, origin_id) + chunk_meta_origin index"]
+    },
+    {
+      "name": "@kybernesis/brain-embed-openai",
+      "role": "provider (Embedding seam)",
+      "what": "Tenant-aware EmbeddingProvider wrapping OpenAI text-embedding-3-small → 1536-dim vectors. Inference plane. Per-tenant API-key resolution (<home>/.env → process.env.OPENAI_API_KEY) with per-tenant client caching; degrades to null on missing key or failure. ✅verified",
+      "key_files": ["src/index.ts — embed(t, text) + key resolution + client cache"],
+      "deps": ["@kybernesis/brain-contracts", "@kybernesis/brain-core (peer)", "openai>=4 (optional, dynamically imported)"],
+      "data_shapes": ["embed(t, text) -> number[1536] | null", "OpenAIEmbedderOptions { clientFactory?, model?, onError? }"]
+    },
+    {
+      "name": "@kybernesis/brain-llm-claude",
+      "role": "provider (LLM seam)",
+      "what": "LLMProvider invoking Claude via the local `claude` CLI as a subprocess (the reasoning seam). Never throws — resolves to null on spawn/exit/empty/timeout, with an optional onError hook. 60s timeout (SIGTERM on hang), P1-hardened. Powers fact/relationship extraction, contradiction detection, profiles and sleep reasoning. ✅verified",
+      "key_files": ["src/index.ts — createSubprocessProvider(), isClaudeAvailable(), call(prompt, opts)"],
+      "deps": ["@kybernesis/brain-core (peer, type re-export)", "node:child_process"],
+      "data_shapes": ["call(prompt, opts) -> string | null", "ClaudeCallOpts { model?, maxTokens?, system? }", "SubprocessFailure { reason, code?, stderr? }", "model aliases: haiku/sonnet/opus"]
+    },
+    {
+      "name": "@kybernesis/brain-testkit",
+      "role": "testing",
+      "what": "In-memory fakes + conformance/parity harness — proves a provider implementation conforms to the contracts. Vitest-free conformance cases; runParityHarness compares baseline vs candidate by top-N overlap (default N=10, threshold 0.8). ✅verified",
+      "key_files": [
+        "src/index.ts — barrel (stub + tenant + re-exports)",
+        "src/llm-stub.ts — makeLLMStub(responses) test double, records .calls",
+        "src/helpers/tenant.ts — createTestTenant (tmpdir-rooted)",
+        "src/conformance/index.ts — ~18 storage conformance cases",
+        "src/parity/index.ts — runParityHarness (top-N overlap)"
+      ],
+      "deps": ["@kybernesis/brain-contracts"],
+      "data_shapes": ["storageConformanceCases", "runParityHarness(baseline, candidate, corpus, {n, threshold})", "makeLLMStub"]
+    }
+  ],
+  "databases": [
+    {
+      "name": "timeline.db",
+      "domain": "Episodic — what happened, when",
+      "what": "Timeline events and extracted facts, with FTS5 indexes. ✅verified",
+      "tables": ["timeline_events", "timeline_fts (FTS5 virtual)", "facts", "facts_fts (FTS5 virtual)", "+ triggers"]
+    },
+    {
+      "name": "entity-graph.db",
+      "domain": "Semantic — who/what, how connected",
+      "what": "The knowledge graph: entities, mentions, typed relationships, merges, profiles, insights, contradictions. ✅verified (7 tables)",
+      "tables": ["entities", "entity_mentions", "entity_relations", "entity_merges", "entity_profiles", "contradictions", "entity_insights"]
+    },
+    {
+      "name": "sleep.db",
+      "domain": "Housekeeping — consolidation & maintenance",
+      "what": "Sleep run lifecycle, maintenance queue, memory edges (related-memory graph), telemetry, tier transitions. ✅verified (5 tables)",
+      "tables": ["sleep_runs", "maintenance_queue", "memory_edges", "sleep_telemetry", "tier_transitions"]
+    },
+    {
+      "name": "vectors.db",
+      "domain": "Associative — recall by meaning (lazy)",
+      "what": "Embedding store owned by brain-storage-vec; only materialises when an embedding provider is wired. ✅verified (lazy-loaded). Note: a 5th file, messages.db (CLI/web session storage), is KAD-application-only and NOT part of the library.",
+      "tables": ["chunks (vec0 virtual, float[1536])", "chunk_meta"]
+    }
+  ],
+  "flows": [
+    {
+      "name": "INGEST — storeConversation (fire-and-forget)",
+      "steps": [
+        "extractRelationships(t, fullText) — LLM identifies entities + typed relationships",
+        "filterNoiseEntities(...) — strip files/UUIDs/IPs/tech-terms/pronouns",
+        "addConversationToTimeline(...) — write timeline event (dedupe by title + recent window)",
+        "segmentText(...) → indexChunk(...) — embed each ~250-char segment to vectors",
+        "findOrCreateEntity / linkEntitiesWithType — write entity nodes + mentions + typed edges",
+        "extractFactsRealtime(...) — Haiku decomposes facts (category, confidence, expiry), capped 3/call",
+        "indexChunk(fullText) — single parent embedding when text is short (no segmentation)"
+      ]
+    },
+    {
+      "name": "RECALL — hybridSearch (RRF fusion)",
+      "steps": [
+        "semanticSearch — embed query → nearest-neighbour vectors (dedupe by source_path)",
+        "metadataCandidates — FTS5 MATCH (sanitized) + title/tag/summary scoring + tier/priority boosts",
+        "temporalCandidates — regex date terms → timeline timestamp matches",
+        "entityAugmentedCandidates (optional, expandQuery) — seed matched entities → linked events",
+        "reciprocalRankFusion(lists, k=60) — sum 1/(k+rank+1) across channels per source_path",
+        "cap MAX_SEGMENTS_PER_PARENT=3 + enrichByPath (tier/priority multipliers)",
+        "filter (tier/priority/type/entity/date) + sort by hybridScore",
+        "optional haikuRerank + addRelatedMemories (sleep memory_edges, top 3)"
+      ]
+    },
+    {
+      "name": "FACT-FIRST RECALL — factFirstSearch (4-layer)",
+      "steps": [
+        "Layer 1: FTS5 fact search + semantic fact search (fact:// vectors), merge by overlap",
+        "Layer 2: seed most-mentioned entities in query → traverseEntityGraph BFS 1-hop (hop penalty 0.7/0.5/0.3) → getFactsForEntity",
+        "Layer 2.5: scene expansion (nearby facts in same conversation, 0.6x) + bridge discovery (facts connecting >=2 top entities)",
+        "Layer 3: findSupportingSegments for parent conversation of each top fact",
+        "Layer 4: assembleContext to token budget + tie-break by source priority (bridge>direct>entity>graph>scene)"
+      ]
+    },
+    {
+      "name": "SLEEP — runSleepCycleNow (9-step, concurrency-guarded)",
+      "steps": [
+        "1 Decay — age-based priority decay + expire temporal facts + weekly confidence decay",
+        "2 Tag — AI-classify timeline events (topic/domain/priority)",
+        "3 Consolidate — merge near-duplicate events by normalized title (>=3 dupes; skip pinned)",
+        "4 Link — build memory_edges (related-memory graph) for recall enrichment",
+        "5 Tier — classify events hot/warm/archive",
+        "6 Summarize — AI summaries for events lacking them",
+        "7 Observe — detect recurring facts / contradictions / temporal trends",
+        "8 Profile — AI entity narrative profiles → entity_profiles",
+        "9 Entity-hygiene — orphan cleanup, pattern/noise deletion, same-name + variant-name merges, low-value prune, profile gen"
+      ]
+    },
+    {
+      "name": "WATCHED-FOLDER INGESTION (daemon, KAD/KBDE)",
+      "steps": [
+        "startWatchedFoldersScheduler — 60s sweep, per-agent throttle + mutex, skip remote agents",
+        "runSyncCycle Pass 1 — walkDir → mtime+size diff vs state: new→storeConversation(channel=watched-folder); changed→cleanup+re-ingest",
+        "Pass 2 — deleted files → cleanupFile + drop from state",
+        "Pass 3 — unwatched folders → cleanupFile all + drop state",
+        "saveState atomically to <home>/data/watched_folders_state.json (regenerable; not SQLite/cloud)"
+      ]
+    }
+  ],
+  "history": [
+    { "sha": "a129a5d", "summary": "docs: root + per-package READMEs, provider-seam diagram, LICENSE (HEAD)" },
+    { "sha": "1873a47", "summary": "docs: session handover + ledger current to 0.8.2" },
+    { "sha": "475255c", "summary": "chore: release v0.8.2" },
+    { "sha": "98b6c27", "summary": "test: P3 coverage — sqliteVecStore, LLM-stub opts capture, embed seam" },
+    { "sha": "880816e", "summary": "feat(brain-llm-claude): subprocess timeout + onError hook + test suite (P1)" },
+    { "sha": "d14ca3f", "summary": "feat(0.8.0): add @kybernesis/brain-embed-openai (portable embedder)" },
+    { "sha": "95b3fe7", "summary": "feat(0.8.0): make the embedding seam tenant-aware — embed(t, text)" },
+    { "sha": "5e9b811", "summary": "feat(0.7.0)!: remove ensureSleepSchema from the public API (handle-leak retire)" },
+    { "sha": "6169a60", "summary": "refactor(storage): U0 — freeze two-plane repositories/domain bundle (0.6.0)" },
+    { "sha": "935d8aa", "summary": "docs(0.6.0): kickoff — separate business logic from the data layer (the storage untangle)" }
+  ]
+}

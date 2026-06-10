@@ -1,0 +1,16 @@
+{
+  "id": "run-selflearning-001",
+  "kind": "run",
+  "experiment_id": "exp-20260608-selflearning",
+  "queue_id": "q-20260608-selflearning-spec",
+  "executed": "instruction",
+  "status": "complete",
+  "started_at": "2026-06-08T19:06:30+07:00",
+  "ended_at": "2026-06-08T19:14:00+07:00",
+  "result": {
+    "spec_tool": "appydave:spec-writer",
+    "artifact": "backlog/specs/self-learning-guardrail-spec.md",
+    "summary": "Wrote requirements spec (no build) for the self-learning learning-sweep guardrail: 4 triggers (milestone/correction/pre-compaction/session-end mapped to Stop/PreCompact/SessionEnd/SessionStart hook events), 5-step sweep procedure (capture->filter->classify+route->persist->litmus-verify), persistence routing (auto-memory/backlog/brains), 8 testable ACs (AC1 = correction => persisted artifact before session-end), NFRs (anti-nag dominant), and 5 open PO decisions led by hook-enforced-vs-skill-discipline (recommended: hybrid skill + narrow fails-closed Stop/PreCompact hook).",
+    "ticket": "DF-4"
+  }
+}

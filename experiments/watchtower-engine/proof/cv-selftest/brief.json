@@ -1,0 +1,34 @@
+{
+  "target": {
+    "path": "experiments/watchtower-board",
+    "commit_sha": "ce9bad99de9c94e4c0dab577b0e6d07ed6247336"
+  },
+  "output_location": "experiments/watchtower-engine/proof/cv-selftest/",
+  "intent": "self-test — prove the comprehend->digest->brief path end-to-end on a small local target",
+  "visualisations": [
+    {
+      "shape": "layer-stack",
+      "title": "Watchtower Board — architecture layers",
+      "source_files": ["server.mjs", "parse-concepts.mjs"],
+      "shows": "View/HTTP server (server.mjs) over parse+staleness helpers (parse-concepts.mjs) over read-only data sources (engine dirs, backlog/concepts.md, git, tmux) — a stateless viewer that owns no state"
+    },
+    {
+      "shape": "card-grid",
+      "title": "Modules of the board",
+      "source_files": ["server.mjs", "parse-concepts.mjs", "selfcheck-converge.mjs"],
+      "shows": "three Node modules with role + size: server.mjs (view+HTTP, 330L), parse-concepts.mjs (md-table->lanes parser, 107L), selfcheck-converge.mjs (converge self-check, 50L)"
+    },
+    {
+      "shape": "lifecycle-flow",
+      "title": "concepts.md -> Concept Lanes view",
+      "source_files": ["parse-concepts.mjs", "server.mjs"],
+      "shows": "backlog/concepts.md -> parseConcepts() -> attachStaleness() (git-blame committer-time vs STALE_DAYS=14) -> rendered Concept Lanes on :7430"
+    },
+    {
+      "shape": "timeline",
+      "title": "Board 14-day change story (v1 -> v5)",
+      "source_files": ["server.mjs", "parse-concepts.mjs", "selfcheck-converge.mjs"],
+      "shows": "v1 minimal live board -> v2 Concept Lanes -> v3 idea-staleness -> v4 Floor<->Lanes bridge + standing reaper -> v5 converge bridge + reaper keys off done/"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "id": "run-stability1-spec-001",
+  "kind": "run",
+  "experiment_id": "exp-20260608-stability1",
+  "queue_id": "q-20260608-stability1-spec",
+  "executed": "instruction",
+  "status": "complete",
+  "started_at": "2026-06-08T19:05:30+07:00",
+  "ended_at": "2026-06-08T19:18:00+07:00",
+  "result": {
+    "task": "Write a spec (no build) — Instrument-then-harden the Dark Factory dispatch loop, via appydave:spec-writer.",
+    "artifact": "backlog/specs/stability-1-instrument-loop-spec.md",
+    "centered_on": "OBSERVE THE LOOP EXTERNALLY — dispatcher/claim-next/done-watcher/reaper/AppyCtrl emit lifecycle events; never trust the worker.",
+    "defines": [
+      "event schema (lifecycle event + derived per-job record)",
+      "metrics: handback-success rate, run-record-written rate, clean-teardown rate, orphan count, failure counts (per-cause), durations, stray-running count",
+      "placement: events->Switchboard, orphan/hang->AppyCtrl, query+viz->Watchtower",
+      "smallest first step: dispatcher+reaper events -> Switchboard -> handback-written-rate + clean-teardown-rate",
+      "8 testable acceptance criteria, 8 NFRs, 5 open PO decisions"
+    ],
+    "no_build": true
+  }
+}

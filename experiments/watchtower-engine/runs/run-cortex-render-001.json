@@ -1,0 +1,29 @@
+{
+  "id": "run-cortex-render-001",
+  "kind": "run",
+  "experiment_id": "exp-20260608-cortex-visualise",
+  "queue_id": "q-20260608-cortex-render",
+  "executed": "instruction",
+  "status": "complete",
+  "started_at": "2026-06-08T06:42:00+07:00",
+  "ended_at": "2026-06-08T06:55:00+07:00",
+  "result": {
+    "phase": "RENDER (comprehend-visualise) — data-first reframe + Mochaccino render",
+    "positioning": "Reframed cortex structural comprehension into AUDIENCE-CONCEPT data ('how does a brain work?'); cortex used as the worked example, NOT framed around packages/monorepo/deps.",
+    "data_written": [
+      ".mochaccino/data/02-brain-remembers.json",
+      ".mochaccino/data/03-four-memories.json",
+      ".mochaccino/data/04-brain-sleeps.json"
+    ],
+    "designs": [
+      "designs/02-brain-remembers/ — 'How a brain remembers & recalls' (lifecycle-flow)",
+      "designs/03-four-memories/ — 'A brain has four kinds of memory' (card-grid)",
+      "designs/04-brain-sleeps/ — 'The brain that sleeps' (lifecycle-flow)"
+    ],
+    "gallery": "http://localhost:7422/designs/ (regenerated; 01-session-journey kept)",
+    "mvc": "Each index.html FETCHES its data/NN-*.json — no inline data.",
+    "brand": "Light-mode primary, AppyDave brown/gold/yellow, Bebas Neue/Oswald/Roboto; Orient strip atop each.",
+    "provenance": "meta.source = ~/dev/kybernesis/cortex @ a129a5d50ba8a140c288b6f2eb03ddadcee873a9 (M4); commit_sha carried in each data file.",
+    "verified": "curl on :7422 — all 3 designs + gallery + 3 data files return 200; JSON valid; all 4 gallery links present."
+  }
+}

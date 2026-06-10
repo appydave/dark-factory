@@ -1,0 +1,6 @@
+{
+  "queue_id": "q-20260608-darkfactory-render",
+  "status": "complete",
+  "outcome": "Rendered Dark Factory overview as Mochaccino design 05 (system-map: YOU→Marshall→Loop/Millwright/Ring + What-it-makes) at http://localhost:7422/designs/ ; data-first from .mochaccino/data/05-dark-factory.json; all curls 200; run record runs/run-darkfactory-render-001.json",
+  "ended_at": "2026-06-08T07:18:00+07:00"
+}

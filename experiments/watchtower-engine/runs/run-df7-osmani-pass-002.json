@@ -1,0 +1,20 @@
+{
+  "id": "run-df7-osmani-pass-002",
+  "kind": "run",
+  "experiment_id": "exp-20260609-df7-state-plane",
+  "queue_id": "q-20260609-df7-osmani-pass",
+  "executed": "skill",
+  "skill": "agent-skills:spec-driven-development",
+  "status": "complete",
+  "started_at": "2026-06-08T23:36:35Z",
+  "ended_at": "2026-06-08T23:36:35Z",
+  "result": {
+    "outputs": [
+      "backlog/specs/df7-switchboard-state-plane-spec.osmani.md",
+      "backlog/specs/df7-osmani-vs-appydave-delta.md"
+    ],
+    "d4": "RESOLVED — coordinator requeues state (broker CRUD); never kills external (Marshall/AppyCtrl)",
+    "decisions_open": 4,
+    "verdict": "appydave baseline stays canonical; adopt Osmani Boundaries+gated-Tasks as a rigor overlay, not as the spec author"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "id": "run-cortex-render-004",
+  "kind": "run",
+  "experiment_id": "exp-20260608-cortex-visualise",
+  "queue_id": "q-20260609-cortex-proof",
+  "executed": "instruction",
+  "status": "complete",
+  "started_at": "2026-06-09T10:30:00+07:00",
+  "ended_at": "2026-06-09T10:52:00+07:00",
+  "result": {
+    "label": "cortex-proof",
+    "tests": "mochaccino-consolidation-refactor DoD-5",
+    "gallery": "http://localhost:7422/designs/",
+    "proves": "The refactored pipeline (Shelly graphics-warrant gate, default-HTML) returns proportionate HTML-with-sparing-shape — NOT the all-SVG over-rotation render-003 produced.",
+    "data": "unchanged — comprehension NOT re-run; re-rendered the existing v2.0.0 data with meta.source cortex @ a129a5d. RENDER-decision test only.",
+    "shelly_gate_per_design": {
+      "03-four-memories": { "decision": "HTML, NO diagram", "why": "it is a TAXONOMY (four kinds of memory), not a flow/topology — a diagram adds nothing", "form": "2x2 semantic card grid + ghost 'MEMORY'; svg=0" },
+      "04-brain-sleeps": { "decision": "HTML + one small loop diagram", "why": "genuinely a cycle; the loop-ness is what a small ring clarifies, but the step detail belongs in cards", "form": "5 HTML step cards beside one compact numbered-dot ring (no text inside the svg); svg=1, foreignObject removed" },
+      "02-brain-remembers": { "decision": "HTML + one small spine diagram", "why": "genuinely a flow (file-three-ways → blend-four-senses → answer); a small spine shows the shape, the body is cards", "form": "two HTML sections (store cards + sense chips + answer) over one small flow spine; svg=1" },
+      "06-brain-anatomy": { "decision": "mostly HTML + one small organ-swap diagram", "why": "regions/ingest/recall are layout, not flow → cards; the ONE relationship a drawing clarifies is the swap seam ('swap an organ, keep the mind')", "form": "ghost band + 2x2 region cards (drill links) + ingest/recall pair + 3 organ cards beside one small plug diagram; svg=1, foreignObject removed" }
+    },
+    "reverses": "render-003 (q-20260609-cortex-brain-v3) converted every design wholesale to hand-authored SVG node-graphs (06 & 03 = entire body in one <svg>; 04 & 02 embedded all step text via foreignObject). That was the over-rotation memory `shapes-are-annotation-not-the-medium` warns against.",
+    "form_agnostic_rules_carried": "light-mode primary; disciplined green/blue/purple/teal semantic block colour; ghost text where apt; thin neutral connectors (colour in blocks not lines); amber kept ONLY as a tiny swap-pin highlight on near-white cards, never filled boxes/text on beige; MVC preserved (index.html fetches data/NN-*.json); meta.source provenance kept; gallery regenerated, cortex cluster grouped 06-first, 01 + 05 kept.",
+    "verified": "all 4 designs + gallery + 06 data JSON return HTTP 200 on :7422; all 4 data JSON re-parsed clean. Shape audit: 03 svg=0; 04/02/06 svg=1 each; foreignObject=0 across all four (was present in 04 & 06 pre-refactor). Playwright/chrome-devtools screenshot blocked — browser instance locked by another session; not a render defect.",
+    "data_source": "~/dev/kybernesis/cortex @ a129a5d50ba8a140c288b6f2eb03ddadcee873a9 (M4)"
+  }
+}

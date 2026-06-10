@@ -1,0 +1,19 @@
+{
+  "id": "run-darkfactory-render-001",
+  "kind": "run",
+  "experiment_id": "exp-20260608-darkfactory-overview",
+  "queue_id": "q-20260608-darkfactory-render",
+  "executed": "instruction",
+  "status": "complete",
+  "started_at": "2026-06-08T07:12:00+07:00",
+  "ended_at": "2026-06-08T07:18:00+07:00",
+  "result": {
+    "design": ".mochaccino/designs/05-dark-factory/index.html",
+    "data": ".mochaccino/data/05-dark-factory.json (existing, fetched via MVC ../../data/05-dark-factory.json)",
+    "shape": "system-map — YOU → Marshall → 3 branches (Loop / Millwright-prominent / Observability Ring) + WHAT IT MAKES band",
+    "gallery_group": "Explaining the factory (added; existing groups + designs 01-04 kept)",
+    "served": "http://localhost:7422 (existing port, files picked up; no new server)",
+    "verified": "curl 200 on /designs/05-dark-factory/, /data/05-dark-factory.json, /designs/ ; gallery contains 05 card",
+    "brand": "AppyDave light-mode — brown #342d2d, gold #ccba9d, yellow #ffde59 Millwright lesson callout, cream bg; Bebas Neue/Oswald/Roboto"
+  }
+}

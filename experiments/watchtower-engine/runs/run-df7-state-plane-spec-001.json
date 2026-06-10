@@ -1,0 +1,19 @@
+{
+  "id": "run-df7-state-plane-spec-001",
+  "kind": "run",
+  "experiment_id": "exp-20260609-df7-state-plane",
+  "queue_id": "q-20260609-switchboard-state-plane-spec",
+  "executed": "skill",
+  "skill": "appydave:spec-writer",
+  "status": "complete",
+  "started_at": "2026-06-09T11:00:00+07:00",
+  "ended_at": "2026-06-09T11:05:00+07:00",
+  "result": {
+    "spec": "backlog/specs/df7-switchboard-state-plane-spec.md",
+    "sections": 14,
+    "open_decisions": 5,
+    "recipes_specified": ["job-state-store (storage)", "job-coordinator (coordination)"],
+    "coheres_with": "DF-3 stability-1-instrument-loop-spec.md",
+    "note": "Spec-only; in-app Ralphy build (switchboard repo) is a separate later leg."
+  }
+}

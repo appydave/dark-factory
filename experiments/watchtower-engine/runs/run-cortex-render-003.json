@@ -1,0 +1,24 @@
+{
+  "id": "run-cortex-render-003",
+  "kind": "run",
+  "experiment_id": "exp-20260608-cortex-visualise",
+  "queue_id": "q-20260609-cortex-brain-v3",
+  "executed": "instruction",
+  "status": "complete",
+  "started_at": "2026-06-09T09:35:00+07:00",
+  "ended_at": "2026-06-09T10:05:00+07:00",
+  "result": {
+    "label": "cortex-brain-v3",
+    "gallery": "http://localhost:7422/designs/",
+    "designs": ["06-brain-anatomy (HERO)", "02-brain-remembers", "03-four-memories", "04-brain-sleeps"],
+    "what_changed": "Re-rendered the 4-design cortex set through docs/david-design-patterns.md (the taste spec). Replaced card-grids + numbered rails with hand-authored SVG diagrams; killed the yellow #ffde59 / gold-on-brown scheme for a light-mode + green/blue/purple/teal semantic-block palette; removed the demoted Orient strip; added ghost text, thin neutral connectors (colour in blocks not lines), legend strips and INPUT/OUTPUT headers; eased prose to one short blurb per element. Data files reframed to v2.0.0 (trimmed prose, hue + diagram fields) with meta.source + commit_sha provenance kept. Gallery reskinned off-brown, hero 06 first, 01 + 05 kept.",
+    "failures_fixed": {
+      "06-brain-anatomy": "A (one labelled SVG: I/O header, 4 colour-coded lobes, recall=output, 3 swappable organs as pluggable sockets) + B (semantic palette, orange only as tiny swap-pin highlight) + C (ghost 'BRAIN', labels over paragraphs, no Orient strip)",
+      "02-brain-remembers": "A (two-lane remember→recall flow diagram with fan-out + blend node) + B (semantic blocks, neutral connectors) + C (ghost 'RECALL', one-line per node)",
+      "03-four-memories": "A (hub-and-spoke colour-coded diagram, not a flat card-grid) + B (one semantic hue per region) + C (ghost 'MEMORY', terse)",
+      "04-brain-sleeps": "A (circular ring cycle diagram decay→tag→merge→link→tier around a SLEEP hub) + B (semantic hues, neutral arc connectors) + C (ghost 'SLEEP', one-line per step)"
+    },
+    "verified": "all 4 designs + gallery + 4 data JSON return HTTP 200 on :7422; JSON re-validated. Playwright screenshot skipped (browser in use by another session).",
+    "data_source": "experiments/watchtower-engine/proof/cortex/data.json @ a129a5d50ba8a140c288b6f2eb03ddadcee873a9"
+  }
+}

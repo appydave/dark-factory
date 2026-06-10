@@ -1,0 +1,6 @@
+{
+  "queue_id": "q-20260607-comprehend-visualise-skill",
+  "status": "complete",
+  "outcome": "Built .claude/skills/comprehend-visualise/SKILL.md (Phase 1: comprehend->digest+brief, no render); self-test vs experiments/watchtower-board @ce9bad9 produced digest.md (29L) + valid brief.json (4 visualisations). Run record: runs/run-comprehend-visualise-001.json; proof: proof/comprehend-visualise-phase1.md",
+  "ended_at": "2026-06-07T16:20:00+07:00"
+}

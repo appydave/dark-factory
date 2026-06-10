@@ -1,0 +1,19 @@
+{
+  "id": "run-mocha-lab-spec-001",
+  "kind": "run",
+  "experiment_id": "exp-20260608-mocha-lab",
+  "queue_id": "q-20260608-mocha-lab-spec",
+  "executed": "instruction",
+  "status": "complete",
+  "started_at": "2026-06-08T18:45:00+07:00",
+  "ended_at": "2026-06-08T18:52:00+07:00",
+  "result": {
+    "deliverable": "backlog/2026-06-08-mocha-lab-spec.md",
+    "spec_tool": "appydave:spec-writer",
+    "headline": "10 functional requirements (FR-1..FR-10) + generator-seam requirement; 5 open PO decisions",
+    "prototype_reuse_mapped": true,
+    "design_findings_embedded": true,
+    "build_started": false,
+    "notes": "Spec-only task. Mapped tools/mocha-census prototype reuse (exists->reused vs net-new). Bench mode + export-to-file foregrounded as priorities. Build-technique-agnostic; no build started."
+  }
+}

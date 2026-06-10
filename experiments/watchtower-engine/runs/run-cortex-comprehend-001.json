@@ -1,0 +1,24 @@
+{
+  "id": "run-cortex-comprehend-001",
+  "kind": "run",
+  "experiment_id": "exp-20260608-cortex-visualise",
+  "queue_id": "q-20260608-cortex-comprehend",
+  "executed": "instruction",
+  "status": "complete",
+  "started_at": "2026-06-08T06:16:00+07:00",
+  "ended_at": "2026-06-08T06:42:00+07:00",
+  "result": {
+    "label": "cortex-comprehend",
+    "phase": "comprehend-only (Phase 0-2 of comprehend-visualise) — no shapes picked, nothing rendered",
+    "target": "~/dev/kybernesis/cortex @ a129a5d50ba8a140c288b6f2eb03ddadcee873a9 (M4, read-only over SSH)",
+    "commit_sha": "a129a5d50ba8a140c288b6f2eb03ddadcee873a9",
+    "package_count": 7,
+    "db_count": 4,
+    "method": "enumerate -> 8 parallel cited readers (per package + db-model + flows) -> merge",
+    "artifacts": [
+      "experiments/watchtower-engine/proof/cortex/data.json",
+      "experiments/watchtower-engine/proof/cortex/digest.md"
+    ],
+    "note": "Read-only over SSH; nothing written to M4/cortex. Shape selection is a human gate Marshall runs with David next; rendering is a later Swagger."
+  }
+}
