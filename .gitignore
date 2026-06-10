@@ -38,3 +38,11 @@ CLAUDE.local.md
 .env
 .env.local
 *.pem
+
+# Transient tool working dirs (local cache / capture output — never track)
+.mochaccino/
+.playwright-mcp/
+.serve.log
+
+# Scratch render proofs / screenshots at repo root (real assets belong in a subfolder)
+/*.png
