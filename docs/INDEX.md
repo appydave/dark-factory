@@ -10,6 +10,8 @@ One line per doc. Start at the top. This index is the fix for doc-sprawl — whe
 0. **`north-star.md`** — ★ the North Star + the two major paths (build the factory vs run the content). Read first.
 1. **`../README.md`** — charter, repo layout, status.
 2. **`architecture.md`** — ★ the full statement: Factory / Warehouse / Watchtower, the self-improvement loop, design principles (§13).
+2b. **`dark-factory-constellation.md`** — ★ the holistic map of all the parts (Floor + Switchboard / AngelEye / AppyRadar / Watchtower + Marshall), the boundaries between them, where Symphony feeds in, build status. Carries the 2026-06-10 correction that the old "AppyCtrl" was a wrong app — the real process/fleet observer is **AppyRadar** (read-only). Read before scoping any single component. (2026-06-10)
+2c. **`appyradar.md`** — the corrected, durable definition of **AppyRadar** (the read-only machine & fleet sensor; AppySentinel Pilot 1). Supersedes every "AppyCtrl" reference. Carries the read-vs-control principle. (2026-06-10)
 3. **`dark-factory-living-system-spec.md`** — the operational spec: 5 eval levels, 3 trigger types, schemas, SkillOpt grounding.
 
 > **`context/` is deliberately not in this list.** `CONTEXT.md` and `context.globs.json` are **generated output** of the `system-context` skill — external orientation for outside consumers, regenerated on demand. They are *not* working docs and *not* part of the system. Refresh by running the skill; never hand-edit.
@@ -40,6 +42,7 @@ One line per doc. Start at the top. This index is the fix for doc-sprawl — whe
 - **`workflow-tool-authoring-notes.md`** — hard-won Workflow Tool craft.
 - **`agent-orchestration-capabilities.md`** — ★ what Claude Code's coordination primitives actually are (subagents / Agent Teams / Workflow tool / external queue), tmux visibility, dispatcher-vs-competing-consumers, and how each maps to the Watchtower runtime + topology build order.
 - **`runtime-model.md`** — ★ who runs what: the Conductor (daily orchestrator, routes jobs) → Swagger (job-agent, judgment per job) → workflows/sub-agents (execution). Resolves the isolation-vs-coordination question.
+- **`upstream-repos/`** — 3rd-party architectural reference shelf (repos to study for building the factory, distinct from `research/recon/`'s distillation cluster). Includes the 2026-06-10 fleet-orchestrator research: **finding — our stateless-floor + state-plane-services split is green-field; closest 3 to study = CAO / Composio agent-orchestrator / ccswarm.**
 
 ## Outside docs/ but load-bearing
 
