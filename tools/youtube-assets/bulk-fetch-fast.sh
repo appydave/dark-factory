@@ -1,14 +1,26 @@
 #!/usr/bin/env bash
-# bulk-fetch.sh — paced, idempotent, circuit-broken fetch of thumb+transcript for ALL catalog videos.
-# bash 3.2 compatible (no mapfile).
+# bulk-fetch-fast.sh — Stage 2 of the channel-catalog pipeline (FAST pace).
+#
+# Identical to bulk-fetch.sh but with shorter waits (8–15s instead of 30–60s).
+# Use this ONLY to finish off a small remainder after a full bulk-fetch.sh run —
+# the faster cadence is more likely to trip YouTube's rate-limit on a big run.
+# Same idempotency + circuit-breaker (stops after 6 consecutive caption failures).
+#
+# CONFIG (env vars; defaults keep the original AITLDR behaviour):
+#   CAT   catalog dir to fill   (default: v-aitldr/catalog)
+# Paths (TOOL/LOG/SINGLE) self-derive from this script's location — relocatable.
+#
+# USAGE:
+#   bash bulk-fetch-fast.sh                                    # AITLDR (default)
+#   CAT=/Users/davidcruwys/dev/video-projects/v-appydave/catalog bash bulk-fetch-fast.sh
 set -uo pipefail
-CAT="/Users/davidcruwys/dev/video-projects/v-aitldr/catalog"
-TOOL="/Users/davidcruwys/dev/ad/apps/dark-factory/tools/youtube-assets"
+CAT="${CAT:-/Users/davidcruwys/dev/video-projects/v-aitldr/catalog}"
+TOOL="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 LOG="$TOOL/run.log"
 SINGLE="$TOOL/fetch-assets.sh"
 
 total=$(find "$CAT/videos" "$CAT/shorts" -maxdepth 2 -name meta.json | wc -l | tr -d ' ')
-echo "$(date '+%H:%M:%S') START bulk-fetch: $total folders" | tee -a "$LOG"
+echo "$(date '+%H:%M:%S') START bulk-fetch-fast: $total folders  (CAT=$CAT)" | tee -a "$LOG"
 
 done_cnt=0; fetched=0; skipped=0; failed=0; consec_fail=0; i=0
 while IFS= read -r meta; do

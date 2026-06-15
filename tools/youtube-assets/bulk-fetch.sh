@@ -1,14 +1,33 @@
 #!/usr/bin/env bash
-# bulk-fetch.sh — paced, idempotent, circuit-broken fetch of thumb+transcript for ALL catalog videos.
-# bash 3.2 compatible (no mapfile).
+# bulk-fetch.sh — Stage 2 of the channel-catalog pipeline (careful pace).
+#
+# WHAT: walks every video folder under a catalog and fills it with thumb.jpg +
+#       transcript.vtt + transcript.txt (via fetch-assets.sh). Paced, idempotent,
+#       circuit-broken. bash 3.2 compatible (no mapfile).
+#   - Idempotent: a folder that already has all three files is skipped.
+#   - Polite: sleeps 30–60s between videos; STOPS itself after 6 consecutive caption
+#     failures (assumes a YouTube rate-limit). Just re-run later to resume.
+#   - For finishing a small remainder faster, use bulk-fetch-fast.sh (8–15s pacing).
+#
+# WHEN TO SKIP: if you already have a `published/<channel>/` API sync, run
+#       sync-to-catalog.py instead — it builds the folders AND the assets locally with
+#       no YouTube calls, replacing Stages 1+2 entirely.
+#
+# CONFIG (env vars; defaults keep the original AITLDR behaviour):
+#   CAT   catalog dir to fill   (default: v-aitldr/catalog)
+# Paths (TOOL/LOG/SINGLE) self-derive from this script's location — relocatable.
+#
+# USAGE:
+#   bash bulk-fetch.sh                                    # AITLDR (default)
+#   CAT=/Users/davidcruwys/dev/video-projects/v-appydave/catalog bash bulk-fetch.sh
 set -uo pipefail
-CAT="/Users/davidcruwys/dev/video-projects/v-aitldr/catalog"
-TOOL="/Users/davidcruwys/dev/ad/apps/dark-factory/tools/youtube-assets"
+CAT="${CAT:-/Users/davidcruwys/dev/video-projects/v-aitldr/catalog}"
+TOOL="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 LOG="$TOOL/run.log"
 SINGLE="$TOOL/fetch-assets.sh"
 
 total=$(find "$CAT/videos" "$CAT/shorts" -maxdepth 2 -name meta.json | wc -l | tr -d ' ')
-echo "$(date '+%H:%M:%S') START bulk-fetch: $total folders" | tee -a "$LOG"
+echo "$(date '+%H:%M:%S') START bulk-fetch: $total folders  (CAT=$CAT)" | tee -a "$LOG"
 
 done_cnt=0; fetched=0; skipped=0; failed=0; consec_fail=0; i=0
 while IFS= read -r meta; do

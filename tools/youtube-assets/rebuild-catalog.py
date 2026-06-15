@@ -7,7 +7,9 @@
 import json, glob, os
 from collections import Counter
 
-CAT = "/Users/davidcruwys/dev/video-projects/v-aitldr/catalog"
+# parameterized: CAT + CHANNEL come from env (defaults preserve original AITLDR behaviour)
+CAT = os.environ.get("CAT", "/Users/davidcruwys/dev/video-projects/v-aitldr/catalog")
+CHANNEL = os.environ.get("CHANNEL", "https://www.youtube.com/@AITLDR")
 SNAPSHOT_DATE = os.environ.get("SNAPSHOT_DATE", "2026-05-30")
 
 metas = [json.load(open(m)) for m in glob.glob(f"{CAT}/**/meta.json", recursive=True)]
@@ -22,16 +24,22 @@ catalog = {
     "snapshot": {
         "source": "per-folder meta.json (rebuilt aggregate)",
         "snapshot_date": SNAPSHOT_DATE,
-        "source_channel": "https://www.youtube.com/@AITLDR",
+        "source_channel": CHANNEL,
         "count": len(metas),
         "counts_by_format": {"video": fmt.get("video", 0), "short": fmt.get("short", 0)},
         "transcript_enriched": enriched,
         "categories_corrected": corrected,
     },
-    # provenance of fields across the whole record set
+    # provenance of fields across the whole record set.
+    # ENRICH_SOURCE=transcript (AppyDave) means category/description were written
+    # directly from transcripts; the AITLDR default keeps them title-based ("generated").
     "verified":  ["title", "youtubeId", "format", "duration", "published"],
-    "generated": ["slug", "category", "description", "tags", "featured"],
-    "transcript_grounded": ["category_transcript", "description_transcript", "transcript_changed"],
+    "generated": (["slug", "tags", "featured"]
+                  if os.environ.get("ENRICH_SOURCE") == "transcript"
+                  else ["slug", "category", "description", "tags", "featured"]),
+    "transcript_grounded": (["category", "description"]
+                            if os.environ.get("ENRICH_SOURCE") == "transcript"
+                            else ["category_transcript", "description_transcript", "transcript_changed"]),
     "count": len(metas),
     "records": metas,   # full per-video records, transcript fields included
 }
