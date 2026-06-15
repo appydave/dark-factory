@@ -1,0 +1,271 @@
+<!doctype html>
+<!--
+  PRESENTER runtime — the thin standalone "player" for a HyperFrames composition.
+  ----------------------------------------------------------------------------
+  The composition (composition.html) is a HyperFrames-contract file: ONE
+  gsap.timeline({ paused:true }) registered in window.__timelines. By itself it
+  NEVER plays. This presenter is the missing player: instead of advancing on a
+  wall-clock, it advances on a KEYPRESS.
+
+  Per scene it:
+    1. plays the entrance (timeline tween from sceneStart -> hold-frame)
+    2. PAUSES at the hero frame while David talks
+    3. on -> / space / click  -> plays the NEXT scene's entrance
+       on <-                  -> jumps back to the previous hero frame
+  Scene counter + progress dots in AppyDave brand chrome.
+
+  Run:  python3 -m http.server <port>  in this dir, open /presenter.html
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Brain Anatomy — Talk-Through Deck</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;600;700&family=Roboto+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --paper: #f6f4ef; --ink: #23201d; --muted: #6f675e;
+        --line: #d9d2c6; --brand-yellow: #ffde59; --brown: #342d2d; --cream: #f0ebe4;
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; height: 100%; background: var(--brown); color: var(--ink);
+        font-family: "Roboto Mono", monospace; overflow: hidden; }
+
+      /* Stage scales the 1920x1080 composition iframe to fit the viewport */
+      #stage {
+        /* Fill the viewport ABOVE the bar (bar is 64px tall, fixed bottom). */
+        position: absolute; top: 0; left: 0; right: 0; bottom: 64px;
+        display: flex; align-items: center; justify-content: center;
+        background: var(--brown); overflow: hidden;
+      }
+      #scaler {
+        /* True 1920x1080 layout box. flex-shrink:0 is the fix — without it the
+           flex parent squashes this below 1920px and overflow:hidden then clips
+           the iframe's right edge. With a true 1920px box, scale() + a centred
+           flex parent letterbox symmetrically. */
+        width: 1920px; height: 1080px; flex: 0 0 auto;
+        transform-origin: center center;
+        box-shadow: 0 30px 120px rgba(0,0,0,.55); background: var(--paper);
+        border-radius: 6px; overflow: hidden;
+      }
+      #comp { width: 1920px; height: 1080px; border: 0; display: block; }
+
+      /* ---- Presenter chrome ---- */
+      .bar {
+        position: fixed; left: 0; right: 0; bottom: 0; height: 64px;
+        background: rgba(35,32,29,.92); color: var(--cream);
+        display: flex; align-items: center; gap: 24px; padding: 0 28px;
+        font-size: 14px; letter-spacing: .04em; z-index: 50;
+        border-top: 3px solid var(--brand-yellow);
+        transition: transform .3s ease;
+      }
+      .bar.hidden { transform: translateY(100%); }
+      .counter { font-family: Oswald; font-weight: 700; font-size: 22px; color: var(--brand-yellow);
+        letter-spacing: .06em; min-width: 92px; }
+      .scene-title { font-family: Oswald; font-size: 18px; color: var(--cream); flex: 0 0 auto; }
+      .dots { display: flex; gap: 9px; margin-left: auto; }
+      .dot { width: 12px; height: 12px; border-radius: 50%; background: #5a524a; transition: all .2s; }
+      .dot.active { background: var(--brand-yellow); transform: scale(1.25); }
+      .dot.done { background: var(--cream); }
+      .hint { color: #b8aea2; font-size: 12px; letter-spacing: .08em; }
+      .state { font-size: 12px; color: var(--brand-yellow); min-width: 130px; text-align: right;
+        font-family: Oswald; letter-spacing: .1em; }
+
+      #intro {
+        position: fixed; inset: 0; z-index: 80; background: rgba(35,32,29,.96);
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        color: var(--cream); text-align: center; transition: opacity .4s; gap: 18px;
+      }
+      #intro h1 { font-family: "Bebas Neue", sans-serif; font-size: 88px; margin: 0;
+        color: var(--brand-yellow); letter-spacing: .03em; }
+      #intro p { font-family: "Roboto Mono", monospace; font-size: 17px; max-width: 620px; line-height: 1.7; }
+      #intro .keys { display: flex; gap: 14px; margin-top: 12px; flex-wrap: wrap; justify-content: center; }
+      #intro .key { border: 1px solid var(--brand-yellow); color: var(--brand-yellow);
+        border-radius: 8px; padding: 10px 18px; font-size: 14px; }
+      #intro .go { margin-top: 14px; background: var(--brand-yellow); color: var(--brown);
+        border: 0; border-radius: 10px; padding: 16px 44px; font-family: Oswald; font-weight: 700;
+        font-size: 20px; letter-spacing: .08em; cursor: pointer; }
+      #intro.gone { opacity: 0; pointer-events: none; }
+    </style>
+  </head>
+  <body>
+    <div id="stage">
+      <div id="scaler">
+        <iframe id="comp" src="composition.html" title="composition"></iframe>
+      </div>
+    </div>
+
+    <div class="bar" id="bar">
+      <span class="counter" id="counter">1 / 6</span>
+      <span class="scene-title" id="title">—</span>
+      <span class="hint">&larr; back &nbsp;·&nbsp; &rarr; / space / click = next &nbsp;·&nbsp; F fullscreen &nbsp;·&nbsp; B hide bar</span>
+      <span class="dots" id="dots"></span>
+      <span class="state" id="state">READY</span>
+    </div>
+
+    <div id="intro">
+      <h1>TALK-THROUGH DECK</h1>
+      <p>
+        A HyperFrames composition driven by keypress instead of a clock. Each scene
+        <b>animates in</b>, then <b>holds</b> on its hero frame while you talk. Advance
+        when you're ready.
+      </p>
+      <div class="keys">
+        <span class="key">&rarr; / Space / Click — next</span>
+        <span class="key">&larr; — back</span>
+        <span class="key">F — fullscreen</span>
+      </div>
+      <button class="go" id="go">START &rarr;</button>
+    </div>
+
+    <script>
+      const frame = document.getElementById("comp");
+      const counterEl = document.getElementById("counter");
+      const titleEl = document.getElementById("title");
+      const dotsEl = document.getElementById("dots");
+      const stateEl = document.getElementById("state");
+      const bar = document.getElementById("bar");
+      const intro = document.getElementById("intro");
+
+      let tl = null;        // the composition's gsap timeline
+      let scenes = [];      // [{enter, hold}]
+      let titles = [];
+      let idx = 0;          // current scene index
+      let busy = false;     // true while an entrance is playing
+
+      const stage = document.getElementById("stage");
+      const scaler = document.getElementById("scaler");
+
+      function fit() {
+        // Measure the STAGE (the area above the bar) — not the raw window —
+        // so the letterbox is computed against the real available box.
+        const pad = 48; // symmetric breathing room inside the stage
+        const availW = stage.clientWidth - pad;
+        const availH = stage.clientHeight - pad;
+        // Never upscale past 1:1 (keeps the canvas crisp on big screens).
+        const s = Math.min(availW / 1920, availH / 1080, 1);
+        scaler.style.transform = "scale(" + s + ")";
+      }
+      window.addEventListener("resize", fit);
+      // Fit now, after fonts/layout settle, and again once the iframe loads
+      // (its size can shift first-paint metrics on some engines).
+      fit();
+      window.addEventListener("load", fit);
+      frame.addEventListener("load", () => { fit(); requestAnimationFrame(fit); });
+
+      function buildDots() {
+        dotsEl.innerHTML = "";
+        scenes.forEach((_, i) => {
+          const d = document.createElement("span");
+          d.className = "dot";
+          dotsEl.appendChild(d);
+        });
+        paintDots();
+      }
+      function paintDots() {
+        [...dotsEl.children].forEach((d, i) => {
+          d.className = "dot" + (i === idx ? " active" : i < idx ? " done" : "");
+        });
+      }
+      function paintChrome() {
+        counterEl.textContent = (idx + 1) + " / " + scenes.length;
+        titleEl.textContent = titles[idx] || "—";
+        paintDots();
+      }
+
+      // Connect to the composition once its timeline is registered.
+      function connect() {
+        const win = frame.contentWindow;
+        if (!win.__timelines || !win.__timelines["brain-anatomy"] || !win.__scenes) {
+          return setTimeout(connect, 60);
+        }
+        tl = win.__timelines["brain-anatomy"];
+        scenes = win.__scenes;
+        titles = win.__sceneTitles || scenes.map((_, i) => "Scene " + (i + 1));
+        tl.pause(0);
+        // Park at the very start (scene 1 fully hidden, ready to enter)
+        tl.seek(0).pause();
+        buildDots();
+        paintChrome();
+        stateEl.textContent = "READY";
+      }
+      frame.addEventListener("load", connect);
+
+      // Play scene `i`'s entrance, then HOLD at its hero frame.
+      function playScene(i) {
+        if (!tl || busy) return;
+        idx = i;
+        busy = true;
+        stateEl.textContent = "ANIMATING…";
+        paintChrome();
+        const s = scenes[i];
+        // Jump to the scene's enter point, then tween forward to the hold frame.
+        tl.pause(s.enter);
+        tl.tweenTo(s.hold, {
+          ease: "none",
+          onComplete: () => { busy = false; stateEl.textContent = "HOLD — talk"; },
+        });
+      }
+
+      // Jump straight to a hero frame (used for back / random access) — no replay.
+      function gotoSceneInstant(i) {
+        if (!tl) return;
+        idx = i;
+        busy = false;
+        tl.pause(scenes[i].hold);
+        stateEl.textContent = "HOLD — talk";
+        paintChrome();
+      }
+
+      function next() {
+        if (!tl) return;
+        if (busy) {                 // let an impatient click finish the entrance now
+          const s = scenes[idx];
+          tl.pause(s.hold); busy = false; stateEl.textContent = "HOLD — talk";
+          return;
+        }
+        if (idx < scenes.length - 1) playScene(idx + 1);
+        else stateEl.textContent = "END";
+      }
+      function prev() {
+        if (!tl || busy) return;
+        if (idx > 0) gotoSceneInstant(idx - 1);
+      }
+
+      function start() {
+        intro.classList.add("gone");
+        // Scene 1 entrance
+        playScene(0);
+      }
+      document.getElementById("go").addEventListener("click", start);
+
+      // ---- Input ----
+      document.addEventListener("keydown", (e) => {
+        if (!intro.classList.contains("gone")) {
+          if (e.key === "Enter" || e.key === " " || e.key === "ArrowRight") { e.preventDefault(); start(); }
+          return;
+        }
+        switch (e.key) {
+          case "ArrowRight": case " ": case "Enter": case "PageDown":
+            e.preventDefault(); next(); break;
+          case "ArrowLeft": case "PageUp":
+            e.preventDefault(); prev(); break;
+          case "f": case "F":
+            if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+            else document.exitFullscreen(); break;
+          case "b": case "B":
+            bar.classList.toggle("hidden"); break;
+        }
+      });
+      // Click on the stage advances (but not clicks on the bar)
+      document.getElementById("stage").addEventListener("click", () => {
+        if (intro.classList.contains("gone")) next();
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,335 @@
+<!doctype html>
+<!--
+  HyperFrames-style composition — "Anatomy of a Brain" (06-brain-anatomy HERO)
+  ----------------------------------------------------------------------------
+  Authored to the HyperFrames Timeline Contract:
+    - ONE gsap.timeline({ paused: true })
+    - registered in window.__timelines["brain-anatomy"]
+    - layout-before-animation: static hero frame in CSS, gsap.from() entrances
+    - the PLAYER controls playback (here: presenter.html drives it by keypress)
+
+  Visual identity gate: docs/david-design-patterns.md two-layer model.
+    Warm brand load-bearing (paper/cream/brown + yellow #ffde59 anchor).
+    Cool semantic (blue/green/purple/teal) ONLY on the four region tiles (genuine structure).
+
+  Scene labels (window.__scenes) let the presenter hold at each hero frame
+  and advance on -> / space.  Each scene's elements animate IN via gsap.from()
+  ONLY (no exit tweens — the transition between scenes is a cross-hold).
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;600;700&family=Roboto:ital,wght@0,400;0,500;1,400&family=Roboto+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      :root {
+        --paper: #f6f4ef;
+        --card: #fbfaf7;
+        --ink: #23201d;
+        --muted: #6f675e;
+        --line: #d9d2c6;
+        --ghost: #ece7de;
+        --conn: #a9a299;
+        --swap: #6f675e;
+        --brand-yellow: #ffde59;
+        --gold: #ccba9d;
+        --cream: #f0ebe4;
+        /* Cool semantic — Colour as Data, region tiles ONLY */
+        --epi: #3b6fb0;   /* episodic  — blue */
+        --sem: #3f8c5a;   /* semantic  — green */
+        --asc: #7a5ea8;   /* associative — purple */
+        --hk:  #2f8f8a;   /* housekeeping — teal */
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body {
+        width: 1920px; height: 1080px; overflow: hidden;
+        background: var(--paper); color: var(--ink);
+        font-family: Roboto, system-ui, sans-serif; line-height: 1.5;
+      }
+      h1, h2, h3 { font-family: Oswald, sans-serif; margin: 0; }
+
+      /* The composition canvas */
+      #root { position: relative; width: 1920px; height: 1080px; }
+
+      /* Each scene is a full-canvas layer; presenter shows them stacked,
+         timeline opacity/transform reveals the active one. */
+      .scene {
+        position: absolute; inset: 0;
+        width: 100%; height: 100%;
+        display: flex; flex-direction: column;
+        justify-content: center;
+        padding: 110px 150px;
+        box-sizing: border-box;
+        background: var(--paper);
+      }
+
+      .kicker {
+        font-family: "Roboto Mono", monospace; font-size: 20px;
+        letter-spacing: .18em; text-transform: uppercase; color: var(--muted);
+      }
+      .ghost-word {
+        position: absolute; right: 90px; top: 50%; transform: translateY(-50%);
+        font-family: "Bebas Neue", sans-serif; font-size: 460px; line-height: 1;
+        color: var(--ghost); letter-spacing: .04em; pointer-events: none;
+        user-select: none; z-index: 0;
+      }
+
+      /* ---- Scene 1: title + I/O ---- */
+      h1.title {
+        font-family: "Bebas Neue", sans-serif; font-size: 168px;
+        letter-spacing: .02em; line-height: .9; margin: 10px 0 18px; position: relative; z-index: 1;
+      }
+      .tagline { font-size: 34px; color: var(--muted); max-width: 1300px; position: relative; z-index: 1; }
+      .io { display: flex; align-items: center; gap: 26px; margin-top: 60px;
+            font-family: "Roboto Mono", monospace; font-size: 26px; position: relative; z-index: 1; }
+      .io .pill { background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 16px 30px; }
+      .io .pill.in  { border-left: 7px solid var(--epi); }
+      .io .pill.out { border-left: 7px solid var(--sem); }
+      .io .arr { color: var(--conn); font-size: 40px; }
+      .io .mid { font-family: Oswald; font-weight: 700;
+                 background: var(--card); border: 1px solid var(--line);
+                 border-left: 8px solid var(--brand-yellow); border-radius: 12px; padding: 16px 28px; }
+
+      /* ---- Scene 2: the mind / kernel ---- */
+      .mind {
+        position: relative; overflow: hidden; background: var(--card);
+        border: 1px solid var(--line); border-left: 12px solid var(--brand-yellow);
+        border-radius: 24px; padding: 60px 70px; max-width: 1500px; z-index: 1;
+      }
+      .mind .ml { font-family: Oswald; font-size: 64px; font-weight: 700; letter-spacing: .06em; position: relative; }
+      .mind .ms { font-family: "Roboto Mono", monospace; font-size: 26px; color: var(--muted); margin-top: 14px; position: relative; }
+
+      /* ---- Scene 3: four memory regions ---- */
+      .grid4 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 20px; max-width: 1600px; z-index: 1; position: relative; }
+      .rcard { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 32px 38px; }
+      .rcard.episodic     { border-left: 10px solid var(--epi); }
+      .rcard.semantic     { border-left: 10px solid var(--sem); }
+      .rcard.associative  { border-left: 10px solid var(--asc); }
+      .rcard.housekeeping { border-left: 10px solid var(--hk); }
+      .rcard .name { font-family: Oswald; font-weight: 700; font-size: 40px; }
+      .rcard .human { font-family: Roboto; font-style: italic; font-size: 26px; color: var(--muted); margin-top: 4px; }
+      .rcard .db { font-family: "Roboto Mono", monospace; font-size: 22px; color: var(--muted); margin-top: 16px; }
+
+      /* ---- Scene 4: recall ---- */
+      .recall {
+        background: var(--card); border: 1px solid var(--line);
+        border-left: 12px solid var(--brand-yellow); border-radius: 22px;
+        padding: 54px 64px; max-width: 1500px; z-index: 1; position: relative;
+      }
+      .recall .rl { font-family: Oswald; font-weight: 700; font-size: 58px; }
+      .recall .tag { font-family: "Roboto Mono", monospace; font-size: 26px; color: var(--muted); margin-top: 14px; }
+      .recall .note { font-size: 30px; color: var(--ink); margin-top: 22px; max-width: 1200px; }
+
+      /* ---- Scene 5: three swappable organs ---- */
+      .organs { display: flex; flex-direction: column; gap: 26px; max-width: 1550px; z-index: 1; position: relative; }
+      .ocard {
+        background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+        border-left: 7px solid var(--gold);
+        padding: 30px 40px; display: flex; justify-content: space-between; align-items: center; gap: 30px;
+      }
+      .ocard .seam { font-family: Oswald; font-weight: 700; font-size: 44px; }
+      .ocard .o { font-size: 25px; color: var(--muted); font-style: italic; margin-top: 4px; }
+      .ocard .def { font-family: "Roboto Mono", monospace; font-size: 28px; text-align: right; white-space: nowrap; }
+      .ocard .swapb { font-family: "Roboto Mono", monospace; font-size: 20px; color: var(--swap);
+                      border: 1px solid var(--swap); border-radius: 999px; padding: 6px 18px; margin-top: 8px; display: inline-block; }
+
+      /* ---- Scene 6: thesis ---- */
+      .thesis {
+        background: var(--card); border: 1px solid var(--line);
+        border-left: 14px solid var(--brand-yellow); border-radius: 22px;
+        padding: 64px 72px; font-family: Oswald; font-size: 60px; line-height: 1.2;
+        max-width: 1500px; z-index: 1; position: relative;
+      }
+      .sect-h {
+        font-family: Oswald; font-size: 30px; letter-spacing: .04em; text-transform: uppercase;
+        color: var(--muted); border-left: 7px solid var(--conn); padding-left: 18px;
+        margin-bottom: 30px; z-index: 1; position: relative;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="brain-anatomy"
+      data-start="0"
+      data-duration="36"
+      data-width="1920"
+      data-height="1080"
+    >
+      <!-- Scene 1 — Title + I/O -->
+      <section class="scene" id="s1" data-start="0">
+        <div class="ghost-word" id="s1-ghost">BRAIN</div>
+        <div class="kicker" id="s1-kicker">How does a brain actually work?</div>
+        <h1 class="title" id="s1-title">ANATOMY OF<br />A BRAIN</h1>
+        <div class="tagline" id="s1-tag">
+          You feed it &middot; four regions remember &middot; it recalls by meaning &middot; every organ is swappable.
+        </div>
+        <div class="io">
+          <div class="pill in" id="s1-in">conversations &middot; notes &middot; transcripts &middot; files</div>
+          <div class="arr" id="s1-arr1">&rarr;</div>
+          <div class="mid" id="s1-mid">THE MIND</div>
+          <div class="arr" id="s1-arr2">&rarr;</div>
+          <div class="pill out" id="s1-out">the right memory, recalled by meaning</div>
+        </div>
+      </section>
+
+      <!-- Scene 2 — The Mind / kernel -->
+      <section class="scene" id="s2" data-start="6">
+        <div class="ghost-word" id="s2-ghost">MIND</div>
+        <div class="sect-h" id="s2-h">The kernel</div>
+        <div class="mind">
+          <div class="ml" id="s2-ml">THE MIND</div>
+          <div class="ms" id="s2-ms">brain-core &mdash; the algorithms, no backends</div>
+        </div>
+        <div class="tagline" id="s2-note" style="margin-top:40px;">
+          The mind is just the algorithms. Storage, senses and reasoning plug in at startup.
+        </div>
+      </section>
+
+      <!-- Scene 3 — Four memory regions -->
+      <section class="scene" id="s3" data-start="12">
+        <div class="sect-h" id="s3-h">Four regions remember</div>
+        <div class="grid4">
+          <div class="rcard episodic" id="s3-c1">
+            <div class="name">Episodic</div><div class="human">the diary</div><div class="db">timeline.db</div>
+          </div>
+          <div class="rcard semantic" id="s3-c2">
+            <div class="name">Semantic</div><div class="human">the knowledge graph</div><div class="db">entity-graph.db</div>
+          </div>
+          <div class="rcard associative" id="s3-c3">
+            <div class="name">Associative</div><div class="human">recall by meaning</div><div class="db">vectors.db</div>
+          </div>
+          <div class="rcard housekeeping" id="s3-c4">
+            <div class="name">Housekeeping</div><div class="human">sleep</div><div class="db">sleep.db</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Scene 4 — Recall by meaning -->
+      <section class="scene" id="s4" data-start="18">
+        <div class="ghost-word" id="s4-ghost">RECALL</div>
+        <div class="sect-h" id="s4-h">It recalls by meaning</div>
+        <div class="recall">
+          <div class="rl" id="s4-rl">Recall by meaning</div>
+          <div class="tag" id="s4-tag">hybridSearch &middot; RRF k=60</div>
+          <div class="note" id="s4-note">Blends all four regions into one best-of answer.</div>
+        </div>
+      </section>
+
+      <!-- Scene 5 — Three swappable organs -->
+      <section class="scene" id="s5" data-start="24">
+        <div class="sect-h" id="s5-h">Three swappable organs</div>
+        <div class="organs">
+          <div class="ocard" id="s5-o1">
+            <div><div class="seam">Storage</div><div class="o">where it keeps memories</div></div>
+            <div><div class="def">SQLite</div><div class="swapb">setStorageProvider()</div></div>
+          </div>
+          <div class="ocard" id="s5-o2">
+            <div><div class="seam">Embedding</div><div class="o">its sense of meaning</div></div>
+            <div><div class="def">OpenAI</div><div class="swapb">setEmbeddingProvider()</div></div>
+          </div>
+          <div class="ocard" id="s5-o3">
+            <div><div class="seam">LLM</div><div class="o">its reasoning</div></div>
+            <div><div class="def">Claude</div><div class="swapb">setLLMProvider()</div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Scene 6 — Thesis -->
+      <section class="scene" id="s6" data-start="30">
+        <div class="ghost-word" id="s6-ghost">SWAP</div>
+        <div class="sect-h" id="s6-h">The whole idea</div>
+        <div class="thesis" id="s6-thesis">
+          Swap an organ, keep the mind. The algorithms live in the kernel; storage,
+          senses and reasoning plug in at startup.
+        </div>
+      </section>
+    </div>
+
+    <script>
+      /* ============================================================
+         Timeline Contract (HyperFrames):
+         - ONE paused timeline, registered in window.__timelines
+         - layout already in CSS (hero frame) — we only gsap.from()
+         - window.__scenes exposes per-scene [enterStart, holdAt] times
+           so the PLAYER (presenter.html) can hold at each hero frame.
+         ============================================================ */
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      // All scenes start hidden; each scene's hold-frame is fully visible.
+      const SCENES = ["s1", "s2", "s3", "s4", "s5", "s6"];
+      // Stack scenes; only the active one should read as present. We fade the
+      // whole scene container in at its window and out as the next begins —
+      // entrances animate the contents.
+      gsap.set(SCENES.map((s) => "#" + s), { opacity: 0 });
+
+      const SCENE_LEN = 6; // seconds budget per scene in timeline space
+      const sceneTimes = []; // {enter, hold} in timeline seconds
+
+      SCENES.forEach((id, i) => {
+        const base = i * SCENE_LEN;
+        // Reveal this scene container, hide the previous (cross-hold "transition")
+        tl.set("#" + id, { opacity: 1, zIndex: 2 }, base);
+        if (i > 0) tl.set("#" + SCENES[i - 1], { opacity: 0, zIndex: 0 }, base);
+        sceneTimes.push({ enter: base, hold: base + 2.2 });
+      });
+
+      // ---- Scene 1 entrances ----
+      tl.from("#s1-ghost", { opacity: 0, scale: 1.08, duration: 0.9, ease: "power2.out" }, 0.1);
+      tl.from("#s1-kicker", { y: -30, opacity: 0, duration: 0.5, ease: "power3.out" }, 0.2);
+      tl.from("#s1-title", { y: 60, opacity: 0, duration: 0.8, ease: "expo.out" }, 0.35);
+      tl.from("#s1-tag", { y: 30, opacity: 0, duration: 0.55, ease: "power2.out" }, 0.7);
+      tl.from("#s1-in", { x: -50, opacity: 0, duration: 0.5, ease: "back.out(1.4)" }, 1.0);
+      tl.from(["#s1-arr1", "#s1-mid", "#s1-arr2"], { opacity: 0, scale: 0.85, duration: 0.4, stagger: 0.12, ease: "power2.out" }, 1.3);
+      tl.from("#s1-out", { x: 50, opacity: 0, duration: 0.5, ease: "back.out(1.4)" }, 1.7);
+
+      // ---- Scene 2 entrances ----
+      tl.from("#s2-ghost", { opacity: 0, x: 60, duration: 0.8, ease: "power2.out" }, 6.1);
+      tl.from("#s2-h", { x: -40, opacity: 0, duration: 0.5, ease: "power3.out" }, 6.15);
+      tl.from(".mind", { y: 50, opacity: 0, duration: 0.7, ease: "expo.out" }, 6.35);
+      tl.from("#s2-ml", { y: 24, opacity: 0, duration: 0.5, ease: "power2.out" }, 6.7);
+      tl.from("#s2-ms", { y: 18, opacity: 0, duration: 0.45, ease: "power2.out" }, 6.95);
+      tl.from("#s2-note", { y: 30, opacity: 0, duration: 0.55, ease: "sine.out" }, 7.3);
+
+      // ---- Scene 3 entrances (the four regions stagger) ----
+      tl.from("#s3-h", { x: -40, opacity: 0, duration: 0.5, ease: "power3.out" }, 12.1);
+      tl.from(["#s3-c1", "#s3-c2", "#s3-c3", "#s3-c4"],
+        { y: 60, opacity: 0, duration: 0.55, stagger: 0.18, ease: "back.out(1.3)" }, 12.4);
+
+      // ---- Scene 4 entrances ----
+      tl.from("#s4-ghost", { opacity: 0, scale: 1.1, duration: 0.8, ease: "power2.out" }, 18.1);
+      tl.from("#s4-h", { x: -40, opacity: 0, duration: 0.5, ease: "power3.out" }, 18.15);
+      tl.from(".recall", { scale: 0.92, opacity: 0, duration: 0.65, ease: "expo.out" }, 18.35);
+      tl.from("#s4-tag", { y: 20, opacity: 0, duration: 0.45, ease: "power2.out" }, 18.7);
+      tl.from("#s4-note", { y: 24, opacity: 0, duration: 0.5, ease: "sine.out" }, 18.95);
+
+      // ---- Scene 5 entrances (organs stagger) ----
+      tl.from("#s5-h", { x: -40, opacity: 0, duration: 0.5, ease: "power3.out" }, 24.1);
+      tl.from(["#s5-o1", "#s5-o2", "#s5-o3"],
+        { x: -60, opacity: 0, duration: 0.55, stagger: 0.2, ease: "power3.out" }, 24.4);
+
+      // ---- Scene 6 entrances (final scene) ----
+      tl.from("#s6-ghost", { opacity: 0, scale: 1.12, duration: 0.9, ease: "power2.out" }, 30.1);
+      tl.from("#s6-h", { x: -40, opacity: 0, duration: 0.5, ease: "power3.out" }, 30.15);
+      tl.from(".thesis", { y: 50, opacity: 0, duration: 0.8, ease: "expo.out" }, 30.4);
+
+      window.__timelines["brain-anatomy"] = tl;
+      window.__scenes = sceneTimes;
+      window.__sceneTitles = [
+        "Title — Anatomy of a Brain",
+        "The Mind (kernel)",
+        "Four regions remember",
+        "Recall by meaning",
+        "Three swappable organs",
+        "Swap an organ, keep the mind",
+      ];
+    </script>
+  </body>
+</html>

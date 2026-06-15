@@ -1,0 +1,51 @@
+{
+  "run": "cortex-brain-v4 design-lint gate",
+  "dated": "2026-06-12",
+  "ticket": "q-20260612-cortex-brain-v4",
+  "render_run_record": "experiments/watchtower-engine/runs/run-cortex-render-005.json",
+  "rubric": "tools/design-lint/RUBRIC.md",
+  "context": "Marshall gate after v4 re-render that reversed the v3 brand-cold (drop-yellow) + force-diagram overshoots. Screenshots in this dir.",
+  "summary": "5/5 PASS (4 design pages + gallery index) — warm anchor (#ffde59) restored to every screen; cool semantic demoted to structure/legend only; no flags.",
+  "verdicts": [
+    {
+      "design": "designs/index.html (gallery)",
+      "verdict": "pass",
+      "warm_anchor_present": true,
+      "dominant_palette": "warm",
+      "flags": [],
+      "notes": "Follow-up fix — the index was missed by the v4 ticket (scoped to the 4 design pages). Was fully brand-cold (0 yellow, near-black ink, all-cool card bars incl. an all-cool hero gradient). Fixed inline: brand-brown ink + cream ground, yellow #ffde59 H1 underline + hero bar (warm anchor), default bars gold; the purple/green/teal cortex-card bars kept as a hairline region-legend cue (sparing, subordinate)."
+    },
+    {
+      "design": "02-brain-remembers",
+      "verdict": "pass",
+      "warm_anchor_present": true,
+      "dominant_palette": "warm",
+      "flags": [],
+      "notes": "Warm cream ground + bright-yellow #ffde59 anchor on the 'One best-of answer' band; green/blue/purple/teal are legend keys mapping to the I/O flow diagram and three filing nodes — never fills on content cards."
+    },
+    {
+      "design": "03-four-memories",
+      "verdict": "pass",
+      "warm_anchor_present": true,
+      "dominant_palette": "warm",
+      "flags": [],
+      "notes": "Warm-led card-set: yellow #ffde59 anchor on the 'ONE MIND' band + warm 'MEMORY' ghost text; cool hues demoted to small title dots + legend. The taxonomy tiles that previously flagged cool-on-content now read warm."
+    },
+    {
+      "design": "04-brain-sleeps",
+      "verdict": "pass",
+      "warm_anchor_present": true,
+      "dominant_palette": "warm",
+      "flags": [],
+      "notes": "Warm cream ground + yellow SLEEP anchor in the cycle diagram; cool on the numbered nodes correctly encodes an ordered 5-step cycle (licensed structure). Amber confined to numbered badges."
+    },
+    {
+      "design": "06-brain-anatomy",
+      "verdict": "pass",
+      "warm_anchor_present": true,
+      "dominant_palette": "warm",
+      "flags": [],
+      "notes": "HERO: warm cream dominates + bright-yellow #ffde59 anchor in the bottom callout strip + left badges; cool confined to thin structural left-rules (legend) on region cards and the genuine 'Three Shapeable Organs' node diagram. The anatomy deck that drove the brand-cold diagnosis now passes."
+    }
+  ]
+}

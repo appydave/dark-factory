@@ -1,0 +1,27 @@
+{
+  "id": "run-cortex-render-005",
+  "kind": "run",
+  "experiment_id": "exp-20260608-cortex-visualise",
+  "queue_id": "q-20260612-cortex-brain-v4",
+  "executed": "instruction",
+  "status": "complete",
+  "started_at": "2026-06-12T15:06:00+07:00",
+  "ended_at": "2026-06-12T15:13:00+07:00",
+  "result": {
+    "label": "cortex-brain-v4",
+    "recipe": "two-layer-colour (warm brand load-bearing + cool semantic structure-only) + restraint + sparing-diagrams + restore-yellow-anchor",
+    "gallery": "http://localhost:7422/designs/",
+    "fixes": "Reverses v3 (render-003/004 lineage) brand-cold failure: cool semantic (green/blue/purple/teal) had been made load-bearing on CONTENT cards and warm yellow #ffde59 dropped (0 occurrences across 02/03/04/06). Restored warm as load-bearing; demoted cool to structure-only. Did NOT repeat v3's second overshoot — no design forced into SVG; HTML stays primary.",
+    "two_layer_applied_per_design": {
+      "06-brain-anatomy": { "thread": "HTML-primary taxonomy/layout", "warm_anchor": "'THE MIND' kernel band + 'swap an organ, keep the mind' thesis both given yellow #ffde59 left-border", "cool_demoted": "region cards lost saturated coloured top-bar + coloured heading -> warm gold bar + ink heading; cool survives only as a small legend-key dot per card + the calm region legend", "extra": "organ-swap diagram amber #b96f24-on-tint swap pins neutralised to grey #6f675e (kills amber-orange-on-warm F3 risk)" },
+      "03-four-memories": { "thread": "HTML taxonomy, no diagram (kept)", "warm_anchor": "'ONE MIND' hub band given yellow #ffde59 left-border", "cool_demoted": "four memory cards lost saturated bar + coloured heading -> warm gold bar + ink heading; cool kept only as small legend-key dot + the calm four-colour legend" },
+      "02-brain-remembers": { "thread": "HTML flow + one small spine diagram (kept)", "warm_anchor": "'one best-of answer' payoff box reskinned from green to cream + yellow #ffde59 left-border", "cool_demoted": "three store cards lost saturated bar + coloured heading -> warm gold bar + ink heading; cool kept on the genuine spine flow diagram + small legend-key dots" },
+      "04-brain-sleeps": { "thread": "HTML ordered cycle + one small loop diagram (kept) — the spec's 'right use' of cool", "warm_anchor": "loop-diagram hub 'SLEEP' ring + label reskinned from teal to yellow #ffde59 ring with brown text", "cool_demoted": "step headings -> ink; numbered badges 1-5 -> brand amber #c8841a (licensed numbered-sequence use, small badge, white-on-amber not on-tint); cool kept as thin per-step left-border tying to the genuine cycle diagram + calm legend" }
+    },
+    "two_tests": "ROLE — cool now appears only on genuine structure (02 spine, 04 loop/ordered steps, legend keys/dots); content cards carry warm/neutral brand emphasis. DOMINANCE — every screen has >=1 bright yellow #ffde59 anchor and reads warm-neutral ground + sparing accent, not brand-cold.",
+    "data": "MVC preserved — fixes were colour/treatment (view), so edits were in designs/NN-*/index.html; data/NN-*.json prose was already terse (one blurb per element) and ghost-text present, so left unchanged. index.html still fetches its data, never inlines. meta.source + commit_sha a129a5d50ba8a140c288b6f2eb03ddadcee873a9 preserved.",
+    "scope": "Only the four cortex designs touched (02-brain-remembers, 03-four-memories, 04-brain-sleeps, 06-brain-anatomy). 01-session-journey and 05-dark-factory left untouched. Regenerated in place on the running :7422 server; no new port.",
+    "verified": "#ffde59 now present in all four (was 0): 02=1, 03=1, 04=2, 06=1. HTTP 200 on :7422 for all four designs + designs/index.html. Playwright full-page screenshots of 06 (worst case) and 04 (cycle) confirm warm anchors read and cool is demoted to structure/legend; only console error is a benign favicon 404.",
+    "data_source": "~/dev/kybernesis/cortex @ a129a5d50ba8a140c288b6f2eb03ddadcee873a9 (M4)"
+  }
+}
