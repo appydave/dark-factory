@@ -1,5 +1,11 @@
 # Watchtower v0 — Session Context
 
+> **⚠️ SUPERSEDED (2026-06-06) — see [`RE-BUCKETING.md`](RE-BUCKETING.md); archive-bound (`watchtower/_archive/`).**
+> Drafting orientation from the v0 single-app era. Notably *"Watchtower lives at `apps/watchtower/`"* is **reversed** —
+> three separate planes/instances (factory floor here; Switchboard + Watchtower as their own AppySentinel/AppyStack
+> instances), not one colocated web app. Read [`../dark-factory-constellation.md`](../dark-factory-constellation.md)
+> for the live model.
+
 **Date**: 2026-05-28
 **Purpose**: Orientation for the three parallel agents drafting Watchtower requirements
 

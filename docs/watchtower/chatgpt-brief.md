@@ -1,5 +1,9 @@
 # Watchtower v0 — Strategic Brief (from ChatGPT)
 
+> **⚠️ ARCHIVE-BOUND (2026-06-06) — see [`RE-BUCKETING.md`](RE-BUCKETING.md).** Process/history from the v0 drafting
+> era; kept for provenance, not current design. For the live three-plane model read RE-BUCKETING.md +
+> [`../dark-factory-constellation.md`](../dark-factory-constellation.md).
+
 **Origin**: ChatGPT synthesis, 2026-05-28
 **Status**: input to requirements gathering — not a spec, not a plan
 **Purpose**: shared context for the three parallel requirements-gathering agents

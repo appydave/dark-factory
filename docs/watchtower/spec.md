@@ -1,5 +1,12 @@
 # Spec: Dark Factory Watchtower v0
 
+> **⚠️ PARTIALLY SUPERSEDED (2026-06-06 three-plane model — see [`RE-BUCKETING.md`](RE-BUCKETING.md)).**
+> The §5/§12/R7 *"no WebSockets/SSE; poll every 5s"* rule is **reversed** — Switchboard pushes over SSE and the
+> Watchtower viewer consumes it; polling survives only at the outward Codex/tracker boundary. The §7
+> shell-out-to-workflow trigger is **superseded** by the durable queue + claim + report-back (proven in
+> `experiments/watchtower-engine/`; `DECISIONS.md` D1 already moved to file-trigger + watcher). Read this as the
+> Control-Plane viewer scope only — the engine lives on the Factory Floor / Switchboard. Physical re-home pending.
+
 **Status**: draft for ratification — 2026-05-28
 **Author**: requirements agent (spec-driven-development pass)
 **Companion docs**: `chatgpt-brief.md` (strategic input), `context.md` (session state), `../dark-factory-living-system-spec.md` (parent architecture)

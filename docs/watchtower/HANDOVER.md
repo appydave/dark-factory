@@ -1,5 +1,9 @@
 # Watchtower — Build Handover
 
+> **⚠️ ARCHIVE-BOUND (2026-06-06) — see [`RE-BUCKETING.md`](RE-BUCKETING.md).** Process/history from the v0 drafting
+> era; kept for provenance, not current design. For the live three-plane model read RE-BUCKETING.md +
+> [`../dark-factory-constellation.md`](../dark-factory-constellation.md).
+
 **For**: a fresh session that will build the Watchtower app.
 **How to use**: open a new Claude Code session in `~/dev/ad/apps/dark-factory/` and paste:
 > "Read `docs/watchtower/HANDOVER.md` and continue building Watchtower."

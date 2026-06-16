@@ -1,5 +1,9 @@
 # Watchtower v0 — Design Review
 
+> **⚠️ ARCHIVE-BOUND (2026-06-06) — see [`RE-BUCKETING.md`](RE-BUCKETING.md).** Process/history from the v0 drafting
+> era; kept for provenance, not current design. For the live three-plane model read RE-BUCKETING.md +
+> [`../dark-factory-constellation.md`](../dark-factory-constellation.md).
+
 **Reviewer**: code-review-and-quality (five-axis)
 **Date**: 2026-05-30
 **Subject**: `schemas.md`, `spec.md`, `plan.md` reviewed as the PR that defines the build, against locked `DECISIONS.md`.
