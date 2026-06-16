@@ -15,13 +15,15 @@ Bash + jq + curl implementation of the **blackboard workflow pattern** (per `~/d
 
 All four passed acceptance criteria. Isolation discipline held in every run — orchestrator never ingested step payloads.
 
-## Skills (project-local)
+## Skills (appydave plugin)
+
+These are global plugin skills (in `appydave-plugins`), not project-local files — there is no
+`.claude/skills/` under this experiment dir:
 
 ```
-.claude/skills/
-├── conductor/SKILL.md      ← orchestrator role
-├── store/SKILL.md          ← bash+jq EAV operations
-└── image-gen/SKILL.md      ← kie.ai async wrapper
+conductor   ← orchestrator role
+store       ← bash+jq EAV operations
+image-gen   ← kie.ai async wrapper
 ```
 
 ## Visualisations

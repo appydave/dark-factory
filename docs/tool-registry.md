@@ -45,8 +45,15 @@ So this doc has two halves: the **index** (below), and the **freshness mechanism
 | Path | What |
 |------|------|
 | `tools/serve.sh`, `tools/stop.sh` | Mochaccino server control (:7420) |
+| `tools/mocha-census/run-full.sh` | Design audit + rate-and-label board across both machines (:7440) |
+| `tools/design-lint/shoot-one.py` | Post-render lint gate — screenshots a render, agent critiques vs `RUBRIC.md` |
+| `tools/youtube-assets/` | YouTube asset scripts |
 | `experiments/watchtower-engine/bin/claim-next.sh` | Atomic ticket claim (the engine mutex) |
 | `experiments/watchtower-engine/bin/test-atomic-claim.sh` | Concurrency proof for the claim |
+| `experiments/watchtower-engine/bin/dispatch-swagger.sh` | Spawn a Swagger job-agent (tmux) for a claimed ticket |
+| `experiments/watchtower-engine/bin/reaper.sh` | Reap orphan tmux windows (keys off `done/<id>.json` mtime + grace) |
+| `experiments/watchtower-engine/bin/retry.sh` | Re-queue `failed/` → `queue/` with exponential backoff |
+| `experiments/watchtower-engine/bin/constellation-status.sh` | Preflight: report which constellation apps are up |
 
 ## Index — Workflows (`.claude/workflows/`)
 
@@ -61,6 +68,8 @@ Workflows are first-class tools and get the same **when + what** visibility as s
 | `titles-human` | YLO probe — title selection (HITL) | YouTube-launch lane |
 | `thumbnails` | YLO probe — thumbnail ideation/render | YouTube-launch lane |
 | `nail-salon-video` | YLO probe — domain video flow | on demand |
+| `aitldr-enrich` | AITLDR lane — enrich content metadata | YouTube-launch lane |
+| `transcript-recategorize` | AITLDR lane — recategorize transcripts | YouTube-launch lane |
 | `hello`, `hello-blackboard` | Smoke tests (plain / MCP-blackboard) | spikes / validation |
 
 ⚠️ **Visibility gaps** (logged in `backlog/problems.md`): no single place yet shows *last-run / status / cost* per workflow (that's the Watchtower view), and the Workflow-tool name registry is **loaded at session start** — newly authored workflows must be run by `scriptPath` until the session reloads.

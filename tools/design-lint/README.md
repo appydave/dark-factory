@@ -58,4 +58,6 @@ whole slide deck or all designs in a repo. (Workflow not built yet — see "Next
 
 ## Proven on
 
-The four cortex "brain" screens (2026-06-10) — see `out/lint/` and the proof run recorded by Marshall.
+The cortex "brain" screens — see `out/lint-v4/verdicts.json` (cortex-brain-v4 gate, 2026-06-12) and
+`out/lint-v5/` (correctness pass, 2026-06-15, with per-page + index shots). Verdicts land in versioned
+`out/lint-vN/` dirs, not the `out/lint/` default.

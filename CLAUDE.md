@@ -2,7 +2,7 @@
 
 You're in **`~/dev/ad/apps/dark-factory/`** — David Cruwys's canonical skill library project. The 1,100-artifact research phase is complete (see `research/`); the build phase ingests artifacts from upstream repos into `canonical/`, rewriting each in David's voice with full provenance back to source.
 
-**Two threads live here.** (1) **Canonical ingestion** — the original charter above (`research/` → `canonical/`). (2) **The blackboard → POEM line** — a workflow-pattern experiment in `ylo-experiment/` (the YLO blackboard probes) whose learnings are being consolidated into POEM. YLO is a testing ground destined to retire; the consolidation plan is `docs/ylo-to-poem-blueprint.md`, and dark-factory will gain a `.poem/` folder where YLO's workflows get rebuilt in POEM. Most of the Mochaccino gallery (designs 04–08) visualises this second thread.
+**Two threads live here.** (1) **Canonical ingestion** — the original charter above (`research/` → `canonical/`). (2) **The blackboard → POEM line** — a workflow-pattern experiment in `experiments/ylo/` (the YLO blackboard probes) whose learnings are being consolidated into POEM. YLO is a testing ground destined to retire; the consolidation plan is `docs/ylo-to-poem-blueprint.md`, and dark-factory will gain a `.poem/` folder where YLO's workflows get rebuilt in POEM. Most of the Mochaccino gallery (designs 04–08) visualises this second thread.
 
 ## How sessions are organized
 
@@ -58,7 +58,7 @@ This repo is operated PO ↔ Developer style:
 
 ## Mochaccino server
 
-A Python http.server runs on **:7420** rooted at `mochaccino/`. Pages: `/designs/` (gallery) plus eight designs — `01-pipeline-overview`, `02-mining-view`, `03-triage-console` (canonical-ingestion thread); `04-blackboard-overview`, `05-probe-progression`, `06-blackboard-vs-poem`, `07-workflow-flows`, `08-poem-consolidation` (blackboard→POEM thread). Every design carries a copy-kit (per-section checkboxes + a copy toolbar, via `designs/components/copykit.{css,js}`). If it's not running, restart with:
+A Python http.server runs on **:7420** rooted at `mochaccino/`. Pages: `/designs/` (gallery) plus nine designs — `01-pipeline-overview`, `02-mining-view`, `03-triage-console` (canonical-ingestion thread); `04-blackboard-overview`, `05-probe-progression`, `06-blackboard-vs-poem`, `07-workflow-flows`, `08-poem-consolidation` (blackboard→POEM thread); `09-census-progress` (census board). Every design carries a copy-kit (per-section checkboxes + a copy toolbar, via `designs/components/copykit.{css,js}`). If it's not running, restart with:
 ```bash
 cd ~/dev/ad/apps/dark-factory/mochaccino && nohup python3 -m http.server 7420 > .serve.log 2>&1 &
 ```
@@ -83,9 +83,9 @@ loop: *render → rate → distill → re-render* (proven: `05-dark-factory` goo
 First-class tool at **`tools/design-lint/`** — the *machine* half of the taste loop (Mocha Census is the
 *human* half). After a render, it screenshots the output (`shoot-one.py`, reuses the census Playwright
 pattern) and a **lint agent** critiques it against `RUBRIC.md` (operational extract of
-`docs/david-design-patterns.md`), returning a `pass`/`flag` JSON verdict. Flags ONLY three reliable
-failures: `cool-on-content`, `missing-warm-anchor`, `amber-orange-on-brown`. **Flags only — no
-auto-fix, never policing diagram/colour counts** (avoids the round-04 Goodhart trap).
+`docs/david-design-patterns.md`), returning a `pass`/`flag` JSON verdict. Flags ONLY four reliable
+failures: `cool-on-content`, `missing-warm-anchor`, `amber-orange-on-brown`, `colour-overload`. **Flags
+only — no auto-fix, never policing diagram/colour counts** (avoids the round-04 Goodhart trap).
 
 - **Operator manual / two modes (inline gate · batch audit):** `tools/design-lint/README.md`.
 - **⚠️ OPEN placement question (David, 2026-06-10):** built here as the *staged* form (dark-factory

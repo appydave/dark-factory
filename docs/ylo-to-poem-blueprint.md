@@ -142,7 +142,7 @@ What "plugin" buys POEM:
 ## 7. dark-factory's role in the migration
 
 - Gets a **`.poem/` folder** — the first place YLO workflows are **rebuilt in POEM** (not ported).
-- The YLO experiment folder (`ylo-experiment/`) becomes **frozen reference**; `HANDOVER.md` + Mochaccino designs 04–07 already preserve the learnings.
+- The YLO experiment folder (`experiments/ylo/`) becomes **frozen reference**; `HANDOVER.md` + Mochaccino designs 04–07 already preserve the learnings.
 - This doc + those designs are the bridge: once the `.poem/` rebuild proves out, YLO can be archived.
 
 ---
@@ -176,7 +176,7 @@ What "plugin" buys POEM:
 
 ## 10. Provenance / sources
 
-- **YLO:** `ylo-experiment/HANDOVER.md`; `~/dev/ad/brains/anthropic-claude/claude-code/blackboard-workflow-pattern.md`; `.claude/skills/{conductor,store,image-gen}/SKILL.md`; the four workflows `ylo-experiment/workflow-0{1..4}-*.json`.
+- **YLO:** `experiments/ylo/blackboard/HANDOVER.md`; `~/dev/ad/brains/anthropic-claude/claude-code/blackboard-workflow-pattern.md`; the appydave plugin skills `conductor` / `store` / `image-gen`; the four workflows `experiments/ylo/blackboard/workflow-0{1..4}-*.json`.
 - **POEM:** `~/dev/ad/poem-os/poem/`; client install `~/dev/clients/supportsignal/prompt.supportsignal.com.au/` (`tools/poem-executor/{src/lib/data-store.js,runtime.js,docs/compiler-requirements.md,docs/runner-requirements.md}`, `poem/workflows/new-incident/new-incident.yaml`, agents `.claude/commands/poem/agents/{alex,penny,oscar,victor}.md`).
 - **AWB Gen 3:** `~/dev/ad/apps/awb/` — `packages/state/src/types/{attribute-value,run-state}.ts` (Named-Value Model), `packages/wom/src/types/wom-package.ts` (`WomStateContract`/`WomStateSlot`), `packages/compiler/src/pipeline/`, `CONTEXT.md`, `examples/gen3/`.
 - **AWB Gen 1 (Ruby):** `~/dev/ad/agent-workflow-builder/ad-agent_architecture/` — `spec/usecases/agent_engineering/agent_workflow_architect.rbx`, `lib/ad/agent_architecture/{dsl,database}/`; frozen prompt text in `gpt-agents/src/content/gpt-workflows/agent-workflow-architect.json`.

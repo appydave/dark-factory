@@ -26,8 +26,9 @@ capture, and (b) the gallery viewer on :7440.
 | file | role |
 |---|---|
 | `scan.sh` | `find` every real design on a machine (skips skill-templates/worktrees/node_modules). Runs locally **or** over SSH: `ssh host 'bash -s' < scan.sh -- <label>` |
-| `combine.py` | dedupe build-copies + cross-machine dupes → `out/manifest.json` |
+| `combine.py` | dedupe build-copies + cross-machine dupes → `out/manifest.json` (run **manually**; not invoked by `run-full.sh`) |
 | `shoot.py` | serve each repo, full-page PNG per design, dedupe by `(repo,design_id)` → `out/shots/` + `shots.json` |
+| `shoot-slides.py` | sibling of `shoot.py` for **slide decks** — 1600×900 16:9 PNG of every standalone HTML slide → `out/slides/` |
 | `check-health.py` | flag broken renders (console errors / stuck "Loading…") so a data-wiring bug isn't mistaken for a design verdict |
 | `extract.py` | structural feature-extraction over rated designs (composition signals) |
 | `run-full.sh` | the whole thing: local shoot → rsync Mini-only roots → shoot the rest |
@@ -72,6 +73,11 @@ improvement: compare file mtime vs the shot and auto-re-shoot stale ones.
 the Mini-only design folders into a local mirror so a single Chromium captures everything. ~122 designs
 exist on both machines with **diverged mtimes** — the board shoots the freshest and labels each card's
 source machine.
+
+> **Prerequisite:** `run-full.sh` itself does **not** SSH-scan the Mini — it consumes an existing
+> `out/census-m4mini.tsv`. Produce/refresh it first with the manual scan step:
+> `ssh davidcruwys@100.82.235.39 'bash -s' < scan.sh -- m4mini > out/census-m4mini.tsv`.
+> Without that TSV, `run-full.sh` rsyncs nothing from the Mini.
 
 ## Modes (current + planned)
 

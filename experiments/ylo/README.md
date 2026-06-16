@@ -44,10 +44,10 @@ Do not migrate probes #2 and #3 to Workflow Tool. The performance gap is structu
 ```
 experiments/ylo/
 ├── blackboard/          ← was ylo-experiment/
-│   ├── workflow.json                  (probe #1)
-│   ├── workflow-titles.json           (probe #2)
-│   ├── workflow-titles-human.json     (probe #3)
-│   ├── workflow-thumbnails.json       (probe #4)
+│   ├── workflow-01-analysis.json       (probe #1)
+│   ├── workflow-02-titles.json         (probe #2)
+│   ├── workflow-03-titles-human.json   (probe #3)
+│   ├── workflow-04-thumbnails.json     (probe #4)
 │   ├── prompts/
 │   ├── HANDOVER.md
 │   └── runs/

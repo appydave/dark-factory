@@ -1,8 +1,18 @@
 # Proposal — Dark Factory Documentation Organiser
 
-**Status**: proposal — 2026-06-05 · **decided** (defaults locked, §5) · build parked in `backlog/2026-06-05-doc-organiser.md`
+**Status**: proposal — 2026-06-05 · **decided** (defaults locked, §5) · **SUPERSEDED by skills, 2026-06-16**
 **Origin**: queue ticket `q-20260605-propose-doc-organiser` (Watchtower instruction job)
 **DONE**: a proposal to decide from. This does **not** build anything.
+
+> **⚠️ Update (2026-06-16) — don't build the skill; wire existing ones.** Since this proposal, the
+> appydave-plugins skill family landed and already covers all 5 locked checks (§5), so building a fresh
+> `doc-organiser` skill is unnecessary. `appydave:doc-drift` covers stale-stamp + broken-refs (doc↔code);
+> `appydave:doc-review` (`-crossref` / `-topology` / `-gaps`) covers index-coverage / orphans / read-order
+> (doc↔doc-set); `-coherence` covers the deferred duplication check. What's still missing is only the
+> **dispatch wiring** — a Watchtower instruction-job that fans these out in **report** mode. The build
+> backlog item is retargeted accordingly: `backlog/2026-06-05-doc-organiser.md`. The §1–§5 analysis below
+> stands as the spec for *what* to sweep; the §4 "where it lives" answer (a new skill) is the part that
+> changed.
 
 ---
 

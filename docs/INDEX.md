@@ -31,6 +31,7 @@ One line per doc. Start at the top. This index is the fix for doc-sprawl — whe
 - **`provenance-spec.md`** — provenance.json schema + verbatim-source rules.
 - **`ingestion-workflow.md`** — the 11-step ingest procedure.
 - **`david-style-patterns.md`** — David's voice + templates.
+- **`david-design-patterns.md`** — design-taste spec (Shelly's guidance), derived from rated work via Mocha Census; the `RUBRIC.md` source of truth.
 
 ## Operating layer & threads
 
@@ -39,6 +40,8 @@ One line per doc. Start at the top. This index is the fix for doc-sprawl — whe
 - **`phase-b-next-steps.md`** — the next build move (first dog-food workflow).
 - **`doc-organiser-proposal.md`** — proposal (2026-06-05): a recurring audit skill that reports doc-drift (orphans, stale dates, broken refs) and never edits. **Decided** (defaults locked); build parked in `backlog/2026-06-05-doc-organiser.md`.
 - **`ylo-to-poem-blueprint.md`** — thread 2: YLO → POEM consolidation.
+- **`capture-service-brief.md`** — proposed 5th constellation tool (DRAFT for decision, 2026-06-10).
+- **`youtube-channel-catalog-workflow.md`** — AITLDR pipeline backlog (parked).
 - **`workflow-tool-authoring-notes.md`** — hard-won Workflow Tool craft.
 - **`agent-orchestration-capabilities.md`** — ★ what Claude Code's coordination primitives actually are (subagents / Agent Teams / Workflow tool / external queue), tmux visibility, dispatcher-vs-competing-consumers, and how each maps to the Watchtower runtime + topology build order.
 - **`runtime-model.md`** — ★ who runs what: the Conductor (daily orchestrator, routes jobs) → Swagger (job-agent, judgment per job) → workflows/sub-agents (execution). Resolves the isolation-vs-coordination question.

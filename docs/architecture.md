@@ -1,7 +1,7 @@
 # Dark Factory — Architecture
 
 **Status**: living document — first complete statement, will evolve
-**Last updated**: 2026-05-25
+**Last updated**: 2026-06-01
 **Companion docs**: `experiments/ylo/README.md`, `workflow-tool-authoring-notes.md`, `canonical-form-spec.md`, `provenance-spec.md`, `ingestion-workflow.md`
 
 ---
@@ -209,7 +209,7 @@ No human in the loop for the routine case. Human only intervenes to approve new 
 
 ### The problem this solves
 
-The default `remember()` / `recall()` pattern uses dedicated subagents whose only job is to read or write the JSONL store. Each costs a full ~10s spawn for what should be a 100ms file operation. For workflows with many store operations, this dominates wall-clock time (see comparison.md — probe #2 spent the majority of its 284s wall-clock on store I/O).
+The default `remember()` / `recall()` pattern uses dedicated subagents whose only job is to read or write the JSONL store. Each costs a full ~10s spawn for what should be a 100ms file operation. For workflows with many store operations, this dominates wall-clock time (see `experiments/ylo/workflow-tool/runs/b65/comparison.md` — probe #2 spent the majority of its 284s wall-clock on store I/O).
 
 The architectural mismatch is using a heavyweight primitive (agent spawn) for a lightweight operation (file append).
 
@@ -275,7 +275,7 @@ Don't build it just because it's elegant. v1 with minimized `remember()` is genu
 
 ### Spike status
 
-A minimal MCP server + `hello-blackboard.workflow.js` spike validates the pattern. See backlog item `2026-05-25-spike-blackboard-mcp.md`. Until that spike confirms R11 and R12 (can workflow subagents call MCP tools at all?), this section describes an intended capability, not a verified one.
+A minimal MCP server + `hello-blackboard.workflow.js` spike validates the pattern. See backlog item `backlog/2026-05-26-retest-workflow-tool-with-mcp-blackboard.md`. Until that spike confirms R11 and R12 (can workflow subagents call MCP tools at all?), this section describes an intended capability, not a verified one.
 
 ---
 

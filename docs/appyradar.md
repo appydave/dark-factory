@@ -30,7 +30,7 @@ It exposes this via a **read-only MCP surface** (one summary tool, one detail to
 
 - **Substrate:** AppySentinel (it is **Pilot 1** of the AppySentinel scaffold). Same family as Switchboard — a headless, always-on, observer-only per-machine Sentinel. Collect → snapshot-store → Access(MCP/HTTP/CLI).
 - **PoC-validated:** 2026-04-27. Working `orchestrator-ssh` recipe (SSH from one machine to a fleet of remote hosts, no remote agent install; compound bash scripts per connection; emits `machine.snapshot` state + `machine.offline` event per machine) and a working read-only MCP server.
-- **The real AppyRadar today:** a Bun/TypeScript SSH fleet collector (`scripts/audit.ts`) living on the **M4 Mini**. Its rebuild on the AppySentinel substrate is **`github.com/appydave/appyradar-sentinal`** (note the spelling: `sentinal`). PoC sources referenced by Switchboard's `configure-sentinel` skill as `appyradar-sentinal-safe/` (working `ssh/client.ts`, `collectors/*`, `expose/mcp.ts`).
+- **The real AppyRadar today:** the AppySentinel-substrate rebuild **`appyradar-sentinel`** is **live** (`~/dev/ad/apps/appyradar-sentinel/`, proven 2026-06-11). The original Bun/TypeScript SSH fleet collector (`scripts/audit.ts`) now lives only in the archived bespoke `_archived--appyradar/`; the earlier typo'd `appyradar-sentinal` PoC is archived as `_archived--appyradar-sentinal`. PoC sources (`ssh/client.ts`, `collectors/*`, `expose/mcp.ts`) were referenced by Switchboard's `configure-sentinel` skill.
 - **⚠️ Not a Baku app.** `~/dev/baku/b-appy-radar` is **only a UI mock** built from an AppyRadar snapshot. None of the real AppyRadar belongs to Baku.
 
 ---
