@@ -12,6 +12,20 @@
 
 ---
 
+> **⚠️ Correction (2026-06-21): the "Switchboard doesn't exist on disk / design-only"
+> finding below (triangulation summary above, Thread G, and contradiction #4) is WRONG —
+> a `repoPath` scoping artifact. The archaeology searched for `apps/switchboard` *inside*
+> the dark-factory repo (where `apps/` holds only `watchtower/`) and missed that Switchboard
+> is a real sibling app at `~/dev/ad/apps/switchboard` (git repo, 17 source files,
+> `src/deliver/sse-deliver.ts`, commits: SSE deliver channel `a3dd0d8`, `POST /jobs`
+> ingest `c81b219`, durable claimable job tickets `489117c`, topic-selective replay
+> `d1506ba`). SSE + replay + queue persister + job ingest are all real, exactly as
+> CONTEXT.md describes. The earlier `AUDIT-2026-06-12.md` "Switchboard README under-claims
+> by an entire build" drift was therefore CORRECT, not overstated. Verified on disk
+> 2026-06-21. Everything else in this record stands.**
+
+---
+
 # Dark Factory — Cross-Session Synthesis (8 sessions, 2026-06-10 → 2026-06-16)
 
 ## 1. Verified arc (one line per session)
