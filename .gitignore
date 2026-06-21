@@ -46,3 +46,6 @@ CLAUDE.local.md
 
 # Scratch render proofs / screenshots at repo root (real assets belong in a subfolder)
 /*.png
+
+# Generated design-lint render proofs (regenerable each run)
+tools/design-lint/out/

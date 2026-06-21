@@ -1,29 +1,36 @@
 {
   "pattern": "unknown",
   "globs": {
-    "docs": ["docs/**/*.md", "README.md"],
-    "context": ["CLAUDE.md", "context/CONTEXT.md"],
+    "context": ["CLAUDE.md", "CLAUDE.local.md", "context/CONTEXT.md"],
+    "docs": ["docs/**/*.md", "README.md", "AUDIT-2026-06-12.md"],
+    "north_star": ["docs/north-star.md", "docs/dark-factory-constellation.md", "docs/runtime-model.md", "docs/architecture.md"],
+    "specs": ["docs/canonical-form-spec.md", "docs/provenance-spec.md", "docs/ingestion-workflow.md", "docs/dark-factory-living-system-spec.md", "docs/sop-lifecycle.md"],
+    "watchtower_docs": ["docs/watchtower/**/*.md"],
+    "skills": [".claude/skills/**/SKILL.md"],
+    "workflows": [".claude/workflows/*.js"],
+    "engine": ["experiments/watchtower-engine/**/*.md", "experiments/watchtower-engine/**/*.sh", "experiments/watchtower-engine/**/*.jsonl"],
+    "experiments": ["experiments/**/*.md"],
+    "planning": ["backlog/**/*.md"],
+    "specs_store": ["backlog/specs/**/*.md"],
+    "tools": ["tools/**/*.py", "tools/**/*.md", "tools/**/*.sh"],
     "canonical": ["canonical/**/*.md", "canonical/**/provenance.json"],
     "research": ["research/**/*.md"],
     "research_data": ["research/**/*.json", "research/**/*.jsonl"],
-    "planning": ["backlog/**/*.md"],
-    "experiments": ["experiments/**/*.md", "experiments/**/*.json"],
-    "spikes": ["spikes/**/*.md", "spikes/**/*.mjs", "spikes/**/package.json"],
-    "workflows": [".claude/workflows/*.js"],
-    "watchtower": ["docs/watchtower/**/*.md", "experiments/watchtower-engine/**/*.md", "experiments/watchtower-engine/**/*.sh", "experiments/watchtower-engine/skills/**/SKILL.md"],
-    "app": ["apps/**/*.ts", "apps/**/*.tsx", "apps/**/CLAUDE.md", "apps/**/README.md"],
     "mockups": ["mochaccino/designs/**/*.html"],
-    "config": ["mochaccino/data/*.json"]
+    "mockup_data": ["mochaccino/data/*.json"],
+    "spikes": ["spikes/**/*.md", "spikes/**/*.mjs"]
   },
   "aliases": {
-    "specs": ["docs", "context"],
-    "build": ["canonical", "planning"],
-    "library": ["canonical", "research"],
-    "platform": ["workflows", "spikes", "experiments", "watchtower"]
+    "orient": ["context", "north_star"],
+    "build": ["skills", "workflows", "engine", "tools"],
+    "library": ["canonical", "research", "research_data"],
+    "platform": ["workflows", "engine", "experiments", "spikes"],
+    "visual": ["mockups", "mockup_data"]
   },
   "composites": {
-    "understand": ["context", "docs", "research"],
-    "codebase": ["canonical", "research", "planning", "workflows", "app"],
+    "understand": ["context", "north_star", "docs"],
+    "machinery": ["skills", "workflows", "engine", "tools", "watchtower_docs"],
+    "cargo": ["canonical", "research", "research_data", "specs"],
     "full": ["*"]
   }
 }
