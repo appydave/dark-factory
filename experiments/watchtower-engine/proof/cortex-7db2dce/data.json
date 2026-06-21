@@ -1,0 +1,355 @@
+{
+  "meta": {
+    "id": "cortex-system",
+    "version": "1.1.0",
+    "extracted": "2026-06-15",
+    "source": {
+      "path": "~/dev/kybernesis/cortex",
+      "commit_sha": "7db2dce",
+      "machine": "M4 Mini (100.82.235.39)",
+      "extracted": "2026-06-15",
+      "baseline_sha": "a129a5d",
+      "baseline_version": "0.8.2"
+    },
+    "prompt": "Re-comprehend cortex at HEAD 7db2dce; produce refreshed digest, data.json, and DELTA.md"
+  },
+  "system": {
+    "name": "cortex",
+    "summary": "A portable second-brain library (`@kybernesis/brain-*`) — 7 public + 1 private ESM-only TypeScript npm packages. Stores conversations/notes/files on a timeline, recalls by meaning (RRF-fused multi-channel search), and builds a knowledge graph of people, facts and relationships. Provider-pluggable: three seams (Storage, Embedding, LLM) wired at startup. Now also supports versioned schema migration, file provenance tracking, kernel-owned reconcile, and a 5-channel intent-gated retrieval arc. Powers KAD and KBDE; Cortex is now canonical (ADR-0015) and may move ahead of KAD.",
+    "package_count": 8,
+    "public_package_count": 7,
+    "private_package_count": 1,
+    "db_count": 4,
+    "language": "TypeScript (ESM-only, strict)",
+    "monorepo": "pnpm workspace, 7 public packages versioned in lockstep (current 0.12.0); brain-bench private at 0.1.0",
+    "current_version": "0.12.0",
+    "governance": "Cortex canonical (ADR-0015) — may improve freely, prove no-regression via brain-bench before/after, inform KAD/KBDE on version bump",
+    "seams": [
+      {
+        "name": "Storage",
+        "wired_with": "setStorageProvider()",
+        "default_impl": "brain-storage-sqlite (+ brain-storage-vec)",
+        "powers": "All persistence — timeline, entities, facts, sleep, vectors; plus migration runner and reconcile SQL primitives"
+      },
+      {
+        "name": "Embedding",
+        "wired_with": "setEmbeddingProvider()",
+        "default_impl": "brain-embed-openai",
+        "powers": "Semantic indexing + recall (indexChunk, semanticSearch, hybridSearch)"
+      },
+      {
+        "name": "LLM",
+        "wired_with": "setLLMProvider()",
+        "default_impl": "brain-llm-claude",
+        "powers": "Relationship/fact extraction, contradiction detection, profiles, sleep reasoning"
+      }
+    ]
+  },
+  "packages": [
+    {
+      "name": "@kybernesis/brain-core",
+      "role": "kernel",
+      "private": false,
+      "what": "The kernel — timeline, entity-graph, facts, vectors, retrieval, sleep, and now reconcile. Holds all algorithms; has no built-in backends. Consumers wire the three provider seams at startup. New at HEAD: diffFilePaths (pure diff), reconcile() (applies repairs), effectiveConfidence/factDecay (read-time decay), parseRelationalQuery (intent parser), resolveSourceTitles wiring. ✅verified",
+      "key_files": [
+        "src/index.ts — public API surface (flat async exports by subsystem)",
+        "src/storage.ts — Storage DI seam",
+        "src/vectors.ts — Embedding DI seam + semanticSearch",
+        "src/claude-call.ts — LLM DI seam",
+        "src/timeline.ts — timeline event ops + addConversationToTimeline",
+        "src/entity-graph.ts — entity CRUD, mentions, typed relationships, profiles, insights, contradictions",
+        "src/fact-store.ts / fact-extractor.ts / fact-retrieval.ts / fact-contradiction.ts / fact-temporal.ts — fact lifecycle",
+        "src/fact-decay.ts — effectiveConfidence (read-time decay, useDecay flag) NEW",
+        "src/hybrid-search.ts — 5-channel RRF fusion (semantic+keyword+temporal+entity-augment[off]+relational[on]) NEW",
+        "src/relational-intent.ts — parseRelationalQuery intent parser (pure regex, ReDoS-safe) NEW",
+        "src/reconcile.ts — diffFilePaths + reconcile() orchestrator (kernel owns policy) NEW",
+        "src/store-conversation.ts — fire-and-forget ingest orchestrator",
+        "src/relationship-extractor.ts — Haiku-backed relationship extraction",
+        "src/user-profile.ts — LLM-backed profile synthesis from facts",
+        "src/queue.ts — per-tenant single-fiber write queue",
+        "src/sleep/ — 9-step sleep consolidation cycle"
+      ],
+      "deps": ["@kybernesis/brain-contracts", "@kybernesis/brain-storage-sqlite (default)", "@kybernesis/brain-storage-vec (lazy)", "node:crypto"],
+      "data_shapes": ["TimelineEvent (+ file_path, content_hash)", "Entity / EntityMention / TypedRelationship / EntityInsight / Contradiction", "Fact (8 categories)", "HybridSearchResult (+ rawSemanticDistance?, rawKeywordScore?, source_title?)", "FactSearchResult (+ source_title?)", "SleepConfig / RunMetrics", "UserProfile", "DiskFileEntry / BrainFileEntry / FilePathsDiff (reconcile types)", "FacultyScorecard (bench)"]
+    },
+    {
+      "name": "@kybernesis/brain-contracts",
+      "role": "seam definitions",
+      "private": false,
+      "what": "The seam definition package — Zod schemas, provider interfaces, shared constants. Two-plane StorageProvider (Repositories = CRUD; Domain = business-logic SQL). New at HEAD: reconcile types (DiskFileEntry, BrainFileEntry, FilePathsDiff); TimelineRepository reconcile primitives (listAllFilePaths, relabelFilePath, stampContentHash, removeFileCluster); SearchQueries.relationalCandidates; FactRetrievalQueries.resolveSourceTitles; HybridSearchOptions flags (useRelational, useLookup, useDecay); HybridSearchResult additions (rawSemanticDistance, rawKeywordScore, source_title). ✅verified",
+      "key_files": [
+        "src/storage.ts — StorageProvider interface (all repos + domain planes; reconcile primitives added)",
+        "src/constants.ts — enums, SOURCE_CONFIDENCE, EMBEDDING_MODEL/DIM/INPUT_CAP, RRF_K=60, CLAUDE_MODEL_ALIASES",
+        "src/entity.ts / fact.ts / sleep.ts / timeline.ts — Zod row schemas",
+        "src/tenant.ts — TenantContext + TenantPaths",
+        "src/reconcile-diff.ts — DiskFileEntry / BrainFileEntry / FilePathsDiff types NEW",
+        "src/schema-naming.test.ts — snake_case guard"
+      ],
+      "deps": ["zod"],
+      "data_shapes": ["StorageProvider / EmbeddingProvider / LLMProvider seam types", "ReconcileTypes: DiskFileEntry / BrainFileEntry / FilePathsDiff NEW", "SearchQueries: relationalCandidates NEW", "FactRetrievalQueries: resolveSourceTitles NEW", "HybridSearchOptions: useRelational / useLookup / useDecay / expandQuery flags NEW", "HybridSearchResult: rawSemanticDistance? / rawKeywordScore? / source_title? NEW"]
+    },
+    {
+      "name": "@kybernesis/brain-storage-sqlite",
+      "role": "provider (Storage seam)",
+      "private": false,
+      "what": "Default StorageProvider — better-sqlite3 backend. Now includes a full migration subsystem. timeline_events gained file_path + content_hash (migration 002). addEvent uses dual-key upsert on file_path so file rows converge. Implements all reconcile SQL primitives. sql-temporal.ts helper fixes expired-fact leak (julianday normalisation, 9 sites). ✅verified",
+      "key_files": [
+        "src/provider.ts — StorageProvider factory; lazy-loads vector store; wires autoMigrate",
+        "src/index.ts — getDb() pooling + runMigrations + setAutoMigrate exports",
+        "src/timeline.ts — TimelineRepository (timeline_events with file_path/content_hash); dual-key upsert",
+        "src/entity-graph.ts — EntityRepository (7 entity tables)",
+        "src/fact-store.ts — FactRepository",
+        "src/sleep-store.ts / sleep-maintenance.ts — SleepRepository + maintenance domain",
+        "src/fact-retrieval-queries.ts — FactRetrievalQueries (+ resolveSourceTitles) NEW",
+        "src/search-queries.ts — SearchQueries (+ relationalCandidates) NEW",
+        "src/sql-temporal.ts — notExpired/expiredNow helpers (julianday) NEW",
+        "src/migrations/runner.ts — migration runner (standalone, consumer-chosen trigger)",
+        "src/migrations/registry.ts — ordered registry (001-baseline marker + 002-file-provenance)",
+        "src/migrations/backup.ts — pre-migration backup hook",
+        "src/migrations/errors.ts — SchemaAheadError / SchemaBehindError / ChecksumDriftError",
+        "src/migrations/timeline/002-file-provenance.ts — adds file_path + content_hash + idx_timeline_file_path"
+      ],
+      "deps": ["@kybernesis/brain-contracts", "better-sqlite3", "@kybernesis/brain-storage-vec (dynamic/lazy)"],
+      "data_shapes": ["timeline.db tables (+ file_path / content_hash / idx_timeline_file_path / _migrations)", "entity-graph.db tables (+ _migrations)", "sleep.db tables (+ _migrations)", "(lazy) vectors.db via brain-storage-vec (+ _migrations)"]
+    },
+    {
+      "name": "@kybernesis/brain-storage-vec",
+      "role": "provider (Vector seam)",
+      "private": false,
+      "what": "VectorRepository seam — sqlite-vec backend for vector persistence and brute-force semantic search (vec_distance_l2). 1536-dim, fixed. Lazy-loaded; degrades to no-op if native binary can't load. Unchanged from 0.8.2. ✅verified",
+      "key_files": [
+        "src/index.ts — getVectorDb()/closeVectorDb(), connection pool, schema DDL",
+        "src/vector-store.ts — sqliteVecStore: available/hasOrigin/insertChunk/search/stats"
+      ],
+      "deps": ["@kybernesis/brain-contracts", "better-sqlite3 (peer)", "sqlite-vec (peer)"],
+      "data_shapes": ["chunks (vec0 virtual table, embedding float[1536])", "chunk_meta (rowid, ts, source, content, origin_id) + chunk_meta_origin index"]
+    },
+    {
+      "name": "@kybernesis/brain-embed-openai",
+      "role": "provider (Embedding seam)",
+      "private": false,
+      "what": "Tenant-aware EmbeddingProvider wrapping OpenAI text-embedding-3-small → 1536-dim vectors. Per-tenant API-key resolution with per-tenant client caching; degrades to null on missing key or failure. Unchanged from 0.8.2. ✅verified",
+      "key_files": ["src/index.ts — embed(t, text) + key resolution + client cache"],
+      "deps": ["@kybernesis/brain-contracts", "@kybernesis/brain-core (peer)", "openai>=4 (optional, dynamically imported)"],
+      "data_shapes": ["embed(t, text) -> number[1536] | null", "OpenAIEmbedderOptions { clientFactory?, model?, onError? }"]
+    },
+    {
+      "name": "@kybernesis/brain-llm-claude",
+      "role": "provider (LLM seam)",
+      "private": false,
+      "what": "LLMProvider invoking Claude via the local `claude` CLI as a subprocess. Never throws — resolves to null on spawn/exit/empty/timeout, with optional onError hook. 60s timeout (SIGTERM on hang). Unchanged from 0.8.2. ✅verified",
+      "key_files": ["src/index.ts — createSubprocessProvider(), isClaudeAvailable(), call(prompt, opts)"],
+      "deps": ["@kybernesis/brain-core (peer, type re-export)", "node:child_process"],
+      "data_shapes": ["call(prompt, opts) -> string | null", "ClaudeCallOpts { model?, maxTokens?, system? }", "SubprocessFailure { reason, code?, stderr? }", "model aliases: haiku/sonnet/opus"]
+    },
+    {
+      "name": "@kybernesis/brain-testkit",
+      "role": "testing",
+      "private": false,
+      "what": "In-memory fakes + conformance/parity harness — proves a provider implementation conforms to the contracts. Vitest-free conformance cases; runParityHarness compares baseline vs candidate by top-N overlap (default N=10, threshold 0.8). Unchanged from 0.8.2. ✅verified",
+      "key_files": [
+        "src/index.ts — barrel",
+        "src/llm-stub.ts — makeLLMStub",
+        "src/helpers/tenant.ts — createTestTenant",
+        "src/conformance/index.ts — ~18 storage conformance cases",
+        "src/parity/index.ts — runParityHarness"
+      ],
+      "deps": ["@kybernesis/brain-contracts"],
+      "data_shapes": ["storageConformanceCases", "runParityHarness(baseline, candidate, corpus, {n, threshold})", "makeLLMStub"]
+    },
+    {
+      "name": "@kybernesis/brain-bench",
+      "role": "quality instrument (private, not published)",
+      "private": true,
+      "what": "The no-regression gate. Diagnostic quality instrument asking 'is the brain actually good at being a brain?' — not contract conformance but memory quality. CLI bin `brain-bench`. Three suites: locomo (LoCoMo public corpus, source-hit@5 baseline ≈ 0.65), probes (6-faculty personal-probe suite against frozen live-brain copy), ingestion-fidelity. Faculties: recall, entity, temporal, multi_hop, currency, abstention (abstention measurable: false until KYB-81 calibrates threshold). Score = recall@k (partial credit) for source-hit faculties; currency = current source outranks superseded. Every retrieval arm change must show clean before/after on frozen snapshot before going default-on. Never writes to live brain, never commits personal corpus output. ✅verified",
+      "key_files": [
+        "src/index.ts — BRAIN_BENCH_VERSION + thin public surface",
+        "src/cli.ts — brain-bench CLI entry point",
+        "src/locomo-bench.ts — LoCoMo suite orchestrator",
+        "src/probe-bench.ts — probes suite orchestrator (live/ingest modes)",
+        "src/synthetic-convo-bench.ts — synthetic conversational fixture suite",
+        "src/score/faculty.ts — scoreByFaculty, FacultyScorecard, MEASURABLE map",
+        "src/datasets/probes.ts — Probe type, FACULTIES array, loadProbes()",
+        "src/datasets/locomo.ts — LoCoMo corpus loader",
+        "src/run.ts — buildFolderSources, ingestSources",
+        "README.md — suites, usage, frozen-copy protocol, boundaries"
+      ],
+      "deps": ["@kybernesis/brain-contracts", "@kybernesis/brain-core", "@kybernesis/brain-embed-openai", "@kybernesis/brain-llm-claude", "@kybernesis/brain-storage-sqlite", "@kybernesis/brain-storage-vec", "@kybernesis/brain-testkit", "better-sqlite3"],
+      "data_shapes": ["Faculty: 'recall' | 'entity' | 'temporal' | 'multi_hop' | 'abstention' | 'currency'", "Probe { probe_id, faculty, question, answer, expected_source_ids, superseded_source_ids?, answerable, excluded? }", "FacultyScorecard { k, by_faculty: Record<Faculty, FacultyBreakdown>, query_time_model_calls, per_probe }", "ProbeBenchOptions (live/ingest/noSnapshot/useDecay/useRelational/factFirst pass-throughs)", "LoCoBenchResult / ProbeBenchResult / SyntheticBenchResult"]
+    }
+  ],
+  "databases": [
+    {
+      "name": "timeline.db",
+      "domain": "Episodic — what happened, when",
+      "what": "Timeline events and extracted facts, with FTS5 indexes. New at HEAD: file_path + content_hash columns on timeline_events (migration 002); idx_timeline_file_path index; _migrations ledger table (materialises on migration trigger). ✅verified",
+      "tables": ["timeline_events (+ file_path, content_hash, idx_timeline_file_path)", "timeline_fts (FTS5 virtual)", "facts", "facts_fts (FTS5 virtual)", "+ triggers", "_migrations (new — migration ledger, only when triggered)"]
+    },
+    {
+      "name": "entity-graph.db",
+      "domain": "Semantic — who/what, how connected",
+      "what": "The knowledge graph: entities, mentions, typed relationships, merges, profiles, insights, contradictions. Migration baseline stamped (001-baseline, no DDL change). ✅verified",
+      "tables": ["entities", "entity_mentions", "entity_relations", "entity_merges", "entity_profiles", "contradictions", "entity_insights", "_migrations (new — baseline-only)"]
+    },
+    {
+      "name": "sleep.db",
+      "domain": "Housekeeping — consolidation & maintenance",
+      "what": "Sleep run lifecycle, maintenance queue, memory edges, telemetry, tier transitions. Migration baseline stamped. ✅verified",
+      "tables": ["sleep_runs", "maintenance_queue", "memory_edges", "sleep_telemetry", "tier_transitions", "_migrations (new — baseline-only)"]
+    },
+    {
+      "name": "vectors.db",
+      "domain": "Associative — recall by meaning (lazy)",
+      "what": "Embedding store owned by brain-storage-vec; only materialises when an embedding provider is wired. Migration baseline stamped. ✅verified",
+      "tables": ["chunks (vec0 virtual, float[1536])", "chunk_meta", "_migrations (new — baseline-only)"]
+    }
+  ],
+  "flows": [
+    {
+      "name": "INGEST — storeConversation (fire-and-forget)",
+      "steps": [
+        "extractRelationships(t, fullText) — LLM identifies entities + typed relationships",
+        "filterNoiseEntities(...) — strip files/UUIDs/IPs/tech-terms/pronouns",
+        "addConversationToTimeline(...) — write timeline event; file rows use dual-key upsert on file_path (converges re-ingests to one row)",
+        "segmentText(...) → indexChunk(...) — embed each ~250-char segment to vectors",
+        "findOrCreateEntity / linkEntitiesWithType — write entity nodes + mentions + typed edges",
+        "extractFactsRealtime(...) — Haiku decomposes facts (category, confidence, expiry), capped 3/call",
+        "indexChunk(fullText) — single parent embedding when text is short (no segmentation)"
+      ],
+      "notes": "Now persists file_path and content_hash on timeline events for file-type ingests"
+    },
+    {
+      "name": "RECALL — hybridSearch (RRF fusion, 5 channels)",
+      "steps": [
+        "Channel 1: semanticSearch — embed query → nearest-neighbour vectors (always)",
+        "Channel 2: metadataCandidates — FTS5 MATCH + title/tag/summary scoring + tier/priority boosts (always)",
+        "Channel 3: temporalCandidates — regex date terms → timeline timestamp matches (fires on dates)",
+        "Channel 4: entityAugmentedCandidates (expandQuery) — REFUTED, default OFF; degrades every faculty",
+        "Channel 5: relationalCandidates — parseRelationalQuery intent parser (pure regex) → typed-edge graph walk; fires only on relationship/lookup query shapes; useRelational default ON (zero regression); useLookup sub-kind default OFF NEW",
+        "reciprocalRankFusion(lists, k=60) — sum 1/(k+rank+1) across channels per source_path",
+        "cap MAX_SEGMENTS_PER_PARENT=3 + enrichByPath (tier/priority multipliers)",
+        "filter (tier/priority/type/entity/date) + sort by hybridScore",
+        "optional haikuRerank + addRelatedMemories (sleep memory_edges, top 3)",
+        "surface rawSemanticDistance? and rawKeywordScore? pre-RRF on result NEW"
+      ],
+      "notes": "The load-bearing principle: flat-score injection displaces recall. RRF fuses ranks not magnitudes; always-on arms crowd the right answer out of top-k. Arms must be intent-gated."
+    },
+    {
+      "name": "FACT-FIRST RECALL — factFirstSearch (4-layer)",
+      "steps": [
+        "Layer 1: FTS5 fact search + semantic fact search (fact:// vectors), merge by overlap",
+        "Layer 2: seed most-mentioned entities → traverseEntityGraph BFS 1-hop (hop penalty 0.7/0.5/0.3) → getFactsForEntity",
+        "Layer 2.5: scene expansion (nearby facts in same conversation, 0.6x) + bridge discovery (facts connecting >=2 top entities)",
+        "Layer 3: findSupportingSegments for parent conversation of each top fact",
+        "Layer 4: assembleContext to token budget + tie-break by source priority (bridge>direct>entity>graph>scene)",
+        "resolveSourceTitles(t, conversationIds) — cross-table join to recover human relpath as source_title NEW",
+        "Optional: effectiveConfidence decay (useDecay flag, default off) — weights all facts pre-sort NEW"
+      ]
+    },
+    {
+      "name": "SLEEP — runSleepCycleNow (9-step, concurrency-guarded)",
+      "steps": [
+        "1 Decay — age-based priority decay + expire temporal facts + weekly confidence decay",
+        "2 Tag — AI-classify timeline events (topic/domain/priority)",
+        "3 Consolidate — merge near-duplicate events by normalized title (>=3 dupes; skip pinned)",
+        "4 Link — build memory_edges (related-memory graph) for recall enrichment",
+        "5 Tier — classify events hot/warm/archive",
+        "6 Summarize — AI summaries for events lacking them",
+        "7 Observe — detect recurring facts / contradictions / temporal trends",
+        "8 Profile — AI entity narrative profiles → entity_profiles",
+        "9 Entity-hygiene — orphan cleanup, pattern/noise deletion, same-name + variant-name merges, low-value prune, profile gen"
+      ]
+    },
+    {
+      "name": "WATCHED-FOLDER INGESTION (daemon, KAD/KBDE)",
+      "steps": [
+        "startWatchedFoldersScheduler — 60s sweep, per-agent throttle + mutex, skip remote agents",
+        "runSyncCycle Pass 1 — walkDir → mtime+size diff vs state: new→storeConversation(channel=watched-folder); changed→cleanup+re-ingest",
+        "Pass 2 — deleted files → cleanupFile + drop from state",
+        "Pass 3 — unwatched folders → cleanupFile all + drop state",
+        "saveState atomically to <home>/data/watched_folders_state.json (regenerable; not SQLite/cloud)"
+      ],
+      "notes": "⚠️ Lives in consuming daemon, not the library packages"
+    },
+    {
+      "name": "RECONCILE — reconcile() (kernel-owned, host-supplied diskList)",
+      "steps": [
+        "HOST walks its watched roots, filters, and sha256-hashes each file → passes diskList: DiskFileEntry[]",
+        "diffFilePaths(diskList, brainList) — pure, zero I/O; validates entries; classifies: missing / stale / orphaned / renamed / baseline",
+        "renamed resolution: relabelFilePath(t, id, newFilePath) — relocates file_path only; cluster+enrichment+embeddings survive; no re-ingest",
+        "baseline stamp: stampContentHash(t, id, hash) — lazy legacy backfill for NULL-hash rows",
+        "orphan removal (removeOrphaned): removeFileCluster(t, filePath) — REFUSES if diskList empty while brain has file rows",
+        "missing + stale repair: calls opts.reingest callback (storeConversation) — LLM + embed wired by consumer",
+        "errors are isolated per item; report always returned; reconcile is idempotent (rerun to converge)"
+      ],
+      "notes": "THE BOUNDARY: the brain (kernel) never touches the filesystem. Policy lives in kernel; SQL lives in backend. A future libsql/Turso backend inherits reconcile by implementing 4 SQL primitives."
+    }
+  ],
+  "retrieval": {
+    "channels": [
+      { "id": 1, "name": "semantic", "source": "vectors (embedder seam)", "fires": "always (no-ops if no embedder)", "default": "on" },
+      { "id": 2, "name": "keyword", "source": "FTS5 candidates + post-FTS scoring", "fires": "always", "default": "on" },
+      { "id": 3, "name": "temporal", "source": "temporalCandidates (date regex)", "fires": "only on date terms in query", "default": "on (conditional)" },
+      { "id": 4, "name": "entity-augment", "source": "entityAugmentedCandidates (expandQuery)", "fires": "only when expandQuery:true", "default": "off (refuted — degrades every faculty)", "flag": "expandQuery" },
+      { "id": 5, "name": "relational", "source": "relationalCandidates (parseRelationalQuery intent parser)", "fires": "only when query parses as relational/lookup shape", "default": "on (useRelational); lookup sub-kind off (useLookup)", "flag": "useRelational (default on) / useLookup (default off)" }
+    ],
+    "key_principle": "Flat-score injection displaces recall. RRF fuses ranks not magnitudes; arms emitting flat-scored candidates crowd the right answer out of top-k. Arms must be intent-gated.",
+    "flags": [
+      { "flag": "expandQuery", "default": "off", "arm": "Channel 4 entity-augmentation (refuted)" },
+      { "flag": "factFirst", "default": "off", "arm": "fact-store alternate path (bypasses fusion pipeline)" },
+      { "flag": "useRelational", "default": "on", "arm": "Channel 5 relational kinds (who_rel/who_at/connects/intro)" },
+      { "flag": "useLookup", "default": "off", "arm": "Channel 5 lookup sub-kind (most prone to displacement)" },
+      { "flag": "useDecay", "default": "off", "arm": "read-time fact decay (factFirst path only, corpus-dependent)" },
+      { "flag": "rerank", "default": "off", "arm": "Haiku LLM rerank (only query-time LLM call)" }
+    ]
+  },
+  "adrs": [
+    { "id": "ADR-0001", "title": "ADR format and location" },
+    { "id": "ADR-0002", "title": "Clean-cut adoption" },
+    { "id": "ADR-0003", "title": "Port-faithful rule (SUPERSEDED by ADR-0015)" },
+    { "id": "ADR-0004", "title": "Event-type enum" },
+    { "id": "ADR-0005", "title": "Test architecture: real SQLite" },
+    { "id": "ADR-0006", "title": "Bug-fix coordination policy (relaxed by ADR-0015)" },
+    { "id": "ADR-0007", "title": "Parity harness role (swap-day smoke test under ADR-0015)" },
+    { "id": "ADR-0008", "title": "KAD swap validation protocol" },
+    { "id": "ADR-0009", "title": "LLM stub injection" },
+    { "id": "ADR-0010", "title": "Publish and namespace" },
+    { "id": "ADR-0011", "title": "Mode-1 parity driver" },
+    { "id": "ADR-0012", "title": "Two-phase parity: conform then co-evolve" },
+    {
+      "id": "ADR-0013",
+      "title": "Retrieval augmentation arms are intent-gated and opt-in, never always-on",
+      "summary": "Arms that inject flat-scored candidates displace recall via RRF. Three measured results (always-on entity arm, expandQuery, lookup) all showed the same mechanism. Rule: an arm contributes only when the query asks for what the arm provides; arms that can displace recall are opt-in flags.",
+      "date": "2026-06-13"
+    },
+    {
+      "id": "ADR-0014",
+      "title": "Read-time fact decay is opt-in and corpus-dependent",
+      "summary": "Decay A/B on 8 brains: decay on halved overall performance (25%→11%). Mechanism: in a knowledge corpus, fact timestamp = ingest/write time, not assertion recency; age multiplier crushes score differentiation. Stays off by default (useDecay). 2026-06-14 Ian reframe: correct signal is use-recency not assertion-age; decay must be recoverable. Target: access-based decay (KYB-85).",
+      "date": "2026-06-13",
+      "updated": "2026-06-14"
+    },
+    {
+      "id": "ADR-0015",
+      "title": "Cortex is canonical and may move forward (supersedes ADR-0003 port-faithful rule)",
+      "summary": "The port-faithful era is over: KAD/KBDE depend on the library. Cortex can improve freely; must not regress (brain-bench gate); starts from KAD shapes; informs consumers on version bump. Enables intent-gated arms, decay, expiry fixes. Drops behavioural byte-parity requirement.",
+      "date": "2026-06-13"
+    }
+  ],
+  "history": [
+    { "sha": "7db2dce", "version": "0.12.0", "summary": "docs: post-0.12.0 KAD/KBDE adoption guide + releasing.md OTP reality (HEAD)" },
+    { "sha": "f33fe29", "version": "0.12.0", "summary": "chore: release v0.12.0" },
+    { "sha": "2603ac9", "summary": "feat(brain-bench): synthetic conversational fixture + suite (KYB-86)" },
+    { "sha": "961b6d4", "summary": "docs(architecture): retrieval-model + ADRs 0013-0015 + decay-v2 reframe" },
+    { "sha": "588216e", "summary": "feat(retrieval): read-time fact-confidence decay behind useDecay (KYB-80)" },
+    { "sha": "d8a0ae0", "summary": "feat(retrieval): entity-lookup arm behind useLookup (default off) + --no-snapshot" },
+    { "sha": "a6aa608", "summary": "feat(retrieval): intent-gated relational graph arm (gap-analysis #4)" },
+    { "sha": "f244e01", "summary": "fix(facts): expiry comparison leaked same-day-expired facts (julianday)" },
+    { "sha": "a13fcc3", "version": "0.11.0", "summary": "chore: release v0.11.0 — Spec C reconcile core + boundary fix" },
+    { "sha": "b47a3d1", "version": "0.10.0", "summary": "chore: release v0.10.0 — Spec B file provenance + reconcile" },
+    { "sha": "0e15ebf", "version": "0.9.0", "summary": "chore: release v0.9.0 — Spec A schema migration capability" },
+    { "sha": "3cb1f28", "version": "0.8.4", "summary": "chore: release v0.8.4 — brain-bench milestone C" },
+    { "sha": "337a21d", "version": "0.8.3", "summary": "chore: release v0.8.3 — ISO date parsing in detectTemporalExpiry" },
+    { "sha": "a129a5d", "version": "0.8.2", "summary": "docs: root + per-package READMEs, provider-seam diagram (baseline sha)" }
+  ]
+}
