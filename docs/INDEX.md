@@ -20,6 +20,7 @@ One line per doc. Start at the top. This index is the fix for doc-sprawl — whe
 
 ## The human side (how David stays the director)
 
+- **`daily-operating-model.md`** — ★ how David *uses* the factory each day: the ~4hr-direction → 8–12hr-execution → overnight loop, the **morning briefing + per-project digest** (the gate), the **BA agent = Producer (C2)** "talk → ticket", roles, two-lanes, P1→P3 phasing, build decisions. Refines `north-star.md`. Work arc only — the *why* + life-OS vision + the absorption law live in the brain (`~/dev/ad/brains/dark-factory/using-dark-factory-vision.md`). (2026-06-23)
 - **`intake.md`** — the front door. Ideas/papers/others' work enter here; nothing is trusted until validated.
 - **`human-comms.md`** — communication is first-class, both directions: audio (talk + listen) and visual (dashboards + presentation).
 - **`systemic-fixes.md`** — the problem register + "fix the class not the instance" + "good/bad is a hypothesis, not gospel."
