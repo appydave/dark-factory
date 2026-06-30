@@ -30,6 +30,25 @@ spikes/blackboard-mcp/
 
 Storage: by default the MCP server writes to `~/.claude/blackboard/store.json`. Override with `BLACKBOARD_STORE_PATH=/some/path/store.json`.
 
+### v0.2 — Channels
+
+Every tool takes an **optional `channel`** (string) that selects a separate store file, plus two new tools (`bb_channel`, `bb_drop`) and a lister (`bb_channels`). A channel gives three things at once: **separation** (two collaborations never interleave), **storage routing** (where the file lives is a per-channel choice), and **lifecycle** (`bb_drop` retires a whole channel).
+
+| `channel` value | Store file | Use when |
+|---|---|---|
+| omitted / `"default"` | `~/.claude/blackboard/store.json` (unchanged) | back-compat; quick/throwaway |
+| a name (auto) | `~/.claude/blackboard/<channel>.json` | a distinct collaboration, machine-local |
+| a name + `bb_channel({channel, path})` | wherever you point it (e.g. a repo's `.blackboard/<channel>.json`) | single-repo work you want co-located |
+
+```jsonc
+bb_set({ channel: "kbde-coherence", key: "advisory.0007", value: { source, force, text } })
+bb_list({ channel: "kbde-coherence", prefix: "advisory." })
+bb_get({  channel: "kbde-coherence", key: "handoff.successor-session" })   // presence = re-point signal
+bb_drop({ channel: "kbde-coherence" })                                      // retire when the program completes
+```
+
+Writes are serialized by the single server process, so two sessions sharing a channel never clobber the file. **Physics limit:** a repo-local channel only works when both parties share that repo *on the same machine*; cross-machine collaborations need a git-synced repo channel or a real shared service (Arcana). Fully backward-compatible — unnamed calls behave exactly as v0.1.
+
 ---
 
 ## Setup — one-time
