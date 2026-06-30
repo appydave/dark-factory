@@ -49,6 +49,8 @@ bb_drop({ channel: "kbde-coherence" })                                      // r
 
 Writes are serialized by the single server process, so two sessions sharing a channel never clobber the file. **Physics limit:** a repo-local channel only works when both parties share that repo *on the same machine*; cross-machine collaborations need a git-synced repo channel or a real shared service (Arcana). Fully backward-compatible — unnamed calls behave exactly as v0.1.
 
+**v0.2.1 — value coercion.** Some MCP clients (a normal Claude Code session) stringify an *object* arg before it reaches the server, so `bb_set({value:{…}})` would otherwise land as an escaped JSON string. `bb_set` now auto-parses a value that is a JSON **object/array string** back into the structure, so reads return real objects. Scoped to `{…}`/`[…]` only — plain strings, `"42"`, `"true"` are left untouched; native objects (e.g. workflow-subagent writes) pass through unchanged. Takes effect per session at its next restart; entries written before the upgrade stay strings (read-side: `typeof v === 'string' ? JSON.parse(v) : v`).
+
 ---
 
 ## Setup — one-time

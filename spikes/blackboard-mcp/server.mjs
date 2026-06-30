@@ -78,10 +78,21 @@ function saveStore(channel, store) { saveJson(channelPath(channel), store); }
 
 // ─── Tool implementations ─────────────────────────────────────────────────────
 
+// Some MCP clients (a normal Claude Code session) stringify an object-valued arg before it
+// reaches us, so an object the caller meant arrives as a JSON string. Recover that intent:
+// if a value is a string that looks like a JSON object/array and parses cleanly, store the
+// parsed form. Scoped to {…}/[…] only, so plain strings, "42", "true" etc. are left untouched.
+function coerceValue(value) {
+  if (typeof value !== "string") return value;
+  const t = value.trimStart();
+  if (t[0] !== "{" && t[0] !== "[") return value;
+  try { return JSON.parse(value); } catch { return value; }
+}
+
 function bbSet({ key, value, channel }) {
   if (typeof key !== "string" || !key.length) throw new Error("key must be a non-empty string");
   const store = loadStore(channel);
-  store[key] = value;
+  store[key] = coerceValue(value);
   saveStore(channel, store);
   return { ok: true, key, channel: normalizeChannel(channel) };
 }
@@ -170,7 +181,7 @@ const channelProp = { type: "string", description: "Optional channel id (separat
 
 const TOOLS = {
   bb_set: {
-    description: "Set a key in the blackboard to any JSON-serializable value. Overwrites if the key exists. Optional `channel` selects a separate store.",
+    description: "Set a key in the blackboard to any JSON-serializable value. Overwrites if the key exists. Optional `channel` selects a separate store. A value that arrives as a JSON object/array STRING (some MCP clients stringify object args) is auto-parsed back to the object, so reads return structured values.",
     inputSchema: {
       type: "object", required: ["key", "value"],
       properties: {
@@ -229,7 +240,7 @@ function handleRequest(req) {
     return makeResponse(id, {
       protocolVersion: "2024-11-05",
       capabilities: { tools: {} },
-      serverInfo: { name: "blackboard-mcp", version: "0.2.0" }
+      serverInfo: { name: "blackboard-mcp", version: "0.2.1" }
     });
   }
 
@@ -277,4 +288,4 @@ process.stdin.on("data", chunk => {
   }
 });
 
-process.stderr.write(`[blackboard-mcp] ready (v0.2.0, channels), default store at ${DEFAULT_STORE}\n`);
+process.stderr.write(`[blackboard-mcp] ready (v0.2.1, channels+coerce), default store at ${DEFAULT_STORE}\n`);
