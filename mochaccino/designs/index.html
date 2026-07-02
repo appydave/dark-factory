@@ -143,6 +143,7 @@
     <em>The flows</em> (design 07): each of the four workflows as a flow diagram.
     <em>The consolidation</em> (design 08): the YLO→POEM decision board.
     <em>The census</em> (design 09): live progress dashboard — 5-level eval pipeline, verdict breakdown, cluster coverage, SkillOpt grounding.
+    <em>The constellation</em> (design 10): architecture-as-data — the 3-layer stack (data / surfaces / host) rendered live from JSON, first slice of the architecture-visualizer candidate.
   </div>
 </header>
 
@@ -271,6 +272,21 @@
       Answers: <em>"Where are we in the census, and what does the corpus look like so far?"</em>
     </div>
     <div class="design-meta">data: census.jsonl · batch 0 complete · pipeline: L1 running</div>
+  </a>
+
+  <a href="./10-constellation/" class="design">
+    <div class="design-head">
+      <div class="design-title">Constellation Map</div>
+      <div class="design-id">10</div>
+    </div>
+    <div class="design-desc">
+      Architecture-as-data: the 3-layer stack (<em>Data → Surfaces → Host</em>) rendered live from
+      <em>constellation.json</em> — 36 apps sorted by layer and status, the KBDE Extension SDK's typed
+      channels, cross-cutting data flows, and the two build constraints (dogfood; SDK handover gate).
+      First slice of the architecture-visualizer candidate.
+      Answers: <em>"What exists, what talks to what, and what's blocked on what?"</em>
+    </div>
+    <div class="design-meta">data: constellation.json · generated from constellation-map.md 2026-07-02 · 36 apps · 14 flows</div>
   </a>
 </div>
 
