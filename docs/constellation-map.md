@@ -137,6 +137,24 @@ David: sessions must distinguish three folders and build ONLY in the first —
 
 **One-line question for David:** which repo is (2) the POC, and which upstream clone is (3)?
 
+## Fleet ground-truth (2026-07-02 cross-machine probe — closes the blind spot)
+
+**Machine identities (observed via hostname/chip/tailscale — ends the "M4 Pro" ambiguity):**
+| David-speak | Actual machine | Tailscale | Role |
+|---|---|---|---|
+| "M4 Mini" | Mac mini, Apple **M4** (`mac-mini-m4.local`) | `mac-mini-m4` | **The machine this repo's sessions run on.** Runs the appyradar-sentinel collector (launchd). |
+| "M4 Pro" | **MacBook Pro**, Apple M4 (`MacBook-Pro-4.local`) — *Pro = form factor, no M4-Pro chip exists in the fleet* | `macbook-pro-2` | The other dev machine (Lisa/KDD work lives here). Currently runs **Switchboard :5099 UP** + Storyline :5300. |
+| — | Mac mini M2 | `mac-mini-m2` | Offline at probe time; unknown state. |
+
+**Corrections to this map's earlier claims (statuses rot — see the lesson):**
+- **Switchboard is NOT dark** — it runs on the MacBook Pro (:5099/:5100). Earlier "dark" verdict was local-only vision.
+- AngelEye :5050 down on both machines at probe time (was UP on 06-25). Mochaccino :7420 was down, restarted 07-02.
+- **`dev-inventory/current.json` doesn't exist on EITHER reachable machine** — the registry `~/dev/ad/CLAUDE.md` points to is gone or on the offline M2. The inventory-as-data-artifact case is stronger than we knew.
+- **AppyRadar Sentinel has its own blind spot**: collector runs only on the Mini and reports the MacBook Pro "offline" while it's alive and serving — the fleet dashboard can't be trusted for cross-machine liveness yet.
+- Repo drift between machines is real (kybernesis core local-only; `kyberbrain` remote-only; remote has `_archived--appyradar*` while local runs them).
+
+**The lesson (feeds architecture-visualizer):** run/dark status in a *document* is stale within days — twice now. Liveness belongs in **live data** (the constellation.json → registry/sentinel seam), with docs carrying only the structural facts.
+
 ## Open questions / next
 
 1. **Which first data feed do we make real?** The map says start at the bottom: a real, queryable **data source** (the lean candidate is the *inventory itself* — make "what apps exist + state" a live data artifact, since it's stale, incomplete, and everything else needs it).
