@@ -34,3 +34,6 @@ Upgrade path: this is a markdown register for v1. When the factory processes pro
 | 10 | No end-of-day review of "what did the workers do today" | Daily review digest (ties to `human-comms` audio summary) | open |
 | 11 | No inward-pointing pulse watching the factory's own SOPs | Internal pulse — same shape as upstream/framework pulse, aimed inward | open |
 | 12 | These governance concepts can't be visualised in the Watchtower | Watchtower views for drift / idle / lineage | open |
+
+## 2026-07-02 — appyradar-sentinel: collector blind to the MacBook Pro
+Fleet probe: the collector runs only on mac-mini-m4 and reports macbook-pro-2 'offline' while it is alive (ping+ssh OK, Switchboard :5099 UP). Cross-machine liveness from the sentinel is untrustworthy until the collector covers the laptop (second collector or remote probe). Lightweight note per David's rule — batch when next in appyradar-sentinel.

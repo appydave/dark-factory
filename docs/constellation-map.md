@@ -128,14 +128,17 @@ This map is the **exists/structure** view. The **build-order** view is the brain
 
 **2026-07-02 additions** (OMI `2026-07-02-0633-david-plans-dark-factory-automation.md`): `architecture-visualizer` (UNBLOCKED — visualize THIS map via schema→data→kie.ai drawn diagrams), `idea-extraction` (Lexi upgrade), watchtower's communication triad. Also: dedicate Fable 5 to factory work; single-responsibility-but-not-tiny as the micro-app sizing rule ("10 apps in harmony beats 1000").
 
-## Three-folder disambiguation (from the 2026-07-02 capture — ⚠ awaiting David's confirm)
+## The three folders (RESOLVED — David, 2026-07-02)
 
-David: sessions must distinguish three folders and build ONLY in the first —
-1. **The main dark-factory folder** = `~/dev/ad/apps/dark-factory/` ✅ certain. The build target.
-2. **The proof-of-concept DF code, testing only** = hypothesis: the probes under `experiments/` (watchtower-engine/-board, blackboard-mcp, ylo) — or possibly `apps/appyctrl` (the dead T3-Code-based GUI test). UNCONFIRMED.
-3. **The third-party library (reference, upgradable via upstream)** = hypothesis: the clones under `~/dev/upstream/repos/` (registered in `brains/source-repos.md`, paired to the dark-factory brain; see `docs/upstream-repos/` for the study shelf — CAO/Composio/ccswarm). Single-repo candidates: `t3code` (AppyCtrl's upstream) or `claude-code-workflow-creator` (used in the 05-25 recon). UNCONFIRMED.
+Sessions must distinguish these three and **build ONLY in the first**:
 
-**One-line question for David:** which repo is (2) the POC, and which upstream clone is (3)?
+| # | Folder | Role | Rule |
+|---|--------|------|------|
+| 1 | `~/dev/ad/apps/dark-factory/` | **The main dark-factory** | The only build target |
+| 2 | `~/dev/ad/apps/suborch-demo/` | **The POC** — "Subscription-Safe Multi-Session Claude Orchestration": working execution kernel (queue → isolated Claude sessions → artifact-verified reap), 100% Max-subscription (no SDK/metered), warm tmux pool, atomic CAS lease, blackboard `store/`, 10/10 tasks in 51s. Built in dark-factory sessions; synced to both machines | Reference/testing only — concepts proven here get rebuilt properly in #1 |
+| 3 | `~/dev/upstream/repos/omnigent/` | **The third-party library** — Omnigent, Databricks' open-source agent harness (new, active). Used to verify the POC's concepts (suborch `experiments/` includes an Omnigent validation spike) | Read-only reference; upgrade via `git pull` upstream |
+
+The POC's `CONTEXT.md` + `PHASE-5-PLAN.md` (switchboard cockpit + Linear bridge) carry design law that feeds back into #1 — notably the warm-pool/CAS/artifact-is-truth mechanics, which are prior art for Switchboard/Marshall.
 
 ## Fleet ground-truth (2026-07-02 cross-machine probe — closes the blind spot)
 
