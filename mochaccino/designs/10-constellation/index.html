@@ -223,6 +223,50 @@
     margin-top: 40px; padding-top: 18px; border-top: 1px solid var(--brand-border);
   }
 
+  /* ── Drawn view (generated poster) ── */
+  .drawn-view {
+    background: #fff; border: 1px solid var(--brand-border); border-radius: 6px;
+    padding: 18px 22px 22px; margin-bottom: 26px;
+  }
+  .drawn-view .dv-head {
+    display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 12px;
+  }
+  .drawn-view .dv-title {
+    font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 13px;
+    text-transform: uppercase; letter-spacing: 2px; color: var(--brand-muted);
+  }
+  .drawn-view .dv-badge {
+    font-family: 'Roboto Mono', monospace; font-size: 10px; color: #fff;
+    background: var(--brand-amber); border-radius: 3px; padding: 2px 8px; letter-spacing: 0.5px;
+  }
+  .drawn-view .dv-main-link { display: block; border-radius: 4px; overflow: hidden; border: 1px solid var(--brand-border); }
+  .drawn-view .dv-main-link img {
+    display: block; width: 100%; height: auto; cursor: zoom-in;
+  }
+  .drawn-view .dv-caption {
+    font-family: 'Roboto Mono', monospace; font-size: 11px; color: var(--brand-muted);
+    margin-top: 10px; line-height: 1.6;
+  }
+  .drawn-view .dv-caption strong { color: var(--brand-brown); }
+  .drawn-view .dv-alts {
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 14px;
+    padding-top: 14px; border-top: 1px solid var(--brand-linen);
+  }
+  .drawn-view .dv-alts-label {
+    font-family: 'Roboto Mono', monospace; font-size: 10px; text-transform: uppercase;
+    letter-spacing: 1px; color: var(--brand-muted); margin-right: 4px;
+  }
+  .drawn-view .dv-alt {
+    display: block; width: 108px; height: 61px; border-radius: 3px; overflow: hidden;
+    border: 1px solid var(--brand-border);
+  }
+  .drawn-view .dv-alt img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .drawn-view .dv-alt-label {
+    font-family: 'Roboto Mono', monospace; font-size: 9px; color: var(--brand-muted);
+    text-align: center; margin-top: 3px;
+  }
+  .drawn-view .dv-alt-item { display: flex; flex-direction: column; align-items: center; }
+
   #render-root { }
 </style>
 </head>
@@ -239,6 +283,37 @@
     Schema → data → view (Mochaccino principle): the map below is rendered live from the embedded JSON, not hand-drawn — edit the data, the view follows.
   </div>
 </header>
+
+<div class="drawn-view">
+  <div class="dv-head">
+    <div class="dv-title">Drawn View — Absorbable At-a-Glance Poster</div>
+    <div class="dv-badge">Slice 2</div>
+  </div>
+  <a class="dv-main-link" href="assets/drawn-blueprint-v2.png" target="_blank" rel="noopener">
+    <img src="assets/drawn-blueprint-v2.png" alt="Dark Factory constellation poster — DATA, SURFACES, HOST bands with load-bearing apps, hand-drawn blueprint style">
+  </a>
+  <div class="dv-caption">
+    Generated from <strong>constellation.json</strong> via kie.ai (nano-banana-2) — 2026-07-02.
+    Deliberately the <strong>coarse, absorbable</strong> view (3 bands, ~8 load-bearing app names) — the precise 36-app
+    render below is the source of truth; this is the poster on the wall, not a replacement for it.
+    Click to open full size. Provenance + rejected variants: <strong>assets/PROMPTS.md</strong>.
+  </div>
+  <div class="dv-alts">
+    <span class="dv-alts-label">Alternates</span>
+    <div class="dv-alt-item">
+      <a class="dv-alt" href="assets/drawn-blueprint-v1.png" target="_blank" rel="noopener"><img src="assets/drawn-blueprint-v1.png" alt="Drawn blueprint variant 1"></a>
+      <div class="dv-alt-label">blueprint v1</div>
+    </div>
+    <div class="dv-alt-item">
+      <a class="dv-alt" href="assets/warm-poster-v1.png" target="_blank" rel="noopener"><img src="assets/warm-poster-v1.png" alt="Warm poster variant 1"></a>
+      <div class="dv-alt-label">warm-poster v1</div>
+    </div>
+    <div class="dv-alt-item">
+      <a class="dv-alt" href="assets/warm-poster-v2.png" target="_blank" rel="noopener"><img src="assets/warm-poster-v2.png" alt="Warm poster variant 2"></a>
+      <div class="dv-alt-label">warm-poster v2</div>
+    </div>
+  </div>
+</div>
 
 <div id="render-root"></div>
 
