@@ -121,6 +121,22 @@ Two gates that govern *any* build off this map:
 1. **Dogfood — build it through the factory, not by hand.** Bricks are built via the dark factory's own loop (daily operating model: BA agent → Marshall → Swagger → build-to-spec/SPAT), not ad-hoc hand-coding. The factory builds the factory. The first data feed doubles as the **first real run of the operating loop**.
 2. **The KBDE Extension SDK is a pending handover, not researchable.** How we build extensions + the SDK's design decisions don't exist in finished form yet — David delivers that knowledge; research is no substitute (the SDK isn't finished). Therefore: **any Layer-2 surface / KBDE extension is BLOCKED until that handover lands. Layer-1 work (a data source / MCP feed) is NOT blocked** — it needs no SDK. The inventory feed splits exactly on this line: the queryable data-artifact half can proceed now; its visualization/extension half waits.
 
+## The two views of the orbit (cross-link)
+
+This map is the **exists/structure** view. The **build-order** view is the brain roadmap:
+`~/dev/ad/brains/dark-factory/app-pipeline/build-sequence-roadmap.md` (2026-06-30) — sequences the *product arc* (Day 0: map the KBDE SDK → thumbnail-builder → recipe-builder-skill → batch-prompt-runner → community-asset-builder). Its Day-0 SDK gate is the same gate as §Build constraints #2. The full candidate backlog: `~/dev/ad/brains/dark-factory/app-pipeline/README.md`.
+
+**2026-07-02 additions** (OMI `2026-07-02-0633-david-plans-dark-factory-automation.md`): `architecture-visualizer` (UNBLOCKED — visualize THIS map via schema→data→kie.ai drawn diagrams), `idea-extraction` (Lexi upgrade), watchtower's communication triad. Also: dedicate Fable 5 to factory work; single-responsibility-but-not-tiny as the micro-app sizing rule ("10 apps in harmony beats 1000").
+
+## Three-folder disambiguation (from the 2026-07-02 capture — ⚠ awaiting David's confirm)
+
+David: sessions must distinguish three folders and build ONLY in the first —
+1. **The main dark-factory folder** = `~/dev/ad/apps/dark-factory/` ✅ certain. The build target.
+2. **The proof-of-concept DF code, testing only** = hypothesis: the probes under `experiments/` (watchtower-engine/-board, blackboard-mcp, ylo) — or possibly `apps/appyctrl` (the dead T3-Code-based GUI test). UNCONFIRMED.
+3. **The third-party library (reference, upgradable via upstream)** = hypothesis: the clones under `~/dev/upstream/repos/` (registered in `brains/source-repos.md`, paired to the dark-factory brain; see `docs/upstream-repos/` for the study shelf — CAO/Composio/ccswarm). Single-repo candidates: `t3code` (AppyCtrl's upstream) or `claude-code-workflow-creator` (used in the 05-25 recon). UNCONFIRMED.
+
+**One-line question for David:** which repo is (2) the POC, and which upstream clone is (3)?
+
 ## Open questions / next
 
 1. **Which first data feed do we make real?** The map says start at the bottom: a real, queryable **data source** (the lean candidate is the *inventory itself* — make "what apps exist + state" a live data artifact, since it's stale, incomplete, and everything else needs it).
