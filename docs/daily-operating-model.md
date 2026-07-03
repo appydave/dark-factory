@@ -139,8 +139,8 @@ P3 — THE HARDWARE        (physical-health telemetry: Aura ring, doctor tests �
 | # | Decision | State |
 |---|----------|-------|
 | BA agent shape | distinct BA agent = Producer (C2); internals OPEN; `goal-plan` downstream-only | **Resolved** (§3) |
-| Briefing source | read-on-demand per-project digest (not a liveness dashboard); gate-opener = one-project generator | **Leaned** (§2) — confirm + pick first project |
-| First project for the digest | — | **OPEN** |
+| Briefing source | read-on-demand per-project digest (not a liveness dashboard); gate-opener = one-project generator | **BUILT 2026-07-03** — `~/dev/ad/apps/project-digest/` (build #3 of the cut); emits the §2 box for dark-factory from git+backlog+tickets+app-registry; the one write = `store/last-briefing/` |
+| First project for the digest | — | **RESOLVED: dark-factory** (shipped); generalization seam = `projects/<id>.json` config |
 | Acceptance test | every feature scored against the absorption principle (uptake over output) | see brain doc §8 |
 
 ## 8. Life-OS — the deferred third arc
