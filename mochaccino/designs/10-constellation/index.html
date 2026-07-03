@@ -380,6 +380,18 @@
       "verdict_notes": "Dual-layer app — Layer-1 source AND Layer-2 surface. As a surface: 'cool app idea, definite extension — definite KBDE extension.'"
     },
     {
+      "id": "omi-fetch",
+      "name": "OMI Fetch",
+      "layer": "data-source",
+      "path": "apps/omi-fetch",
+      "purpose": "Always-on OMI wearable transcript pulse (launchd, every 600s) — fetches new conversations, archives verbatim to raw-intake, indexes them, emits an event for transcripts with ≥3 segments",
+      "status": "running",
+      "status_detail": "launchd, every 600s",
+      "port": null,
+      "build_target": "kbde-extension",
+      "verdict_notes": "Dark-factory's first extension-track micro-app — a deliberately small, complete proof of the KyberAgent/KBDE extension shape."
+    },
+    {
       "id": "cortex",
       "name": "Cortex",
       "layer": "data-source",
@@ -464,6 +476,18 @@
       "verdict_notes": "SS world."
     },
     {
+      "id": "app-registry",
+      "name": "App Registry",
+      "layer": "data-plane",
+      "path": "apps/app-registry",
+      "purpose": "Reads constellation.json (structure) plus fresh live process/port probes on this machine (liveness) every 1800s via launchd, and writes a combined registry that flags drift when the two disagree",
+      "status": "running",
+      "status_detail": "launchd, every 1800s",
+      "port": null,
+      "build_target": "kbde-extension",
+      "verdict_notes": "Build #2 of the dark-factory cut — the \"inventory-as-data\" bottom brick. Structure from constellation.json (read live, never copied), liveness from probing fresh every run."
+    },
+    {
       "id": "appysentinel",
       "name": "AppySentinel",
       "layer": "boilerplate",
@@ -534,6 +558,30 @@
       "port": 7430,
       "build_target": "kbde-extension",
       "verdict_notes": "\"App we should use.\""
+    },
+    {
+      "id": "project-digest",
+      "name": "Project Digest",
+      "layer": "surface-core",
+      "path": "apps/project-digest",
+      "purpose": "Read-on-demand per-project digest generator (no daemon); reads durable sources fresh each run and writes exactly one piece of state, store/last-briefing/<project-id>.json",
+      "status": "on-demand",
+      "status_detail": "read-on-demand, no daemon",
+      "port": null,
+      "build_target": "kbde-extension",
+      "verdict_notes": "Build #3 — the briefing-source contract. Gates the morning-briefing workflow's \"here's where we are\" opening; its LIVE NOW field reads app-registry."
+    },
+    {
+      "id": "kdd-viewer",
+      "name": "KDD Viewer",
+      "layer": "surface-core",
+      "path": "apps/kdd-viewer",
+      "purpose": "Read-on-demand (no daemon), read-only viewer over any project's docs/kdd/ knowledge store (learnings, patterns, decisions/ADRs, examples) with a rendered HTML view",
+      "status": "on-demand",
+      "status_detail": "read-on-demand, no daemon",
+      "port": null,
+      "build_target": "kbde-extension",
+      "verdict_notes": "Build #6 — normalize-first adapter over per-instance KDD conventions; the window onto Lisa's KDD artifacts."
     },
     {
       "id": "deckhand",
@@ -806,7 +854,11 @@
     { "from": "appyradar-sentinel", "to": "appyradar", "type": "data-feed", "basis": "inferred", "note": "Fleet collector forward path feeding the AppyRadar surface." },
     { "from": "appyradar-sentinal-old", "to": "appyradar", "type": "data-feed", "basis": "inferred", "note": "Currently-running legacy sentinel feeding the same surface, pending migration." },
     { "from": "supportsignal-sentinal", "to": "supportsignal-suite", "type": "data-feed", "basis": "inferred", "note": "SS per-machine sentinel feeding the SupportSignal business suite." },
-    { "from": "appysentinel", "to": "appyradar-sentinel", "type": "scaffolds", "basis": "inferred", "note": "Observer-only sentinel scaffold — used to build sentinel-family data-plane apps." }
+    { "from": "appysentinel", "to": "appyradar-sentinel", "type": "scaffolds", "basis": "inferred", "note": "Observer-only sentinel scaffold — used to build sentinel-family data-plane apps." },
+    { "from": "omi-fetch", "to": "cortex", "type": "data-feed", "basis": "inferred", "note": "Produces raw transcript data useful to the brain store — same rationale as the omi-ingester → cortex edge." },
+    { "from": "inventory-registries", "to": "app-registry", "type": "data-feed", "basis": "inferred", "note": "app-registry explicitly reads constellation.json / the registries as its structure source." },
+    { "from": "app-registry", "to": "project-digest", "type": "data-feed", "basis": "inferred", "note": "project-digest's briefing draws on registry state (its LIVE NOW field shells out to app-registry's query.py)." },
+    { "from": "project-git-mission-state", "to": "kdd-viewer", "type": "data-feed", "basis": "inferred", "note": "kdd-viewer scans each project's docs/kdd/ folder, which lives under project-git-mission-state." }
   ],
 
   "channels": [
@@ -820,7 +872,6 @@
     { "id": "write", "badge": "✎", "name": "Write", "description": "Planned write channel — not yet built.", "status": "planned", "gate": null, "taxonomy_status": "under-review" }
   ]
 }
-
 </script>
 
 <script>
