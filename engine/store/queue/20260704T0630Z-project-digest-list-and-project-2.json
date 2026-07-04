@@ -2,11 +2,16 @@
   "ticket": "20260704T0630Z-project-digest-list-and-project-2",
   "kind": "instruction",
   "title": "project-digest: expose --list (already-built function, no CLI flag) and onboard project #2",
-  "source": ["docs/six-app-evaluation-2026-07-04.md #3", "OMI A266"],
+  "source": [
+    "docs/six-app-evaluation-2026-07-04.md #3",
+    "OMI A266"
+  ],
   "executor": "unassigned",
-  "priority": "med",
+  "priority": "deferred",
   "requested_at": "2026-07-04T06:30:00Z",
   "requested_by": "david (via six-app-evaluation-2026-07-04)",
-  "prompt": "apps/project-digest/lib/config.py already has list_project_ids() (used today only inside an internal error message, config.py:73) but digest.py has no --list flag, so 'what projects can I even ask about' has no answer short of `ls projects/*.json`. Two pieces:\n\n1. Add `python3 digest.py --list` (or `--projects`) that prints the configured project ids (and ideally name + path) as clean text or JSON, wrapping the existing list_project_ids().\n\n2. Onboard a real project #2 per the app's own README 'Adding a project' section — pick a live, git-tracked project from mochaccino/data/constellation.json (David's call which one, default to the next most actively-worked repo if not specified). Follow docs/extension-notes.md's own ranked list of what generalizing needs (marker-vocabulary override, goal-extraction mode, done-convention abstraction) and note honestly which of those three actually needed real code vs worked out of the box.",
-  "verify": "python3 digest.py --list prints at least 2 project ids; python3 digest.py <project-2-id> --no-write produces a sensible box (or documents exactly what's degraded and why) for the newly onboarded project."
+  "prompt": "apps/project-digest/lib/config.py already has list_project_ids() (used today only inside an internal error message, config.py:73) but digest.py has no --list flag, so 'what projects can I even ask about' has no answer short of `ls projects/*.json`. Two pieces:\n\n1. Add `python3 digest.py --list` (or `--projects`) that prints the configured project ids (and ideally name + path) as clean text or JSON, wrapping the existing list_project_ids().\n\n2. Onboard a real project #2 per the app's own README 'Adding a project' section \u2014 pick a live, git-tracked project from mochaccino/data/constellation.json (David's call which one, default to the next most actively-worked repo if not specified). Follow docs/extension-notes.md's own ranked list of what generalizing needs (marker-vocabulary override, goal-extraction mode, done-convention abstraction) and note honestly which of those three actually needed real code vs worked out of the box.",
+  "verify": "python3 digest.py --list prints at least 2 project ids; python3 digest.py <project-2-id> --no-write produces a sensible box (or documents exactly what's degraded and why) for the newly onboarded project.",
+  "status": "deferred",
+  "deferred_reason": "David 2026-07-04: premature \u2014 briefing's real scope is activity-across-everything (brains, clients, feeds); needs universal activity registry first. Vision + dependency chain: ~/dev/ad/apps/project-digest/docs/morning-briefing-vision.md"
 }
