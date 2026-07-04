@@ -1,6 +1,6 @@
 # KDD (reconstructed from sessions)
 
-2 patterns · 45 learnings · 41 decisions
+2 patterns · 45 learnings · 42 decisions
 
 > **Status: proposed.** Reconstructed from 63 Claude Code session transcripts (52 Roamy + 11 M4
 > Mini, union of both machines — sessions are machine-local and disjoint) via the Lisa
@@ -14,7 +14,8 @@ decision candidate (the session that produced D1–D4 itself) was recognized as 
 dropped; three tactical/draft items were dropped as noise (one rescued on adversarial re-check —
 see the run's `RECONCILE-TRIAGE.md`); zero conflicts were found.
 
-- [Decisions](decisions/index.md) — 41 proposed ADR candidates, numbered ADR-0001 onward (fresh
+- [Decisions](decisions/index.md) — 42 ADRs: 41 reconstructed candidates + ADR-0044 (the DF-ADR
+  format decision itself), numbered ADR-0001 onward (fresh
   sequence; D1–D4 predate this sequence and use their own naming — no collision, but note the
   gap when this repo eventually adopts one ADR numbering scheme)
 - [Learnings](learnings/index.md) — 45 problem-and-fix write-ups across 7 categories
@@ -28,7 +29,7 @@ recorded the same same-day decision from two sessions): ADR-0023 folded into
 (comprehend-visualise consolidation proposal + its later execution). Numbering gaps at 0023/0040
 are intentional — see `_runs/2026-07-04-david-roamy/RECONCILE-TRIAGE.md` for the original flag.
 
-All 41 decisions were reformatted into the [DF-ADR template](ADR-FORMAT-SPEC.md) on 2026-07-04
+All 41 reconstructed ADRs were reformatted into the [DF-ADR template](ADR-FORMAT-SPEC.md) on 2026-07-04
 (see [ADR-0044](decisions/0044-adopt-a-canonical-df-adr-format.md)) — still `status: proposed`,
 `confidence: reconstructed`, content unchanged, pending your read-and-accept pass per decision.
 [ADR-0020](decisions/0020-doc-organiser-as-a-recurring-audit-only-skill-not-a-one-time.md) is now

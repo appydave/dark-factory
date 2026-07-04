@@ -1,4 +1,4 @@
-# Decision candidates (41)
+# Decision candidates (42)
 
 > Reformatted into the [DF-ADR template](../ADR-FORMAT-SPEC.md) on 2026-07-04 (frontmatter +
 > Revision Log added; content unchanged). Ratified lazily, one at a time — 3 accepted so far
