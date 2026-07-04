@@ -50,11 +50,24 @@ file, against the evaluation's promotion plan.
 
 - No CAP=N 429-wall governor (see table above) — fine at pool=1, a real gap at pool>1.
 - No auto-wake — a human (or a future skill) still has to run `orchestrator.py` by hand.
-- `verify()`'s `VERIFIERS` dict currently has exactly one entry
-  (`constellation-4-apps`), written for this proof ticket. Generalizing it (e.g. a
-  small declarative check-DSL in the ticket JSON itself, `{"type":"json_contains_ids",...}`)
-  is future work, not built — a real ticket kind today needs a matching Python function
-  added to `VERIFIERS`.
+- ~~`verify()`'s `VERIFIERS` dict currently has exactly one entry...~~ **Closed
+  2026-07-04** (ticket `engine-status-and-verifiers`, per
+  `docs/six-app-evaluation-2026-07-04.md` #5). `VERIFIERS` is now a registry:
+  `constellation-4-apps` unchanged, plus a `generic` declarative check DSL
+  (`verify_spec.checks[]` — `file_exists` / `json_parses` / `must_contain` /
+  `git_commit_present` / `script` / `command`, each a small function in
+  `CHECK_REGISTRY`) and an `artifacts`/`verify_command` fallback for tickets with no
+  `verify_kind` at all. A new ticket kind composes existing check types instead of
+  needing a bespoke Python function — see `engine/README.md`'s "Verifying a new
+  ticket kind" section. Exercised via a dry lifecycle (`lease()` -> simulated
+  worker self-report -> `verify()` -> `commit()`, no warm pool booted) before being
+  trusted against real tickets.
+- ~~There is zero aggregation...~~ **Closed 2026-07-04** (same ticket).
+  `engine/status.py` now reads `store/queue/`, `store/running/`, `store/done/`,
+  `store/results/`, and `audit.jsonl` and prints queue depth + oldest-ticket age,
+  running tickets + claimant, last N done outcomes, live `df-worker-*` tmux
+  sessions, and the last N audit lines — human report by default, `--json` for
+  agents. No new state; pure aggregation over the existing ledger.
 - HITL gate is ported and wired but has not been exercised end-to-end inside THIS
   engine (only inside suborch's own prior proof runs) — `--hitl` is present, untested
   here beyond a code read. Flag this explicitly if David wants a live HITL demo before

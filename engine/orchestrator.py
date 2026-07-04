@@ -214,16 +214,168 @@ def verify_constellation_4_apps(_ticket):
     return (len(checks) == 0), checks
 
 
+
+# --- generalized VERIFIERS: a pluggable check registry -------------------------
+#
+# The one bespoke function above (verify_constellation_4_apps) doesn't scale — every
+# new ticket kind previously needed a hand-written Python function added here. This
+# adds a small declarative check DSL instead: a ticket sets verify_kind="generic" and
+# carries a verify_spec.checks[] list, each check naming one of the pluggable types
+# below (file_exists / json_parses / must_contain / git_commit_present / script).
+# New ticket kinds compose these; only a genuinely novel check TYPE (rare) needs new
+# Python. verify_constellation_4_apps is untouched — this is purely additive.
+
+def check_file_exists(check, _ticket):
+    rel = check["path"]
+    ok = os.path.exists(os.path.join(REPO, rel))
+    return ok, (None if ok else f"missing file: {rel}")
+
+
+def check_json_parses(check, _ticket):
+    rel = check["path"]
+    try:
+        json.load(open(os.path.join(REPO, rel)))
+        return True, None
+    except Exception as e:
+        return False, f"{rel} failed to parse as JSON: {e}"
+
+
+def check_must_contain(check, _ticket):
+    rel = check["path"]
+    wanted = check.get("text") or check.get("contains") or []
+    wanted = wanted if isinstance(wanted, list) else [wanted]
+    try:
+        body = open(os.path.join(REPO, rel), encoding="utf-8").read()
+    except Exception as e:
+        return False, f"{rel} unreadable: {e}"
+    missing = [w for w in wanted if w not in body]
+    return (not missing), (None if not missing else f"{rel} missing expected text: {missing}")
+
+
+def check_git_commit_present(check, _ticket):
+    """Confirm real work landed as a commit — either a specific sha (check['sha']),
+    or a recent commit whose message contains check['message_contains']. Read-only:
+    never creates a commit itself."""
+    sha = check.get("sha")
+    if sha:
+        r = subprocess.run(["git", "cat-file", "-e", f"{sha}^{{commit}}"],
+                            cwd=REPO, capture_output=True)
+        return r.returncode == 0, (None if r.returncode == 0 else f"commit sha not found in repo: {sha}")
+    needle = check.get("message_contains")
+    if needle:
+        r = subprocess.run(["git", "log", "--oneline", "-n", "50", f"--grep={needle}"],
+                            cwd=REPO, capture_output=True, text=True)
+        found = bool(r.stdout.strip())
+        return found, (None if found else f"no recent commit message contains: {needle!r}")
+    return False, "git_commit_present check needs 'sha' or 'message_contains'"
+
+
+def check_script(check, _ticket):
+    """Custom script path — a ticket can name its OWN verifier script instead of
+    composing the built-in check types. Run as `python3 <path> [args...]` if the
+    path ends in .py, else executed directly. Exit 0 = pass."""
+    rel = check.get("path")
+    if not rel:
+        return False, "script check missing 'path'"
+    full = rel if os.path.isabs(rel) else os.path.join(REPO, rel)
+    if not os.path.exists(full):
+        return False, f"verifier script not found: {rel}"
+    cmd = (["python3", full] if full.endswith(".py") else [full]) + list(check.get("args", []))
+    try:
+        r = subprocess.run(cmd, cwd=REPO, capture_output=True, timeout=check.get("timeout", 60))
+        ok = r.returncode == 0
+        return ok, (None if ok else f"script {rel} exited {r.returncode}: {r.stderr.decode(errors='replace')[:300]}")
+    except Exception as e:
+        return False, f"script {rel} failed to run: {e}"
+
+
+def check_command(check, _ticket):
+    """Raw shell command, exit 0 = pass. Lower-ceremony than check_script when a
+    ticket just needs an ad-hoc one-liner, not a standalone verifier file."""
+    cmd = check.get("cmd")
+    if not cmd:
+        return False, "command check missing 'cmd'"
+    try:
+        r = subprocess.run(cmd, shell=True, cwd=REPO, capture_output=True, timeout=check.get("timeout", 60))
+        ok = r.returncode == 0
+        return ok, (None if ok else f"command exited {r.returncode}: {cmd!r} stderr={r.stderr.decode(errors='replace')[:300]}")
+    except Exception as e:
+        return False, f"command failed to run: {e}"
+
+
+CHECK_REGISTRY = {
+    "file_exists": check_file_exists,
+    "json_parses": check_json_parses,
+    "must_contain": check_must_contain,
+    "git_commit_present": check_git_commit_present,
+    "script": check_script,
+    "command": check_command,
+}
+
+
+def verify_generic_declarative(ticket):
+    """verify_kind="generic": walk ticket["verify_spec"]["checks"], each a
+    {"type": <CHECK_REGISTRY key>, ...params}. ALL checks must pass. A ticket kind
+    that needs a check type not in CHECK_REGISTRY still needs Python — everything
+    else needs zero orchestrator.py edits."""
+    spec = ticket.get("verify_spec") or {}
+    checks = spec.get("checks", [])
+    if not checks:
+        return False, ["verify_kind=generic but verify_spec.checks is empty/missing"]
+    findings = []
+    for c in checks:
+        ctype = c.get("type")
+        fn = CHECK_REGISTRY.get(ctype)
+        if not fn:
+            findings.append(f"unknown check type: {ctype!r} (known: {sorted(CHECK_REGISTRY)})")
+            continue
+        ok, msg = fn(c, ticket)
+        if not ok:
+            findings.append(msg)
+    return (len(findings) == 0), findings
+
+
+def verify_artifacts_fallback(ticket):
+    """Generic fallback for tickets with no verify_kind at all: if the ticket itself
+    names artifact paths and/or a verify_command directly (no verify_spec.checks[]
+    ceremony needed), check those. Lighter-weight than the full 'generic' DSL for a
+    ticket that just wants 'these paths exist, and this command exits 0'."""
+    findings = []
+    for rel in ticket.get("artifacts") or []:
+        if not os.path.exists(os.path.join(REPO, rel)):
+            findings.append(f"missing artifact: {rel}")
+    cmd = ticket.get("verify_command")
+    if cmd:
+        try:
+            r = subprocess.run(cmd, shell=True, cwd=REPO, capture_output=True, timeout=60)
+            if r.returncode != 0:
+                findings.append(f"verify_command exited {r.returncode}: {cmd!r}")
+        except Exception as e:
+            findings.append(f"verify_command failed to run: {e}")
+    return (len(findings) == 0), findings
+
+
 VERIFIERS = {
-    "constellation-4-apps": verify_constellation_4_apps,
+    "constellation-4-apps": verify_constellation_4_apps,   # unchanged, kept working
+    "generic": verify_generic_declarative,                  # new: declarative checks[] DSL
+    "artifacts": verify_artifacts_fallback,                 # new: explicit opt-in to the fallback shape
 }
 
 
 def verify(ticket):
-    """Returns (ok: bool, findings: list[str]). No verify_kind -> pass (generic
-    tickets rely on artifact_ok() alone, same as suborch's results/<tid>.txt check)."""
+    """Returns (ok: bool, findings: list[str]).
+
+    - verify_kind set + known -> that VERIFIERS entry (bespoke or generic-DSL).
+    - verify_kind set + unknown -> fail loudly (unchanged behavior).
+    - no verify_kind, but the ticket names artifacts/verify_command directly ->
+      the lightweight fallback checker (new).
+    - no verify_kind and nothing to check -> pass, same as before this change
+      (generic tickets that only ever relied on artifact_ok() + self-report keep
+      working exactly as they did)."""
     vk = ticket.get("verify_kind")
     if not vk:
+        if ticket.get("artifacts") or ticket.get("verify_command"):
+            return verify_artifacts_fallback(ticket)
         return True, []
     fn = VERIFIERS.get(vk)
     if not fn:
