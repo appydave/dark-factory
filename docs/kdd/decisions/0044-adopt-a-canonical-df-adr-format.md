@@ -99,3 +99,4 @@ research pass. See `docs/kdd/ADR-FORMAT-SPEC.md` for sources.
 ## Revision Log
 
 - 2026-07-04 — proposed — initial write-up, pending David's ratification.
+- 2026-07-04 — amended — ruling on the flagged nested-provenance question: standard YAML is the frontmatter contract, nesting allowed; the nested `provenance:` block stays. Parsers must be YAML-capable or loudly degraded (fixed in appydave-plugins v5.13.1) — silent partial parsing is the defect, not nesting. Flatten-for-flat-parsers rejected: the format follows the data, parsers follow the format.

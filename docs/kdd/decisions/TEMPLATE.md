@@ -10,7 +10,7 @@ date_decided: YYYY-MM-DD
 deciders: [David Cruwys]
 confidence: reconstructed | proposed | confirmed
 recurrence_count: 1
-provenance:
+provenance:               # nested is fine — parsers must speak YAML (ADR-0044, 2026-07-04)
   sessions: []
   files: []
   commits: []
