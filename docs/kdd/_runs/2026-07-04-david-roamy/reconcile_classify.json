@@ -1,0 +1,756 @@
+{
+  "items": [
+    {
+      "id": "decisions/candidates/cand-001-re-scaffold-appyradar-sentinel-as-a-fresh-repo-instead-of-re.md",
+      "kind": "decision",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Reusable ops precedent (fresh-scaffold over git-history surgery for an early-stage, no-external-consumer repo); no overlap with D1-D4.",
+      "confidence": "medium"
+    },
+    {
+      "id": "decisions/candidates/cand-002-archive-superseded-repos-with-a-tested-git-bundle-backup-and.md",
+      "kind": "decision",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Standing ops policy (archive+bundle-backup, gate deletion on replacement proven); distinct subject from D1-D4.",
+      "confidence": "medium"
+    },
+    {
+      "id": "decisions/candidates/cand-003-add-a-rename-migration-note-instead-of-blind-find-replace-fo.md",
+      "kind": "decision",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Reusable data-hygiene practice for renames touching historical telemetry/logs; unrelated to D1-D4.",
+      "confidence": "medium"
+    },
+    {
+      "id": "decisions/candidates/cand-004-watchtower-v0-four-locked-governance-decisions-trigger-run-i.md",
+      "kind": "decision",
+      "verdict": "duplicate",
+      "matches_existing": "D1, D2, D3, D4",
+      "note": "This candidate IS the source event that produced docs/watchtower/DECISIONS.md D1-D4 verbatim (same story_reference 1f8758f3, same date 2026-05-27) \u2014 fully covered by the real existing record.",
+      "confidence": "high"
+    },
+    {
+      "id": "decisions/candidates/cand-005-workflow-execution-model-queue-file-in-session-polling-skill.md",
+      "kind": "decision",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Extends D1's bare 'watcher' concept with concrete execution-model detail not stated in D1 (queue+in-session-polling, never headless/metered-billing) \u2014 additive, not duplicate; shared subject (trigger mechanism) but different grain, per shared-noun rule.",
+      "confidence": "medium"
+    },
+    {
+      "id": "decisions/candidates/cand-006-handover-documents-are-written-to-backlog-in-the-repo-not-to.md",
+      "kind": "decision",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Standing placement convention overriding a skill's own default, with documented open tension feeding a future DF-6 spec.",
+      "confidence": "medium"
+    },
+    {
+      "id": "decisions/candidates/cand-007-move-dark-factory-job-state-off-flat-files-into-a-switchboar.md",
+      "kind": "decision",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Major architecture decision (job-state -> Switchboard-hosted state plane); no overlap with narrow Watchtower-v0 D1-D4.",
+      "confidence": "high"
+    },
+    {
+      "id": "decisions/candidates/cand-008-switchboard-has-crud-authority-over-its-own-comms-domain-nev.md",
+      "kind": "decision",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Architecture clarification (CRUD vs 'never kill' scope) for Switchboard; distinct from D1-D4.",
+      "confidence": "medium"
+    },
+    {
+      "id": "decisions/candidates/cand-009-adopt-the-adversarial-a-vs-b-delta-run-both-critique-hard-re.md",
+      "kind": "decision",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Standing build technique (adversarial A-vs-B delta) adopted as first-class method; unrelated to D1-D4.",
+      "confidence": "high"
+    },
+    {
+      "id": "decisions/candidates/cand-010-dark-factory-apps-are-mapped-as-a-3-layer-stack-data-surface.md",
+      "kind": "decision",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Constellation-wide architecture taxonomy decision; distinct subject from D1-D4.",
+      "confidence": "medium"
+    },
+    {
+      "id": "decisions/candidates/cand-011-app-build-flow-split-into-two-lanes-app-pipeline-intake-po-b.md",
+      "kind": "decision",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Process/architecture decision splitting app-build into two lanes with a defined seam; unrelated to D1-D4.",
+      "confidence": "medium"
+    },
+    {
+      "id": "decisions/candidates/cand-012-kbde-extension-sdk-incompleteness-is-a-fragility-warning-for.md",
+      "kind": "decision",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Policy decision on how to treat an unstable SDK dependency; unrelated to D1-D4.",
+      "confidence": "medium"
+    },
+    {
+      "id": "decisions/candidates/cand-013-harness-promotion-decided-per-mechanism-evaluation-before-pr.md",
+      "kind": "decision",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Major harness-adoption decision (per-mechanism hybrid promotion vs wholesale); unrelated to Watchtower-v0 D1-D4.",
+      "confidence": "high"
+    },
+    {
+      "id": "decisions/candidates/cand-014-adapt-hyperframes-as-the-shared-engine-for-both-rendered-vid.md",
+      "kind": "decision",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Real design decision from a PoC (HyperFrames as shared engine for video+interactive decks), pending a build go; unrelated to D1-D4.",
+      "confidence": "medium"
+    },
+    {
+      "id": "decisions/candidates/cand-015-treat-the-cortex-pipeline-run-itself-as-the-pending-assessme.md",
+      "kind": "decision",
+      "verdict": "noise",
+      "matches_existing": null,
+      "note": "One-off gating call for a single specific build's sequencing ('is a separate review still needed before this one build') \u2014 transient scoping decision, not a reusable architecture choice.",
+      "confidence": "medium"
+    },
+    {
+      "id": "decisions/candidates/cand-016-comprehend-visualise-split-into-a-read-only-comprehend-phase.md",
+      "kind": "decision",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Architecture decision (comprehend/render phase split, provenance via path+commit_sha) for a new subsystem; unrelated to D1-D4.",
+      "confidence": "high"
+    },
+    {
+      "id": "decisions/candidates/cand-017-retire-dangerously-skip-permissions-for-swagger-spawns-use-a.md",
+      "kind": "decision",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Standing security/ops policy for all future Swagger spawns; unrelated to D1-D4's decisions (D1-D4 don't address permission model).",
+      "confidence": "high"
+    },
+    {
+      "id": "decisions/candidates/cand-018-worker-session-teardown-must-be-a-deliberate-gated-lifecycle.md",
+      "kind": "decision",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Architecture decision on worker lifecycle management (registry+reaper+grace window); unrelated to D1-D4.",
+      "confidence": "medium"
+    },
+    {
+      "id": "decisions/candidates/cand-019-factory-communication-bus-an-always-on-durable-broker-never-.md",
+      "kind": "decision",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Major architecture decision for the factory's comms bus (SSE broker + in-session listeners); unrelated to D1-D4.",
+      "confidence": "high"
+    },
+    {
+      "id": "decisions/candidates/cand-020-convert-every-named-but-unstarted-build-into-a-stored-ticket.md",
+      "kind": "decision",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Standing process decision (spec-then-build discipline, registry shape); unrelated to D1-D4.",
+      "confidence": "medium"
+    },
+    {
+      "id": "decisions/candidates/cand-021-close-sessions-cleanly-with-a-handover-record-instead-of-rel.md",
+      "kind": "decision",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Standing session-management decision (files over compaction); unrelated to D1-D4.",
+      "confidence": "medium"
+    },
+    {
+      "id": "decisions/candidates/cand-022-stamp-supersession-banners-on-stale-watchtower-docs-now-defe.md",
+      "kind": "decision",
+      "verdict": "noise",
+      "matches_existing": null,
+      "note": "Scoped, one-off doc-cleanup task-sequencing call for one specific docset (banner now, defer physical re-home) \u2014 tactical, not a standing architecture rule.",
+      "confidence": "medium"
+    },
+    {
+      "id": "decisions/candidates/cand-023-doc-organiser-as-a-recurring-audit-only-skill-not-a-one-time.md",
+      "kind": "decision",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Real design decision (locked defaults for a proposed audit skill) at the time it was made; later superseded by cand-024's decision not to build it \u2014 kept as its own historical decision, not dropped, per 'default to new when unsure.'",
+      "confidence": "medium"
+    },
+    {
+      "id": "decisions/candidates/cand-024-don-t-build-a-new-doc-organiser-skill-wire-the-existing-doc-.md",
+      "kind": "decision",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Real decision reversing cand-023's plan once doc-drift/doc-review skills were found to already cover the same checks; unrelated to D1-D4.",
+      "confidence": "medium"
+    },
+    {
+      "id": "decisions/candidates/cand-025-split-angeleye-into-angelsentinel-always-on-collector-and-an.md",
+      "kind": "decision",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Architecture split decision for AngelEye (design spec only, not yet built); unrelated to D1-D4.",
+      "confidence": "medium"
+    },
+    {
+      "id": "decisions/candidates/cand-026-move-job-work-state-off-flat-files-onto-a-service-backed-sha.md",
+      "kind": "decision",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Same-day, same-subject as cand-007 (both: move job-state to Switchboard) from a different session \u2014 likely a near-duplicate pair worth a human merge pass, but neither matches the real existing D1-D4 record, so both surfaced as new per the safe-bias rule.",
+      "confidence": "medium"
+    },
+    {
+      "id": "decisions/candidates/cand-027-spawn-watchtower-swaggers-with-interactive-claude-never-clau.md",
+      "kind": "decision",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Standing operational decision (billing-driven: interactive claude only, never -p/headless); unrelated to D1-D4's scope.",
+      "confidence": "high"
+    },
+    {
+      "id": "decisions/candidates/cand-028-two-layer-colour-model-colour-as-brand-vs-colour-as-data.md",
+      "kind": "decision",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Design-system decision (two-layer colour model) codified into docs/david-design-patterns.md; unrelated to D1-D4.",
+      "confidence": "high"
+    },
+    {
+      "id": "decisions/candidates/cand-029-design-lint-built-as-a-standalone-staged-dark-factory-tool-p.md",
+      "kind": "decision",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Tooling placement decision with an explicitly open follow-up question; still a real decision (where design-lint currently lives), unrelated to D1-D4.",
+      "confidence": "medium"
+    },
+    {
+      "id": "decisions/candidates/cand-030-proposed-fifth-constellation-tool-always-on-capture-screensh.md",
+      "kind": "decision",
+      "verdict": "noise",
+      "matches_existing": null,
+      "note": "Explicitly an unratified DRAFT proposal ('DRAFT for decision \u2014 not yet ticketed') \u2014 commissioning a brief is process/logistics, not itself an architecture decision; the actual build question remains open.",
+      "confidence": "medium"
+    },
+    {
+      "id": "decisions/candidates/cand-031-jump-aliases-for-apps-use-the-full-project-name-never-an-abb.md",
+      "kind": "decision",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Rescued by adversarial drop-review: only record of the full-name-not-abbreviation jump-alias convention, prevents re-litigation on every future app addition. Original noise call misjudged durability by scale.",
+      "confidence": "high"
+    },
+    {
+      "id": "decisions/candidates/cand-032-close-the-kdd-lisa-read-gate-the-write-loop-is-built-read-en.md",
+      "kind": "decision",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Substantial roadmap/priority decision (read-gate over more KDD-write tooling, concrete 5-step sequence); unrelated to D1-D4.",
+      "confidence": "medium"
+    },
+    {
+      "id": "decisions/candidates/cand-033-spec-method-for-df-7-keep-appydave-spec-writer-as-baseline-a.md",
+      "kind": "decision",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Spec-methodology decision (hybrid appydave:spec-writer + Osmani structural elements); unrelated to D1-D4.",
+      "confidence": "medium"
+    },
+    {
+      "id": "decisions/candidates/cand-034-hand-write-one-recipe-n-1-before-building-an-automated-recip.md",
+      "kind": "decision",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Standing methodology decision (prove N=1 before generalizing); unrelated to D1-D4.",
+      "confidence": "medium"
+    },
+    {
+      "id": "decisions/candidates/cand-035-multi-marshall-parallelism-via-identity-not-per-file-locking.md",
+      "kind": "decision",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Major architecture decision (identity-based parallelism sequence, reject per-file locking); unrelated to D1-D4.",
+      "confidence": "high"
+    },
+    {
+      "id": "decisions/candidates/cand-036-apps-watchtower-is-the-durable-home-experiments-watchtower-e.md",
+      "kind": "decision",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Naming/placement architecture decision (apps/watchtower canonical vs experiments/ PoC); distinct subject from D1-D4 (D1-D4 govern the v0 mechanism, not the folder/home question).",
+      "confidence": "medium"
+    },
+    {
+      "id": "decisions/candidates/cand-037-close-the-dispatch-engine-s-return-leg-engine-switchboard-bo.md",
+      "kind": "decision",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Sequencing/priority decision (observability-return-leg before auto-trigger); unrelated to D1-D4.",
+      "confidence": "medium"
+    },
+    {
+      "id": "decisions/candidates/cand-038-collapse-the-mocha-census-rating-scale-from-good-meh-shit-to.md",
+      "kind": "decision",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Product decision for the Mocha Census tool (rating-scale redesign); unrelated to D1-D4.",
+      "confidence": "medium"
+    },
+    {
+      "id": "decisions/candidates/cand-039-design-quality-lever-is-structure-exemplars-not-design-md-to.md",
+      "kind": "decision",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Design-system investment decision backed by evidence; unrelated to D1-D4.",
+      "confidence": "medium"
+    },
+    {
+      "id": "decisions/candidates/cand-040-consolidate-comprehend-visualise-into-mochaccino-as-a-4th-mo.md",
+      "kind": "decision",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Proposal-stage decision (execution deferred) for the same consolidation cand-044 later executed same day \u2014 likely a proposal/execution pair worth a human merge pass, but kept as new per safe-bias rule; unrelated to D1-D4.",
+      "confidence": "medium"
+    },
+    {
+      "id": "decisions/candidates/cand-041-leave-claude-local-md-without-the-system-context-auto-import.md",
+      "kind": "decision",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Deliberate standing behavior choice (CONTEXT.md stays read-on-demand, not auto-loaded) with ongoing consequences for every session; unrelated to D1-D4.",
+      "confidence": "medium"
+    },
+    {
+      "id": "decisions/candidates/cand-042-upstream-repo-writeups-live-in-a-new-docs-upstream-repos-she.md",
+      "kind": "decision",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Placement/architecture rule (writeups vs actual clones, corrected mid-session); unrelated to D1-D4.",
+      "confidence": "medium"
+    },
+    {
+      "id": "decisions/candidates/cand-043-the-untracked-rot-sweep-df-9-will-detect-and-report-git-hygi.md",
+      "kind": "decision",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Spec-scoping decision (detect-and-tell only, never auto-commit/auto-gitignore); unrelated to D1-D4.",
+      "confidence": "medium"
+    },
+    {
+      "id": "decisions/candidates/cand-044-consolidate-the-comprehend-render-front-end-into-the-design-.md",
+      "kind": "decision",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Executed version of the comprehend-visualise consolidation (commit 7d9eb29); see note on cand-040 for the related proposal-stage duplicate; unrelated to D1-D4.",
+      "confidence": "medium"
+    },
+    {
+      "id": "decisions/candidates/cand-045-record-factory-failures-as-a-structured-countable-register-i.md",
+      "kind": "decision",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Standing observability decision (structured failure register vs prose narration); unrelated to D1-D4.",
+      "confidence": "medium"
+    },
+    {
+      "id": "decisions/candidates/cand-046-dark-factory-swagger-is-the-aspirational-descendant-of-bmad-.md",
+      "kind": "decision",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Naming/lineage design decision with concrete porting implications (what structural machinery to adopt from BMAD Swagger); distinct from D4's narrow 'v0 ships buttons-only' scope \u2014 does not conflict since it's a longer-term aspiration, not a 'build conversational Swagger now' directive.",
+      "confidence": "medium"
+    },
+    {
+      "id": "decisions/candidates/cand-047-replace-per-card-promote-with-a-cluster-converge-flow-for-th.md",
+      "kind": "decision",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "UI/flow architecture decision for the Floor<->Lanes bridge's own 'promote' button; shares the word 'promote' with D3 but is a different subject/layer (concept-lane synthesis vs Watchtower's canonical-record promotion) per the shared-noun rule \u2014 not a duplicate/conflict of D3.",
+      "confidence": "medium"
+    },
+    {
+      "id": "patterns/design-taste-correlation-over-generalized-into-an-absolute-s-pattern.md",
+      "kind": "pattern",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Well-evidenced recurring pattern (6 recurrences) with no existing pattern record to compare against.",
+      "confidence": "high"
+    },
+    {
+      "id": "patterns/dispatched-worker-swagger-tmux-windows-don-t-auto-close-with-pattern.md",
+      "kind": "pattern",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Well-evidenced recurring pattern (4 recurrences) with no existing pattern record to compare against.",
+      "confidence": "high"
+    },
+    {
+      "id": "learnings/architecture/atomic-queue-claim-mutex-for-concurrent-file-based-polling-kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine architecture learning (atomic rename-mutex, verified via concurrency stress test).",
+      "confidence": "high"
+    },
+    {
+      "id": "learnings/architecture/bulk-structured-data-should-move-via-manifest-files-not-thro-kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine architecture learning (manifest files vs LLM relay for bulk/ID-bearing data).",
+      "confidence": "high"
+    },
+    {
+      "id": "learnings/architecture/constellation-first-placement-shared-state-fixes-belong-in-a-kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine architecture/process learning (placement-first heuristic for shared-state fixes).",
+      "confidence": "high"
+    },
+    {
+      "id": "learnings/architecture/kbde-extension-channel-handlers-can-t-be-wired-additively-kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine, high-severity technical learning about KBDE extension mountability vs schema validation.",
+      "confidence": "high"
+    },
+    {
+      "id": "learnings/architecture/mochaccino-gallery-index-is-hand-written-html-not-generated--kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine architecture learning about the Mochaccino gallery index's manual-curation gap.",
+      "confidence": "medium"
+    },
+    {
+      "id": "learnings/architecture/switchboard-has-no-generic-event-ingest-endpoint-kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine architecture learning (Switchboard's inbound routes verified by reading source).",
+      "confidence": "medium"
+    },
+    {
+      "id": "learnings/debugging/backtick-inside-a-js-comment-prematurely-terminated-a-templa-kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine, specific JS debugging gotcha with clear prevention.",
+      "confidence": "high"
+    },
+    {
+      "id": "learnings/debugging/drift-check-conflated-activity-status-with-liveness-kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine debugging learning (status-field vocabulary mismatch).",
+      "confidence": "medium"
+    },
+    {
+      "id": "learnings/debugging/flex-child-with-explicit-pixel-width-still-shrinks-and-clips-kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine, reusable CSS/flexbox debugging gotcha.",
+      "confidence": "high"
+    },
+    {
+      "id": "learnings/debugging/guard-module-level-server-listen-on-import-kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine, reusable Node.js ESM gotcha (guard side effects behind entrypoint check).",
+      "confidence": "high"
+    },
+    {
+      "id": "learnings/debugging/js-let-tdz-ordering-with-shared-polling-state-kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine JS TDZ ordering gotcha with clear prevention.",
+      "confidence": "medium"
+    },
+    {
+      "id": "learnings/debugging/mocha-census-design-id-regex-assumed-single-level-paths-corr-kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine debugging learning (regex path-depth assumption, verified count discrepancy).",
+      "confidence": "medium"
+    },
+    {
+      "id": "learnings/debugging/sandbox-path-stripped-in-piped-subshells-kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine, high-value environment gotcha (PATH stripped in piped/looped Bash-tool subshells).",
+      "confidence": "high"
+    },
+    {
+      "id": "learnings/documentation/doc-drift-audit-found-docs-silently-out-of-step-with-shipped-kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine, high-severity documentation learning with a concrete audit + fix method.",
+      "confidence": "high"
+    },
+    {
+      "id": "learnings/documentation/durable-memory-retains-an-entity-s-old-name-after-a-real-wor-kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine learning about durable-memory staleness after a real-world rename.",
+      "confidence": "medium"
+    },
+    {
+      "id": "learnings/infrastructure/dev-server-cache-busting-gap-serves-stale-content-after-re-r-kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine infrastructure learning (diagnosed, fix proposed but not yet applied).",
+      "confidence": "medium"
+    },
+    {
+      "id": "learnings/infrastructure/dynamic-workflow-tool-args-parameter-didn-t-reliably-bind-to-kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine, high-severity Workflow-tool gotcha (args binding failure) with clear prevention.",
+      "confidence": "high"
+    },
+    {
+      "id": "learnings/infrastructure/engine-queue-directories-vanished-mid-run-from-a-concurrent--kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine incident learning; root cause unconfirmed but recovery + prevention documented.",
+      "confidence": "medium"
+    },
+    {
+      "id": "learnings/infrastructure/parallel-worker-claim-binding-race-between-spawned-windows-a-kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine infrastructure learning about claim-binding races under parallel dispatch.",
+      "confidence": "medium"
+    },
+    {
+      "id": "learnings/infrastructure/shared-browser-automation-tool-locked-by-a-concurrent-claude-kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine tooling-contention learning with a practical fallback-verification technique.",
+      "confidence": "medium"
+    },
+    {
+      "id": "learnings/process/blind-git-add-in-a-dirty-shared-working-tree-risks-sweeping--kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine process learning (scoped git add over blanket add in a shared tree).",
+      "confidence": "medium"
+    },
+    {
+      "id": "learnings/process/build-dev-history-claims-stated-without-verifying-against-gi-kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine process learning (verify build-provenance claims against git log, don't generalize).",
+      "confidence": "high"
+    },
+    {
+      "id": "learnings/process/claims-asserted-from-inference-memory-without-checking-the-a-kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine, high-value process learning (verify causal claims against primary evidence, not timing correlation).",
+      "confidence": "high"
+    },
+    {
+      "id": "learnings/process/design-charter-grounding-needs-direct-design-origin-docs-not-kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine process learning (design-origin docs beat transcript-mining for charter grounding).",
+      "confidence": "medium"
+    },
+    {
+      "id": "learnings/process/design-lint-index-blind-spot-gallery-index-page-skipped-by-s-kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine, valuable process learning (render/lint gates must cover the gallery index, not just named artifacts).",
+      "confidence": "high"
+    },
+    {
+      "id": "learnings/process/design-lint-rubric-built-from-a-small-sample-missed-the-top--kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine process learning (validate a judgment rubric against real quantified data, not a handful of examples).",
+      "confidence": "high"
+    },
+    {
+      "id": "learnings/process/job-agents-complete-work-but-skip-writing-handback-run-recor-kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine, high-value process learning (never trust worker self-report; instrument the loop externally).",
+      "confidence": "high"
+    },
+    {
+      "id": "learnings/process/marshall-cold-start-dispatch-acted-instead-of-orienting-and--kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine, high-value process learning (cold-start orient/ask vs mid-session act, with a concrete skill-doc fix).",
+      "confidence": "high"
+    },
+    {
+      "id": "learnings/process/narrow-research-queries-need-explicit-exclusion-clauses-to-a-kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine, reusable research-prompt-design learning.",
+      "confidence": "medium"
+    },
+    {
+      "id": "learnings/process/parallel-concurrent-work-on-the-same-artifact-drifts-or-dupl-kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine process learning about fanning out agents without a shared ratified contract.",
+      "confidence": "medium"
+    },
+    {
+      "id": "learnings/process/repo-identity-confusion-over-which-repo-is-the-correct-siste-kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine, valuable process learning (verify repo identity via GitHub id, not name/description).",
+      "confidence": "high"
+    },
+    {
+      "id": "learnings/process/untracked-file-rot-accumulated-from-unenforced-end-of-sessio-kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine process learning about unenforced commit discipline.",
+      "confidence": "medium"
+    },
+    {
+      "id": "learnings/process/worker-session-interviewed-the-human-instead-of-resolving-an-kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine, valuable process learning (workers resolve+terminate, never interview the human).",
+      "confidence": "high"
+    },
+    {
+      "id": "learnings/testing/doc-review-crossref-scanner-flagged-markdown-syntax-examples-kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine, if narrow, testing learning about crossref-scanner false positives on literal syntax examples.",
+      "confidence": "medium"
+    },
+    {
+      "id": "learnings/testing/indirect-render-signals-http-200-headless-screenshot-svg-cou-kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine, high-severity testing learning (render-health gate needed before trusting screenshots as design signal).",
+      "confidence": "high"
+    },
+    {
+      "id": "learnings/tooling/bash-cwd-drift-across-tool-calls-from-an-earlier-relative-cd-kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine, common tooling gotcha (cwd persistence across Bash tool calls).",
+      "confidence": "high"
+    },
+    {
+      "id": "learnings/tooling/census-batch-field-mislabeling-kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine tooling learning; root cause identified, fix flagged as outstanding.",
+      "confidence": "medium"
+    },
+    {
+      "id": "learnings/tooling/constellation-paths-authored-as-prose-not-resolvable-filesys-kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine tooling learning (human-authored prose paths vs machine-verified paths).",
+      "confidence": "medium"
+    },
+    {
+      "id": "learnings/tooling/cross-machine-push-pull-conflicts-need-careful-reconciliatio-kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine, reusable git technique for safe pulls with local edits.",
+      "confidence": "high"
+    },
+    {
+      "id": "learnings/tooling/edit-write-tool-guard-requires-an-explicit-read-call-not-cat-kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine, high-value harness-behavior gotcha (Read tool required before Write, cat doesn't count).",
+      "confidence": "high"
+    },
+    {
+      "id": "learnings/tooling/existing-skill-memory-not-consulted-before-building-a-soluti-kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine, valuable meta-learning (retrieval-trigger is the weak link, not memory existence).",
+      "confidence": "high"
+    },
+    {
+      "id": "learnings/tooling/naive-whole-file-frontmatter-scan-risks-false-positives-from-kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine, reusable parsing-hygiene learning.",
+      "confidence": "medium"
+    },
+    {
+      "id": "learnings/tooling/pre-taste-spec-mochaccino-designs-carry-anti-pattern-palette-kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine design/process learning tied to a concrete re-render fix.",
+      "confidence": "medium"
+    },
+    {
+      "id": "learnings/tooling/self-skill-corpus-coverage-gap-in-census-scanner-kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine, valuable tooling learning (scanner scope gap, fixed with a reconciliation script).",
+      "confidence": "high"
+    },
+    {
+      "id": "learnings/tooling/zsh-unquoted-variable-word-splitting-kdd.md",
+      "kind": "learning",
+      "verdict": "new",
+      "matches_existing": null,
+      "note": "Genuine, classic shell-portability gotcha (zsh vs bash word-splitting).",
+      "confidence": "high"
+    }
+  ]
+}
