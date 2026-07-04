@@ -1,24 +1,24 @@
 ---
 id: ADR-0009
 title: "Dark-factory apps are mapped as a 3-layer stack (data → surfaces → KBDE host), not a flat inventory"
-status: proposed
+status: accepted
 scope: internal
 date_decided: 2026-06-23
 deciders: [David Cruwys]
-confidence: reconstructed
+confidence: confirmed
 recurrence_count: 1
 provenance:
   sessions: ["2fdc2412"]
-  files: ["apps/dark-factory/docs/constellation-map.md"]
+  files: ["docs/constellation-map.md"]
   commits: ["ecc9897"]
 tags: []
 ---
 
-> 🤖 **Reconstructed + reconciled — proposed ADR.** Conform to this repo's ADR format/`Deciders` before ratifying.
+> 🤖 Reconstructed via Lisa KDD pipeline, 2026-07-04. Ratified by David 2026-07-04.
 
 # ADR-0009: Dark-factory apps are mapped as a 3-layer stack (data → surfaces → KBDE host), not a flat inventory
 
-**Status:** Proposed (reconstructed)
+**Status:** Accepted
 
 ## Context
 
@@ -43,9 +43,10 @@ Gives every future build a clear layer to land in and exposes which layer is bui
 ## Provenance
 
 - **Sessions** (1): `2fdc2412` · 2026-06-23
-- **Files** (candidate-level): `apps/dark-factory/docs/constellation-map.md`
+- **Files** (candidate-level): `docs/constellation-map.md`
 - **Commits** (candidate-level): `ecc9897`
 
 ## Revision Log
 
 - 2026-07-04 — reconstructed — Lisa KDD pipeline extraction (session-mined). Reformatted into DF-ADR template; not yet manually ratified.
+- 2026-07-04 — ratified — verified commit `ecc9897` is real and its message matches this decision almost verbatim; confirmed `docs/constellation-map.md` genuinely contains the described 3-layer model. Corrected a provenance error: the file path was recorded as `apps/dark-factory/docs/constellation-map.md` (doesn't exist, likely a cwd artifact from the source session) — fixed to `docs/constellation-map.md`. Status → accepted, confidence → confirmed.

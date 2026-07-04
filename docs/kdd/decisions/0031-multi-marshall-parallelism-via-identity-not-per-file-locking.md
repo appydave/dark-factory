@@ -1,11 +1,11 @@
 ---
 id: ADR-0031
 title: "Multi-Marshall parallelism via identity, not per-file locking"
-status: proposed
+status: accepted
 scope: internal
 date_decided: 2026-06-12
 deciders: [David Cruwys]
-confidence: reconstructed
+confidence: confirmed
 recurrence_count: 1
 provenance:
   sessions: ["ef961b51"]
@@ -14,11 +14,11 @@ provenance:
 tags: []
 ---
 
-> 🤖 **Reconstructed + reconciled — proposed ADR.** Conform to this repo's ADR format/`Deciders` before ratifying.
+> 🤖 Reconstructed via Lisa KDD pipeline, 2026-07-04. Ratified by David 2026-07-04.
 
 # ADR-0031: Multi-Marshall parallelism via identity, not per-file locking
 
-**Status:** Proposed (reconstructed)
+**Status:** Accepted
 
 ## Context
 
@@ -49,3 +49,4 @@ Two independent Marshalls can run concurrently on one machine without building S
 ## Revision Log
 
 - 2026-07-04 — reconstructed — Lisa KDD pipeline extraction (session-mined). Reformatted into DF-ADR template; not yet manually ratified.
+- 2026-07-04 — ratified — verified against an independent pre-existing memory file (`parallelism-via-identity.md`, created from the same source session, not from this reconstruction) which corroborates the sequence and reasoning almost line-for-line, and confirmed `AUDIT-2026-06-12.md` (the source doc) genuinely exists. Status → accepted, confidence → confirmed.

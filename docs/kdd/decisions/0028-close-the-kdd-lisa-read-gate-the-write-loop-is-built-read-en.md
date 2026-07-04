@@ -1,11 +1,11 @@
 ---
 id: ADR-0028
 title: "Close the KDD/Lisa read-gate — the write loop is built, read enforcement is not"
-status: proposed
+status: accepted
 scope: internal
 date_decided: 2026-07-03
 deciders: [David Cruwys]
-confidence: reconstructed
+confidence: confirmed
 recurrence_count: 1
 provenance:
   sessions: ["c89d3d81"]
@@ -14,11 +14,11 @@ provenance:
 tags: []
 ---
 
-> 🤖 **Reconstructed + reconciled — proposed ADR.** Conform to this repo's ADR format/`Deciders` before ratifying.
+> 🤖 Reconstructed via Lisa KDD pipeline, 2026-07-04. Ratified by David 2026-07-04.
 
 # ADR-0028: Close the KDD/Lisa read-gate — the write loop is built, read enforcement is not
 
-**Status:** Proposed (reconstructed)
+**Status:** Accepted
 
 ## Context
 
@@ -49,3 +49,5 @@ If unaddressed, every new dark-factory session risks re-paying the rediscovery c
 ## Revision Log
 
 - 2026-07-04 — reconstructed — Lisa KDD pipeline extraction (session-mined). Reformatted into DF-ADR template; not yet manually ratified.
+- 2026-07-04 — ratified — the strongest possible confirmation: this decision was independently acted on the same day (mac-mini-m4 built `kdd-bridge`, an MCP read-bridge, directly from this ADR — smoke-tested, G2/G3 gates structurally confirmed working; see `backlog/2026-07-04-kdd-read-gate-handover.done.md`). Note: the Context section's cited counts ("Cortex → 69-doc KDD, KBDE → 58 sessions staged") are now stale — Cortex has 112 docs, KBDE 208, as of this ratification — not an error, both grew since 2026-07-03; doesn't affect the decision's validity. Status → accepted, confidence → confirmed.
+- 2026-07-04 — superseded (partially) — David's PO direction (same day, appended to the handover doc) reshapes this decision's remaining scope: the read-gate's real home is structural SDLC checkpoints (PR-created → validate against KDD; worker-output-absorbed → write back through Lisa), not a session-start advisory alone. The MCP built above serves those checkpoints, it doesn't replace them. That follow-on design/build is out of this ratification's scope.

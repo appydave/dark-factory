@@ -1,9 +1,9 @@
 # Decision candidates (41)
 
 > Reformatted into the [DF-ADR template](../ADR-FORMAT-SPEC.md) on 2026-07-04 (frontmatter +
-> Revision Log added; content unchanged) — all still `status: proposed`, `confidence: reconstructed`
-> pending your read-and-accept pass. Conform each to `Deciders`/final content review before flipping
-> to `accepted`.
+> Revision Log added; content unchanged). Ratified lazily, one at a time — 3 accepted so far
+> (ADR-0009, ADR-0028, ADR-0031, 2026-07-04), the rest still `status: proposed`,
+> `confidence: reconstructed`, pending a read-and-accept pass whenever each one is about to matter.
 > ADR-0023 and ADR-0040 were merged into ADR-0006 and ADR-0036 respectively on 2026-07-04 (each
 > pair recorded the same same-day decision from two sessions) — numbering gaps are intentional.
 > **ADR-0020 is `superseded` by ADR-0021** (same-day reversal) — the first live use of the new
@@ -17,7 +17,7 @@
 - [ADR-0006: Move Dark Factory job-state off flat files into a Switchboard-hosted shared state plane](0006-move-dark-factory-job-state-off-flat-files-into-a-switchboar.md)
 - [ADR-0007: Switchboard has CRUD authority over its own comms domain; 'never kill' applies only to the externally observed system](0007-switchboard-has-crud-authority-over-its-own-comms-domain-nev.md)
 - [ADR-0008: Adopt the adversarial A-vs-B delta (run both, critique hard, recommend canonical) as a first-class Dark Factory build technique](0008-adopt-the-adversarial-a-vs-b-delta-run-both-critique-hard-re.md)
-- [ADR-0009: Dark-factory apps are mapped as a 3-layer stack (data → surfaces → KBDE host), not a flat inventory](0009-dark-factory-apps-are-mapped-as-a-3-layer-stack-data-surface.md)
+- [ADR-0009: Dark-factory apps are mapped as a 3-layer stack (data → surfaces → KBDE host), not a flat inventory](0009-dark-factory-apps-are-mapped-as-a-3-layer-stack-data-surface.md) — **accepted** (ratified 2026-07-04)
 - [ADR-0010: App-build flow split into two lanes: App Pipeline (intake/PO, brain) and App Requirements (build-spec standard, Dev repo), seam at goal-ready](0010-app-build-flow-split-into-two-lanes-app-pipeline-intake-po-b.md)
 - [ADR-0011: KBDE Extension SDK incompleteness is a fragility warning for builders, not a build-blocking gate](0011-kbde-extension-sdk-incompleteness-is-a-fragility-warning-for.md)
 - [ADR-0012: Harness promotion decided per-mechanism (evaluation before promotion), not as a wholesale 'promote suborch's kernel'](0012-harness-promotion-decided-per-mechanism-evaluation-before-pr.md)
@@ -35,10 +35,10 @@
 - [ADR-0025: Two-layer colour model — Colour as Brand vs Colour as Data](0025-two-layer-colour-model-colour-as-brand-vs-colour-as-data.md)
 - [ADR-0026: Design-lint built as a standalone staged dark-factory tool; placement left open](0026-design-lint-built-as-a-standalone-staged-dark-factory-tool-p.md)
 - [ADR-0027: Jump aliases for apps use the full project name, never an abbreviation](0027-jump-aliases-for-apps-use-the-full-project-name-never-an-abb.md)
-- [ADR-0028: Close the KDD/Lisa read-gate — the write loop is built, read enforcement is not](0028-close-the-kdd-lisa-read-gate-the-write-loop-is-built-read-en.md)
+- [ADR-0028: Close the KDD/Lisa read-gate — the write loop is built, read enforcement is not](0028-close-the-kdd-lisa-read-gate-the-write-loop-is-built-read-en.md) — **accepted** (ratified 2026-07-04; already acted on — see Revision Log)
 - [ADR-0029: Spec method for DF-7: keep appydave:spec-writer as baseline, adopt Osmani structural elements rather than switching wholesale](0029-spec-method-for-df-7-keep-appydave-spec-writer-as-baseline-a.md)
 - [ADR-0030: Hand-write one recipe (N=1) before building an automated recipe-builder](0030-hand-write-one-recipe-n-1-before-building-an-automated-recip.md)
-- [ADR-0031: Multi-Marshall parallelism via identity, not per-file locking](0031-multi-marshall-parallelism-via-identity-not-per-file-locking.md)
+- [ADR-0031: Multi-Marshall parallelism via identity, not per-file locking](0031-multi-marshall-parallelism-via-identity-not-per-file-locking.md) — **accepted** (ratified 2026-07-04)
 - [ADR-0032: apps/watchtower is the durable home; experiments/watchtower-engine is a disposable proof-of-concept](0032-apps-watchtower-is-the-durable-home-experiments-watchtower-e.md)
 - [ADR-0033: Close the dispatch engine's return leg (engine→Switchboard→board) before adding the talk-to-it trigger](0033-close-the-dispatch-engine-s-return-leg-engine-switchboard-bo.md)
 - [ADR-0034: Collapse the Mocha Census rating scale from good/meh/shit to love/good/average + free-text label](0034-collapse-the-mocha-census-rating-scale-from-good-meh-shit-to.md)
