@@ -71,10 +71,15 @@ alone was enough or it needed hardening to a hard-block.
 
 ## Status (executed 2026-07-04, mac-mini-m4)
 
-**Step 1 (Lisa plugin):** confirmed stale as suspected — `~/.claude/plugins/installed_plugins.json`
-shows `appydave@appydave-plugins` installed at **v5.1.0**, while `~/dev/ad/appydave-plugins` (the
-repo) is at HEAD `05b2292` dated 2026-07-04 (v5.9.1 per the orchestrator's status). Not fixed here —
-per the inherited status, David will `/plugin` update; this doesn't block steps 3-5.
+**Step 1 (Lisa plugin):** confirmed stale as suspected at the start of this session —
+`~/.claude/plugins/installed_plugins.json` showed `appydave@appydave-plugins` installed at
+**v5.1.0**, while `~/dev/ad/appydave-plugins` (the repo) was at HEAD `05b2292` dated 2026-07-04
+(v5.9.1). Not fixed by this session directly — but a **concurrent session on this same machine**
+ran `/plugin` update + `/reload-plugins` partway through this work (see
+`backlog/2026-07-04-loose-ends-ledger.md`, D10 closed, and its own commit `2e49fdb`, landed at the
+same wall-clock minute as this work). Reconfirmed just now: `installed_plugins.json` shows
+`appydave@appydave-plugins` at **5.9.1**. So by the time this ticket closes, Lisa's doctrine IS what
+this machine loads — resolved, just not by this session's own action.
 
 **Step 3 (MCP read bridge) — BUILT.** New app: `~/dev/ad/apps/kdd-bridge/` (git-init'd, local commits
 only, not pushed). Stdio MCP server, zero deps, same house pattern as
