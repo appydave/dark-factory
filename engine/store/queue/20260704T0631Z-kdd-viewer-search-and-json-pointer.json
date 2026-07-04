@@ -1,0 +1,12 @@
+{
+  "ticket": "20260704T0631Z-kdd-viewer-search-and-json-pointer",
+  "kind": "instruction",
+  "title": "kdd-viewer: minimal search over store/instances/<id>.json + point agents at the JSON, not just the HTML",
+  "source": ["docs/six-app-evaluation-2026-07-04.md #4", "OMI A266"],
+  "executor": "unassigned",
+  "priority": "med",
+  "requested_at": "2026-07-04T06:31:00Z",
+  "requested_by": "david (via six-app-evaluation-2026-07-04)",
+  "prompt": "kdd-viewer's README states 'No search' as a deliberate v1 Non-goal, and today the only way to answer 'what do we know about X' is opening view/<id>.html and reading every card by eye in the right tab — which an agent can't meaningfully do at all. Two pieces:\n\n1. Add a small query surface — either a new query.py or a --grep <term> flag on scan.py — doing a case-insensitive substring match over store/instances/<id>.json's title/category/fields, printing matching artifacts as JSON (path, type, title, category, lifecycle badges). This does not need to be full-text search over file contents — title/category/fields matching alone would fix most of the finding.\n\n2. Add one clear line to the README's Usage section stating that store/instances/<id>.json is a first-class, machine-readable interface an agent can read directly (with its shape), not merely an internal artifact behind the HTML view.\n\nKeep the LLM-free, stdlib-only, read-only design constraints — this is a query/find addition, not a rewrite.",
+  "verify": "python3 scan.py supportsignal --grep <term-known-to-match-a-real-title-or-category> (or the new query.py equivalent) returns the matching artifact(s) as JSON without requiring the HTML view to be opened; README explicitly documents store/instances/<id>.json as an agent-readable interface."
+}

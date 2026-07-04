@@ -1,0 +1,12 @@
+{
+  "ticket": "20260704T0627Z-omi-fetch-search-and-enrichment",
+  "kind": "instruction",
+  "title": "omi-fetch: add real find (search/tag/date/signal) to lookup.py, and get enrichment past stub-only",
+  "source": ["docs/six-app-evaluation-2026-07-04.md #1", "OMI A266"],
+  "executor": "unassigned",
+  "priority": "high",
+  "requested_at": "2026-07-04T06:27:00Z",
+  "requested_by": "david (via six-app-evaluation-2026-07-04)",
+  "prompt": "omi-fetch v2 (apps/omi-fetch/) added capture codes + a tags/synopsis/signal schema, but there is still no way to FIND anything except by an already-known exact code. Two coherent pieces of work:\n\n1. Add real find to lookup.py: `--search <substring>` matching title/tags/synopsis case-insensitively, `--since <date>` / `--until <date>` filtering on started_at, `--signal <direction|feedback|idea|noise>` filtering on the signal field. All filters should compose (AND together) and print JSON like the existing --list. Keep the existing exact-code and --list behaviour unchanged.\n\n2. enrich.py's real engines are both confirmed broken at build time (Gemini API returns API_KEY_INVALID, Gemini CLI returns IneligibleTierError — see README 'Enrichment' section). Only 30/274 records (11%) carry any tags/synopsis, all via --stub heuristics. Either fix the ~/.secrets GEMINI_API_KEY / gemini CLI auth so a real engine actually runs, or swap enrich.py to a working engine (e.g. a direct Anthropic API call using ANTHROPIC_API_KEY if available, matching the same tags/synopsis/signal output contract). Then run `enrich.py --all` (or in batches respecting the existing cost cap) to bring real-engine coverage well past the current 11%.\n\nDo not change the pulse.py fetch cadence or the store schema shape — this is additive (lookup.py flags) plus fixing/replacing enrich.py's engine, nothing else.",
+  "verify": "python3 lookup.py --search <known keyword from an existing title> returns at least the matching record(s) as JSON; python3 lookup.py --since <date> and --signal <kind> both filter correctly against store/index.jsonl; enrich.py --dry-run reports an engine other than stub succeeding OR a documented reason stub remains necessary; enriched_at coverage measurably increases beyond 30/274."
+}
