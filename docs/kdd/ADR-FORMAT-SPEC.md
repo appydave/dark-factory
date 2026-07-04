@@ -139,15 +139,20 @@ candidate for the new field, and worth fixing during ratification as a concrete 
 ## Rollout (no automation changes required to start)
 
 1. **Adopt now** for every new decision going forward, hand-authored or Lisa-extracted.
-2. **Ratification of the 41 proposed candidates = reformat into this template**, mirroring exactly what
-   Cortex did with its own reconstruction batch — this is the same work already flagged as "ratify," not
-   an extra pass.
-3. **Fix ADR-0020/0021's supersession link** as part of ratification — the first live use of the new field.
-4. **Leave `docs/watchtower/DECISIONS.md` (D1-D4) untouched** — historical, binding, predates this format;
+2. **Reformatted (done, 2026-07-04)**: all 41 proposed candidates now use this template — frontmatter +
+   Revision Log added, content unchanged, mirroring what Cortex did with its own reconstruction batch.
+3. **Fixed (done, 2026-07-04)**: ADR-0020/0021's supersession link — the first live use of the field.
+4. **Full content ratification: deliberately deferred, not batched.** David's call, 2026-07-04 — don't
+   spend judgment ratifying all 41 up front. They already passed extraction, clustering, human review, and
+   adversarial drop-review, so `status: proposed` / `confidence: reconstructed` is a legitimate resting
+   state, not neglect. Ratify **lazily, one at a time, only when a specific decision is about to matter**
+   (a build touches it, or a later Lisa run corroborates/contradicts it) — this is the actual point of the
+   `confidence`/`recurrence_count`/Revision Log design: recurrence does the prioritizing, not a sweep.
+5. **Leave `docs/watchtower/DECISIONS.md` (D1-D4) untouched** — historical, binding, predates this format;
    reference it, don't retrofit.
-5. **Leave Cortex and KBDE alone** — no retroactive changes to sibling projects. Dark Factory's format is
+6. **Leave Cortex and KBDE alone** — no retroactive changes to sibling projects. Dark Factory's format is
    now explicitly modeled on Cortex's, so cross-project harmonization stays easy later if wanted.
-6. **Later, separate follow-up (not part of this decision):** extend Lisa's `extractor-schema.md` and
+7. **Later, separate follow-up (not part of this decision):** extend Lisa's `extractor-schema.md` and
    `reconcile-classifier-schema.md` so future *reconstructions* natively emit `scope`/`confidence`/
    `recurrence_count`, instead of needing a manual reformat pass each time. Flagged, not built — this
    proposal is the format; teaching Lisa to emit it natively is a follow-on ticket.
