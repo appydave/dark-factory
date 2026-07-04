@@ -136,3 +136,14 @@ undone, not partially done — no watched-root config was added anywhere, by des
 host to receive it was confirmed. No automated test suite for kdd-bridge, only the manual stdio
 smoke test above. Did not batch-ratify any of the other 41 decisions while in `docs/kdd/decisions/`,
 per the DON'Ts.
+
+## For Roamy — getting the bridge (2026-07-04, from m4)
+The bridge is a SEPARATE repo (github.com/appydave/kdd-bridge, private, pushed at bf95539).
+dark-factory's .mcp.json + SessionStart hook reference ~/dev/ad/apps/kdd-bridge/server.mjs —
+that path dangles on any machine until cloned:
+
+    gh repo clone appydave/kdd-bridge ~/dev/ad/apps/kdd-bridge
+
+Same convention as the other 2026-07-03/04 micro-apps (omi-fetch, app-registry, project-digest,
+kdd-viewer) — each its own private repo under appydave/, cloned to ~/dev/ad/apps/<name>.
+Roamy likely wants ALL of them for full parity. No build steps; zero-dependency node/python.
