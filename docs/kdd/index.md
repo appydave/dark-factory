@@ -38,3 +38,10 @@ first live use of the new `supersedes`/`superseded_by` fields.
 
 Full run audit (session list, verdicts, classifier output, triage report):
 [`_runs/2026-07-04-david-roamy/`](_runs/2026-07-04-david-roamy/).
+
+**Reconstruction is closed** — three loose ends (learnings/patterns ratification stance, the
+search-wider sign-off duty, and the skipped `improve-eval`/`improve-gate` stage) were resolved
+explicitly on 2026-07-04, see [`ADR-FORMAT-SPEC.md`'s closing section](ADR-FORMAT-SPEC.md#closing-three-gaps-from-the-reconstruction-decided-2026-07-04-after-the-fact).
+The only work this reconstruction still owes elsewhere is the KDD *read* side (nothing consults this
+tree yet) — handed off as `backlog/2026-07-04-kdd-read-gate-handover.md`, real build work for the
+M4 Mini, not this thread.

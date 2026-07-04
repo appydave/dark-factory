@@ -156,3 +156,27 @@ candidate for the new field, and worth fixing during ratification as a concrete 
    `reconcile-classifier-schema.md` so future *reconstructions* natively emit `scope`/`confidence`/
    `recurrence_count`, instead of needing a manual reformat pass each time. Flagged, not built — this
    proposal is the format; teaching Lisa to emit it natively is a follow-on ticket.
+
+## Closing three gaps from the reconstruction (decided 2026-07-04, after the fact)
+
+This format proposal only reformatted the 41 *decisions*. Three loose ends from the reconstruction
+itself surfaced afterward — closing each explicitly rather than leaving them silently unaddressed:
+
+- **Learnings and patterns (45 + 2) ratification: same rule as decisions.** No reason for a different
+  standard — they passed the same extraction/cluster/review gate. `status: proposed` on the learning
+  and pattern docs is an equally legitimate resting state; ratify lazily, one at a time, only when a
+  specific one is about to matter. Not reformatted into DF-ADR frontmatter (that format is
+  decisions-specific — learnings/patterns already carry their own frontmatter from `emit`), just the
+  same deferral philosophy.
+- **The "search wider" sign-off duty: adequate as done, not a gap.** Lisa collected ~250
+  `prior_art_hints` across candidates; nearly all were self-referential to Dark Factory's own `docs/`
+  and memory. That's expected, not under-searching — these are Dark Factory's *own* architecture
+  decisions, not ported from another system the way Cortex reconciled against its v1. There is no
+  plausible external repo holding undiscovered prior art on how Dark Factory decided to build its own
+  queue or engine. Closing this without further search.
+- **`improve-eval`/`improve-gate`: explicitly skipped, not silently omitted.** This stage measures the
+  extractor/classifier against real human disagreement (accept vs. reject) and only keeps a prompt
+  revision if it measurably improves agreement. This run produced **14 accepts, 0 rejects** at the
+  review gate — no disagreement signal exists yet to learn from. Running it now would only confirm
+  trivial 100% agreement. Revisit if a future ratification pass actually finds the classifier wrong
+  about something — that's the point at which there'd be a real label to measure against.
