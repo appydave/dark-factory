@@ -87,6 +87,11 @@ tags: [...]
 ---
 ```
 
+> **Ruling (2026-07-04):** standard YAML is the frontmatter contract — nesting is allowed, and the
+> nested `provenance:` block stays. Parsers must be YAML-capable or degrade LOUDLY (fixed in
+> appydave-plugins v5.13.1); silent partial parsing is the defect, not nesting. See ADR-0044's
+> Revision Log.
+
 ### Body (Cortex's proven shape, kept, plus two DF-specific sections)
 
 ```markdown
