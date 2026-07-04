@@ -45,3 +45,4 @@
 - [ADR-0041: Record factory failures as a structured, countable register instead of narrating them in prose](0041-record-factory-failures-as-a-structured-countable-register-i.md)
 - [ADR-0042: Dark-Factory Swagger is the aspirational descendant of BMAD Swagger, not an unrelated namesake](0042-dark-factory-swagger-is-the-aspirational-descendant-of-bmad-.md)
 - [ADR-0043: Replace per-card 'promote' with a cluster CONVERGE flow for the Floor↔Lanes bridge](0043-replace-per-card-promote-with-a-cluster-converge-flow-for-th.md)
+- [ADR-0044: Adopt a canonical DF-ADR format, modeled on Cortex's native template](0044-adopt-a-canonical-df-adr-format.md) — hand-authored, not Lisa-extracted; see [TEMPLATE.md](TEMPLATE.md) and [ADR-FORMAT-SPEC.md](../ADR-FORMAT-SPEC.md)
