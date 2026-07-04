@@ -30,3 +30,11 @@
 
 ## Standing context (not work, don't lose)
 Engine proven 2026-07-03 (`96fe799` = first worker-made commit) · orchestrator-delegation pattern is standing practice · extension model = iframe/repo-per-ext/package.json→SDK · three-folder rule pinned in constellation-map · "M4 Pro" = Roamy = the MacBook Pro.
+
+## Added 2026-07-04 (from the three morning captures)
+
+| # | Item | Owner |
+|---|------|-------|
+| M7 | **Thin-extensions enrichment round** — each of the 5 builds re-examined through "how would someone actually use it" (search · inferred metadata · summaries · usages · docs · find), for BOTH humans and agents. Runs AFTER omi-fetch v2 (learn from one before doing five). Source: OMI 2026-07-04 08:06 | me |
+| M8 | omi-fetch v2 in build (IDs A000-style · card/list toggle · LLM tags+synopsis) — OMI-app change, not dark-factory (David's words) | me (building) |
+| — | skill-registry captured as new pipeline candidate | done |
