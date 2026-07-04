@@ -147,3 +147,11 @@ that path dangles on any machine until cloned:
 Same convention as the other 2026-07-03/04 micro-apps (omi-fetch, app-registry, project-digest,
 kdd-viewer) — each its own private repo under appydave/, cloned to ~/dev/ad/apps/<name>.
 Roamy likely wants ALL of them for full parity. No build steps; zero-dependency node/python.
+
+## David's design direction on the read-gate (2026-07-04, PO feedback — for Roamy/ADR-0028 evolution)
+The MCP is fine but it's the MECHANISM, not the integration. The real home for KDD-reading is
+STRUCTURAL SDLC GATES: (a) "PR created → BEFORE developing it, validate against KDD decisions";
+(b) "absorbing worker output → write back through Lisa" — checkpoints in the workflow, not a
+session-start advisory. Lisa owns these structures (ties to the Lisa/ADR + SDLC conversations of
+2026-07-04 on both machines). Neither gate strictly REQUIRES an MCP — the bridge serves them, not
+replaces them. Also ratified: an MCP counts as an app → kdd-bridge goes into the app-registry.
