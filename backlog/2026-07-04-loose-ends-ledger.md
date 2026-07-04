@@ -40,4 +40,4 @@ Engine proven 2026-07-03 (`96fe799` = first worker-made commit) · orchestrator-
 | — | skill-registry captured as new pipeline candidate | done |
 | M9 | **Absorb the Roamy KDD stream** — ongoing Lisa reconstruction of past sessions landing as commits (historical decisions; reconcile by date, surface conflicts to David). Add kdd-viewer `instances/dark-factory.json` as the browse surface; keep plugins/lisa synced | me, standing |
 | ~~D9~~ | **DROPPED by David 2026-07-04** — Gemini = red herring (his testing was on the other computer; Tony's app is unrelated/another conversation). omi-fetch enrichment stays stub deliberately; engine choice revisited only if stub quality bites | closed |
-| D10 | Run `/plugin` → update **appydave** (installed = 5.1.0, repo = 5.9.1 — Lisa doctrine missing from what Claude actually loads on this machine) | **David**, 30s |
+| ~~D10~~ | DONE 2026-07-04 — appydave plugin updated to 5.9.1 (+ /reload-plugins) | closed |
