@@ -1,0 +1,22 @@
+{
+  "queue_id": "q-20260704T034441Z-research-async-human-in-loop-queues",
+  "kind": "external-research",
+  "executor": "external-research-agent",
+  "verify_kind": "external-research-answer",
+  "requested_at": "2026-07-04T03:44:41Z",
+  "requested_by": "david (via dark-factory external-research-agent queue)",
+  "question": "What is the minimal viable mechanism real small teams/indie developers actually use to route a task to an external, non-API, no-file-access agent or human and get a result back asynchronously? Survey lightweight human-in-the-loop async patterns: GitHub Actions workflow_dispatch + manual approval steps, Zapier/Make.com human-input steps, using a shared Airtable/Notion/Google Sheet row as a poor-man's queue, Slack/Discord bot approval flows, or anything else you know of. For each pattern found: how does the consumer get NOTIFIED a new task exists (poll? webhook? someone just checks a doc)? How does the RESULT get back to the requester? What's the actual minimal infrastructure required?",
+  "context": "Dark Factory (a personal project) wants to queue research tasks for a friend-operated online agent. The friend's agent has no file access and its exact capabilities/API are unknown -- possibly just a chat UI a human relays into. Looking for the SIMPLEST real-world patterns for this kind of asynchronous external hand-off, not enterprise message-bus architecture (no Kafka/RabbitMQ-scale answers wanted -- this is a single external consumer, likely one person/agent, not a fleet).",
+  "context_note": "This complements a companion research task on heterogeneous multi-agent worker pools (ticket 20260704T034440Z) -- that one is about task-payload SHAPE for a capability-limited worker; this one is about the QUEUE/NOTIFICATION mechanism itself.",
+  "output_schema": {
+    "answer": "prose summary, cited",
+    "patterns_found": [
+      {"pattern_name": "string", "notification_mechanism": "string", "return_mechanism": "string", "minimal_infra_required": "string"}
+    ],
+    "recommendation_for_a_single_external_consumer": "string",
+    "sources": ["url", "..."],
+    "confidence": "high|medium|low"
+  },
+  "depends_on": [],
+  "note": "NOT for engine/orchestrator.py auto-dispatch. External-research-agent consumer only -- see backlog/2026-07-04-research-agent-queue-handover.md"
+}

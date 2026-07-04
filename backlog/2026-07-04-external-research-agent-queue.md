@@ -2,6 +2,15 @@
 
 **Raised:** 2026-07-04, mid-conversation while designing the DF-ADR format (see `docs/kdd/decisions/0044-adopt-a-canonical-df-adr-format.md`). Not built, not fully spec'd — this is a capture so the idea isn't lost, per "requirements-first, store for future ticketing."
 
+## Status update 2026-07-04 (same day)
+
+David asked to build the queue skeleton + hand it off, so this moved from "capture only" to "built,
+awaiting execution": `kind: external-research` tickets now live in `engine/store/queue/` (3 seeded), and
+`backlog/2026-07-04-research-agent-queue-handover.md` is the execution handover for whichever conversation
+has access to the friend's agent. **The open questions below are still open** — the handover explicitly
+defers to whatever that conversation discovers about the friend's agent's real capabilities, rather than
+guessing here.
+
 ## The idea
 
 David has a friend-operated online agent (not a Claude Code session, no file access, less capable than
