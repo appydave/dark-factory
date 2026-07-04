@@ -61,3 +61,6 @@ one specific ticket through the needs-decision/decisions mid-task approval flow)
   itself verifies the real deliverable — the worker's `results/<ticket>.json`
   self-report is necessary but never sufficient.
 - The store is a growing ledger, not a demo scratchpad. Nothing resets it between runs.
+
+## Ticket-first (standing rule)
+Every unit of work = a ticket in `store/queue/`, even builder-agent-executed ones (`executor: builder-agent`). App ideas -> brains app-pipeline. Ratified 2026-07-04.
