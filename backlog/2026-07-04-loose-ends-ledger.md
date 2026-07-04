@@ -39,4 +39,4 @@ Engine proven 2026-07-03 (`96fe799` = first worker-made commit) · orchestrator-
 | M8 | ~~omi-fetch v2~~ **SHIPPED** (`ae89b32`) — codes A000-A269 live, lookup.py, cards toggle; enrichment in stub mode pending D9 | done |
 | — | skill-registry captured as new pipeline candidate | done |
 | M9 | **Absorb the Roamy KDD stream** — ongoing Lisa reconstruction of past sessions landing as commits (historical decisions; reconcile by date, surface conflicts to David). Add kdd-viewer `instances/dark-factory.json` as the browse surface; keep plugins/lisa synced | me, standing |
-| D9 | **Gemini access is DEAD both ways** (CLI: IneligibleTierError/needs Antigravity migration · ~/.secrets API key: INVALID) — found by omi-fetch v2. ⚠ your daily omi-extract pipeline likely broken by the same thing. Fix key or migrate CLI; enrichment auto-upgrades from stub when either works | **David** |
+| ~~D9~~ | **DROPPED by David 2026-07-04** — Gemini = red herring (his testing was on the other computer; Tony's app is unrelated/another conversation). omi-fetch enrichment stays stub deliberately; engine choice revisited only if stub quality bites | closed |
