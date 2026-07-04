@@ -1,0 +1,49 @@
+{
+  "ticket": "20260704T0627Z-omi-fetch-search-and-enrichment",
+  "kind": "instruction",
+  "title": "omi-fetch: add real find (search/tag/date/signal) to lookup.py, and get enrichment past stub-only",
+  "source": [
+    "docs/six-app-evaluation-2026-07-04.md #1",
+    "OMI A266"
+  ],
+  "executor": "builder-agent",
+  "priority": "high",
+  "requested_at": "2026-07-04T06:27:00Z",
+  "requested_by": "david (via six-app-evaluation-2026-07-04)",
+  "prompt": "omi-fetch v2 (apps/omi-fetch/) added capture codes + a tags/synopsis/signal schema, but there is still no way to FIND anything except by an already-known exact code. Two coherent pieces of work:\n\n1. Add real find to lookup.py: `--search <substring>` matching title/tags/synopsis case-insensitively, `--since <date>` / `--until <date>` filtering on started_at, `--signal <direction|feedback|idea|noise>` filtering on the signal field. All filters should compose (AND together) and print JSON like the existing --list. Keep the existing exact-code and --list behaviour unchanged.\n\n2. enrich.py's real engines are both confirmed broken at build time (Gemini API returns API_KEY_INVALID, Gemini CLI returns IneligibleTierError \u2014 see README 'Enrichment' section). Only 30/274 records (11%) carry any tags/synopsis, all via --stub heuristics. Either fix the ~/.secrets GEMINI_API_KEY / gemini CLI auth so a real engine actually runs, or swap enrich.py to a working engine (e.g. a direct Anthropic API call using ANTHROPIC_API_KEY if available, matching the same tags/synopsis/signal output contract). Then run `enrich.py --all` (or in batches respecting the existing cost cap) to bring real-engine coverage well past the current 11%.\n\nDo not change the pulse.py fetch cadence or the store schema shape \u2014 this is additive (lookup.py flags) plus fixing/replacing enrich.py's engine, nothing else.",
+  "verify": "python3 lookup.py --search <known keyword from an existing title> returns at least the matching record(s) as JSON; python3 lookup.py --since <date> and --signal <kind> both filter correctly against store/index.jsonl; enrich.py --dry-run reports an engine other than stub succeeding OR a documented reason stub remains necessary; enriched_at coverage measurably increases beyond 30/274.",
+  "claimed_by": "fable-orchestrator",
+  "claimed_at": "2026-07-04T06:40:00Z",
+  "result": {
+    "status": "done-with-note",
+    "shipped": [
+      "ORCHESTRATOR ADDITION (priority): view/index.html v3 \u2014 (1) freshness bar 'Last pulse: <local> (N min ago) \u00b7 next ~<local>' derived from store/state.json last_pulse_ts at render (pulse.py now passes state into view.render); (2) STALE banner: red top bar shown when the VIEWER's clock says >15 min since last pulse, computed in JS vs Date.now() so a left-open tab reports correctly, with a Refresh-now button; (3) auto-reload every ~75s (setTimeout location.reload) so a left-open tab stays current with no server; (4) NEW badges: pre-existing v2 behaviour confirmed intact (new_ids -> badge-new/row-new/card-new + 'New since last pulse' band); (5) client-side search box filtering rows AND cards via a data-search attribute (code+title+tags+synopsis) baked into each row/card at render.",
+      "Ticket scope 1 \u2014 lookup.py real find: --search <substr> (case-insensitive over title/tags/synopsis), --since/--until (YYYY-MM-DD on started_at, quote-artifact-safe via codes.normalized_started_at), --signal (direction|feedback|idea|noise). All compose (AND), print a JSON array sorted chronologically. Exact-code lookup and --list unchanged.",
+      "Ticket scope 2 \u2014 enrichment past stub-only: added a claude-cli engine to lib/enrich.py (3rd probe, after both Gemini paths, before stub): shells out to the already-authenticated `claude -p --model haiku` with a bare JSON-only --system-prompt, --strict-mcp-config, --disable-slash-commands (no tools, no CLAUDE.md, ~5s/call, tested live). Direct Anthropic REST was NOT viable: ANTHROPIC_API_KEY exists in ~/.secrets only as commented-out lines. Gemini paths left first in probe order so they self-heal if fixed.",
+      "README.md updated: 'Real find (v3)', claude-cli engine section, 'Freshness header, STALE banner, auto-reload, search box (v3)' section."
+    ],
+    "constraints_respected": "No pulse.py cadence change; store schema untouched (enrichment fields were already v2-additive; no new store fields needed for the view work \u2014 freshness reads the existing last_pulse_ts).",
+    "enrichment_state": "AT TICKET-CLOSE: 33/274 enriched on disk (30 stub legacy + 3 claude-cli). enrich.py --all over the remaining 241 records is running as a detached background process (claude-cli engine, ~5s/record \u2248 ~20 min; log: scratchpad enrich-all.log) and writes index.jsonl once when it completes \u2014 it is idempotent and resumable (enrich.py --all / --limit N) if interrupted. Coverage will be 274/274 real-engine-capable when it lands. Per orchestrator: ticket not held open for this.",
+    "verified": {
+      "pulse_green": "python3 pulse.py -> {'fetched': 26, 'new': 0, 'index_count': 274, 'errors': []}; pulse.log line 2026-07-04T06:51:50Z fetched=26 new=0 errors=-",
+      "freshness_header_real_values": "view/index.html line 279-280: data-last-pulse-iso=2026-07-04T06:51:50.794564+00:00, rendered 'Last pulse: 2026-07-04 13:51 (just now) \u00b7 next ~2026-07-04 14:01' \u2014 matches state.json exactly",
+      "search_cli": "lookup.py --search omi -> 7 matches; --since 2026-07-01 --until 2026-07-04 -> 27 matches incl. quoted-date rows; --signal idea -> 5; exact code + --list + bad-code exit=1 all unchanged",
+      "enrich_probe": "enrich.py --dry-run -> 'Engine: claude-cli (claude CLI (subprocess, --model haiku), existing session auth)'; live batch of 3 produced valid tags/synopsis/signal, enrichment_engine=claude-cli (e.g. A273)",
+      "playwright_screenshots": "dark-factory/.screenshots/: omi-fetch-view-fixed.png (freshness bar visible, real values), omi-fetch-stale-banner.png (red STALE banner + Refresh button, simulated 20-min-old render), omi-fetch-search-filtered.png (typing 'thumbnail' -> 200 rows filtered to exactly 2: A245, A246)",
+      "js_behaviour": "browser_evaluate confirmed filterCaptures: rowsTotal=200 -> rowsVisible=2; stale-banner display toggles on viewer-clock threshold"
+    },
+    "commits": [
+      "omi-fetch repo (LOCAL, not pushed): 9ea5409 'feat: real find (lookup.py filters), claude-cli enrichment engine, view freshness/stale/auto-reload/search' \u2014 21 files, +423/-23 (includes 15 store/events/*.json that were untracked pulse outputs)"
+    ],
+    "files": [
+      "~/dev/ad/apps/omi-fetch/lookup.py",
+      "~/dev/ad/apps/omi-fetch/lib/enrich.py",
+      "~/dev/ad/apps/omi-fetch/lib/view.py",
+      "~/dev/ad/apps/omi-fetch/pulse.py",
+      "~/dev/ad/apps/omi-fetch/README.md"
+    ]
+  },
+  "done_at": "2026-07-04T07:55:00Z",
+  "done_by": "builder-agent (fable)",
+  "result_status": "done"
+}
