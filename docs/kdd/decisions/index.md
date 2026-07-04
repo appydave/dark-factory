@@ -1,8 +1,13 @@
 # Decision candidates (41)
 
-> Reconstructed from sessions — NOT ratified ADRs. Conform to this repo's ADR format before promoting any. Status: proposed.
+> Reformatted into the [DF-ADR template](../ADR-FORMAT-SPEC.md) on 2026-07-04 (frontmatter +
+> Revision Log added; content unchanged) — all still `status: proposed`, `confidence: reconstructed`
+> pending your read-and-accept pass. Conform each to `Deciders`/final content review before flipping
+> to `accepted`.
 > ADR-0023 and ADR-0040 were merged into ADR-0006 and ADR-0036 respectively on 2026-07-04 (each
 > pair recorded the same same-day decision from two sessions) — numbering gaps are intentional.
+> **ADR-0020 is `superseded` by ADR-0021** (same-day reversal) — the first live use of the new
+> `supersedes`/`superseded_by` fields.
 
 - [ADR-0001: Re-scaffold appyradar-sentinel as a fresh repo instead of rewriting git history to purge committed node_modules](0001-re-scaffold-appyradar-sentinel-as-a-fresh-repo-instead-of-re.md)
 - [ADR-0002: Archive superseded repos with a tested git-bundle backup, and gate deletion on the replacement being proven in deployment](0002-archive-superseded-repos-with-a-tested-git-bundle-backup-and.md)
@@ -23,8 +28,8 @@
 - [ADR-0017: Factory communication bus: an always-on durable broker (never runs claude) paired with in-session reactive listeners, over SSE topic-subscription rather than a filesystem](0017-factory-communication-bus-an-always-on-durable-broker-never-.md)
 - [ADR-0018: Convert every named-but-unstarted build into a stored, ticketable spec instead of starting it](0018-convert-every-named-but-unstarted-build-into-a-stored-ticket.md)
 - [ADR-0019: Close sessions cleanly with a handover record instead of relying on conversation compaction](0019-close-sessions-cleanly-with-a-handover-record-instead-of-rel.md)
-- [ADR-0020: Doc organiser as a recurring audit-only skill, not a one-time cleanup or autofix](0020-doc-organiser-as-a-recurring-audit-only-skill-not-a-one-time.md)
-- [ADR-0021: Don't build a new doc-organiser skill — wire the existing doc-drift + doc-review skill family instead](0021-don-t-build-a-new-doc-organiser-skill-wire-the-existing-doc-.md)
+- [ADR-0020: Doc organiser as a recurring audit-only skill, not a one-time cleanup or autofix](0020-doc-organiser-as-a-recurring-audit-only-skill-not-a-one-time.md) — **superseded by ADR-0021**
+- [ADR-0021: Don't build a new doc-organiser skill — wire the existing doc-drift + doc-review skill family instead](0021-don-t-build-a-new-doc-organiser-skill-wire-the-existing-doc-.md) — supersedes ADR-0020
 - [ADR-0022: Split AngelEye into AngelSentinel (always-on collector) and AngelEye Control Plane (dashboard)](0022-split-angeleye-into-angelsentinel-always-on-collector-and-an.md)
 - [ADR-0024: Spawn watchtower Swaggers with interactive claude, never claude -p/headless](0024-spawn-watchtower-swaggers-with-interactive-claude-never-clau.md)
 - [ADR-0025: Two-layer colour model — Colour as Brand vs Colour as Data](0025-two-layer-colour-model-colour-as-brand-vs-colour-as-data.md)

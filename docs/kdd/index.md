@@ -28,5 +28,13 @@ recorded the same same-day decision from two sessions): ADR-0023 folded into
 (comprehend-visualise consolidation proposal + its later execution). Numbering gaps at 0023/0040
 are intentional — see `_runs/2026-07-04-david-roamy/RECONCILE-TRIAGE.md` for the original flag.
 
+All 41 decisions were reformatted into the [DF-ADR template](ADR-FORMAT-SPEC.md) on 2026-07-04
+(see [ADR-0044](decisions/0044-adopt-a-canonical-df-adr-format.md)) — still `status: proposed`,
+`confidence: reconstructed`, content unchanged, pending your read-and-accept pass per decision.
+[ADR-0020](decisions/0020-doc-organiser-as-a-recurring-audit-only-skill-not-a-one-time.md) is now
+linked as `superseded` by
+[ADR-0021](decisions/0021-don-t-build-a-new-doc-organiser-skill-wire-the-existing-doc-.md) — the
+first live use of the new `supersedes`/`superseded_by` fields.
+
 Full run audit (session list, verdicts, classifier output, triage report):
 [`_runs/2026-07-04-david-roamy/`](_runs/2026-07-04-david-roamy/).

@@ -1,3 +1,19 @@
+---
+id: ADR-0006
+title: "Move Dark Factory job-state off flat files into a Switchboard-hosted shared state plane"
+status: proposed
+scope: internal
+date_decided: 2026-06-08
+deciders: [David Cruwys]
+confidence: reconstructed
+recurrence_count: 2
+provenance:
+  sessions: ["2df0e613", "940816e3"]
+  files: ["backlog/specs/df7-switchboard-state-plane-spec.md", "backlog/specs/tickets.json", "experiments/watchtower-engine/bin/claim-next.sh"]
+  commits: []
+tags: []
+---
+
 > 🤖 **Reconstructed + reconciled — proposed ADR.** Conform to this repo's ADR format/`Deciders` before ratifying.
 > Merged 2026-07-04 from two same-day reconstructed candidates (sessions `940816e3` and `2df0e613`,
 > both 2026-06-08) that recorded the same decision from two passes over the same working day —
@@ -7,8 +23,8 @@
 
 **Status:** Proposed (reconstructed)
 
-
 ## Context
+
 Dark Factory's job work-state lives in flat files on the factory floor
 (`experiments/watchtower-engine/{queue,running,done,reports}/`), claimed via an atomic-rename mutex
 (`bin/claim-next.sh` — `rename(2)` moving `queue/<id>.json` to `running/<id>.json` so exactly one
@@ -19,6 +35,7 @@ repos/apps required cd-ing out rather than a truly portable capability. An orpha
 surfaced during a live 2nd-orchestrator experiment and exposed the gap.
 
 ## Decision
+
 State home moves to a service-backed shared-state plane: **Switchboard** owns the job pool/claims/
 ownership (modeled on its existing staleness-detector), **AngelEye** provides liveness, **AppyCtrl**
 (unbuilt) handles dead-process reaping, and **Watchtower** is the view — turning Marshall instances
@@ -28,6 +45,7 @@ from, not thrown away. Produced as a SPEC ONLY document (`backlog/specs/df7-swit
 the build is a separate, later Ralphy-in-app leg against the switchboard repo.
 
 ## Alternatives Considered
+
 - **In-engine fix** — stamp `claimed_by` + use a per-orchestrator `WT_ENGINE_DIR` namespace.
   Rejected: solves ownership "from within the agent," contradicts the DF-3 spec's "observe
   externally" principle.
@@ -37,6 +55,7 @@ the build is a separate, later Ralphy-in-app leg against the switchboard repo.
   rejected as fork/merge-hell.
 
 ## Consequences
+
 DF-7 ticket created (priority 1) with a full requirement PRD (via `appydave:spec-writer`). Five
 OPEN DECISIONs were left inline for David to resolve before any build starts (durable substrate,
 claimant identity, MCP/HTTP path, reaper requeue authority, retry ownership) — all later ruled. The
@@ -46,9 +65,15 @@ separate and out-of-app (in the switchboard repo). The same capability simultane
 factory portability.
 
 ## Related
+
 - Sessions: `2df0e613`, `940816e3`
 
 ## Provenance
+
 - **Sessions** (2): `2df0e613` · 2026-06-08, `940816e3` · 2026-06-08
 - **Files** (candidate-level): `backlog/specs/df7-switchboard-state-plane-spec.md`, `backlog/specs/tickets.json`, `experiments/watchtower-engine/bin/claim-next.sh`
 - **Commits** (candidate-level): —
+
+## Revision Log
+
+- 2026-07-04 — reconstructed — Lisa KDD pipeline extraction (session-mined). Reformatted into DF-ADR template; not yet manually ratified.
