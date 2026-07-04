@@ -3,10 +3,62 @@
   "kind": "instruction",
   "title": "kdd-viewer: minimal search over store/instances/<id>.json + point agents at the JSON, not just the HTML",
   "source": ["docs/six-app-evaluation-2026-07-04.md #4", "OMI A266"],
-  "executor": "unassigned",
+  "executor": "builder-agent",
   "priority": "med",
   "requested_at": "2026-07-04T06:31:00Z",
   "requested_by": "david (via six-app-evaluation-2026-07-04)",
   "prompt": "kdd-viewer's README states 'No search' as a deliberate v1 Non-goal, and today the only way to answer 'what do we know about X' is opening view/<id>.html and reading every card by eye in the right tab — which an agent can't meaningfully do at all. Two pieces:\n\n1. Add a small query surface — either a new query.py or a --grep <term> flag on scan.py — doing a case-insensitive substring match over store/instances/<id>.json's title/category/fields, printing matching artifacts as JSON (path, type, title, category, lifecycle badges). This does not need to be full-text search over file contents — title/category/fields matching alone would fix most of the finding.\n\n2. Add one clear line to the README's Usage section stating that store/instances/<id>.json is a first-class, machine-readable interface an agent can read directly (with its shape), not merely an internal artifact behind the HTML view.\n\nKeep the LLM-free, stdlib-only, read-only design constraints — this is a query/find addition, not a rewrite.",
-  "verify": "python3 scan.py supportsignal --grep <term-known-to-match-a-real-title-or-category> (or the new query.py equivalent) returns the matching artifact(s) as JSON without requiring the HTML view to be opened; README explicitly documents store/instances/<id>.json as an agent-readable interface."
+  "verify": "python3 scan.py supportsignal --grep <term-known-to-match-a-real-title-or-category> (or the new query.py equivalent) returns the matching artifact(s) as JSON without requiring the HTML view to be opened; README explicitly documents store/instances/<id>.json as an agent-readable interface.",
+  "claimed_by": "fable-orchestrator",
+  "claimed_at": "2026-07-04T08:10:00Z",
+  "expanded_scope_note": "David (2026-07-04) expanded this ticket beyond the original single-instance search+pointer ask: kdd-viewer must be extended to read all FOUR real KDD projects (supportsignal, dark-factory, cortex, kbde) and act as a uniformity probe across them, producing an instances index page with a structural-divergence/uniformity report as the primary deliverable.",
+  "result": {
+    "status": "done",
+    "shipped": [
+      "Ticket scope 1 (query surface) — new query.py: cross-instance/-type case-insensitive substring find over already-scanned store/instances/<id>.json files (title/category/fields), JSON out with path/type/title/category/lifecycle_badges. `python3 query.py <id>|all --grep <term> [--type learning|pattern|decision|example]`.",
+      "Ticket scope 2 (agent pointer) — README.md Usage section now states store/instances/<id>.json is a first-class agent-readable interface, not merely internal; the per-instance HTML footer also now says this and names query.py.",
+      "EXPANDED SCOPE (David, 2026-07-04): kdd-viewer now reads all four real KDD instances. New instances/dark-factory.json, instances/kbde.json; instances/cortex.json flipped unscanned:false->reachable and updated (types now include learning+pattern, not just decision; its assumed proposed-adrs/ staging split no longer exists after a fresh git pull merged it into a flat decisions/ dir).",
+      "New view/index.html (build_index.py + lib/index_view.py + lib/uniformity.py): every instance's counts/scan-status plus a UNIFORMITY REPORT computed from real scanned data (verdict: clean | readable-with-adapter | structurally-divergent | unreachable) — the deliverable David asked for by name.",
+      "New adapter config field exclude_files (lib/config.py, lib/scanner.py) — needed because dark-factory's decisions/TEMPLATE.md lives inside the scanned decisions/ dir (unlike SupportSignal's sibling meta/ folder) and would otherwise be normalized as a fake ADR.",
+      "Fixed lib/normalize.py provenance-style inference: an explicit frontmatter `provenance` field now takes precedence over field-name guessing, so dark-factory/cortex/kbde's Lisa-reconstructed learnings/patterns (which carry a story_reference holding a Claude session id, not a live ticket ref) aren't mislabeled 'live-captured'. lib/view.py's _provenance_line updated to render the new style gracefully. Verified backward-compatible: SupportSignal counts/behaviour unchanged.",
+      "Client-side filter box added to the per-instance HTML view (lib/view.py) — title/category/status/tags, scoped to the active tab, same data-search/JS pattern as omi-fetch's view.",
+      "docs/extension-notes.md: new 2026-07-04 section — the full uniformity findings, including the revised (previously-wrong) assumption about Cortex's staging split, and the one genuine positive finding (dark-factory's ADR-0020<->ADR-0021 is the only real structural supersede chain across all four instances). CONTEXT.md updated to match (sources, purpose, verified behaviour, scope limits)."
+    ],
+    "uniformity_report": {
+      "supportsignal": {"verdict": "clean", "counts": "learning=578 pattern=54 decision=14 example=0"},
+      "dark-factory": {"verdict": "structurally-divergent", "counts": "learning=45 pattern=2 decision=42", "top_divergence": "Decision provenance unreadable — nested YAML the flat-only parser can't parse"},
+      "cortex": {"verdict": "structurally-divergent", "counts": "learning=61 pattern=3 decision=48", "top_divergence": "Decisions carry NO YAML frontmatter — title/status/supersedes only exist as body prose"},
+      "kbde": {"verdict": "structurally-divergent", "counts": "learning=143 pattern=10 decision=48", "top_divergence": "Decisions carry NO YAML frontmatter — same profile as cortex"}
+    },
+    "constraints_respected": "LLM-free, stdlib-only (no new dependency), read-only toward every scanned project (kbde/cortex/supportsignal untouched beyond `git pull`; only kdd-viewer's own store/view/instances files were written).",
+    "verified": {
+      "idempotency": "All four instances scanned twice back-to-back via build_index.py --rescan; store JSON byte-identical apart from scanned_at (diffed explicitly for dark-factory).",
+      "query_cli": "python3 query.py all --grep supersed --type decision returns real cross-instance matches (cortex's prose-only case with empty lifecycle_badges, dark-factory's two resolved supersedes/superseded_by badges, supportsignal matches) without opening any HTML.",
+      "search_box": "Playwright: navigated view/dark-factory.html, clicked Decisions tab, typed 'doc organiser' into #search-input -> '1 of 42 match in this tab', correct card shown; screenshot captured.",
+      "index_page": "Playwright: view/index.html screenshotted full-page — 4 instance cards + uniformity table render correctly, only harmless favicon 404 in console.",
+      "python_syntax": "ast.parse() over every lib/*.py + scan.py/query.py/build_index.py — all parse cleanly."
+    },
+    "commits": [
+      "kdd-viewer repo (LOCAL, not pushed): 4eb4969 'feat: read all four KDD instances + query.py + uniformity report' — 23 files, +17362/-763"
+    ],
+    "files": [
+      "~/dev/ad/apps/kdd-viewer/query.py",
+      "~/dev/ad/apps/kdd-viewer/build_index.py",
+      "~/dev/ad/apps/kdd-viewer/lib/index_view.py",
+      "~/dev/ad/apps/kdd-viewer/lib/uniformity.py",
+      "~/dev/ad/apps/kdd-viewer/lib/config.py",
+      "~/dev/ad/apps/kdd-viewer/lib/scanner.py",
+      "~/dev/ad/apps/kdd-viewer/lib/normalize.py",
+      "~/dev/ad/apps/kdd-viewer/lib/view.py",
+      "~/dev/ad/apps/kdd-viewer/instances/dark-factory.json",
+      "~/dev/ad/apps/kdd-viewer/instances/kbde.json",
+      "~/dev/ad/apps/kdd-viewer/instances/cortex.json",
+      "~/dev/ad/apps/kdd-viewer/README.md",
+      "~/dev/ad/apps/kdd-viewer/docs/extension-notes.md",
+      "~/dev/ad/apps/kdd-viewer/CONTEXT.md"
+    ]
+  },
+  "done_at": "2026-07-04T09:05:00Z",
+  "done_by": "builder-agent (fable)",
+  "result_status": "done"
 }
