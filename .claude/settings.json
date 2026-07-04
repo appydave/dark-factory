@@ -3,9 +3,24 @@
     "blackboard": {
       "command": "node",
       "args": ["/Users/davidcruwys/dev/ad/apps/dark-factory/spikes/blackboard-mcp/server.mjs"]
+    },
+    "kdd-bridge": {
+      "command": "node",
+      "args": ["/Users/davidcruwys/dev/ad/apps/kdd-bridge/server.mjs"]
     }
   },
   "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '{\"systemMessage\":\"KDD read-gate (ADR-0028): before re-deriving a fact (machine identity, folder disambiguation, an already-settled decision), check docs/kdd/ and the brain first. k_darkfactory_list / k_darkfactory_search and k_brain_list / k_brain_search (kdd-bridge MCP) query them directly — every result cites source_path (G2); a no-match after >=2 phrasings (G3) is a real negative result. Advisory only, not enforced — see docs/kdd/decisions/0028-*.md.\"}'",
+            "statusMessage": "KDD read-gate advisory (ADR-0028)"
+          }
+        ]
+      }
+    ],
     "PreCompact": [
       {
         "hooks": [

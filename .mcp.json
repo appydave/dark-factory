@@ -4,6 +4,11 @@
       "type": "stdio",
       "command": "node",
       "args": ["spikes/blackboard-mcp/server.mjs"]
+    },
+    "kdd-bridge": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["/Users/davidcruwys/dev/ad/apps/kdd-bridge/server.mjs"]
     }
   }
 }
