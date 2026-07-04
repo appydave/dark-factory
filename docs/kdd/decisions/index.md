@@ -1,6 +1,8 @@
-# Decision candidates (43)
+# Decision candidates (41)
 
 > Reconstructed from sessions — NOT ratified ADRs. Conform to this repo's ADR format before promoting any. Status: proposed.
+> ADR-0023 and ADR-0040 were merged into ADR-0006 and ADR-0036 respectively on 2026-07-04 (each
+> pair recorded the same same-day decision from two sessions) — numbering gaps are intentional.
 
 - [ADR-0001: Re-scaffold appyradar-sentinel as a fresh repo instead of rewriting git history to purge committed node_modules](0001-re-scaffold-appyradar-sentinel-as-a-fresh-repo-instead-of-re.md)
 - [ADR-0002: Archive superseded repos with a tested git-bundle backup, and gate deletion on the replacement being proven in deployment](0002-archive-superseded-repos-with-a-tested-git-bundle-backup-and.md)
@@ -24,7 +26,6 @@
 - [ADR-0020: Doc organiser as a recurring audit-only skill, not a one-time cleanup or autofix](0020-doc-organiser-as-a-recurring-audit-only-skill-not-a-one-time.md)
 - [ADR-0021: Don't build a new doc-organiser skill — wire the existing doc-drift + doc-review skill family instead](0021-don-t-build-a-new-doc-organiser-skill-wire-the-existing-doc-.md)
 - [ADR-0022: Split AngelEye into AngelSentinel (always-on collector) and AngelEye Control Plane (dashboard)](0022-split-angeleye-into-angelsentinel-always-on-collector-and-an.md)
-- [ADR-0023: Move job work-state off flat files onto a service-backed shared-state plane (Switchboard)](0023-move-job-work-state-off-flat-files-onto-a-service-backed-sha.md)
 - [ADR-0024: Spawn watchtower Swaggers with interactive claude, never claude -p/headless](0024-spawn-watchtower-swaggers-with-interactive-claude-never-clau.md)
 - [ADR-0025: Two-layer colour model — Colour as Brand vs Colour as Data](0025-two-layer-colour-model-colour-as-brand-vs-colour-as-data.md)
 - [ADR-0026: Design-lint built as a standalone staged dark-factory tool; placement left open](0026-design-lint-built-as-a-standalone-staged-dark-factory-tool-p.md)
@@ -41,7 +42,6 @@
 - [ADR-0037: Leave CLAUDE.local.md without the system-context auto-import for Dark Factory](0037-leave-claude-local-md-without-the-system-context-auto-import.md)
 - [ADR-0038: Upstream-repo writeups live in a new docs/upstream-repos/ shelf; actual repo clones live only in the canonical ~/dev/upstream/repos/ registry, never inside the dark-factory app](0038-upstream-repo-writeups-live-in-a-new-docs-upstream-repos-she.md)
 - [ADR-0039: The untracked-rot sweep (DF-9) will detect and report git hygiene debt only — never auto-commit or auto-write .gitignore](0039-the-untracked-rot-sweep-df-9-will-detect-and-report-git-hygi.md)
-- [ADR-0040: Consolidate the comprehend-render front-end into the design-system skill; restore the Shape Librarian as the shape-warrant gate](0040-consolidate-the-comprehend-render-front-end-into-the-design-.md)
 - [ADR-0041: Record factory failures as a structured, countable register instead of narrating them in prose](0041-record-factory-failures-as-a-structured-countable-register-i.md)
 - [ADR-0042: Dark-Factory Swagger is the aspirational descendant of BMAD Swagger, not an unrelated namesake](0042-dark-factory-swagger-is-the-aspirational-descendant-of-bmad-.md)
 - [ADR-0043: Replace per-card 'promote' with a cluster CONVERGE flow for the Floor↔Lanes bridge](0043-replace-per-card-promote-with-a-cluster-converge-flow-for-th.md)
