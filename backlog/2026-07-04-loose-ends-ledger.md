@@ -36,6 +36,7 @@ Engine proven 2026-07-03 (`96fe799` = first worker-made commit) · orchestrator-
 | # | Item | Owner |
 |---|------|-------|
 | M7 | **Thin-extensions enrichment round** — each of the 5 builds re-examined through "how would someone actually use it" (search · inferred metadata · summaries · usages · docs · find), for BOTH humans and agents. Runs AFTER omi-fetch v2 (learn from one before doing five). Source: OMI 2026-07-04 08:06 | me |
-| M8 | omi-fetch v2 in build (IDs A000-style · card/list toggle · LLM tags+synopsis) — OMI-app change, not dark-factory (David's words) | me (building) |
+| M8 | ~~omi-fetch v2~~ **SHIPPED** (`ae89b32`) — codes A000-A269 live, lookup.py, cards toggle; enrichment in stub mode pending D9 | done |
 | — | skill-registry captured as new pipeline candidate | done |
 | M9 | **Absorb the Roamy KDD stream** — ongoing Lisa reconstruction of past sessions landing as commits (historical decisions; reconcile by date, surface conflicts to David). Add kdd-viewer `instances/dark-factory.json` as the browse surface; keep plugins/lisa synced | me, standing |
+| D9 | **Gemini access is DEAD both ways** (CLI: IneligibleTierError/needs Antigravity migration · ~/.secrets API key: INVALID) — found by omi-fetch v2. ⚠ your daily omi-extract pipeline likely broken by the same thing. Fix key or migrate CLI; enrichment auto-upgrades from stub when either works | **David** |

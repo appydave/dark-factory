@@ -1,0 +1,13 @@
+{
+  "ticket": "omi-fetch-v2",
+  "title": "OMI Fetch v2 \u2014 sequential codes (A000..), LLM tags+synopsis enrichment, list/cards toggle",
+  "source": "raw-intake/omi/2026-07-04-0810-metadata-and-tagging-improvements-for-the-omy-list.md",
+  "executor": "builder-agent",
+  "claimed_by": "fable-orchestrator",
+  "claimed_at": "2026-07-04T02:30:00Z",
+  "verify": "pulse still green; lookup.py round-trip on 2 codes; morning captures show codes; view has toggle",
+  "note": "retroactive \u2014 filed after dispatch; the miss that triggered the ticket-first rule",
+  "done_at": "2026-07-04T02:35:00Z",
+  "result": "done",
+  "verified": "pulse green x3; lookup A000+A268 round-trip; codes A000-A269; toggle verified via playwright"
+}
