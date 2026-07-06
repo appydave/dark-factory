@@ -45,7 +45,7 @@ Invariant unchanged: interactive `claude` only. No -p, no Agent SDK, no API key 
 subscription-safe (docs/runtime-model.md).
 """
 import os, sys, time, json, socket, subprocess, re, uuid
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from warm_pool import WarmPool, safety_check, find_session
 from halt import is_halted, halt_info
 
@@ -56,21 +56,103 @@ Q, RUN, DONE, RES = (os.path.join(STORE, d) for d in ("queue", "running", "done"
 EVENTS   = os.path.join(STORE, "events")
 NEEDS, DEC = (os.path.join(STORE, d) for d in ("needs-decision", "decisions"))
 AUDIT    = os.path.join(STORE, "audit.jsonl")
+BACKOFF_PATH = os.path.join(STORE, "BACKOFF")   # 429/usage-limit governor flag-file (mirrors halt.py's HALT)
 
 MODEL          = "sonnet"   # real work, not toy trivia -> not haiku
 POOL           = 1          # default; dark-factory's real jobs are few and expensive
+CAP            = 3          # HARD CAP: per suborch's proven "well under the ~5-7 per-account 429 wall" —
+                             # --pool is clamped to this at startup, loudly, regardless of what's requested
 WORKER_TIMEOUT = 240        # seconds: a real edit+commit turn budget (generous vs suborch's 45s trivia)
 COOL_CAP       = 30
 MAX_WALL       = 900        # seconds: hard guard for a --serve-less (drain) run
 POLL           = 3
 MAX_RETRY      = 2
 HITL_TIMEOUT   = 1800
+BACKOFF_COOLDOWN = 900      # seconds (15 min): default cooldown once a usage-limit signature is detected
+
+USAGE_LIMIT_SIGNATURES = ("usage limit", "rate limit", "429", "out of extended usage")
 
 CLAIMANT = f"{socket.gethostname()}-pid{os.getpid()}"
 
 
 def now_iso():
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def _parse_iso(s):
+    """Defensive ISO-8601 'Z' parse — never raises; unparseable/missing -> None."""
+    if not s:
+        return None
+    try:
+        return datetime.strptime(s, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+    except Exception:
+        return None
+
+
+def looks_like_usage_limit(pane_text):
+    """Pure detector: case-insensitive substring match of a captured tmux pane
+    against known 429/usage-limit signatures. Never raises — empty/None input
+    just reads as False, same defensive contract as halt.py's is_halted()."""
+    if not pane_text:
+        return False
+    lowered = pane_text.lower()
+    return any(sig in lowered for sig in USAGE_LIMIT_SIGNATURES)
+
+
+# --- BACKOFF flag-file — mirrors halt.py's HALT idiom exactly (docs/kill-switch-spec.md),
+#     the one difference being BACKOFF has a built-in expiry: is_backoff() auto-removes
+#     the flag once "until" has passed and logs the resume, rather than waiting for a
+#     human to explicitly clear it. -----------------------------------------------------
+
+def backoff_info():
+    """Returns the BACKOFF file's {ts, until, reason, worker} payload regardless of
+    expiry, or None if the flag-file doesn't exist. A corrupt-but-present file still
+    reads as "in backoff" (with '?' fields) — existence is the ground truth, same as
+    halt_info()."""
+    try:
+        if not os.path.exists(BACKOFF_PATH):
+            return None
+    except Exception:
+        return None
+    try:
+        with open(BACKOFF_PATH) as f:
+            return json.load(f)
+    except Exception:
+        return {"ts": None, "until": None, "reason": None, "worker": None}
+
+
+def is_backoff():
+    """True iff the BACKOFF flag exists AND is unexpired. Unlike HALT (no expiry,
+    only a human clears it), BACKOFF self-clears: once 'until' has passed, this
+    removes the flag, logs the resume, and returns False. Never raises."""
+    info = backoff_info()
+    if info is None:
+        return False
+    until = _parse_iso(info.get("until"))
+    if until is not None and datetime.now(timezone.utc) >= until:
+        clear_backoff()
+        print(f"[backoff]  cooldown expired (was until {info.get('until')}) "
+              f"-- auto-resuming claim/dispatch", flush=True)
+        return False
+    return True
+
+
+def write_backoff(reason, worker, cooldown=BACKOFF_COOLDOWN):
+    os.makedirs(STORE, exist_ok=True)
+    until_dt = datetime.now(timezone.utc) + timedelta(seconds=cooldown)
+    payload = {"ts": now_iso(), "until": until_dt.strftime("%Y-%m-%dT%H:%M:%SZ"),
+               "reason": reason, "worker": worker}
+    with open(BACKOFF_PATH, "w") as f:
+        json.dump(payload, f, indent=2)
+        f.write("\n")
+    return payload
+
+
+def clear_backoff():
+    existed = os.path.exists(BACKOFF_PATH)
+    if existed:
+        os.remove(BACKOFF_PATH)
+    return existed
 
 
 def banner(msg):
@@ -95,10 +177,39 @@ def ensure_dirs():
         os.makedirs(d, exist_ok=True)
 
 
+_skip_logged = set()   # tickets already warned about — log each skip once, not every pass
+
+
+def dispatchable(fname):
+    """Filter for pending_tickets() (queue/.CONVENTION.md warning made real):
+    NOT every queue .json is for a tmux Claude worker. Skip (a) external-research
+    tickets — self-contained payloads for a non-Claude consumer, (b) tickets David
+    has explicitly deferred, (c) unparseable JSON (skip-and-warn beats crash or
+    blind dispatch)."""
+    try:
+        t = json.load(open(os.path.join(Q, fname)))
+    except Exception as e:
+        reason = f"unparseable JSON ({e})"
+        t = None
+    else:
+        if t.get("kind") == "external-research" or t.get("executor") == "external-research-agent":
+            reason = "external-research ticket (not for a Claude worker)"
+        elif "deferred" in (str(t.get("status", "")), str(t.get("priority", ""))):
+            reason = "deferred by David"
+        else:
+            return True
+    if fname not in _skip_logged:
+        _skip_logged.add(fname)
+        print(f"[skip]     ticket {fname}: {reason}", flush=True)
+    return False
+
+
 def pending_tickets():
     """Real queue scan (not a fixed list) — oldest-first by filename, matching
-    claim-next.sh's convention (timestamp-prefixed names sort in time order)."""
-    return sorted(f for f in os.listdir(Q) if f.endswith(".json"))
+    claim-next.sh's convention (timestamp-prefixed names sort in time order).
+    Filtered through dispatchable() — external-research/deferred tickets stay
+    in queue/ untouched."""
+    return sorted(f for f in os.listdir(Q) if f.endswith(".json") and dispatchable(f))
 
 
 def lease(fname):
@@ -414,6 +525,12 @@ def main():
     teardown = "--teardown" in argv
     gated_tid = argv[argv.index("--hitl") + 1] if "--hitl" in argv else None
 
+    if pool_size > CAP:
+        print(f"[cap]      *** requested --pool {pool_size} exceeds hard CAP={CAP} "
+              f"(429-wall admission control, docs/kill-switch-spec.md idiom) -- "
+              f"clamping to {CAP} ***", flush=True)
+        pool_size = CAP
+
     banner(f"dark-factory engine kernel — pool={pool_size} model={model} "
            f"repo={REPO} subscription-only" + (f" (--hitl {gated_tid})" if gated_tid else ""))
 
@@ -450,6 +567,10 @@ def main():
         if is_halted():
             info = halt_info() or {}
             print(f"[halt]     factory halted since {info.get('ts', '?')} by {info.get('by', '?')} "
+                  f"({info.get('reason', '?')}) -- skipping claim/dispatch this pass", flush=True)
+        elif is_backoff():
+            info = backoff_info() or {}
+            print(f"[backoff]  factory in backoff since {info.get('ts', '?')} until {info.get('until', '?')} "
                   f"({info.get('reason', '?')}) -- skipping claim/dispatch this pass", flush=True)
         else:
             pending = [f for f in pending_tickets() if f not in active]
@@ -522,7 +643,22 @@ def main():
                         results[tid] = "failed(verify)"; a["verify_findings"] = findings; settle(tid, a)
                         print(f"[reap]     ticket {tid}: giving up after verify timeout", flush=True)
             elif time.time() - a["started"] > WORKER_TIMEOUT:
-                w = a["worker"]; del active[tid]
+                w = a["worker"]
+                # LIMIT DETECTION: before rebooting a wedged worker, sniff its pane for a
+                # 429/usage-limit signature -- a reboot would otherwise mask exactly the
+                # symptom we need to see (docs/kill-switch-spec.md idiom, mirrored here).
+                pane_text = w.capture()
+                if looks_like_usage_limit(pane_text):
+                    lowered = pane_text.lower()
+                    matched = next((s for s in USAGE_LIMIT_SIGNATURES if s in lowered), "?")
+                    reason = f"usage-limit signature '{matched}' on {w.name} (ticket {tid})"
+                    write_backoff(reason, w.name)
+                    print(f"[backoff]  ticket {tid}: {w.name} pane shows '{matched}' -> BACKOFF written "
+                          f"(cooldown {BACKOFF_COOLDOWN}s)", flush=True)
+                    notify("engine: entering BACKOFF",
+                           f"{w.name} hit a usage limit ({matched}) -- pausing claim/dispatch "
+                           f"~{BACKOFF_COOLDOWN // 60}min")
+                del active[tid]
                 w.reboot(); w.busy = None
                 print(f"[reboot]   {w.name}: wedged on ticket {tid} -> fresh process", flush=True)
                 if retries.get(tid, 0) < MAX_RETRY:

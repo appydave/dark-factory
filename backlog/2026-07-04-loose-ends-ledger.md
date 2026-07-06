@@ -21,7 +21,7 @@
 
 | # | Item | Where specced |
 |---|------|---------------|
-| M1 | Engine hardening before pool>1: CAP/429 governor · auto-wake (C3/DF-10) · per-ticket-kind VERIFIERS · live-exercise HITL gate · switchboard `swagger-*` naming | `engine/docs/ENGINE-NOTES.md` |
+| M1 | Engine hardening: ~~CAP/429 governor~~ ✓ · ~~auto-wake (C3/DF-10)~~ ✓ (v1 built 2026-07-06, `docs/auto-wake.md` — notify live, dispatch DISARMED pending David's `bin/factory-wake arm`) · ~~per-ticket-kind VERIFIERS~~ ✓ (07-04) · live-exercise HITL gate (open) · switchboard `swagger-*` naming (open) | `engine/docs/ENGINE-NOTES.md` |
 | M2 | AngelEye-sentinel extension (#5 of the cut, unbuilt) | `app-pipeline/angeleye-sentinel.md` |
 | M3 | Cortex KDD scan — needs Roamy + staging-vs-ratified schema fix | `kdd-viewer/docs/extension-notes.md` |
 | M4 | Project-digest #2: wire `needs_you.markers` config, add second project | `project-digest/docs/extension-notes.md` |

@@ -15,7 +15,7 @@ file, against the evaluation's promotion plan.
 | HITL | Promote suborch's gate wholesale, additively | `engine/orchestrator.py` — `needs-decision/<tid>.json` -> `decisions/<tid>.json` -> `send-keys` resume, ported natively (`task_prompt(gated=True)`, `resume_prompt()`, the block/resume loop). Present and wired, gated via `--hitl <ticket>`. NOT exercised on the real proof ticket (by design — see the day's build instructions). |
 | Observability | Keep switchboard, add suborch's audit trail | `engine/store/audit.jsonl` is net-new (K3 from the evaluation) — ticket/attempt/worker/session_id/transcript/claimed_by/claimed_at per dispatch. Switchboard itself is untouched — out of scope for this build. |
 | Events consumer | Named as "the missing brick" | `engine/consumer.py` — net-new, not in either lineage. Polls `engine/store/events/` AND `~/dev/ad/apps/omi-fetch/store/events/`, appends to `engine/store/events-consumed.jsonl`, plays `afplay Glass.aiff`. Closes `docs/comms-flow.md` §5's "events have no consumer" gap for the first time, for two producers. |
-| Concurrency governor (CAP=N) | Promote suborch's CAP gate | **Not built.** Out of the day's explicit build scope (not listed under "Build scope"). With default pool=1, `pool.free_worker()` already caps concurrency at the pool size — but there is no separate 429-wall admission-control gate above that. Named honestly as a gap, not silently skipped: build it before any pool size >1 goes into real multi-ticket use. |
+| Concurrency governor (CAP=N) | Promote suborch's CAP gate | **Built** (`20260706T0931Z-cap-governor` ticket, 2026-07-06). `orchestrator.py`: `CAP=3` clamps `--pool` at startup with a loud `[cap]` warning if exceeded; `looks_like_usage_limit()` sniffs a wedged worker's tmux pane (via `WarmWorker.capture()`, already present) for 429/usage-limit signatures BEFORE it gets rebooted; on match, `write_backoff()` drops `engine/store/BACKOFF` (`{ts, until, reason, worker}`, `BACKOFF_COOLDOWN=900`s default) and `notify()`s David. `is_backoff()`/`backoff_info()` mirror `halt.py`'s `is_halted()`/`halt_info()` idiom exactly (same defensive contract), with the one addition that `is_backoff()` auto-clears an expired flag and logs the resume. Main loop gates claim/dispatch on `is_backoff()` right alongside the HALT gate — already-running tickets untouched. `status.py` shows a BACKOFF banner (mirrors the HALT banner) plus a `backoff` key in `--json`. |
 | DF-7 state plane | Future | Not built, per explicit instruction. |
 | Auto-wake (DF-10/C3) | Orthogonal, build separately | Not built — out of scope for this session. The engine as built still needs a human (or a future Marshall Monitor) to invoke `orchestrator.py`; it does not yet wake itself on a Switchboard `job.queued` SSE. |
 
@@ -48,7 +48,11 @@ file, against the evaluation's promotion plan.
 
 ## Known limitations (named, not hidden)
 
-- No CAP=N 429-wall governor (see table above) — fine at pool=1, a real gap at pool>1.
+- ~~No CAP=N 429-wall governor...~~ **Closed 2026-07-06** (ticket `20260706T0931Z-cap-governor`).
+  See the promotion table row above for the built shape (`CAP=3` clamp + pane-sniff limit
+  detection + `BACKOFF` flag-file, mirroring `halt.py`'s idiom). Not yet exercised against a
+  REAL 429 (only against a synthetic pane string and a manually-written flag) — first live
+  usage-limit hit is the real proof.
 - No auto-wake — a human (or a future skill) still has to run `orchestrator.py` by hand.
 - ~~`verify()`'s `VERIFIERS` dict currently has exactly one entry...~~ **Closed
   2026-07-04** (ticket `engine-status-and-verifiers`, per

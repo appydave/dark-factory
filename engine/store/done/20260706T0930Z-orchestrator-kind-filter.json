@@ -1,0 +1,27 @@
+{
+  "ticket": "20260706T0930Z-orchestrator-kind-filter",
+  "kind": "instruction",
+  "title": "engine: orchestrator claims EVERY queue .json \u2014 must skip external-research + deferred tickets",
+  "source": "engine/store/queue/.CONVENTION.md warning + auto-wake prerequisite (M1 hardening run)",
+  "executor": "fable-orchestrator (direct \u2014 small surgical edit)",
+  "priority": "high",
+  "requested_at": "2026-07-06T09:30:00Z",
+  "requested_by": "david (engine hardening go, 2026-07-06)",
+  "prompt": "pending_tickets() in engine/orchestrator.py returns every .json in queue/. Per .CONVENTION.md this wrongly dispatches kind=external-research tickets (payloads for a non-Claude consumer) and David-deferred tickets to tmux workers. Add a dispatchable() filter: skip tickets with kind=external-research, executor=external-research-agent, or status/priority=deferred; skip-and-warn on unparseable JSON. Log skipped tickets once per pass (not spam).",
+  "verify": "Drop a fake external-research ticket + a fake deferred ticket + a normal ticket into a temp queue scan; pending_tickets() returns only the normal one. Real queue: the deferred project-digest ticket is excluded.",
+  "claimed_by": "fable-orchestrator",
+  "claimed_at": "2026-07-06T09:33:00Z",
+  "result": {
+    "status": "done",
+    "files_changed": [
+      "engine/orchestrator.py"
+    ],
+    "verify_transcript": [
+      "temp queue (normal + external-research + status:deferred + priority:deferred + broken JSON) -> pending_tickets() == ['20260101T-normal.json']",
+      "each skip logged exactly once ([skip] lines), second pass silent",
+      "real queue: 20260704T0630Z-project-digest (deferred) excluded -> dispatchable []"
+    ],
+    "notes": "dispatchable() filter + log-once set; external-research/deferred tickets stay in queue/ untouched. Executed directly by orchestrator (surgical prerequisite for CAP + auto-wake builders).",
+    "orchestrator_review": "2026-07-06T08:23Z live run: orchestrator --pool 5 --max-wall 20 --teardown -> [cap] clamp 5->3 warning printed; 3 warm workers booted 10s; [backoff] skip logged with live flag; [skip] deferred ticket excluded; exit 0; pool torn down (tmux clean); BACKOFF untouched by run, cleared after. wake watcher: launchd loaded, DISARMED, debounce quiet-lines in wake.log, deferred ticket skipped."
+  }
+}

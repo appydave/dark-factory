@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# factory-wake — thin wrapper over engine/wake.py {arm|disarm|status}.
+# Usage: bin/factory-wake {arm|disarm|status}
+#
+# Mirrors bin/factory-halt's shape: no logic here, just delegate. arm/disarm
+# manage engine/store/WAKE-ARMED (the dispatch-leg gate); status reports
+# armed/disarmed, whether the launchd watcher is loaded, and the tail of
+# engine/store/wake.log. See docs/auto-wake.md.
+set -euo pipefail
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+exec python3 "$DIR/engine/wake.py" "$@"

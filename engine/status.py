@@ -23,6 +23,7 @@ import os, sys, json, re, argparse, subprocess
 from datetime import datetime, timezone
 
 from orchestrator import Q, RUN, DONE, RES, AUDIT, REPO  # single source of truth for paths
+from orchestrator import is_backoff, backoff_info, BACKOFF_PATH  # CAP/429-wall governor (cap-governor ticket)
 from halt import halt_info, HALT_PATH
 
 TS_RE = re.compile(r'^(\d{8})T(\d{4,6})Z-')
@@ -166,9 +167,15 @@ def build_report(n_done=5, n_audit=5):
         title, result, notes = done_outcome(f)
         done_recent.append(dict(file=f, title=title, result=result, notes=notes))
 
+    # is_backoff() has the auto-clear side effect (removes an expired flag before we
+    # report on it) — call it first, then read backoff_info() only if still active.
+    backoff_active = is_backoff()
+    backoff = backoff_info() if backoff_active else None
+
     return dict(
         generated_at=now.strftime("%Y-%m-%dT%H:%M:%SZ"),
         halt=halt_info(),  # None if running; {ts, by, reason} if HALT flag-file present
+        backoff=backoff,   # None if running; {ts, until, reason, worker} if BACKOFF flag-file present+unexpired
         queue=dict(
             depth=len(queue_files),
             oldest_ticket=oldest[1] if oldest else None,
@@ -196,12 +203,29 @@ def print_halt_banner(h):
     print("#" * 60)
 
 
+def print_backoff_banner(b):
+    """Mirrors print_halt_banner — the BACKOFF governor (cap-governor ticket) is only
+    worth building if its state is as visible as HALT's."""
+    print()
+    print("#" * 60)
+    print("##" + "  FACTORY IN BACKOFF (429 wall)".center(56) + "##")
+    print("#" * 60)
+    print(f"  since:  {b.get('ts', '?')}")
+    print(f"  until:  {b.get('until', '?')}")
+    print(f"  reason: {b.get('reason', '?')}")
+    print(f"  worker: {b.get('worker', '?')}")
+    print(f"  flag:   {BACKOFF_PATH}")
+    print("#" * 60)
+
+
 def print_human(r):
     def banner(s):
         print(f"\n=== {s} ===")
 
     if r.get("halt"):
         print_halt_banner(r["halt"])
+    if r.get("backoff"):
+        print_backoff_banner(r["backoff"])
 
     print(f"dark-factory engine status — {r['generated_at']}")
 

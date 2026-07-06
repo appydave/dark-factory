@@ -1,7 +1,10 @@
 # Spec — C3 Marshall Auto-Wake (close the doing loop)
 
 **Ticket:** DF-10 · **Project:** engine · **Lane:** doing-loop (the missing synapse)
-**Status:** SPEC ONLY — no build. Building is a later, separately-dispatched job.
+**Status:** v1 BUILT 2026-07-06 — a filesystem-native (launchd WatchPaths) retarget of
+this spec for today's engine (Switchboard down); see `docs/auto-wake.md` for the
+implementation and its explicit divergence-from-this-spec section. This document
+remains the v2/DF-7 end-state spec (Switchboard SSE + Marshall Monitor).
 **Author:** Marshall · **Requested by:** David · **Date:** 2026-06-21
 **Memory:** [[cleanup-is-harness-driven-not-remembered]], [[parallelism-via-identity]]
 **Relates to:** DF-7 (Switchboard state plane — the v2 end-state this is a stepping-stone toward)
