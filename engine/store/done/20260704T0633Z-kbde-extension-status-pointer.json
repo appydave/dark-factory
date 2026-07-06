@@ -1,0 +1,25 @@
+{
+  "ticket": "20260704T0633Z-kbde-extension-status-pointer",
+  "kind": "instruction",
+  "title": "omi-fetch: point README at the validated-unmounted extension attempt (it's currently invisible)",
+  "source": [
+    "docs/six-app-evaluation-2026-07-04.md #6",
+    "OMI A266"
+  ],
+  "executor": "builder-agent",
+  "priority": "low",
+  "requested_at": "2026-07-04T06:33:00Z",
+  "requested_by": "david (via six-app-evaluation-2026-07-04)",
+  "prompt": "apps/omi-fetch/extension/ holds a real, SDK-validated (zero errors) KyberAgent/KBDE extension attempt \u2014 status: validated-unmounted, with an excellent, ranked first-consumer friction report (extension/FRICTION.md). But apps/omi-fetch/README.md never mentions this exists at all; a reader of the main app's README has no way to know an extension attempt is sitting one directory down. This ticket is NOT about mounting it (that's blocked on an external KBDE SDK gap, tracked separately as ledger item D2 \u2014 David's own KBDE work, not dark-factory's to fix). It is purely a one-line discoverability fix: add a short section (or one line) to omi-fetch/README.md pointing at extension/ \u2014 status, and a pointer to extension/FRICTION.md and docs/extension-notes.md's 'Promotion status' section for anyone who wants the detail.",
+  "verify": "apps/omi-fetch/README.md contains a clear pointer to extension/ with its validated-unmounted status and a link to FRICTION.md; no code in extension/ is touched.",
+  "claimed_by": "fable-orchestrator",
+  "claimed_at": "2026-07-06T07:46:00Z",
+  "result": {
+    "status": "done",
+    "files_changed": [
+      "apps/omi-fetch/README.md (omi-fetch repo, NOT dark-factory)"
+    ],
+    "notes": "Confirmed apps/omi-fetch/extension/ exists (kbde.extension.ts, kbde.plugin.ts, web/, daemon/, tools/, FRICTION.md, extension-capabilities.snapshot.json). Real path for the 'Promotion status' section: apps/omi-fetch/docs/extension-notes.md (heading: '## Promotion status (updated \u2014 the promotion attempt happened)'). Added a new '## Extension attempt (`extension/`)' section to omi-fetch/README.md right after the intro, stating status: validated-unmounted, linking to extension/FRICTION.md and pointing to docs/extension-notes.md's Promotion status section for detail. No code touched, nothing inside extension/ touched, no commits made in either repo.",
+    "verify": "cd apps/omi-fetch && git status --short => ' M README.md' plus 3 pre-existing untracked store/events/*.json files unrelated to this change (app's own runtime output, not created or touched by this ticket). Only README.md modified."
+  }
+}
