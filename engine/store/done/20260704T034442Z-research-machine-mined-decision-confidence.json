@@ -10,11 +10,23 @@
   "output_schema": {
     "answer": "prose summary, cited",
     "examples_found": [
-      {"name": "string", "source": "url", "confidence_rises_over_time": "yes/no/unclear", "handles_contradicting_evidence": "yes/no/unclear", "notes": "string"}
+      {
+        "name": "string",
+        "source": "url",
+        "confidence_rises_over_time": "yes/no/unclear",
+        "handles_contradicting_evidence": "yes/no/unclear",
+        "notes": "string"
+      }
     ],
-    "sources": ["url", "..."],
+    "sources": [
+      "url",
+      "..."
+    ],
     "confidence": "high|medium|low"
   },
   "depends_on": [],
-  "note": "NOT for engine/orchestrator.py auto-dispatch. External-research-agent consumer only -- see backlog/2026-07-04-research-agent-queue-handover.md"
+  "note": "NOT for engine/orchestrator.py auto-dispatch. External-research-agent consumer only -- see backlog/2026-07-04-research-agent-queue-handover.md",
+  "claimed_by": "fable-orchestrator",
+  "claimed_at": "2026-07-06T08:15:00Z",
+  "execution_note": "external-research-agent channel never materialised (2 days); answered in-house by orchestrator-dispatched research subagents per David's 'move forward' 2026-07-06"
 }

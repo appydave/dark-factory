@@ -10,8 +10,8 @@
 |---|------|--------|
 | D1 | Create GitHub org **`kyberagent-extensions`** (web UI, one click) → then I split `omi-fetch/extension/` into its own repo there | 1 min |
 | D2 | **SDK mount gap** (the real one): additive handler wiring past the `seam/handlers.ts` wall · an ④ Events SDK builder · publish the SDK as a package. Input: `omi-fetch/extension/FRICTION.md` | David's KBDE work |
-| D3 | Retire failing `com.appydave.omi-sync` launchd job (superseded by omi-fetch pulse) — say the word, I execute | 1 line |
-| D4 | Design-lint placement: standalone tool or Mochaccino mode? (oldest open decision; digest NEEDS-YOU #1) | decision |
+| ~~D3~~ | DONE 2026-07-06 — omi-sync retired (was exiting 1 on a git conflict since ~forever; omi-fetch pulse healthy). Plist backed up: `~/Library/LaunchAgents/retired/com.appydave.omi-sync.plist.retired-2026-07-06` | closed |
+| D4 | Design-lint placement: standalone tool or Mochaccino mode? **Standing recommendation (2026-07-06): fold into Mochaccino as Shelly's self-review mode** (CLAUDE.md already calls that the likely true home). Not blocking anything — proceeds as recommended at next design-lint touch unless David objects | default set |
 | D5 | DF-7 greenlight + first-ingestion code-review — pre-existing backlog opens the digest surfaces | decision |
 | D6 | Poster taste-check (design 10 alternates) — optional | optional |
 | D7 | The **pending big project brief** you said you'd attach as a separate file | when ready |
