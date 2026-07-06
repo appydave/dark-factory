@@ -23,6 +23,7 @@ import os, sys, json, re, argparse, subprocess
 from datetime import datetime, timezone
 
 from orchestrator import Q, RUN, DONE, RES, AUDIT, REPO  # single source of truth for paths
+from halt import halt_info, HALT_PATH
 
 TS_RE = re.compile(r'^(\d{8})T(\d{4,6})Z-')
 
@@ -164,6 +165,7 @@ def build_report(n_done=5, n_audit=5):
 
     return dict(
         generated_at=now.strftime("%Y-%m-%dT%H:%M:%SZ"),
+        halt=halt_info(),  # None if running; {ts, by, reason} if HALT flag-file present
         queue=dict(
             depth=len(queue_files),
             oldest_ticket=oldest[1] if oldest else None,
@@ -177,9 +179,26 @@ def build_report(n_done=5, n_audit=5):
     )
 
 
+def print_halt_banner(h):
+    """Big, impossible-to-miss banner — the kill switch (docs/kill-switch-spec.md)
+    is only worth building if its state is visible, not just queryable."""
+    print()
+    print("#" * 60)
+    print("##" + "  FACTORY HALTED".center(56) + "##")
+    print("#" * 60)
+    print(f"  since:  {h.get('ts', '?')}")
+    print(f"  by:     {h.get('by', '?')}")
+    print(f"  reason: {h.get('reason', '?')}")
+    print(f"  flag:   {HALT_PATH}")
+    print("#" * 60)
+
+
 def print_human(r):
     def banner(s):
         print(f"\n=== {s} ===")
+
+    if r.get("halt"):
+        print_halt_banner(r["halt"])
 
     print(f"dark-factory engine status — {r['generated_at']}")
 

@@ -158,6 +158,14 @@ Consumers **poll or scan** these files; nothing pushes today except Switchboard'
 
 ---
 
+## 8. Voice law — voice-triggered surfaces are read-only
+
+**Voice-triggered surfaces are constitutionally READ-ONLY (explain/report only, never mutate)** [source: Mark Kashef v3 Jarvis pattern + David go 2026-07-06].
+
+David directs the factory by talking (§1) — but "David spoke a command" must never, by itself, be sufficient authority for a mutating action (a ticket claim, a canonical edit, a HALT/resume, a commit). A voice surface may **read** state and **report** it back (status, completions, exceptions — the "factory → David, VERBALLY" leg in §1's triad) but any action that changes factory state still goes through the same file-contract/queue path everything else does (`queue/` → `running/` → `done/`, or a human-written `decisions/<tid>.json`, per §3b/§3c) — never a direct voice-to-mutation shortcut. This closes off the failure mode where a misheard or ambiguous utterance silently mutates state with no artifact trail — the same "artifact-is-truth" principle (§4, `docs/comms-flow.md`) applied to the input side, not just the output side.
+
+---
+
 ## Related
 
 - `~/dev/ad/apps/suborch-demo/CONTEXT.md` + `PHASE-5-PLAN.md` — the proven kernel mechanics this doc promotes

@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# factory-resume — thin wrapper over engine/halt.py resume.
+# Usage: bin/factory-resume
+set -euo pipefail
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+exec python3 "$DIR/engine/halt.py" resume "$@"

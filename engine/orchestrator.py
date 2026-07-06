@@ -47,6 +47,7 @@ subscription-safe (docs/runtime-model.md).
 import os, sys, time, json, socket, subprocess, re, uuid
 from datetime import datetime, timezone
 from warm_pool import WarmPool, safety_check, find_session
+from halt import is_halted, halt_info
 
 ENGINE   = os.path.dirname(os.path.abspath(__file__))
 REPO     = os.path.dirname(ENGINE)                 # dark-factory repo root — worker cwd
@@ -442,28 +443,37 @@ def main():
                 w.reboot(); w.busy = None; cooling.remove(c)
                 print(f"[reboot]   {w.name}: would not idle -> fresh process", flush=True)
 
-        pending = [f for f in pending_tickets() if f not in active]
-        while pending:
-            w = pool.free_worker()
-            if not w:
-                break
-            fname = pending.pop(0)
-            if not lease(fname):
-                continue
-            ticket = load_ticket(fname)
-            tid = fname
-            gated = (tid == gated_tid)
-            w.busy = tid
-            w.send(task_prompt(tid, gated))
-            active[tid] = dict(worker=w, started=time.time(), gated=gated,
-                                state="running", blocked_since=None, ticket=ticket)
-            peak = max(peak, len(active))
-            if not w.session_id:
-                w.session_id, w.transcript = find_session(REPO, f"ticket id is {tid}.")
-            audit(dict(ticket=tid, attempt=retries.get(tid, 0) + 1, worker=w.name,
-                       session_id=w.session_id, transcript=w.transcript,
-                       claimed_by=ticket.get("claimed_by"), claimed_at=ticket.get("claimed_at")))
-            print(f"[dispatch] ticket {tid} -> {w.name}  (session {(w.session_id or '?')[:8]})", flush=True)
+        # Kill switch (docs/kill-switch-spec.md): checked before EVERY claim/
+        # dispatch pass. Halted -> skip leasing/dispatching new tickets this
+        # pass, but fall through to the reap loop below unchanged (already-
+        # running tickets are never killed mid-task; graceful only).
+        if is_halted():
+            info = halt_info() or {}
+            print(f"[halt]     factory halted since {info.get('ts', '?')} by {info.get('by', '?')} "
+                  f"({info.get('reason', '?')}) -- skipping claim/dispatch this pass", flush=True)
+        else:
+            pending = [f for f in pending_tickets() if f not in active]
+            while pending:
+                w = pool.free_worker()
+                if not w:
+                    break
+                fname = pending.pop(0)
+                if not lease(fname):
+                    continue
+                ticket = load_ticket(fname)
+                tid = fname
+                gated = (tid == gated_tid)
+                w.busy = tid
+                w.send(task_prompt(tid, gated))
+                active[tid] = dict(worker=w, started=time.time(), gated=gated,
+                                    state="running", blocked_since=None, ticket=ticket)
+                peak = max(peak, len(active))
+                if not w.session_id:
+                    w.session_id, w.transcript = find_session(REPO, f"ticket id is {tid}.")
+                audit(dict(ticket=tid, attempt=retries.get(tid, 0) + 1, worker=w.name,
+                           session_id=w.session_id, transcript=w.transcript,
+                           claimed_by=ticket.get("claimed_by"), claimed_at=ticket.get("claimed_at")))
+                print(f"[dispatch] ticket {tid} -> {w.name}  (session {(w.session_id or '?')[:8]})", flush=True)
 
         for tid, a in list(active.items()):
             if a["gated"] and not artifact_ok(tid):

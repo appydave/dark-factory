@@ -20,6 +20,7 @@ Invariant unchanged: interactive `claude` only. No -p, no SDK, ANTHROPIC_API_KEY
 Reaping stays artifact-is-truth: the caller verifies a real file, never the REPL text.
 """
 import os, sys, time, subprocess, glob
+from halt import is_halted
 
 HOME = os.path.expanduser("~")
 
@@ -135,6 +136,13 @@ class WarmPool:
         return times
 
     def free_worker(self):
+        """Defense-in-depth for the kill switch (docs/kill-switch-spec.md):
+        while HALT is set, no free worker is ever handed out, so orchestrator.py's
+        dispatch loop cannot send a NEW ticket to any worker even if some future
+        caller forgets its own is_halted() check. Workers already mid-task are
+        untouched here — this only gates handing out a worker for NEW work."""
+        if is_halted():
+            return None
         for w in self.workers:
             if w.busy is None:
                 return w

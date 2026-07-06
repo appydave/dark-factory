@@ -1,0 +1,14 @@
+{
+  "ticket": "20260706T-halt-switch",
+  "kind": "instruction",
+  "title": "Build the factory kill switch (spec + minimal working implementation) + the voice read-only law",
+  "source": "Mark Kashef distillation follow-up #6+#7 + David go 2026-07-06",
+  "executor": "builder-agent",
+  "priority": "high",
+  "requested_at": "2026-07-06T00:00:00Z",
+  "requested_by": "david (2026-07-06 go)",
+  "prompt": "Build a factory-wide kill switch and a voice read-only law, across dark-factory + the two pulse apps (omi-fetch, app-registry). Flag-file convention: engine/store/HALT. engine/halt.py (halt/resume/status) + bin/factory-halt + bin/factory-resume wrappers. orchestrator.py checks HALT before every claim/dispatch (skip + log); warm_pool.py workers don't get new sends while halted. Graceful only -- nothing killed mid-task. omi-fetch/pulse.py and app-registry/probe.py check the HALT path at start, log 'halted, skipping', exit 0 -- additive, never crash on a missing/unreadable path. status.py shows a big HALTED banner (+ --json); app-registry's view shows a halted banner if HALT exists at render. docs/kill-switch-spec.md documents the convention, scope, non-goals (no process kills), cross-machine note (per-machine flag for now). One short voice-law section appended to docs/comms-flow.md: voice-triggered surfaces are constitutionally read-only. Local commits in all three repos, do NOT push.",
+  "verify": "halt.py halt -> run omi-fetch pulse manually -> its log shows 'halted, skipping' -> status.py shows HALTED banner -> halt.py resume -> pulse ticks normally again, with the transcript captured in this ticket's result.",
+  "claimed_by": "fable-orchestrator",
+  "claimed_at": "2026-07-06T00:00:00Z"
+}
