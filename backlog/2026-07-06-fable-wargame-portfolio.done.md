@@ -49,7 +49,23 @@ fork triggers, abort conditions, executor-model tailoring).
 - [x] Phase 2 candidates DONE — 110 candidates across 9 tracks in
       `plans/wargames/candidates.js` (T4 removed), pre-sorted NOW 28 / NEXT 29 /
       LATER 52 / KILL 1.
-- [ ] Phase 3 triage — WAITING ON DAVID: open `plans/wargames/triage-board.html`,
-      re-bucket, "Copy verdicts as prompt", paste into the session
-- [ ] Phase 4 deep war-games
-- [ ] Phase 5 wire-up
+- [x] Phase 3 triage DONE (2026-07-06) — David accepted the pre-sort intact:
+      NOW 28 / NEXT 29 / LATER 52 / KILL 1 (Board v6 Map view).
+- [x] Phase 4 deep war-games DONE — 57/57 authored by parallel Fable agents
+      (~65 min, 6.2M subagent tokens). `backlog/wargames/<ID>-<slug>.md` +
+      `backlog/wargames/tickets/<ID>.json`. Lint clean; 3 depends_on refs fixed.
+- [x] Phase 5 wire-up DONE — `bin/promote-wargame.py` (dependency-aware,
+      self-hosting-ticket refusal, --list/--next) + `backlog/wargames/README.md`
+      (index, headlines, per-ticket flags, systemic warnings).
+
+## Summary (end of session)
+
+Fable's 24h window converted into a 57-ticket war-gamed portfolio the sonnet engine
+can execute for months: Phase 0 four-reader recon (headline: docs lag code) →
+interview (10 decisions) → 110 candidates → David's triage → 57 full war games +
+staged engine tickets → promotion tool. Systemic findings the authoring surfaced:
+WORKER_TIMEOUT=240s too short for war games (use --max-wall 3600), five self-hosting
+tickets must run attended, T1-02 saturation blocks David's own usage (parks on a
+go-decision), two latent engine defects (declined HITL tickets strand in running/;
+corrupt decision file silently approves). Start with:
+`python3 bin/promote-wargame.py --next 3`.

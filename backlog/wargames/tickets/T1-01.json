@@ -1,0 +1,13 @@
+{
+  "ticket": "wg-t1-01-hitl-live-proof",
+  "kind": "instruction",
+  "title": "T1 Engine: Exercise HITL gate live end-to-end",
+  "source": "backlog/wargames/T1-01-hitl-live-proof.md (war-game portfolio 2026-07-06)",
+  "executor": "swagger",
+  "priority": "high",
+  "requested_at": "2026-07-06T11:58:58Z",
+  "requested_by": "david (war-game portfolio triage, 2026-07-06)",
+  "depends_on": [],
+  "prompt": "The engine's mid-task HITL gate (orchestrator.py --hitl: needs-decision/ -> decisions/ -> send-keys resume) is wired but has never been exercised in this engine. Prove it live: run three cheap probe tickets through orchestrator.py, one per decision path — approve, redirect, decline — and demonstrate each resumes (or stops) the live worker correctly, capturing run logs, proof files, and a findings report at backlog/wargames/proof/T1-01/REPORT.md. Record engine defects as findings; never patch engine code. Read and execute the war game at backlog/wargames/T1-01-hitl-live-proof.md. Follow its moves in order; on any failure signal apply the counter-move; on any abort condition stop and write needs-decision/.",
+  "verify": "backlog/wargames/proof/T1-01/REPORT.md exists and covers all three legs with a Findings section. Proof files: probe-approve.txt and probe-redirect-B.txt exist under backlog/wargames/proof/T1-01/; probe-redirect-A.txt and probe-decline.txt do NOT (unless REPORT.md explicitly documents a PARTIAL leg). Run logs run-approve.log / run-redirect.log / run-decline.log in the same dir contain '[HITL] resumed' lines with decision=APPROVE, =REDIRECT, =DECLINE respectively. engine/store/done/ holds all three wg-t1-01-probe-* tickets and engine/store/running/ holds none; engine/store/decisions/ holds three wg-t1-01-probe-* decision files; audit.jsonl has >=3 wg-t1-01-probe lines; exactly 2 events reference the probes (approve+redirect job.completed). git diff --quiet engine/orchestrator.py engine/warm_pool.py engine/halt.py passes (engine code untouched), and a commit 'proof(engine): T1-01 HITL gate exercised live' exists."
+}

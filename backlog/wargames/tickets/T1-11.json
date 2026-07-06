@@ -1,0 +1,13 @@
+{
+  "ticket": "wg-t1-11-switchboard-state-fork-decision",
+  "kind": "instruction",
+  "title": "T1: DECISION war-game — Switchboard state-authority fork",
+  "source": "backlog/wargames/T1-11-switchboard-state-fork-decision.md (war-game portfolio 2026-07-06)",
+  "executor": "swagger",
+  "priority": "high",
+  "requested_at": "2026-07-06T12:05:27Z",
+  "requested_by": "david (war-game portfolio triage, 2026-07-06)",
+  "depends_on": [],
+  "prompt": "Per decisions.md Q3 David DEFERRED the state-authority fork: does engine/store/ (flat files, rename(2) claims with recorded ownership) stay the truth about job state, or does truth move to the DF-7 durable Switchboard state plane (backlog/specs/df7-switchboard-state-plane-spec.md — spec-only, its two recipes were never built, and it targets the retired experiments/watchtower-engine floor rather than today's engine/)? Produce a DECISION ARTIFACT, not a build: docs/switchboard-state-authority-fork.md mapping both branches from verified disk evidence (never doc claims — the surrounding docs contradict each other on exactly this topic), embedding a re-baseline table mapping the DF-7 spec's stale floor references onto today's engine, an executable trigger table (>=7 triggers, each with an observation command and a status-today result) defining what would force the fork later, honest per-branch costs, and the default posture (filesystem truth until a forcing trigger fires — Q3 restated, not a new decision). Link it from docs/INDEX.md and pin a status banner into the DF-7 spec. Change NO code anywhere; the Switchboard repo is read-only; do not resurrect or launchctl-load anything. Read and execute the war game at backlog/wargames/T1-11-switchboard-state-fork-decision.md. Follow its moves in order; on any failure signal apply the counter-move; on any abort condition stop and write needs-decision/.",
+  "verify": "docs/switchboard-state-authority-fork.md exists with >=9 '## ' sections including ground-truth inventories for both branches, the DF-7 re-baseline table (grep 'claim-next' hits it), a trigger table of >=7 rows each carrying an executable observation plus a dated status-today result, default posture, and a docs-lag contradictions ledger. `grep -n switchboard-state-authority-fork docs/INDEX.md backlog/specs/df7-switchboard-state-plane-spec.md` returns exactly two hits. A wg-t1-11 self-report exists in engine/store/results/ and the commit is pushed. Negative: no .py or .ts file changed, `git -C ../switchboard status --porcelain` is empty, launchctl shows no new switchboard job, and engine/store/needs-decision/ has a wg-t1-11 entry only if a trigger had already fired (Fork F3) or an abort condition was hit."
+}

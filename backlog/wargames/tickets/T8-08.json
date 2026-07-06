@@ -1,0 +1,13 @@
+{
+  "ticket": "wg-t8-08-repo-hygiene-sweep",
+  "kind": "instruction",
+  "title": "T8: Repo hygiene sweep — fleet verdicts + safe pushes",
+  "source": "backlog/wargames/T8-08-repo-hygiene-sweep.md (war-game portfolio 2026-07-06)",
+  "executor": "swagger",
+  "priority": "high",
+  "requested_at": "2026-07-06T12:47:29Z",
+  "requested_by": "david (war-game portfolio triage, 2026-07-06)",
+  "depends_on": [],
+  "prompt": "The 2026-06-15 handover flagged 16 dirty repos plus remote/push debt (beauty-and-joy, deckhand, appydave-plugins et al) and it was never confirmed resolved; authoring recon (2026-07-06) found the picture moved — mac-mini-m4 now shows 48 dirty repos, 4 with no remote, 5 with unpushed commits, and deckhand on Roamy STILL has no remote with 28 dirty files at risk. Sweep both machines via the embedded read-only scanner (locations.json enumeration; Roamy over ssh, report-only), execute ONLY the safe actions on mac-mini-m4 (fast-forward pushes of already-committed work; setting upstream tracking), assign every other repo a mechanical verdict (no-remote/diverged/dirty-wip/etc -> needs-David), publish backlog/<date>-repo-hygiene-verdicts.md with a June-15 claims closure table, and append one pointer line to the June-15 handover. Never create remotes, never commit/stash/clean/rebase/force in any swept repo. Read and execute the war game at backlog/wargames/T8-08-repo-hygiene-sweep.md. Follow its moves in order; on any failure signal apply the counter-move; on any abort condition stop and write needs-decision/.",
+  "verify": "Exactly one backlog/*-repo-hygiene-verdicts.md exists with a populated June-15 claims closure table (CLOSED/STILL-OPEN/MOVED rows), per-machine verdict tables (Roamy rows or explicit 'unswept' cells), and a NEXT-David block; backlog/2026-06-15-cortex-architecture-handover.md gained exactly one wg-t8-08 pointer line; engine/store/results/ has the wg-t8-08 self-report. Safe actions landed: `git -C ~/dev/ad/appydave-tools rev-parse --abbrev-ref @{u}` exits 0, and each authoring-time ahead repo (ansible, appystack, awb, flilaunch, signal-studio) shows `git rev-list --count @{u}..HEAD` = 0 or appears in the report as diverged/remote-broken. Negative: the 4 no-remote repos (digital-stage-summit-2026, screentour, bank-reconciliation, brain-cowork-upgrade) still have zero remotes; no commit was created in any swept repo (HEADs unchanged vs the scan record); the dark-factory commit touches only the report, the pointer line, and the results file."
+}

@@ -1,0 +1,15 @@
+{
+  "ticket": "wg-t2-06-five-day-briefing-proof",
+  "kind": "instruction",
+  "title": "T2 Producer/BA: Five-day briefing→BA→tickets proof — arm the Step-0 acceptance test",
+  "source": "backlog/wargames/T2-06-five-day-briefing-proof.md (war-game portfolio 2026-07-06)",
+  "executor": "swagger",
+  "priority": "normal",
+  "requested_at": "2026-07-06T12:09:29Z",
+  "requested_by": "david (war-game portfolio triage, 2026-07-06)",
+  "depends_on": [
+    "wg-t2-01-ba-agent"
+  ],
+  "prompt": "Arm the daily operating model's acceptance test: the Step-0 morning loop (project-digest briefing → BA agent conversation → day's tickets into the engine) run live for five days with all friction captured. A single dispatch cannot span a week or speak for David, so your done-bar is the proof STAGED, REHEARSED, and ARMED: build the run harness at backlog/wargames/runs/T2-06/ (one-page PROTOCOL.md morning ritual with pass bar ≥4-of-5 days and a two-missed-days stall rule; STATE.json capability snapshot; day-log template; friction-register.md pre-seeded with the capability gaps you find); stage five per-day auditor tickets under runs/T2-06/tickets/ (day-5's also writes RETRO.md with a PASS/PARTIAL/FAIL verdict and follow-on ticket drafts) — staged OUTSIDE engine/store/queue/, David copies one in per morning; run a day-0 mechanical rehearsal proving every non-David leg (digest with --no-write ONLY — a real run bumps briefing_n and eats Day 1's delta); then surface it: DRILL.md, a waiting:david kickoff note in backlog/ that David's own next briefing lifts into NEEDS YOU, and one osascript notification. Hard gate: an invocable BA agent (T2-01's artifact) must exist — if not found, park to needs-decision/, never substitute goal-plan (David ruled they are not the same). Read and execute the war game at backlog/wargames/T2-06-five-day-briefing-proof.md. Follow its moves in order; on any failure signal apply the counter-move; on any abort condition stop and write needs-decision/.",
+  "verify": "backlog/wargames/runs/T2-06/ contains PROTOCOL.md (grep hits for digest.py, a stall/missed rule, and a PASS bar), STATE.json (days 1–5 all 'pending', capability_snapshot and dispatch_route present, valid JSON), DRILL.md, friction-register.md (pre-seeded rows matching the capability gaps recorded in STATE.json), templates/day-log-template.md, day-logs/day-0-rehearsal.md, and exactly 5 valid Family-A auditor tickets tickets/day-{1..5}.json (executor swagger, kind instruction, all json.load clean). A backlog/*step0-proof-armed.md kickoff note exists containing the literal marker waiting:david. Negative: engine/store/queue/ contains no wg-t2-06 file; ~/dev/ad/apps/project-digest/store/last-briefing/dark-factory.json briefing_n is unchanged from the ticket's own recon read; no day-logs/day-[1-5]*.md and no RETRO.md exist (the week itself runs after arming, carried by the day tickets). All of it committed and pushed in dark-factory."
+}

@@ -1,0 +1,16 @@
+{
+  "ticket": "wg-t5-06-hitl-inbox-ui",
+  "kind": "instruction",
+  "title": "T5 Watchtower: HITL inbox UI — approve/decline/redirect surface over the engine's mid-task gate",
+  "source": "backlog/wargames/T5-06-hitl-inbox-ui.md (war-game portfolio 2026-07-06)",
+  "executor": "swagger",
+  "priority": "normal",
+  "requested_at": "2026-07-06T12:30:40Z",
+  "requested_by": "david (war-game portfolio triage, 2026-07-06)",
+  "depends_on": [
+    "wg-t5-01-watchtower-charter-scaffold",
+    "wg-t5-07-decision-queue-reconcile"
+  ],
+  "prompt": "Give the engine's mid-task HITL gate a real surface. Today a gated worker writes engine/store/needs-decision/<tid>.json and blocks until a human hand-writes engine/store/decisions/<tid>.json (orchestrator.py gate block, ~lines 599-632); the only 'UI' is a log line suggesting an echo command. Build a HITL Inbox in the Watchtower app at ~/dev/ad/apps/watchtower (the durable home per ADR-0032 — NOT the husk at dark-factory/apps/watchtower): shared HitlRequest/HitlDecision/HitlItem types; GET /api/hitl listing pending (needs-decision file with no same-named decisions/ twin, kind gate|parked by running/ twin) and answered items; POST /api/hitl/:ticket/decision with guards (filename sanitized, redirect requires non-empty choice, 404 if never asked, 409 if already decided) writing the decision file ATOMICALLY (temp-then-rename — a torn write silently APPROVES on the engine side); a HitlInbox client page polling every 5s with approve/redirect/decline forms and an answered list. Prove one synthetic round-trip against the real store with a planted wg-t5-06-demo-gate.json, then remove both demo files. Never POST to a real pending item, never touch engine code or any other store dir. Commit and push the watchtower repo; leave dark-factory clean. This is the mid-task gate surface, NOT the curation queue (T5-05) — keep the vocabulary split from T5-07. Read and execute the war game at backlog/wargames/T5-06-hitl-inbox-ui.md. Follow its moves in order; on any failure signal apply the counter-move; on any abort condition stop and write needs-decision/.",
+  "verify": "In ~/dev/ad/apps/watchtower: server/src/routes/hitl.ts and hitl.test.ts exist, hitl route is mounted in server/src/index.ts, client/src/pages/HitlInbox.tsx exists, shared/src/types.ts exports HitlDecision; npm run typecheck and npm test both pass; a wg-t5-06 commit exists on the repo (pushed to origin unless push was rejected and noted). Behavioural (demonstrated in M7 and repeatable): with the server up, GET /api/hitl returns a pending/answered JSON shape; planting a synthetic needs-decision file makes it appear as pending kind=parked; POST approve returns 200 and lands an atomic decisions/ twin containing action/decided_at/decided_via; repeating the POST returns 409; redirect without choice returns 400; unknown ticket returns 404. Negative: no wg-t5-06-demo files remain under engine/store/needs-decision/ or decisions/; git -C ~/dev/ad/apps/dark-factory diff --quiet engine/orchestrator.py engine/warm_pool.py engine/status.py passes; dark-factory git status is clean of this ticket's work (abort park file excepted)."
+}

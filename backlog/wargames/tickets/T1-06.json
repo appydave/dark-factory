@@ -1,0 +1,13 @@
+{
+  "ticket": "wg-t1-06-warm-pool-n2",
+  "kind": "instruction",
+  "title": "T1 Engine: Warm pool N>1 under CAP",
+  "source": "backlog/wargames/T1-06-warm-pool-n2.md (war-game portfolio 2026-07-06)",
+  "executor": "swagger",
+  "priority": "normal",
+  "requested_at": "2026-07-06T11:58:34Z",
+  "requested_by": "david (war-game portfolio triage, 2026-07-06)",
+  "depends_on": [],
+  "prompt": "Prove the dark-factory engine's warm pool at N=3 under the CAP governor: build and run a 200-ticket x 8-claimant multiprocess race against orchestrator.py's lease() proving zero double-claims with ownership recording intact, then run a live `--pool 5` orchestrator run that must clamp loudly to 3, boot df-worker-1..3, drain 6 clearly-prefixed no-op probe tickets at peak concurrency 3, and leave the deferred project-digest queue ticket untouched; record the two-orchestrators-collide worker-naming limitation as a one-line ledger finding. WARNING: the live leg is unsafe from inside a df-worker tmux session (it kill-sessions its own name) — the war game's Fork F1 governs this; on Route B do the race-harness leg only and park the live leg. Read and execute the war game at backlog/wargames/T1-06-warm-pool-n2.md. Follow its moves in order; on any failure signal apply the counter-move; on any abort condition stop and write needs-decision/.",
+  "verify": "From the repo root: `python3 engine/tests/lease_race.py --tickets 200 --claimants 8` exits 0 printing 'LEASE RACE OK: 200 tickets, 8 claimants, 200 unique wins, 0 double-claims'; engine/tests/wg-t1-06/live-run.log contains the '[cap]' clamp line ('exceeds hard CAP=3'), '3 warm worker(s) booted', 6 'wg-t1-06-noop' done reap lines, and 'peak concurrency 3/3' (2/3 acceptable with a note); `ls engine/store/done/ | grep -c wg-t1-06-noop` prints 6 with matching results/ files and audit.jsonl entries spanning >=2 distinct workers; the deferred ticket engine/store/queue/20260704T0630Z-project-digest-list-and-project-2.json still exists with status deferred; no df-worker tmux sessions remain; backlog/2026-07-04-loose-ends-ledger.md contains one 'wg-t1-06' finding line. Partial pass (executor was inside a df-worker session): race harness green + committed, plus needs-decision/wg-t1-06-warm-pool-n2.json parking the live leg."
+}

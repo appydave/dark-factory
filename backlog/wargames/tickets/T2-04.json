@@ -1,0 +1,15 @@
+{
+  "ticket": "wg-t2-04-digest-over-activity",
+  "kind": "instruction",
+  "title": "T2 Producer/BA: Digest-over-activity",
+  "source": "backlog/wargames/T2-04-digest-over-activity.md (war-game portfolio 2026-07-06)",
+  "executor": "swagger",
+  "priority": "normal",
+  "requested_at": "2026-07-06T12:08:52Z",
+  "requested_by": "david (war-game portfolio triage, 2026-07-06)",
+  "depends_on": [
+    "wg-t2-02-activity-registry"
+  ],
+  "prompt": "Make the morning briefing iterate what actually changed instead of a hand-config list: add `digest.py --active` to ~/dev/ad/apps/project-digest (its OWN git repo, not inside dark-factory) that consumes T2-02's universal activity registry via a new lib/activity.py subprocess adapter (copy lib/live.py's graceful-degradation pattern), renders the existing full briefing box for each changed project that has a projects/<id>.json config, and a compact capped 'ALSO ACTIVE' line for every changed path without one — per-project config becomes an override/richness dial, not the entry ticket (docs/morning-briefing-vision.md step 2). Single-project mode `digest.py dark-factory` must remain byte-path identical; commit+push both repos and annotate the vision doc. WARNING: the registry may have landed as design-only (T2-02 is L/design-first) — the war game's Recon 1-2 and Abort A1 govern that; never build the registry yourself and never touch its code, the feed layer (T2-05), --list (T2-03), or locations.json (T2-07). Read and execute the war game at backlog/wargames/T2-04-digest-over-activity.md. Follow its moves in order; on any failure signal apply the counter-move; on any abort condition stop and write needs-decision/.",
+  "verify": "In ~/dev/ad/apps/project-digest: `python3 digest.py --active --no-write` exits 0 printing at least one full briefing box plus an ALSO ACTIVE section fed by real registry output; `--active --format json --no-write` parses via json.tool and contains an also_active key; `python3 digest.py dark-factory --format md --no-write` still exits 0 with >=5 '## ' sections (single-project regression); lib/activity.py exists with a non-raising error seam; README.md documents --active; dark-factory docs/morning-briefing-vision.md carries exactly one wg-t2-04 step-2-done annotation; both repos show a pushed wg-t2-04 commit and the dark-factory commit touches no engine/ files. Partial pass (registry absent or design-only): zero code changes committed plus engine/store/needs-decision/wg-t2-04-digest-over-activity.json naming the registry state found."
+}

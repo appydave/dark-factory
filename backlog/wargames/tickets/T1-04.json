@@ -1,0 +1,13 @@
+{
+  "ticket": "wg-t1-04-c4-return-leg",
+  "kind": "instruction",
+  "title": "T1 Engine: C4 return leg — 'what ran' surfaced to David",
+  "source": "backlog/wargames/T1-04-c4-return-leg.md (war-game portfolio 2026-07-06)",
+  "executor": "swagger",
+  "priority": "high",
+  "requested_at": "2026-07-06T11:58:20Z",
+  "requested_by": "david (war-game portfolio triage, 2026-07-06)",
+  "depends_on": [],
+  "prompt": "Close C4 of the build spine: done-tickets currently land in engine/store/done/ silently (orchestrator notifies on HITL/BACKOFF but never on completion; builder-agent tickets are moved by hand with no signal). Ship the return leg: (a) a done-watcher in engine/wake.py — new done_pass() with its own .done-state.json debounce and silent first-run baseline — that fires a macOS notification plus a durable [return] wake.log line when tickets land in done/, triggered by widening the existing com.appydave.dark-factory-wake launchd job's WatchPaths to also cover engine/store/done; and (b) engine done-tickets as a third source in project-digest's SHIPPED field (~/dev/ad/apps/project-digest: lib/shipped.py + projects/dark-factory.json + the three renderers, additive keys only), so the morning briefing reports what the factory shipped. Read and execute the war game at backlog/wargames/T1-04-c4-return-leg.md. Follow its moves in order; on any failure signal apply the counter-move; on any abort condition stop and write needs-decision/.",
+  "verify": "grep -c 'def done_pass' engine/wake.py returns 1 and engine/store/wake.log contains >=2 '[return]' lines (baseline + live dummy test, dummy removed afterwards — done/ holds zero DUMMY files). The installed ~/Library/LaunchAgents plist (or the F1-B second plist) WatchPaths covers engine/store/done and launchctl list shows the job loaded; a dummy done-file drop produced a [return] log line via launchd with NO orchestrator process spawned. engine/store/.done-state.json last_seen exactly matches ls engine/store/done/*.json. In ~/dev/ad/apps/project-digest, digest.py dark-factory --format json --no-write yields shipped_recently.engine_done_count (int), and --format md / --format box both render without error. Negative: wake.py still never invokes claude; WAKE-ARMED not created by this ticket; queue-leg 'quiet'/'wake:' lines still appear in wake.log. Both repos committed and pushed (dark-factory: wake.py + plist + docs/auto-wake.md + one-line north-star C4 annotation; project-digest: shipped.py + config + renderers)."
+}

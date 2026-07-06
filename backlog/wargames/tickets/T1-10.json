@@ -1,0 +1,13 @@
+{
+  "ticket": "wg-t1-10-store-retention",
+  "kind": "instruction",
+  "title": "T1: Engine store retention policy — archive-only keep-window tool",
+  "source": "backlog/wargames/T1-10-store-retention.md (war-game portfolio 2026-07-06)",
+  "executor": "swagger",
+  "priority": "normal",
+  "requested_at": "2026-07-06T11:56:16Z",
+  "requested_by": "david (war-game portfolio triage, 2026-07-06)",
+  "depends_on": [],
+  "prompt": "engine/store/ is a growing ledger by design — done/, results/, events/, audit.jsonl and events-consumed.jsonl accumulate forever and nothing prunes them. Build engine/retention.py: a stdlib-only, dry-run-by-default tool that ARCHIVES (never deletes) settled artifacts older than a keep-window (--keep-days 30, --keep-min 20 newest done tickets always kept) into engine/store/archive/, moving done/results pairs together, never archiving an unconsumed event, splitting the two jsonl ledgers by timestamp with undated lines kept, and never touching queue/, running/, needs-decision/, decisions/, or store-root flag files. Prove the policy on a synthetic fixture via --store before running dry-run then --apply on the real store; document in engine/README.md; no cron/scheduling. Read and execute the war game at backlog/wargames/T1-10-store-retention.md. Follow its moves in order; on any failure signal apply the counter-move; on any abort condition stop and write needs-decision/.",
+  "verify": "engine/retention.py exists and parses; `python3 engine/retention.py --help`, `python3 engine/retention.py` (dry-run) and `python3 engine/retention.py --apply` all exit 0 against the real store, and `python3 engine/status.py` exits 0 afterwards with a non-empty DONE section. A fixture run demonstrated: done+results pairs archived together, orphan results kept, unconsumed events kept, audit.jsonl/events-consumed.jsonl lines older than the window moved to archive/ with undated lines kept, and dry-run/apply parity. Negative: git status shows queue/, running/, needs-decision/, decisions/ untouched; no existing engine/*.py modified (retention.py is the only new module); no cron/launchd entry added. engine/README.md gains a 'Store retention' section."
+}

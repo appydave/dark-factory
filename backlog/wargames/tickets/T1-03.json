@@ -1,0 +1,13 @@
+{
+  "ticket": "wg-t1-03-auto-wake-arm",
+  "kind": "instruction",
+  "title": "T1 Engine: Arm auto-wake dispatch leg — first live run",
+  "source": "backlog/wargames/T1-03-auto-wake-arm.md (war-game portfolio 2026-07-06)",
+  "executor": "swagger",
+  "priority": "high",
+  "requested_at": "2026-07-06T12:01:15Z",
+  "requested_by": "david (war-game portfolio triage, 2026-07-06)",
+  "depends_on": [],
+  "prompt": "Arm dark-factory's auto-wake dispatch leg for real: write docs/wake-armed-protocol.md (the WAKE-ARMED operating protocol), add arm/disarm event logging to engine/wake.py (the traceability gap behind the 2026-07-06 unexplained WAKE-ARMED-present anomaly), run a 30-minute-timeboxed forensic pass on that anomaly, and prove one live queue-drop -> launchd fire -> wake.py -> orchestrator auto-dispatch -> done cycle with a canary ticket, ending with the factory ARMED. CRITICAL: if an orchestrator.py process is live when you fire (you are almost certainly its worker), a synchronous fire is forbidden — a second orchestrator's warm-pool boot tmux-kill-sessions df-worker-1 and kills you; the war game's Fork F1 Route B (pre-write .wake.lock with the live pid, arm, stage a detached post-exit drop-watcher) is mandatory in that case. Read and execute the war game at backlog/wargames/T1-03-auto-wake-arm.md. Follow its moves in order; on any failure signal apply the counter-move; on any abort condition stop and write needs-decision/.",
+  "verify": "docs/wake-armed-protocol.md exists with 9 '## ' sections including an Incident log entry for the 2026-07-06 anomaly with a verdict; engine/wake.py's cmd_arm/cmd_disarm each call log() and engine/store/wake.log contains an 'ARMED by ... pid=' line; the live-fire is proven by wake.log containing 'action=dispatched', a *wake-canary* ticket in engine/store/done/ with a matching results/ file, and one '- LIVE-FIRE 20' line in docs/wake-armed-protocol.md (Route B: these three are post-flight checks after the dispatching engine run exits — the pasted check block in the protocol doc must pass); bin/factory-wake status reports ARMED (unless an abort parked to needs-decision/, in which case DISARMED plus the needs-decision file is the accepted end state); negative: orchestrator.py/warm_pool.py/halt.py unmodified, the deferred project-digest ticket still sits in queue/ untouched; all work committed and pushed."
+}

@@ -1,0 +1,13 @@
+{
+  "ticket": "wg-t6-03-sentinel-roamy-liveness",
+  "kind": "instruction",
+  "title": "T6 Constellation: Fix sentinel blind-to-Roamy",
+  "source": "backlog/wargames/T6-03-sentinel-roamy-liveness.md (war-game portfolio 2026-07-06)",
+  "executor": "swagger",
+  "priority": "high",
+  "requested_at": "2026-07-06T12:37:47Z",
+  "requested_by": "david (war-game portfolio triage, 2026-07-06)",
+  "depends_on": [],
+  "prompt": "The fleet sentinel (launchd daemon com.appydave.appyradar-sentinal, repo ~/dev/ad/apps/appyradar-sentinal) reports the MacBook Pro offline while it is alive, and that lie is consumed by the appyradar-sentinel MCP tools and every snapshot reader. Root cause, verified 2026-07-06: the machine was renamed Roamy on 2026-07-03 (Tailscale MagicDNS name 'roamy', 100.89.32.35) but sentinel.config.json still says host 'macbook-pro', which no longer resolves, so sshStatus() maps it to offline. Fix: rename the machine entry to roamy in the live gitignored config, restart the daemon (config loads once at startup; a fresh collection cycle runs immediately on start), prove a fresh snapshots/sentinel-latest.json shows roamy online, store before/after evidence in dark-factory engine/store/results/, and apply the same rename to the clean re-scaffold's example config at ~/dev/ad/apps/appyradar-sentinel/sentinel.config.example.json (commit + push, repo is clean on main). Read and execute the war game at backlog/wargames/T6-03-sentinel-roamy-liveness.md. Follow its moves in order; on any failure signal apply the counter-move; on any abort condition stop and write engine/store/needs-decision/ per the war game, leaving the ticket in running/.",
+  "verify": "python3 reads /Users/davidcruwys/dev/ad/apps/appyradar-sentinal/snapshots/sentinel-latest.json: generated_at is under 20 minutes old and the machine named 'roamy' (or 'macbook-pro' only under fork F1-B) has status 'online' and is absent from summary.offline_machines; sentinel.config.json for that machine no longer says host 'macbook-pro'; launchctl list still shows com.appydave.appyradar-sentinal with a PID; engine/store/results/wg-t6-03-before.json (containing the old 'offline' verdict) and wg-t6-03-after.json (containing the 'online' verdict) both exist in dark-factory and are committed; ~/dev/ad/apps/appyradar-sentinel/sentinel.config.example.json says roamy and a commit referencing wg-t6-03 is on its main; negative: no changes under either sentinel repo's src/, the other 4 machine entries intact, launchd plist and ~/.claude.json MCP wiring untouched."
+}

@@ -1,0 +1,13 @@
+{
+  "ticket": "wg-t1-05-c5-talk-to-done-proof",
+  "kind": "instruction",
+  "title": "T1: C5 proof — one real workflow job via talking",
+  "source": "backlog/wargames/T1-05-c5-talk-to-done-proof.md (war-game portfolio 2026-07-06)",
+  "executor": "swagger",
+  "priority": "normal",
+  "requested_at": "2026-07-06T11:59:38Z",
+  "requested_by": "david (war-game portfolio triage, 2026-07-06)",
+  "depends_on": [],
+  "prompt": "Stage and de-risk the C5 north-star proof: David speaks intent -> Marshall writes a kind:workflow ticket into engine/store/queue/ -> the engine dispatches it to a warm-pool Swagger -> the orchestrator verifies the artifact -> David is told. David's speaking leg cannot be automated, so your deliverables are: (1) rehearse the Workflow tool in your own session against .claude/workflows/hello.workflow.js, (2) close the known gap by adding an additive engine-dispatch section to .claude/skills/marshall/SKILL.md (it predates the engine and does not know engine/store/queue/ exists), (3) author backlog/wargames/T1-05-drill-ticket-template.json (the exact ticket shape Marshall produces from David's words, kind workflow, verify_spec on backlog/wargames/T1-05-drill-digest.json), (4) author the 10-minute drill card backlog/wargames/T1-05-drill-card.md (five legs: talk, ticket, dispatch, verified-done, told; plus evidence harvest and closeout), (5) write the proof scaffold experiments/watchtower-engine/proof/c5-talk-to-done.md with status STAGED, (6) commit and notify David. Read and execute the war game at backlog/wargames/T1-05-c5-talk-to-done-proof.md. Follow its moves in order; on any failure signal apply the counter-move; on any abort condition stop and write needs-decision/. Hard fences: never run engine/orchestrator.py yourself (df-worker tmux name collision), never queue a ticket, never arm the wake watcher, never touch engine/*.py.",
+  "verify": "From repo root, all pass: grep -q 'engine/store/queue' .claude/skills/marshall/SKILL.md; test -f backlog/wargames/T1-05-drill-card.md and it contains all five legs (grep -q 'Leg 5') plus a disarm/closeout step; backlog/wargames/T1-05-drill-ticket-template.json parses as JSON and contains \"kind\": \"workflow\"; experiments/watchtower-engine/proof/c5-talk-to-done.md exists and contains STAGED plus the Workflow-tool rehearsal evidence; a commit matching wg-t1-05 is in git log. Negative: engine/store/queue/ gained no c5-drill ticket, engine/*.py unmodified, engine/store/WAKE-ARMED not created by this run."
+}

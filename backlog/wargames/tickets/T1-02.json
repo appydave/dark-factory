@@ -1,0 +1,13 @@
+{
+  "ticket": "wg-t1-02-cap-backoff-real-429",
+  "kind": "instruction",
+  "title": "T1 Engine: Prove CAP/BACKOFF against a real 429",
+  "source": "backlog/wargames/T1-02-cap-backoff-real-429.md (war-game portfolio 2026-07-06)",
+  "executor": "swagger",
+  "priority": "high",
+  "requested_at": "2026-07-06T12:01:11Z",
+  "requested_by": "david (war-game portfolio triage, 2026-07-06)",
+  "depends_on": [],
+  "prompt": "Mission: the engine's 429/usage-limit governor (CAP=3 clamp, pane-sniff signatures, BACKOFF flag-file, cooldown auto-expiry, notify) has only ever been tested synthetically; run a controlled, David-approved saturation to hit a GENUINE usage-limit wall, capture the real pane text as a committed fixture, prove looks_like_usage_limit() matches it (adding one signature substring if it does not), prove the full BACKOFF lifecycle (flag -> status.py banner -> wake.py gate -> auto-expiry) with real-wall data, run the live orchestrator reap path end-to-end at the wall when the execution context safely permits, and close ENGINE-NOTES' 'not yet exercised against a REAL 429' limitation with evidence. HARD GATE: do not start saturation without engine/store/decisions/wg-t1-02-go.json approving the burn window — it exhausts the subscription window for all interactive use until reset. Read and execute the war game at backlog/wargames/T1-02-cap-backoff-real-429.md. Follow its moves in order; on any failure signal apply the counter-move; on any abort condition stop and write needs-decision/.",
+  "verify": "From repo root: a non-empty engine/docs/fixtures/real-429-pane-*.txt fixture exists containing genuine wall text; python3 -c \"import sys; sys.path.insert(0,'engine'); from orchestrator import looks_like_usage_limit as f; import glob; assert f(open(sorted(glob.glob('engine/docs/fixtures/real-429-pane-*.txt'))[-1]).read())\" exits 0; engine/store/results/wg-t1-02-saturation.log exists; either engine/store/results/wg-t1-02-e2e.log contains 'BACKOFF written' (Route A) or a wg-t1-02 needs-decision park exists for the attended E2E leg (Route B); grep 'real-429-pane' engine/docs/ENGINE-NOTES.md hits; a wg-t1-02 commit is in git log. Negative: engine/store/{HALT,BACKOFF,WAKE-ARMED} all absent, no df-worker-9x tmux sessions remain, the deferred 20260704T0630Z-project-digest ticket is still in queue/ unmodified, and orchestrator.py's diff (if any) is only the one USAGE_LIMIT_SIGNATURES line."
+}

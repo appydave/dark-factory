@@ -1,0 +1,13 @@
+{
+  "ticket": "wg-t7-04-decision-lineage-log",
+  "kind": "instruction",
+  "title": "T7: Lightweight decision-lineage log — one-line ledger tied to workflows",
+  "source": "backlog/wargames/T7-04-decision-lineage-log.md (war-game portfolio 2026-07-06)",
+  "executor": "swagger",
+  "priority": "normal",
+  "requested_at": "2026-07-06T12:39:19Z",
+  "requested_by": "david (war-game portfolio triage, 2026-07-06)",
+  "depends_on": [],
+  "prompt": "docs/sop-lifecycle.md names the factory's 'no decision record' gap and mandates a LIGHTWEIGHT decision-lineage log — one line per decision (decided X, diverged from Y, because Z) tied to workflows — deliberately NOT the ADR ritual that already exists at docs/kdd/decisions/ (42 DF-ADRs, Lisa-maintained). Build the skim layer under the ADRs: create docs/kdd/lineage.md with a pinned six-field one-line grammar (- YYYY-MM-DD · scope · decided: · over: · because: · ref:), backfill at least 6 seed entries from verifiable sources (plans/wargames/decisions.md Q1-Q10, decision-shaped git commits, engine/store/queue/.CONVENTION.md, the design-lint placement call), add .gitattributes merge=union for the file, and wire three discovery points: a Lineage bullet in docs/kdd/index.md, a one-line built-status note after sop-lifecycle.md's 'lineage, not ceremony' paragraph, and a one-paragraph capture rule under CLAUDE.md's End-of-session section. No tooling — echo is the writer, grep is the reader. Never touch docs/kdd/decisions/, docs/watchtower/DECISIONS.md, or engine code; engine/store/decisions/ is the HITL gate, an unrelated concept. Read and execute the war game at backlog/wargames/T7-04-decision-lineage-log.md. Follow its moves in order; on any failure signal apply the counter-move; on any abort condition stop and write needs-decision/.",
+  "verify": "docs/kdd/lineage.md exists; every line under its '## Log' section matches the grammar regex '^- [0-9]{4}-[0-9]{2}-[0-9]{2} · [a-z0-9.-]+ · decided: .+ · over: .+ · because: .+ · ref: .+$' and the count is >=6; every ref: path resolves via ls (or git cat-file -e for hashes); .gitattributes contains 'docs/kdd/lineage.md merge=union'; grep -c 'lineage.md' returns 1 for each of docs/kdd/index.md, docs/sop-lifecycle.md, and CLAUDE.md (CLAUDE.md 0 only under the war game's Fork F3 Route B, noted in the results JSON); a wg-t7-04 self-report exists in engine/store/results/. Negative: git diff vs the prior commit shows docs/kdd/decisions/, docs/kdd/learnings/, docs/kdd/patterns/, docs/kdd/ADR-FORMAT-SPEC.md, docs/watchtower/DECISIONS.md, engine/ and tools/ untouched; no new CLI/hook/cron was added; the CLAUDE.md diff is a pure append of <=5 lines."
+}

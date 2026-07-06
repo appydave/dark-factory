@@ -1,0 +1,13 @@
+{
+  "ticket": "wg-t9-02-sound-vocabulary",
+  "kind": "instruction",
+  "title": "T9 Voice: Sound-effect vocabulary — done/failed/needs-you chimes",
+  "source": "backlog/wargames/T9-02-sound-vocabulary.md (war-game portfolio 2026-07-06)",
+  "executor": "swagger",
+  "priority": "high",
+  "requested_at": "2026-07-06T12:52:33Z",
+  "requested_by": "david (war-game portfolio triage, 2026-07-06)",
+  "depends_on": [],
+  "prompt": "Give the factory a three-note ambient vocabulary. engine/consumer.py currently plays one Glass.aiff for ANY consumed event; replace its chime with a kind-based classifier (job.needs_decision -> needs-you=Sosumi, job.failed -> failed=Basso, job.completed -> done=Glass, anything else -> other=Pop), playing at most one cue per class per batch in priority order needs-you/failed/done/other, plus a --sounds ear-training demo flag. Then make the missing events real: engine/orchestrator.py emits only job.completed today, so add five one-line emit_event inserts — job.needs_decision at the HITL lock point and job.failed at the four terminal-failure points (declined, failed(no-decision), failed(verify), failed(timeout)); never on the non-terminal retry re-queue. Prove the chain with synthetic event files through consumer.py --once (then clean them up), document the vocabulary in engine/README.md, and commit+push the three files to main. Chimes only — no TTS, no launchd, no pool boot, no config files. Read and execute the war game at backlog/wargames/T9-02-sound-vocabulary.md. Follow its moves in order; on any failure signal apply the counter-move; on any abort condition stop and write needs-decision/.",
+  "verify": "python3 -m py_compile engine/consumer.py engine/orchestrator.py exits 0. grep -c 'def classify' engine/consumer.py returns 1 and the classifier passes the pure-function checks (job.completed/done->done, job.completed/failed(x)->failed, job.failed->failed, job.needs_decision->needs-you, new-capture->other). grep -c 'emit_event(\"job.failed\"' engine/orchestrator.py returns 4 and grep -c 'emit_event(\"job.needs_decision\"' returns 1 (job.completed emission untouched at 1). cd engine && python3 consumer.py --sounds prints exactly 4 [chime] lines with needs-you first. engine/README.md names all four cues (grep Sosumi). Negative: no emission inside the retry re-queue path; wake.py/warm_pool.py/status.py/docs/comms-flow.md untouched in the commit; no wgt9test residue in engine/store/events/ or events-consumed.jsonl. Commit wg-t9-02 pushed; git status clean on the three files."
+}

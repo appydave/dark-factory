@@ -1,0 +1,13 @@
+{
+  "ticket": "wg-t6-12-omi-enrichment-backlog",
+  "kind": "instruction",
+  "title": "T6 Constellation: omi-fetch enrichment backlog",
+  "source": "backlog/wargames/T6-12-omi-enrichment-backlog.md (war-game portfolio 2026-07-06)",
+  "executor": "swagger",
+  "priority": "normal",
+  "requested_at": "2026-07-06T12:35:14Z",
+  "requested_by": "david (war-game portfolio triage, 2026-07-06)",
+  "depends_on": [],
+  "prompt": "Bring omi-fetch's enrichment surface (~/dev/ad/apps/omi-fetch) to a clean steady state. The original premise ('tag the remaining ~244/274 records') is stale: commit dc6d96b (2026-07-06) already re-enriched all 291 indexed rows via the app's claude-cli sonnet engine, leaving exactly 2 stub-engine residuals (A122, A159 — transient CLI failures, healthy archives) plus whatever new un-enriched rows the always-on 600s pulse has ingested since. Recount live, retry the stub rows on the real engine (python3 enrich.py --reextract --code <CODE>), drain any pending rows in --limit 30 batches with a 3-row quality spot-check after the first batch, verify the lookup surface serves the fields, and commit ONLY store/ paths with a data(store): message, then push. Change no code anywhere: CLAUDE_CLI_MODEL stays sonnet (the haiku->sonnet switch in 3d49f66 was deliberate; the brief's 'haiku' is stale), pulse/launchd/lookup/view untouched, omi-extract skill and archive frontmatter untouched, com.appydave.omi-sync (a different failing job) untouched. Never batch-enrich while the engine probe reports stub. Read and execute the war game at backlog/wargames/T6-12-omi-enrichment-backlog.md. Follow its moves in order; on any failure signal apply the counter-move; on any abort condition stop and write needs-decision/.",
+  "verify": "From /Users/davidcruwys/dev/ad/apps/omi-fetch: the war game's COUNT one-liner over store/index.jsonl reports pending 0, total >= 291, and a stub list that is empty or only F1-accepted codes (max 5, expected subset of A122/A159); python3 enrich.py --dry-run prints 'Targets: 0 (of 0 total pending enrichment' (one pulse-race row is tolerable if drained and re-verified); python3 lookup.py --signal direction returns at least one row. If any data changed, HEAD commit subject starts 'data(store):' and git show --stat HEAD touches only store/ paths (no-op close per Fork F2 is also a pass, with no new commit). Negative: git diff dc6d96b..HEAD -- '*.py' lib/ launchd/ is empty; grep confirms CLAUDE_CLI_MODEL = \"sonnet\" in lib/enrich.py; no file under ~/dev/raw-intake/omi/ modified; com.appydave.omi-fetch still loaded in launchctl; dark-factory research/ untouched."
+}

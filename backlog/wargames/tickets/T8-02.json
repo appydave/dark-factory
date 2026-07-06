@@ -1,0 +1,13 @@
+{
+  "ticket": "wg-t8-02-claude-md-pointer-fix",
+  "kind": "instruction",
+  "title": "T8 Doc truth: Fix CLAUDE.md's stale activation pointer",
+  "source": "backlog/wargames/T8-02-claude-md-pointer-fix.md (war-game portfolio 2026-07-06)",
+  "executor": "swagger",
+  "priority": "high",
+  "requested_at": "2026-07-06T12:42:29Z",
+  "requested_by": "david (war-game portfolio triage, 2026-07-06)",
+  "depends_on": [],
+  "prompt": "Surgical three-file doc-truth fix: CLAUDE.md's 'First thing to do on activation' still routes every fresh session at docs/phase-b-next-steps.md ('START HERE if Phase B hasn't begun') — a 2026-05-25 plan superseded by the shipped engine and the 2026-07-06 war-game portfolio (decisions.md Q9 locked this fix as an accepted default). Rewrite that one CLAUDE.md section to the replacement text given verbatim in the war game (README banner -> north-star -> INDEX read order; live work surfaces = engine/store/queue + needs-decision + backlog/wargames + backlog/; ingestion specs only for ingestion work; docs-lag-code rule), add the additive SUPERSEDED banner to docs/phase-b-next-steps.md, swap docs/INDEX.md's one stale descriptor line, then commit the three files to main and push. Touch nothing else — CLAUDE.md's charter paragraphs and all other stale docs belong to other T8 tickets. Read and execute the war game at backlog/wargames/T8-02-claude-md-pointer-fix.md. Follow its moves in order; on any failure signal apply the counter-move; on any abort condition stop and write needs-decision/.",
+  "verify": "In ~/dev/ad/apps/dark-factory: grep -c 'START HERE if Phase B' CLAUDE.md returns 0 while CLAUDE.md now references docs/north-star.md, engine/store/queue, needs-decision, and backlog/wargames (each grep count >=1) and every repo path named in CLAUDE.md exists on disk; docs/phase-b-next-steps.md contains exactly one SUPERSEDED banner with its original 'thinking / not started' status line preserved below it; docs/INDEX.md's single phase-b-next-steps line now says historical; CLAUDE.md's Hard rules / Don't do without asking / Query tools sections are byte-unchanged; the HEAD commit contains exactly these three files, mentions wg-t8-02, and is pushed (git status clean for all three)."
+}

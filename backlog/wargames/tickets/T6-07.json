@@ -1,0 +1,13 @@
+{
+  "ticket": "wg-t6-07-appyradar-process-state",
+  "kind": "instruction",
+  "title": "T6 Constellation: AppyRadar owns tmux/process state",
+  "source": "backlog/wargames/T6-07-appyradar-process-state.md (war-game portfolio 2026-07-06)",
+  "executor": "swagger",
+  "priority": "normal",
+  "requested_at": "2026-07-06T12:39:30Z",
+  "requested_by": "david (war-game portfolio triage, 2026-07-06)",
+  "depends_on": [],
+  "prompt": "Build the queryable tmux/process-state source the reaper's stuck-case needs, in the canonical sentinel repo /Users/davidcruwys/dev/ad/apps/appyradar-sentinel (the 'e' re-scaffold — NOT the running 'a' repo appyradar-sentinal): a 'tmux' collector (sessions/panes with activity ages, df-worker-* engine workers flagged with last pane lines, claude process list), parser + typed snapshot field, plus two read-only query surfaces — a one-shot CLI (bun run process-state [machine]) and a 'process_state' MCP tool. Prove it live against mac-mini-m4 with a probe df-worker-99 tmux session, then record the ownership resolution in dark-factory's docs/appyradar.md (AppyRadar owns the process/tmux source — built; which sensor the reaper consumes stays the T6-08 fork) and commit+push both repos. Observe-only: no kill/restart actions, no process-tree PID mapping (proven dead end), no launchd/service install, no ~/.claude.json edits. Read and execute the war game at backlog/wargames/T6-07-appyradar-process-state.md. Follow its moves in order; on any failure signal apply the counter-move; on any abort condition stop and write needs-decision/.",
+  "verify": "From /Users/davidcruwys/dev/ad/apps/appyradar-sentinel: 'bun run typecheck' and 'bun run test' both exit 0 with the new tmux script/parser tests green; grep finds tmuxStateScript in src/collectors/bash-scripts.ts, the tmux concern in src/collectors/orchestrator.ts, and process_state in src/expose/mcp.ts. Live re-check: create a detached tmux session df-worker-99, run 'bun run process-state mac-mini-m4', and the JSON reports that session with is_engine_worker true and a numeric activity_age_seconds; kill the probe session afterwards (tmux ls must show no df-worker-99 left). dark-factory docs/appyradar.md contains >=2 'wg-t6-07' markers (sections 5.2 and 6); both repos have a wg-t6-07 commit pushed; engine/store/results/ contains the wg-t6-07 self-report. Negative: ~/.claude.json MCP registration and launchd sentinel entries unchanged; the appyradar-sentinal ('a') repo has no new dirt; no dark-factory engine/*.py modified."
+}

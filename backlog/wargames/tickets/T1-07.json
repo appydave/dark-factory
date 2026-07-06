@@ -1,0 +1,13 @@
+{
+  "ticket": "wg-t1-07-golden-job-suite",
+  "kind": "instruction",
+  "title": "T1 Engine: Golden-job regression suite (Gap A) — design, frozen jobs, runner ticket",
+  "source": "backlog/wargames/T1-07-golden-job-suite.md (war-game portfolio 2026-07-06)",
+  "executor": "swagger",
+  "priority": "normal",
+  "requested_at": "2026-07-06T11:57:44Z",
+  "requested_by": "david (war-game portfolio triage, 2026-07-06)",
+  "depends_on": [],
+  "prompt": "Design-first (size L) close of eval-architecture Gap A: the engine has no replay gate for machinery changes. Produce (1) ~5 frozen golden-job ticket JSONs in engine/golden/jobs/ — one per machinery leg (happy generic-verify, artifacts-fallback, HITL-scripted, deliberate verify-fail, kind-filter negative), all side-effect-fenced to engine/golden/sandbox/; (2) the envelope/baseline schema + diff rules (outcome=hard-fail, envelope=flag, trajectory=tool-set not sequence) in engine/golden/baselines/SCHEMA.md and a full spec at backlog/specs/golden-job-suite-spec.md, with cost/trajectory extraction proven read-only against the existing audit.jsonl transcript; (3) a queued follow-on build ticket for engine/golden/replay.py + capture RUNBOOK. Build NOTHING executable and never boot the engine from inside your worker session. Read and execute the war game at backlog/wargames/T1-07-golden-job-suite.md. Follow its moves in order; on any failure signal apply the counter-move; on any abort condition stop and write engine/store/needs-decision/wg-t1-07-golden-job-suite.json.",
+  "verify": "From repo root: engine/golden/jobs/ holds >=4 golden-job .json files (all json.load clean) plus README.md; engine/golden/baselines/SCHEMA.md exists containing 'engine_git_sha' and 'tool_use' with a worked extraction example; backlog/specs/golden-job-suite-spec.md exists and greps for 'top-level' and 'refresh'; exactly one engine/store/queue/*golden-replay-runner.json exists and parses; docs/eval-architecture.md Gap A section greps for 'frozen jobs landed'. Negative: no diff to engine/{orchestrator,warm_pool,status,consumer}.py; no engine/golden/baselines/*.json data files; no engine/golden/replay.py; no g[1-5]-*.json resting in engine/store/queue/."
+}
