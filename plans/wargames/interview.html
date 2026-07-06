@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>War-Game Portfolio — Phase 0 Findings + Interview</title>
+<style>
+  :root{
+    --bg:#1c1917; --panel:#26211d; --panel2:#2e2823; --line:#3f3830;
+    --ink:#f0e9dd; --ink-dim:#b8ad9c; --ink-faint:#877c6b;
+    --amber:#e8a33d; --amber-dim:#a97722;
+    --green:#8fbf6f; --red:#d97b6c;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+       padding-bottom:90px}
+  .wrap{max-width:960px;margin:0 auto;padding:32px 24px}
+  h1{font-size:26px;margin:0 0 4px} h2{font-size:20px;margin:40px 0 12px;color:var(--amber)}
+  h3{font-size:16px;margin:0 0 6px}
+  .sub{color:var(--ink-dim);margin:0 0 24px}
+  .mono{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:12.5px}
+  .tag{display:inline-block;padding:1px 8px;border:1px solid var(--line);border-radius:10px;
+       color:var(--ink-dim);font-size:12px;margin-right:6px}
+  .banner{background:var(--panel);border:1px solid var(--amber-dim);border-left:4px solid var(--amber);
+          border-radius:8px;padding:14px 18px;margin:20px 0}
+  .banner strong{color:var(--amber)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:14px 16px}
+  .card .id{color:var(--amber);font-weight:600;font-family:ui-monospace,monospace;font-size:12px}
+  .card p{margin:6px 0 0;color:var(--ink-dim);font-size:13.5px;line-height:1.5}
+  .blind{border-left:3px solid var(--red)}
+  .q{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px 20px;margin:14px 0}
+  .q .qn{color:var(--amber);font-family:ui-monospace,monospace;font-size:12px;letter-spacing:.08em}
+  .q .why{color:var(--ink-faint);font-size:13px;margin:2px 0 12px}
+  label.opt{display:flex;gap:10px;align-items:flex-start;padding:8px 10px;border:1px solid var(--line);
+            border-radius:6px;margin:6px 0;cursor:pointer;background:var(--panel2)}
+  label.opt:hover{border-color:var(--amber-dim)}
+  label.opt input{margin-top:4px;accent-color:var(--amber)}
+  label.opt .t{font-size:14.5px}
+  label.opt .d{display:block;color:var(--ink-dim);font-size:12.5px}
+  textarea{width:100%;background:var(--panel2);border:1px solid var(--line);border-radius:6px;
+           color:var(--ink);padding:8px 10px;font:13.5px/1.5 inherit;resize:vertical;min-height:40px}
+  .bar{position:fixed;bottom:0;left:0;right:0;background:var(--panel);border-top:1px solid var(--line);
+       padding:12px 24px;display:flex;gap:16px;align-items:center;justify-content:space-between}
+  .bar .status{color:var(--ink-dim);font-size:13.5px}
+  button{background:var(--amber);color:#231a0d;border:0;border-radius:6px;padding:10px 22px;
+         font-size:15px;font-weight:650;cursor:pointer}
+  button:hover{background:#f2b558}
+  button.ok{background:var(--green)}
+  table{border-collapse:collapse;width:100%;font-size:13.5px}
+  td,th{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+  th{color:var(--ink-dim);font-weight:600}
+  .overflow{overflow-x:auto}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>War-Game Portfolio — Phase 0 → Phase 1</h1>
+<p class="sub">Four parallel readers swept the strategy docs, backlog, YLO/canonical threads, and the
+engine. Below: what they found, your blindspots, and <strong style="color:var(--amber)">9 questions</strong> —
+answers change which of the ~100 tickets get written. Answer, hit <em>Copy answers</em>, paste back into the session.</p>
+
+<div class="banner">
+  <strong>Headline finding — your docs lag your code.</strong> The strategy layer still calls the
+  warm pool / CAP governor / HITL gate "the largest specced-but-unbuilt body of work." It all shipped
+  into <span class="mono">engine/</span> July 4–6. Most of six-app-eval's High items are done too.
+  Every war game therefore opens with recon moves that verify disk state — no doc status line is trusted.
+</div>
+
+<h2>The ten tracks</h2>
+<div class="grid">
+  <div class="card"><span class="id">T1</span><h3>Engine spine (C3→C5)</h3><p>Built but unproven: exercise HITL live, prove CAP vs a real 429, arm auto-wake, Switchboard SSE v2, pool N&gt;1, return leg, golden-job suite.</p></div>
+  <div class="card"><span class="id">T2</span><h3>Producer / BA / briefing</h3><p>The converged frontier. BA agent build, universal activity registry, digest beyond project #1, feed layer.</p></div>
+  <div class="card"><span class="id">T3</span><h3>Canonical ingestion + evals</h3><p>0 of 1,100 shipped in 7 weeks. First ingestion, validators, cluster distillation, rollout harness, judge calibration.</p></div>
+  <div class="card"><span class="id">T4</span><h3>YLO→POEM</h3><p>Blueprint unratified. .poem/ rebuild of 4 proven workflows, MCP-store spike, 7 cheap open loops.</p></div>
+  <div class="card"><span class="id">T5</span><h3>Watchtower & surfaces</h3><p>Still a stub. Curation queue, kanban/live views, reconcile the two decision-queue concepts, Cardputer.</p></div>
+  <div class="card"><span class="id">T6</span><h3>Constellation health</h3><p>Name-collision invisibility class, sentinel a→e migration, blind-to-Roamy, AngelEye revival, capture service.</p></div>
+  <div class="card"><span class="id">T7</span><h3>Self-learning loops</h3><p>SOP drift pulse, decision lineage, usage telemetry, idea-lifecycle over concepts.md, Chronicle, KDD gates.</p></div>
+  <div class="card"><span class="id">T8</span><h3>Doc truth reconciliation</h3><p>Fix docs-lag-code, stale CLAUDE.md pointer, retire Penny/Alex/Oscar, 16 dirty repos, KDD uniformity.</p></div>
+  <div class="card"><span class="id">T9</span><h3>Human-comms & voice</h3><p>Audio-out engine, sound vocabulary, Samantha Q&amp;A front door, intake home, learning.yml.</p></div>
+  <div class="card"><span class="id">T10</span><h3>Fleet & distribution</h3><p>Roamy workers over Tailscale, per-machine daemons, cross-machine HALT, fleet status.</p></div>
+</div>
+
+<h2>Blindspots — things nobody was tracking</h2>
+<div class="grid">
+  <div class="card blind"><h3>Judge calibration sits unused</h3><p>Census, triage and design-lint all run uncalibrated LLM judges while your mocha-census love/good/average labels — a ready calibration set — go unused. Cheap, high leverage.</p></div>
+  <div class="card blind"><h3>The factory ships no cargo</h3><p>Machinery got 7 weeks of love; the original charter (canonical skills from 1,100 artifacts) has shipped zero. Even the proof-of-one has sat open since May 18.</p></div>
+  <div class="card blind"><h3>No regression gate on machinery</h3><p>Engine changes ship with no golden-job replay suite — a wrong turn in orchestrator.py would only be caught by luck.</p></div>
+  <div class="card blind"><h3>Silent failures already running</h3><p>com.appydave.omi-sync fails on every scheduled run (known, unactioned). Sentinel reports Roamy offline while it's alive — fleet data is consumed anyway.</p></div>
+  <div class="card blind"><h3>Nothing ever gets pruned</h3><p>Engine store and Switchboard event log both grow forever by design; no retention policy exists anywhere.</p></div>
+  <div class="card blind"><h3>Memory rots like docs</h3><p>This session's own auto-memory still described the dead /loop+mutex architecture. Doc reconciliation discipline applies to memory too.</p></div>
+</div>
+
+<h2>The interview</h2>
+<p class="sub">Ordered by blast radius. Skipped questions become flagged assumptions in the tickets they touch.</p>
+
+<div class="q" data-q="Q1 — Portfolio mix (machinery vs cargo vs surfaces)">
+  <div class="qn">Q1 · BIGGEST BLAST RADIUS</div>
+  <h3>How should ~100 tickets split across the three arenas?</h3>
+  <div class="why">North-star froze Path 2 (content) behind Path 1 (machinery). Machinery is now largely built. Does Path 2 unfreeze?</div>
+  <label class="opt"><input type="radio" name="q1" value="Cargo-heavy: ~25% machinery / ~55% content-ingestion / ~20% surfaces — the factory finally ships product"><span class="t">Cargo-heavy <span class="d">~25 machinery / ~55 ingestion+evals / ~20 surfaces — the factory finally ships product</span></span></label>
+  <label class="opt"><input type="radio" name="q1" value="Machinery-heavy: ~55% machinery+loops / ~25% content / ~20% surfaces — finish the spine properly first"><span class="t">Machinery-heavy <span class="d">~55 machinery+loops / ~25 content / ~20 surfaces</span></span></label>
+  <label class="opt"><input type="radio" name="q1" value="Balanced thirds across machinery / content / surfaces"><span class="t">Balanced thirds</span></label>
+  <label class="opt"><input type="radio" name="q1" value="Fable decides per-track using its own read of the corpus"><span class="t">You (Fable) decide <span class="d">weight it per-track from your own read</span></span></label>
+  <textarea placeholder="notes (optional)"></textarea>
+</div>
+
+<div class="q" data-q="Q2 — Canonical ingestion ambition">
+  <div class="qn">Q2</div>
+  <h3>Ingestion ambition — 0 of 1,100 shipped so far.</h3>
+  <label class="opt"><input type="radio" name="q2" value="Proof-of-one only (code-review → review-dimensional), then reassess before scaling"><span class="t">Proof-of-one, then reassess</span></label>
+  <label class="opt"><input type="radio" name="q2" value="Full campaign: proof + validator tools + top-cluster distillation + rollout harness + judge calibration (~20-30 tickets)"><span class="t">Full campaign <span class="d">proof + tooling + clusters + evals, ~20–30 tickets</span></span></label>
+  <label class="opt"><input type="radio" name="q2" value="Stay parked — machinery and surfaces are the product right now"><span class="t">Stay parked</span></label>
+  <textarea placeholder="notes (optional)"></textarea>
+</div>
+
+<div class="q" data-q="Q3 — Switchboard state-authority fork">
+  <div class="qn">Q3</div>
+  <h3>Where does authoritative job state live?</h3>
+  <div class="why">Blocks DF-7, auto-wake v2, and the greenfield charter. Engine's filesystem store works today.</div>
+  <label class="opt"><input type="radio" name="q3" value="Filesystem store stays truth (engine/store/); Switchboard is comms/notify only"><span class="t">Filesystem stays truth <span class="d">Switchboard = comms only</span></span></label>
+  <label class="opt"><input type="radio" name="q3" value="DF-7: build Switchboard durable state plane (job-state-store + job-coordinator)"><span class="t">DF-7 state plane <span class="d">Switchboard owns durable job records</span></span></label>
+  <label class="opt"><input type="radio" name="q3" value="Defer — write it up as a decision war-game ticket with both branches mapped"><span class="t">Defer <span class="d">ticket it as a decision war-game</span></span></label>
+  <textarea placeholder="notes (optional)"></textarea>
+</div>
+
+<div class="q" data-q="Q4 — App-build doctrine">
+  <div class="qn">Q4</div>
+  <h3>How do constellation-app tickets get executed?</h3>
+  <div class="why">Recurring unresolved fork. Determines the FORMAT of every app-building war game.</div>
+  <label class="opt"><input type="radio" name="q4" value="Mixed by size: small fixes = engine ticket to a sonnet Swagger; big builds = Ralphy campaign or Osmani spec-first"><span class="t">Mixed by size <span class="d">small = engine ticket · big = Ralphy / spec-first</span></span></label>
+  <label class="opt"><input type="radio" name="q4" value="Everything through the engine — tickets to sonnet Swaggers, the factory builds the apps"><span class="t">Everything through the engine</span></label>
+  <label class="opt"><input type="radio" name="q4" value="Ralphy campaigns per app"><span class="t">Ralphy campaigns</span></label>
+  <label class="opt"><input type="radio" name="q4" value="Osmani interview → spec → then build, per app"><span class="t">Spec-first (Osmani)</span></label>
+  <textarea placeholder="notes (optional)"></textarea>
+</div>
+
+<div class="q" data-q="Q5 — YLO→POEM in the portfolio?">
+  <div class="qn">Q5</div>
+  <h3>YLO→POEM consolidation — in the 100?</h3>
+  <label class="opt"><input type="radio" name="q5" value="In: ratify blueprint + .poem/ rebuild of the 4 workflows as a full track (~10-15 tickets)"><span class="t">In <span class="d">full track, ~10–15 tickets</span></span></label>
+  <label class="opt"><input type="radio" name="q5" value="Cheap loops only (the 7 open loops); park the consolidation"><span class="t">Cheap loops only</span></label>
+  <label class="opt"><input type="radio" name="q5" value="Park entirely"><span class="t">Park entirely</span></label>
+  <textarea placeholder="notes (optional)"></textarea>
+</div>
+
+<div class="q" data-q="Q6 — Watchtower ambition">
+  <div class="qn">Q6</div>
+  <h3>Watchtower — real app or lean surfaces?</h3>
+  <label class="opt"><input type="radio" name="q6" value="Lean: status.py + static Mochaccino boards; no web app yet"><span class="t">Lean <span class="d">status.py + Mochaccino boards</span></span></label>
+  <label class="opt"><input type="radio" name="q6" value="Real web app: kanban, live agent view, bus view, curation queue"><span class="t">Real web app</span></label>
+  <label class="opt"><input type="radio" name="q6" value="Lean now + Cardputer physical front-desk experiments"><span class="t">Lean + Cardputer <span class="d">physical spike is cheap and ready</span></span></label>
+  <textarea placeholder="notes (optional)"></textarea>
+</div>
+
+<div class="q" data-q="Q7 — Voice / human-comms priority">
+  <div class="qn">Q7</div>
+  <h3>Voice and human-comms — in the portfolio?</h3>
+  <label class="opt"><input type="radio" name="q7" value="In: audio-out engine + Samantha Q&A front-door tickets"><span class="t">In <span class="d">audio-out + Samantha front door</span></span></label>
+  <label class="opt"><input type="radio" name="q7" value="Sound-effects vocabulary only (cheap); park the bot"><span class="t">Sounds only</span></label>
+  <label class="opt"><input type="radio" name="q7" value="Out for now"><span class="t">Out for now</span></label>
+  <textarea placeholder="notes (optional)"></textarea>
+</div>
+
+<div class="q" data-q="Q8 — Fleet scope">
+  <div class="qn">Q8</div>
+  <h3>Fleet scope for executor tickets?</h3>
+  <label class="opt"><input type="radio" name="q8" value="This machine only (M4 Mini)"><span class="t">This machine only</span></label>
+  <label class="opt"><input type="radio" name="q8" value="Include Roamy: Tailscale worker delegation + fix sentinel cross-machine liveness"><span class="t">+ Roamy <span class="d">worker delegation + fix blind-to-Roamy</span></span></label>
+  <label class="opt"><input type="radio" name="q8" value="Full fleet ambition (other minis too)"><span class="t">Full fleet</span></label>
+  <textarea placeholder="notes (optional)"></textarea>
+</div>
+
+<div class="q" data-q="Q9 — Bulk-accept parked defaults?">
+  <div class="qn">Q9</div>
+  <h3>Bulk-accept the parked defaults?</h3>
+  <div class="why">design-lint→Mochaccino/Shelly · name first ingestion `review-dimensional` · complement (don't replace) existing review skills · leave delivery-review as-is · flatten DF-ADR provenance to Lisa's format · retire Penny/Alex/Oscar from architecture.md · fix CLAUDE.md's stale phase-b pointer · harvest+draft then voice-review+ratify split.</div>
+  <label class="opt"><input type="radio" name="q9" value="Accept all defaults as listed"><span class="t">Accept all</span></label>
+  <label class="opt"><input type="radio" name="q9" value="Accept all EXCEPT the ones I name in notes"><span class="t">Accept all except… <span class="d">name exceptions in notes</span></span></label>
+  <label class="opt"><input type="radio" name="q9" value="Walk me through them individually later — flag as assumptions for now"><span class="t">Walk me through later</span></label>
+  <textarea placeholder="exceptions / notes"></textarea>
+</div>
+
+<div class="q" data-q="Q10 — War-game depth split">
+  <div class="qn">Q10</div>
+  <h3>How deep does the Fable spend go after triage?</h3>
+  <label class="opt"><input type="radio" name="q10" value="Top ~50 fully war-gamed; the rest stay one-paragraph candidates"><span class="t">Top ~50 full <span class="d">the plan as pitched</span></span></label>
+  <label class="opt"><input type="radio" name="q10" value="Top ~30 extra-deep war games + remaining ~70 as mission-brief-only tickets"><span class="t">Top ~30 extra-deep + 70 briefs</span></label>
+  <label class="opt"><input type="radio" name="q10" value="All ~100 at medium depth"><span class="t">All 100 medium</span></label>
+  <textarea placeholder="notes (optional)"></textarea>
+</div>
+
+<div class="q" data-q="Anything the readers missed">
+  <div class="qn">FREE TEXT</div>
+  <h3>Anything the readers missed — ideas you want in the candidate pool?</h3>
+  <textarea placeholder="new ideas, corrections, vetoes…" style="min-height:70px"></textarea>
+</div>
+
+</div><!-- /wrap -->
+
+<div class="bar">
+  <span class="status" id="status">0 of 10 answered</span>
+  <button id="copy">Copy answers as prompt</button>
+</div>
+
+<script>
+const qs=[...document.querySelectorAll('.q')];
+function count(){
+  const n=qs.filter(q=>q.querySelector('input:checked')).length;
+  document.getElementById('status').textContent=`${n} of 10 answered`;
+  return n;
+}
+document.addEventListener('change',count);
+document.getElementById('copy').onclick=()=>{
+  let out='## War-game portfolio — interview answers (Phase 1)\\n\\n';
+  qs.forEach(q=>{
+    const title=q.dataset.q;
+    const sel=q.querySelector('input:checked');
+    const note=q.querySelector('textarea').value.trim();
+    out+=`**${title}**\\n`;
+    out+= sel?`- Answer: ${sel.value}\\n`:(note?'':'- SKIPPED (treat as flagged assumption)\\n');
+    if(note) out+=`- Notes: ${note}\\n`;
+    out+='\\n';
+  });
+  out+='Proceed to Phase 2 (candidate generation) with these answers.\\n';
+  navigator.clipboard.writeText(out).then(()=>{
+    const b=document.getElementById('copy');
+    b.textContent='Copied ✓ — paste into the session';b.classList.add('ok');
+    setTimeout(()=>{b.textContent='Copy answers as prompt';b.classList.remove('ok')},2500);
+  });
+};
+count();
+</script>
+</body>
+</html>
