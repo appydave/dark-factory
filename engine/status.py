@@ -118,6 +118,9 @@ def done_outcome(fname):
     if result is None:
         result = ticket.get("result")
         notes = notes or ticket.get("verified") or ticket.get("note")
+        if isinstance(result, dict):  # dict-shaped ticket-embedded result (e.g. halt-switch ticket) -> unwrap
+            notes = notes or result.get("notes")
+            result = result.get("status")
     return title, result or "unknown", notes
 
 
