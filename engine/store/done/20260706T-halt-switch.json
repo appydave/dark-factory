@@ -25,8 +25,16 @@
         "docs/comms-flow.md",
         "engine/store/running/20260706T-halt-switch.json"
       ],
-      "omi-fetch": ["pulse.py"],
-      "app-registry": ["probe.py", "lib/view.py", "store/probe.log", "store/registry.json", "view/index.html"]
+      "omi-fetch": [
+        "pulse.py"
+      ],
+      "app-registry": [
+        "probe.py",
+        "lib/view.py",
+        "store/probe.log",
+        "store/registry.json",
+        "view/index.html"
+      ]
     },
     "commits": {
       "dark-factory": "304e64b feat(engine): factory kill switch (HALT flag-file) + voice read-only law (local, not pushed)",
@@ -58,5 +66,7 @@
     ],
     "system_left_halted": false,
     "notes": "Ticket-first per instruction: results appended directly into this ticket JSON, file left in running/ (not moved to done/ -- that's the orchestrator's reap job). orchestrator.py's HALT check (claim/dispatch gate) and warm_pool.py's free_worker() gate were implemented and code-reviewed but not exercised end-to-end (would require booting a tmux worker pool, out of scope for the 10-second verify test named in the ticket) -- the two pulses' checks are the ones proven live per the verify bar above."
-  }
+  },
+  "done_at": "2026-07-06T08:00:00Z",
+  "result_status": "done"
 }
