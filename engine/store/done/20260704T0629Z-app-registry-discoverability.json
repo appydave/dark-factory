@@ -1,0 +1,97 @@
+{
+  "ticket": "20260704T0629Z-app-registry-discoverability",
+  "kind": "instruction",
+  "title": "Register app-registry so a cold agent/human can discover query.py exists",
+  "source": [
+    "docs/six-app-evaluation-2026-07-04.md #2",
+    "OMI A266"
+  ],
+  "executor": "builder-agent",
+  "priority": "med",
+  "requested_at": "2026-07-04T06:29:00Z",
+  "requested_by": "david (via six-app-evaluation-2026-07-04)",
+  "prompt": "apps/app-registry/query.py has the best find surface of the six-app batch (running/dark/layer/app/stale/drift/all \u2014 all clean JSON), but nothing outside dark-factory's own constellation.json points at it. There is no skill, and app-registry is only reachable today if you already know its path. Add a thin, low-ceremony registration: either (a) a short SKILL.md (new skill, distinct trigger vocabulary from the pre-existing appydave:apps-registry skill \u2014 see the companion naming-collision ticket) describing query.py's verbs and when to use them, or (b) a pointer line in dark-factory's own CLAUDE.md 'Query tools' area (if this ticket lands after the cross-cutting CLAUDE.md ticket, add to that section instead of duplicating). Prefer the CLAUDE.md pointer if the cross-cutting ticket (20260704T0632Z) already exists; otherwise do the minimal one that unblocks discovery today.",
+  "verify": "A fresh Claude session with no prior context on dark-factory, given only 'is there an app-registry tool and how do I query it', can find the answer via a skill trigger or a documented CLAUDE.md pointer, without being told the file path directly.",
+  "claimed_by": "fable-orchestrator",
+  "claimed_at": "2026-07-06T00:00:00Z",
+  "expanded_scope_note": "David expanded this ticket 2026-07-06 beyond its original discoverability ask into a 5-part census/inventory/drift pass over app-registry. See result.expanded_scope below for the 5 items; result.original_ticket_ask covers the ticket's own literal text.",
+  "result": {
+    "status": "done",
+    "repo_worked_in": "~/dev/ad/apps/app-registry (local commits only, not pushed)",
+    "original_ticket_ask": {
+      "finding": "Already satisfied before this session, by the companion ticket 20260704T0628Z-resolve-skill-name-collisions (in engine/store/done/). That ticket added a 'Related app' section to appydave-plugins' appydave:apps-registry SKILL.md (commit 0754317) pointing at ~/dev/ad/apps/app-registry/query.py with all 7 verbs, plus a reverse pointer in app-registry's own README.md (commit 7c53483). The ticket's verify bar ('...can find the answer via a skill trigger...') is met by this existing skill-trigger pointer.",
+      "cross_cutting_ticket_status": "20260704T0634Z-claude-md-query-tools-pointer (the actual broader CLAUDE.md 'Query tools' section ticket \u2014 0629's text says '0632' but 0632 is a different, unrelated engine ticket, already done) remains OPEN/unclaimed in engine/store/queue/. Per this ticket's own instruction ('otherwise do the minimal one that unblocks discovery today'), did NOT add a partial CLAUDE.md section here to avoid duplicating/conflicting with 0634's fuller scope (all 4 query CLIs) when it executes \u2014 consistent with 0628's own note not to partially build it.",
+      "action_taken": "None needed beyond confirming the above \u2014 no new skill or CLAUDE.md edit made for the literal ticket ask."
+    },
+    "expanded_scope": {
+      "1_census_completeness": {
+        "new_rows_added": [
+          "kdd-bridge (headless-mcp, EXTRA_APPS)",
+          "dark-factory-engine (headless-engine, EXTRA_APPS)"
+        ],
+        "kdd_viewer": "already present in constellation.json; was NOT resolving (no PATH_OVERRIDES entry) \u2014 fixed, not newly added",
+        "mochaccino_service": "already present as 'mochaccino-mocha-census'; added kind=service + a KNOWN_LAUNCHD_SIGNALS entry (com.appydave.mochaccino) as a second, independent liveness signal alongside its existing port-7420 check",
+        "kind_field_introduced": "apps[].kind: surface | headless-mcp | headless-engine | pulse | service, via lib/seed.py KIND_OVERRIDES + classify_kind(), default 'surface'",
+        "bugs_found_and_fixed_incidentally": [
+          "project-digest, kdd-viewer, app-registry (itself) were already in constellation.json (added 2026-07-03/04) but had NO PATH_OVERRIDES entry \u2014 every probe silently reported them unresolvable/unknown. Added all three.",
+          "omi-fetch had TWO competing records under one id (one from constellation.json with no resolved path, one from a stale EXTRA_APPS entry with a resolved path) \u2014 a genuine duplicate-id bug. Fixed by moving omi-fetch into PATH_OVERRIDES and dropping it from EXTRA_APPS.",
+          "app-registry's own live probe read itself as 'dark' (false drift vs. its constellation.json verdict 'running') because KNOWN_LAUNCHD_SIGNALS had no entry for its own label (com.appydave.app-registry) \u2014 caught only by actually running the probe. Fixed."
+        ],
+        "schema_version_bumped": "1.0 -> 1.1 (additive: apps[].kind, top-level launchd[] + mcp_registered[])"
+      },
+      "2_launchd_inventory": {
+        "new_module": "lib/launchd_inventory.py \u2014 scans ~/Library/LaunchAgents for com.appydave.*.plist, cross-references `launchctl list` for loaded/pid/last_exit_status",
+        "new_query_verb": "query.py launchd",
+        "new_view_section": "'launchd inventory' table in view/index.html",
+        "finding": "com.appydave.omi-sync IS silently failing \u2014 loaded, StartCalendarInterval (6x/day, 07:00-17:00 even hours), last_exit_status=1 every scheduled run. Matches loose-ends-ledger.md D3 ('Retire failing com.appydave.omi-sync... say the word, I execute') \u2014 NOT retired here, that decision is David's, only surfaced.",
+        "all_5_agents_found": [
+          "com.appydave.app-registry (interval, exit 0)",
+          "com.appydave.appyradar-sentinal (keep-alive, running, exit 0)",
+          "com.appydave.mochaccino (keep-alive, running, exit 0)",
+          "com.appydave.omi-fetch (interval, exit 0)",
+          "com.appydave.omi-sync (calendar, exit 1 \u2014 FAILING)"
+        ]
+      },
+      "3_registered_but_missing": {
+        "new_module": "lib/mcp_check.py \u2014 reads dark-factory/.mcp.json, resolves each mcpServers script path, checks existence on this machine",
+        "wired_into": "query.py drift now also emits mcp:<name> entries with drift='registered-but-missing' for any script path that doesn't exist (additive to the existing flat JSON array \u2014 same shape, extra elements)",
+        "current_result": "0 hits \u2014 both configured servers (blackboard, kdd-bridge) resolve fine on this machine right now. Verified the negative-detection path works via a synthetic test (a fake missing path correctly produced exists:false) since there was nothing real to catch today."
+      },
+      "4_locations_json_crossref": {
+        "read_only_confirmed": "locations.json was only read, never written",
+        "all_5_keys_now_linking": {
+          "omi-fetch-app": "-> omi-fetch, jump japp-omi-fetch",
+          "app-registry": "-> app-registry, jump japp-registry",
+          "morning-briefing": "-> project-digest, jump japp-briefing",
+          "kdd-viewer": "-> kdd-viewer, jump japp-kdd-viewer",
+          "kdd-bridge": "-> kdd-bridge, jump japp-kdd-bridge"
+        },
+        "note": "all 5 were already correctly added to locations.json 2026-07-04; the gap was entirely on app-registry's side (missing PATH_OVERRIDES entries, see item 1) \u2014 fixing those made the crossref 'just work', no locations.json change needed or made."
+      },
+      "5_original_ticket_beyond_expanded_scope": "covered above under original_ticket_ask \u2014 nothing further found beyond that."
+    },
+    "verification": {
+      "probe_run_twice_idempotent": "counts identical both runs: total=42 running=5 dark=27 unknown=9 unprobed=1",
+      "view_regenerated": "view/index.html contains 'launchd inventory' and 'MCP registration check' sections, verified by substring check post-render",
+      "no_duplicate_ids": "42 unique ids, 0 duplicates (was 41 with 1 duplicate \u2014 omi-fetch \u2014 before this session's fix)"
+    },
+    "files_changed_app_registry_repo": [
+      "lib/seed.py \u2014 PATH_OVERRIDES (+4: app-registry, project-digest, kdd-viewer, omi-fetch), EXTRA_APPS (kdd-bridge, dark-factory-engine added; omi-fetch removed), new KIND_OVERRIDES + classify_kind()",
+      "probe.py \u2014 kind field on every entry; KNOWN_PROCESS_SIGNALS (+kdd-bridge, +dark-factory-engine); KNOWN_LAUNCHD_SIGNALS (+mochaccino-mocha-census, +app-registry); registry now carries top-level launchd[] and mcp_registered[]",
+      "lib/launchd_inventory.py \u2014 new file",
+      "lib/mcp_check.py \u2014 new file",
+      "lib/store.py \u2014 SCHEMA_VERSION 1.0 -> 1.1",
+      "query.py \u2014 new 'launchd' verb; 'drift' verb extended with mcp-registration misses",
+      "lib/view.py \u2014 kind badge on app rows; new launchd inventory + MCP registration check sections",
+      "README.md \u2014 documented kind taxonomy, query.py launchd, drift extension, launchd inventory, registered-but-missing check, census-completeness fixes",
+      "store/registry.json, store/probe.log, view/index.html \u2014 regenerated (probe run twice)"
+    ],
+    "commits": {
+      "app-registry_repo": "local commit(s), NOT pushed (per instruction) \u2014 see repo git log for exact hash",
+      "dark_factory_repo": "this ticket file moved queue/ -> running/ and updated, committed locally, NOT pushed"
+    },
+    "left_for_orchestrator": "Ticket left in engine/store/running/ per instruction, not moved to done/ \u2014 orchestrator to reap and verify/close."
+  },
+  "done_at": "2026-07-06T02:00:00Z",
+  "result_status": "done"
+}
