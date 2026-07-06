@@ -42,9 +42,14 @@ fork triggers, abort conditions, executor-model tailoring).
       (10 tracks), `plans/wargames/unknowns-map.md`, `plans/wargames/interview.html`.
       Headline: docs lag code — harness-eval promotion plan + most six-app-eval High items
       already shipped into `engine/`; every war game gets verify-on-disk recon moves.
-- [ ] Phase 1 interview — WAITING ON DAVID: open `plans/wargames/interview.html`, answer
-      the 10 questions, hit "Copy answers as prompt", paste into the session
-- [ ] Phase 2 candidates
-- [ ] Phase 3 triage (David)
+- [x] Phase 1 interview DONE (2026-07-06) — all 10 answered; locked in
+      `plans/wargames/decisions.md`. Headlines: ingestion = full campaign; YLO parked;
+      everything executes through the engine; Watchtower = real app; +Roamy; all
+      defaults accepted; top ~50 fully war-gamed.
+- [x] Phase 2 candidates DONE — 110 candidates across 9 tracks in
+      `plans/wargames/candidates.js` (T4 removed), pre-sorted NOW 28 / NEXT 29 /
+      LATER 52 / KILL 1.
+- [ ] Phase 3 triage — WAITING ON DAVID: open `plans/wargames/triage-board.html`,
+      re-bucket, "Copy verdicts as prompt", paste into the session
 - [ ] Phase 4 deep war-games
 - [ ] Phase 5 wire-up

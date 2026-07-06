@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>War-Game Triage Board — 110 candidates</title>
+<style>
+  :root{
+    --bg:#1c1917; --panel:#26211d; --panel2:#2e2823; --line:#3f3830;
+    --ink:#f0e9dd; --ink-dim:#b8ad9c; --ink-faint:#877c6b;
+    --amber:#e8a33d; --green:#8fbf6f; --blue:#7ba8c9; --red:#d97b6c;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+       padding-bottom:100px}
+  .wrap{max-width:1060px;margin:0 auto;padding:28px 22px}
+  h1{font-size:24px;margin:0 0 4px}
+  h2{font-size:17px;margin:34px 0 10px;color:var(--amber);
+     border-bottom:1px solid var(--line);padding-bottom:6px}
+  .sub{color:var(--ink-dim);margin:0 0 6px;font-size:14px}
+  .legend{color:var(--ink-faint);font-size:13px;margin-bottom:16px}
+  .row{display:flex;gap:12px;align-items:flex-start;background:var(--panel);
+       border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin:8px 0}
+  .row .body{flex:1;min-width:0}
+  .row .id{font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:var(--amber)}
+  .row .size{font-family:ui-monospace,monospace;font-size:11.5px;color:var(--ink-faint);margin-left:6px}
+  .row h3{font-size:14.5px;margin:1px 0 2px;font-weight:650}
+  .row p{margin:0;color:var(--ink-dim);font-size:13px}
+  .chips{display:flex;gap:5px;flex-shrink:0;margin-top:2px}
+  .chip{border:1px solid var(--line);background:var(--panel2);color:var(--ink-dim);
+        border-radius:14px;padding:3px 11px;font-size:12px;cursor:pointer;user-select:none}
+  .chip:hover{border-color:var(--ink-faint)}
+  .chip.on-now{background:#3a4a2e;border-color:var(--green);color:var(--green);font-weight:650}
+  .chip.on-next{background:#2e3c48;border-color:var(--blue);color:var(--blue);font-weight:650}
+  .chip.on-later{background:#3e3427;border-color:var(--amber);color:var(--amber);font-weight:650}
+  .chip.on-kill{background:#46302b;border-color:var(--red);color:var(--red);font-weight:650}
+  .bar{position:fixed;bottom:0;left:0;right:0;background:var(--panel);
+       border-top:1px solid var(--line);padding:12px 22px;display:flex;gap:18px;
+       align-items:center;justify-content:space-between;flex-wrap:wrap}
+  .counts{display:flex;gap:14px;font-size:13.5px;font-family:ui-monospace,monospace}
+  .counts .now{color:var(--green)} .counts .next{color:var(--blue)}
+  .counts .later{color:var(--amber)} .counts .kill{color:var(--red)}
+  button{background:var(--amber);color:#231a0d;border:0;border-radius:6px;
+         padding:10px 22px;font-size:15px;font-weight:650;cursor:pointer}
+  button:hover{background:#f2b558}
+  button.ok{background:var(--green)}
+  textarea{width:100%;background:var(--panel2);border:1px solid var(--line);border-radius:6px;
+           color:var(--ink);padding:8px 10px;font:13.5px/1.5 inherit;min-height:60px}
+  .note{margin-top:26px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Triage Board — 110 candidates</h1>
+  <p class="sub"><strong style="color:var(--green)">NOW</strong> and <strong style="color:var(--blue)">NEXT</strong> get full war games (~50–57 as pre-sorted);
+  <strong style="color:var(--amber)">LATER</strong> stays a one-paragraph candidate in the pool; <strong style="color:var(--red)">KILL</strong> is gone.</p>
+  <p class="legend">Pre-sorted by Fable's best guess — override anything. YLO→POEM (T4) excluded per your Q5. Sizes: S &lt;1 worker-session · M 1–2 · L 3+ or design-first. When done: <em>Copy verdicts</em> → paste into the session.</p>
+  <div id="board"></div>
+  <div class="note">
+    <h2>Notes / additions</h2>
+    <textarea id="gnotes" placeholder="new candidates to add, vetoes, ordering notes…"></textarea>
+  </div>
+</div>
+<div class="bar">
+  <div class="counts" id="counts"></div>
+  <button id="copy">Copy verdicts as prompt</button>
+</div>
+<script src="candidates.js"></script>
+<script>
+const BUCKETS=["now","next","later","kill"];
+const board=document.getElementById('board');
+const tracks=[...new Set(CANDIDATES.map(c=>c.track))];
+tracks.forEach(t=>{
+  const h=document.createElement('h2');h.textContent=t;board.appendChild(h);
+  CANDIDATES.filter(c=>c.track===t).forEach(c=>{
+    const r=document.createElement('div');r.className='row';r.dataset.id=c.id;
+    r.innerHTML=`<div class="body"><span class="id">${c.id}</span><span class="size">[${c.size}]</span>
+      <h3>${c.title}</h3><p>${c.para}</p></div>
+      <div class="chips">${BUCKETS.map(b=>`<span class="chip" data-b="${b}">${b.toUpperCase()}</span>`).join('')}</div>`;
+    r.querySelectorAll('.chip').forEach(ch=>{
+      if(ch.dataset.b===c.bucket) ch.classList.add('on-'+ch.dataset.b);
+      ch.onclick=()=>{
+        r.querySelectorAll('.chip').forEach(x=>x.className='chip');
+        ch.classList.add('on-'+ch.dataset.b);
+        c.bucket=ch.dataset.b; refresh();
+      };
+    });
+    board.appendChild(r);
+  });
+});
+function refresh(){
+  const n={now:0,next:0,later:0,kill:0};
+  CANDIDATES.forEach(c=>n[c.bucket]++);
+  document.getElementById('counts').innerHTML=
+    `<span class="now">NOW ${n.now}</span><span class="next">NEXT ${n.next}</span>`+
+    `<span class="later">LATER ${n.later}</span><span class="kill">KILL ${n.kill}</span>`+
+    `<span style="color:var(--ink-faint)">· ${n.now+n.next} war games</span>`;
+}
+document.getElementById('copy').onclick=()=>{
+  let out='## Triage verdicts — war-game portfolio (Phase 3)\n\n';
+  BUCKETS.forEach(b=>{
+    const items=CANDIDATES.filter(c=>c.bucket===b);
+    out+=`### ${b.toUpperCase()} (${items.length})\n`;
+    items.forEach(c=>out+=`- ${c.id} — ${c.title}\n`);
+    out+='\n';
+  });
+  const g=document.getElementById('gnotes').value.trim();
+  if(g) out+=`### Notes / additions\n${g}\n\n`;
+  out+='Proceed to Phase 4: deep war-games for NOW+NEXT.\n';
+  navigator.clipboard.writeText(out).then(()=>{
+    const btn=document.getElementById('copy');
+    btn.textContent='Copied ✓ — paste into the session';btn.classList.add('ok');
+    setTimeout(()=>{btn.textContent='Copy verdicts as prompt';btn.classList.remove('ok')},2500);
+  });
+};
+refresh();
+</script>
+</body>
+</html>
