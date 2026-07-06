@@ -56,6 +56,15 @@ This repo is operated PO ↔ Developer style:
 - `~/dev/ad/brains/agentic-factory/dark-factory-catalog/` is now a **symlink** to `~/dev/ad/apps/dark-factory/research/`. Old references still resolve.
 - `~/dev/ad/appydave-plugins/appydave/skills/dark-factory-catalog/` is the **catalog SKILL** (recon/discover/distill procedure). It still exists in its original location — only the catalog DATA moved.
 
+## Query tools
+
+Four sibling apps under `~/dev/ad/apps/` (not inside this repo) are real, working query CLIs, each documented in its own README but with no other single discovery point:
+
+- **`~/dev/ad/apps/omi-fetch/lookup.py`** — use when finding a captured OMI conversation by code or search term.
+- **`~/dev/ad/apps/app-registry/query.py`** — use when checking which apps are running / dark / drifted.
+- **`~/dev/ad/apps/project-digest/digest.py`** — use when generating a per-project morning briefing.
+- **`~/dev/ad/apps/kdd-viewer/scan.py`** — use when browsing a project's KDD learnings, patterns, or decisions.
+
 ## Mochaccino server
 
 A Python http.server runs on **:7420** rooted at `mochaccino/`. Pages: `/designs/` (gallery) plus nine designs — `01-pipeline-overview`, `02-mining-view`, `03-triage-console` (canonical-ingestion thread); `04-blackboard-overview`, `05-probe-progression`, `06-blackboard-vs-poem`, `07-workflow-flows`, `08-poem-consolidation` (blackboard→POEM thread); `09-census-progress` (census board). Every design carries a copy-kit (per-section checkboxes + a copy toolbar, via `designs/components/copykit.{css,js}`). If it's not running, restart with:

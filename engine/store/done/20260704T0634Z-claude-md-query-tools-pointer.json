@@ -1,0 +1,25 @@
+{
+  "ticket": "20260704T0634Z-claude-md-query-tools-pointer",
+  "kind": "instruction",
+  "title": "Add a 'query tools' pointer section so a cold agent discovers all four live query CLIs in one place",
+  "source": [
+    "docs/six-app-evaluation-2026-07-04.md \u2014 Cross-cutting",
+    "OMI A266"
+  ],
+  "executor": "builder-agent",
+  "priority": "med",
+  "requested_at": "2026-07-04T06:34:00Z",
+  "requested_by": "david (via six-app-evaluation-2026-07-04)",
+  "prompt": "Four of the six evaluated items are real, working query CLIs (apps/omi-fetch/lookup.py, apps/app-registry/query.py, apps/project-digest/digest.py, apps/kdd-viewer/scan.py) that are each individually well-documented in their own READMEs, but there is no single place that tells a cold agent (or David, six months from now) that all four exist and when to reach for which. All four are correctly listed in mochaccino/data/constellation.json, but that's circular \u2014 you have to already know app-registry exists to find that list.\n\nAdd a short 'Query tools' section to dark-factory's own CLAUDE.md (or ~/dev/ad/CLAUDE.md's existing 'Query tools' bullet list, which already names query_brain/query_omi/llm_context \u2014 this is the natural home) listing the four CLIs with a one-line 'use when' each, e.g.: omi-fetch/lookup.py (find a captured OMI conversation by code/search), app-registry/query.py (which apps are running/dark/drifted), project-digest/digest.py (per-project morning briefing), kdd-viewer/scan.py (browse a project's KDD learnings/patterns/decisions). Keep it to one short section \u2014 this is a pointer, not a re-documentation of each tool.",
+  "verify": "CLAUDE.md (dark-factory's own, or ~/dev/ad/CLAUDE.md's Query tools bullet list) names all four CLIs with a one-line use-when each; a fresh agent reading CLAUDE.md alone (no other file) can name all four tools and roughly when to use each.",
+  "claimed_by": "fable-orchestrator",
+  "claimed_at": "2026-07-06T07:46:00Z",
+  "result": {
+    "status": "done",
+    "files_changed": [
+      "CLAUDE.md"
+    ],
+    "notes": "Added a Query tools section to dark-factory own CLAUDE.md (not ~/dev/ad/CLAUDE.md, which is out of scope). Path correction: the ticket prompt wrote paths as apps/<name>/<script>.py (relative to ~/dev/ad/), but dark-factory own root has no apps/ subdir, so from dark-factory CLAUDE.md that path would be wrong. Used unambiguous absolute-style paths instead: ~/dev/ad/apps/omi-fetch/lookup.py, ~/dev/ad/apps/app-registry/query.py, ~/dev/ad/apps/project-digest/digest.py, ~/dev/ad/apps/kdd-viewer/scan.py. All four confirmed to exist via find/ls.",
+    "verify": "ls/find confirmed all four scripts exist at the paths above. New section lists all four CLIs with a one-line use-when each; a fresh agent reading dark-factory/CLAUDE.md alone can name all four tools and roughly when to use each."
+  }
+}
