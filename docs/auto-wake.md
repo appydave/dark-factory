@@ -150,7 +150,59 @@ plane, `docs/comms-flow.md` §5). When DF-7 lands, this filesystem watcher is th
 piece that gets swapped for a real SSE subscribe; the ARMED/HALT/BACKOFF/lock gating
 and the orchestrator dispatch call underneath stay exactly as they are.
 
-## 8. Related
+## 8. Return leg (C4)
+
+The notify leg above covers the *queue* side (a ticket showed up to run). C4 closes
+the other end — **a ticket finished** — which was previously silent: `orchestrator.py`
+only notifies on HITL/BACKOFF, and builder-agent tickets get moved into
+`engine/store/done/` by hand with no signal at all.
+
+The wire: `engine/store/done/` is a second `WatchPaths` entry on the same
+`com.appydave.dark-factory-wake` launchd job (`ThrottleInterval 10` still applies).
+On fire, `wake.py`'s `main()` calls `done_pass()` right after `run_pass()`:
+
+- diffs `done/*.json` against `engine/store/.done-state.json`'s `last_seen` set
+  (same last-seen-set idiom as `.wake-state.json`, own file so the two legs never
+  collide).
+- **first run ever** (no `.done-state.json`): records the full current set, logs
+  `[return] baseline: N existing done ticket(s) recorded, no notify` and does
+  **not** notify — otherwise installing this against an already-populated `done/`
+  would fire one popup per historical ticket.
+- **every run after**: one `notify()` call per pass naming the first new ticket +
+  count (`"N ticket(s) done: <first one-liner>"` — one popup per batch, not per
+  ticket), plus one `[return] done: <one-liner> [<fname>]` wake.log line per new
+  file. The one-liner is `done_one_liner()`, which mirrors `engine/status.py`'s
+  `done_outcome()` duality: status comes from `store/results/<fname>.json` if
+  present, else the ticket's own embedded `result` (string or `{status, notes}`
+  dict), else `"unknown"` — any read/parse failure on a single file falls back to
+  filename + "unknown" rather than killing the whole pass.
+- state is saved either way, so a claimed/removed file also drops out of
+  `last_seen`.
+
+No dispatch logic lives in this leg — it is notify-only, on purpose (`docs/kill-switch-spec.md`'s
+HALT/BACKOFF gates only apply to the queue→orchestrator dispatch path).
+
+**Dummy-file test procedure** (used to prove the launchd wire live, not just the
+code): drop a throwaway ticket into `engine/store/done/` (filename convention
+`<ts>-DUMMY-<slug>.json`, containing an embedded `result: {status, notes}`), wait
+&gt;10s for the throttled launchd fire, confirm a `[return] done: ...` line appears in
+`wake.log` **without running wake.py by hand**, then delete the dummy file and run
+`wake.py` once more to re-baseline `.done-state.json` back to the real set. The
+ledger (`done/`) must hold zero dummy files once the test is done.
+
+**Second surface:** a macOS notification only reaches David while he's at that
+machine. `~/dev/ad/apps/project-digest`'s morning briefing (`lib/shipped.py`) reads
+the same `engine/store/done/` directory as a third SHIPPED source (alongside git
+commits and `backlog/done/`), so `digest.py dark-factory` also reports what the
+factory shipped even if every popup was missed. Windowed by file mtime, same
+defensive-zeros shape as the existing `backlog_done_in_window`.
+
+**Overlap note:** `engine/consumer.py` already reads `job.completed` events and
+could theoretically chime on completion — it's not used for this because it only
+sees orchestrator-path events (no signal for hand-moved builder-agent tickets) and
+nobody keeps it running; the done/ directory watch covers both landing paths.
+
+## 9. Related
 
 - `backlog/specs/c3-marshall-auto-wake-spec.md` — the original spec (status line
   points here as of 2026-07-06).

@@ -1,0 +1,22 @@
+{
+  "last_seen": [
+    "20260703T125625Z-constellation-2026-07-03-apps.json",
+    "20260704T0230Z-omi-fetch-v2.json",
+    "20260704T034440Z-research-heterogeneous-worker-pools.json",
+    "20260704T034441Z-research-async-human-in-loop-queues.json",
+    "20260704T034442Z-research-machine-mined-decision-confidence.json",
+    "20260704T0627Z-omi-fetch-search-and-enrichment.json",
+    "20260704T0628Z-resolve-skill-name-collisions.json",
+    "20260704T0629Z-app-registry-discoverability.json",
+    "20260704T0631Z-kdd-viewer-search-and-json-pointer.json",
+    "20260704T0632Z-engine-status-and-verifiers.json",
+    "20260704T0633Z-kbde-extension-status-pointer.json",
+    "20260704T0634Z-claude-md-query-tools-pointer.json",
+    "20260706T-halt-switch.json",
+    "20260706T0745Z-status-py-dict-result-crash.json",
+    "20260706T0930Z-orchestrator-kind-filter.json",
+    "20260706T0931Z-cap-governor.json",
+    "20260706T0932Z-auto-wake-and-notify-watcher.json"
+  ],
+  "updated_at": "2026-07-07T00:28:00Z"
+}

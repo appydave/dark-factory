@@ -43,12 +43,15 @@ ENGINE   = os.path.dirname(os.path.abspath(__file__))
 REPO     = os.path.dirname(ENGINE)
 STORE    = os.path.join(ENGINE, "store")
 Q        = os.path.join(STORE, "queue")
+DONE_DIR = os.path.join(STORE, "done")
+RES_DIR  = os.path.join(STORE, "results")
 
 WAKE_ARMED_PATH = os.path.join(STORE, "WAKE-ARMED")
 HALT_PATH       = os.path.join(STORE, "HALT")
 BACKOFF_PATH    = os.path.join(STORE, "BACKOFF")
 LOCK_PATH       = os.path.join(STORE, ".wake.lock")
 STATE_PATH      = os.path.join(STORE, ".wake-state.json")
+DONE_STATE_PATH = os.path.join(STORE, ".done-state.json")
 WAKE_LOG_PATH   = os.path.join(STORE, "wake.log")
 
 
@@ -231,6 +234,80 @@ def run_pass():
     save_state(tickets)
 
 
+def load_done_state():
+    try:
+        with open(DONE_STATE_PATH) as f:
+            return json.load(f)
+    except Exception:
+        return None
+
+
+def save_done_state(fnames):
+    payload = {"last_seen": sorted(fnames), "updated_at": now_iso()}
+    with open(DONE_STATE_PATH, "w") as f:
+        json.dump(payload, f, indent=2)
+        f.write("\n")
+
+
+def done_one_liner(fname):
+    """Mirrors engine/status.py's done_outcome() duality: outcome lives EITHER in
+    store/results/<fname>.json (status/notes) OR embedded in the done ticket
+    itself as `result` (plain string, or dict with status/notes). Never let one
+    bad file kill the pass -- any read/parse failure falls back to filename +
+    "unknown"."""
+    try:
+        try:
+            with open(os.path.join(DONE_DIR, fname)) as f:
+                ticket = json.load(f)
+        except Exception:
+            ticket = {}
+        title = ticket.get("title") or fname
+
+        status = None
+        try:
+            with open(os.path.join(RES_DIR, fname)) as f:
+                res = json.load(f)
+            status = res.get("status")
+        except Exception:
+            status = None
+
+        if status is None:
+            result = ticket.get("result")
+            if isinstance(result, dict):
+                status = result.get("status")
+            elif isinstance(result, str):
+                status = result
+        return f"{title} — {status or 'unknown'}"
+    except Exception:
+        return f"{fname} — unknown"
+
+
+def done_pass():
+    if not os.path.isdir(DONE_DIR):
+        return
+    current = set(f for f in os.listdir(DONE_DIR) if f.endswith(".json"))
+    state = load_done_state()
+
+    if state is None:
+        save_done_state(current)
+        log(f"[return] baseline: {len(current)} existing done ticket(s) recorded, no notify")
+        return
+
+    last_seen = set(state.get("last_seen", []))
+    new_files = sorted(current - last_seen)
+
+    if not new_files:
+        save_done_state(current)
+        return
+
+    one_liners = [done_one_liner(f) for f in new_files]
+    n = len(new_files)
+    notify("dark-factory", f"{n} ticket(s) done: {one_liners[0][:80]}")
+    for fname, one_liner in zip(new_files, one_liners):
+        log(f"[return] done: {one_liner} [{fname}]")
+    save_done_state(current)
+
+
 def cmd_arm():
     os.makedirs(STORE, exist_ok=True)
     payload = {"ts": now_iso(), "by": os.environ.get("USER", "unknown")}
@@ -294,6 +371,7 @@ def main():
         cmd_status()
     else:
         run_pass()
+        done_pass()
 
 
 if __name__ == "__main__":

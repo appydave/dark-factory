@@ -78,7 +78,7 @@ Linear, N=1, **do** not theorise. Each session ends in a tangible artifact.
 1. **C1 — Consumer runs one job by hand.** ✅ **DONE 2026-06-05** — queue→running→done, real run record + artifact, no loop/mutex/monitor.
 2. **C2 — Producer: talk → a schema-valid ticket in `queue/`.** ← next. *(The daily-use form of C2 — the morning briefing + BA conversation — is specced in [`daily-operating-model.md`](./daily-operating-model.md).)*
 3. **C3 — Trigger (Marshall): one watcher wakes on a ticket and dispatches to a Swagger; Marshall stays lean.**
-4. **C4 — Return leg (#19): every run surfaces a one-line "what ran" so nothing is silent.**
+4. **C4 — Return leg (#19): every run surfaces a one-line "what ran" so nothing is silent.** ✅ DONE 2026-07-06 (wake.py return leg + digest SHIPPED — see docs/auto-wake.md)
 5. **C5 — One real `kind:workflow` job carried end-to-end, triggered by talking.**
 
 Scale (N>1 dispatch, Agent Teams, tmux pane pools) is **deferred** until the N=1 spine is proven — the research is parked in `agent-orchestration-capabilities.md`.

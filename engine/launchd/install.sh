@@ -10,6 +10,6 @@ LABEL=com.appydave.dark-factory-wake; DEST="$HOME/Library/LaunchAgents/$LABEL.pl
 sed "s|__APP_ROOT__|$ROOT|g" "$DIR/$LABEL.plist" > "$DEST"
 launchctl unload "$DEST" 2>/dev/null || true
 launchctl load "$DEST"
-echo "Loaded $LABEL — watching $ROOT/engine/store/queue for changes."
+echo "Loaded $LABEL — watching $ROOT/engine/store/{queue,done} for changes."
 echo "Dispatch is DISARMED by default. Arm with: bin/factory-wake arm"
 echo "Uninstall: engine/launchd/uninstall.sh"

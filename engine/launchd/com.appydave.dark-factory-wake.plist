@@ -8,6 +8,7 @@
   <key>WorkingDirectory</key><string>__APP_ROOT__</string>
   <key>WatchPaths</key><array>
     <string>__APP_ROOT__/engine/store/queue</string>
+    <string>__APP_ROOT__/engine/store/done</string>
   </array>
   <key>ThrottleInterval</key><integer>10</integer>
   <key>StandardOutPath</key><string>__APP_ROOT__/engine/store/wake.log</string>
