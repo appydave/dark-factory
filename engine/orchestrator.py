@@ -522,6 +522,11 @@ def main():
     model = argv[argv.index("--model") + 1] if "--model" in argv else MODEL
     pool_size = int(argv[argv.index("--pool") + 1]) if "--pool" in argv else POOL
     max_wall = int(argv[argv.index("--max-wall") + 1]) if "--max-wall" in argv else MAX_WALL
+    # per-worker no-artifact reboot budget. Default 240s suits edit+commit tickets, but
+    # war-game tickets spend all their recon/evidence moves writing NOTHING until a late
+    # authoring move -- they need a much larger budget or the worker is rebooted mid-recon
+    # and restarts from scratch forever. Raise it for those runs: --worker-timeout 1800.
+    worker_timeout = int(argv[argv.index("--worker-timeout") + 1]) if "--worker-timeout" in argv else WORKER_TIMEOUT
     teardown = "--teardown" in argv
     gated_tid = argv[argv.index("--hitl") + 1] if "--hitl" in argv else None
 
@@ -532,6 +537,7 @@ def main():
         pool_size = CAP
 
     banner(f"dark-factory engine kernel — pool={pool_size} model={model} "
+           f"worker-timeout={worker_timeout}s "
            f"repo={REPO} subscription-only" + (f" (--hitl {gated_tid})" if gated_tid else ""))
 
     pool = WarmPool(pool_size, model, REPO)
@@ -639,10 +645,10 @@ def main():
                     print(f"[reap]     ticket {tid}: done, verified -> event {os.path.basename(ev)}", flush=True)
                 else:
                     print(f"[verify]   ticket {tid}: artifact present but verification FAILED: {findings}", flush=True)
-                    if time.time() - a["started"] > WORKER_TIMEOUT:
+                    if time.time() - a["started"] > worker_timeout:
                         results[tid] = "failed(verify)"; a["verify_findings"] = findings; settle(tid, a)
                         print(f"[reap]     ticket {tid}: giving up after verify timeout", flush=True)
-            elif time.time() - a["started"] > WORKER_TIMEOUT:
+            elif time.time() - a["started"] > worker_timeout:
                 w = a["worker"]
                 # LIMIT DETECTION: before rebooting a wedged worker, sniff its pane for a
                 # 429/usage-limit signature -- a reboot would otherwise mask exactly the

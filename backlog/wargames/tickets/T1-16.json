@@ -1,0 +1,15 @@
+{
+  "ticket": "wg-t1-16-durable-verdict-ledger",
+  "kind": "instruction",
+  "title": "T1 Engine: durable verdict ledger + prior-chain — resume from disk, not transcripts",
+  "source": "backlog/wargames/T1-16-durable-verdict-ledger.md (BMAD-Swagger research 2026-07-08)",
+  "executor": "swagger",
+  "priority": "normal",
+  "requested_at": "2026-07-08T12:36:23Z",
+  "requested_by": "david (war-game portfolio, 2026-07-08)",
+  "depends_on": [
+    "wg-t1-15-independent-reverify-at-reap"
+  ],
+  "prompt": "Read and execute the war game at backlog/wargames/T1-16-durable-verdict-ledger.md move by move. Add engine/store/ledger.jsonl (append-only verdict lines with prior-chain) + embed the verdict in each settled ticket + a status.py --resume read; on failure apply counter-moves; on abort write needs-decision/.",
+  "verify": "ledger.jsonl exists; status.py --resume reconstructs a re-attempted ticket's chain from disk with no transcript read; audit.jsonl writes unchanged."
+}

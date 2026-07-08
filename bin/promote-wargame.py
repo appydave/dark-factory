@@ -28,7 +28,9 @@ DONE = ROOT / "engine" / "store" / "done"
 RUNNING = ROOT / "engine" / "store" / "running"
 
 # war games that boot/kill the engine or saturate usage: never engine-dispatched
-SELF_HOSTING = {"T1-01", "T1-02", "T1-03", "T1-05", "T1-06"}
+# tickets that must NOT be engine-dispatched: they run/kill the engine, or (T1-14) fix a
+# foundational engine bug that can't be repaired by a worker running under that same bug.
+SELF_HOSTING = {"T1-01", "T1-02", "T1-03", "T1-05", "T1-06", "T1-14"}
 
 def load():
     staged = {}

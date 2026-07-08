@@ -1,0 +1,15 @@
+{
+  "ticket": "wg-t1-15-independent-reverify-at-reap",
+  "kind": "instruction",
+  "title": "T1 Engine: reap re-verifies from the war game's own checks, not the worker's word",
+  "source": "backlog/wargames/T1-15-independent-reverify-at-reap.md (BMAD-Swagger research 2026-07-08)",
+  "executor": "swagger",
+  "priority": "high",
+  "requested_at": "2026-07-08T12:36:23Z",
+  "requested_by": "david (war-game portfolio, 2026-07-08)",
+  "depends_on": [
+    "wg-t1-14-worker-timeout-activity-reset"
+  ],
+  "prompt": "Read and execute the war game at backlog/wargames/T1-15-independent-reverify-at-reap.md move by move. Add a 'wargame' verifier that runs each ticket's own ## Verification block at reap and cross-checks the worker's self-report; on any failure signal apply the counter-move; on any abort condition stop and write needs-decision/.",
+  "verify": "A ticket with a deliberately-unmet negative check reaps as failed(verify) not done; existing generic/constellation verifiers still pass; no worker artifact modified by the reap step."
+}

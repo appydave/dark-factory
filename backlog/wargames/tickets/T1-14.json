@@ -1,0 +1,13 @@
+{
+  "ticket": "wg-t1-14-worker-timeout-activity-reset",
+  "kind": "instruction",
+  "title": "T1 Engine: WORKER_TIMEOUT activity-based reset (bootstrap fix — build in seat, not engine)",
+  "source": "backlog/wargames/T1-14-worker-timeout-activity-reset.md (war-game portfolio; live T1-11 incident 2026-07-08)",
+  "executor": "attended",
+  "priority": "high",
+  "requested_at": "2026-07-08T12:36:23Z",
+  "requested_by": "david (T1-11 reclaim incident, 2026-07-08)",
+  "depends_on": [],
+  "prompt": "BOOTSTRAP FIX — do NOT engine-dispatch (the engine can't fix its own reboot loop while running under it). Build per backlog/wargames/T1-14-worker-timeout-activity-reset.md: make WORKER_TIMEOUT reset on worker activity (pane output change) not just artifact-landed, keeping --max-wall as the hard ceiling.",
+  "verify": "orchestrator.py parses; a chatty-no-artifact worker survives >240s; a silent worker still reboots after the inactivity window; --max-wall + CAP/BACKOFF/HALT untouched."
+}
