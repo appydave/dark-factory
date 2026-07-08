@@ -28,9 +28,11 @@ DONE = ROOT / "engine" / "store" / "done"
 RUNNING = ROOT / "engine" / "store" / "running"
 
 # war games that boot/kill the engine or saturate usage: never engine-dispatched
-# tickets that must NOT be engine-dispatched: they run/kill the engine, or (T1-14) fix a
-# foundational engine bug that can't be repaired by a worker running under that same bug.
-SELF_HOSTING = {"T1-01", "T1-02", "T1-03", "T1-05", "T1-06", "T1-14"}
+# tickets that must NOT be engine-dispatched: their war game RUNS or KILLS the engine (spins up a
+# nested orchestrator / reboots the worker pool), so an engine-dispatched worker would murder its
+# own session. Editing engine code is NOT self-hosting (Python doesn't hot-reload — a worker can
+# edit orchestrator.py while the orchestrator runs; the change lands on the next launch).
+SELF_HOSTING = {"T1-01", "T1-02", "T1-03", "T1-05", "T1-06"}
 
 def load():
     staged = {}
