@@ -522,10 +522,12 @@ def main():
     model = argv[argv.index("--model") + 1] if "--model" in argv else MODEL
     pool_size = int(argv[argv.index("--pool") + 1]) if "--pool" in argv else POOL
     max_wall = int(argv[argv.index("--max-wall") + 1]) if "--max-wall" in argv else MAX_WALL
-    # per-worker no-artifact reboot budget. Default 240s suits edit+commit tickets, but
-    # war-game tickets spend all their recon/evidence moves writing NOTHING until a late
-    # authoring move -- they need a much larger budget or the worker is rebooted mid-recon
-    # and restarts from scratch forever. Raise it for those runs: --worker-timeout 1800.
+    # Inactivity window before rebooting a silent worker (wg-t1-14): resets on any pane-output
+    # change (a["last_active"], set in the poll loop below), so a worker that keeps producing
+    # output -- war-game tickets spend all their recon/evidence moves writing NOTHING to an
+    # artifact until a late authoring move -- is never rebooted just for taking a long time.
+    # A genuinely wedged (silent) worker still reboots once this window elapses.
+    # --max-wall remains the separate, absolute hard ceiling on total run time (untouched).
     worker_timeout = int(argv[argv.index("--worker-timeout") + 1]) if "--worker-timeout" in argv else WORKER_TIMEOUT
     teardown = "--teardown" in argv
     gated_tid = argv[argv.index("--hitl") + 1] if "--hitl" in argv else None
@@ -546,7 +548,7 @@ def main():
           f"({', '.join(f'{b:.0f}s' for b in boots)}) — named df-worker-1.."
           f"{pool_size} (tmux ls / tmux attach -t df-worker-1)", flush=True)
 
-    active = {}     # tid -> dict(worker, started, gated, state, blocked_since, ticket)
+    active = {}     # tid -> dict(worker, started, gated, state, blocked_since, ticket, last_active, last_pane)
     cooling = []
     results = {}
     retries = {}
@@ -593,7 +595,8 @@ def main():
                 w.busy = tid
                 w.send(task_prompt(tid, gated))
                 active[tid] = dict(worker=w, started=time.time(), gated=gated,
-                                    state="running", blocked_since=None, ticket=ticket)
+                                    state="running", blocked_since=None, ticket=ticket,
+                                    last_active=time.time(), last_pane="")
                 peak = max(peak, len(active))
                 if not w.session_id:
                     w.session_id, w.transcript = find_session(REPO, f"ticket id is {tid}.")
@@ -603,6 +606,14 @@ def main():
                 print(f"[dispatch] ticket {tid} -> {w.name}  (session {(w.session_id or '?')[:8]})", flush=True)
 
         for tid, a in list(active.items()):
+            # Activity fingerprint (wg-t1-14): pane text changed since last poll -> worker is
+            # doing something, even if it hasn't landed an artifact yet. Bumps last_active,
+            # which is what the reboot branch below keys on instead of raw elapsed time.
+            pane = a["worker"].capture()
+            if pane != a["last_pane"]:
+                a["last_pane"] = pane
+                a["last_active"] = time.time()
+
             if a["gated"] and not artifact_ok(tid):
                 nd = os.path.join(NEEDS, tid)
                 dfile = os.path.join(DEC, tid)
@@ -626,6 +637,10 @@ def main():
                         act = (decision.get("action") or "approve").lower()
                         a["worker"].send(resume_prompt(tid, decision))
                         a["state"] = "resumed"; a["started"] = time.time()
+                        # HITL wait can outlast worker_timeout with zero pane activity (human
+                        # thinking, not the worker) -- reset the inactivity clock on resume too,
+                        # or the reboot branch below would trip on its very next poll.
+                        a["last_active"] = time.time()
                         print(f"[HITL] resumed ticket {tid} decision={act.upper()}", flush=True)
                         if act == "decline":
                             results[tid] = "declined"; settle(tid, a)
@@ -645,10 +660,17 @@ def main():
                     print(f"[reap]     ticket {tid}: done, verified -> event {os.path.basename(ev)}", flush=True)
                 else:
                     print(f"[verify]   ticket {tid}: artifact present but verification FAILED: {findings}", flush=True)
+                    # Kept keyed on "started", NOT "last_active" (wg-t1-14): a stuck verify is a
+                    # different failure mode than a silent worker -- the artifact already landed,
+                    # so pane activity has likely stopped, but that's not what we're timing here.
                     if time.time() - a["started"] > worker_timeout:
                         results[tid] = "failed(verify)"; a["verify_findings"] = findings; settle(tid, a)
                         print(f"[reap]     ticket {tid}: giving up after verify timeout", flush=True)
-            elif time.time() - a["started"] > worker_timeout:
+            # Reboot on INACTIVITY, not raw elapsed time (wg-t1-14): a worker that keeps
+            # producing pane output is never rebooted here no matter how long it runs --
+            # --max-wall (checked below, outside this loop) is the separate hard ceiling that
+            # still bounds total run time regardless of activity.
+            elif time.time() - a["last_active"] > worker_timeout:
                 w = a["worker"]
                 # LIMIT DETECTION: before rebooting a wedged worker, sniff its pane for a
                 # 429/usage-limit signature -- a reboot would otherwise mask exactly the
