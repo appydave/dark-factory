@@ -33,6 +33,7 @@ One line per doc. Start at the top. This index is the fix for doc-sprawl — whe
 - **`ingestion-workflow.md`** — the 11-step ingest procedure.
 - **`david-style-patterns.md`** — David's voice + templates.
 - **`david-design-patterns.md`** — design-taste spec (Shelly's guidance), derived from rated work via Mocha Census; the `RUBRIC.md` source of truth.
+- **`switchboard-state-authority-fork.md`** (2026-07-08) — the Q3 state-authority fork: both branches mapped, triggers armed, default = filesystem-truth until a trigger fires.
 
 ## Operating layer & threads
 

@@ -1,5 +1,9 @@
 # Spec — Switchboard State Plane (service-backed shared job-state)
 
+> **STATUS (2026-07-06+): spec-only, not built. Decision deferred per Q3 — branches,
+> triggers, and the re-baseline of this spec against engine/ (which superseded the floor this
+> spec targets) live in docs/switchboard-state-authority-fork.md.**
+
 **Ticket:** DF-7 · **Experiment:** exp-20260609-df7-state-plane · **Target app:** `~/dev/ad/apps/switchboard`
 **Status:** SPEC ONLY — produces a document; builds nothing. The build is a later, separately-dispatched Ralphy-in-app leg.
 **Author:** Swagger (appydave:spec-writer) · **Requested by:** Marshall · **Date:** 2026-06-09
