@@ -496,7 +496,13 @@ def verify(ticket):
 
 
 def commit(tid):
-    os.rename(os.path.join(RUN, tid), os.path.join(DONE, tid))
+    src = os.path.join(RUN, tid); dst = os.path.join(DONE, tid)
+    if not os.path.exists(src):
+        if os.path.exists(dst):
+            return  # already committed — idempotent, not an error
+        print(f"[reap]     WARN commit({tid}): neither running/ nor done/ present — skipping", flush=True)
+        return
+    os.rename(src, dst)
 
 
 def emit_event(kind, payload):
