@@ -77,13 +77,15 @@ def promote(sid, staged, force=False):
     unmet = [d for d in j.get("depends_on", []) if d not in done]
     if unmet and not force:
         sys.exit(f"{sid} blocked by unmet deps: {unmet}. --force to override.")
+    if j["ticket"] in done and not force:
+        sys.exit(f"{sid} ({j['ticket']}) is already in done/ — use --force to deliberately re-run.")
     dest = QUEUE / f"{j['ticket']}.json"
     if dest.exists():
         sys.exit(f"{dest} already queued")
     shutil.copy2(p, dest)
     print(f"promoted {sid} -> {dest.relative_to(ROOT)}")
     print("REMINDER: run the orchestrator with a raised wall for war games, e.g.")
-    print("  cd engine && python3 orchestrator.py --pool 1 --model sonnet --max-wall 3600")
+    print("  cd engine && python3 orchestrator.py --pool 1 --model sonnet --max-wall 3600 --worker-timeout 1800")
 
 def main():
     args = sys.argv[1:]
