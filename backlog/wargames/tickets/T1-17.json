@@ -1,0 +1,13 @@
+{
+  "ticket": "wg-t1-17-commit-rename-guard",
+  "kind": "instruction",
+  "title": "T1 Engine: commit() is idempotent — a missing running/ file must not crash the kernel",
+  "source": "backlog/wargames/T1-17-commit-rename-guard.md (T1-14 re-promote crash, 2026-07-08)",
+  "executor": "swagger",
+  "priority": "high",
+  "requested_at": "2026-07-09T00:40:19Z",
+  "requested_by": "david (T1-14 crash incident, 2026-07-09)",
+  "depends_on": [],
+  "prompt": "Read and execute the war game at backlog/wargames/T1-17-commit-rename-guard.md move by move. Guard commit()'s os.rename so a missing running/ file (re-run of a done ticket, double-commit, race) skips gracefully instead of crashing the whole orchestrator; on any failure apply the counter-move; on abort write needs-decision/. Run the war game's Verification block yourself before self-reporting.",
+  "verify": "orchestrator.py parses; committing a non-existent ticket returns cleanly (no traceback); a normal running/->done/ commit still works; reap decision logic (artifact_ok/verify) untouched."
+}

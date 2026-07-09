@@ -1,0 +1,13 @@
+{
+  "ticket": "wg-t1-18-promote-refuses-done",
+  "kind": "instruction",
+  "title": "T1 Engine: promote refuses re-injecting a done ticket without --force",
+  "source": "backlog/wargames/T1-18-promote-refuses-done.md (T1-14 re-promote crash, 2026-07-08)",
+  "executor": "swagger",
+  "priority": "high",
+  "requested_at": "2026-07-09T00:40:19Z",
+  "requested_by": "david (T1-14 crash incident, 2026-07-09)",
+  "depends_on": [],
+  "prompt": "Read and execute the war game at backlog/wargames/T1-18-promote-refuses-done.md move by move. Make bin/promote-wargame.py refuse a ticket already in done/ unless --force (the done set is already computed by state_sets); on failure apply the counter-move; on abort write needs-decision/. Run the Verification block yourself before self-reporting.",
+  "verify": "promote-wargame.py parses; promoting a done ticket exits non-zero with 'already in done' and does NOT copy into queue/; --force still promotes; a fresh ticket still promotes."
+}
