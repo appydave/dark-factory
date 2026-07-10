@@ -467,25 +467,205 @@ def verify_artifacts_fallback(ticket):
     return (len(findings) == 0), findings
 
 
+# --- wargame verifier: independent re-verification at reap (wg-t1-15) ----------
+#
+# BMAD Swagger's discipline (research/bmad-pattern-mining/bmad-machinery-pattern.md):
+# never trust the worker's self-report -- re-derive the verdict from primary
+# evidence. The war games (backlog/wargames/<ID>.md) already carry a machine-
+# readable spec for this: a fenced ```bash block under '## Verification' with
+# runnable positive + negative checks. This verifier extracts and runs that block
+# directly, instead of trusting results/<tid>.json's claimed status.
+
+WARGAME_PATH_RE = re.compile(r'backlog/wargames/[\w.\-]+\.md')
+
+
+def resolve_wargame_path(ticket):
+    """A ticket names its war game in 'source' and/or 'prompt' (free text). Find
+    the first backlog/wargames/<ID>.md reference; None if there isn't one."""
+    for field in ("source", "prompt"):
+        m = WARGAME_PATH_RE.search(ticket.get(field) or "")
+        if m:
+            return os.path.join(REPO, m.group(0))
+    return None
+
+
+def extract_wargame_checks(md_path):
+    """Strict contract (war game Move 1): checks live in a fenced ```bash block
+    under the '## Verification' heading. Returns (checks: list[str], error: None)
+    on success, or (None, error) if the heading/fence is missing or yields nothing
+    runnable -- callers must fall back to today's behaviour + a logged warning,
+    never silently pass. Full-comment and blank lines are skipped; a `<<DELIM`
+    heredoc is kept as a single multi-line check."""
+    try:
+        text = open(md_path, encoding="utf-8").read()
+    except Exception as e:
+        return None, f"war game file unreadable: {md_path}: {e}"
+
+    heading = re.search(r'^## Verification\s*$', text, re.M)
+    if not heading:
+        return None, f"no '## Verification' heading in {md_path}"
+
+    fence = re.search(r'```bash\s*\n(.*?)```', text[heading.end():], re.S)
+    if not fence:
+        return None, f"no fenced ```bash block under '## Verification' in {md_path}"
+
+    lines = fence.group(1).splitlines()
+    checks, i = [], 0
+    while i < len(lines):
+        line = lines[i]
+        stripped = line.strip()
+        if not stripped or stripped.startswith("#"):
+            i += 1
+            continue
+        heredoc = re.search(r'<<-?\s*[\'"]?(\w+)[\'"]?', line)
+        if heredoc:
+            delim = heredoc.group(1)
+            block = [line]
+            i += 1
+            while i < len(lines) and lines[i].strip() != delim:
+                block.append(lines[i]); i += 1
+            if i < len(lines):
+                block.append(lines[i]); i += 1
+            checks.append("\n".join(block))
+            continue
+        checks.append(line)
+        i += 1
+
+    if not checks:
+        return None, f"'## Verification' block in {md_path} parsed but yielded no runnable lines"
+    return checks, None
+
+
+def git_status_snapshot():
+    r = subprocess.run(["git", "status", "--porcelain"], cwd=REPO, capture_output=True, text=True)
+    return r.stdout
+
+
+def run_wargame_checks(checks):
+    """Run each extracted check read-only against the repo (a bare `cd <dir>` line
+    changes cwd for subsequent checks, matching how the war games write multi-step
+    blocks; it is not itself executed as a command). A non-zero exit = a failed
+    check, exactly like a failed negative check."""
+    findings = []
+    cwd = REPO
+    for cmd in checks:
+        stripped = cmd.strip()
+        cd_only = re.match(r'^cd\s+(\S+)\s*$', stripped) if "\n" not in cmd else None
+        if cd_only:
+            target = cd_only.group(1)
+            target = target if os.path.isabs(target) else os.path.join(REPO, target)
+            if os.path.isdir(target):
+                cwd = target
+            else:
+                findings.append(f"cd target not found: {target}")
+            continue
+        try:
+            r = subprocess.run(cmd, shell=True, cwd=cwd, capture_output=True,
+                                timeout=60, executable="/bin/bash")
+            if r.returncode != 0:
+                findings.append(f"check failed (exit {r.returncode}): {cmd.splitlines()[0][:120]} "
+                                 f"stderr={r.stderr.decode(errors='replace')[:300]}")
+        except Exception as e:
+            findings.append(f"check errored: {cmd.splitlines()[0][:120]}: {e}")
+    return (len(findings) == 0), findings
+
+
+def find_results_file(ticket, tid=None):
+    """Locate the worker's results/<tid>.json for self-report cross-checking.
+    Prefers the caller-supplied tid (the queue filename); falls back to matching
+    the ticket's own 'ticket' field, since it doesn't always equal the filename
+    stem (e.g. timestamp-prefixed filenames)."""
+    if tid:
+        p = os.path.join(RES, tid)
+        if os.path.exists(p):
+            return p
+    want = ticket.get("ticket")
+    if not want:
+        return None
+    p = os.path.join(RES, f"{want}.json")
+    if os.path.exists(p):
+        return p
+    try:
+        for f in os.listdir(RES):
+            try:
+                if json.load(open(os.path.join(RES, f))).get("ticket") == want:
+                    return os.path.join(RES, f)
+            except Exception:
+                continue
+    except FileNotFoundError:
+        pass
+    return None
+
+
+def verify_wargame(ticket, tid=None):
+    """verify_kind="wargame" (also auto-applied by verify() when no verify_kind is
+    set but the ticket names a backlog/wargames/<ID>.md source): re-derive the
+    verdict from the war game's own '## Verification' block instead of trusting
+    the worker's results/<tid>.json self-report. Read-only -- never edits a worker
+    artifact to force a pass. Falls back to an artifact-only pass (+ a logged
+    warning) whenever the war game can't be resolved or its block can't be parsed,
+    so tickets without a clean machine-readable spec keep working exactly as
+    before this verifier existed."""
+    md_path = resolve_wargame_path(ticket)
+    if not md_path or not os.path.exists(md_path):
+        print(f"[verify]   wargame: no resolvable backlog/wargames/*.md for "
+              f"{ticket.get('ticket', tid)} -- falling back to artifact-only pass", flush=True)
+        return True, []
+
+    checks, err = extract_wargame_checks(md_path)
+    if err:
+        print(f"[verify]   wargame: {err} -- falling back to artifact-only pass", flush=True)
+        return True, []
+
+    before = git_status_snapshot()
+    ok, findings = run_wargame_checks(checks)
+    after = git_status_snapshot()
+    if before != after:
+        ok = False
+        findings.append("war-game verification commands modified the repo (should be read-only) "
+                         "-- war-game authoring defect, flag for the T8 truth pass")
+
+    res_path = find_results_file(ticket, tid)
+    claimed = None
+    if res_path:
+        try:
+            claimed = json.load(open(res_path)).get("status")
+        except Exception:
+            claimed = None
+    print(f"[verify]   wargame {ticket.get('ticket', tid)}: worker claimed={claimed!r} "
+          f"engine_verdict={'done' if ok else 'fail'}", flush=True)
+    if claimed == "done" and not ok:
+        findings.append("worker self-report contradicted by independent evidence "
+                         "(claimed done, war-game checks disagree) -- verdict_source: engine")
+
+    return ok, findings
+
+
 VERIFIERS = {
     "constellation-4-apps": verify_constellation_4_apps,   # unchanged, kept working
     "generic": verify_generic_declarative,                  # new: declarative checks[] DSL
     "artifacts": verify_artifacts_fallback,                 # new: explicit opt-in to the fallback shape
+    "wargame": verify_wargame,                               # wg-t1-15: independent re-verify at reap
 }
 
 
-def verify(ticket):
+def verify(ticket, tid=None):
     """Returns (ok: bool, findings: list[str]).
 
     - verify_kind set + known -> that VERIFIERS entry (bespoke or generic-DSL).
     - verify_kind set + unknown -> fail loudly (unchanged behavior).
-    - no verify_kind, but the ticket names artifacts/verify_command directly ->
-      the lightweight fallback checker (new).
-    - no verify_kind and nothing to check -> pass, same as before this change
-      (generic tickets that only ever relied on artifact_ok() + self-report keep
-      working exactly as they did)."""
+    - no verify_kind, but the ticket names a backlog/wargames/<ID>.md source ->
+      the wargame verifier (new, wg-t1-15): reap re-derives the verdict from the
+      war game's own checks instead of trusting the worker's self-report.
+    - no verify_kind, no war game, but the ticket names artifacts/verify_command
+      directly -> the lightweight fallback checker.
+    - none of the above -> pass, same as before this change (generic tickets that
+      only ever relied on artifact_ok() + self-report keep working exactly as they
+      did)."""
     vk = ticket.get("verify_kind")
     if not vk:
+        if resolve_wargame_path(ticket):
+            return verify_wargame(ticket, tid)
         if ticket.get("artifacts") or ticket.get("verify_command"):
             return verify_artifacts_fallback(ticket)
         return True, []
@@ -659,7 +839,7 @@ def main():
                     continue
 
             if artifact_ok(tid):
-                ok, findings = verify(a["ticket"])
+                ok, findings = verify(a["ticket"], tid)
                 if ok:
                     commit(tid); results[tid] = "done"; settle(tid, a)
                     ev = emit_event("job.completed", dict(ticket=tid, result="done"))

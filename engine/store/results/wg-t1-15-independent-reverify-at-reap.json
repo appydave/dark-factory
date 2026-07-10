@@ -1,0 +1,1 @@
+{"ticket":"wg-t1-15-independent-reverify-at-reap","status":"done","files_changed":["engine/orchestrator.py"],"commit_sha":null,"notes":"reap now re-derives verdict from each war game's own ## Verification block instead of trusting the worker's self-report; falls back to old behavior + a logged warning if the block can't be resolved/parsed"}
