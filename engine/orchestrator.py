@@ -56,6 +56,14 @@ Q, RUN, DONE, RES = (os.path.join(STORE, d) for d in ("queue", "running", "done"
 EVENTS   = os.path.join(STORE, "events")
 NEEDS, DEC = (os.path.join(STORE, d) for d in ("needs-decision", "decisions"))
 AUDIT    = os.path.join(STORE, "audit.jsonl")
+# LEDGER (wg-t1-16) is the outcome/result ledger, sibling to AUDIT's dispatch/input
+# ledger: audit.jsonl records "who got dispatched, when" (one line per lease);
+# ledger.jsonl records "what happened to it" (one line per reap decision — a
+# terminal verdict OR a requeue-with-a-next-action), chained via a 'prior' pointer
+# to the ticket's previous ledger line so a crashed session's whole story is on
+# disk. Never rewritten — corrections are new lines, same append-only idiom as
+# audit.jsonl (engine/store/queue/.CONVENTION.md).
+LEDGER   = os.path.join(STORE, "ledger.jsonl")
 BACKOFF_PATH = os.path.join(STORE, "BACKOFF")   # 429/usage-limit governor flag-file (mirrors halt.py's HALT)
 
 MODEL          = "sonnet"   # real work, not toy trivia -> not haiku
@@ -700,6 +708,79 @@ def audit(entry):
         f.write(json.dumps(entry) + "\n")
 
 
+# --- verdict ledger (wg-t1-16): durable, prior-chained reap outcomes -----------
+
+def _read_jsonl(path):
+    """Defensive JSONL reader — a malformed line is skipped, never raises. Shared
+    by the ledger and (via status.py) the audit trail."""
+    if not os.path.exists(path):
+        return []
+    out = []
+    with open(path) as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                out.append(json.loads(line))
+            except Exception:
+                continue
+    return out
+
+
+def _short_evidence(x, limit=400):
+    if isinstance(x, (list, tuple)):
+        x = "; ".join(str(i) for i in x)
+    x = str(x)
+    return x if len(x) <= limit else x[:limit] + "…"
+
+
+def prior_ledger_id(tid):
+    """The ticket's most recent ledger line id, or None if this is its first —
+    the chain a re-attempted ticket (T1-11 hit attempt 3) reconstructs from disk."""
+    last = None
+    for e in _read_jsonl(LEDGER):
+        if e.get("ticket") == tid:
+            last = e
+    return last.get("id") if last else None
+
+
+def record_verdict(tid, attempt, verdict, verdict_source, evidence, next_action, embed=True):
+    """Append one line to ledger.jsonl for this reap outcome, chained to the
+    ticket's previous attempt via 'prior'. When embed=True (a real settle, not an
+    interim requeue) also writes the same block as ticket["verdict"] at the
+    ticket's CURRENT on-disk location (running/ — called before commit() renames
+    it to done/, so the embed lands wherever the file ends up). audit.jsonl
+    (dispatch/input) is never touched here — this is the outcome/result ledger."""
+    entry = dict(
+        id=f"{tid}#{attempt}",
+        ticket=tid,
+        attempt=attempt,
+        verdict=verdict,
+        verdict_source=verdict_source,
+        evidence=_short_evidence(evidence),
+        ts=now_iso(),
+        prior=prior_ledger_id(tid),
+        next=next_action,
+    )
+    with open(LEDGER, "a") as f:
+        f.write(json.dumps(entry) + "\n")
+    if embed:
+        for d in (RUN, DONE):
+            p = os.path.join(d, tid)
+            if os.path.exists(p):
+                try:
+                    t = json.load(open(p))
+                    t["verdict"] = entry
+                    with open(p, "w") as tf:
+                        json.dump(t, tf, indent=2)
+                        tf.write("\n")
+                except Exception as e:
+                    print(f"[ledger]   WARN could not embed verdict into {p}: {e}", flush=True)
+                break
+    return entry
+
+
 def main():
     safety_check()
     ensure_dirs()
@@ -829,9 +910,13 @@ def main():
                         a["last_active"] = time.time()
                         print(f"[HITL] resumed ticket {tid} decision={act.upper()}", flush=True)
                         if act == "decline":
+                            record_verdict(tid, retries.get(tid, 0) + 1, "declined", "hitl",
+                                           f"human declined via {dfile}", None)
                             results[tid] = "declined"; settle(tid, a)
                         continue
                     if time.time() - a["blocked_since"] > HITL_TIMEOUT:
+                        record_verdict(tid, retries.get(tid, 0) + 1, "failed(no-decision)", "hitl",
+                                       f"no HITL decision within {HITL_TIMEOUT}s ({nd})", None)
                         w = a["worker"]; del active[tid]; w.reboot(); w.busy = None
                         results[tid] = "failed(no-decision)"
                         print(f"[HITL] ticket {tid}: no decision in {HITL_TIMEOUT}s -> surfaced unanswered", flush=True)
@@ -841,6 +926,8 @@ def main():
             if artifact_ok(tid):
                 ok, findings = verify(a["ticket"], tid)
                 if ok:
+                    record_verdict(tid, retries.get(tid, 0) + 1, "done", "engine",
+                                   "artifact present, verify() passed", "done")
                     commit(tid); results[tid] = "done"; settle(tid, a)
                     ev = emit_event("job.completed", dict(ticket=tid, result="done"))
                     print(f"[reap]     ticket {tid}: done, verified -> event {os.path.basename(ev)}", flush=True)
@@ -850,6 +937,7 @@ def main():
                     # different failure mode than a silent worker -- the artifact already landed,
                     # so pane activity has likely stopped, but that's not what we're timing here.
                     if time.time() - a["started"] > worker_timeout:
+                        record_verdict(tid, retries.get(tid, 0) + 1, "failed(verify)", "engine", findings, None)
                         results[tid] = "failed(verify)"; a["verify_findings"] = findings; settle(tid, a)
                         print(f"[reap]     ticket {tid}: giving up after verify timeout", flush=True)
             # Reboot on INACTIVITY, not raw elapsed time (wg-t1-14): a worker that keeps
@@ -877,9 +965,13 @@ def main():
                 print(f"[reboot]   {w.name}: wedged on ticket {tid} -> fresh process", flush=True)
                 if retries.get(tid, 0) < MAX_RETRY:
                     retries[tid] = retries.get(tid, 0) + 1
+                    record_verdict(tid, retries[tid], "failed(timeout)", "engine",
+                                   f"worker unresponsive > {worker_timeout}s (inactivity)", "queue", embed=False)
                     os.rename(os.path.join(RUN, tid), os.path.join(Q, tid))
                     print(f"[reap]     ticket {tid}: no response -> re-queue (retry {retries[tid]})", flush=True)
                 else:
+                    record_verdict(tid, retries.get(tid, 0) + 1, "failed(timeout)", "engine",
+                                   f"worker unresponsive > {worker_timeout}s (inactivity), retries exhausted", None)
                     results[tid] = "failed(timeout)"
                     print(f"[reap]     ticket {tid}: failed (worker timeout, retries exhausted)", flush=True)
 

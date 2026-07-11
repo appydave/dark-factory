@@ -22,8 +22,9 @@ rather than assuming one canonical shape.
 import os, sys, json, re, argparse, subprocess
 from datetime import datetime, timezone
 
-from orchestrator import Q, RUN, DONE, RES, AUDIT, REPO  # single source of truth for paths
+from orchestrator import Q, RUN, DONE, RES, AUDIT, LEDGER, REPO  # single source of truth for paths
 from orchestrator import is_backoff, backoff_info, BACKOFF_PATH  # CAP/429-wall governor (cap-governor ticket)
+from orchestrator import _read_jsonl  # shared JSONL reader (audit.jsonl + ledger.jsonl)
 from halt import halt_info, HALT_PATH
 
 TS_RE = re.compile(r'^(\d{8})T(\d{4,6})Z-')
@@ -137,6 +138,72 @@ def audit_tail(n):
         except Exception:
             pass
     return out
+
+
+def resolve_ticket_fname(tid):
+    """--resume accepts either the bare ticket id or the full queue filename
+    (they usually match; some are timestamp-prefixed) — normalize to the
+    filename ledger.jsonl/audit.jsonl actually key on."""
+    if tid.endswith(".json"):
+        return tid
+    for d in (RUN, DONE, Q):
+        if os.path.isdir(d):
+            hit = next((f for f in os.listdir(d) if f == f"{tid}.json" or f.startswith(tid)), None)
+            if hit:
+                return hit
+    return f"{tid}.json"
+
+
+def resume_chain(tid):
+    """wg-t1-16: reconstruct a ticket's full attempt history from ledger.jsonl
+    (the durable, prior-chained verdict trail) plus its embedded 'verdict' block —
+    no transcript read. Cross-references audit.jsonl's dispatch attempts so a gap
+    (dispatched, no ledger line -- a crash between dispatch and reap) is rendered
+    explicitly rather than silently skipped."""
+    fname = resolve_ticket_fname(tid)
+    ledger_entries = [e for e in _read_jsonl(LEDGER) if e.get("ticket") == fname]
+    ledger_by_attempt = {e.get("attempt"): e for e in ledger_entries}
+    dispatch_attempts = sorted({e.get("attempt") for e in _read_jsonl(AUDIT) if e.get("ticket") == fname})
+    all_attempts = sorted(set(dispatch_attempts) | set(ledger_by_attempt))
+
+    chain = []
+    for n in all_attempts:
+        e = ledger_by_attempt.get(n)
+        if e:
+            chain.append(dict(attempt=n, gap=False, verdict=e.get("verdict"),
+                               verdict_source=e.get("verdict_source"), evidence=e.get("evidence"),
+                               ts=e.get("ts"), next=e.get("next"), prior=e.get("prior"), id=e.get("id")))
+        else:
+            chain.append(dict(attempt=n, gap=True, note="dispatched, no terminal verdict (crashed)"))
+
+    embedded_verdict = None
+    for d in (RUN, DONE):
+        p = os.path.join(d, fname)
+        if os.path.exists(p):
+            embedded_verdict = _load(p).get("verdict")
+            break
+
+    return dict(ticket=fname, attempts=len(all_attempts), chain=chain, embedded_verdict=embedded_verdict)
+
+
+def print_resume(r):
+    print(f"\n=== RESUME — {r['ticket']} ===")
+    if not r["chain"]:
+        print("  no dispatch or ledger history found for this ticket")
+        return
+    for step in r["chain"]:
+        if step["gap"]:
+            print(f"  attempt {step['attempt']}: GAP -- {step['note']}")
+            continue
+        print(f"  attempt {step['attempt']}  [{step['ts']}]  verdict={step['verdict']} "
+              f"(source={step['verdict_source']})")
+        print(f"      evidence: {step['evidence']}")
+        print(f"      next={step['next']}  prior={step['prior']}")
+    if r["embedded_verdict"]:
+        print(f"  ticket-embedded verdict: {r['embedded_verdict'].get('verdict')} "
+              f"@ {r['embedded_verdict'].get('ts')}")
+    else:
+        print("  ticket-embedded verdict: none (not yet settled, or settle predates wg-t1-16)")
 
 
 def build_report(n_done=5, n_audit=5):
@@ -271,7 +338,18 @@ def main():
     ap.add_argument("--json", action="store_true", help="emit machine-readable JSON instead of the human report")
     ap.add_argument("--n-done", type=int, default=5, help="how many recent done/ tickets to show (default 5)")
     ap.add_argument("--n-audit", type=int, default=5, help="how many recent audit.jsonl lines to show (default 5)")
+    ap.add_argument("--resume", metavar="TICKET",
+                     help="reconstruct one ticket's attempt chain from ledger.jsonl (wg-t1-16) — "
+                          "no transcript read; accepts bare ticket id or full filename")
     args = ap.parse_args()
+
+    if args.resume:
+        r = resume_chain(args.resume)
+        if args.json:
+            print(json.dumps(r, indent=2))
+        else:
+            print_resume(r)
+        return
 
     report = build_report(args.n_done, args.n_audit)
     if args.json:

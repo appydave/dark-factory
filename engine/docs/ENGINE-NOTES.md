@@ -81,6 +81,25 @@ file, against the evaluation's promotion plan.
   suborch's planned `swagger-*`. If/when switchboard's collector is pointed at this
   engine, either rename the workers or extend switchboard's pattern match.
 
+## Verdict ledger + prior-chain (wg-t1-16, 2026-07-11)
+
+`engine/store/audit.jsonl` (dispatch/input — one line per lease) now has a sibling,
+`engine/store/ledger.jsonl` (outcome/result — one line per reap decision), written by a
+single `record_verdict()` helper called from every place `orchestrator.py`'s reap loop
+decides a ticket's fate: done, `failed(verify)`, `failed(timeout)` (both the interim
+retry-requeue and the final retries-exhausted case), `failed(no-decision)`, `declined`.
+Each line carries `{id, ticket, attempt, verdict, verdict_source, evidence, ts, prior,
+next}` — `prior` chains to the ticket's previous ledger line (or `null` for its first),
+so a re-attempted ticket (T1-11 hit attempt 3 in one run) reconstructs its whole story by
+reading `ledger.jsonl` alone, no transcript needed. On a real settle (not an interim
+requeue) the same block is also embedded as `ticket["verdict"]` — written into the file
+at its current location (`running/`, before `commit()` renames it to `done/`) so the
+verdict travels with the ticket. `status.py --resume <ticket>` reads `ledger.jsonl` +
+`audit.jsonl` (cross-referenced by `attempt`) + the embedded block and renders the full
+attempt chain, flagging any dispatch with no matching ledger line as
+`GAP -- dispatched, no terminal verdict (crashed)` rather than hiding it. `audit.jsonl`'s
+existing writes are untouched — this is purely additive.
+
 ## Proof run
 
 See the end-of-session report in the backlog item / session transcript for the actual
