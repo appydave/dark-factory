@@ -1,0 +1,13 @@
+{
+  "ticket": "wg-t1-21-verify-runs-in-worktree-as-one-script",
+  "kind": "instruction",
+  "title": "T1 Engine: verify runs the ## Verification block as ONE script, from the worker's worktree",
+  "source": "backlog/wargames/T1-21-verify-runs-in-worktree-as-one-script.md (T3-03+T3-04 parallel run, 2026-07-11)",
+  "executor": "swagger",
+  "priority": "high",
+  "requested_at": "2026-07-11T04:05:00Z",
+  "requested_by": "david (factory-console session — parallel pool=2 run exposed the verify bug)",
+  "depends_on": [],
+  "prompt": "RUN AT POOL=1 ONLY (Abort A1: pool=2 would build this inside a worktree and hit the very bug it fixes). Read and execute backlog/wargames/T1-21-verify-runs-in-worktree-as-one-script.md move by move. verify_wargame in engine/orchestrator.py runs each ## Verification line as a SEPARATE subprocess from the MAIN repo tree — so (1) cross-line state (DF=, T=$(mktemp), heredocs, cd) doesn't persist, and (2) worktree-isolated artifacts are invisible (verify looks at main; the artifact is in the worktree; consolidation only happens after a passing verify -> deadlock). Proven live: T3-03+T3-04 built perfect tools in worktrees, both false-failed, hand-rescued. Fix: run the WHOLE block as one script, with cwd = the worker's worktree (fallback REPO at pool=1), BEFORE consolidation. Do NOT change the verdict logic (wg-t1-15), record_verdict (wg-t1-16), or retry/settle (wg-t1-20). On abort, park to needs-decision/.",
+  "verify": "orchestrator.py parses; verify_wargame present; worktree-cwd wiring present; one-script execution present (bash -c / tempfile); a throwaway block using a var across lines AND checking a worker-created file PASSES when the file exists and FAILS when it doesn't; a pool=1 block that passed before still passes; wg-t1-15/16/20 paths untouched."
+}
