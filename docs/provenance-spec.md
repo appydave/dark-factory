@@ -2,7 +2,7 @@
 
 **Purpose**: Defines the `provenance.json` schema that every canonical artifact MUST carry. This is the chain back from David's rewrite to every origin file it was mined from — the "verifiable canonical" promise.
 
-**For Agents**: Read before writing `provenance.json` for any new canonical artifact. Validate with `tools/verify-provenance.py` (when written) or manually against the checklist below.
+**For Agents**: Read before writing `provenance.json` for any new canonical artifact. Validate with `tools/verify-provenance.py` (run `python3 tools/verify-provenance.py <artifact-dir>`, or `--all` for the whole library; `--self-test` proves the rules) or manually against the checklist below.
 
 **Created**: 2026-05-18
 **Last Updated**: 2026-05-18
