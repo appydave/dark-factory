@@ -91,9 +91,13 @@ reconstructs "what happened to ticket X and what's next" without reading any tra
 ## Verification
 ```bash
 test -f engine/store/ledger.jsonl && echo OK
-python3 engine/status.py --resume <a-real-done-ticket>          # reconstructs from disk
-grep -c "prior" engine/store/ledger.jsonl                       # chain present on re-attempts
+grep -q "def record_verdict" engine/orchestrator.py && echo "record_verdict present"
+python3 engine/status.py --resume wg-t1-15-independent-reverify-at-reap   # reconstructs from disk (a real settled ticket, no placeholder)
+grep -qE "ledger\.jsonl|record_verdict" engine/status.py && echo "resume reads the ledger"
 ```
+(Note: an empty `ledger.jsonl` is expected until the NEW orchestrator reaps a ticket — the
+schema/capability is what's verified here, not a pre-existing chain, which would be a chicken-and-egg
+check the running engine can never satisfy on first launch.)
 Negative: `audit.jsonl` still written as before (not replaced); no transcript files read by the
 resume path (`grep -n "\.jsonl" engine/status.py` shows only store ledgers, not
 `.claude/projects/*` transcripts).

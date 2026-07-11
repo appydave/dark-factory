@@ -1,0 +1,13 @@
+{
+  "ticket": "wg-t1-20-reap-settles-verify-fail",
+  "kind": "instruction",
+  "title": "T1 Engine: reap settles a verify-fail promptly (retry-with-findings, no 30-min spin)",
+  "source": "backlog/wargames/T1-20-reap-settles-verify-fail.md (T1-16 live wedge, 2026-07-11)",
+  "executor": "swagger",
+  "priority": "high",
+  "requested_at": "2026-07-11T01:45:00Z",
+  "requested_by": "david (factory-console session — T1-16 verify-fail wedged the engine ~30min)",
+  "depends_on": [],
+  "prompt": "Read and execute the war game at backlog/wargames/T1-20-reap-settles-verify-fail.md move by move. In engine/orchestrator.py's reap loop, a verify() FAIL currently does nothing until started>worker_timeout (30min), re-running the deterministic verify() every 3s poll and never retrying. Decide the verify-fail on FIRST detection: re-dispatch with the engine's findings (retry up to MAX_RETRY, mirroring the existing timeout retry idiom), then settle failed(verify) once retries exhausted; free the worker immediately. Do NOT touch verdict logic (verify_wargame / wg-t1-15) or the happy-path commit. Prove with a deliberately-failing throwaway ticket: ~MAX_RETRY+1 FAILED lines, worker freed in seconds, no spin. On abort (retry-policy is a judgment call), park to needs-decision/.",
+  "verify": "orchestrator.py parses; failed(verify) settle path present; the old spin-gate (verify-fail waiting on started>worker_timeout) is gone; retry idiom wired to verify-fail; a deliberately-failing throwaway ticket yields ~MAX_RETRY+1 FAILED lines and frees the worker in seconds (not a 30-min spin); verify-PASS happy path unchanged."
+}

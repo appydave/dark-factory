@@ -73,7 +73,8 @@ def status(staged):
 # the ONE run-path, absolute so the cwd trap can't recur (see docs/factory-console-skill-spec.md)
 RUN_COMMAND = (
     "cd /Users/davidcruwys/dev/ad/apps/dark-factory/engine && \\\n"
-    "  python3 orchestrator.py --pool 1 --model sonnet --max-wall 3600 --worker-timeout 1800"
+    "  python3 orchestrator.py --pool 1 --model sonnet --max-wall 3600 --worker-timeout 1800 \\\n"
+    "  2>&1 | tee -a /Users/davidcruwys/dev/ad/apps/dark-factory/engine/store/orchestrator.log"
 )
 
 def promote(sid, staged, force=False):
