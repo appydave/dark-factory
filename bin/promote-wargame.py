@@ -10,6 +10,9 @@ Usage:
   bin/promote-wargame.py T3-03              # promote one ticket (deps must be done)
   bin/promote-wargame.py T3-03 --force      # promote even with unmet deps
   bin/promote-wargame.py --next 3           # promote the next N ready tickets (high priority first)
+  bin/promote-wargame.py go T3-03           # promote AND print the run command (closes the two-step gap)
+  bin/promote-wargame.py go --next 3        # promote next N AND print the run command
+                                            #   go prints NO run command if nothing was promoted (empty-run guard)
 
 Caveats baked in (from the authoring run's systemic flags):
   * SELF-HOSTING tickets (their war game runs orchestrator.py / kills df-worker
@@ -67,25 +70,52 @@ def status(staged):
         rows.append((sid, j["priority"], st, "SELF-HOST" if sid in SELF_HOSTING else "", j["title"][:70]))
     return rows
 
+# the ONE run-path, absolute so the cwd trap can't recur (see docs/factory-console-skill-spec.md)
+RUN_COMMAND = (
+    "cd /Users/davidcruwys/dev/ad/apps/dark-factory/engine && \\\n"
+    "  python3 orchestrator.py --pool 1 --model sonnet --max-wall 3600 --worker-timeout 1800"
+)
+
 def promote(sid, staged, force=False):
+    """Promote one staged ticket into the queue. Returns True on success, else prints
+    the reason and returns False (callers decide whether to hard-exit)."""
     if sid not in staged:
-        sys.exit(f"no staged ticket {sid}")
+        print(f"no staged ticket {sid}"); return False
     p, j = staged[sid]
     if sid in SELF_HOSTING and not force:
-        sys.exit(f"{sid} is SELF-HOSTING (runs/kills the engine) — run attended, not engine-dispatched. --force to override.")
+        print(f"{sid} is SELF-HOSTING (runs/kills the engine) — run attended, not engine-dispatched. --force to override."); return False
     _, _, done = state_sets()
     unmet = [d for d in j.get("depends_on", []) if d not in done]
     if unmet and not force:
-        sys.exit(f"{sid} blocked by unmet deps: {unmet}. --force to override.")
+        print(f"{sid} blocked by unmet deps: {unmet}. --force to override."); return False
     if j["ticket"] in done and not force:
-        sys.exit(f"{sid} ({j['ticket']}) is already in done/ — use --force to deliberately re-run.")
+        print(f"{sid} ({j['ticket']}) is already in done/ — use --force to deliberately re-run."); return False
     dest = QUEUE / f"{j['ticket']}.json"
     if dest.exists():
-        sys.exit(f"{dest} already queued")
+        print(f"{dest} already queued"); return False
     shutil.copy2(p, dest)
     print(f"promoted {sid} -> {dest.relative_to(ROOT)}")
+    return True
+
+def next_ready(staged, n):
+    ready = [r for r in status(staged) if r[2] == "ready" and not r[3]]
+    ready.sort(key=lambda r: (r[1] != "high", r[0]))
+    return [r[0] for r in ready[:n]]
+
+def reminder():
     print("REMINDER: run the orchestrator with a raised wall for war games, e.g.")
-    print("  cd engine && python3 orchestrator.py --pool 1 --model sonnet --max-wall 3600 --worker-timeout 1800")
+    print(f"  {RUN_COMMAND}")
+
+def go(sids, staged, force=False):
+    """Promote sids AND print the run command — but ONLY if at least one was promoted
+    (the empty-run guard, in code: no silent run of an empty queue)."""
+    promoted = sum(1 for sid in sids if promote(sid, staged, force=force))
+    if promoted:
+        print("\nRUN — paste this into another terminal (this seat dispatches, it does not run):")
+        print(f"  {RUN_COMMAND}")
+    else:
+        print("\nnothing promoted — NO run command (empty-run guard). Nothing to run.")
+    return promoted
 
 def main():
     args = sys.argv[1:]
@@ -94,14 +124,31 @@ def main():
         for sid, pri, st, host, title in status(staged):
             print(f"{sid:7} {pri:6} {st:10} {host:9} {title}")
         return
+    force = "--force" in args
+    if args[0] == "go":
+        rest = [a for a in args[1:] if a != "--force"]
+        if rest and rest[0] == "--next":
+            n = int(rest[1]) if len(rest) > 1 else 1
+            sids = next_ready(staged, n)
+            if not sids:
+                print("no ready tickets to promote — NO run command (empty-run guard).")
+                return
+        elif rest:
+            sids = [rest[0]]
+        else:
+            sys.exit("go needs a ticket id or --next N")
+        go(sids, staged, force=force)
+        return
     if args[0] == "--next":
         n = int(args[1]) if len(args) > 1 else 1
-        ready = [r for r in status(staged) if r[2] == "ready" and not r[3]]
-        ready.sort(key=lambda r: (r[1] != "high", r[0]))
-        for sid, *_ in ready[:n]:
+        for sid in next_ready(staged, n):
             promote(sid, staged)
+        reminder()
         return
-    promote(args[0], staged, force="--force" in args)
+    if promote(args[0], staged, force=force):
+        reminder()
+    else:
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()
