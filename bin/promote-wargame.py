@@ -169,7 +169,7 @@ def main():
                 print("no ready tickets to promote — NO run command (empty-run guard).")
                 return
         elif rest:
-            sids = [rest[0]]
+            sids = rest            # one OR MORE explicit ticket ids: `go T3-03 T3-04`
         else:
             sys.exit("go needs a ticket id or --next N")
         go(sids, staged, force=force)
