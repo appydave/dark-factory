@@ -18,3 +18,10 @@
 {"ticket": "wg-t3-04-style-check-tool.json", "attempt": 2, "worker": "df-worker-1", "session_id": null, "transcript": null, "claimed_by": "mac-mini-m4.local-pid52471", "claimed_at": "2026-07-11T03:56:11Z"}
 {"ticket": "wg-t3-04-style-check-tool.json", "attempt": 3, "worker": "df-worker-1", "session_id": null, "transcript": null, "claimed_by": "mac-mini-m4.local-pid52471", "claimed_at": "2026-07-11T03:56:26Z"}
 {"ticket": "wg-t1-21-verify-runs-in-worktree-as-one-script.json", "attempt": 1, "worker": "df-worker-1", "session_id": null, "transcript": null, "claimed_by": "mac-mini-m4.local-pid14000", "claimed_at": "2026-07-11T04:20:26Z"}
+{"ticket": "wg-t3-01-first-ingestion-review-dimensional.json", "attempt": 1, "worker": "df-worker-1", "session_id": null, "transcript": null, "claimed_by": "mac-mini-m4.local-pid64005", "claimed_at": "2026-07-11T04:33:03Z"}
+{"ticket": "wg-t3-02-ratify-first-ingestion.json", "attempt": 1, "worker": "df-worker-1", "session_id": null, "transcript": null, "claimed_by": "mac-mini-m4.local-pid2922", "claimed_at": "2026-07-11T04:44:00Z"}
+{"ticket": "wg-t3-02-ratify-first-ingestion.json", "attempt": 2, "worker": "df-worker-1", "session_id": null, "transcript": null, "claimed_by": "mac-mini-m4.local-pid2922", "claimed_at": "2026-07-11T05:20:56Z"}
+{"ticket": "wg-t3-02-ratify-first-ingestion.json", "attempt": 3, "worker": "df-worker-1", "session_id": null, "transcript": null, "claimed_by": "mac-mini-m4.local-pid2922", "claimed_at": "2026-07-11T05:25:16Z"}
+{"ticket": "wg-t3-02-ratify-first-ingestion.json", "attempt": 1, "worker": "df-worker-1", "session_id": null, "transcript": null, "claimed_by": "mac-mini-m4.local-pid69978", "claimed_at": "2026-07-11T09:52:18Z"}
+{"ticket": "wg-t3-02-ratify-first-ingestion.json", "attempt": 2, "worker": "df-worker-1", "session_id": null, "transcript": null, "claimed_by": "mac-mini-m4.local-pid69978", "claimed_at": "2026-07-11T09:52:33Z"}
+{"ticket": "wg-t3-02-ratify-first-ingestion.json", "attempt": 3, "worker": "df-worker-1", "session_id": null, "transcript": null, "claimed_by": "mac-mini-m4.local-pid69978", "claimed_at": "2026-07-11T09:52:47Z"}
