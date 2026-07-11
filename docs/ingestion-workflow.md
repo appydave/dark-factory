@@ -96,7 +96,7 @@ Now that the rewrite is done:
 
 ## Step 8 — Validate
 
-Checklist — the first three items are now automated: run `python3 tools/verify-provenance.py <artifact-dir>` (exit 0 = pass). The style items remain manual until `tools/style-check.py` exists:
+Checklist — both gates are now automated: run `python3 tools/verify-provenance.py <artifact-dir>` for the provenance rules and `python3 tools/style-check.py canonical/<type>/<name>/` for the style/layout items (exit 0 = pass on each):
 
 - [ ] `provenance.json` parses + all required fields present
 - [ ] Every origin's `verbatim_copy` file exists

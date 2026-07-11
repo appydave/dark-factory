@@ -2,7 +2,7 @@
 
 **Purpose**: Defines what a canonical skill, agent, or command in `canonical/` MUST look like. This is the contract that makes the library coherent, scannable, and Claude-Code-installable as-is.
 
-**For Agents**: Read before authoring any artifact in `canonical/`. Validate after authoring with `tools/style-check.py` (when written) or by manual review against the checklist at the bottom.
+**For Agents**: Read before authoring any artifact in `canonical/`. Validate after authoring with `tools/style-check.py` or by manual review against the checklist at the bottom.
 
 **Created**: 2026-05-18
 **Last Updated**: 2026-05-18
