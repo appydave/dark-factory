@@ -933,13 +933,45 @@ def main():
                     print(f"[reap]     ticket {tid}: done, verified -> event {os.path.basename(ev)}", flush=True)
                 else:
                     print(f"[verify]   ticket {tid}: artifact present but verification FAILED: {findings}", flush=True)
-                    # Kept keyed on "started", NOT "last_active" (wg-t1-14): a stuck verify is a
-                    # different failure mode than a silent worker -- the artifact already landed,
-                    # so pane activity has likely stopped, but that's not what we're timing here.
-                    if time.time() - a["started"] > worker_timeout:
+                    # Decided on FIRST detection (wg-t1-20), not after 30min of re-running the
+                    # SAME deterministic verify() every poll (T1-16 live wedge): verify() is a
+                    # pure read of static state, so the verdict can't change between polls --
+                    # caching/acting on the first result is safe. Mirrors the inactivity-timeout
+                    # retry idiom below (reboot immediately, re-queue with retries[tid] bumped up
+                    # to MAX_RETRY, else settle) so there's ONE retry idiom, not two.
+                    w = a["worker"]
+                    del active[tid]
+                    w.reboot(); w.busy = None
+                    print(f"[reboot]   {w.name}: verify FAILED on ticket {tid} -> fresh process", flush=True)
+                    if retries.get(tid, 0) < MAX_RETRY:
+                        retries[tid] = retries.get(tid, 0) + 1
+                        record_verdict(tid, retries[tid], "failed(verify)", "engine", findings, "queue", embed=False)
+                        # Hand the retried worker the engine's independent findings (the whole
+                        # point of retrying, vs the worker blindly resubmitting the same result):
+                        # append them to the ticket's own prompt field, which is what the worker
+                        # re-reads fresh via task_prompt's pointer indirection.
+                        run_path = os.path.join(RUN, tid)
+                        try:
+                            t = json.load(open(run_path))
+                            t["prompt"] = t.get("prompt", "") + (
+                                f"\n\nRETRY {retries[tid]}/{MAX_RETRY}: the previous attempt's artifact FAILED "
+                                f"the engine's independent verification. Engine findings: {findings}. Re-read "
+                                f"this ticket fresh and fix the actual defects -- do not just resubmit the same "
+                                f"result."
+                            )
+                            with open(run_path, "w") as f:
+                                json.dump(t, f, indent=2)
+                                f.write("\n")
+                        except Exception as e:
+                            print(f"[verify]   WARN could not embed retry findings into {run_path}: {e}", flush=True)
+                        os.rename(run_path, os.path.join(Q, tid))
+                        print(f"[reap]     ticket {tid}: verify FAILED -> re-queue with findings (retry {retries[tid]})", flush=True)
+                    else:
                         record_verdict(tid, retries.get(tid, 0) + 1, "failed(verify)", "engine", findings, None)
-                        results[tid] = "failed(verify)"; a["verify_findings"] = findings; settle(tid, a)
-                        print(f"[reap]     ticket {tid}: giving up after verify timeout", flush=True)
+                        results[tid] = "failed(verify)"
+                        ev = emit_event("job.completed", dict(ticket=tid, result="failed(verify)"))
+                        print(f"[reap]     ticket {tid}: verify FAILED, retries exhausted -> settled "
+                              f"failed(verify) -> event {os.path.basename(ev)}", flush=True)
             # Reboot on INACTIVITY, not raw elapsed time (wg-t1-14): a worker that keeps
             # producing pane output is never rebooted here no matter how long it runs --
             # --max-wall (checked below, outside this loop) is the separate hard ceiling that
