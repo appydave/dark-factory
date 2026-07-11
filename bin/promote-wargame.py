@@ -21,10 +21,11 @@ Caveats baked in (from the authoring run's systemic flags):
     longer. Promote expects you to run the orchestrator with --max-wall raised
     (e.g. 3600) for war-game tickets; a warning prints on every promotion.
 """
-import json, sys, shutil
+import json, sys, shutil, re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+WARGAMES = ROOT / "backlog" / "wargames"
 STAGED = ROOT / "backlog" / "wargames" / "tickets"
 QUEUE = ROOT / "engine" / "store" / "queue"
 DONE = ROOT / "engine" / "store" / "done"
@@ -107,10 +108,46 @@ def reminder():
     print("REMINDER: run the orchestrator with a raised wall for war games, e.g.")
     print(f"  {RUN_COMMAND}")
 
+def lint_verification(sid):
+    """Scan sid's war-game '## Verification' bash block for the two authoring bugs that
+    wedged dispatches on 2026-07-11: (errors) '<placeholder>' tokens that are bash syntax
+    errors when run literally; (warnings) a bare `grep` whose exit-code polarity is
+    implicit (exit 1 on no-match reads as FAIL, so a check meant to prove ABSENCE inverts).
+    Returns (errors, warnings). No war-game md -> nothing to lint."""
+    errors, warnings = [], []
+    mds = sorted(WARGAMES.glob(f"{sid}-*.md"))
+    if not mds:
+        return errors, warnings
+    m = re.search(r'^## Verification\s*\n```bash\n(.*?)\n```', mds[0].read_text(), re.M | re.S)
+    if not m:
+        return errors, warnings
+    for i, line in enumerate(m.group(1).splitlines(), 1):
+        code = line.split('#', 1)[0].strip()          # drop trailing comment
+        ph = re.search(r'<[a-z][a-z0-9_-]*>', code)
+        if ph:
+            errors.append(f"L{i}: unsubstituted placeholder {ph.group(0)} -> bash syntax error when run literally")
+        if re.match(r'grep\b', code) and not any(t in code for t in ('-q', '|', '&&', '||')):
+            warnings.append(f"L{i}: bare `grep` — exit 1 on no-match reads as FAIL; make polarity explicit "
+                            f"(`grep -q P && echo ok`, or `! grep -q P && echo ok` to assert absence)")
+    return errors, warnings
+
 def go(sids, staged, force=False):
     """Promote sids AND print the run command — but ONLY if at least one was promoted
-    (the empty-run guard, in code: no silent run of an empty queue)."""
-    promoted = sum(1 for sid in sids if promote(sid, staged, force=force))
+    (the empty-run guard, in code: no silent run of an empty queue). Lints each ticket's
+    '## Verification' block first; placeholder errors block promotion (--force overrides)."""
+    promoted = 0
+    for sid in sids:
+        errs, warns = lint_verification(sid)
+        for w in warns:
+            print(f"  [lint] WARN  {sid} {w}")
+        if errs and not force:
+            for e in errs:
+                print(f"  [lint] ERROR {sid} {e}")
+            print(f"  {sid}: '## Verification' block would fail when run literally -> NOT promoted "
+                  f"(fix the block, or --force to promote anyway).")
+            continue
+        if promote(sid, staged, force=force):
+            promoted += 1
     if promoted:
         print("\nRUN — paste this into another terminal (this seat dispatches, it does not run):")
         print(f"  {RUN_COMMAND}")

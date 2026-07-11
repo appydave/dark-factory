@@ -98,11 +98,14 @@ minutes; the log shows one FAILED line per attempt, not hundreds.
 ## Verification
 ```bash
 python3 -c "import ast; ast.parse(open('engine/orchestrator.py').read()); print('parses')"
-grep -n "failed(verify)" engine/orchestrator.py                          # settle path present
-# the anti-spin guard: verify-fail no longer gates settle purely on started>worker_timeout
-grep -n "started.*worker_timeout" engine/orchestrator.py                 # this old spin-gate should be gone/changed
-grep -n "retries\[tid\].*MAX_RETRY\|record_verdict" engine/orchestrator.py # retry idiom wired to verify-fail
+grep -q "failed(verify)" engine/orchestrator.py && echo "settle path present"
+grep -q "re-queue with findings" engine/orchestrator.py && echo "retry-with-findings wired"
+grep -q "retries exhausted" engine/orchestrator.py && echo "settle-when-exhausted wired"
 ```
+(NB: assert the NEW behaviour POSITIVELY with `grep -q … && echo`. Do NOT use a bare
+`grep pattern` to prove something was REMOVED — a no-match exits 1 and the engine reads exit-1 as
+FAIL, so a correct fix would fail the check. This exact inverted-grep bug wedged the T1-20 dispatch
+on 2026-07-11.)
 Behavioural (the real gate): a deliberately-failing throwaway ticket produces ~MAX_RETRY+1 FAILED
 lines and frees the worker in seconds — NOT a 30-minute spin of identical FAILED blocks. Negative: a
 verify-PASS path (the happy path) is unchanged (`git diff` touches only the fail branch); wg-t1-15
