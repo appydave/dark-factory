@@ -33,10 +33,12 @@ State the axis's precise boundary before hunting — what this run catches that 
 
 Anchor every finding before it ships:
 
-- **100** — mechanically verifiable from the diff and surrounding code alone; no assumed runtime condition.
-- **75** — a complete, concrete scenario: given this input or state, execution reaches this line and produces this specific wrong outcome.
-- **50** — the scenario holds but one step rests on a condition you can see but can't confirm (an external response shape, a timing window). Surface only as a soft/low-confidence bucket, never as the headline severity.
-- **25 or below — suppress.** Pure speculation about runtime state, or a chain that needs several unlikely conditions at once. Don't report it.
+| Confidence | When it holds | How to surface |
+|------------|---------------|----------------|
+| **100** | Mechanically verifiable from the diff and surrounding code alone; no assumed runtime condition. | Report normally. |
+| **75** | A complete, concrete scenario: given this input or state, execution reaches this line and produces this specific wrong outcome. | Report normally. |
+| **50** | The scenario holds but one step rests on a condition you can see but can't confirm (an external response shape, a timing window). | Soft/low-confidence bucket only — never the headline severity. |
+| **≤25** | Pure speculation about runtime state, or a chain that needs several unlikely conditions at once. | Suppress — don't report. |
 
 ## Output
 

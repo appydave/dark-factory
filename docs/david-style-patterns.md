@@ -27,6 +27,7 @@ Read these for voice + structure before rewriting any canonical:
 1. **Operator, not assistant.** "Do X. Then Y." Not "This skill will help you do X."
 2. **Terse.** One sentence beats two. Two beat three.
 3. **Tables for comparable structure.** Specialists, modes, criteria — all tabular.
+   - *3a (evidence: review-dimensional, 2026-07-11):* if two sections in the same body both describe tiered/parallel structure, format **both** the same way (both tables, or neither) — a Depth-calibration table beside a Confidence-rubric bullet list reads as inconsistent even when each section is individually fine.
 4. **No marketing.** No "powerful", "comprehensive", "robust", "seamlessly". Just what the thing does.
 5. **Triggers in the description, workflow in the body.** Never reverse.
 6. **Stack-agnostic.** "Run the project's test command." Never "Run `npm test`."
@@ -145,6 +146,7 @@ description: >
 | "By following this workflow, you'll be able to..." | Cut entirely. Use imperatives. |
 | "It is important to note that..." | Cut. State the rule directly. |
 | Multi-paragraph behavior section | Numbered list, ≤7 items. |
+| A multi-file origin (SKILL.md + a `references/` bundle) folded into one origin entry | Don't invent a provenance field. Use the directory-bundle layout `provenance-spec.md` documents: `_source/<repo>--<name>/SKILL.md`, `references/…`, and point `verbatim_copy` at the directory — the validator is directory-tolerant. *(evidence: review-dimensional, 2026-07-11)* |
 | "Tools used: Bash, Read, Edit, Write" buried in prose | Move to `allowed-tools` frontmatter. |
 | Marketing adjectives ("powerful", "advanced", "intelligent") | Delete. Adjectives don't trigger skills. |
 

@@ -3,8 +3,10 @@
   "canonical_type": "skill",
   "canonical_name": "review-dimensional",
   "version": 1,
-  "rewrite_status": "in-style",
+  "rewrite_status": "ratified",
   "rewrite_date": "2026-07-11",
+  "ratified_date": "2026-07-11",
+  "ratified_by": "David (HITL, T3-02) — redirect: table-ize the Confidence rubric + _source directory-bundle restructure, then ratify",
   "rewrite_author": "Claude (under direction)",
 
   "origins": [
@@ -37,8 +39,7 @@
       "source_path": "/Users/davidcruwys/dev/upstream/repos/compound-engineering-plugin/plugins/compound-engineering/skills/ce-code-review/SKILL.md",
       "source_commit": "39cb9da3",
       "harvested_at": "2026-07-11",
-      "verbatim_copy": "_source/compound-engineering--ce-code-review.md",
-      "verbatim_copy_companions": "_source/compound-engineering--ce-code-review--references/ (9 files: bulk-preview, diff-scope, findings-schema.json, persona-catalog, review-output-template, subagent-template, tracker-defer, validator-template, walkthrough) — read for context, none of their content is kept in the canonical body",
+      "verbatim_copy": "_source/compound-engineering--ce-code-review/",
       "kept": [
         "Quality Gates section (6-item pre-report gate: actionable findings, no false positives from skimming, calibrated severity, accurate line numbers, respect protected artifacts, no linter-duplicate findings) — condensed into review-dimensional's 4-question pre-report gate in the Output section"
       ],

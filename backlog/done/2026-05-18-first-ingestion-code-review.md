@@ -83,3 +83,20 @@ This is a learning run — the workflow itself is being proven. Move slowly, doc
 - Status: `in-style` (harvested + drafted, not yet ratified). `canonical/INDEX.md` carries an in-progress row.
 - **Session 2** (voice-review + ratify + HITL) = `wg-t3-02` if it exists by the time you read this; otherwise the checklist in `backlog/wargames/proof/T3-01/REPORT.md` is the manual handoff.
 - This backlog item stays **open** — it closes at ratification, not at Session 1.
+
+## Result
+
+**RATIFIED 2026-07-11** (Session 2, via `wg-t3-02` + David's HITL decision).
+
+`canonical/skills/review-dimensional/` is the factory's **first ratified canonical artifact** — the
+7-week-empty `canonical/` now holds artifact #1. Both automated inspectors pass:
+`tools/verify-provenance.py` → 1 pass / 0 fail (R1–R8), `tools/style-check.py` → pass.
+
+David's decision: **redirect → table-ize the Confidence rubric to match the Depth-calibration table,
+apply the `_source` directory-bundle restructure (dropping the non-spec `verbatim_copy_companions`
+field that caused 3 orphan-file flags), then ratify.**
+
+Process note: the engine could **not** complete the ratification apply — the HITL/ratification pipeline
+misread the designed decision-pause as "wedged," and the multi-step apply never finished in a worker
+window (3 failed attempts). The fixes were applied by the PO seat as one-time recovery; the
+HITL/ratification-pipeline gap is ticketed for the post-moratorium rebuild.
