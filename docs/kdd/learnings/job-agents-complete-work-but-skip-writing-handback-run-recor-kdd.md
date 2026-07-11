@@ -5,9 +5,9 @@ created: "2026-06-05"
 story_reference: "627e86a2, f7a95652, wg-t3-02 (2026-07-11)"
 category: "process"
 severity: "high"
-status: "proposed"
+status: "promoted"
 recurrence_count: 3
-promoted_to_pattern: ""
+promoted_to_pattern: "dispatched-workers-skip-final-bookkeeping-handback-pattern.md"
 provenance: reconstructed-from-sessions
 provenance_grain: candidate
 files: ["backlog/2026-06-08-stability-selflearning-lanes.md", "experiments/watchtower-engine/failures/register.jsonl"]

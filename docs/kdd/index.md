@@ -1,6 +1,6 @@
 # KDD (reconstructed from sessions)
 
-2 patterns · 49 learnings · 43 decisions
+3 patterns · 49 learnings · 43 decisions
 
 > **Status: proposed.** Reconstructed from 63 Claude Code session transcripts (52 Roamy + 11 M4
 > Mini, union of both machines — sessions are machine-local and disjoint) via the Lisa
