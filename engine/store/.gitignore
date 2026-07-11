@@ -1,0 +1,14 @@
+# Transient runtime state + logs — NOT tracked. The durable record is ledger.jsonl
+# (verdict chain, wg-t1-16) + audit.jsonl (dispatch history); done/ and results/ are
+# superseded by the ledger. The engine mkdirs these on startup (orchestrator.py:149,185),
+# so no .gitkeep is needed for a fresh clone.
+running/
+done/
+results/
+events/
+events-consumed.jsonl
+queue/*
+!queue/.CONVENTION.md
+*.log
+.done-state.json
+.wake-state.json
