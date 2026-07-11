@@ -1,6 +1,6 @@
 # KDD (reconstructed from sessions)
 
-2 patterns · 45 learnings · 42 decisions
+2 patterns · 49 learnings · 43 decisions
 
 > **Status: proposed.** Reconstructed from 63 Claude Code session transcripts (52 Roamy + 11 M4
 > Mini, union of both machines — sessions are machine-local and disjoint) via the Lisa
@@ -18,7 +18,7 @@ see the run's `RECONCILE-TRIAGE.md`); zero conflicts were found.
   format decision itself), numbered ADR-0001 onward (fresh
   sequence; D1–D4 predate this sequence and use their own naming — no collision, but note the
   gap when this repo eventually adopts one ADR numbering scheme)
-- [Learnings](learnings/index.md) — 45 problem-and-fix write-ups across 7 categories
+- [Learnings](learnings/index.md) — 49 problem-and-fix write-ups across 7 categories
 - [Patterns](patterns/index.md) — 2 lessons that recurred across 3+ sessions
 
 Two near-duplicate pairs flagged at reconstruction time were merged by hand on 2026-07-04 (both

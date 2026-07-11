@@ -1,4 +1,4 @@
-# Decision candidates (42)
+# Decision candidates (43)
 
 > Reformatted into the [DF-ADR template](../ADR-FORMAT-SPEC.md) on 2026-07-04 (frontmatter +
 > Revision Log added; content unchanged). Ratified lazily, one at a time — 3 accepted so far
@@ -51,3 +51,4 @@
 - [ADR-0042: Dark-Factory Swagger is the aspirational descendant of BMAD Swagger, not an unrelated namesake](0042-dark-factory-swagger-is-the-aspirational-descendant-of-bmad-.md)
 - [ADR-0043: Replace per-card 'promote' with a cluster CONVERGE flow for the Floor↔Lanes bridge](0043-replace-per-card-promote-with-a-cluster-converge-flow-for-th.md)
 - [ADR-0044: Adopt a canonical DF-ADR format, modeled on Cortex's native template](0044-adopt-a-canonical-df-adr-format.md) — hand-authored, not Lisa-extracted; see [TEMPLATE.md](TEMPLATE.md) and [ADR-FORMAT-SPEC.md](../ADR-FORMAT-SPEC.md)
+- [ADR-0045: Stabilise before drain — declare an engine moratorium after T1-21](0045-stabilise-before-drain-engine-moratorium-after-t1-21.md) — `status: accepted`, live-captured 2026-07-11 (dark-factory-c2)

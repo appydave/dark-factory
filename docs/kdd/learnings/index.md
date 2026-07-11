@@ -1,6 +1,7 @@
-# Learnings (45)
+# Learnings (49)
 
 > Reconstructed from session transcripts, 2026-07-04. Status: proposed.
+> +4 live-captured 2026-07-11 (dark-factory-c2 session); 1 bump (job-agents skip bookkeeping → ×3, promotion-eligible).
 
 ## architecture (6)
 
@@ -26,7 +27,10 @@
 - [high] [Doc-drift audit found docs silently out of step with shipped code](doc-drift-audit-found-docs-silently-out-of-step-with-shipped-kdd.md)
 - [low] [Durable memory retains an entity's old name after a real-world rename](durable-memory-retains-an-entity-s-old-name-after-a-real-wor-kdd.md)
 
-## infrastructure (5)
+## infrastructure (6)
+
+- [high] [Engine has no HITL-park state — a designed decision-pause is read as a wedged worker](engine-has-no-hitl-park-state-designed-pause-read-as-wedged-kdd.md)
+
 
 - [medium] [Dev server cache-busting gap serves stale content after re-render](dev-server-cache-busting-gap-serves-stale-content-after-re-r-kdd.md)
 - [high] [Dynamic Workflow tool args parameter didn't reliably bind to the script's args global](dynamic-workflow-tool-args-parameter-didn-t-reliably-bind-to-kdd.md)
@@ -50,13 +54,18 @@
 - [high] [Untracked-file rot accumulated from unenforced end-of-session commit discipline](untracked-file-rot-accumulated-from-unenforced-end-of-sessio-kdd.md)
 - [medium] [Worker session interviewed the human instead of resolving and terminating](worker-session-interviewed-the-human-instead-of-resolving-an-kdd.md)
 
-## testing (2)
+## testing (3)
+
+- [medium] [style-check checks form, not description↔body coherence (skill-creator caught what ours missed)](style-check-checks-form-not-description-body-coherence-kdd.md)
+
 
 - [low] [Doc-review crossref scanner flagged markdown syntax examples in prose as broken links](doc-review-crossref-scanner-flagged-markdown-syntax-examples-kdd.md)
 - [high] [Indirect render signals (HTTP 200, headless screenshot, SVG count) wrongly trusted as proof of a working render](indirect-render-signals-http-200-headless-screenshot-svg-cou-kdd.md)
 
-## tooling (10)
+## tooling (12)
 
+- [high] [Verify ran per-line against main, not the worker's worktree — worktree artifacts invisible, correct work false-failed](verify-block-ran-per-line-against-main-not-the-worker-worktree-kdd.md)
+- [high] [War-game Verification blocks false-fail good work via authoring bugs (placeholder / inverted grep / cross-line $VAR)](wargame-verification-blocks-false-fail-good-work-via-authoring-bugs-kdd.md)
 - [medium] [Bash cwd drift across tool calls from an earlier relative cd](bash-cwd-drift-across-tool-calls-from-an-earlier-relative-cd-kdd.md)
 - [low] [Census batch field mislabeling](census-batch-field-mislabeling-kdd.md)
 - [medium] [Constellation paths authored as prose, not resolvable filesystem paths](constellation-paths-authored-as-prose-not-resolvable-filesys-kdd.md)

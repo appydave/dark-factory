@@ -2,11 +2,11 @@
 topic: "Dispatch-loop telemetry gap"
 issue: "Job-agents complete work but skip writing handback/run-record bookkeeping"
 created: "2026-06-05"
-story_reference: "627e86a2, f7a95652"
+story_reference: "627e86a2, f7a95652, wg-t3-02 (2026-07-11)"
 category: "process"
 severity: "high"
 status: "proposed"
-recurrence_count: 2
+recurrence_count: 3
 promoted_to_pattern: ""
 provenance: reconstructed-from-sessions
 provenance_grain: candidate
