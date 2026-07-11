@@ -53,3 +53,6 @@ CLAUDE.local.md
 
 # Generated design-lint render proofs (regenerable each run)
 tools/design-lint/out/
+
+# Chaperone advisory feed — session-scoped runtime mirror, not a tracked doc
+docs/_chaperone-feed.md
