@@ -135,9 +135,9 @@ it's an abspath), fall back to (B) and record why.
 ## Verification
 ```bash
 python3 -c "import ast; ast.parse(open('engine/warm_pool.py').read()); ast.parse(open('engine/orchestrator.py').read()); print('parses')"
-grep -n "git.*worktree\|\.worktrees\|worktree add\|worktree remove" engine/warm_pool.py engine/orchestrator.py   # isolation present
-grep -n "worktrees" .gitignore                                                                                  # not tracked
-git worktree list                                                                                               # after teardown: only the main tree
+grep -qE "git.*worktree|worktree add|worktree remove" engine/warm_pool.py engine/orchestrator.py && echo "isolation present"
+grep -q "worktrees" .gitignore && echo "worktrees gitignored"
+git worktree list   # informational — after teardown should show only the main tree
 ```
 Behavioural (isolated, no live pool): two hand-made worktrees each edit the SAME file on their own
 branch → both commits consolidate to `main` with both changes present and a clean tree (Move 4
