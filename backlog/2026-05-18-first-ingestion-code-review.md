@@ -74,3 +74,12 @@ Don't try to do everything in one session. Reasonable split:
 - **Session 2**: write SKILL.md in David's voice, validate, ratify.
 
 This is a learning run — the workflow itself is being proven. Move slowly, document any spec gaps you hit, propose amendments in a follow-up backlog item.
+
+## Status
+
+**Session 1 complete** (2026-07-11, via `wg-t3-01-first-ingestion-review-dimensional`, war game `backlog/wargames/T3-01-first-ingestion-review-dimensional.md`).
+
+- Artifact: `canonical/skills/review-dimensional/` — the three open questions above are answered by decisions.md Q9 (2026-07-06 war-game portfolio triage): name = `review-dimensional`, complement (don't replace) David's existing review-* skills, `delivery-review` untouched.
+- Status: `in-style` (harvested + drafted, not yet ratified). `canonical/INDEX.md` carries an in-progress row.
+- **Session 2** (voice-review + ratify + HITL) = `wg-t3-02` if it exists by the time you read this; otherwise the checklist in `backlog/wargames/proof/T3-01/REPORT.md` is the manual handoff.
+- This backlog item stays **open** — it closes at ratification, not at Session 1.

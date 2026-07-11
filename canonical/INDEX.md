@@ -13,7 +13,7 @@
 
 | Name | Description | Origins | Status | Updated |
 |------|-------------|---------|--------|---------|
-| *(none yet — first ingestion: see `backlog/2026-05-18-first-ingestion-code-review.md`)* | | | | |
+| review-dimensional | Single-axis specialist reviewer pattern — depth-calibrated, gated, composable | 3 | in-style | 2026-07-11 |
 
 ## Agents
 
@@ -40,5 +40,5 @@ Only `ratified` artifacts are considered "real." Drafts and in-style entries are
 ## Count
 
 - Total artifacts ratified: 0
-- Total artifacts in progress: 0
-- Total upstream origins ingested (verbatim copies): 0
+- Total artifacts in progress: 1
+- Total upstream origins ingested (verbatim copies): 3

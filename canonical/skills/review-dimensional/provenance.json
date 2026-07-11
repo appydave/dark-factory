@@ -1,0 +1,94 @@
+{
+  "canonical_id": "dark-factory:skill:review-dimensional",
+  "canonical_type": "skill",
+  "canonical_name": "review-dimensional",
+  "version": 1,
+  "rewrite_status": "in-style",
+  "rewrite_date": "2026-07-11",
+  "rewrite_author": "Claude (under direction)",
+
+  "origins": [
+    {
+      "source_repo": "compound-engineering",
+      "source_path": "/Users/davidcruwys/dev/upstream/repos/compound-engineering-plugin/plugins/compound-engineering/agents/ce-adversarial-reviewer.agent.md",
+      "source_commit": "39cb9da3",
+      "harvested_at": "2026-07-11",
+      "verbatim_copy": "_source/compound-engineering--ce-adversarial-reviewer.agent.md",
+      "kept": [
+        "winner mechanism — depth calibration 3-tier (Quick/Standard/Deep) with explicit line thresholds",
+        "technique taxonomy (assumption violation, composition failures, cascade construction, abuse cases)",
+        "explicit non-overlap section (\"what you don't flag\", names sibling reviewers by territory)",
+        "anchored confidence rubric (100/75/50/suppress-at-25) with persona-specific anchor examples"
+      ],
+      "modified": [
+        "voice → David's terse operator tone (imperatives, no persona framing, no 'you are a chaos engineer' preamble)",
+        "description → trigger-only, 'Use when' + 5 quoted phrases (was a mechanism summary)",
+        "dropped `Write` from allowed-tools — reviewers never write; this canonical's Anti-patterns section calls this out explicitly",
+        "the four fixed adversarial techniques (assumption violation / composition failures / cascade construction / abuse cases) generalized into an axis-agnostic 'Axis territory' section — review-dimensional is the pattern for ANY axis, not only the adversarial one; a concrete axis instance (e.g. a future review-reliability) would restate these as its own hunt list",
+        "folded review-blind-hunter's '<3 findings → re-examine' heuristic into Behavior step 5",
+        "folded review-edge-case-hunter's validate-completeness pass into Behavior step 4"
+      ],
+      "set_aside": [
+        "Ruflo-style JSON output envelope — replaced by David's normalized dimension-coded finding format"
+      ]
+    },
+    {
+      "source_repo": "compound-engineering",
+      "source_path": "/Users/davidcruwys/dev/upstream/repos/compound-engineering-plugin/plugins/compound-engineering/skills/ce-code-review/SKILL.md",
+      "source_commit": "39cb9da3",
+      "harvested_at": "2026-07-11",
+      "verbatim_copy": "_source/compound-engineering--ce-code-review.md",
+      "verbatim_copy_companions": "_source/compound-engineering--ce-code-review--references/ (9 files: bulk-preview, diff-scope, findings-schema.json, persona-catalog, review-output-template, subagent-template, tracker-defer, validator-template, walkthrough) — read for context, none of their content is kept in the canonical body",
+      "kept": [
+        "Quality Gates section (6-item pre-report gate: actionable findings, no false positives from skimming, calibrated severity, accurate line numbers, respect protected artifacts, no linter-duplicate findings) — condensed into review-dimensional's 4-question pre-report gate in the Output section"
+      ],
+      "modified": [
+        "6-item Quality Gates list condensed to 4 questions (cite a real line, name a concrete failure, confirm context was read, defend the severity) — the war-game brief attributed a '4-question gate' to code-review-and-quality, but no such gate exists verbatim in that file; this is the closest real analog on disk and the actual source of the fold (see REPORT.md finding)"
+      ],
+      "set_aside": [
+        "the entire orchestrator/fan-out machinery (Stage 1-6, mode detection, 15-20 reviewer dispatch, headless/autofix/report-only modes) — review-dimensional is a single specialist, not an orchestrator; delivery-review is the orchestrator and stays untouched",
+        "persona catalog and stack-specific reviewer agents",
+        "the run-artifact / /tmp externalization protocol"
+      ]
+    },
+    {
+      "source_repo": "agent-skills-osmani",
+      "source_path": "/Users/davidcruwys/dev/upstream/repos/agent-skills/skills/code-review-and-quality/SKILL.md",
+      "source_commit": "f17c6e8",
+      "harvested_at": "2026-07-11",
+      "verbatim_copy": "_source/agent-skills-osmani--code-review-and-quality.md",
+      "kept": [
+        "five-axis framework naming (correctness, readability, architecture, security, performance) — used as the menu of axes a review-dimensional specialist can be instantiated for",
+        "severity-labelled feedback taxonomy spirit (Critical/required/Nit/Optional/FYI) — informs the normalized finding severity field (critical/high/medium/low)"
+      ],
+      "modified": [
+        "five named axes generalized into one `{axis}` parameter — this canonical is the pattern for instantiating any single axis, not a fixed enumeration of five",
+        "severity labels renamed to David's critical/high/medium/low vocabulary (was Critical:/Nit:/Optional:/FYI prefix convention)"
+      ],
+      "set_aside": [
+        "anti-rationalization table (\"AI-generated code is probably fine\" -> more scrutiny, not less) — read and noted, but not carried into the body; it's orchestrator/reviewer-culture guidance, not this single-axis skill's job",
+        "multi-model review pattern (Model A writes, Model B reviews) — out of scope for a single specialist skill",
+        "dead-code hygiene ask-before-delete protocol — CQ-lens concern, already owned by David's code-quality lens",
+        "change-sizing / change-description guidance — not this skill's axis"
+      ]
+    }
+  ],
+
+  "voice_anchors": [
+    "/Users/davidcruwys/dev/ad/appydave-plugins/appydave/skills/review-blind-hunter/SKILL.md",
+    "/Users/davidcruwys/dev/ad/appydave-plugins/appydave/skills/review-edge-case-hunter/SKILL.md",
+    "/Users/davidcruwys/dev/ad/appydave-plugins/appydave/skills/review-code-quality/SKILL.md",
+    "/Users/davidcruwys/dev/ad/appydave-plugins/appydave/skills/code-quality/references/lenses.md"
+  ],
+
+  "research_sources": {
+    "distillation": "research/distillations/code-review-dimensional-specialist.md",
+    "evaluations": [
+      "research/evaluations/agent-skills-osmani-skill-code-review-and-quality.md",
+      "research/evaluations/agent-skills-osmani-agent-code-reviewer.md"
+    ],
+    "cluster_distill_index": "research/distillations/INDEX.md#code-review-cluster"
+  },
+
+  "version_history": []
+}
