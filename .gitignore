@@ -22,6 +22,10 @@ mochaccino/.serve.log
 # Git worktrees
 .claude/worktrees/
 
+# Per-worker engine worktrees (wg-t1-19: WarmPool gives each worker its own
+# git worktree so pool>1 can edit in parallel without colliding)
+.worktrees/
+
 # Claude Code runtime artifacts at .claude/ root (locks, logs) — never track.
 # Targets root-level files only: settings.json and skills/ + workflows/ stay tracked.
 .claude/*.lock

@@ -18,6 +18,15 @@ naming/visibility conventions:
 
 Invariant unchanged: interactive `claude` only. No -p, no SDK, ANTHROPIC_API_KEY unset.
 Reaping stays artifact-is-truth: the caller verifies a real file, never the REPL text.
+
+Per-worker git worktrees (wg-t1-19): at pool>1, every worker used to get the SAME
+`cwd` (the repo root) — two workers editing at once stomped each other's working
+tree. Move 0's decision: isolate the CODE (git worktree per worker), keep the
+STORE shared (engine/store/ is addressed by orchestrator.py's absolute STORE
+path, unaffected by a worker's cwd). Each worker now works in its own worktree
+at `<repo>/.worktrees/df-worker-<n>` on its own branch `wg/worker-<n>`, off HEAD.
+The repo root itself is never touched by a worker again; consolidation of a
+worker's branch onto main happens in orchestrator.py's reap loop.
 """
 import os, sys, time, subprocess, glob
 from halt import is_halted
@@ -27,6 +36,48 @@ HOME = os.path.expanduser("~")
 
 def _tmux(*a):
     return subprocess.run(["tmux", *a], capture_output=True, text=True)
+
+
+def worker_branch(index):
+    return f"wg/worker-{index}"
+
+
+def worker_worktree_path(repo, index):
+    return os.path.join(repo, ".worktrees", f"df-worker-{index}")
+
+
+def ensure_worker_worktree(repo, index):
+    """Idempotent: prune stale worktree registrations and force-remove any
+    leftover directory from a prior crashed run, then create a fresh worktree
+    on the worker's own branch off HEAD. `-B` resets the branch to HEAD even if
+    it already exists, so a re-boot always starts a worker clean. REPO itself
+    (the orchestrator's cwd, still on main) is never touched here."""
+    wt = worker_worktree_path(repo, index)
+    branch = worker_branch(index)
+    subprocess.run(["git", "worktree", "prune"], cwd=repo, capture_output=True)
+    if os.path.isdir(wt):
+        subprocess.run(["git", "worktree", "remove", "--force", wt], cwd=repo, capture_output=True)
+    subprocess.run(["git", "worktree", "add", "-B", branch, wt, "HEAD"], cwd=repo, check=True)
+    return wt, branch
+
+
+def remove_worker_worktree(repo, worker):
+    """Teardown counter-move (Move 3): force-remove the tree (the worker's last
+    commit is already consolidated onto main by the reap loop, if any landed) —
+    then delete the branch only if it's an ancestor of main. A cherry-picked
+    commit produces a NEW sha, so its source branch never satisfies `--merged`;
+    keep those around and log them rather than silently dropping work."""
+    subprocess.run(["git", "worktree", "remove", "--force", worker.cwd], cwd=repo, capture_output=True)
+    branch = getattr(worker, "branch", None)
+    if not branch:
+        return
+    r = subprocess.run(["git", "branch", "--merged", "main"], cwd=repo, capture_output=True, text=True)
+    merged = {b.strip().lstrip("* ").strip() for b in r.stdout.splitlines()}
+    if branch in merged:
+        subprocess.run(["git", "branch", "-D", branch], cwd=repo, capture_output=True)
+    else:
+        print(f"[worktree]  {branch}: not an ancestor of main (no commits, or landed via "
+              f"cherry-pick) — keeping branch for inspection", flush=True)
 
 
 def project_dir(cwd):
@@ -70,6 +121,7 @@ class WarmWorker:
         self.booted = False
         self.session_id = None             # this boot's Claude session UUID (its transcript file)
         self.transcript = None             # absolute path to the .jsonl — the audit trail
+        self.branch = None                 # wg-t1-19: this worker's git worktree branch, set by WarmPool
 
     def capture(self):
         return _tmux("capture-pane", "-t", self.session, "-p").stdout
@@ -126,8 +178,18 @@ class WarmWorker:
 
 
 class WarmPool:
-    def __init__(self, size, model, cwd, extra_flags=()):
-        self.workers = [WarmWorker(i + 1, model, cwd, extra_flags) for i in range(size)]
+    def __init__(self, size, model, repo, extra_flags=()):
+        """`repo` is the dark-factory repo root (was every worker's shared cwd
+        before wg-t1-19). Every worker — including pool=1, for uniformity, so
+        there is one code path rather than two — now gets its own worktree off
+        `repo`; `repo` itself stays on main and is never edited by a worker."""
+        self.repo = repo
+        self.workers = []
+        for i in range(size):
+            wt, branch = ensure_worker_worktree(repo, i + 1)
+            w = WarmWorker(i + 1, model, wt, extra_flags)
+            w.branch = branch
+            self.workers.append(w)
 
     def boot_all(self):
         times = []
@@ -151,6 +213,7 @@ class WarmPool:
     def teardown_all(self):
         for w in self.workers:
             w.stop()
+            remove_worker_worktree(self.repo, w)
 
     def leftover_check(self):
         ls = _tmux("ls").stdout

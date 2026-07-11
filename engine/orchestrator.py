@@ -549,6 +549,40 @@ def git_status_snapshot():
     return r.stdout
 
 
+def consolidate_worker_branch(branch):
+    """Move 2 (wg-t1-19): a worker now commits inside its own worktree, on its
+    own `wg/worker-N` branch — this lands that commit onto `main` at reap.
+    REPO itself always stays checked out on main (workers never touch it), so
+    this is safe to run from the orchestrator's own cwd. Serial by construction:
+    the reap loop is single-threaded at this call site, so no lock is needed.
+
+    Fast-forwards when the branch is linear ahead of main; otherwise
+    cherry-picks the branch's HEAD commit. A genuine conflict aborts the
+    cherry-pick and returns (False, stderr) instead of force-merging — the
+    caller parks the ticket to needs-decision/ rather than resolving it.
+    Returns (True, None) when the branch has no new commits (nothing to do)."""
+    head = subprocess.run(["git", "rev-parse", branch], cwd=REPO, capture_output=True, text=True)
+    if head.returncode != 0:
+        return True, None  # branch never got a commit — nothing to consolidate
+    branch_sha = head.stdout.strip()
+    main_sha = subprocess.run(["git", "rev-parse", "main"], cwd=REPO,
+                               capture_output=True, text=True).stdout.strip()
+    if branch_sha == main_sha:
+        return True, None
+
+    merge = subprocess.run(["git", "merge", "--ff-only", branch_sha], cwd=REPO,
+                            capture_output=True, text=True)
+    if merge.returncode == 0:
+        return True, None
+
+    pick = subprocess.run(["git", "cherry-pick", branch_sha], cwd=REPO,
+                           capture_output=True, text=True)
+    if pick.returncode == 0:
+        return True, None
+    subprocess.run(["git", "cherry-pick", "--abort"], cwd=REPO, capture_output=True)
+    return False, (pick.stderr or pick.stdout)
+
+
 def run_wargame_checks(checks):
     """Run each extracted check read-only against the repo (a bare `cd <dir>` line
     changes cwd for subsequent checks, matching how the war games write multi-step
@@ -926,6 +960,24 @@ def main():
             if artifact_ok(tid):
                 ok, findings = verify(a["ticket"], tid)
                 if ok:
+                    branch = a["worker"].branch
+                    consolidated, cerr = consolidate_worker_branch(branch) if branch else (True, None)
+                    if not consolidated:
+                        # wg-t1-19 Move 2 counter-move: a genuine content conflict parks the
+                        # ticket rather than force-merging it — the worker's commit stays safe
+                        # on its own branch (untouched by teardown; see remove_worker_worktree).
+                        nd = os.path.join(NEEDS, tid)
+                        with open(nd, "w") as f:
+                            json.dump(dict(reason="worktree-consolidation-conflict", branch=branch,
+                                           error=_short_evidence(cerr), ts=now_iso()), f, indent=2)
+                            f.write("\n")
+                        record_verdict(tid, retries.get(tid, 0) + 1, "parked(conflict)", "engine",
+                                       f"branch {branch} conflicts with main at consolidation: {cerr}",
+                                       "needs-decision")
+                        results[tid] = "parked(conflict)"; settle(tid, a)
+                        print(f"[reap]     ticket {tid}: {branch} CONFLICTS with main -> "
+                              f"parked to needs-decision/ (ticket stays in running/)", flush=True)
+                        continue
                     record_verdict(tid, retries.get(tid, 0) + 1, "done", "engine",
                                    "artifact present, verify() passed", "done")
                     commit(tid); results[tid] = "done"; settle(tid, a)
