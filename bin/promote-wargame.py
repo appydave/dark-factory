@@ -71,12 +71,9 @@ def status(staged):
         rows.append((sid, j["priority"], st, "SELF-HOST" if sid in SELF_HOSTING else "", j["title"][:70]))
     return rows
 
-# the ONE run-path, absolute so the cwd trap can't recur (see docs/factory-console-skill-spec.md)
-RUN_COMMAND = (
-    "cd /Users/davidcruwys/dev/ad/apps/dark-factory/engine && \\\n"
-    "  python3 orchestrator.py --pool 1 --model sonnet --max-wall 3600 --worker-timeout 1800 \\\n"
-    "  2>&1 | tee -a /Users/davidcruwys/dev/ad/apps/dark-factory/engine/store/orchestrator.log"
-)
+# the ONE run-path: a self-cd'ing runner (cwd-proof) so the emitted command is one line,
+# no cd block (David's terminal is already at engine/). See engine/run.sh + docs/factory-console-skill-spec.md
+RUN_COMMAND = "bash /Users/davidcruwys/dev/ad/apps/dark-factory/engine/run.sh"
 
 def promote(sid, staged, force=False):
     """Promote one staged ticket into the queue. Returns True on success, else prints
