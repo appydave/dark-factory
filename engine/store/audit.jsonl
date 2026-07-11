@@ -17,3 +17,4 @@
 {"ticket": "wg-t3-03-verify-provenance-tool.json", "attempt": 3, "worker": "df-worker-1", "session_id": null, "transcript": null, "claimed_by": "mac-mini-m4.local-pid52471", "claimed_at": "2026-07-11T03:52:00Z"}
 {"ticket": "wg-t3-04-style-check-tool.json", "attempt": 2, "worker": "df-worker-1", "session_id": null, "transcript": null, "claimed_by": "mac-mini-m4.local-pid52471", "claimed_at": "2026-07-11T03:56:11Z"}
 {"ticket": "wg-t3-04-style-check-tool.json", "attempt": 3, "worker": "df-worker-1", "session_id": null, "transcript": null, "claimed_by": "mac-mini-m4.local-pid52471", "claimed_at": "2026-07-11T03:56:26Z"}
+{"ticket": "wg-t1-21-verify-runs-in-worktree-as-one-script.json", "attempt": 1, "worker": "df-worker-1", "session_id": null, "transcript": null, "claimed_by": "mac-mini-m4.local-pid14000", "claimed_at": "2026-07-11T04:20:26Z"}
