@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<!-- Source: mochaccino/data/factory-map.json -->
+<!-- Spec:   backlog/2026-07-11-factory-map-spec.md -->
+<!-- Brand:  AppyDave (brand-dave:brand) — light-mode-primary -->
+<!-- Note:   spec text names this 10-factory-map; slot 10 is Constellation, so this is 11. -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dark Factory — Factory Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../components/copykit.css">
+<style>
+  :root {
+    --brand-brown:      #342d2d;
+    --brand-gold:       #ccba9d;
+    --brand-yellow:     #ffde59;
+    --brand-amber:      #c8841a;
+    --brand-muted:      #7a6e5e;
+    --brand-near-white: #faf5ec;
+    --brand-surface:    #f0ebe4;
+    --brand-linen:      #e8e0d4;
+    --brand-border:     #d4cdc4;
+    --brand-chrome:     #1a1515;
+    --brand-dark-surface:#25201e;
+    --brand-blue:       #2E91FC;
+
+    /* status accents — structural (chip / left-border / dot), never a fill flood */
+    --s-proven:      #3d8a5a;   /* green — shipped + demonstrated */
+    --s-progressing: #c8841a;   /* amber — some done, more ready */
+    --s-staged:      #5b6f86;   /* slate — written + ready, none shipped */
+    --s-gap:         #a94a36;   /* red — an unbuilt mechanism / a gap marker */
+    --s-blocked:     #b0a898;   /* pale — blocked tickets in the rollup */
+
+    /* architecture component states */
+    --a-harness:     #2E91FC;
+    --a-running:     #3d8a5a;
+    --a-progressing: #c8841a;
+    --a-staged:      #5b6f86;
+    --a-stale:       #a58a55;
+    --a-dark:        #9a6a3a;
+    --a-this:        #c8841a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--brand-near-white);
+    color: var(--brand-brown);
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    line-height: 1.55;
+    padding: 28px 36px 60px;
+    max-width: 1320px;
+    margin: 0 auto;
+  }
+
+  /* ── Header ── */
+  header { margin-bottom: 24px; padding-bottom: 20px; border-bottom: 2px solid var(--brand-linen); }
+  .header-row { display: flex; align-items: baseline; gap: 20px; flex-wrap: wrap; }
+  h1 { font-family: 'Bebas Neue', sans-serif; font-size: 50px; letter-spacing: 1px; color: var(--brand-brown); line-height: 1; }
+  h1 .amber { color: var(--brand-amber); }
+  .back { font-family: 'Roboto Mono', monospace; font-size: 11px; color: var(--brand-muted); text-decoration: none; }
+  .back:hover { color: var(--brand-amber); }
+  .as-of { font-family: 'Roboto Mono', monospace; font-size: 11px; color: var(--brand-muted); margin-left: auto; }
+  .tagline { font-family: 'Oswald', sans-serif; font-weight: 500; font-size: 12px; text-transform: uppercase; letter-spacing: 2.5px; color: var(--brand-amber); margin-top: 8px; }
+  .subtitle { color: var(--brand-brown); font-size: 13px; margin-top: 8px; max-width: 880px; }
+
+  /* ── Section generic ── */
+  .section { margin: 34px 0 0; }
+  .section-title {
+    font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 13px;
+    text-transform: uppercase; letter-spacing: 2px; color: var(--brand-muted);
+    margin-bottom: 4px; padding-bottom: 6px; border-bottom: 1px solid var(--brand-linen);
+  }
+  .section-sub { font-family: 'Roboto Mono', monospace; font-size: 11px; color: var(--brand-muted); margin: 8px 0 16px; }
+
+  /* ── Legend key ── */
+  .legend { display: flex; gap: 16px; flex-wrap: wrap; margin: 14px 0 4px; }
+  .legend-item { display: flex; align-items: center; gap: 8px; }
+  .legend-swatch { width: 12px; height: 12px; border-radius: 3px; flex: none; }
+  .legend-item .lg-label { font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.6px; color: var(--brand-brown); }
+  .legend-item .lg-note { font-size: 11px; color: var(--brand-muted); }
+  .lg-proven .legend-swatch { background: var(--s-proven); }
+  .lg-progressing .legend-swatch { background: var(--s-progressing); }
+  .lg-staged .legend-swatch { background: var(--s-staged); }
+  .lg-gap .legend-swatch { background: var(--s-gap); }
+
+  /* ── Status board grid ── */
+  .track-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 14px; }
+
+  .track-card {
+    background: #fff;
+    border: 1px solid var(--brand-border);
+    border-left: 4px solid var(--brand-border);
+    border-radius: 6px;
+    padding: 15px 17px 16px;
+    display: flex; flex-direction: column;
+  }
+  .track-card.st-proven      { border-left-color: var(--s-proven); }
+  .track-card.st-progressing { border-left-color: var(--s-progressing); }
+  .track-card.st-staged      { border-left-color: var(--s-staged); }
+  .track-card.st-gap         { border-left-color: var(--s-gap); }
+  /* proven = mature anchor: subtle lift + warm tint */
+  .track-card.st-proven { box-shadow: 0 2px 10px rgba(61,138,90,0.10); background: #fcfdfb; }
+  /* zero-done tracks read visibly quieter */
+  .track-card.dim { opacity: 0.9; }
+
+  .tc-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 2px; }
+  .tc-id { font-family: 'Bebas Neue', sans-serif; font-size: 26px; color: var(--brand-amber); line-height: 1; }
+  .tc-name { font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 16px; text-transform: uppercase; letter-spacing: 0.6px; color: var(--brand-brown); }
+  .tc-chip {
+    margin-left: auto; font-family: 'Roboto Mono', monospace; font-size: 10px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.5px; color: #fff; border-radius: 3px; padding: 2px 8px;
+  }
+  .tc-chip.st-proven      { background: var(--s-proven); }
+  .tc-chip.st-progressing { background: var(--s-progressing); }
+  .tc-chip.st-staged      { background: var(--s-staged); }
+  .tc-chip.st-gap         { background: var(--s-gap); }
+
+  .tc-purpose { font-size: 12px; color: var(--brand-brown); line-height: 1.45; margin: 6px 0 12px; }
+
+  /* rollup bar + pills */
+  .rollup { margin-bottom: 10px; }
+  .rollup-bar { display: flex; height: 9px; border-radius: 5px; overflow: hidden; background: var(--brand-linen); margin-bottom: 7px; }
+  .rollup-bar .seg-done    { background: var(--s-proven); }
+  .rollup-bar .seg-ready   { background: var(--brand-gold); }
+  .rollup-bar .seg-blocked { background: var(--s-blocked); }
+  .rollup-pills { display: flex; gap: 6px; flex-wrap: wrap; }
+  .pill {
+    font-family: 'Roboto Mono', monospace; font-size: 10px; padding: 1px 8px; border-radius: 10px;
+    border: 1px solid var(--brand-border); color: var(--brand-muted); display: inline-flex; gap: 5px; align-items: center;
+  }
+  .pill .dot { width: 7px; height: 7px; border-radius: 50%; flex: none; }
+  .pill.p-done   { border-color: var(--s-proven); color: #2f6b46; }
+  .pill.p-done .dot   { background: var(--s-proven); }
+  .pill.p-ready  { color: #8a6a2a; border-color: var(--brand-gold); }
+  .pill.p-ready .dot  { background: var(--brand-gold); }
+  .pill.p-blocked .dot{ background: var(--s-blocked); }
+  .pill.p-done b, .pill.p-ready b, .pill.p-blocked b { color: var(--brand-brown); }
+
+  .tc-note { font-size: 11.5px; color: var(--brand-muted); line-height: 1.5; margin-bottom: 10px; }
+  .tc-note strong { color: var(--brand-brown); }
+
+  /* red gap markers inside a track card */
+  .tc-gaps { margin-top: auto; display: flex; flex-direction: column; gap: 5px; }
+  .gap-marker {
+    display: flex; align-items: baseline; gap: 7px;
+    background: #fbf1ef; border: 1px solid #e6c7bf; border-left: 3px solid var(--s-gap);
+    border-radius: 3px; padding: 5px 9px;
+  }
+  .gap-marker .gm-x { color: var(--s-gap); font-family: 'Roboto Mono', monospace; font-size: 11px; font-weight: 700; flex: none; }
+  .gap-marker .gm-text { font-size: 11px; color: #7a3527; line-height: 1.4; }
+  .tc-nogaps { font-family: 'Roboto Mono', monospace; font-size: 10px; color: var(--s-proven); margin-top: auto; }
+
+  /* ── Architecture stack ── */
+  .arch-note {
+    background: #fff; border: 1px solid var(--brand-border); border-left: 4px solid var(--brand-blue);
+    border-radius: 4px; padding: 12px 16px; margin-bottom: 14px; font-size: 12.5px; color: var(--brand-muted); line-height: 1.6;
+  }
+  .arch-note strong { color: var(--brand-brown); }
+
+  .arch-stack { display: flex; flex-direction: column; }
+  .arch-band { background: #fff; border: 1px solid var(--brand-border); border-radius: 6px; overflow: hidden; }
+  .arch-band-head { display: flex; align-items: baseline; gap: 12px; padding: 11px 20px; background: var(--brand-chrome); flex-wrap: wrap; }
+  .arch-band-name { font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 15px; text-transform: uppercase; letter-spacing: 1.5px; color: #fff; }
+  .arch-band-role { font-family: 'Roboto Mono', monospace; font-size: 10.5px; color: var(--brand-gold); margin-left: auto; text-align: right; max-width: 520px; }
+  .arch-band-body { padding: 14px 20px 16px; display: flex; gap: 10px; flex-wrap: wrap; }
+
+  .arch-chip {
+    background: var(--brand-near-white); border: 1px solid var(--brand-border);
+    border-top: 3px solid var(--brand-border); border-radius: 4px; padding: 9px 13px; min-width: 180px; flex: 0 1 220px;
+  }
+  .arch-chip .ac-name { font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 13px; color: var(--brand-brown); display: flex; align-items: center; gap: 7px; }
+  .arch-chip .ac-state { font-family: 'Roboto Mono', monospace; font-size: 9px; text-transform: uppercase; letter-spacing: 0.5px; color: #fff; border-radius: 3px; padding: 1px 6px; }
+  .arch-chip .ac-note { font-size: 10.5px; color: var(--brand-muted); margin-top: 5px; line-height: 1.4; }
+  .arch-chip.a-harness     { border-top-color: var(--a-harness); }
+  .arch-chip.a-running     { border-top-color: var(--a-running); }
+  .arch-chip.a-progressing { border-top-color: var(--a-progressing); }
+  .arch-chip.a-staged      { border-top-color: var(--a-staged); }
+  .arch-chip.a-stale       { border-top-color: var(--a-stale); }
+  .arch-chip.a-dark        { border-top-color: var(--a-dark); }
+  .arch-chip.a-this        { border-top-color: var(--a-this); background: #fdf7e8; }
+  .ac-state.a-harness     { background: var(--a-harness); }
+  .ac-state.a-running     { background: var(--a-running); }
+  .ac-state.a-progressing { background: var(--a-progressing); }
+  .ac-state.a-staged      { background: var(--a-staged); }
+  .ac-state.a-stale       { background: var(--a-stale); }
+  .ac-state.a-dark        { background: var(--a-dark); }
+  .ac-state.a-this        { background: var(--a-this); }
+
+  .arch-link { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 7px 0; }
+  .arch-link .glyph { color: var(--brand-amber); font-size: 15px; }
+  .arch-link .txt { font-family: 'Roboto Mono', monospace; font-size: 10.5px; color: var(--brand-muted); text-transform: uppercase; letter-spacing: 1px; }
+
+  /* ── Gaps board ── */
+  .gaps-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 14px; }
+  .gap-card {
+    background: #fff; border: 1px solid #e6c7bf; border-left: 4px solid var(--s-gap);
+    border-radius: 6px; padding: 15px 17px;
+  }
+  .gap-card .gc-head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+  .gc-sev {
+    font-family: 'Roboto Mono', monospace; font-size: 9.5px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.6px;
+    color: #fff; background: var(--s-gap); border-radius: 3px; padding: 2px 8px;
+  }
+  .gc-sev.sev-medium { background: #b8823f; }
+  .gc-title { font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 14.5px; color: var(--brand-brown); line-height: 1.2; }
+  .gc-tracks { display: flex; gap: 5px; flex-wrap: wrap; margin-left: auto; }
+  .gc-track-tag { font-family: 'Roboto Mono', monospace; font-size: 9.5px; color: var(--brand-muted); border: 1px solid var(--brand-border); border-radius: 3px; padding: 1px 6px; }
+  .gc-detail { font-size: 12px; color: var(--brand-brown); line-height: 1.5; margin-bottom: 10px; }
+  .gc-kdd {
+    font-family: 'Roboto Mono', monospace; font-size: 10px; color: var(--brand-muted);
+    background: var(--brand-surface); border: 1px solid var(--brand-border); border-radius: 3px;
+    padding: 4px 8px; word-break: break-word; display: inline-block;
+  }
+  .gc-kdd .kdd-key { color: var(--s-gap); }
+
+  footer {
+    color: var(--brand-muted); font-family: 'Roboto Mono', monospace; font-size: 11px;
+    margin-top: 40px; padding-top: 18px; border-top: 1px solid var(--brand-border); line-height: 1.7;
+  }
+  footer .next-line {
+    font-family: 'Roboto', sans-serif; font-size: 13px; color: var(--brand-brown); line-height: 1.6;
+    margin-bottom: 14px; padding: 12px 16px; background: #fff; border: 1px solid var(--brand-border);
+    border-left: 4px solid var(--brand-amber); border-radius: 4px;
+  }
+  footer .next-line b { color: var(--brand-amber); font-weight: 600; }
+  footer .src { display: block; margin-top: 4px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-row">
+    <h1>FACTORY <span class="amber">MAP</span></h1>
+    <a href="../" class="back">← gallery</a>
+    <span class="as-of" id="as-of"></span>
+  </div>
+  <div class="tagline">Dark Factory · What We're Building · Status + Architecture</div>
+  <div class="subtitle" id="subtitle"></div>
+</header>
+
+<!-- (A) STATUS BOARD -->
+<div class="section">
+  <div class="section-title">Status Board — the 9 tracks</div>
+  <div class="legend" id="legend"></div>
+  <div class="section-sub">done / ready / blocked rollup per track · red markers = unbuilt gaps</div>
+  <div class="track-grid" id="track-grid"></div>
+</div>
+
+<!-- (B) ARCHITECTURE LAYER -->
+<div class="section">
+  <div class="section-title">Architecture — how the pieces fit</div>
+  <div class="arch-note" id="arch-note"></div>
+  <div class="arch-stack" id="arch-stack"></div>
+</div>
+
+<!-- (C) GAPS BOARD -->
+<div class="section">
+  <div class="section-title">Gaps Board — what's unbuilt</div>
+  <div class="section-sub">red-accented callouts, each citing its KDD entry</div>
+  <div class="gaps-grid" id="gaps-grid"></div>
+</div>
+
+<footer id="footer"></footer>
+
+<script type="application/json" id="factory-map-data">
+{
+  "_meta": {
+    "title": "Dark Factory — Factory Map",
+    "subtitle": "What we're building: every pipeline, its status, its gaps, and how it fits.",
+    "as_of": "2026-07-11",
+    "source": "promote-wargame --list (track status) + docs/kdd/ (gaps) + docs/constellation-map.md (architecture). Curated snapshot v1 — hand-placed, true as of the date above; not auto-fed.",
+    "spec": "backlog/2026-07-11-factory-map-spec.md"
+  },
+  "status_legend": [
+    {"key": "proven",     "label": "Proven",      "note": "shipped + demonstrated working this session"},
+    {"key": "progressing","label": "In progress",  "note": "some tickets done, more ready"},
+    {"key": "staged",     "label": "Staged",       "note": "tickets written + ready, none shipped yet"},
+    {"key": "gap",        "label": "Unbuilt gap",  "note": "a core mechanism that does not work yet"}
+  ],
+  "tracks": [
+    {"id": "T1", "name": "Engine", "status": "proven",
+     "purpose": "The dispatch kernel — claim, reap, independent re-verify, worktrees, retry/settle, governors.",
+     "done": 10, "ready": 7, "blocked": 0,
+     "note": "The most mature track. Hardened + proven this session: T1-16 durable ledger, T1-19 worktrees, T1-20 no-spin, T1-21 verify-in-worktree.",
+     "gaps": ["HITL park state unbuilt (ADR-0045)", "on-machine parallel uncertified — worktrees built (T1-19) but the pool=2 proof is still deferred"]},
+    {"id": "T3", "name": "Ingestion", "status": "proven",
+     "purpose": "Harvest upstream artifacts → canonical skills in David's voice, with full provenance. The original charter.",
+     "done": 4, "ready": 8, "blocked": 0,
+     "note": "PROVEN this session: artifact #1 (review-dimensional) harvested, drafted, inspected, and RATIFIED. canonical/ was empty 7 weeks; now holds 1.",
+     "gaps": ["HITL/ratification apply doesn't complete in-engine (had to be hand-finished)", "style-check has a coherence gap — checks form, not description↔body coherence"]},
+    {"id": "T2", "name": "Producer / BA", "status": "staged",
+     "purpose": "The BA agent + a universal activity registry — turns real activity into tickets and briefings.",
+     "done": 0, "ready": 4, "blocked": 2,
+     "note": "Barely started. 11 off-registry repos are invisible to the inventory; the producer that would feed the factory doesn't exist yet.",
+     "gaps": ["Producer/BA agent unbuilt", "universal activity registry unbuilt"]},
+    {"id": "T5", "name": "Watchtower", "status": "staged",
+     "purpose": "The web control-plane — status.py → HTTP API → a UI you can watch the factory from.",
+     "done": 0, "ready": 3, "blocked": 3,
+     "note": "Scaffold exists (AppyStack, 2026-06-11) but was never installed/deployed. This is where the visibility gap gets its permanent home.",
+     "gaps": ["never deployed", "decision-queue vs HITL-gate vocabulary unreconciled (T5-07)"]},
+    {"id": "T6", "name": "Constellation", "status": "staged",
+     "purpose": "The micro-apps in orbit — sentinel, AngelEye, AppyRadar, omi-fetch — plus name-collision hygiene.",
+     "done": 0, "ready": 8, "blocked": 0,
+     "note": "None shipped. Sentinel is blind to Roamy; the 'a'→'e' migration is pending; AngelEye needs revival.",
+     "gaps": ["sentinel blind-to-Roamy", "micro-apps not yet wired into the factory"]},
+    {"id": "T7", "name": "Self-learning", "status": "staged",
+     "purpose": "The reflective-review engine — staleness scan, decision-lineage log, KDD structural gates.",
+     "done": 0, "ready": 5, "blocked": 0,
+     "note": "The loop that would let the factory improve itself. KDD exists (via Lisa) but the automated review engine is unbuilt.",
+     "gaps": ["reflective-review engine unbuilt"]},
+    {"id": "T8", "name": "Doc-truth", "status": "staged",
+     "purpose": "Reconcile docs with shipped reality — strategy-doc status lines vs what's actually on disk.",
+     "done": 0, "ready": 6, "blocked": 0,
+     "note": "Cheap, high-value hygiene. Several docs are known-stale (CLAUDE.md pointer, retired personas).",
+     "gaps": []},
+    {"id": "T9", "name": "Voice / comms", "status": "progressing",
+     "purpose": "Audio-out — done/failed/needs-you chimes, a sound vocabulary, a Samantha Q&A front door.",
+     "done": 0, "ready": 2, "blocked": 1,
+     "note": "The reap chime is LIVE (consumer.py). The richer sound vocabulary + Samantha are staged.",
+     "gaps": ["Switchboard comms bus is DOWN on both machines"]},
+    {"id": "T10", "name": "Fleet", "status": "staged",
+     "purpose": "Cross-machine work — Roamy as a Swagger worker over Tailscale, cross-machine HALT broadcast.",
+     "done": 0, "ready": 2, "blocked": 0,
+     "note": "Cross-machine delegation proven live during authoring; the war game re-runs it against a real ticket. This is the safe form of parallelism (isolated repos).",
+     "gaps": []}
+  ],
+  "architecture": {
+    "note": "The factory is a STACK, not a list (docs/constellation-map.md). Surfaces mount on the host; they visualise slices of data produced below.",
+    "layers": [
+      {"id": "host", "name": "HOST — KBDE / KyberAgent", "role": "Where every surface mounts as an extension across the seam.",
+       "components": [{"name": "KBDE / KyberAgent", "state": "harness"}]},
+      {"id": "surfaces", "name": "SURFACES — a slice of data + a way to see it", "role": "KBDE-extension candidates. Chosen by data type: list / search / detail / dashboard.",
+       "components": [
+         {"name": "Watchtower", "state": "staged", "note": "the control-plane UI (T5)"},
+         {"name": "AngelEye", "state": "dark", "note": "observability + telemetry (T6)"},
+         {"name": "Factory Map", "state": "this page", "note": "you're looking at one"}]},
+      {"id": "data", "name": "DATA — sources → data-plane → artifacts", "role": "The 'great data cluster' the factory runs on.",
+       "components": [
+         {"name": "Inventory / registries", "state": "stale", "note": "the first data source — what apps exist, do they run"},
+         {"name": "Blackboard MCP", "state": "running", "note": "shared K/V; dynamic workflows share data"},
+         {"name": "Switchboard", "state": "dark", "note": "headless SSE+MCP data plane — DOWN both machines"},
+         {"name": "AppySentinel", "state": "progressing", "note": "process/session snapshots"},
+         {"name": "OMI ingester", "state": "dark", "note": "wearable transcript pipeline"}]}
+    ]
+  },
+  "gaps_board": [
+    {"severity": "high", "title": "HITL / ratification pipeline unbuilt", "tracks": ["T1", "T3"],
+     "detail": "A designed decision-pause is misread as a wedged worker; the multi-step ratification apply never completes in a worker window. Artifact #1 had to be ratified by hand.",
+     "kdd": "learnings/engine-has-no-hitl-park-state · ADR-0045"},
+    {"severity": "high", "title": "Dispatched workers skip final bookkeeping", "tracks": ["T1", "T3"],
+     "detail": "Workers finish the real work but drop the trailing bookkeeping. Recurred 3× — now a promoted PATTERN. Capture completion externally, never via the worker's self-report.",
+     "kdd": "patterns/dispatched-workers-skip-final-bookkeeping-handback"},
+    {"severity": "medium", "title": "style-check has a coherence gap", "tracks": ["T3"],
+     "detail": "Checks form + provenance, not whether a skill's description matches what its body does. skill-creator caught a defect ours can't see; the two are complementary.",
+     "kdd": "learnings/style-check-checks-form-not-description-body-coherence"},
+    {"severity": "medium", "title": "On-machine parallel uncertified", "tracks": ["T1"],
+     "detail": "Worktree isolation is built (T1-19) and held under a real pool=2 run, but the attended certification of parallel product work is still deferred.",
+     "kdd": "learnings/verify-block-ran-per-line-against-main"},
+    {"severity": "medium", "title": "Comms bus (Switchboard) down", "tracks": ["T9", "T6"],
+     "detail": "The headless SSE+MCP data plane is dark on both machines — event-driven watching falls back to timer-polling / chime.",
+     "kdd": "docs/constellation-map.md"}
+  ],
+  "next": "Out of the moratorium (ADR-0045): with the whole factory now visible, choose the next PIPELINE — not '1,100 skills' by default. Candidates the map surfaces: harden HITL (unblocks ratification at scale), stand up Watchtower (permanent visibility), or build the Producer (T2, so the factory feeds itself)."
+}
+</script>
+
+<script>
+(function () {
+  'use strict';
+  var DATA = JSON.parse(document.getElementById('factory-map-data').textContent);
+  function esc(s){ if(s===null||s===undefined) return ''; return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  // ── Header ──
+  document.getElementById('subtitle').innerHTML = esc(DATA._meta.subtitle);
+  document.getElementById('as-of').textContent = 'as of ' + DATA._meta.as_of;
+
+  // ── Legend ──
+  var legendHtml = '';
+  DATA.status_legend.forEach(function(l){
+    legendHtml += '<div class="legend-item lg-' + esc(l.key) + '">' +
+      '<span class="legend-swatch"></span>' +
+      '<span class="lg-label">' + esc(l.label) + '</span>' +
+      '<span class="lg-note">— ' + esc(l.note) + '</span></div>';
+  });
+  document.getElementById('legend').innerHTML = legendHtml;
+
+  var legendLabel = {};
+  DATA.status_legend.forEach(function(l){ legendLabel[l.key] = l.label; });
+
+  // ── Status board ──
+  var tHtml = '';
+  DATA.tracks.forEach(function(t){
+    var total = (t.done||0) + (t.ready||0) + (t.blocked||0);
+    var pct = function(n){ return total > 0 ? (100 * n / total) : 0; };
+    var dim = (t.done === 0) ? ' dim' : '';
+    tHtml += '<div class="track-card st-' + esc(t.status) + dim + '">';
+    tHtml += '<div class="tc-head"><span class="tc-id">' + esc(t.id) + '</span>' +
+             '<span class="tc-name">' + esc(t.name) + '</span>' +
+             '<span class="tc-chip st-' + esc(t.status) + '">' + esc(legendLabel[t.status] || t.status) + '</span></div>';
+    tHtml += '<div class="tc-purpose">' + esc(t.purpose) + '</div>';
+
+    // rollup
+    tHtml += '<div class="rollup"><div class="rollup-bar">';
+    if (t.done)    tHtml += '<div class="seg-done" style="width:' + pct(t.done) + '%"></div>';
+    if (t.ready)   tHtml += '<div class="seg-ready" style="width:' + pct(t.ready) + '%"></div>';
+    if (t.blocked) tHtml += '<div class="seg-blocked" style="width:' + pct(t.blocked) + '%"></div>';
+    tHtml += '</div><div class="rollup-pills">' +
+      '<span class="pill p-done"><span class="dot"></span><b>' + t.done + '</b> done</span>' +
+      '<span class="pill p-ready"><span class="dot"></span><b>' + t.ready + '</b> ready</span>' +
+      '<span class="pill p-blocked"><span class="dot"></span><b>' + t.blocked + '</b> blocked</span>' +
+      '</div></div>';
+
+    tHtml += '<div class="tc-note">' + esc(t.note) + '</div>';
+
+    // gap markers
+    if (t.gaps && t.gaps.length) {
+      tHtml += '<div class="tc-gaps">';
+      t.gaps.forEach(function(g){
+        tHtml += '<div class="gap-marker"><span class="gm-x">✕</span><span class="gm-text">' + esc(g) + '</span></div>';
+      });
+      tHtml += '</div>';
+    } else {
+      tHtml += '<div class="tc-nogaps">✓ no open gaps</div>';
+    }
+    tHtml += '</div>';
+  });
+  document.getElementById('track-grid').innerHTML = tHtml;
+
+  // ── Architecture ──
+  document.getElementById('arch-note').innerHTML = esc(DATA.architecture.note);
+  function stateClass(s){ return 'a-' + String(s).replace(/[^a-z]/gi,'').toLowerCase(); }
+  var aHtml = '';
+  var layers = DATA.architecture.layers;
+  layers.forEach(function(layer, i){
+    aHtml += '<div class="arch-band">' +
+      '<div class="arch-band-head"><span class="arch-band-name">' + esc(layer.name) + '</span>' +
+      '<span class="arch-band-role">' + esc(layer.role) + '</span></div>' +
+      '<div class="arch-band-body">';
+    layer.components.forEach(function(c){
+      var sc = stateClass(c.state);
+      aHtml += '<div class="arch-chip ' + sc + '">' +
+        '<div class="ac-name">' + esc(c.name) + '<span class="ac-state ' + sc + '">' + esc(c.state) + '</span></div>' +
+        (c.note ? '<div class="ac-note">' + esc(c.note) + '</div>' : '') +
+        '</div>';
+    });
+    aHtml += '</div></div>';
+    // connector to the layer below
+    if (i < layers.length - 1) {
+      var rel = (layer.id === 'host') ? 'surfaces mount on host'
+              : (layer.id === 'surfaces') ? 'data feeds surfaces' : '';
+      aHtml += '<div class="arch-link"><span class="glyph">&#8595;</span><span class="txt">' + esc(rel) + '</span></div>';
+    }
+  });
+  document.getElementById('arch-stack').innerHTML = aHtml;
+
+  // ── Gaps board ──
+  var gHtml = '';
+  DATA.gaps_board.forEach(function(g){
+    gHtml += '<div class="gap-card">';
+    gHtml += '<div class="gc-head"><span class="gc-sev sev-' + esc(g.severity) + '">' + esc(g.severity) + '</span>' +
+             '<span class="gc-title">' + esc(g.title) + '</span>' +
+             '<span class="gc-tracks">' + g.tracks.map(function(t){ return '<span class="gc-track-tag">' + esc(t) + '</span>'; }).join('') + '</span></div>';
+    gHtml += '<div class="gc-detail">' + esc(g.detail) + '</div>';
+    gHtml += '<span class="gc-kdd"><span class="kdd-key">kdd:</span> ' + esc(g.kdd) + '</span>';
+    gHtml += '</div>';
+  });
+  document.getElementById('gaps-grid').innerHTML = gHtml;
+
+  // ── Footer ──
+  document.getElementById('footer').innerHTML =
+    '<div class="next-line"><b>What this tells us →</b> ' + esc(DATA.next) + '</div>' +
+    'Design 11 · Factory Map · Dark Factory · AppyDave · data: mochaccino/data/factory-map.json · ' +
+    'supersedes 01-pipeline-overview' +
+    '<span class="src">source: ' + esc(DATA._meta.source) + '</span>';
+})();
+</script>
+
+<script>window.COPYKIT_CONFIG = { blocks: ".track-card,.gap-card,.arch-chip", title: "Dark Factory — Factory Map" };</script>
+<script src="../components/copykit.js"></script>
+</body>
+</html>

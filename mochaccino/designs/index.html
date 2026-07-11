@@ -144,6 +144,7 @@
     <em>The consolidation</em> (design 08): the YLO→POEM decision board.
     <em>The census</em> (design 09): live progress dashboard — 5-level eval pipeline, verdict breakdown, cluster coverage, SkillOpt grounding.
     <em>The constellation</em> (design 10): architecture-as-data — the 3-layer stack (data / surfaces / host) rendered live from JSON, first slice of the architecture-visualizer candidate.
+    <em>The factory map</em> (design 11): the whole Dark Factory in one view — the 9 tracks with status + red gap markers, the constellation architecture stack, and the KDD-cited gaps board. Supersedes design 01.
   </div>
 </header>
 
@@ -158,7 +159,7 @@
       top winners with quality stars, mineable phrase, and cluster breakdown.
       Answers: <em>"Where am I weak across the SDLC?"</em>
     </div>
-    <div class="design-meta">data: pipeline.json · gap-status: strong / covered / partial / weak</div>
+    <div class="design-meta">data: pipeline.json · gap-status: strong / covered / partial / weak · SUPERSEDED BY design 11 (Factory Map)</div>
   </a>
 
   <a href="./02-mining-view/" class="design">
@@ -287,6 +288,22 @@
       Answers: <em>"What exists, what talks to what, and what's blocked on what?"</em>
     </div>
     <div class="design-meta">data: constellation.json · generated from constellation-map.md 2026-07-02 · 36 apps · 14 flows</div>
+  </a>
+
+  <a href="./11-factory-map/" class="design">
+    <div class="design-head">
+      <div class="design-title">Factory Map</div>
+      <div class="design-id">11</div>
+    </div>
+    <div class="design-desc">
+      The whole Dark Factory in one legible view, two layers deep. <em>Status board</em>: the 9 tracks
+      (T1 engine … T10 fleet), each with purpose, a done/ready/blocked rollup, a status chip
+      (proven / in-progress / staged), and red gap markers. <em>Architecture</em>: the constellation
+      3-tier stack (host → surfaces → data). <em>Gaps board</em>: KDD-cited red callouts of what's unbuilt.
+      Curated snapshot v1. Supersedes design 01.
+      Answers: <em>"What's built, what's in progress, what's missing, and how it fits?"</em>
+    </div>
+    <div class="design-meta">data: factory-map.json · spec: 2026-07-11-factory-map-spec.md · 9 tracks · 5 gaps · as-of 2026-07-11</div>
   </a>
 </div>
 
