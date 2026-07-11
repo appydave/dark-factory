@@ -96,7 +96,7 @@ Now that the rewrite is done:
 
 ## Step 8 — Validate
 
-Manual checklist (until `tools/verify-provenance.py` and `tools/style-check.py` exist):
+Run `python3 tools/style-check.py canonical/<type>/<name>/` — it covers the style/layout items below. Provenance-content items stay manual until `tools/verify-provenance.py` exists:
 
 - [ ] `provenance.json` parses + all required fields present
 - [ ] Every origin's `verbatim_copy` file exists
