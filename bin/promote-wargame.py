@@ -71,9 +71,12 @@ def status(staged):
         rows.append((sid, j["priority"], st, "SELF-HOST" if sid in SELF_HOSTING else "", j["title"][:70]))
     return rows
 
-# the ONE run-path: a self-cd'ing runner (cwd-proof) so the emitted command is one line,
-# no cd block (David's terminal is already at engine/). See engine/run.sh + docs/factory-console-skill-spec.md
-RUN_COMMAND = "bash /Users/davidcruwys/dev/ad/apps/dark-factory/engine/run.sh"
+# the ONE run-path: the engine/run.sh runner, invoked simply from the engine/ terminal.
+# CAP=3 workers (the engine clamps). See engine/run.sh + docs/factory-console-skill-spec.md
+RUN_CAP = 3
+def run_command(pool=1):
+    pool = max(1, min(pool, RUN_CAP))
+    return "./run.sh" if pool == 1 else f"./run.sh {pool}"
 
 def promote(sid, staged, force=False):
     """Promote one staged ticket into the queue. Returns True on success, else prints
@@ -102,8 +105,8 @@ def next_ready(staged, n):
     return [r[0] for r in ready[:n]]
 
 def reminder():
-    print("REMINDER: run the orchestrator with a raised wall for war games, e.g.")
-    print(f"  {RUN_COMMAND}")
+    print("RUN — from your engine/ terminal:")
+    print(f"  {run_command()}")
 
 def lint_verification(sid):
     """Scan sid's war-game '## Verification' bash block for the two authoring bugs that
@@ -146,8 +149,10 @@ def go(sids, staged, force=False):
         if promote(sid, staged, force=force):
             promoted += 1
     if promoted:
-        print("\nRUN — paste this into another terminal (this seat dispatches, it does not run):")
-        print(f"  {RUN_COMMAND}")
+        pool = min(promoted, RUN_CAP)
+        note = f"{promoted} queued" + (f" — {pool} workers in parallel" if pool > 1 else "")
+        print(f"\nRUN — from your engine/ terminal ({note}):")
+        print(f"  {run_command(pool)}")
     else:
         print("\nnothing promoted — NO run command (empty-run guard). Nothing to run.")
     return promoted
