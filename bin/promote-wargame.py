@@ -131,10 +131,12 @@ def lint_verification(sid):
                             f"(`grep -q P && echo ok`, or `! grep -q P && echo ok` to assert absence)")
     return errors, warnings
 
-def go(sids, staged, force=False):
+def go(sids, staged, force=False, quiet=False):
     """Promote sids AND print the run command — but ONLY if at least one was promoted
     (the empty-run guard, in code: no silent run of an empty queue). Lints each ticket's
-    '## Verification' block first; placeholder errors block promotion (--force overrides)."""
+    '## Verification' block first; placeholder errors block promotion (--force overrides).
+    quiet=True (used when engine/run.sh calls this internally) suppresses the run-command
+    hint, since run.sh is about to launch it — but keeps lint output + the empty-run guard."""
     promoted = 0
     for sid in sids:
         errs, warns = lint_verification(sid)
@@ -148,12 +150,12 @@ def go(sids, staged, force=False):
             continue
         if promote(sid, staged, force=force):
             promoted += 1
-    if promoted:
+    if promoted and not quiet:
         pool = min(promoted, RUN_CAP)
         note = f"{promoted} queued" + (f" — {pool} workers in parallel" if pool > 1 else "")
         print(f"\nRUN — from your engine/ terminal ({note}):")
         print(f"  {run_command(pool)}")
-    else:
+    elif not promoted:
         print("\nnothing promoted — NO run command (empty-run guard). Nothing to run.")
     return promoted
 
@@ -165,8 +167,9 @@ def main():
             print(f"{sid:7} {pri:6} {st:10} {host:9} {title}")
         return
     force = "--force" in args
+    quiet = "--quiet" in args
     if args[0] == "go":
-        rest = [a for a in args[1:] if a != "--force"]
+        rest = [a for a in args[1:] if a not in ("--force", "--quiet")]
         if rest and rest[0] == "--next":
             n = int(rest[1]) if len(rest) > 1 else 1
             sids = next_ready(staged, n)
@@ -177,7 +180,7 @@ def main():
             sids = rest            # one OR MORE explicit ticket ids: `go T3-03 T3-04`
         else:
             sys.exit("go needs a ticket id or --next N")
-        go(sids, staged, force=force)
+        go(sids, staged, force=force, quiet=quiet)
         return
     if args[0] == "--next":
         n = int(args[1]) if len(args) > 1 else 1
