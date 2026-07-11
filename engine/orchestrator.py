@@ -544,8 +544,8 @@ def extract_wargame_checks(md_path):
     return checks, None
 
 
-def git_status_snapshot():
-    r = subprocess.run(["git", "status", "--porcelain"], cwd=REPO, capture_output=True, text=True)
+def git_status_snapshot(cwd=None):
+    r = subprocess.run(["git", "status", "--porcelain"], cwd=(cwd or REPO), capture_output=True, text=True)
     return r.stdout
 
 
@@ -583,32 +583,56 @@ def consolidate_worker_branch(branch):
     return False, (pick.stderr or pick.stdout)
 
 
-def run_wargame_checks(checks):
-    """Run each extracted check read-only against the repo (a bare `cd <dir>` line
-    changes cwd for subsequent checks, matching how the war games write multi-step
-    blocks; it is not itself executed as a command). A non-zero exit = a failed
-    check, exactly like a failed negative check."""
+def run_wargame_checks(checks, cwd=None):
+    """wg-t1-21: run the ENTIRE '## Verification' block as ONE bash script, not one
+    subprocess per extracted check -- the old per-line approach lost all state
+    between lines (DF=, T=$(mktemp), heredocs, cd all reset every line), which
+    false-failed war games that used the exact multi-line idiom the war-game
+    format itself recommends (T3-03/T3-04, 2026-07-11). Every check still gets its
+    own pass/fail verdict: each check is followed by a marker `echo` that captures
+    its immediate `$?`, so failure detail survives even though everything now runs
+    in one shell. `cd` and variable assignments therefore persist naturally --
+    no special-cased `cd` handling needed any more.
+
+    `cwd` is the worker's own worktree (wg-t1-19) when it has one, so a file the
+    worker just built+committed there is visible to verify; falls back to REPO
+    when there is no worktree (pool=1 without per-worker worktrees, or any caller
+    that omits cwd)."""
+    run_cwd = cwd if cwd and os.path.isdir(cwd) else REPO
+    marker = "WARGAME_CHECK_RC"
+    script_lines = []
+    for i, cmd in enumerate(checks):
+        script_lines.append(cmd)
+        script_lines.append(f'echo "{marker}:{i}:$?"')
+    script = "\n".join(script_lines)
+
+    try:
+        r = subprocess.run(["/bin/bash", "-c", script], cwd=run_cwd,
+                            capture_output=True, timeout=120)
+    except Exception as e:
+        return False, [f"verification block errored: {e}"]
+
+    stdout = r.stdout.decode(errors="replace")
+    rcs = {}
+    for line in stdout.splitlines():
+        if line.startswith(marker + ":"):
+            _, idx, rc = line.split(":", 2)
+            try:
+                rcs[int(idx)] = int(rc)
+            except ValueError:
+                pass
+
     findings = []
-    cwd = REPO
-    for cmd in checks:
-        stripped = cmd.strip()
-        cd_only = re.match(r'^cd\s+(\S+)\s*$', stripped) if "\n" not in cmd else None
-        if cd_only:
-            target = cd_only.group(1)
-            target = target if os.path.isabs(target) else os.path.join(REPO, target)
-            if os.path.isdir(target):
-                cwd = target
-            else:
-                findings.append(f"cd target not found: {target}")
-            continue
-        try:
-            r = subprocess.run(cmd, shell=True, cwd=cwd, capture_output=True,
-                                timeout=60, executable="/bin/bash")
-            if r.returncode != 0:
-                findings.append(f"check failed (exit {r.returncode}): {cmd.splitlines()[0][:120]} "
-                                 f"stderr={r.stderr.decode(errors='replace')[:300]}")
-        except Exception as e:
-            findings.append(f"check errored: {cmd.splitlines()[0][:120]}: {e}")
+    for i, cmd in enumerate(checks):
+        rc = rcs.get(i)
+        if rc is None:
+            findings.append(f"check {i} produced no result, block likely aborted early: "
+                             f"{cmd.splitlines()[0][:120]}")
+        elif rc != 0:
+            findings.append(f"check failed (exit {rc}): {cmd.splitlines()[0][:120]}")
+    if not findings and r.returncode != 0:
+        findings.append(f"verification block exited {r.returncode}: "
+                         f"stderr={r.stderr.decode(errors='replace')[:300]}")
     return (len(findings) == 0), findings
 
 
@@ -639,7 +663,7 @@ def find_results_file(ticket, tid=None):
     return None
 
 
-def verify_wargame(ticket, tid=None):
+def verify_wargame(ticket, tid=None, cwd=None):
     """verify_kind="wargame" (also auto-applied by verify() when no verify_kind is
     set but the ticket names a backlog/wargames/<ID>.md source): re-derive the
     verdict from the war game's own '## Verification' block instead of trusting
@@ -647,7 +671,13 @@ def verify_wargame(ticket, tid=None):
     artifact to force a pass. Falls back to an artifact-only pass (+ a logged
     warning) whenever the war game can't be resolved or its block can't be parsed,
     so tickets without a clean machine-readable spec keep working exactly as
-    before this verifier existed."""
+    before this verifier existed.
+
+    wg-t1-21: `cwd` is the worker's own worktree (wg-t1-19) -- the worker builds
+    and commits its artifact there, not in REPO, so verify must run there too or
+    a worktree-isolated artifact is invisible and every such job false-fails.
+    Falls back to REPO when the caller has no worktree to give (pool=1 without
+    per-worker worktrees)."""
     md_path = resolve_wargame_path(ticket)
     if not md_path or not os.path.exists(md_path):
         print(f"[verify]   wargame: no resolvable backlog/wargames/*.md for "
@@ -659,9 +689,10 @@ def verify_wargame(ticket, tid=None):
         print(f"[verify]   wargame: {err} -- falling back to artifact-only pass", flush=True)
         return True, []
 
-    before = git_status_snapshot()
-    ok, findings = run_wargame_checks(checks)
-    after = git_status_snapshot()
+    run_cwd = cwd if cwd and os.path.isdir(cwd) else REPO
+    before = git_status_snapshot(run_cwd)
+    ok, findings = run_wargame_checks(checks, run_cwd)
+    after = git_status_snapshot(run_cwd)
     if before != after:
         ok = False
         findings.append("war-game verification commands modified the repo (should be read-only) "
@@ -691,7 +722,7 @@ VERIFIERS = {
 }
 
 
-def verify(ticket, tid=None):
+def verify(ticket, tid=None, cwd=None):
     """Returns (ok: bool, findings: list[str]).
 
     - verify_kind set + known -> that VERIFIERS entry (bespoke or generic-DSL).
@@ -703,11 +734,15 @@ def verify(ticket, tid=None):
       directly -> the lightweight fallback checker.
     - none of the above -> pass, same as before this change (generic tickets that
       only ever relied on artifact_ok() + self-report keep working exactly as they
-      did)."""
+      did).
+
+    `cwd` (wg-t1-21) is the worker's worktree, passed through to the wargame
+    verifier only -- the other verifiers address artifacts by REPO-absolute
+    paths and are untouched by this ticket's scope."""
     vk = ticket.get("verify_kind")
     if not vk:
         if resolve_wargame_path(ticket):
-            return verify_wargame(ticket, tid)
+            return verify_wargame(ticket, tid, cwd)
         if ticket.get("artifacts") or ticket.get("verify_command"):
             return verify_artifacts_fallback(ticket)
         return True, []
@@ -958,7 +993,9 @@ def main():
                     continue
 
             if artifact_ok(tid):
-                ok, findings = verify(a["ticket"], tid)
+                # wg-t1-21: verify from the worker's own worktree (wg-t1-19) -- its
+                # artifact lives there, not in REPO, until consolidation below.
+                ok, findings = verify(a["ticket"], tid, cwd=getattr(a["worker"], "cwd", None))
                 if ok:
                     branch = a["worker"].branch
                     consolidated, cerr = consolidate_worker_branch(branch) if branch else (True, None)
