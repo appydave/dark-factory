@@ -1,0 +1,1190 @@
+# Loop Registry — 593 distinct open loops
+
+Sorted: LIVE first, then by frequency, then oldest-first.
+
+- **[LIVE]** extension channel architecture audit — first 2026-06-24, last 2026-06-24, seen 3× (kyber-extensions)
+  - latest: David finds the extension channel/endpoint naming is arbitrary configuration rather than deterministic convention (Rails-style convention-over-configuration), demands a full architecture audit of the 
+- **[LIVE]** recipe packaging and distribution — first 2026-06-24, last 2026-06-24, seen 2× (recipe-thumbnail)
+  - latest: David sketches the skill-recipe distribution model: sell skills as specific problem-solvers, pair each with a recipe that can rebuild (or improve/customize) the skill, package prettily with a PDF, and
+- **[LIVE]** Scene Probe usable surface — first 2026-06-24, last 2026-06-24, seen 2× (kyber-extensions)
+  - latest: Day plan to move Scene Probe test extensions (iframe + in-proc) from a data-packed debug surface to an almost-usable UX with composable elements, filters, dropdowns and extension-to-chat integration, 
+- **[LIVE]** mochaccino screens off real data — first 2026-06-25, last 2026-06-25, seen 2× (kyber-extensions)
+  - latest: David directs that Mochaccino designs must bind to tangible programmable assets — the agent should push back when data is missing and resolve it via either a feature spec/ticket or schema-generated mo
+- **[LIVE]** thumbnail generator extension — first 2026-06-30, last 2026-06-30, seen 2× (recipe-thumbnail)
+  - latest: David scopes a thumbnail-generator micro app built as a KyberAgent extension combining the recipe skill with the thumbnail-design documentation, starting with the AppyDave brand then AI-TLDR, vOz and 
+- **[LIVE]** dark factory autonomy build — first 2026-07-02, last 2026-07-03, seen 2× (dark-factory)
+  - latest: David frames the micro-app push: apps connected via APIs/MCPs give the dark factory terminal agentic access to sessions and tickets, WatchTower and Switchboard are the David-to-agent communication lay
+- **[LIVE]** dark factory harness untested — first 2026-07-03, last 2026-07-03, seen 2× (dark-factory)
+  - latest: Cleaned duplicate of the same capture: prototypes are static HTML pages (not server-backed apps), Mochaccino styling praised, but no KyberAgent/Claude Agent SDK extension was built and the work demons
+- **[LIVE]** Captain's Log extension replaces OMI extension — first 2026-07-06, last 2026-07-06, seen 2× (captains-log)
+  - latest: OMI-side duplicate of the Captain's Log extension directive: replace the OMI-only extension with a Captain's Log extension exposing incoming conversations, many-to-many project mapping, and machine-ro
+- **[LIVE]** OMI vs Plaud transcription bake-off — first 2026-07-06, last 2026-07-06, seen 2× (captains-log)
+  - latest: OMI-side duplicate fragment of the transcription bake-off idea: compare the micro conversations recorded on both devices against each other.
+- **[LIVE]** KyberAgent docs-watcher on Roamy — first 2026-07-06, last 2026-07-06, seen 2× (kyberagent-pilot)
+  - latest: OMI-side duplicate of the KyberAgent docs-watcher directive: stand up a Kybernesis agent on Roamy watching product documentation repos with a searchable brain, and learn how to control/communicate wit
+- **[LIVE]** kyber extension iframe architecture — first 2026-07-07, last 2026-07-07, seen 2× (kyber-extensions)
+  - latest: Doc-review session on the extension repo: refresh-context/system-context docs aren't designed for repos David manages that already have good docs and KDDs, he approves the agent's three recommended ch
+- **[LIVE]** Captain's Log Kybernesis extension build — first 2026-07-12, last 2026-07-13, seen 2× (captains-log)
+  - latest: Captain's Log ingestion must be durable beyond the web server's lifetime — launchd-style cron every 30 minutes from 07:00 to 22:00 plus an in-app manual trigger — with slice-and-dice filter toggles (t
+- **[LIVE]** SupportSignal 5-hour commitment reset — first 2026-06-22, last 2026-06-22, seen 1× (client-supportsignal)
+  - latest: David drafts an email to Rony and Angela resetting his SupportSignal commitment to ~5 direct hours/week (daily 40-min sessions with Angela + weekly directors' session, generating 10-15 build hours), n
+- **[LIVE]** Extension SDK capability parity audit — first 2026-06-23, last 2026-06-23, seen 1× (kyber-extensions)
+  - latest: Scene Probe is not done until every Extension SDK capability is personally checked off with iframe/in-proc parity; wants a rich JSON capability graph, Playwright screenshots, Mochaccino mockups before
+- **[LIVE]** social intro video concepts — first 2026-06-24, last 2026-06-24, seen 1× (team-ops)
+  - latest: A team member records that David assigned them work on concepts for a new social intro video to replace the current one on the website, planning to develop ideas and show him soon.
+- **[LIVE]** host-managed scheduled tasks — first 2026-06-24, last 2026-06-24, seen 1× (kyber-extensions)
+  - latest: David proposes scheduled tasks as a major Extension SDK capability: extensions declare cron-like schedules (configured in extension settings, exposed via data channels) but execution is owned by the h
+- **[LIVE]** omi watch-and-poll extension — first 2026-06-24, last 2026-06-24, seen 1× (kyber-extensions)
+  - latest: David proposes a watch-and-poll extension that monitors the OMI transcript/brain folder on a configurable interval (every 10 minutes or hourly) to detect changes and trigger actions, replacing his man
+- **[LIVE]** Mochaccino documentation extension promotion — first 2026-06-24, last 2026-06-24, seen 1× (kyber-extensions)
+  - latest: Mochaccino should evolve from generated HTML mockups into schema-driven data-first documentation whose use-case screens could be promoted into a first-class documentation extension (with embedded web 
+- **[LIVE]** AngelEye vs Sentinel daemon overlap — first 2026-06-24, last 2026-06-24, seen 1× (dark-factory)
+  - latest: David asks whether AngelEye Sentinel solves the same daemon problems as AngelEye, whether they are compatible or exclusive, where hooks should point if they overlap, and requests a handover message to
+- **[LIVE]** BMAD pattern mining for dark factory — first 2026-06-24, last 2026-06-24, seen 1× (dark-factory)
+  - latest: Restart AngelEye for telemetry and mine ~10 BMAD story lifecycle runs (~100 parent+child sessions, mix of Opus and Haiku) via dynamic workflow to extract the months-proven semi-automated spec-to-ship 
+- **[LIVE]** Angela consulting engagement — first 2026-06-27, last 2026-06-27, seen 1× (kybernesis-venture)
+  - latest: Over lunch David and a Kybernesis peer discuss bringing Angela (disability domain expert whose three-way app partnership imploded, now AI-pilled) into the consulting pipeline as an external consultant
+- **[LIVE]** extension hosting and monetization strategy — first 2026-06-29, last 2026-06-29, seen 1× (kyber-extensions)
+  - latest: David thinks through the Kyber Extension SDK ecosystem — pub/sub host-extension communication, an app/port registry currently conflated with locations.json, turning existing apps (AngelEye, AppyRadar,
+- **[LIVE]** generalized recipe skill — first 2026-06-30, last 2026-06-30, seen 1× (recipe-thumbnail)
+  - latest: David commissions a generalized, self-improving recipe skill — recipes as IKEA-flat-pack-style instruction sets (with or without parts) where a harness (AppyStack, Kybernesis extensions) supplies infr
+- **[LIVE]** extension architecture: iframe + repo-per-extension — first 2026-07-03, last 2026-07-03, seen 1× (kyber-extensions)
+  - latest: Extension architecture direction: iframe technique for third-party extensions, one GitHub repo per extension (under a future org like kyber-extensions/kybernesis), package.json pointing at the agent S
+- **[LIVE]** KDD home location — first 2026-07-03, last 2026-07-03, seen 1× (kdd-lisa)
+  - latest: David decides KDD working/archive files should live in a .kdd-style dotfolder inside each project (not the Cortex-style location previously reused) until the dedicated KDD home exists within hours, st
+- **[LIVE]** Lisa workflow guardrails — first 2026-07-04, last 2026-07-04, seen 1× (kdd-lisa)
+  - latest: David is angry that a Lisa/KDD learning ballooned into its own branch instead of one learning doc on the working ticket, and demands Lisa get a menuing/deterministic clarification step (ask the human,
+- **[LIVE]** KDD bridge clarity — first 2026-07-04, last 2026-07-04, seen 1× (kdd-lisa)
+  - latest: Long triage session: David pins down what the KDD bridge actually is (a repo/MCP thrown out without visibility), decides Gemini is broken and must be deprecated out of the system, sets ticket flow (va
+- **[LIVE]** Gling replacement research — first 2026-07-04, last 2026-07-04, seen 1× (gling-automation)
+  - latest: About to be re-billed for Gling.ai he hasn't used in months, David commissions research to track down an agentic open-source video-cutting project surfaced in a recent conversation (possibly documente
+- **[LIVE]** Angela/Stravan onboarding — first 2026-07-04, last 2026-07-04, seen 1× (ai-meetups)
+  - latest: Saturday Chiang Mai AI engineers meetup: Anthropic data-training/privacy drama (default data-sharing opt-in, Fable input/output recording, alleged region-tracking strings), Sonnet 5 vs GLM 5.2 cost/ha
+- **[LIVE]** OMI list metadata + sequential item codes — first 2026-07-04, last 2026-07-04, seen 1× (captains-log)
+  - latest: OMI list ingestion is too thin — David wants ontology/tags/synopsis metadata surfaced per item plus a sequential A00-style primary-key code so agents can be told 'go get item A001'.
+- **[LIVE]** extension discoverability and usage UX depth — first 2026-07-04, last 2026-07-04, seen 1× (kyber-extensions)
+  - latest: The five extensions built in the batch are all too thin — minimum viable data with no search guidance, inferred metadata, summaries, usage docs, or discovery UX — and each must be re-evaluated from ho
+- **[LIVE]** skill registry design — first 2026-07-04, last 2026-07-04, seen 1× (skills-tooling)
+  - latest: Skill registry design: track ~1100 investigated + ~100 in-use skills with last-accessed/staleness, per-skill learnings metadata, rich search (name, description, taxonomy) and a detail viewer with high
+- **[LIVE]** Kyber Extension SDK capability gap — first 2026-07-05, last 2026-07-05, seen 1× (kyber-extensions)
+  - latest: Diagnosis of why the Kybernesis OMI extension went wrong: it reinvented the OMI-ingest skill's tagging and rolled its own 10-minute pulse instead of delegating to the host — the Kyber Extension SDK mu
+- **[LIVE]** Unified ingestion controller for OMI+Plaud — first 2026-07-05, last 2026-07-05, seen 1× (captains-log)
+  - latest: Architecture decision: OMI and Plaud stay separate ingestion skills for their own data feeds, but downstream processing (local Whisper transcription, tagging/ontology, source pinning) is shared, with 
+- **[LIVE]** unify OMI+Plaud ingestion pipeline — first 2026-07-05, last 2026-07-05, seen 1× (captains-log)
+  - latest: David decides OMI and Plaud are the same concept (voice-capture providers) so omi-fetch's name/skill split is wrong, and directs pulling raw audio/video locally for Whisper-or-Groq transcription inste
+- **[LIVE]** challenge-dv retainer proposal — first 2026-07-07, last 2026-07-07, seen 1× (client-challenge-dv)
+  - latest: Consultation with Linda (Challenge DV): instead of a $25k one-off video production quote, David demoed AI-generated content (Hyperframes auto-edited videos from Joy's raw one-minute clips, HeyGen avat
+- **[LIVE]** achieve mvp three-week demo — first 2026-07-07, last 2026-07-07, seen 1× (client-achieve)
+  - latest: Working session with Angela: create a private achieve-mvp repo under the Supporting Potential org with Angela's access, invoice $1000 and attach her card to a Claude Max plan, set the North Star of up
+- **[LIVE]** kyber extension e2e testing — first 2026-07-07, last 2026-07-07, seen 1× (kyber-extensions)
+  - latest: David directs the agent working on his frame-extension changes to merge to his branch and run option-2 fully-closed end-to-end tests alongside UAT, and queries an earlier claim that ~10 tests were fai
+- **[LIVE]** lisa scope kdd folder only — first 2026-07-07, last 2026-07-07, seen 1× (kdd-lisa)
+  - latest: David pushes back on customizing Lisa for one repository's unique issues — Lisa's scope is the KDD folder only, not a repo's general documentation folder or application — and asks what has gone wrong 
+- **[LIVE]** Challenge DV coaching retainer — first 2026-07-07, last 2026-07-07, seen 1× (client-challenge-dv)
+  - latest: Coaching-pitch call with Linda (Challenge DV): David demoed AI video workflows (HeyGen clone, Hyperframes-templated videos from Joy's raw footage, Vasilios storyboard app, branded checklists/PDFs) and
+- **[LIVE]** dark-factory microapp factory — first 2026-07-09, last 2026-07-09, seen 1× (dark-factory)
+  - latest: Catch-up with Tony O'Connell: Joy Juice and Beauty & Joy self-provisioned as clients on Tony's one.ie platform (schemas now visualizable); David explains Dark Factory as a self-improving SDLC that bui
+- **[LIVE]** achieve mvp micro-apps — first 2026-07-09, last 2026-07-09, seen 1× (client-achieve)
+  - latest: Working session with Angela on the Achieve MVP: $1.2–4M annual funding leakage traced to no single source of truth (service agreements as PDFs off spreadsheets), ~1,100 weekly rejected NDIS claims wor
+- **[LIVE]** session-to-marketing extraction — first 2026-07-09, last 2026-07-09, seen 1× (content-production)
+  - latest: Every coding session should be post-processed for marketing: a router-style analysis pass over session transcripts extracting tweet material, YouTube video content, and lead magnets/knowledge packets 
+- **[LIVE]** dark-factory kyberagent control surface — first 2026-07-09, last 2026-07-09, seen 1× (dark-factory)
+  - latest: Dark Factory must gain deep understanding of KyberAgent and the Kyber Extension SDK so it can control the agent via MCP/API for direct deployment of built extensions into the local harness and integra
+- **[LIVE]** captains-log kyber extension hosting — first 2026-07-09, last 2026-07-09, seen 1× (captains-log)
+  - latest: The combined Plaud+OMI viewer is officially named Captain's Log and will be hosted as a KyberAgent extension so it can reach an LLM through the daemon for tagging/ontology without building its own API
+- **[LIVE]** dark-factory governance and chaperone — first 2026-07-09, last 2026-07-09, seen 1× (dark-factory)
+  - latest: Governance critique of yesterday's Dark Factory session: changes to factory-running code should be blocked from running through the factory itself, the unapproved 'war room' namespace displaced the ex
+- **[LIVE]** connector-first memory architecture — first 2026-07-10, last 2026-07-10, seen 1× (ai-research)
+  - latest: Realization that a connector-first architecture beats in-app memory: if chat has connectors to your own specialized storage (a brain here, two brains there), you may not need the repos or the vendor's
+- **[LIVE]** context-aware formatting skill — first 2026-07-10, last 2026-07-10, seen 1× (skills-tooling)
+  - latest: David will build a self-learning, context-aware formatting skill for ad-hoc executive-style reporting — like a CEO saying 'I need this as a table' without design details, adaptive turn-by-turn to conv
+- **[LIVE]** dark-factory cross-repo context decision — first 2026-07-10, last 2026-07-10, seen 1× (dark-factory)
+  - latest: Open Dark Factory architecture decision: where does factory code run when documentation is split across two repos — Dark Factory holds the coding-agent/SDLC/KDD intelligence while KyberAgent holds req
+- **[LIVE]** Gling programmable control — first 2026-07-11, last 2026-07-11, seen 1× (gling-automation)
+  - latest: Gling's Electron app is unobfuscated JavaScript, so instead of rebuilding it, inject an MCP server/API into its codebase at startup to remotely control the editor from Claude Code — and eventually hav
+- **[LIVE]** captains-log unified ingestion — first 2026-07-11, last 2026-07-11, seen 1× (captains-log)
+  - latest: Captain's Log should be a unified intelligence hub ingesting OMI, Plaud, and self-sent emails (YouTube links auto-extract transcripts, article links get scraped), normalizing everything to 'transcript
+- **[LIVE]** gling programmatic control — first 2026-07-11, last 2026-07-11, seen 1× (gling-automation)
+  - latest: With the Gling subscription renewing, David wants programmatic control over Gling (auto-open, add videos, remote device control, API into its codebase) and decides not to rebuild his own editor but to
+- **[LIVE]** kyber extensions micro-apps — first 2026-07-11, last 2026-07-11, seen 1× (kyber-extensions)
+  - latest: David explains (at meetup) his Kybernesis extensions work: extensions are pre-baked micro-apps (agent + skills) living inside the KyberAgent desktop; Joy's juice/nail/eyebrow-tattoo configurable POS-a
+- **[LIVE]** affiliate inquiry triage — first 2026-07-12, last 2026-07-12, seen 1× (brand-strategy)
+  - latest: Batch-triage the weeks-long backlog of affiliate reach-outs (mostly AI-TLDR) in the david@ideasmen inbox — classify scammy vs real, check whether David had initiated contact and forgotten, and pre-dra
+- **[LIVE]** Plaud refresh-token automation — first 2026-07-12, last 2026-07-12, seen 1× (captains-log)
+  - latest: Plaud auth is brittle — using Plaud from another client (Android/web) rotates the refresh token — so Captain's Log needs an easy re-fetch flow that stores the renewed token against the Plaud ingestion
+- **[LIVE]** ingestion data destinations and app config — first 2026-07-12, last 2026-07-12, seen 1× (captains-log)
+  - latest: Open question: where should raw Plaud and OMI transcripts land (current folder vs the second brain vs a TIL-style process, which exists for OMI but maybe not Plaud) — and the Captain's Log app needs i
+- **[LIVE]** Captain's Log UX overhaul — first 2026-07-13, last 2026-07-13, seen 1× (captains-log)
+  - latest: Extended dogfooding review of Captain's Log flags read-only markdown (needs a show button), dark-mode-only theme, transcript vocabulary miscorrections (Carbonetics vs Kybernesis), ungoverned/missing t
+- **[LIVE]** actions and notes on captures — first 2026-07-13, last 2026-07-13, seen 1× (captains-log)
+  - latest: Captures in Captain's Log need attachable actions, notes, and done-marking — possibly via a multi-conversational observation audit log collected while using the app and consolidated in one pass.
+- **[LIVE]** temporal and thematic linking of captures — first 2026-07-13, last 2026-07-13, seen 1× (captains-log)
+  - latest: Ingestion items have no connective tissue — no linear temporal chain linking the many conversations on one topic, and no quest/side-quest thematic threads (Dark Factory vocabulary) for when one conver
+- **[LIVE]** extension-builder agent feeding platform tickets — first 2026-07-13, last 2026-07-13, seen 1× (kyber-extensions)
+  - latest: Two-agent feedback loop for the Kyber Extension SDK: an extension-builder agent (fed by the KyberAgent brain agent) develops extensions through the standard SDLC, and when it hits missing host/harness
+- **[LIVE]** learn KyberAgent via dedicated brain agent — first 2026-07-13, last 2026-07-13, seen 1× (kyberagent-pilot)
+  - latest: Stand up a dedicated KyberAgent brain agent (covering the extension SDK, daemon, and harness) on Roamy using its $100 credits — it should read all KDD docs and commits and write David a recurring repo
+- **[LIVE]** Dark Factory roadmap reset Q&A — first 2026-07-13, last 2026-07-13, seen 1× (dark-factory)
+  - latest: Reset Dark Factory planning: replace the wall-of-text roadmap with a conversational one-question-at-a-time Q&A walkthrough, and elevate the complex constellation applications onto the roadmap as seque
+- **[LIVE]** Challenge DV proposal — first 2026-07-13, last 2026-07-13, seen 1× (client-challenge-dv)
+  - latest: Offer Challenge DV an FDE-style retainer — A$3,300/month incl GST for a weekly 90-minute Claude-centric training session plus roughly two custom micro-tools a month for marketing automation — opened w
+- **[LIVE]** Lars KyberAgent demo — first 2026-07-13, last 2026-07-13, seen 1× (client-lars)
+  - latest: Plan for the Lars call: cover KyberAgent, the KyberAgent brain, and the Kyber Extension SDK, with a quick 2-3 minute Captain's Log demo — Lars's key want is on-demand micro-application tools that plug
+- **[STALE]** MBP screen death → M4 emergency migration — first 2026-02-28, last 2026-02-28, seen 7× (fleet-infra)
+  - latest: David's MacBook Pro screen dies after a reboot mid-Signal Studio work, wiping his terminal sessions; with only the two external screens still visible, he declares an emergency and decides to migrate e
+- **[STALE]** vibe deck build in progress — first 2026-01-12, last 2026-01-12, seen 6× (new:vibe-deck)
+  - latest: David commissions deep research into what context engineers and vibe coders actually do with BMAD/Spec Kit/OpenSpec — three summaries by persona, workflow stage, and toolchain — to derive the buttons/
+- **[STALE]** lisa-broken-link-remediation — first 2026-02-10, last 2026-02-10, seen 6× (kdd-lisa)
+  - latest: David extends broken-link remediation to FliHub — list projects, print broken links directly in-conversation (no hidden files), document the remediation pattern so librarians can reuse it, and run a b
+- **[STALE]** supportsignal requirements doc review — first 2026-02-24, last 2026-02-24, seen 6× (client-supportsignal)
+  - latest: SupportSignal configuration model settled: config is a YAML workflow + Handlebars prompt + JSON input/output schemas merged into an n8n-like inferred DOM with UI hints, with SupportSignal owning workf
+- **[STALE]** Ansible agentic OS video production — first 2026-03-05, last 2026-03-05, seen 6× (fleet-infra)
+  - latest: Framed the Ansible video as a perspective piece (vertical personal-agent stack plus multi-machine/multi-person agentic OS, not a tutorial), commissioned a consolidated NotebookLM dataset+markdown pack
+- **[STALE]** DeckHand Ecamm profile build — first 2026-03-10, last 2026-03-10, seen 6× (content-production)
+  - latest: Sharp critique of DeckHand's prompt-template UI: the unrequested prompt-template section is still on the main screen despite an earlier removal request, the copy button is missing on the template page
+- **[STALE]** migration tracking data consistency — first 2026-02-02, last 2026-02-02, seen 5× (client-supportsignal)
+  - latest: David is deeply frustrated that the migration queue's target keeps growing unpredictably (34 files, then 50, percentages sliding) with no done-vs-remaining side-by-side listing — he suspects the agent
+- **[STALE]** M2/M4 remote-control reliability — first 2026-02-22, last 2026-02-22, seen 5× (fleet-infra)
+  - latest: David says he does not trust the 'air' workflow running over SSH and asks whether a more reliable alternative approach exists.
+- **[STALE]** dtv-border-run-booking — first 2026-03-04, last 2026-03-04, seen 5× (travel-visa)
+  - latest: David compares DTV run options (1,000 THB overnight vs 2,500 THB same-day), decides on the same-day option, and prioritises going to the bus terminal that day to arrange it, asking Shane and an agent 
+- **[STALE]** Ecamm pedal recording reliability — first 2026-03-05, last 2026-03-05, seen 5× (content-production)
+  - latest: Ecamm Live button automation fails: action-set buttons toggle play/record states and the plugin was just upgraded, but no actual recording starts and the only option surfacing is 'scheduled live'.
+- **[STALE]** AWB UX review iteration — first 2026-03-11, last 2026-03-11, seen 5× (new:awb-workflow-builder)
+  - latest: David asks whether the AWB screen anywhere surfaces output file names, absolute paths, or open-in-folder/open-in-code capabilities, and invites frontend design ideas to add them.
+- **[STALE]** Digital Stage Summit presentation prep — first 2026-03-17, last 2026-03-17, seen 5× (content-production, fleet-infra)
+  - latest: Kickoff of the 4-5 hour prep day for the 11pm Digital Stage Summit talk 'Building AI agent teams and custom apps': create a summits brain with digital-stage-2026 subfolder, log all Looms (dual-purpose
+- **[STALE]** Claude reinstall on MacBook Pro — first 2026-03-31, last 2026-03-31, seen 5× (fleet-infra)
+  - latest: Kickoff of the fix: fully uninstall the broken Claude system including hidden app settings and stale session data, verify the Claude session backup David already made, then reinstall connected to the 
+- **[STALE]** POEM prompt/workflow schema design — first 2026-01-11, last 2026-01-11, seen 4× (new:poem-awb)
+  - latest: Live POEM demo of the YouTube-title prompt (Penny agent, Handlebars conditional context, refine command, new list/view commands): settled on a table output surfacing emotion, character count, mobile f
+- **[STALE]** start.sh startup command system — first 2026-01-11, last 2026-01-11, seen 4× (skills-tooling)
+  - latest: David scoped the recurring pain of remembering per-project startup commands (npm/bun/docker across FliGen, FliDeck, FliHub, Storyline, SupportSignal) and asked for a plan — not implementation — for a 
+- **[STALE]** supportsignal doc architecture — first 2026-01-19, last 2026-01-19, seen 4× (client-supportsignal)
+  - latest: With 11% context left, David logs the VA modal-focus bug on his three-monitor setup, decides E4 KDD retrospective stays separate from Epic 4 while E3 KDD items should fold into Epic 3 as submenus, pic
+- **[STALE]** vitest migration failing tests backlog — first 2026-02-02, last 2026-02-02, seen 4× (client-supportsignal)
+  - latest: Failing tests jumped from ~70 to 168 after migration; David is frustrated that tests were migrated without being made to pass ('what's the point of migrating with failure?') and leaves open whether to
+- **[STALE]** kdd refactoring batch work — first 2026-02-02, last 2026-02-02, seen 4× (kdd-lisa)
+  - latest: David decides documentation answers to open questions should be officially recorded with links, and that replicated parts of the current data mesh can be compressed down to summaries — as long as the 
+- **[STALE]** zsh alias file organization — first 2026-02-22, last 2026-02-22, seen 4× (fleet-infra)
+  - latest: David works out where a quick-access alias for running his Ansible playbook should live (general aliases vs alias-my, not a new SSH .zsh file), asks whether Claude indexes what each alias file does, a
+- **[STALE]** multi-Mac fleet build-out — first 2026-02-22, last 2026-02-22, seen 4× (fleet-infra)
+  - latest: David directs a cleanup pass — delete node modules and AutoClose Cloud, compare dev.zip vs dev in a background task, review top library issues — while troubleshooting Mac mini M2 network access, insis
+- **[STALE]** MacBook Pro screen repair — first 2026-02-28, last 2026-03-02, seen 4× (fleet-infra, personal-life)
+  - latest: David's 10-month-old MacBook Pro screen went interlaced then black; the local iCare shop repairs in-house (parts ordered from Singapore, ~7-10 days), AppleCare diagnostics are free with no accidental 
+- **[STALE]** repo audit gap analysis — first 2026-02-28, last 2026-02-28, seen 4× (fleet-infra)
+  - latest: David decides the migration needs a maintained copied-vs-uncopied tracking file plus a second machine-readable version to drive a folder-level gap analysis, with key environment files included where f
+- **[STALE]** agentic OS architecture documentation — first 2026-03-01, last 2026-03-12, seen 4× (fleet-infra)
+  - latest: David directs that control-plane / orchestrators / executors concepts be documented into the agentic OS with AngelEye added as the observability layer, reminds the agent that MBP is reached via SSH an
+- **[STALE]** supportsignal micro app build — first 2026-03-02, last 2026-03-02, seen 4× (client-supportsignal)
+  - latest: Feature list dictated for the SupportSignal micro app on Agent Workflow Builder: reset-database (delete data-folder JSONs, keep subfolders) behind a reusable confirm-modal component, a consistent clie
+- **[STALE]** ecamm-integration-skill — first 2026-03-04, last 2026-03-04, seen 4× (skills-tooling)
+  - latest: David scopes a self-evolving Ecamm Live integration skill: wrap the ~14 documented HTTP API endpoints, read plist configs as XML and write back with automatic backup/rewind, add a print-settings inspe
+- **[STALE]** awb-ylo-backlog — first 2026-03-04, last 2026-03-04, seen 4× (new:agent-workflow-builder)
+  - latest: Session-close sweep: verify files routed to correct locations (FliHub, AppyDave), test Dartmode via Playwright MCP, investigate FliHub brain config shape mismatch, surface the Support Signal observati
+- **[STALE]** AWB input/output UI polish — first 2026-03-12, last 2026-03-12, seen 4× (content-production)
+  - latest: David reviews the transcript accuracy check UI — transcript should sit higher with a copy-to-clipboard button, edit pencil needs a clipboard icon — and flags a DX/UX highlighter regression where the A
+- **[STALE]** AWB–Signal Studio integration — first 2026-03-13, last 2026-03-13, seen 4× (client-supportsignal)
+  - latest: With three weeks left David de-scopes Angela's eight-step shift-management design to a future one-month feature to shop to clients, and locks Moments That Matter to a simple signal-only model — static
+- **[STALE]** factory workflow UI build — first 2026-03-29, last 2026-03-30, seen 4× (dark-factory)
+  - latest: Set the AngelEye/AWB division of labour: simple pure-chain workflows stay in AWB while conversational session-aware structures live in AngelEye, with triggers (human-initiated or headless harness call
+- **[STALE]** Lars OMI ingestion setup — first 2026-04-02, last 2026-04-02, seen 4× (client-lars)
+  - latest: Decided the OMI script should heal gracefully when brains_index.json is missing on Lars's machine, get 1-2 retries for Gemini bad-JSON, live in shared memory short-term (repo long-term), and keep the 
+- **[STALE]** POEM dual schema — first 2026-01-12, last 2026-01-12, seen 3× (new:poem-os)
+  - latest: David sets a two-step Nano Banana research workflow — step one organize raw data (the 'nano prompt' and 'raw vibe deck' research files) with transient notes, step two define schemas/prompts — and deci
+- **[STALE]** ITO voice-input tool requirements — first 2026-01-16, last 2026-01-16, seen 3× (skills-tooling)
+  - latest: David scopes a two-app voice-input system modeled on the open-source ITO project — a Rust tool mapping the Mac Fn key to microphone capture (considering Mac audio/MIDI virtual devices) and a JavaScrip
+- **[STALE]** second-brain batch handover — first 2026-02-02, last 2026-02-02, seen 3× (brains-knowledge)
+  - latest: With only 5% context left David demands a single definitive path forward — no options — and a prepared handover for the next batch.
+- **[STALE]** supportsignal test migration to A+ — first 2026-02-02, last 2026-02-02, seen 3× (client-supportsignal)
+  - latest: David steers the migration session: capture session learnings, note that migration documents are getting large, search systems for related stories/issues/backlogs, warns a parallel conversation was mo
+- **[STALE]** SDK inventory grouping and status flags — first 2026-02-10, last 2026-02-10, seen 3× (brains-knowledge, new:samantha-voice-agent)
+  - latest: David settles SDK folder strategy: cloned SDKs (11Labs, Remotion, Valor AI) are second-brain reference material not active code (only Remotion counts as active), chooses option-B status flagging appli
+- **[STALE]** Ralph Wiggum UX PoC loop — first 2026-02-12, last 2026-02-12, seen 3× (dark-factory)
+  - latest: David asks the agent for a what/why/next summary of the recent loop work and a verification pass over the 10 HTML files to confirm they all actually work.
+- **[STALE]** AppyStack recipes build-out — first 2026-03-01, last 2026-03-02, seen 3× (new:appystack-recipes)
+  - latest: David refined AppyStack recipe doctrine: don't over-fit patterns to AppyStack (others will reuse them), the random alphanumeric slug is the primary key making name-based filenames safely renameable, t
+- **[STALE]** Joy shop financial transparency — first 2026-03-01, last 2026-03-01, seen 3× (personal-life)
+  - latest: David sets Joy three daily shop KPIs — send the numbers, post social media, learn and use AI — frames himself as the customer funding Beauty & Joy / Joy Juice who must be consulted on big spends like 
+- **[STALE]** Stream Deck automation approach — first 2026-03-01, last 2026-03-01, seen 3× (fleet-infra)
+  - latest: Processing his new tech inbox one file at a time, David asks for the March-2026 consensus on JavaScript package managers (Bun vs npm vs pnpm) for agentic/Claude Code systems and whether prior research
+- **[STALE]** workflow data persistence design — first 2026-03-03, last 2026-03-03, seen 3× (new:awb-ylo-development)
+  - latest: David identifies that the YouTube Launch app has no data-persistence mechanism — no folder structure, naming convention, or storage location — and wants a whole-app strategy plus a copy-to-clipboard e
+- **[STALE]** DTV border run booking — first 2026-03-04, last 2026-03-04, seen 3× (travel-visa)
+  - latest: David seeks border-run advice from a contact whose colleague on a DTV recently did one, and due to bad audio they schedule a phone call at 08:00; he also iterates on a third Ecamm scene composition in
+- **[STALE]** aionui evaluation — first 2026-03-06, last 2026-03-06, seen 3× (ai-research)
+  - latest: David directs cloning of high-star JS/Python agent frameworks from the meetup (NanoBot, NanoClaw, Pocket Hermes, PicoClaw — Rust/Go excluded) into upstream repos as agentic-OS research areas alongside
+- **[STALE]** image-renaming skill build — first 2026-03-07, last 2026-03-07, seen 3× (skills-tooling)
+  - latest: David defines the target workflow for NotebookLM PNG downloads: filter to project-relevant images, rename with zero-padded sequential prefix plus kebab-case content description, then move into the pro
+- **[STALE]** FliVideo chapter-to-transcript binding — first 2026-03-10, last 2026-03-10, seen 3× (content-production)
+  - latest: MVP scoping for transcript handling: folder names are the authoritative structure but SRTs are often missing/unreliable (an LLM couldn't separate SRT timestamps from text two years ago), long-transcri
+- **[STALE]** FliHub chapters to AWB ingestion mapping — first 2026-03-12, last 2026-03-12, seen 3× (content-production)
+  - latest: David investigates the FliHub chapter-data and SRT content schema — field names, formats, and which YouTube launch optimizer prompts consume them — to understand why this schema was chosen and how to 
+- **[STALE]** AngelEye v0 build — first 2026-03-12, last 2026-03-12, seen 3× (new:angeleye)
+  - latest: Reorientation check on the app build at 7% context remaining: David asks for the overall build overview and whether a handover to another window is due, confirms he likes the app's name, and states th
+- **[STALE]** e2e test suite stability — first 2026-03-12, last 2026-03-12, seen 3× (new:angeleye)
+  - latest: David triages three e2e failures — dig into tests 12 and 13 — and orders git restore on the data directory and the other spec files to clear repository churn, noting his local folder is still messy af
+- **[STALE]** Claude Code observability approach — first 2026-03-12, last 2026-03-12, seen 3× (dark-factory)
+  - latest: David sets the rule that server data lives at the monorepo root (never in source dirs) for AppyStack/DeckHand, asks how Bitfocus architecture affects the Ecamm skill and DeckHand, and commissions a fa
+- **[STALE]** Nano Banana skill build — first 2026-03-12, last 2026-03-12, seen 3× (content-production)
+  - latest: David wants near-real-time Nano Banana image support while recording BMAD v6 SupportSignal videos — scanning live session data for patterns mid-terminal, aggregating all sessions into a central store 
+- **[STALE]** multi-brain tag ontology test run — first 2026-03-28, last 2026-03-28, seen 3× (brains-knowledge)
+  - latest: Duplicate capture of the same conversation: David approves the execution path for tag-ontology tests over three files across five brains with background agents (llama-backed agents serialised), regist
+- **[STALE]** signal-studio sync verification — first 2026-03-31, last 2026-03-31, seen 3× (client-supportsignal)
+  - latest: David probes a record-resync failure (possible privilege issue) — is it detectable, repeatable, affecting other entities, a component bug — and asks that the steps be logged for Lisa, wondering if Lis
+- **[STALE]** Lars agentic OS presentation — first 2026-03-31, last 2026-03-31, seen 3× (client-lars)
+  - latest: To build the presentation the data must be exported into NotebookLM and a specific prompt crafted to generate the presentation from it — the export path and prompt design are the open questions.
+- **[STALE]** relay system conventions — first 2026-04-01, last 2026-04-01, seen 3× (fleet-infra)
+  - latest: Relay folder convention settled: relay/{type}/{name} with the type (app/project/people) explicit in the path, to-<agent> naming for harness targets (to-paperclip, to-hermes), people folders as david-j
+- **[RECENT]** portable brain spec work — first 2026-06-12, last 2026-06-12, seen 3× (kyber-extensions)
+  - latest: David asks the session to verify which files belong on the current feature branch, clarifying the migration-capability files belong to the next feature and accidental commits of them are acceptable.
+- **[RECENT]** portable brain scale work — first 2026-06-12, last 2026-06-12, seen 3× (kyber-extensions)
+  - latest: Before closing the session David decides that saving audit data and documenting current metrics is the smart move — accumulating problem understanding on each run even without code changes — while def
+- **[STALE]** project starter guide for Skool — first 2026-01-11, last 2026-01-11, seen 2× (skills-tooling)
+  - latest: Universal project starter: a small standardized starter script in each project root plus a global 's' shell alias presenting numbered start options (npm/bun/docker/multi-service), with a comprehensive
+- **[STALE]** Chiang Mai AI open-source governance — first 2026-01-16, last 2026-01-16, seen 2× (ai-meetups)
+  - latest: The Chiang Mai four-person core agrees to govern their open-source AI community via an LLM council (Karpathy's LLM Council repo) acting as board of directors with humans as steering committee — disagr
+- **[STALE]** incident workflow regressions — first 2026-01-19, last 2026-01-19, seen 2× (client-supportsignal)
+  - latest: After circling on a fix, David asks when the incident create/edit functionality — working a couple of months ago — actually broke, and whether to 'spray and pray' instrumentation plus an audit of that
+- **[STALE]** Epic 4 retrospective deck build — first 2026-01-19, last 2026-01-19, seen 2× (client-supportsignal)
+  - latest: David decides to consolidate all Epic 4 information (original plus retrospective conversations) into one detailed semantic JSON document via a background process before generating any new slide decks,
+- **[STALE]** poem-port-registry-cleanup — first 2026-01-22, last 2026-01-22, seen 2× (skills-tooling, team-ops)
+  - latest: David walks a teammate through his Whisper-based transcribe tool and a fresh POEM OS install (Astro 6 upgrade, port registry suggesting 9520 since 9500 is SupportSignal's), then coaches the teammate o
+- **[STALE]** ecamm-twitter-auth-failure — first 2026-01-31, last 2026-01-31, seen 2× (content-production)
+  - latest: David live-tests his streaming setup, confirming the stream reaches YouTube Live on the AppyDave channel but remaining unsure whether anything reached Twitter/X, interleaved with household cleaning-pr
+- **[STALE]** file migration phase two — first 2026-02-02, last 2026-02-02, seen 2× (misc)
+  - latest: Mid-session housekeeping on the migration project: capture lessons from the conversation, re-run a documentation health check after 2-3 hours of heavy doc additions, note 190 failing tests out of ~13,
+- **[STALE]** kdd learnings capture from vitest migration — first 2026-02-02, last 2026-02-02, seen 2× (client-supportsignal, kdd-lisa)
+  - latest: Nearing context exhaustion after Convex/Cloudflare migration research, David decides the handover should capture only the durable philosophical lessons he taught the agent — not low-level detail about
+- **[STALE]** phase three background process — first 2026-02-02, last 2026-02-02, seen 2× (client-supportsignal)
+  - latest: David confirms phase three doesn't need to stay in the current conversation — everything required is prepared, so it can be handed off to a background agent that reports back.
+- **[STALE]** project theodore agentic os design — first 2026-02-02, last 2026-02-02, seen 2× (fleet-infra)
+  - latest: David names his personal agentic OS 'Project Theodore' (inspired by the film Her) with Samantha as the executive-assistant persona (Ian has Samantha, Nick has Ghosty), plans a daily morning check-in t
+- **[STALE]** KDD librarian gating — first 2026-02-10, last 2026-02-10, seen 2× (kdd-lisa)
+  - latest: Session debrief on a script that misrecognizes directives: David wants it rerun to catch problem files, questions the confusing task-list ordering, insists KDD learnings exist so a full from-scratch r
+- **[STALE]** s9-test-migration — first 2026-02-10, last 2026-02-10, seen 2× (kdd-lisa)
+  - latest: David flags that the S9 test suite doesn't even start — he expected a runnable baseline he could watch grow instead of endless analysis — and orders a background investigation into whether 'meta archi
+- **[STALE]** voice agent audio input routing — first 2026-02-10, last 2026-02-10, seen 2× (new:samantha-voice-agent)
+  - latest: David inventories his full hardware fleet (HyperX mics, three Stream Decks, MacBook M4, Mac Mini M4/M2, OMI device, Blackmagic 4K, monitors) for the agentic OS brain and defines the core unsolved prob
+- **[STALE]** Tech Stack Hotel schema + visualization — first 2026-02-12, last 2026-02-12, seen 2× (brains-knowledge)
+  - latest: David refines the Tech Stack Hotel model — infrastructure/networking (Tailscale) belongs as substrate below the building not at the top, and every tool integrated into the agent OS should also get its
+- **[STALE]** web-layer testing learnings migration to KDD — first 2026-02-13, last 2026-02-13, seen 2× (kdd-lisa)
+  - latest: David commissions background tasks to locate all Ralph Wiggum loop refactor learnings, verify each is genuinely Vitest web-layer (not Convex/Cloudflare), plan migration into the librarian-curated KDD 
+- **[STALE]** browser acceptance testing docs — first 2026-02-13, last 2026-02-13, seen 2× (brains-knowledge)
+  - latest: David requests a 'browser acceptance testing' second brain (deliberately not Playwright-branded) filed under a broader code-tooling area, covering install steps and an example prompt for general post-
+- **[STALE]** linting warnings cleanup — first 2026-02-13, last 2026-02-13, seen 2× (agent-verification, client-supportsignal)
+  - latest: David asks for a concrete plan of action on 156 lint issues and TypeScript errors, questioning whether the five test scripts, coverage, server, UI, and Prettier format commands in package.json all act
+- **[STALE]** Dent value canvas completion — first 2026-02-20, last 2026-02-20, seen 2× (brand-strategy)
+  - latest: Dent Chaos Group 2.5-hour value-canvas workshop kickoff: done vs not-done split by the (buggy) blue Export PDF button, rationale that people only pay for value they can see and the canvas seeds all ma
+- **[STALE]** AWB workflow POC — first 2026-02-21, last 2026-02-21, seen 2× (client-supportsignal)
+  - latest: Brief planning checkpoint where David had the agent reread the entire prior conversation to confirm it understood the kind of workflow application he intends to build.
+- **[STALE]** remote machine environment drift — first 2026-02-22, last 2026-02-24, seen 2× (fleet-infra)
+  - latest: Debugging Claude Code over SSH to the M2: brew install tree succeeded remotely, but asking it to connect via tmux failed with false claims that tmux and Homebrew were missing — proving the remote SSH 
+- **[STALE]** multi-Mac remote access via Tailscale — first 2026-02-22, last 2026-02-22, seen 2× (fleet-infra)
+  - latest: While recording takes for a Cowork second-brain video intro (referencing OpenClaw and the Ralph Wiggum iteration loop), David pivoted to agentic-OS work: VPN into the M4 Mini and M2, verify Tailscale 
+- **[STALE]** brains repo root cleanup — first 2026-02-22, last 2026-02-22, seen 2× (brains-knowledge)
+  - latest: David audited the brains repo root and flagged unclear doc-skill files, stray slide images, scattered individual markdown documents, and a missing .claude folder for skills config, calling for a gener
+- **[STALE]** awb workflow ui gap analysis — first 2026-02-24, last 2026-02-24, seen 2× (new:awb-workflow-ui)
+  - latest: Structured gap analysis of the old Agent Workflow UI (strong UX: chevrons, sections, interpolated prompts) versus the new YouTube Launch Optimizer UI (powerful engine: parallel agents, conditional log
+- **[STALE]** agentic OS 5-machine buildout — first 2026-02-24, last 2026-02-24, seen 2× (fleet-infra)
+  - latest: David describes his orchestrator's plan-analyze-execute pipeline: read the second brain and local files, write a script, copy it to the M4 machine, then invoke Claude remotely to continue with it.
+- **[STALE]** recipe-based app distribution — first 2026-02-27, last 2026-02-28, seen 2× (dark-factory)
+  - latest: Post-meetup session where David explained his Ralphie multi-wave batch loop (planned+executed a 600-file brain tagging job during a 2-hour meeting, self-healing its own skills) and crystallised the Ap
+- **[STALE]** Lars weekly video update — first 2026-02-28, last 2026-03-01, seen 2× (client-lars, new:agentic-os)
+  - latest: David lays out the agentic OS vision (vertical stack: file-system second brain -> Claude harness -> chat/voice/Telegram/OMI; horizontal stack: 5-Mac Tailscale mesh across Thailand/Philippines), commit
+- **[STALE]** multi-repo commit/push automation — first 2026-02-28, last 2026-02-28, seen 2× (skills-tooling)
+  - latest: David wants a script that commits and pushes all the 00x-numbered subfolders (000, 005, 006, 007, Archive) in one pass, first checking each folder has a git remote configured.
+- **[STALE]** brain tagging ontology rollout — first 2026-02-28, last 2026-02-28, seen 2× (brains-knowledge)
+  - latest: At the Saturday AI engineers meetup David dictated his second-brain roadmap — OMI device ingestion endpoint, frontmatter and tagging-ontology audit across 37 brains / 600 files with upstream sources, 
+- **[STALE]** Ansible config parity with machine setup — first 2026-03-01, last 2026-03-01, seen 2× (fleet-infra)
+  - latest: Setting up the M4 Mini's dual Samsung monitors (32-inch dropped from 4K to 2560x1440 for readability, 27-inch vertical) and MX Master 4 mouse, David asks whether display resolution and multi-monitor c
+- **[STALE]** Joy Juice menu system — first 2026-03-02, last 2026-03-02, seen 2× (personal-life)
+  - latest: David decided the Joy Juice menu data should be structured as menu.json instead of markdown with a small HTML/JS rendering tool, and asked for a style analysis of two downloaded menu images so the vis
+- **[STALE]** juice shop planning — first 2026-03-02, last 2026-03-02, seen 2× (personal-life)
+  - latest: Juice shop positioning worked out with the Thai team: run a dual menu — a 'healthy fresh' side (no sugar/syrup/powder) for US/Australian foreigners alongside a Thai-style sweet side — with unit econom
+- **[STALE]** YouTube WAI UAT — first 2026-03-02, last 2026-03-02, seen 2× (content-production)
+  - latest: David reviewed the YouTube WAI system — an IR compiler plus HTML runner that turns YAML schemas and Handlebars templates into n8n-style wizard human-in-the-loop UIs — demanded clearer docs for badly-n
+- **[STALE]** workspace automation app naming — first 2026-03-02, last 2026-03-02, seen 2× (skills-tooling)
+  - latest: David decided the Stream Deck programmatic-control tool is named DeckHand (covering both Ajazz and Elgato), folded layout-engine plus automation work into one workspace-automation brain (name still wa
+- **[STALE]** DeckHand StreamDeck automation — first 2026-03-02, last 2026-03-02, seen 2× (content-production, skills-tooling)
+  - latest: Recording session rituals matter (mute notifications, route audio to headphones, prevent sleep) and a shared library/tooling layer would let David automate both Hammerspoon window layouts and automati
+- **[STALE]** Signal Studio onboarding tool iteration — first 2026-03-02, last 2026-03-02, seen 2× (client-supportsignal)
+  - latest: Pre-meeting handover on the onboarding app: David questioned the new server data folder (Filestore, IDGen, Watcher.js) that appeared in the last commit, checked for unpushed changes, and told the agen
+- **[STALE]** juice bar shopfront upgrade — first 2026-03-03, last 2026-03-03, seen 2× (personal-life)
+  - latest: Juice-shop storefront plan: bamboo cascade fountain (pump ~580-1000 baht, 4-5m head to lift water 2-3m, ~20 lengths of 5-6m bamboo) plus an iced metal shelf selling bagged fruit, and a possible Friday
+- **[STALE]** OMI ingestion + morning briefing system — first 2026-03-04, last 2026-03-04, seen 2× (captains-log)
+  - latest: Quick check on where environment variables/secrets live on the machine and whether OMI ingestion should be its own brain or just a simple skill (agent notes one is already on the to-do list); the rest
+- **[STALE]** Ecamm docs 176-file curation — first 2026-03-04, last 2026-03-04, seen 2× (brains-knowledge)
+  - latest: Duplicate export of the Ecamm docs curation session: KDAL framed as a system-agnostic reusable recipe/prompt, and the 176-file Ecamm Live documentation job to be processed in waves via the RAF loop ra
+- **[STALE]** OpenClaw meetup ingestion — first 2026-03-04, last 2026-03-04, seen 2× (ai-meetups)
+  - latest: OpenClaw meetup (Johan presenting): five revenue-first personal-agent use cases (Apollo.io lead gen, content engine trained on your voice, JSON+Stripe CRM, onboarding automation, meeting intelligence)
+- **[STALE]** tutorial video backlog — first 2026-03-04, last 2026-03-04, seen 2× (content-production)
+  - latest: Duplicate export of the tutorial-video planning monologue: Ecamm plist skill video → DeckHand AppyStack video, 5-8 minute Ansible/Project Theodore agentic-OS intro, and Signal Studio Raffy-Loop one-sh
+- **[STALE]** Nano Banana video series — first 2026-03-04, last 2026-03-04, seen 2× (content-production)
+  - latest: Duplicate export of the Nano Banana series call: episode 1 demos a 7-day Chiang Mai weather infographic twice (real-time auto-build vs research → JSON → infographic), the FFmpeg scroll-animation techn
+- **[STALE]** process OpenClaw meetup content into inbox — first 2026-03-04, last 2026-03-04, seen 2× (ai-meetups)
+  - latest: Before the 6pm OpenClaw meetup where Johan presents, David instructs his agent to route all OpenClaw-specific content into the inbox and analyse it primarily through the agentic operating system lens.
+- **[STALE]** Ecamm HTTP API programmatic control — first 2026-03-04, last 2026-03-04, seen 2× (brains-knowledge, content-production)
+  - latest: David commissions brain housekeeping — create a Krisp AI brain with existing research, update the cowork brain, mark cowork-upgrade as sandbox-only proof-of-concept in its CLAUDE.md, deep-research Omi
+- **[STALE]** Ecamm recording button automation not working — first 2026-03-05, last 2026-03-05, seen 2× (content-production)
+  - latest: Recording still fails to start in Ecamm Live; David asks the agent to search the Ecamm brain documentation and Take One Tech upstream material to figure out how to trigger a new recording.
+- **[STALE]** OMI ingestion pipeline design — first 2026-03-05, last 2026-03-05, seen 2× (captains-log)
+  - latest: Duplicate capture of the same conversation: David architects the OMI ingestion layer (dedicated skill, context-quality/prompt-injection checks, observability, todo routing), a unified app audit log, a
+- **[STALE]** Signal Studio participant system overhaul — first 2026-03-05, last 2026-03-05, seen 2× (client-supportsignal)
+  - latest: David plans a major Signal Studio participant data-model overhaul — bulk participant upload plus a complex multi-tier onboarding wizard — from a requirements doc by Angela (client who also commits to 
+- **[STALE]** AWB conversational chat design — first 2026-03-06, last 2026-03-06, seen 2× (new:awb-development)
+  - latest: Questioned why a duplicate component sentinel exists, whether test anti-patterns were found, and whether conversational chat configuration lives in YAML or the visual layer, then approved the agent's 
+- **[STALE]** AWB test coverage and quality audit — first 2026-03-06, last 2026-03-06, seen 2× (new:awb-development)
+  - latest: Commissioned a deep background-agent audit of the slide-deck application: BDD unit-test coverage targets, UAT/e2e value, architecture pattern and spaghetti-code review, dependency check, dead-code rem
+- **[STALE]** AWB UI polish backlog — first 2026-03-06, last 2026-03-06, seen 2× (new:awb-development)
+  - latest: Multi-thread session: directed AWB overview visualizations (nested/flat/table) be consolidated and output-field accordion allow multiple open sections, coached a mentee to use ChatGPT with a backgroun
+- **[STALE]** sdk-tool-blocking — first 2026-03-09, last 2026-03-09, seen 2× (new:awb-ylo)
+  - latest: David questions whether a prompt fix belongs at the workflow level (Alex/Penny) or the system prompt, and pushes back on switching to the paid API when the SDK is free — expecting Claude Code-style ch
+- **[STALE]** next-ralph-loop-requirements — first 2026-03-09, last 2026-03-09, seen 2× (new:awb-ylo)
+  - latest: Analysis workflows lose running state on browser back and write outputs to undiscoverable file locations — David wants analyses to keep running across navigation, results persisted, documentation stor
+- **[STALE]** Stream Deck SDK limitations workaround — first 2026-03-10, last 2026-03-10, seen 2× (content-production)
+  - latest: Probing the partially reverse-engineered Stream Deck binary/API: whether actions can be called (ideally edited) programmatically despite claimed SDK limits, whether status-only endpoints without IDs w
+- **[STALE]** AWB prompt template page UX — first 2026-03-10, last 2026-03-10, seen 2× (content-production)
+  - latest: AWB template planning: add copy buttons to both raw template and interpolated views, always surface absolute template + schema file paths with hover/open-folder/open-in-editor affordances, improve the
+- **[STALE]** SS company-admin scoping — first 2026-03-10, last 2026-03-10, seen 2× (client-supportsignal)
+  - latest: Company-admin 'companies' view is wrong — it lists all companies and even allows adding a new one, senseless for that role — and David wants a wide, shallow one-line almost-tabular menu instead of the
+- **[STALE]** agent-to-agent-communication — first 2026-03-10, last 2026-03-10, seen 2× (ai-research, kybernesis-venture)
+  - latest: David and Ian agree in principle to collaborate on an open-source agent project once David gets terminal agent-to-agent communication working (ideally Kanban-integrated) — agents instructing agents in
+- **[STALE]** supportsignal-data-seeding — first 2026-03-10, last 2026-03-10, seen 2× (client-supportsignal)
+  - latest: Team aligns on three-tier SupportSignal data setup (integration/test/production) using a single valid seed record with realistic fake data for now; Angela's Excel file is pending so that work is defer
+- **[STALE]** Signal Studio e2e tests broken — first 2026-03-11, last 2026-03-11, seen 2× (client-supportsignal)
+  - latest: A supposed UAT run has ground on for two-plus hours with crashes, compaction and ~10k generated company files while showing no actual screens; David interrogates Playwright e2e vs Playwright MCP, orde
+- **[STALE]** appydave.com rebuild as brand hub — first 2026-03-11, last 2026-03-11, seen 2× (brand-strategy)
+  - latest: At 3% context left, David asked for a detailed handover so a new session can deeply map everything AppyDave — brand, Skool community, content pillars, repos, apps, agentic OS — to inform decisions on 
+- **[STALE]** AWB starter page mock selection — first 2026-03-13, last 2026-03-13, seen 2× (client-supportsignal)
+  - latest: Reviewing starter-page mocks David sets the palette rule — light main content areas with the dark brand color only for highlights (v1/v3 styling, v6 follow-up layout best) — and orders 10 new combinat
+- **[STALE]** smoothie menu design — first 2026-03-16, last 2026-03-16, seen 2× (personal-life)
+  - latest: Brainstormed a 12-base-drink smoothie menu (banana/pineapple/papaya/coconut/strawberry/kiwi/watermelon combos with ginger, beetroot, turmeric, honey add-ons), each drink shown at the top of a menu wit
+- **[STALE]** supportsignal requirements review — first 2026-03-16, last 2026-03-16, seen 2× (client-supportsignal)
+  - latest: Nearing the end of a ~40-item functional requirements review, David logs his concerns, orders a rewrite of FR14 plus a few other changes, and notes the cross-system information is visible only to him 
+- **[STALE]** SupportSignal v2 BMAD planning — first 2026-03-16, last 2026-03-16, seen 2× (client-supportsignal)
+  - latest: SupportSignal v2 framed as a greenfield Supabase relational build driven by BMAD: Signal Studio is the UX/feature reference but its JSON-database, Git-sync and weak-validation foundations must never c
+- **[STALE]** Laos border run — first 2026-03-18, last 2026-03-18, seen 2× (travel-visa)
+  - latest: Night-before packing list for the Laos border run: 3 shirts/underwear/socks, 2 glasses, laptop, microphone, CPAP, $300 USD + 5000 baht, power adapters, credit cards, and a note to verify online bankin
+- **[STALE]** lars daily 30-min sessions — first 2026-03-31, last 2026-03-31, seen 2× (client-lars)
+  - latest: David records a monthly plan walkthrough for Lars: get Ansible/Tailscale/SyncThing/Dropbox infra solid on Lars's machines, teach BMAD agent building for growth hacking, later set up Agent Workflow Bui
+- **[STALE]** Signal Studio story schema gap — first 2026-03-31, last 2026-03-31, seen 2× (client-supportsignal)
+  - latest: David refuses to close the story: the built list/detail screens are vastly less feature-rich than the reference system's fields and user controls (a gap he's flagged twice before with Lisa the curator
+- **[STALE]** syncthing relay skill — first 2026-03-31, last 2026-03-31, seen 2× (fleet-infra)
+  - latest: Opening questions on SyncThing: how to create a skill or CLI commands to register new synchronization folders, and whether 'private' data belongs as a subfolder of brains or in the new location the ag
+- **[STALE]** corrupted Claude recovery — first 2026-04-01, last 2026-04-01, seen 2× (fleet-infra)
+  - latest: Recovering a corrupted Claude install on the ideasmen machine (appydave config belonged to the other computer) — config seemingly fixed, now reconstructing session data and considering spawning a seco
+- **[STALE]** AI subscription cost strategy — first 2026-04-01, last 2026-04-01, seen 2× (ai-research)
+  - latest: David asked what a US$200/month OpenAI plan costs in AUD over a year and probed the economics of inference-based token usage on frontier models — self-hosting vs other infrastructure — to find cheaper
+- **[RECENT]** cross-machine repo/brain sync — first 2026-06-12, last 2026-06-12, seen 2× (brains-knowledge, kyber-extensions)
+  - latest: David readies Spec C for a coding handoff (asking for an Osmani-skill write-up, Linear update, and a paste-ready handover message), demands repos and brains be verified in sync between M4 Pro and M4 M
+- **[RECENT]** spec B execution — first 2026-06-12, last 2026-06-12, seen 2× (kyber-extensions)
+  - latest: Driving the coding workflow forward, David asks why a workflow failed, wants the handover rewritten for the coding window, files and wave one committed with audit trails confirmed, Spec B researched f
+- **[RECENT]** spec A to spec B handover — first 2026-06-12, last 2026-06-12, seen 2× (kyber-extensions)
+  - latest: David decides the folder-fix work goes to a Cortex agent (not a Kybernesis enterprise agent) via a handover prompt referencing the spec and expressed in Osmani-skill form, notes this conversation will
+- **[RECENT]** Fable 5 access suspended — first 2026-06-13, last 2026-06-13, seen 2× (ai-meetups, ai-research)
+  - latest: Over pre-meetup lunch, David and peers unpack the sudden US-government shutdown of Fable model access (VPN blocks, possible KYC/passport-based citizenship gating) and David mentions using it to build 
+- **[RECENT]** voice script writer architecture — first 2026-06-14, last 2026-06-14, seen 2× (content-production)
+  - latest: David maps MVC onto video script generation — a design.md/voice.md style doc as the View, a ~170-video transcript corpus distilled into a tone-of-voice shape as the Data, deep-research fact sheets as 
+- **[STALE]** Autoclawed architecture analysis report — first 2026-01-09, last 2026-01-09, seen 1× (ai-research)
+  - latest: David requests a multi-agent architectural analysis of the Autoclawed codebase covering its three parts (Electron Kanban board, multi-Claude-instance spawning, RAG memory), judging complexity, RAG qua
+- **[STALE]** OMI to Kybernesis integration research — first 2026-01-10, last 2026-01-10, seen 1× (ai-meetups)
+  - latest: Saturday Chiang Mai AI meetup (new venue): David demoed his day-old Omi wearable (open-source hardware/firmware, SDK/API, bought from Ian who brought units in), group covered Claude Code updates (skil
+- **[STALE]** Voz self-sufficiency onboarding — first 2026-01-10, last 2026-01-10, seen 1× (client-voz)
+  - latest: Two-hour teach-Voz-to-fish session: David configured Voz's (Vasilios, 70s, Windows) machine — WSL over PowerShell, Claude Desktop reinstall, git pull of the v-voz repo, GitHub collaborator access — an
+- **[STALE]** video project folder conventions — first 2026-01-10, last 2026-01-10, seen 1× (client-voz)
+  - latest: Prepping for the Voz session, David questioned why the repo wasn't using SSH and asked whether the new Languish the Artist video project folder should follow the Boy and the Baker / The Point starter 
+- **[STALE]** stream deck USB hub reliability — first 2026-01-11, last 2026-01-11, seen 1× (fleet-infra)
+  - latest: Research question logged after the mall trip: why do Stream Decks (every one David has owned) fail through USB hubs and only work reliably plugged directly into a USB-C port on the computer — noting E
+- **[STALE]** stream deck hardware purchase — first 2026-01-11, last 2026-01-11, seen 1× (fleet-infra)
+  - latest: Mall crawl with the crew comparing hardware controllers (Stream Deck Neo/Plus/XL/Studio, RODE Streamer X, Logitech MX Creator Console, Razer, generic macro pads) for programmable vibe-coding controls 
+- **[STALE]** AI macro keyboard hackathon — first 2026-01-11, last 2026-01-11, seen 1× (new:ai-macro-keyboard)
+  - latest: David and the Chiang Mai crew (Kevin, Martin, Nick, Ian) commit in principle to a weekend hackathon building a dedicated AI macro keyboard for Claude Code vibe coding — proof-of-concept on StreamDecks
+- **[STALE]** Nano Banana contextual visualization exploration — first 2026-01-11, last 2026-01-11, seen 1× (ai-research)
+  - latest: David and Kevin explore Nano Banana contextual data visualizations via structured JSON prompts — Kevin's Nate B Jones-inspired workflow (transcript + timestamps into Claude, translation-style prompt t
+- **[STALE]** POEM story 3.3 slide deck — first 2026-01-11, last 2026-01-11, seen 1× (new:poem-awb)
+  - latest: POEM story 3.3 slide-deck sync: guidance scoped only to files changing now (3.4 handled later), include actual regression-tool output in slides for concrete demos, and open question of when the 3.3 de
+- **[STALE]** POEM refine command (story 3.6) — first 2026-01-11, last 2026-01-11, seen 1× (new:poem-awb)
+  - latest: Refine command semantics settled: refine fixes the prompt template, not the outcome — the output only diagnoses template problems (e.g. repeated 'twenty minutes') — with full proper implementation def
+- **[STALE]** Thai numpad Unicode input — first 2026-01-11, last 2026-01-11, seen 1× (misc)
+  - latest: David debugged his Thai Magic Keyboard numpad emitting Unicode characters instead of digits in iTerm/Claude Code, seeking a programmatic macOS fix (numlock/fn-clear unclear on Thai layout), while mid-
+- **[STALE]** poem 3.7 deck rollout — first 2026-01-12, last 2026-01-12, seen 1× (new:poem-os)
+  - latest: David kicks off a POEM session to put the Claude 3.7 decks in place, telling the agent a little creative deviation is allowed rather than exactly following previous systems, and prepares to hand over 
+- **[STALE]** agent forgets workflow state across conversations — first 2026-01-12, last 2026-01-12, seen 1× (new:poem-os)
+  - latest: Fourth time re-orienting a fresh agent conversation: the workflow is at step 5 of 37 (not awaiting-QA), and David vents that the agent keeps forgetting the workflow docs they just spent time fixing — 
+- **[STALE]** Voz Languish the Artist next session — first 2026-01-13, last 2026-01-13, seen 1× (client-voz)
+  - latest: David preps the next two-hour Languish the Artist session with Voz — reviewing the v-Voz repo docs and last Loom summary, demanding an analysis (not fixes) of the story 4.3 mock generator and the unre
+- **[STALE]** POEM 4.x visual design unhappy — first 2026-01-13, last 2026-01-13, seen 1× (new:poem-os)
+  - latest: David closes POEM story 4.3 (mock generator) and settles npm-link/developer-docs questions, but wants story 1.6's out-of-sequence completion committed with a callout and is unhappy that the visual des
+- **[STALE]** Angela POEM onboarding — first 2026-01-13, last 2026-01-13, seen 1× (client-supportsignal)
+  - latest: David onboards Angela onto Claude Code and the POEM system on her Windows/WSL machine — restructuring her dev folder into supportsignal/angela_poc, cloning the private prompt.supportsignal.com.au repo
+- **[STALE]** help friend systematize YouTube outreach — first 2026-01-15, last 2026-01-15, seen 1× (ai-meetups)
+  - latest: Post-session group talk where David teaches the create-review-document agent loop (BMAD reviewers, KDD as the project's learning second-brain, design systems needing both positive and negative specs),
+- **[STALE]** 50-week vibe coding harness series — first 2026-01-15, last 2026-01-15, seen 1× (ai-meetups)
+  - latest: David hosts week 1 of a 50-week vibe coding series in Chiang Mai, live-scaffolding a reusable TypeScript/React/Vite/Tailwind/Express/Socket.IO web-app harness with Claude Code (dashboard + command pal
+- **[STALE]** kybernesis-hardware-device-launch — first 2026-01-19, last 2026-01-19, seen 1× (kybernesis-venture)
+  - latest: Fresh from a meeting with Ian and Martin, David excitedly explains a joint go-to-market product — a cheap push-to-talk hardware device letting Thai non-programmers voice-build custom apps (vs 20-50k b
+- **[STALE]** vibedeck open-source launch — first 2026-01-19, last 2026-01-19, seen 1× (new:vibedeck)
+  - latest: Chiang Mai builder crew aligns on VibeDeck as an Omi-style open-source macro pad for AI workflows: everyone installs and hardens the current codebase, drops per-key LCDs for one screen + six buttons +
+- **[STALE]** predicate prompts for penny — first 2026-01-19, last 2026-01-19, seen 1× (client-supportsignal)
+  - latest: David pairs with Angela on WSL/VSCode/Claude setup and JSON-to-HTML visualization of her north-star second-brain doc, hits the background-agents-cannot-write-without-dangerous-permissions limitation (
+- **[STALE]** bmad config parity check — first 2026-01-19, last 2026-01-19, seen 1× (client-supportsignal)
+  - latest: David directs Claude to resolve a stale handover/plan via git history, classify the item under the BMAD v4 workflow (epic-0 story vs bug), and run a full comparison of his .claude + bmad-core config —
+- **[STALE]** voice agent relocation into flivideo — first 2026-01-19, last 2026-01-19, seen 1× (new:flivideo)
+  - latest: David floats renaming the standalone 'voice agent' app (candidate names like 'The Quick Fox') and relocating it into the FliVideo/FliHub repository ecosystem, noting the codebase name refactor and fol
+- **[STALE]** wiphu-intro-email — first 2026-01-22, last 2026-01-22, seen 1× (ai-meetups)
+  - latest: David plans an introduction email to Wiphu — a contact met the previous day via Dr. Pat in Chiang Mai — briefly explaining his AppyDave/Claude Code education work and proposing a one-hour catch-up nex
+- **[STALE]** guy 20-video hooks scenarios — first 2026-01-31, last 2026-01-31, seen 1× (content-production)
+  - latest: David coaches his voice-coach friend (Guy) to fix his 20 four-minute confidence videos by adding hook + scenario before the bullet-point body: feed all 20 scripts plus David's Loom transcript into Cha
+- **[STALE]** daily livestream coding lab launch — first 2026-01-31, last 2026-01-31, seen 1× (content-production)
+  - latest: Cafe session with a developer friend where David commits to a daily-livestream distribution strategy: rename the 2.5k-sub appydave-research channel to the Coding Lab, livestream every work session to 
+- **[STALE]** lars 3-month ai workflow engagement — first 2026-01-31, last 2026-01-31, seen 1× (client-lars)
+  - latest: David and Lars Filtenberg agree a ~3-month AI-workflow engagement starting March 1 (~$5k/month, weekly check-ins) with a smaller month-one prepayment David invoices now to buy an M4 (personal workstat
+- **[STALE]** video materials handoff — first 2026-01-31, last 2026-01-31, seen 1× (content-production)
+  - latest: Alongside arranging a 2:30 bike-service pickup, a collaborator messages David from the farmer's market saying he is 'all in' on making videos and asks David to bring materials and instructions today o
+- **[STALE]** whisper-free-tier-limits — first 2026-01-31, last 2026-01-31, seen 1× (brains-knowledge)
+  - latest: David buys Twitter/X Premium (~$192) while spinning up a new twitterx second brain to understand Premium features, Grok terminal access, and X Pro, and asks whether Whisper's free developer tier could
+- **[STALE]** ecamm-mic-hijack-conflict — first 2026-01-31, last 2026-01-31, seen 1× (content-production)
+  - latest: David debugs Ecamm Live hijacking his single HyperX QuadCast microphone when streaming starts — killing his voice agents mid-demo — and questions why routing one app to the HyperX Cast aggregate devic
+- **[STALE]** inference-engine-brain-research — first 2026-01-31, last 2026-01-31, seen 1× (brains-knowledge)
+  - latest: David directs his assistant to create a second brain around an online inference engine and research its available models, usage patterns, and developer-token-plan costs, plus show the Ecamm Live folde
+- **[STALE]** salon AI marketing employee — first 2026-02-02, last 2026-02-02, seen 1× (personal-life)
+  - latest: At a Chiang Mai nail salon David (with Alma translating) scopes having a salon employee use AI daily to produce marketing — posters, Facebook ads, shop signs — reviewed by him daily for improvement, s
+- **[STALE]** test suite failures cleanup — first 2026-02-02, last 2026-02-02, seen 1× (misc)
+  - latest: Test-suite philosophy set during the migration session: keep only working tests — either fix failures or delete them with documented intent for future reimplementation — and reprocess/regroup the fail
+- **[STALE]** vitest learnings transfer to react and cloudflare tests — first 2026-02-02, last 2026-02-02, seen 1× (client-supportsignal)
+  - latest: After ~120-130 commits over 2-3 days migrating the Convex system tests to Vitest, David directs the agent to map where all the learnings live (breadth, not depth) so the same principles can be replica
+- **[STALE]** recurring issues reentry process — first 2026-02-02, last 2026-02-02, seen 1× (client-supportsignal)
+  - latest: On handover number 19, David asks where recurring systemic problems get written into the to-do list and when/how they re-enter the workflow to actually be fixed.
+- **[STALE]** KDD migration completeness and topology — first 2026-02-02, last 2026-02-02, seen 1× (kdd-lisa)
+  - latest: David audits the KDD migration mid-flight — restricting scope to converts-related files (not web/CloudWorkers folders), ordering broken-link fixes, and demanding clarity on archive-vs-historical topol
+- **[STALE]** health dashboard then topology validation — first 2026-02-02, last 2026-02-02, seen 1× (brains-knowledge)
+  - latest: Priority set for the next second-brain analysis work: health dashboard first, then topology validation, after checking the last two batches for learnings worth writing up.
+- **[STALE]** handover format: name the next action — first 2026-02-02, last 2026-02-02, seen 1× (skills-tooling)
+  - latest: David is frustrated that handover documents list multiple options without declaring the chosen next action, leaving the next context window unable to decide; he wants the format changed to state the n
+- **[STALE]** async multi-context orchestration setup — first 2026-02-02, last 2026-02-02, seen 1× (skills-tooling)
+  - latest: David plans how to run work asynchronously across AI contexts — weighing multiple separate context windows vs one window with background agents, with a central plan plus per-item requirement docs — de
+- **[STALE]** tuesday meetup with propaganda friend — first 2026-02-02, last 2026-02-02, seen 1× (personal-life)
+  - latest: A friend (voice message) says they're nervously trying improv comedy this week with visiting friends from Propaganda and proposes meeting David next Tuesday, awaiting confirmation.
+- **[STALE]** vmad side-project collaboration — first 2026-02-02, last 2026-02-02, seen 1× (ai-research)
+  - latest: A peer conversation about building wrappers around the BMAD method for visualization and action capabilities — one party describes pairing an 'astrocyte' with context engineering in their own framewor
+- **[STALE]** claude session recovery workflow — first 2026-02-02, last 2026-02-02, seen 1× (skills-tooling)
+  - latest: David asks what to add to his usual conversation-starter prompt to obtain a session code and resume a previous Claude Code session.
+- **[STALE]** agent OS database section — first 2026-02-07, last 2026-02-07, seen 1× (brains-knowledge)
+  - latest: David directs his agent to check whether the system brain needs improving (SDK access plus online notes, audit first), add/populate a database section in the agent OS with ideas from a strong SQL-and-
+- **[STALE]** agentic OS build-out — first 2026-02-07, last 2026-02-07, seen 1× (ai-meetups)
+  - latest: Post-event mingling at the Chiang Mai AI meetup: David commits to steering his Thursday 'Clauding Lab' into a themed agentic-OS series built on his new M4 Mini three-machine fleet (a client pays him m
+- **[STALE]** Beauty & Joy shop marketing — first 2026-02-10, last 2026-02-10, seen 1× (personal-life)
+  - latest: David and Joy plan paper marketing for the combined nail salon + juice shop in Chiang Mai — settling on the 'Juice and Joy' name alongside Beauty and Joy, professional business-card-style flyers (half
+- **[STALE]** documentation health to 100% — first 2026-02-10, last 2026-02-10, seen 1× (kdd-lisa)
+  - latest: David sets a hard documentation-health standard — 15% or even 5% broken links is unacceptable, target is effectively 100% — and orders deep background-agent review of every remaining file with an expl
+- **[STALE]** chiang-mai-ai-community-space — first 2026-02-10, last 2026-02-10, seen 1× (ai-meetups)
+  - latest: David tours Tony O'Connell's Chiang Mai Fetch.ai agent-swarm startup (pheromone-trail task marketplace, token economics, agent-launch.ai) and Tony offers to host the Chiang Mai AI community for free/c
+- **[STALE]** guy-ian-coaching-referral — first 2026-02-10, last 2026-02-10, seen 1× (personal-life)
+  - latest: David brokers an introduction between Guy, a Chiang Mai vocal/presentation coach, and Ian, a venture capitalist needing coaching before a Thursday Skype presentation, while demoing his OMI wearable ca
+- **[STALE]** supportsignal-ux-visualization-experiments — first 2026-02-10, last 2026-02-10, seen 1× (client-supportsignal)
+  - latest: David specs a SupportSignal UX experiment: formal database.schema.json of the incident wizard workflow (steps, questions, async predicates, categorization/observation fields), a tool mapping real expo
+- **[STALE]** predicate-observation-classification rollout — first 2026-02-10, last 2026-02-10, seen 1× (client-supportsignal)
+  - latest: David and Angela review her 21 new incident-analysis prompts (8 predicates + 8 observations), establish the three-part predicate/observation/classification structure, agree observations must be signal
+- **[STALE]** Epic 12 blocked on prompt validation testing — first 2026-02-10, last 2026-02-10, seen 1× (client-supportsignal)
+  - latest: Epic 12 declared blocked — story 12.5 production cutover cannot proceed until POEM prompt upload/validation is fully tested, so cutover moves to end of epic with big warnings; every story must end wit
+- **[STALE]** 11Labs voice agent tool configuration — first 2026-02-10, last 2026-02-10, seen 1× (new:samantha-voice-agent)
+  - latest: David troubleshoots his 11Labs voice agent whose configured tool is not actually calling FliHub (wants all three tool configurations validated), demands a researched fix so link indexing stops countin
+- **[STALE]** background agent SDK research — first 2026-02-10, last 2026-02-10, seen 1× (new:samantha-voice-agent)
+  - latest: David commissions deep research into background-agent starter repos (active usage, high stars) since he has effectively been building starter templates himself, wants SDKs ranked by language and model
+- **[STALE]** shadow mode discrepancy report design — first 2026-02-10, last 2026-02-10, seen 1× (client-supportsignal)
+  - latest: David rules the planned shadow-mode prompt comparison overengineered — no dedicated comparison table; instead prompt upload should immediately return a JSON discrepancy report of input/output field di
+- **[STALE]** Ian training session with Guy — first 2026-02-10, last 2026-02-10, seen 1× (ai-meetups)
+  - latest: In-person chat where Ian recounts his Samantha agent spawning a blog post that a student fed to Claude Code to build a whole system, leading the Claude community leaders WhatsApp group to book him to 
+- **[STALE]** personal agentic OS architecture — first 2026-02-12, last 2026-02-12, seen 1× (ai-meetups)
+  - latest: David leads a Claude Lab live session in Chiang Mai covering his AI video toolchain, an ElevenLabs voice agent wired into FliHub, the Ralph Wiggum loop (1,524 auto-generated unit tests in 1.5 days), h
+- **[STALE]** commit dependency-updated Opus projects — first 2026-02-12, last 2026-02-12, seen 1× (content-production)
+  - latest: Via voice agent David lists FliHub projects matching 'opus' (B72, 793, P75, P765, B89, C14 etc.), pulls the B72 transcript, and delegates git add/commit/push across the 4-5 projects whose package depe
+- **[STALE]** post-illness team direction call — first 2026-02-12, last 2026-02-12, seen 1× (team-ops)
+  - latest: Recovering from 24 hours of illness, David preps tomorrow's team direction call — 10-15 minutes with the team, assistant to act as his memory/context loader with a 2-3 minute status summary — plus hou
+- **[STALE]** Beauty & Joy social video pipeline — first 2026-02-12, last 2026-02-12, seen 1× (personal-life)
+  - latest: David sets up an AI-assisted social video pipeline for Joy's Beauty & Joy nail brand (~40 videos, start with still art then animate): Joy shoots each nail design on white background, Mary turns the ph
+- **[STALE]** fruit shop AI art experiment — first 2026-02-12, last 2026-02-12, seen 1× (personal-life)
+  - latest: David commissions an AI art experiment for the fruit/juice shop — staff photograph the shop inside and out, then generate painted-art concepts over the photos to preview designs before any real painti
+- **[STALE]** agentic OS talk prep — first 2026-02-12, last 2026-02-12, seen 1× (ai-meetups)
+  - latest: David plans to demo the voice agent software he built this week at the agent OS discussion (likely the Chiang Mai AI meetup), showing where it could fit into an Agent OS, and considers hauling a dedic
+- **[STALE]** SupportSignal incident workflow finalization — first 2026-02-12, last 2026-02-12, seen 1× (client-supportsignal)
+  - latest: SupportSignal alignment (David sick but present): shift from linear prompt flows to signal-based predicates/classifications (danger/importance/observation) that will power dashboards and BI; David tak
+- **[STALE]** Beauty & Joy cocktail party package — first 2026-02-13, last 2026-02-13, seen 1× (personal-life)
+  - latest: Joy's Beauty & Joy team prices a 'cocktail party package' bundling nail services and champagne at 4,800-5,000 baht for three people, working out how to embed a 950-baht product into a higher-value bun
+- **[STALE]** Joy Tours on Ian's booking platform — first 2026-02-13, last 2026-02-13, seen 1× (personal-life)
+  - latest: David proposes 'Joy Tours' as a third Joy brand (alongside Beauty & Joy and Juice & Joy) reselling packaged Thai experiences — nail-art classes, mocktails, tours, cooking — to foreigners via Ian's $50
+- **[STALE]** full documentation audit before system overview — first 2026-02-13, last 2026-02-13, seen 1× (kdd-lisa)
+  - latest: David rejects premature integration of n8n/ComfyUI/Kybernesis research into core architecture ('nine layers' means nothing to him yet, no system overview exists), orders them filed as standalone resea
+- **[STALE]** Tony introductions at AI meetup — first 2026-02-13, last 2026-02-13, seen 1× (ai-meetups)
+  - latest: David lines up introductions of Tony to Ian, Nick, and Steve at tomorrow's AI meetup — Ian in particular wants a conversation with Tony.
+- **[STALE]** Obsidian Sync vs Git conflict risk — first 2026-02-20, last 2026-02-20, seen 1× (brains-knowledge)
+  - latest: David flags a risk in storing the second brain in GitHub while also using Obsidian Sync: files moving between machines outside standard Git mechanisms can trigger unnecessary commits and merge conflic
+- **[STALE]** Slack integration for agentic OS — first 2026-02-20, last 2026-02-20, seen 1× (fleet-infra)
+  - latest: After watching Cole Medin's second-brain workshop (transcript captured), David directs that Slack should be added as a messaging/integration channel to both the Ansible setup and potentially the agent
+- **[STALE]** March 24 visa run — first 2026-02-20, last 2026-02-20, seen 1× (personal-life)
+  - latest: Café conversation: David is stretched across two-going-on-three clients plus YouTube while funding Joy's expansion — two-storey nail spa plus a new juice shop built onto the side (two Myanmar staff, t
+- **[STALE]** appydave plugin alias wiring — first 2026-02-21, last 2026-02-21, seen 1× (skills-tooling)
+  - latest: David hit appydave-plugin namespace and alias-wiring failures (including reloading the OMI skill), insisted unit tests belong inside tight code-iteration loops since the IR compiler already had 200+ t
+- **[STALE]** brain health checks — first 2026-02-21, last 2026-02-21, seen 1× (brains-knowledge)
+  - latest: David initiated a structured review: list every brain created in the session and turn each one into its own task for a detailed health check.
+- **[STALE]** Thailand six-month exit deadline — first 2026-02-21, last 2026-02-21, seen 1× (travel-visa)
+  - latest: Café conversation in Chiang Mai spanning AI wearable transcription and recording-privacy law (Queensland/WA), Whisper-based dictation with custom dictionaries (how FliVideo gets spelled right), and Th
+- **[STALE]** local models on Mac fleet — first 2026-02-21, last 2026-02-21, seen 1× (ai-meetups)
+  - latest: At a Chiang Mai AI meetup David saw a bilingual (Thai/English) community-platform demo that turns meetup transcripts into a knowledge base plus apps, and probed a home-server agentic stack — LM gatewa
+- **[STALE]** March 7 Anthropic Chiang Mai event — first 2026-02-21, last 2026-02-21, seen 1× (ai-meetups)
+  - latest: Anthropic-sponsored Chiang Mai workshop (Ian as Thailand ambassador, Nick hosting) clarified the Max-subscription policy — Agents SDK / signature-spoofing use is fine for local personal work but banne
+- **[STALE]** lunch follow-up on workflow orchestration — first 2026-02-21, last 2026-02-21, seen 1× (ai-meetups)
+  - latest: Before the workshop David demoed POEM (Penny/Alex/Oscar agents; DSL and YAML + JSON schemas + Handlebars prompts compiled to JavaScript workflows with parallel predicates, classifiers, and observation
+- **[STALE]** dotfile portability across Macs — first 2026-02-22, last 2026-02-22, seen 1× (fleet-infra)
+  - latest: David weighs whether his loose dotfiles are machine-specific or portable across Macs, noting the upcoming Mini M4 will be effectively identical to the MacBook Pro M4 except for a third monitor.
+- **[STALE]** M2/M4 storage cleanup — first 2026-02-22, last 2026-02-22, seen 1× (fleet-infra)
+  - latest: Puzzling over ~550GB of unexplained storage, David decides to keep the M4 for now and to rerun the Ansible playbook checks on both M2 and M4 from within Claude to surface and fix issues.
+- **[STALE]** AI-readable doc formatting — first 2026-02-22, last 2026-02-22, seen 1× (brains-knowledge)
+  - latest: David asks how documentation should be formatted for AI readability rather than human readability, wondering whether a help file convention or CLAUDE.md is the right home for the guidance.
+- **[STALE]** cross-machine config consistency — first 2026-02-22, last 2026-02-22, seen 1× (fleet-infra)
+  - latest: David checks whether his alias-tools setup is correct, whether CLAUDE.md is up to date against the current files, and asks for best practice on keeping shell/config concepts consistent across multiple
+- **[STALE]** Remotion course launch — first 2026-02-22, last 2026-02-22, seen 1× (content-production)
+  - latest: David lays out the compounding plan: the client-funded Mac fleet (Vos paying for Jan and Mary's identical machines), Mary's six-video Remotion series for AI-TLDR as a slow-burn asset, turning Remotion
+- **[STALE]** macOS brain creation — first 2026-02-22, last 2026-02-22, seen 1× (brains-knowledge)
+  - latest: David proposes a dedicated second brain for macOS best practices (noting he won't remember installation details), asks why clicking the desktop hides all windows, and requests ongoing health monitorin
+- **[STALE]** Ecamm audio hijacking — first 2026-02-22, last 2026-02-22, seen 1× (fleet-infra)
+  - latest: David questions whether Stream Deck, draw.io, and MIDI device profiles should be represented in Ansible config, how to separate asset types (code vs logs vs images/video/audio) for archival decisions,
+- **[STALE]** dev-folder sync exclusions — first 2026-02-22, last 2026-02-22, seen 1× (fleet-infra)
+  - latest: David proposes keeping a registry at the root of ~/dev listing very large files/folders marked exclude-from-copy so cross-machine transfers of the dev directory skip them.
+- **[STALE]** multi-Mac disk cleanup and Ansible alignment — first 2026-02-22, last 2026-02-22, seen 1× (fleet-infra)
+  - latest: David directed a multi-Mac housekeeping pass: audit per-project trash folders, pre-review every deletion script before running, use du to explain 650GB of disk usage, reconcile Tailscale vs the Start 
+- **[STALE]** SupportSignal troubleshooting factsheet — first 2026-02-23, last 2026-02-23, seen 1× (client-supportsignal)
+  - latest: David requests a comprehensive factsheet of all troubleshooting work done so far, including full absolute file paths, to hand back to SupportSignal as evidence of the work completed on his side.
+- **[STALE]** publish POEM and librarian YouTube videos — first 2026-02-23, last 2026-02-23, seen 1× (ai-meetups)
+  - latest: David demos POEM at a Chiang Mai meetup: deterministic context-isolated workflows (chain + parallel prompting, YAML/Handlebars/JSON compiled to a single runnable JavaScript blob, n8n-compatible React 
+- **[STALE]** open-source Ecamm alternative — first 2026-02-23, last 2026-02-23, seen 1× (ai-meetups)
+  - latest: Chiang Mai open-source self-hosting meetup covering Coolify, local LLM serving (Ollama/MLX), nanoGPT cheap routing, Cap as a self-hosted Loom alternative, and Kokoro/Piper/Whisper voice stacks; David 
+- **[STALE]** Ralphie capability clarity — first 2026-02-24, last 2026-02-24, seen 1× (skills-tooling)
+  - latest: Amid a fridge-fitting errand David directed his agent to check both the second brain and the plugin for Ralphie and report its actual capabilities, frustrated after a 'disastrous' conversation in anot
+- **[STALE]** ralphy campaign handover — first 2026-02-24, last 2026-02-24, seen 1× (skills-tooling)
+  - latest: At 50% context David directs a clean ralphy campaign handover: enumerate remaining open items, state exactly which absolute paths/brain/skill were updated, confirm brain updates propagated into the pl
+- **[STALE]** ralphy done/not-done closure clarity — first 2026-02-24, last 2026-02-24, seen 1× (client-supportsignal)
+  - latest: UX bugs in SupportSignal's severity classification view (hover tooltips missing, inconsistent small popup on the green status section) get held for round eight while round seven is committed/merged wi
+- **[STALE]** supportsignal two-week rebuild — first 2026-02-24, last 2026-02-24, seen 1× (client-supportsignal)
+  - latest: Major PO handover: SupportSignal can no longer use Convex after six months of building and must rebuild in two weeks via ordered planning (sign-in, basic roles, data management first, possibly syncing
+- **[STALE]** SRT raw-text export button — first 2026-02-24, last 2026-02-24, seen 1× (content-production)
+  - latest: David wants a one-click button beside any SRT file (first-edit, prep, S3 staging) that copies the raw subtitle text without timestamps to the clipboard.
+- **[STALE]** YLO workflow picker launches wrong workflow — first 2026-02-24, last 2026-02-24, seen 1× (content-production)
+  - latest: David is frustrated the workflow tool keeps launching YouTube Launch Optimizer as the wrong workflow after three corrections, leaves an untracked .obsidian folder on git commits, and keeps suggesting 
+- **[STALE]** missing participant data in incident UI — first 2026-02-24, last 2026-02-24, seen 1× (client-supportsignal)
+  - latest: David asks whether missing participant data in the incident system is an unfilled field, a data-file omission, or a rendering bug, and requests a simple UAT checklist of everything he should test manu
+- **[STALE]** where to store Obsidian best practices — first 2026-02-24, last 2026-02-24, seen 1× (brains-knowledge)
+  - latest: David wonders whether an Obsidian brain is needed yet as the home for his own Obsidian best practices, guidelines, and learnings.
+- **[STALE]** Obsidian vault sync strategy — first 2026-02-24, last 2026-02-24, seen 1× (brains-knowledge)
+  - latest: David works through Obsidian architecture questions (vault vs .obsidian folder, git-ignore, graph-database nature, Obsidian Sync across two machines vs GitHub-synced files) and asks for a data-oriente
+- **[STALE]** cluelessjs package and account recovery — first 2026-02-24, last 2026-02-24, seen 1× (skills-tooling)
+  - latest: David asks for an audit of his past semantic-versioning work to recover the gem/NPM package name and account details (email david@ideasmen.com.au, suspected username cluelessjs), plus committing any p
+- **[STALE]** LLM SaaS text-stats lab TIL entry — first 2026-02-24, last 2026-02-24, seen 1× (brains-knowledge)
+  - latest: David asks that yesterday's lab on LLM/SaaS text statistics be processed into a TIL entry, offering to do it himself if the agent can't and permitting headed-mode execution.
+- **[STALE]** Ansible dotfiles/aliases deployment — first 2026-02-24, last 2026-02-24, seen 1× (fleet-infra)
+  - latest: David configures Claude Code as orchestrator across M2 and M4 from the MacBook Pro — zsh/nvm/tmux/Homebrew environment fixes, version bump 2.150 to 2.151, machine-roles doc updated — but the Ansible p
+- **[STALE]** Claude Code session tracking procedure — first 2026-02-24, last 2026-02-24, seen 1× (fleet-infra)
+  - latest: David asks how to reliably resume the same Claude Code session, track which session is active, and close out cleanly — surfacing a missing session-management procedure for multi-machine work.
+- **[STALE]** set up KyberBot — first 2026-02-24, last 2026-02-24, seen 1× (kyberagent-pilot)
+  - latest: David voices intent to set up KyberBot (mis-transcribed as 'Ibobot by Carbonese' = KyberBot by Kybernesis), citing its excellent second-brain memory capabilities.
+- **[STALE]** workflow selector UI fixes — first 2026-02-24, last 2026-02-24, seen 1× (client-supportsignal)
+  - latest: Bug report on the workflow web UI: selecting the new-incident-analysis workflow still shows and runs the YouTube launch optimizer, all 15 steps display instead of section-filtered steps (top and left 
+- **[STALE]** simplify Angela's app run experience — first 2026-02-24, last 2026-02-24, seen 1× (client-supportsignal)
+  - latest: David directs that Angela's docs and possibly the software package be updated so she has a simple, streamlined way to run the incident-workflow application, since her current process is cumbersome.
+- **[STALE]** advanced web UI version unstable — first 2026-02-24, last 2026-02-24, seen 1× (client-supportsignal)
+  - latest: Remote session with Angela getting the incident-workflow web UI running with real Claude token auth instead of stub mode (export token, npm run wui), verifying prompts and predicates now execute with 
+- **[STALE]** bidirectional screen sharing MBP-M4 — first 2026-02-28, last 2026-02-28, seen 1× (fleet-infra)
+  - latest: Mid-migration off the dead-screen MacBook Pro, David hits the macOS 'screen sharing is controlled by Remote Management' message blocking bidirectional MBP-to-M4 remote sessions and wants the remote-ac
+- **[STALE]** mural design decision — first 2026-02-28, last 2026-02-28, seen 1× (personal-life)
+  - latest: David and Joy meet a local designer about a mural/graphic for the shop, ask for portfolio samples and a price estimate, and agree to reconvene next Tuesday or Wednesday to decide.
+- **[STALE]** Mary payment workaround — first 2026-02-28, last 2026-02-28, seen 1× (team-ops)
+  - latest: Banking/government changes again blocked the usual transfer to Mary, so Daniel agreed to make the payment once David sends bank details (due by tomorrow), while David's recently-bought laptop screen s
+- **[STALE]** JSON-to-visual architecture collaboration — first 2026-02-28, last 2026-02-28, seen 1× (ai-meetups)
+  - latest: Post-meetup social: Joy's smoothie shop opens Monday amid surprise Thai signage-tax and music-licensing fine rules; David walked through his POEM YAML/Handlebars/JSON-Schema workflow transpiler that c
+- **[STALE]** discovery prompts pattern gap — first 2026-03-01, last 2026-03-01, seen 1× (new:appystack-recipes)
+  - latest: Reviewing prompt-pattern work on recipes (prompts that let people adapt an existing system without knowing how to phrase requests), David identified 'discovery prompts' — prompts that let an agent, no
+- **[STALE]** kie-ai brain refresh NanoBanana 2 — first 2026-03-01, last 2026-03-01, seen 1× (ai-research)
+  - latest: David studies kie.ai NanoBanana 2 (Gemini Flash-based, 14 reference images, ~6-9c per image, ComfyUI nodes) vs NanoBanana Pro and its Google-search-grounded infographic generation, then asks his assis
+- **[STALE]** standard machine provisioning — first 2026-03-01, last 2026-03-01, seen 1× (fleet-infra)
+  - latest: With a brand-new machine in hand, David wants a system that provisions all his machines with a consistent software set — the seed of the later Ansible fleet-provisioning approach.
+- **[STALE]** M4 Pro image library sync — first 2026-03-01, last 2026-03-01, seen 1× (fleet-infra)
+  - latest: David directs his agent to SSH into the M4 Pro MacBook (via agentic-OS config or shell aliases), audit and copy his images directory to the current machine, fix its hostname — and sketches the idea of
+- **[STALE]** second-brain demo presentation — first 2026-03-01, last 2026-03-01, seen 1× (ai-meetups)
+  - latest: David settles the presentation structure: 10-18 slide architecture overview, then a live second-brain demo with the librarian agent extracting tag/frontmatter data, then vibe-coding a micro app with A
+- **[STALE]** AI positioning statement — first 2026-03-01, last 2026-03-01, seen 1× (brand-strategy)
+  - latest: David iterates his positioning statement between the technical framing — building multi-agent teams across networked computers where human operators' agents train each other — and the simple framing '
+- **[STALE]** BMAD session copy — first 2026-03-01, last 2026-03-01, seen 1× (ai-meetups)
+  - latest: David corrects AI-generated session copy — he has been active since 1990 (not 'two decades') and is an educator of the BMAD method, not its creator — and requests five alternative session titles plus 
+- **[STALE]** JSON docs to infographics — first 2026-03-01, last 2026-03-01, seen 1× (brand-strategy)
+  - latest: David insists his machine-readable JSON brand and Dent documents (not just the Markdown handed to NotebookLM) should be surfaced, gathered into a temp folder, and packaged with a message asking a mate
+- **[STALE]** Project Theodore blueprint — first 2026-03-01, last 2026-03-01, seen 1× (fleet-infra)
+  - latest: David lays out his three-month blueprint 'Project Theodore' (after the film 'Her'): a five-computer agentic OS — M2 Mini, M4 Mini, a robot, plus Jan's and Mary's machines — replacing ad-hoc task reque
+- **[STALE]** Project Theodore 3-month build — first 2026-03-01, last 2026-03-01, seen 1× (fleet-infra)
+  - latest: David lays out the Project Theodore three-month roadmap: an agentic OS across a five-Mac Tailscale mesh (3 Chiang Mai + Jan/Mary M4s in the Philippines) built from AppyStack micro-apps, the Ralphie lo
+- **[STALE]** Lars Project Theodore collaboration kickoff — first 2026-03-01, last 2026-03-01, seen 1× (client-lars)
+  - latest: David records a Project Theodore walkthrough for Lars (horizontal Tailscale/Supabase mesh + vertical per-machine agent stacks with KyberBot memory, Claude Code harness, Samantha voice) and proposes a 
+- **[STALE]** prompt-patterns brain creation — first 2026-03-01, last 2026-03-01, seen 1× (brains-knowledge)
+  - latest: David scopes a dedicated prompt-patterns brain via deep research into recipe patterns, structured capability signaling, and declarative capability specs for reuse in videos and apps, while probing Not
+- **[STALE]** Agent OS architecture documentation gaps — first 2026-03-01, last 2026-03-01, seen 1× (fleet-infra)
+  - latest: David reviews the Agent OS architecture presentation and JSON docs, flagging gaps (no five-machine view, missing presentation-prompt backup, unexplored routing/security layer, voice/input sources unde
+- **[STALE]** Vietnam property visa research — first 2026-03-01, last 2026-03-01, seen 1× (personal-life)
+  - latest: David coaches his father through a strict 2-3 month carnivore diet for back pain/inflammation, mentions high stress (broken computer, visa timing, Joy's shop opening in two days), and mid-call directs
+- **[STALE]** agent OS application registry — first 2026-03-01, last 2026-03-01, seen 1× (fleet-infra)
+  - latest: David commissions a broad inventory of every application he has built (name, description, location, port) with priority weighting — Signal Studio needed tomorrow, AppyStack high, Klueless/AWB mild, Be
+- **[STALE]** DeckHand Stream Deck alternative requirements — first 2026-03-01, last 2026-03-01, seen 1× (skills-tooling)
+  - latest: David defines requirements for Deccan/DeckHand as a virtual Stream Deck replacement: dynamically configure his 32-button and 15-button decks, 3-button pedal, and Ajaz device (including Ecamm Live scen
+- **[STALE]** M4 Mini disaster recovery setup — first 2026-03-01, last 2026-03-01, seen 1× (fleet-infra)
+  - latest: Mid disaster-recovery after his laptop died, David brings the new M4 Mini online — Time Machine backing up, M4 Mini to M4 Pro over Tailscale mesh — asks for an OpenClaw-vs-own-vertical-stack gap analy
+- **[STALE]** todo brain structure — first 2026-03-01, last 2026-03-01, seen 1× (brains-knowledge)
+  - latest: Working mouse-only around a dead MacBook display, David reviews the to-do system and asserts that not all brains are equal — the to-do list is an action-oriented system, not a standard knowledge brain
+- **[STALE]** todo/journal micro-app design — first 2026-03-01, last 2026-03-01, seen 1× (captains-log)
+  - latest: David sketches a lightweight to-do/journal micro-app for the todo brain — a list with minimal fields, time-based daily grouping, and roll-forward/drop mechanics at file boundaries — deciding to model 
+- **[STALE]** Joy Juice branding assets — first 2026-03-02, last 2026-03-02, seen 1× (personal-life)
+  - latest: David and Joy settled the Joy Juice tagline 'Two styles, one joy' (Joy Juice Chiang Mai), decided on high-quality plastic packaging with QR codes and PromptPay scan-to-pay, and requested a third image
+- **[STALE]** Joy Juice shop opening — first 2026-03-02, last 2026-03-02, seen 1× (personal-life)
+  - latest: The Joy Juice shop opens tomorrow in a roughly 3.5m by 2.5m space, and David asked for an absolute filesystem path where he can drop found images for the shop's settings and configuration.
+- **[STALE]** joy juice brand naming — first 2026-03-02, last 2026-03-02, seen 1× (brand-strategy)
+  - latest: Session wrap-up directive: commit and push, then open 3-4 screens in dark mode via Playwright MCP to assess contrast/colors that feel cheap or wrongly schemed, while questioning whether Joy Juice is t
+- **[STALE]** ylo code learnings capture — first 2026-03-02, last 2026-03-02, seen 1× (content-production)
+  - latest: Three-pass cleanup mandated for the YouTube Launch Optimizer files (noting the YAML is really brand management): inventory problems per file, fix everything, then capture anti-pattern/good-pattern lea
+- **[STALE]** cross-machine connection details persistence — first 2026-03-02, last 2026-03-02, seen 1× (fleet-infra)
+  - latest: Recurring frustration that Claude forgets SSH/hostname details for the M4 Pro MacBook (vs the Mac mini M4) every session, plus a null brandConfig in the JSON payload that spawns the idea of a brand ma
+- **[STALE]** AppyStack recipe system — first 2026-03-02, last 2026-03-02, seen 1× (kybernesis-venture)
+  - latest: Long David-Ian session crystallizing the AppyStack recipe model — composable prompt recipes (shell/persistence/Swagger) plus domain data-shapes that assemble micro-apps in an hour, with learnings fold
+- **[STALE]** juice shop dual-style menu cards — first 2026-03-02, last 2026-03-02, seen 1× (personal-life)
+  - latest: David, Joy and Dow settled the juice shop dual-menu strategy: every top drink gets a Thai-sty version (65 baht) and a healthier natural farang version (75 baht), presented on laminated A4 comparison c
+- **[STALE]** Ansible coding profile selector — first 2026-03-02, last 2026-03-02, seen 1× (fleet-infra)
+  - latest: The Ansible coding profile still forces a three-profile selector on first load — hated as wasted energy since only one profile is ever wanted — so David asked for deep research on whether that capabil
+- **[STALE]** Hammerspoon layout engine research — first 2026-03-02, last 2026-03-02, seen 1× (skills-tooling)
+  - latest: David reframed Hammerspoon as a general window-layout/automation engine — commissioning deep research plus a dedicated brain (possibly a separate layout-engines brain) covering the old SupportSignal s
+- **[STALE]** Moom replacement for window layouts — first 2026-03-02, last 2026-03-02, seen 1× (fleet-infra)
+  - latest: Moom has become buggy for positioning Ecamm Live windows across David's 30"/49" monitors, so he asked for research on Moom's company/pricing ('Moom Classic') while leaning toward replacing it with a c
+- **[STALE]** AppyDave Be Mad POEM style guide — first 2026-03-02, last 2026-03-02, seen 1× (brand-strategy)
+  - latest: David wants the AppyDave styling developed for the Be Mad POEM slide deck — including its heavy negative-prompt approach balancing brand style against semantic content — researched deeply and formaliz
+- **[STALE]** Gather JSON-to-markdown NotebookLM command — first 2026-03-02, last 2026-03-02, seen 1× (skills-tooling)
+  - latest: David specified a new Gather-skill command that concatenates a folder of JSON into a transient, auto-refreshable markdown doc (with diagram-intent and style-prompt header) for NotebookLM visualization
+- **[STALE]** indie-dev-dan migration to tubescripts — first 2026-03-02, last 2026-03-02, seen 1× (brains-knowledge)
+  - latest: David decided indie-dev-dan is reference data, not a standalone brain: transcripts move to the upstream/tubescripts git area (generalizable to other transcript groupings), the '-review' suffix gets dr
+- **[STALE]** pattern-viz app install automation — first 2026-03-02, last 2026-03-02, seen 1× (skills-tooling)
+  - latest: David wants the pattern-visualization app's setup collapsed to a single install command asking only port and app name, output written to a temp folder auto-opened in Finder, clarity on which NPM publi
+- **[STALE]** Byron branding agent refinement — first 2026-03-02, last 2026-03-02, seen 1× (client-voz)
+  - latest: Sunday Zoom (David/Jan/Voss) tightened Byron the branding agent's lane — test GSB studio-view and TV project-view commands, keep him off storytelling and instead capture a future storyteller agent (co
+- **[STALE]** three recording blockers (OMI import, Stream Deck, Ecamm scenes) — first 2026-03-03, last 2026-03-03, seen 1× (captains-log)
+  - latest: David establishes his daily operating rhythm — morning briefing plus agentic heartbeat with 30-minute OMI polling — names three recording blockers (OMI import, Stream Deck setup, Ecamm scenes), decide
+- **[STALE]** AWB workflow testing pipeline — first 2026-03-03, last 2026-03-03, seen 1× (new:awb-ylo-development)
+  - latest: David hands the agent a full delivery protocol for the workflow app: plan first, then implement, unit-test, update YAML docs, build UAT plans for both new-incident and YouTube Launch Optimizer workflo
+- **[STALE]** C15-C18 thumbnail handover — first 2026-03-03, last 2026-03-03, seen 1× (content-production)
+  - latest: David asks a team member where the C15-C18 video thumbnails live and which Canva account was used, since his Canva premium subscription lapsed (he won't renew) and a machine change means he can no lon
+- **[STALE]** YLO ingestion/revision bugs — first 2026-03-03, last 2026-03-03, seen 1× (new:awb-ylo-development)
+  - latest: David flags YouTube Launch app ingestion/revision regressions — F5 refresh dumps back to the starter page, the yellow/orange post-export import banner has vanished, and revision IDs surface nowhere — 
+- **[STALE]** lars client comms setup — first 2026-03-03, last 2026-03-03, seen 1× (client-lars)
+  - latest: David generalizes the vOz client-communication folder into a template for Lars (USD 5k package, no invoice emails without approval): North Star as primary comms document, raw OMI inbox folder, jLars j
+- **[STALE]** staff monitor purchase — first 2026-03-03, last 2026-03-03, seen 1× (team-ops)
+  - latest: Evening priorities set as Lars first, YouTube Launch Optimizer second, Signal Studio third; a five-stage second-brain build sequence (based on Cole Medin's system, ending with KyberBot) is queued for 
+- **[STALE]** lars 90-day onboarding — first 2026-03-03, last 2026-03-03, seen 1× (client-lars)
+  - latest: 90-day Lars engagement kickoff: David lays out the agentic-OS vision (vertical + horizontal agent stacks, brains before skills, flywheel intangibles), Lars wants tangible wins within a month and his t
+- **[STALE]** studio sync-to-git bug — first 2026-03-03, last 2026-03-03, seen 1× (client-supportsignal)
+  - latest: Remote pairing session with Angela (Supporting Potential) on the Studio app: fixed her 6040/6041 port confusion and missing git user.name/email, scripted studio/studio-dev/studio-run helper commands f
+- **[STALE]** workflow ui modes refactor — first 2026-03-03, last 2026-03-03, seen 1× (new:agent-workflow-builder)
+  - latest: Workflow app UI settles on three view modes — preview (designer-facing, clean), engineer (debug/prompt-template tooling), and a documented-but-future polished end-user mode needing a visual modeling l
+- **[STALE]** workflow engine debug panel and C18 intro fixes — first 2026-03-03, last 2026-03-03, seen 1× (content-production)
+  - latest: David locked in HyperX QuadCast settings (gain 2.5-3, input volume 5/7, mic angled up) and asked they be documented, critiqued the C18 video intro for opening on a full-screen graphic instead of on-ca
+- **[STALE]** workflow engine JSON input UX — first 2026-03-03, last 2026-03-03, seen 1× (content-production)
+  - latest: Running FliHub videos C15-C18 through the proof-of-concept workflow engine, David flagged that 'load from paste' does not reset the workflow to show new data (forcing refresh and data loss), critiqued
+- **[STALE]** Ian always-on service pattern recall — first 2026-03-03, last 2026-03-03, seen 1× (misc)
+  - latest: David tried to recall Ian's mention of running a Java/JavaScript program as an always-on service (not from a terminal) via some tool or pattern, and wished his OMI device were connected to a second-br
+- **[STALE]** RADAR app backlog — first 2026-03-03, last 2026-03-03, seen 1× (skills-tooling)
+  - latest: David wanted button-deck automations that launch and position WhatsApp/Finder/VS Code/Chrome/iTerm/Zoom/Ecamm per monitor folded into the agentic OS, critiqued RADAR's readability, and added two backl
+- **[STALE]** cross-machine SSH access skill — first 2026-03-03, last 2026-03-03, seen 1× (skills-tooling)
+  - latest: David named the new personal-organization skill RADAR (rejecting 'morning brief' and 'daily ops' while keeping 'what's my morning brief' as an invocation, with today.md plus summary output), then hit 
+- **[STALE]** todo brain overview format — first 2026-03-03, last 2026-03-03, seen 1× (skills-tooling)
+  - latest: David designed what focusing the todo/inbox brain should show — a nicely formatted concept overview with a primary view of core items and a secondary list beyond eight — noting that defining what belo
+- **[STALE]** DTV border run — first 2026-03-04, last 2026-03-04, seen 1× (travel-visa)
+  - latest: David confirms with a friend that Chong Chom is the open crossing for his first DTV border run and decides to pay ~2,000-2,500 baht for a guided border-run service that handles transport and paperwork
+- **[STALE]** AppyStack API recipe completion — first 2026-03-04, last 2026-03-04, seen 1× (brains-knowledge)
+  - latest: Directing an agent to harvest Ecamm Live training-course material and video transcripts into the Ecamm brain (upstream transcripts filed under Take One Tech), create a new 'code plus c2' scene, and dr
+- **[STALE]** StreamDeck scene mapping — first 2026-03-04, last 2026-03-04, seen 1× (content-production)
+  - latest: Micro-capture deciding where to file a screenshot of the StreamDeck layout mapping buttons to Ecamm Live scenes and asking for a written scene-switching guide.
+- **[STALE]** OMI transcript ingestion recipe — first 2026-03-04, last 2026-03-04, seen 1× (captains-log)
+  - latest: David asks how OMI device transcripts should be processed and the answer proposed is a new recipe in the API generation system.
+- **[STALE]** Ecamm StreamDeck scene mapping documentation — first 2026-03-04, last 2026-03-04, seen 1× (content-production)
+  - latest: David plans to send a StreamDeck layout screenshot and asks which brain should hold the Ecamm Live button-to-scene mapping documentation so scene switching becomes queryable.
+- **[STALE]** Ecamm API endpoint recipe completeness — first 2026-03-04, last 2026-03-04, seen 1× (content-production)
+  - latest: David directs a session to harvest Ecamm Live training transcripts (Take One Tech) into the ecamm brain, create a new scene code-plus-c2, and push the Ecamm API endpoint recipe to 100% completeness in
+- **[STALE]** lab video samples review — first 2026-03-04, last 2026-03-04, seen 1× (content-production)
+  - latest: David and a colleague agree to prepare two sample videos for a lab project and walk through all of it together tomorrow, with an Ecamm Live reload needing a re-check.
+- **[STALE]** supportsignal-cloud-migration-risk — first 2026-03-04, last 2026-03-04, seen 1× (client-supportsignal)
+  - latest: Directors meeting (David, Angela, Ronnie): David demos the local JSON-backed Signal Studio prototype with git push/pull sync and publish button, Angela drives a 40-field hierarchical participant model
+- **[STALE]** OMI ingestion pipeline verification — first 2026-03-04, last 2026-03-04, seen 1× (captains-log)
+  - latest: David directs a background agent to verify Omi app browser login first, run GET-only research on the Krisp SDK and Ecamm HTTP API, retrieve the 6:56am 'David plans daily systems' capture, and deliver 
+- **[STALE]** agentic OS architecture build-out — first 2026-03-04, last 2026-03-04, seen 1× (ai-research)
+  - latest: David lands an SEO/growth-hacker client paying $5k USD/month for 3 months to fund his Claude Code and agentic-OS research, articulates the personal-agent vertical stack (second brain, memories, chat, 
+- **[STALE]** YouTube account connection setup — first 2026-03-04, last 2026-03-04, seen 1× (content-production)
+  - latest: David is blocked connecting his YouTube accounts (appydave vs clauding-lab naming mess from the original setup) to Restream/Upstream and the Omi app because expected OAuth/login windows never appear, 
+- **[STALE]** FliHub MC integration review — first 2026-03-04, last 2026-03-04, seen 1× (content-production)
+  - latest: David asks for a review of FliHub personalization and vocabulary settings and a look into the MC integration.
+- **[STALE]** Krisp feature exploration — first 2026-03-04, last 2026-03-04, seen 1× (ai-research)
+  - latest: David asks whether his agent can drive the Krisp desktop app for feature exploration, whether meeting capture should always be on under his current plan, and how Krisp should relate to his OMI speech-
+- **[STALE]** Ecamm/Stream Deck automation documentation — first 2026-03-04, last 2026-03-04, seen 1× (content-production)
+  - latest: David wants all Ecamm Live automation and Stream Deck setup knowledge documented in one central place — ideally the DeckHand apps folder where partial docs may already exist — while troubleshooting a 
+- **[STALE]** DeckHand-Ecamm automation — first 2026-03-05, last 2026-03-05, seen 1× (content-production)
+  - latest: David plans DeckHand-to-Ecamm integration (push buttons, read config, expose an API so skills can drive Ecamm directly), lists video concepts including a FliHub/Ecamm-competition video and 'YouTube Sh
+- **[STALE]** Lars Ansible provisioning session — first 2026-03-05, last 2026-03-05, seen 1× (client-lars)
+  - latest: David records an Ansible provisioning walkthrough for Lars — clone the repo, let Claude Code read the README, then audit / dry-run / provision using a client template like MJ — and drafts an email wit
+- **[STALE]** SupportSignal v2 planning attack vector — first 2026-03-05, last 2026-03-05, seen 1× (client-supportsignal)
+  - latest: David critiques team AI-workflow videos (mobile sizing, contrast, missing Skool CTA, ffmpeg --version fix, build Kai/FAL start-frame-end-frame skills before scroll animations) then directs a SupportSi
+- **[STALE]** weekly brain health cadence — first 2026-03-05, last 2026-03-05, seen 1× (brains-knowledge)
+  - latest: Noting brain health hadn't run in a week, David proposed running the 14-step health check across every brain changed in the last week via background agents, and asked what idempotent means in the cont
+- **[STALE]** Lars micro-app Loom series — first 2026-03-05, last 2026-03-05, seen 1× (client-lars)
+  - latest: Recorded a Loom for Lars showing a fast-built AppyStack micro app that clients extend purely by prompting, introduced the Mochaccino mockup skill, and fought Ecamm-as-camera-in-Loom (flipped-camera se
+- **[STALE]** Mochaccino mockup skill — first 2026-03-05, last 2026-03-05, seen 1× (client-supportsignal)
+  - latest: Pair session coaching Angela to capture full terminal context (command + output + error) for Claude debugging and to kill dev servers properly, reviewed the newly built Signal Studio features (CSV imp
+- **[STALE]** C20 audio sync fix — first 2026-03-05, last 2026-03-05, seen 1× (content-production)
+  - latest: Quick Ecamm check-in: recorded audio lags the video by a few frames, asked how to shift it and how to test the fix quickly, plus a commit-and-push request.
+- **[STALE]** Angela requirements build verification — first 2026-03-05, last 2026-03-05, seen 1× (client-supportsignal)
+  - latest: Demoed the Ralph Wiggum loop on AppyStack turning Angela's plain-language requirements into a self-tested Signal Studio build (ABN validation, head-office fields, tier-based field visibility, CSV impo
+- **[STALE]** FliHub integration changes — first 2026-03-05, last 2026-03-05, seen 1× (content-production)
+  - latest: One-line query whether FliHub needs changes to get an unnamed feature or integration working; no context or resolution.
+- **[STALE]** Ansible M4 Mini SSH-localhost fix — first 2026-03-05, last 2026-03-05, seen 1× (skills-tooling)
+  - latest: David demos Signal Studio (companies/users/sites/participants CRUD for group-home care) scaffolded in ~1 hour via AppyStack nav-shell and file-CRUD recipes as part of his agentic OS story, then blasts
+- **[STALE]** immigration agent 4300-baht service — first 2026-03-05, last 2026-03-05, seen 1× (travel-visa)
+  - latest: David asks Joy to call the immigration agent to clarify exactly what the 4,300-baht service covers (business name, phone, website) and to book an appointment for the 18th before work; he taught 1 hour
+- **[STALE]** AppyStack recipes documentation gap — first 2026-03-05, last 2026-03-05, seen 1× (skills-tooling)
+  - latest: David flags that AppyStack recipes' invocation is unclear — they live inside a skill that must sit in the template location, but the README names 'recipe' without ever explaining how to use or invoke 
+- **[STALE]** MLX Whisper install on M4 Mini — first 2026-03-05, last 2026-03-05, seen 1× (fleet-infra)
+  - latest: While rehearsing the AppyDave 'app in an hour via AppyStack + client feature-list loop' video hook, David directs a local Whisper transcription setup: pick the better of MLX Whisper vs whisper.cpp, ch
+- **[STALE]** application list rework — first 2026-03-05, last 2026-03-05, seen 1× (skills-tooling)
+  - latest: David asks for the application list re-presented in a clearer format and for the plan on the app-list rework, recalling earlier instructions to build a better version that covers additional apps he ha
+- **[STALE]** Ecamm mini window profile setup — first 2026-03-05, last 2026-03-05, seen 1× (content-production)
+  - latest: David has the Ecamm recordings directory checked and cleared, and tries to reconstruct his forgotten two-profile mini-window setup that once let him switch between mini-window variants.
+- **[STALE]** DeckHand Ecamm API layer — first 2026-03-05, last 2026-03-05, seen 1× (content-production)
+  - latest: David plans DeckHand as a web app that both pushes buttons in and reads configuration from Ecamm Live, exposing an API so other skills can drive Ecamm directly, alongside a StreamDeck pedal setup (lef
+- **[STALE]** brain health check-in — first 2026-03-06, last 2026-03-06, seen 1× (brains-knowledge)
+  - latest: David decides the brain-health check-in across ~50 brains is not worth the energy this session — optionally note it in agentic-os, close the compensation note, and commit/push instead.
+- **[STALE]** verify shipped changes — first 2026-03-06, last 2026-03-06, seen 1× (skills-tooling)
+  - latest: David pushes back on storing info in agent memory when updateable usage docs already exist (YMW/YAML files), reports open-folder-in-Finder and copy-folder-to-clipboard both failing, and demands a list
+- **[STALE]** port 5200 app startup — first 2026-03-06, last 2026-03-06, seen 1× (misc)
+  - latest: Frustrated that the port-5200 application kept erroring on startup, demanded the exact run command and folder and told the agent to verify it works itself before claiming it does.
+- **[STALE]** screenshot hotkey binding — first 2026-03-06, last 2026-03-06, seen 1× (skills-tooling)
+  - latest: Attempt to bind a screenshot script to Command+Shift+4 kept failing with 'could not create image' errors and an opaque shell-script setup; still unresolved at session end.
+- **[STALE]** multi-agent orchestration setup — first 2026-03-06, last 2026-03-06, seen 1× (new:awb-development)
+  - latest: Asked which of the three available repositories should host the multi-agent orchestration work, their exact names, the UAT steps to test it, and the commands to get the system running.
+- **[STALE]** Kybernesis extensions vs recipes model — first 2026-03-06, last 2026-03-06, seen 1× (kybernesis-venture)
+  - latest: David pitched Ian the recipe model — publish prompt-based requirements 'recipes' (with back-propagated improvements from real builds) instead of open-source code so builders generate API-compatible co
+- **[STALE]** Claude Code skills reverse-engineering video — first 2026-03-06, last 2026-03-06, seen 1× (content-production)
+  - latest: Closed out the Motus session with a clean commit/push and planned a sub-8-minute video telling the story of reverse-engineering Claude Code skills (HTTP endpoints plus PLIST files), delegating a ~20-s
+- **[STALE]** MOTUS vs Paperclip comparison — first 2026-03-06, last 2026-03-06, seen 1× (ai-research)
+  - latest: David plans to download Ian's MOTUS agent org-chart system, message Ian on WhatsApp to confirm it is still current, and compare its structure to Paperclip AI.
+- **[STALE]** US dollar task reminder — first 2026-03-06, last 2026-03-06, seen 1× (personal-life)
+  - latest: David asks to be reminded a few days in advance about an unspecified important US-dollar task in case he forgets.
+- **[STALE]** Agentic OS gap analysis vs external agent systems — first 2026-03-06, last 2026-03-06, seen 1× (ai-research)
+  - latest: David dictates a background-agent research backlog: TDAC/Laos border-run requirements routed into DTV and todo, plus gap analyses of Paperclip AI paperkit, KyberBot's true architecture, and Tom's Valo
+- **[STALE]** team shift to agent-first working — first 2026-03-06, last 2026-03-06, seen 1× (team-ops)
+  - latest: David teaches Jan the agent-first North Star — human-on-the-loop with observability where agents do the work — insisting Jan and Mary stop manual tasks and always delegate to agents first, and clarify
+- **[STALE]** country acceptance deadline (Jan 24) — first 2026-03-06, last 2026-03-06, seen 1× (travel-visa)
+  - latest: David flags a January 24 deadline to accept a country-related decision and asks that an imminent booking be reviewed for errors before he pays.
+- **[STALE]** Voz studio agents buildout — first 2026-03-06, last 2026-03-06, seen 1× (client-voz)
+  - latest: Loom session capturing 40-year film prop-master Kip's studio domain knowledge for future AI studio agents, then setting Sunday deliverables (Byron brand-strategist project layer, overview.md of prospe
+- **[STALE]** ralphy descriptive mode naming — first 2026-03-07, last 2026-03-07, seen 1× (skills-tooling)
+  - latest: David objects to the Ralph/ralphy skill speaking in abstract Mode 1/2/3 labels and wants descriptive workflow names (requirements, plan, build, extend) understandable to people unfamiliar with the sys
+- **[STALE]** four-video content batch — first 2026-03-07, last 2026-03-07, seen 1× (content-production)
+  - latest: David asks for a top-level JSON manifest with similarity metric + perfect/has-issues status over the ~400-image visual-diff run, commits to recording four short videos (iframe-vs-web-component diff, i
+- **[STALE]** home studio lighting fix — first 2026-03-07, last 2026-03-07, seen 1× (personal-life)
+  - latest: David, blocked from earning by yellow insufficient home lighting (camera settings confirmed fine), delegates the fix to Joy over the next few days — review existing lights and source bright white floo
+- **[STALE]** Dynamous livestream harvest — first 2026-03-08, last 2026-03-08, seen 1× (brains-knowledge)
+  - latest: David directs the assistant to re-examine the Dynamous community for non-YouTube livestreams with transcription value, correcting its assumption that only downloadable YouTube videos matter.
+- **[STALE]** Lars second-brain setup — first 2026-03-08, last 2026-03-08, seen 1× (client-lars)
+  - latest: David walks Lars through a full Ansible + Claude Code setup on FliDeck Core (Homebrew, gh/SSH, inventory, iterative playbook fixes for Zoom/Ngrok/macOS defaults, version managers, iTerm2), validating 
+- **[STALE]** second-brain cleanup and closure — first 2026-03-08, last 2026-03-08, seen 1× (brains-knowledge)
+  - latest: David runs a closure review across second-brain projects (own brain, cowork brain, Cole Medin/Dynamous system), asking where the original Dynamous repo lives, whether AWB polished config/UI research c
+- **[STALE]** chat-field-targeting — first 2026-03-09, last 2026-03-09, seen 1× (new:awb-ylo)
+  - latest: Chat mode failed to update the original transcript because no target field was designated — David concludes chat needs an explicit 'AI improve this field' mode where responses are routed into an activ
+- **[STALE]** ylo-payload-error — first 2026-03-09, last 2026-03-09, seen 1× (new:awb-ylo)
+  - latest: David hits a payload error sending data to the YouTube Launch Optimizer on AWB and asks for a diagnosis.
+- **[STALE]** UAT + Playwright acceptance testing — first 2026-03-09, last 2026-03-09, seen 1× (client-supportsignal)
+  - latest: David chases a recurring git sync error caused by lingering .gitignore/data additions and directs the agent to run the Playwright e2e suite, investigate issue B72, and fix the ad site label.
+- **[STALE]** WAM layout engine research — first 2026-03-09, last 2026-03-09, seen 1× (new:awb-development)
+  - latest: David commissions background research into off-the-shelf JS layout-engine libraries so AWB's WAM (Workflow Object Model: YAML + schema + HBS) can grow beyond vertical field flows into CSS-like grid/fl
+- **[STALE]** Joy Juice menu simplification — first 2026-03-09, last 2026-03-09, seen 1× (personal-life)
+  - latest: On-site working session at Joy's juice/nail shop: simplify ~40 confusing menu items to ~8 color-coded base fruits with Thai-style vs foreigner-style variants at two price points, run daily 5pm free sh
+- **[STALE]** AWB workflow UX polish — first 2026-03-09, last 2026-03-09, seen 1× (new:awb-development)
+  - latest: UAT pass on the AWB transcript-abridgment step: no save button or visual indicator of which output field a chat-with-output edit targets, the 'pending chapters' field is opaque, and the long-transcrip
+- **[STALE]** FliHub-to-AWB transcript payload bug — first 2026-03-09, last 2026-03-09, seen 1× (new:awb-development)
+  - latest: David finds the FliHub publish-to-AWB payload bug — it sends a single '01-1Intro.srt' instead of all transcripts concatenated — asks all 'poemvoid' labels be renamed to AWB, and separately asks Claude
+- **[STALE]** wave 12 incident data model — first 2026-03-09, last 2026-03-09, seen 1× (client-supportsignal)
+  - latest: Marathon UAT walkthrough of the AWB workflow (brand config through titles) plus wave planning: refactor UAT into a complete human-runnable walkthrough backing a Playwright-MCP acceptance suite with e2
+- **[STALE]** YLO requirements capture loop — first 2026-03-09, last 2026-03-09, seen 1× (new:awb-development)
+  - latest: David asks whether this conversation is the right place to log change requests against the YouTube Launch Optimizer YAML so they naturally roll up into a requirements document feeding a Ralph Wiggum l
+- **[STALE]** Signal Studio epic ordering — first 2026-03-09, last 2026-03-09, seen 1× (client-supportsignal)
+  - latest: David reframes Signal Studio as a data reflection engine (JSON entities pushed one-way into the main app via the publish bar, Git sync sharing between himself, Ronnie and Angela), decides the DB schem
+- **[STALE]** Claude API build-order research — first 2026-03-09, last 2026-03-09, seen 1× (ai-research)
+  - latest: David asks for research beyond official docs into two new Claude APIs (standard API and /loop, a Ralph-Wiggum-style loop) and for a simple BMAD epics/stories build order distinguishing all-at-once sch
+- **[STALE]** Signal Studio next documentation phase — first 2026-03-09, last 2026-03-09, seen 1× (client-supportsignal)
+  - latest: David briefs the agent that five days of massive Signal Studio changes (schema updates, first-draft UAT docs, unratified incident YAML + .display.yaml) need deep-dive research — including recent AWB c
+- **[STALE]** team Mac mini procurement — first 2026-03-09, last 2026-03-09, seen 1× (team-ops)
+  - latest: Team call locks in hardware for Jan and Mary — two Mac mini M4s (16GB/512GB) + Magic Keyboards from Power Mac Center (SM North pickup) and LG 27" 4K 27US500-W monitors from LG's official store, paid v
+- **[STALE]** Philippines Mac mini procurement for Mary/Jan — first 2026-03-09, last 2026-03-09, seen 1× (team-ops)
+  - latest: David directs Mary to research buying a Mac mini M4, keyboard and two monitors in the Philippines (Australian card/Wise, Amazon vs authorized dealers, customs risk) and come to the next call fully pre
+- **[STALE]** AppyStack existing-folder install + ElevenLabs recipe — first 2026-03-09, last 2026-03-09, seen 1× (skills-tooling)
+  - latest: David plans an AppyStack installer refactor to support installing into existing folders and a dedicated ElevenLabs voice-integration recipe (learned from Samantha bot's socket-vs-tRPC confusion), plus
+- **[STALE]** Higgsfield Impact affiliate approval pending — first 2026-03-09, last 2026-03-09, seen 1× (brand-strategy)
+  - latest: David takes over Mary's stalled Higgsfield affiliate signup on the Impact platform (wrong account types, credential confusion), submits the application under an AITLDR username so approval is now pend
+- **[STALE]** Ecamm Live official API wishlist — first 2026-03-09, last 2026-03-09, seen 1× (content-production)
+  - latest: David records the agentic-OS video segment documenting his Ecamm Live skill internals: port changes every startup forcing signature-validated port scans, plist-to-XML diffing to reverse-engineer scene
+- **[STALE]** Ecamm Live scene flicker and latency bugs — first 2026-03-09, last 2026-03-09, seen 1× (content-production)
+  - latest: Video segment on discovering Ecamm Live's hidden API: port scanning plus traffic sniffing, the Bitfocus GitHub project as the endpoint reference, defensive response-validation after crashing on a Home
+- **[STALE]** Ecamm skill port caching — first 2026-03-09, last 2026-03-09, seen 1× (content-production)
+  - latest: Live demo recording of the eCamm skill listing 12 configured scenes and switching them by natural-language command through a Python bridge into Claude Code, with the known limitation that the first co
+- **[STALE]** upcoming videos and paid apps master list missing — first 2026-03-09, last 2026-03-09, seen 1× (captains-log)
+  - latest: Morning OMI inbox review: David asks the agent to read and route the morning's OMI captures to the right areas, flags that message timezones look wrong from Bangkok, notes there's still no good runnin
+- **[STALE]** fiber bot after Samantha bot — first 2026-03-09, last 2026-03-09, seen 1× (skills-tooling)
+  - latest: One-line sequencing note: after finishing the Samantha bot, the fiber bot is the next priority to review.
+- **[STALE]** YouTube launch app shipping — first 2026-03-09, last 2026-03-09, seen 1× (content-production)
+  - latest: Morning content plan: record a skills video then a Stream Deck/DeckHand video, next likely a second-brains(+OMI) video which requires sorting his own second brain for the agents-in-the-wild system, bu
+- **[STALE]** SS environment state handling — first 2026-03-10, last 2026-03-10, seen 1× (client-supportsignal)
+  - latest: SS admin refinement: the company-admin concept missed the participants entity (visible in Sunrise Care Group, new backlog item required), a local non-git JSON memory file should persist UAT/integratio
+- **[STALE]** backlog hygiene and documentation — first 2026-03-10, last 2026-03-10, seen 1× (content-production)
+  - latest: David ordered a cleanup pass on the fast-moving triage/backlog board he shares with Angela — delete low-value items rather than hoard — plus written backlog best-practice documentation adhered to on b
+- **[STALE]** Stream Deck SDK vs HTTP endpoints — first 2026-03-10, last 2026-03-10, seen 1× (content-production)
+  - latest: Question barrage on Stream Deck architecture — why Ian's app needs the SDK instead of plain HTTP-endpoint buttons, profile vs page vs plugin terminology, whether plugin isolation is a security/identit
+- **[STALE]** FliHub-AWB JSON handoff — first 2026-03-10, last 2026-03-10, seen 1× (content-production)
+  - latest: FliHub should expose the AWB JSON output — visible file name with hover full path, open-folder link, and click-to-open Agent Workflow Builder preloaded — pending a check of AWB's load-from-AWB.json ca
+- **[STALE]** transcript abridgment UX issues — first 2026-03-10, last 2026-03-10, seen 1× (content-production)
+  - latest: Transcript abridgment UX bugs — no save button when editing, a dead regenerate button, and a stuck spinner needing back-and-forth navigation — plus requests to show input/output schema in a modal side
+- **[STALE]** front-end designer review pass — first 2026-03-10, last 2026-03-10, seen 1× (content-production)
+  - latest: Inputs/outputs screen approved as done, with one ask: pull in the front-end designer for a design-quality opinion (no code changes) on whether it can be improved further.
+- **[STALE]** FliHub gap analysis scratchpad — first 2026-03-10, last 2026-03-10, seen 1× (content-production)
+  - latest: Full FliHub codebase and documentation review requested — no code changes, just consolidate outstanding tasks, challenges, issues, and a gap analysis into a central scratch-pad document — with concern
+- **[STALE]** joy-juice-menu-infographics — first 2026-03-10, last 2026-03-10, seen 1× (content-production)
+  - latest: David briefs the team on a NanoBanana infographic menu series for Joy Juice — one menu per base fruit (mango first), juice-vs-smoothie or foreigner-vs-Thai variants with different prices/ingredients, 
+- **[STALE]** supabase-shared-memory-bus — first 2026-03-10, last 2026-03-10, seen 1× (fleet-infra)
+  - latest: David floats a Supabase-style cloud database acting not just as a memory bus for agents but as shared memory for everything, with each entity concept (e.g. task) getting its own table.
+- **[STALE]** paperclip-fork-collaboration — first 2026-03-10, last 2026-03-10, seen 1× (kybernesis-venture)
+  - latest: Long chat with Ian about his Paperclip fork (CEO agent Samantha, self-generated tasks, remote OpenAI/Carbon adapters, five agents including three KyberBots all routed through an orchestrator — no peer
+- **[STALE]** Ecamm crop panning limitation — first 2026-03-11, last 2026-03-11, seen 1× (content-production)
+  - latest: David reverse-engineered Ecamm Live's undocumented server and plist files for scene IDs and crop values but hit hard limits — no programmatic crop panning (scene file only saves on app close) and the 
+- **[STALE]** AWB workflow resume bug — first 2026-03-11, last 2026-03-11, seen 1× (new:awb-workflow-builder)
+  - latest: David walks the AWB/FliHub integration and finds workflow resume lands on the wrong step (step four resumes at three), the DX/UX visual-highlighter toggle regressed into hiding the developer panel, an
+- **[STALE]** Signal Studio port conflict — first 2026-03-11, last 2026-03-11, seen 1× (new:awb-workflow-builder)
+  - latest: David reviews the AWB resume/new-record changes architecturally (resume sends data into the existing tab but also opens an unwanted new tab), orders commit+push and process cleanup, and reopens the re
+- **[STALE]** DeckHand drag-and-drop broken — first 2026-03-11, last 2026-03-11, seen 1× (new:deckhand-app)
+  - latest: David debugs the deck builder: dragging an Ecamm Live button onto the deck fails, clear-with-confirm doesn't remove items and there's no delete, he demands a headed-Chrome Playwright verification rath
+- **[STALE]** Mochaccino generalization into AppyStack — first 2026-03-11, last 2026-03-11, seen 1× (skills-tooling)
+  - latest: Housekeeping across repos and skills: David checks what a skill update overwrote, probes how operations.md wires into the provenance system, sets tone guidance for Joy Juice examples (balanced educati
+- **[STALE]** jump-system skill rewrite — first 2026-03-11, last 2026-03-11, seen 1× (client-lars)
+  - latest: Long tutoring session where David bootstraps Lars with two labs — a jq-based public jump-system repo (with JList, generator-sourcing bug fixed) and an appydave-brain starter repo (three brains plus th
+- **[STALE]** AppyStack Zod recipe — first 2026-03-11, last 2026-03-11, seen 1× (new:appystack-dev)
+  - latest: AppyStack planning: David flags the magenta/purple primary background as a contrast failure, spawns a background task to check AppyStack recipes for a Zod schema and write one linked to the file-CRUD 
+- **[STALE]** Mochaccino schema-constrained UX — first 2026-03-11, last 2026-03-11, seen 1× (client-supportsignal)
+  - latest: David aligns Angela on schema-first UX for SupportSignal: Mochaccino must default to working within the database schema and emit gap analyses (not invent structures) when a desired UI doesn't fit; the
+- **[STALE]** Signal Studio ↔ AppyStack gap analysis — first 2026-03-11, last 2026-03-11, seen 1× (client-supportsignal)
+  - latest: Signal Studio (built off an older AppyStack) needs a gap analysis to absorb new AppyStack capabilities without breaking the app; Mochaccino should prototype alternate UX on cloned/reshaped data becaus
+- **[STALE]** BMAD learnings public repo — first 2026-03-11, last 2026-03-11, seen 1× (client-supportsignal)
+  - latest: SupportSignal BMAD v6 kickoff housekeeping: BMAD learnings go to a new public-ish GitHub repo (with a two-way Brian liaison doc where their agents talk to each other, Jan getting edit access for graph
+- **[STALE]** SupportSignal guardrails alignment — first 2026-03-11, last 2026-03-11, seen 1× (client-supportsignal)
+  - latest: Strategy call with Rodi: build order is schema+auth first then incidents/moments for field use (back-office management screens later), the MVP is a reference implementation AI rebuilds the real app fr
+- **[STALE]** loop-based ingestion automation — first 2026-03-11, last 2026-03-11, seen 1× (captains-log)
+  - latest: Idea for a /loop command distinct from cron jobs — short in-session loops (20 min in 5-min increments, e.g. push-then-watch-CI) and standing ingestion loops in the brain that continuously process inco
+- **[STALE]** AWB schema-template discrepancy audit — first 2026-03-12, last 2026-03-12, seen 1× (content-production)
+  - latest: David commissions a full discrepancy report across AWB workflow schemas and HBS templates — interpolation points without schema entries, wrong-looking prompts/output formats, unused or missing inputs 
+- **[STALE]** AngelEye plugin skill creation — first 2026-03-12, last 2026-03-12, seen 1× (skills-tooling)
+  - latest: David asks which plugin area the AngelEye ('agent I') app in his apps directory belongs to and orders a skill created for it there.
+- **[STALE]** clotting-lab calendar skill — first 2026-03-12, last 2026-03-12, seen 1× (skills-tooling)
+  - latest: David scopes a 'clotting lab event' skill that drives Playwright MCP against his david@ideasmen.com.au calendar to scrape the March 12 event and document the steps so the recurring Thursday-night Clau
+- **[STALE]** vOz agent direction (new agent vs kid podcast) — first 2026-03-12, last 2026-03-12, seen 1× (client-voz)
+  - latest: Evening call with Mary and Jan settles tomorrow's plan: run the vOz meeting (capped ~2 hours so they can still pick up the computer, then take the day off), ask Foz at the start whether to build a new
+- **[STALE]** vOz session reschedule to Saturday — first 2026-03-12, last 2026-03-12, seen 1× (ai-meetups)
+  - latest: David runs the Clauding Lab live demo at 4C on a just-rebuilt Mac: builds an appydave.com replacement with Claude Code (brains context, focus skill, Ralphie requirements-plan-build loop), spins four m
+- **[STALE]** MacBook Pro resync after repair — first 2026-03-12, last 2026-03-12, seen 1× (fleet-infra)
+  - latest: Marathon session with two strands: AngelEye design lands on sessions arriving in an unsorted inbox then assigned (manually or auto-learned from folder/patterns) into named workspaces, multi-format ing
+- **[STALE]** early client feedback on participant onboarding — first 2026-03-12, last 2026-03-12, seen 1× (client-supportsignal)
+  - latest: Decision to get client feedback on participant onboarding early rather than waiting for polish — the flow is demoable this week/next with a rough interface, improved later, and which client sees what 
+- **[STALE]** Mochaccino workflow-level testing — first 2026-03-12, last 2026-03-12, seen 1× (client-supportsignal)
+  - latest: David explains the MVP's primary purpose is defining and validating the data schema (80-85% of its code carries to production) while doubling as a CLI remote-control for the main app; the Lego escape-
+- **[STALE]** Dizzler configuration setup — first 2026-03-12, last 2026-03-12, seen 1× (skills-tooling)
+  - latest: Idea to extend the toolchain skill so it can run automation itself (Ansible playbooks, root -v) with built-in daily/weekly caching instead of refreshing every use; David doubts Claude replay adds valu
+- **[STALE]** centralized machine config location — first 2026-03-12, last 2026-03-12, seen 1× (fleet-infra)
+  - latest: David questions why every tool (RayPlay VCR, appydave machine hostname) invents a new configuration file location — new Claude installs see no data until reconfigured — and asks what past projects did
+- **[STALE]** UAT coverage design — first 2026-03-12, last 2026-03-12, seen 1× (client-supportsignal)
+  - latest: Debating whether the UAT list should be entity-centric, workflow-centric, or hybrid so Playwright MCP runs can execute overnight without burning tokens or wrecking the database; clarified 'Angela feed
+- **[STALE]** Philippines Mac Ansible setup — first 2026-03-13, last 2026-03-13, seen 1× (team-ops)
+  - latest: Friday-night call with the Philippines team: the Mac purchase (iMac, keyboards, 27-inch Samsung S7 monitor) came in under budget with ~9,000 pesos spare (buy Mary a mouse), setup will start Ansible-fi
+- **[STALE]** multi-machine second-brain sync — first 2026-03-13, last 2026-03-13, seen 1× (ai-meetups)
+  - latest: David put his multi-machine problem to the meetup — keeping skills and a 1,500-note second brain identical across three Macs without fragile git commit/pull pulses — surveying Tailscale ad-hoc copies,
+- **[STALE]** unified cross-project telemetry & reflection — first 2026-03-13, last 2026-03-13, seen 1× (dark-factory)
+  - latest: David articulated the missing product shape: a Kanban board where every task carries a multi-agent hierarchy (orchestrator plus downstream pen-test/unit/E2E/UAT/docs agents), long-running work with hu
+- **[STALE]** Automator integration into agentic OS — first 2026-03-13, last 2026-03-13, seen 1× (ai-meetups)
+  - latest: David laid out his build philosophy at the meetup: AppyStack (Express+React+Socket.io) with 'recipes' prompts that regenerate desktop-like harnesses on demand, every app agentic-first via Swagger APIs
+- **[STALE]** Joy shop menu design — first 2026-03-13, last 2026-03-13, seen 1× (personal-life)
+  - latest: Before the Agents in the Wild session David live-demoed his OMI pipeline (pendant transcripts pulled from the M4 Mini at home over Tailscale/SSH, structured as JSON and rendered to HTML for research) 
+- **[STALE]** incident screens UI polish — first 2026-03-13, last 2026-03-13, seen 1× (client-supportsignal)
+  - latest: David critiques the incident screens — demanding an observe-first pass instead of fix-as-you-go — and sets UI rules: drop company/reporter columns, shorten event time, statuses must read as labels not
+- **[STALE]** moments that matter misconfig — first 2026-03-13, last 2026-03-13, seen 1× (client-supportsignal)
+  - latest: David stops the agent from code-fixing the 'moments that matter' input bug — insisting the root cause is YAML/HBS configuration — questions the mysterious 11 output files, renames the POC to 'agent wo
+- **[STALE]** new Mac Ansible provisioning — first 2026-03-13, last 2026-03-13, seen 1× (team-ops)
+  - latest: Friday call with Jan and Mary: the new iMac + 27-inch Samsung S7 + keyboards came in under budget (~9,000 pesos left, mouse for Mary), setup will start Ansible-first with everything screencast, Mary w
+- **[STALE]** automator applescript integration — first 2026-03-13, last 2026-03-13, seen 1× (ai-meetups)
+  - latest: At the meetup David lays out his whole stack — agentic OS (vertical + horizontal), AppyStack (Express+React+Socket.IO) with prompt 'recipes', the deterministic-app vs non-deterministic-agent duality (
+- **[STALE]** multi-mac skills and brain sync — first 2026-03-13, last 2026-03-13, seen 1× (ai-meetups)
+  - latest: David frames his multi-Mac sync problem — Git-based skill/brain sync is fragile, he wants a continuous peer-to-peer Dropbox-style system to keep three Macs on the same 1,500-note second brain (Tailsca
+- **[STALE]** kanban telemetry orchestration vision — first 2026-03-13, last 2026-03-13, seen 1× (dark-factory)
+  - latest: David articulates the missing product shape: a Kanban control plane with multi-agent hierarchies under every task (downstream pen-test/unit/E2E/UAT/doc agents), long-running work with human-in-the-loo
+- **[STALE]** Joy Juice menu build — first 2026-03-13, last 2026-03-13, seen 1× (new:joy-juice)
+  - latest: Long working session at Joy's shop defining the Joy Juice menu architecture — 6-8 base fruits, four drink categories (traditional Thai smoothies, Western/farang smoothies, signature blends, functional
+- **[STALE]** unified app startup launcher — first 2026-03-13, last 2026-03-13, seen 1× (skills-tooling)
+  - latest: David requests a researched plan for a unified app-startup capability — one skill/command that launches his everyday apps (FliHub, FliDeck, DeckHand, ThumbRack, more coming) with port-conflict handlin
+- **[STALE]** loop command observability — first 2026-03-13, last 2026-03-13, seen 1× (skills-tooling)
+  - latest: The loop that should be running at three-minute intervals is producing no useful feedback, so it gets restarted, and David asks for the two applications to be started directly rather than via Playwrig
+- **[STALE]** smarter loop command design — first 2026-03-13, last 2026-03-13, seen 1× (skills-tooling)
+  - latest: David asks how to design his /loop command so he can keep an eye on a recurring run without it doing stupid things like emitting the same message every iteration.
+- **[STALE]** W01 workflow rerun decision — first 2026-03-13, last 2026-03-13, seen 1× (agent-verification)
+  - latest: After an overnight agent run left 20+ undocumented W01 test iterations with no decision-ready feedback, David defines a new pattern: document the improved workflow, fix the bug in parallel, then decid
+- **[STALE]** Byron role expansion — first 2026-03-13, last 2026-03-13, seen 1× (client-voz)
+  - latest: Team call promotes AI agent Byron from brand strategist to on-ground studio consultant (trending toward executive producer) for Voss's movie studio — via two Loom prompts covering folder-structure res
+- **[STALE]** cross-machine remote control — first 2026-03-14, last 2026-03-14, seen 1× (fleet-infra)
+  - latest: Out of the Friday-night meeting on synchronization, David logged a to-do to enable and test remote control of his other computers on the network; the rest was ambient family/language chatter.
+- **[STALE]** agent supply-chain security mitigations — first 2026-03-14, last 2026-03-14, seen 1× (ai-meetups)
+  - latest: At the Saturday AI engineers meetup David and peers dug into Claude Code's new remote-control server, Opus 4.6's 1M-token context, Chrome 146's native MCP exposure of live browsing sessions, and agent
+- **[STALE]** app startup inventory — first 2026-03-14, last 2026-03-14, seen 1× (content-production)
+  - latest: Session-close directive to an agent: fix the thumbnail test to use an array/table, generate chapter JSON with any improvements, persist the discussion outputs as documented actions, commit/push everyt
+- **[STALE]** playwright visible verification — first 2026-03-16, last 2026-03-16, seen 1× (client-supportsignal)
+  - latest: Confused by a session mixing AngelEye and SupportSignal work, David asks Claude to run a visible background verification — start the web server and check it via Playwright MCP — instead of manual test
+- **[STALE]** mary machine setup — first 2026-03-16, last 2026-03-16, seen 1× (fleet-infra)
+  - latest: Phone update to friend Daniel: two Mac Mini M4s + 27-inch monitors + keyboards bought (~$2.5k USD, Voz approved the extra $500), Jan's machine provisioned remotely today, Mary's next — building toward
+- **[STALE]** friday staff review — first 2026-03-16, last 2026-03-16, seen 1× (personal-life)
+  - latest: David and Joy coordinate a Friday review meeting with the two girls (shop staff) framed as hearing what they like and don't like; David to call back in ten minutes.
+- **[STALE]** syncthing relay setup — first 2026-03-16, last 2026-03-16, seen 1× (fleet-infra)
+  - latest: David and Jan install SyncThing via Ansible (policy set: team tools go through Ansible, never manual installs) and name a root-level 'relay' folder for peer-to-peer file sync between David/Jan/Mary ov
+- **[STALE]** ansible private inventory split — first 2026-03-16, last 2026-03-16, seen 1× (fleet-infra)
+  - latest: Full remote provisioning of Jan's Mac: Homebrew bootstrap solves the git chicken-and-egg, Tailscale joined via auth key, SSH enabled with David's GitHub public keys, then the Ansible playbook installs
+- **[STALE]** appystack downgrade fix — first 2026-03-16, last 2026-03-16, seen 1× (client-supportsignal)
+  - latest: An unintended downgrade exposed a broken upgrade script/API stack app — David orders the change undone with an absolute-path handover so AppyStack can be fixed (declaring AppyStack the canonical sourc
+- **[STALE]** BMAD v6 enterprise video series — first 2026-03-16, last 2026-03-16, seen 1× (content-production)
+  - latest: David recorded the intro for a new video series rebuilding an enterprise application from scratch with BMAD v6 — full lifecycle from requirements/PRD/architecture through epics, stories, development, 
+- **[STALE]** ralphy standard audit lenses — first 2026-03-16, last 2026-03-16, seen 1× (skills-tooling)
+  - latest: David questioned whether Ralphy's autonomous batch-campaign loop should routinely run code-quality, test-quality and architectural-review audits, and whether that standard should apply to every AppySt
+- **[STALE]** consultant skills ownership — first 2026-03-16, last 2026-03-16, seen 1× (skills-tooling)
+  - latest: Thread-close review: the three new consultant skills may be wrongly Codex-oriented (David meant a different consultant set and doesn't want external agents in the loop), the hide-junk/show-all toggle 
+- **[STALE]** AngelEye refactoring pass — first 2026-03-16, last 2026-03-16, seen 1× (skills-tooling)
+  - latest: Planned a 1:30 AngelEye-driven refactoring pass: 671 recorded sessions risk overloading the browser (pagination needed), dislikes should become small backlog feature requests rather than direct edits 
+- **[STALE]** AngelEye reliability — first 2026-03-16, last 2026-03-16, seen 1× (skills-tooling)
+  - latest: Two detrimental AngelEye failures diagnosed: the data directory came up empty after restart (650+ sessions gone, unclear if a backfill is needed) and every chat window's stop-hook dies when the app's 
+- **[STALE]** employee trial reviews — first 2026-03-16, last 2026-03-16, seen 1× (personal-life)
+  - latest: David and Joy planned a collaborative review (deliberately not framed as a performance review) for Joy's two employees at the 6-week mark of their 3-month trial — employees share dreams/concerns/task 
+- **[STALE]** vOz creative agent buildout — first 2026-03-16, last 2026-03-16, seen 1× (client-voz)
+  - latest: Working session with Jan and Vos: created the KDD (Knowledge Driven Development) skill with persona 'Kate' to capture end-of-session insights into Vos's docs-folder second brain, briefed a new storybo
+- **[STALE]** agentic OS data shape — first 2026-03-17, last 2026-03-17, seen 1× (fleet-infra)
+  - latest: David brainstorms the agentic OS data pipeline for tonight's test: consolidate a fact sheet + radar + brain inventory into a strong JSON shape, run a /loop status monitor every minute, then produce fo
+- **[STALE]** TM30 filing — first 2026-03-18, last 2026-03-18, seen 1× (travel-visa)
+  - latest: Before the border trip David notes two admin items: file the TM30 Thai immigration form after he returns, and Joanne needs to get a passport because not having one is causing problems.
+- **[STALE]** FliHub and juice menus — first 2026-03-18, last 2026-03-18, seen 1× (team-ops)
+  - latest: David assigns Jan two tasks for the next day while he travels by bus: FliHub menus and the fruit juice menus, with David also working the juice menus in transit.
+- **[STALE]** AngelEye coverage gap — first 2026-03-18, last 2026-03-18, seen 1× (ai-meetups)
+  - latest: Chiang Mai developer meetup where David demos OMI capture, AngelEye observability, cross-machine agent handoff, and brain-refresh agents; Martin flags that AngelEye captures prompts/tools but not Clau
+- **[STALE]** shared knowledge systems across machines — first 2026-03-20, last 2026-03-20, seen 1× (captains-log)
+  - latest: David flags that OMI conversations captured on one machine are missing on another (same recurring gap as app.json/locations.json shared-knowledge problem, parked for now) and sets a display standard: 
+- **[STALE]** appydave.com agentic-OS repositioning — first 2026-03-20, last 2026-03-20, seen 1× (brand-strategy)
+  - latest: David plans repositioning appydave.com around the agentic operating system: refresh brand identity docs, build a flexible content system that dynamically creates pages and turns every video across Cla
+- **[STALE]** appydave.com redesign — first 2026-03-20, last 2026-03-20, seen 1× (brand-strategy)
+  - latest: David scopes an appydave.com overhaul: apply AppyStack styling sitewide, decide Astro/Tailwind rebuild-from-scratch vs incremental upgrade, extract Dent-based branding from the second brain, consolida
+- **[STALE]** juice bar menu data system — first 2026-03-21, last 2026-03-21, seen 1× (personal-life)
+  - latest: David and Joy plan a juice bar menu system: bilingual (English/Thai) data structures and micro-app entry forms capturing ingredients, seasonality, cost, juice yield, stock, and recipes, to compute cos
+- **[STALE]** multi-model tagging experiment — first 2026-03-28, last 2026-03-28, seen 1× (ai-research)
+  - latest: Designed a multi-model brain-tagging experiment: local Qwen 7/14 and Mistral 24 via Ollama on the MacBook Pro, three free OpenRouter models plus one paid Mistral/Nemo per brain, benchmarked against th
+- **[STALE]** local LLM benchmarking across fleet — first 2026-03-28, last 2026-03-28, seen 1× (fleet-infra)
+  - latest: David configures multi-model local LLM hosting across his Macs (Ollama on M4 Pro exposed via Tailscale with OLLAMA_HOST=0.0.0.0, background service surviving reboot), pulls models (Phi-4, Gemma 3, Lla
+- **[STALE]** appydave-to-answerwell model alias rename — first 2026-03-28, last 2026-03-28, seen 1× (fleet-infra)
+  - latest: David asks whether the 'appydave' model alias should be renamed to 'answerwell' in the model playbook, wants support extended to the M4 Pro/Mini and M2, and a report of models blocked by OpenRouter is
+- **[STALE]** Lars value delivery roadmap — first 2026-03-28, last 2026-03-28, seen 1× (client-lars)
+  - latest: Facing Lars questioning his $5K/month spend after a first month with no tangible outcome, David sets a delivery roadmap: AngelEye wave-based agent workflow visualization built over the weekend, app au
+- **[STALE]** AngelEye wave visualization build — first 2026-03-28, last 2026-03-28, seen 1× (dark-factory)
+  - latest: David specifies the AngelEye 'wave' visualization for multi-agent BMAD story workflows (Bob/Amelia/Nate/Taylor/Lisa plus Sentinel, Advisor, Relay): horizontal agent wave with ghosted future steps and 
+- **[STALE]** v-appydave published-folder gap analysis — first 2026-03-30, last 2026-03-30, seen 1× (skills-tooling)
+  - latest: Confirmed skill-creator as the canonical scaffolding path (Python scripts live inside the skill, extraction schema moves into skill references, orchestrator-calls-skills noted as a possible future pat
+- **[STALE]** OMI extraction backfill — first 2026-03-30, last 2026-03-30, seen 1× (captains-log)
+  - latest: Decided the OMI extraction backfill runs as a single Python script writing markdown in place (no sidecar), possibly as an appydave-plugin skill orchestrating both omi-fetch and extraction, with brain 
+- **[STALE]** epic 5 schema alignment — first 2026-03-30, last 2026-03-30, seen 1× (client-supportsignal)
+  - latest: Flagged that renamed sessions now carry revisions (e.g. 5.1CS plus 5.1CS-revision), OMI scripts belong in a scripts directory in the GitHub repo, the production-noise extraction script runs independen
+- **[STALE]** BMAD outreach video — first 2026-03-30, last 2026-03-30, seen 1× (brand-strategy)
+  - latest: Monday plan: by noon send a BMAD discovery-session video invite (30-min Tue/Wed then a longer builder session Thu/Fri, framed around AngelEye and orchestrated workflows), apply for the Swanning model 
+- **[STALE]** angeleye workflow pattern detection — first 2026-03-31, last 2026-03-31, seen 1× (dark-factory)
+  - latest: David rejects running a whole company in agents (no control, too costly) and instead has Paperclip AI read only new AngelEye conversation data to detect structural workflow patterns — e.g. BMAD left-t
+- **[STALE]** background-check build errors — first 2026-03-31, last 2026-03-31, seen 1× (client-supportsignal)
+  - latest: Quick instruction to check the new build errors (background-check related) and see if they can be resolved easily.
+- **[STALE]** paperclip cross-machine access — first 2026-03-31, last 2026-03-31, seen 1× (fleet-infra)
+  - latest: David tries to reach the Paperclip dev server from his other machine via Tailscale (macbook-pro:3100) — it loads but demands a fresh login and returns 'invalid claim', leaving cross-machine Paperclip 
+- **[STALE]** token revocation exposure — first 2026-03-31, last 2026-03-31, seen 1× (client-supportsignal)
+  - latest: During workflow 5.4, David hands Signal Studio instructions for pushing/updating participant-data screens after SupportSignal changes, wants Lisa to keep the story/docs updated so questions aren't re-
+- **[STALE]** behind on client deliverables — first 2026-03-31, last 2026-03-31, seen 1× (misc)
+  - latest: David is juggling two clients — a prospective $5,000 engagement he just sent a presentation to, and a 77,000 THB/month client he's behind on deliverables for — while absorbing setup costs (new domain,
+- **[STALE]** Anthropic usage issue support case — first 2026-03-31, last 2026-03-31, seen 1× (fleet-infra)
+  - latest: A persistent usage/limits problem is hitting both of David's paid Claude accounts despite an annual Pro subscription, so he has the brain support document expanded with everything learned — including 
+- **[STALE]** NotebookLM presentation workflow — first 2026-03-31, last 2026-03-31, seen 1× (skills-tooling)
+  - latest: Planned a skill-based workflow that writes conversation data plus brain research into NotebookLM-consumable form, then generates a presentation via a prompt that follows the existing style guidelines.
+- **[STALE]** Lars onboarding presentation — first 2026-03-31, last 2026-03-31, seen 1× (client-lars)
+  - latest: Planned Lars's agentic-OS onboarding: gap analysis against David's stack, an ~8-slide presentation covering infrastructure (Syncthing, Dropbox, Tailscale, Ansible, second brain) plus the four core cap
+- **[STALE]** SupportSignal epic 5 stories — first 2026-03-31, last 2026-03-31, seen 1× (client-supportsignal)
+  - latest: Day goals: burn through SupportSignal epic-5 tickets on the secondary computer, set up a new Claude account for Paperclip, and prepare a short presentation for Lars on the upcoming work.
+- **[STALE]** Lars agentic onboarding — first 2026-04-01, last 2026-04-01, seen 1× (client-lars)
+  - latest: David walks Lars through the Dropbox external relay (relay/people/david-lars) with prompt-injected onboarding docs and installs the appydave-plugins on Lars's machine, closing the loop on two-way agen
+- **[STALE]** OMI scheduled daily processing — first 2026-04-01, last 2026-04-01, seen 1× (captains-log)
+  - latest: David decides OMI-fetch output should be processed daily on the Mac with off-the-shelf schedulers (Claude desktop scheduled tasks, claude -p, or the Agent SDK) rather than bespoke tooling, and asks fo
+- **[STALE]** next-steps slide deck — first 2026-04-01, last 2026-04-01, seen 1× (skills-tooling)
+  - latest: David directs commits/pushes, questions the stray .mochaccino folder sitting at the repo root, and wants the technologies-to-implement list (adding Hermes) ordered into a next-steps slide.
+- **[STALE]** relay skill gaps — first 2026-04-01, last 2026-04-01, seen 1× (fleet-infra)
+  - latest: Hands-on relay skill run surfaces concrete gaps — no open-Syncthing command, no folder path/ID listing, unsafe behavior when folders already exist, missing internal/public folder patterns — with two g
+- **[STALE]** BMAD agent auto-chaining without confirmation — first 2026-04-01, last 2026-04-01, seen 1× (agent-verification)
+  - latest: David audits an unintended automation: after Bob's BMAD validation run the agent auto-launched Amelia's development phase without human confirmation, so he demands verification of whether validation f
+- **[STALE]** unified relay model with external Dropbox relay — first 2026-04-01, last 2026-04-01, seen 1× (fleet-infra)
+  - latest: While wiring the upstream Hermes harness into the OMI brain config (clone with submodules), David designed a unified relay model that adds a Dropbox-based external relay for clients alongside the inte
+- **[STALE]** incident visibility for David — first 2026-04-01, last 2026-04-01, seen 1× (client-supportsignal)
+  - latest: SupportSignal verification flow is broken for David: verify has no copy button (push did), verify-left-to-right vs verify-all behave inconsistently, and incidents reportedly coming through are invisib
+- **[STALE]** Lars system implementation gaps — first 2026-04-01, last 2026-04-01, seen 1× (client-lars)
+  - latest: David audited unresolved gaps in Lars' system — unverified Tailscale/Ansible, no Dropbox knowledge-sharing pattern between agents, unfinished promised document, a push dashboard showing zero despite m
+- **[STALE]** Hermes install and evaluation — first 2026-04-01, last 2026-04-01, seen 1× (ai-research)
+  - latest: David committed to getting Hermes ('Herbie') running today via manual install — deep git clone already done but the submodules step was likely missed and needs completing.
+- **[STALE]** unified harness comparison — first 2026-04-01, last 2026-04-01, seen 1× (ai-research)
+  - latest: David wants a developer-perspective comparison of unified model-agnostic LLM harnesses (Claude Code, Hermes, Paperclip-like) that can drive multiple models/harnesses such as Codex and Gemini, and is w
+- **[STALE]** AngelEye planning docs update — first 2026-04-01, last 2026-04-01, seen 1× (new:angeleye-awb)
+  - latest: David directed the agent to update and improve the AngelEye planning documents with everything learned so far, then run another fetch using newly supplied information about an additional project.
+- **[STALE]** AWB rebuild on AppyStack — first 2026-04-01, last 2026-04-01, seen 1× (new:angeleye-awb)
+  - latest: David decided the Agent Workflow Builder currently living in the prompt.supportsignal folder should be rebuilt as a brand-new AppyStack install in a new repo with all existing code migrated over, whil
+- **[STALE]** AngelEye ingestion split — first 2026-04-01, last 2026-04-01, seen 1× (new:angeleye-awb)
+  - latest: David specified AngelEye's next major architecture move: split the ingestion pipeline (Claude file watching + hooks processing) from the crash-prone Socket.IO web app into its own service that auto-st
+- **[STALE]** juice shop work visibility — first 2026-04-01, last 2026-04-01, seen 1× (new:angeleye-awb)
+  - latest: Recurring daily friction: David again had to ask for an OMI fetch of the morning's AngelEye/AWB file, and complained the 'Juice Shop' system gives him no visibility into ongoing work so he cannot assi
+- **[STALE]** incident data ingestion point — first 2026-04-01, last 2026-04-01, seen 1× (client-supportsignal)
+  - latest: Brief two-person sync: the incident-data ingestion point is not yet implemented, David is mid-way getting the system to write a story (absolute path to be shared so the other party can prepare ahead),
+- **[STALE]** incident API stopgap endpoint — first 2026-04-01, last 2026-04-01, seen 1× (client-supportsignal)
+  - latest: David weighs whether Signal Studio should act on current incident info now or wait, proposing a temporary CRUD incident endpoint (like company/site/user/participant) as a stopgap for creating a holdin
+- **[STALE]** claude-code security cleanup — first 2026-04-01, last 2026-04-01, seen 1× (fleet-infra)
+  - latest: David plans a security-focused cleanup of his Claude Code setup — verifying downloaded repos against original sources of truth, and auditing prior agent activity for any exfiltration or prompt-injecti
+- **[STALE]** second-laptop hermes harness — first 2026-04-01, last 2026-04-01, seen 1× (dark-factory)
+  - latest: David plans to run his second laptop on a new Anthropic account (maybe $100 plan) testing Hermes as memory + agent-calling harness with two jobs: continually improving AngelEye from incoming session d
+- **[STALE]** omi-fetch determinism architecture — first 2026-04-02, last 2026-04-02, seen 1× (skills-tooling)
+  - latest: Questioned whether omi-fetch and art-fetch are deterministic or have nondeterministic (Claude/Gemini) aspects — arguing shell-script invocation of nondeterministic skills is fragile and asking for an 
+- **[STALE]** storyline previs app concept — first 2026-04-02, last 2026-04-02, seen 1× (client-voz)
+  - latest: Pitched an AI-driven storyline/previs app — timeline editor meets Disney storyboard with transcript, per-second emotion/sound tracks, and scrubbable image pillars edited before video generation — to b
+- **[STALE]** Storyline movie-creation rebuild — first 2026-04-02, last 2026-04-02, seen 1× (client-voz)
+  - latest: Expanded Storyline app vision — narrated transcript → beats → shot lists → emotion-driven music/image/animation prompts (image-to-video and image-to-image) — to be rebuilt as a full movie-creation app
+- **[STALE]** OMI ingestion automation — first 2026-04-02, last 2026-04-02, seen 1× (team-ops)
+  - latest: David teaches the team how the OMI wearable works — passive blue-light recording, 'process' command to segment sessions, cloud storage, phone app as no-device alternative — noting the hard part is aut
+- **[STALE]** peer-to-peer shared memories — first 2026-04-02, last 2026-04-02, seen 1× (team-ops)
+  - latest: David assigns Jan two tasks: absorb the OMI system (and get Voz a purchase link plus an automated device-to-computer sync schedule) and co-design peer-to-peer shared memories — Syncthing for internal 
+- **[STALE]** AWB rewrite as real app — first 2026-04-02, last 2026-04-02, seen 1× (new:awb-rebuild)
+  - latest: AWB is only a proof of concept and becoming a real app means a major rewrite (custom workflows + session visualization/observation), anchored by a self-maintaining root README/index that humans, secon
+- **[STALE]** distributed scheduled task manager — first 2026-04-02, last 2026-04-02, seen 1× (fleet-infra)
+  - latest: Design a distributed scheduled-task manager micro-app for the agentic OS — a central source of truth for task rules, ownership, and initiation across plist and agent-based (Cowork-style) schedulers — 
+- **[STALE]** centralized app-idea intake — first 2026-04-02, last 2026-04-02, seen 1× (brains-knowledge)
+  - latest: App-idea brainstorming needs one centralized intake mechanism (analogous to the todo system) fed by the OMI ingestion pipeline, resolving the recurring canonical source-of-truth / duplication / proven
+- **[STALE]** agent/skill viewer app — first 2026-04-02, last 2026-04-02, seen 1× (skills-tooling)
+  - latest: New app idea: an agent/skill viewer that visualizes all agents and skills — which ones need work, what arguments they take, their discovery mechanisms, and their file dependencies — as tooling for ins
+- **[STALE]** AWB standalone rebuild — first 2026-04-03, last 2026-04-03, seen 1× (new:awb-rebuild)
+  - latest: AWB proof-of-concept inside prompt.supportsignal must be rebuilt as a standalone AppyStack app with autopilot, human-in-the-loop hooks, a UI-separated workflow object model, shared workflow memory, an
+- **[STALE]** AngelEye ingestion and discovery gaps — first 2026-04-03, last 2026-04-03, seen 1× (new:angeleye)
+  - latest: Three AngelEye problems catalogued: BMAD's seven-session workflows don't reliably surface (edge sessions missing), no documented/repeatable data-discovery-pattern system (Archon might automate it), an
+- **[STALE]** appydave-tools spec + jump refactor — first 2026-04-06, last 2026-04-06, seen 1× (skills-tooling)
+  - latest: After failing to add an AWB alias, David discovered the jump skill had been modified to work around the jump CLI instead of using it (leaving the tool out of date), and decided appydave-tools needs a 
+- **[STALE]** AWB 33-doc planning set — first 2026-04-06, last 2026-04-06, seen 1× (new:awb-docs)
+  - latest: Mid-way through a 33-document planning set (the AWB d-prefixed docs), David asked how the code-focused product work would be reframed for marketing/selling the idea, and commissioned three marketing d
+- **[STALE]** ghosty swarm testing — first 2026-04-06, last 2026-04-06, seen 1× (ai-research)
+  - latest: Note-to-self: get ghosty (tmux-based multi-agent swarm tool) working and prove it with two tests — a BMAD 6.7 workflow run to completion and a Haiku swarm (which may not need a full swarm) — while che
+- **[STALE]** YouTube Launch Optimizer requirements — first 2026-04-11, last 2026-04-11, seen 1× (content-production)
+  - latest: David dictated full requirements for the YouTube Launch Optimizer app: ingest transcript + SRT (parsed to array), run the 12 v-appydave AWB YAML analysis prompts async without blocking the UX, generat
+- **[STALE]** application tracker requirements — first 2026-04-11, last 2026-04-11, seen 1× (dark-factory)
+  - latest: David dictated requirements for an application management tool to track many micro apps (name, location, repo, groupings, tech-stack type: local AppyStack/socket.io, Next.js cloud, Ruby/JS CLI, always
+- **[STALE]** multi-stream conversational inbox concept — first 2026-04-12, last 2026-04-12, seen 1× (captains-log)
+  - latest: David dictated the seed concept for a multi-stream conversational inbox: chain-of-consciousness streams (OMI first, later Krisp and YouTube, maybe email) flow into a central inbox that auto-tags, labe
+- **[RECENT]** media studio creative presets — first 2026-06-05, last 2026-06-05, seen 1× (content-production)
+  - latest: At an in-person session Steve demos Media Studio creative presets — analyze a reference image, deconstruct its style into a reusable image-to-image preset with form fields — and storyboard/video gener
+- **[RECENT]** KBDE extension SDK decoupling — first 2026-06-05, last 2026-06-05, seen 1× (kyber-extensions)
+  - latest: David and Ian agreed the next brain/memory step is a retrieval benchmark harness (score quality, query/response time, write failure notes, find common failure modes, then a phased spec — no quick hack
+- **[RECENT]** dark factory not self-managing — first 2026-06-12, last 2026-06-12, seen 1× (dark-factory)
+  - latest: David vents that the dark factory is too fragile and never self-managing as promised — Claude makes patchwork fixes without architectural thinking, roadmap/north-star visibility is missing, and parall
+- **[RECENT]** dark factory self-management — first 2026-06-12, last 2026-06-12, seen 1× (dark-factory)
+  - latest: Dark Factory has failed its core promise of building itself — it is fragile, makes patchwork fixes without architectural thinking, and leaves David managing the process — so he weighs manually buildin
+- **[RECENT]** Vietnam trip planning — first 2026-06-12, last 2026-06-12, seen 1× (travel-visa)
+  - latest: David plans a ~2-week Vietnam trip, expecting to leave Thailand before his 90-day report rather than after, and asks Claude to save Dad's latest info to a file and confirm whether it has access to his
+- **[RECENT]** provenance chain follow-up — first 2026-06-12, last 2026-06-12, seen 1× (kyber-extensions)
+  - latest: David directs that a provenance chain be kept for the current cortex/brain work so the whole exercise can be reproduced when the problem is revisited in roughly two weeks.
+- **[RECENT]** cortex/brain core spec planning — first 2026-06-12, last 2026-06-12, seen 1× (kyber-extensions)
+  - latest: David scopes Brain Core / Cortex Core spec work: Claude can likely run in Australia via Amazon Bedrock but data residency for NDIS participant data must be independently researched, a background agent
+- **[RECENT]** portable brain diff tool placement — first 2026-06-12, last 2026-06-12, seen 1× (kyber-extensions)
+  - latest: Probing suspicious look-alike 'analysis dots' in AngelEye (possibly generated noise rather than real brain data), David flags a boundary violation — the file-system reconcile living inside the portabl
+- **[RECENT]** brain probe missing files — first 2026-06-12, last 2026-06-12, seen 1× (kyber-extensions)
+  - latest: David reports the brain's missing-file count has ballooned from 42 to 375 between tests, suspects probe queries return gaps because data exists only in files and not in memory, routes separate handove
+- **[RECENT]** media studio automation for team — first 2026-06-12, last 2026-06-12, seen 1× (content-production)
+  - latest: David coaches Mary and Jan on Claude Desktop vs Code vs chat, then teaches them to reverse-engineer Capsules-style parallax storytelling — script to beats to design-doc-merged image prompts to image-t
+- **[RECENT]** capsule video coupon and purchase — first 2026-06-12, last 2026-06-12, seen 1× (team-ops)
+  - latest: David sets up Claude access for Mary via a mary@ideasmen.com.au Google Workspace alias (keeping billing on his cards, noting his three existing Anthropic plans and a possible future Team plan), while 
+- **[RECENT]** supportsignal go-to-market — first 2026-06-12, last 2026-06-12, seen 1× (client-supportsignal)
+  - latest: David explains the SupportSignal situation to Joy over coffee — Ronnie has run out of money and become hard to work with, David and Angela will push the near-ready product to market themselves (one cl
+- **[RECENT]** KBDE watch folder regression — first 2026-06-12, last 2026-06-12, seen 1× (kyber-extensions)
+  - latest: David clarifies the brain folder was ingested via KBDE (so embeddings already exist for his brain as the probe test dataset, unlike LoCoMo/LongMem datasets), asks for a session recap, and reports the 
+- **[RECENT]** supportsignal ronnie exit strategy — first 2026-06-12, last 2026-06-12, seen 1× (client-supportsignal)
+  - latest: David and Angela debrief a hostile Ronnie meeting, reconcile the true burn (~AUD 4k/month, Ronnie keeps paying core tooling for now), and agree on an FDE (forward-deployed expert) play — Angela consul
+- **[RECENT]** voz capsules eight stories — first 2026-06-12, last 2026-06-12, seen 1× (client-voz)
+  - latest: Budget exists for the Capsules work; need the list of Vaz's eight stories with details and which one he wants first.
+- **[RECENT]** omi brain release readiness — first 2026-06-13, last 2026-06-13, seen 1× (captains-log)
+  - latest: Heading to bed, David decides ideas B and C get recorded as documented future concepts rather than acted on now, and asks where the OMI brain stands — remaining probe fixes, more tests, or ready to re
+- **[RECENT]** selectable memory modes design — first 2026-06-13, last 2026-06-13, seen 1× (kyberagent-pilot)
+  - latest: David wants agent memory to support selectable/configurable modes — pointing at a plain folder vs watching a separate 'actual brain' folder — with one-button on/off UX and the behavior well documented
+- **[RECENT]** code review vs delivery review comparison — first 2026-06-13, last 2026-06-13, seen 1× (skills-tooling)
+  - latest: Amid TV background audio, David asked that after the delivery review runs he get a quality comparison of Anthropic's built-in code review versus his delivery-review skill — are they redundant, complem
+- **[RECENT]** KBDE baseline reconciliation run — first 2026-06-13, last 2026-06-13, seen 1× (kyberagent-pilot)
+  - latest: Steering a KyberBot session over TV background, David confirmed the 375 records were reconciled via KBDE, asked for a shutdown script when closing Kyber Agent Enterprise, and requested a 2-minute prog
+- **[RECENT]** backup database cleanup ticket — first 2026-06-13, last 2026-06-13, seen 1× (kyberagent-pilot)
+  - latest: With the Kyber enterprise environment shut down for direct database access, David checked whether the master-branch code change was safe to push, challenged a stale 4:57 launch report, questioned whet
+- **[RECENT]** probe backlog carryover — first 2026-06-13, last 2026-06-13, seen 1× (kyberagent-pilot)
+  - latest: Preparing to move to a fresh window, David asked for a handover message, ordered the background task stopped with no changes on main, and wanted probes and outstanding tasks from the last session revi
+- **[RECENT]** sources not being watched bug — first 2026-06-13, last 2026-06-13, seen 1× (kyberagent-pilot)
+  - latest: For the fourth session running, KyberBot Desktop reports 'No files being watched' for the KyberBrain sources and the agent retains no memory of the prior three reports — David is angry the recurring b
+- **[RECENT]** agent session memory durability — first 2026-06-13, last 2026-06-13, seen 1× (kyberagent-pilot)
+  - latest: David asked whether any written record exists of the last four sessions where the watching issue was raised — probing whether the agent persists session knowledge anywhere durable.
+- **[RECENT]** reconciliation progress visibility in desktop — first 2026-06-13, last 2026-06-13, seen 1× (kyberagent-pilot)
+  - latest: At ~75% token usage David called the agent's memory-based recall partially wrong (fourth recurrence) and demanded persistence more durable than memories, while asking how the 121-missing KBDE reconcil
+- **[RECENT]** remotion vs hyperframes gap analysis — first 2026-06-13, last 2026-06-13, seen 1× (content-production)
+  - latest: David requested a gap analysis of Remotion vs Hyperframes (what each can do, why one is better) plus a background-agent proof of concept turning four slides into a video with music/interactivity, whil
+- **[RECENT]** video-as-code brain placement — first 2026-06-13, last 2026-06-13, seen 1× (brains-knowledge)
+  - latest: David questioned why the brain-related folder is stored under remotion instead of video-as-code, asked whether missing reconciliation values should be fixed, and directed the video-as-code/hyperframes
+- **[RECENT]** snapshot disk-space blowout — first 2026-06-13, last 2026-06-13, seen 1× (kyberagent-pilot)
+  - latest: Closing out a session, David flagged that fresh snapshots/database clones (taken to avoid conflicts with the running KyberBot desktop agent) are burning disk space and the agent should instead detect 
+- **[RECENT]** AppyRadar central wrong-repo changes — first 2026-06-13, last 2026-06-13, seen 1× (fleet-infra)
+  - latest: David suspects Claude applied repository changes to an outdated copy of AppyRadar central because its home had already been moved to a different location.
+- **[RECENT]** KBDE rebuild procedure unclear — first 2026-06-13, last 2026-06-13, seen 1× (brains-knowledge)
+  - latest: David is unsure how to complete a 'W Merge' brain rebuild — whether he must go into KBDE and run a rebuild or act in the current session — and gets no confirmed answer.
+- **[RECENT]** Daily Support Plan app build — first 2026-06-13, last 2026-06-13, seen 1× (client-supportsignal)
+  - latest: David and his NDIS partner scope and greenlight the 'Daily Support Plan' (DSP) app — ingest behaviour support plans, allied health reports and incident CSVs, shard/extract per-item plus holistic obser
+- **[RECENT]** automated video pipeline replication — first 2026-06-13, last 2026-06-13, seen 1× (content-production)
+  - latest: Studying a YouTube video that Claude Fable 5 one-shotted end-to-end (script from announcement research, ElevenLabs voice clone in sub-minute chunks, avatar-5 renders, FFmpeg stitching, HTML/GSAP motio
+- **[RECENT]** app-a-day Fable build campaign — first 2026-06-13, last 2026-06-13, seen 1× (dark-factory)
+  - latest: David sets the dark-factory build campaign: an app per day with Fable 5 until June 22 under an 'AI-native company / software automation factory' content theme — every app built recipe-first (Symphony-
+- **[RECENT]** decay vs static document stores — first 2026-06-14, last 2026-06-14, seen 1× (kybernesis-venture)
+  - latest: Kybernesis catch-up: David reports brain v12 nearing release with a new data-migration system, Steve-style baseline Q&A probes, and feature-flagged multi-hop; debates decay-on-static-document-stores d
+- **[RECENT]** voice-forge skill design — first 2026-06-14, last 2026-06-14, seen 1× (skills-tooling)
+  - latest: Design thinking for a voice-forge skill producing a voice.md stored with the brand (alongside design.md), possibly generalized into format skills (short form, podcast, livestream, educational) with bu
+- **[RECENT]** named-collaborator crew pattern documentation — first 2026-06-14, last 2026-06-14, seen 1× (brains-knowledge)
+  - latest: At 71% context David hands off to a background agent to review the prompt-patterns brain and document the emerging 'crew of named collaborators + orchestrator' pattern, now evidenced by both the Mocha
+- **[RECENT]** cross-testing nodes status — first 2026-06-14, last 2026-06-14, seen 1× (agent-verification)
+  - latest: David asks for the current status of the earlier-in-the-week cross-testing work (sets of nodes and comparisons) whose format he liked but whose meaning he never fully understood.
+- **[RECENT]** hyperframes skills decision — first 2026-06-14, last 2026-06-14, seen 1× (content-production)
+  - latest: David declines to proceed with the Hyperframes skills install because nobody has defined what the skills are or whether they are needed — decision is to document all subsystems into the brain first an
+- **[RECENT]** agent progress visibility — first 2026-06-14, last 2026-06-14, seen 1× (misc)
+  - latest: David is frustrated by an opaque long-running agent research task (89 minutes, unclear what kind of research) — feels stuck, calls it a shitty experience, and asks for a recurring update loop showing 
+- **[RECENT]** readme skill creation — first 2026-06-14, last 2026-06-14, seen 1× (skills-tooling)
+  - latest: David directs the agent (addressed as Angela) to find the README research/commits done ~2 weeks earlier in the Kybernesis Cortex monorepo or brains folder and reverse-engineer them into a repeatable s
+- **[RECENT]** aitldr video download workflow — first 2026-06-14, last 2026-06-14, seen 1× (content-production)
+  - latest: David hunts for the lost workflow/catalogue used to download AI-TLDR videos off YouTube (to repeat it for AppyDave/Happy Dave, checking the M4 Pro too), flags that a critical OMI device conversation w
+- **[RECENT]** morning transcript routing — first 2026-06-14, last 2026-06-14, seen 1× (captains-log)
+  - latest: David instructs that once OMI processing finishes, the long ~7am morning transcript (three main topics plus a fourth at the end) be deeply reviewed and split into three separate documentation streams 
+- **[RECENT]** angela sideline app — first 2026-06-14, last 2026-06-14, seen 1× (client-achieve)
+  - latest: David hands over one more sideline project due today — build a small application for Angela from Supporting Potential, possibly run manually.
+- **[RECENT]** Extension SDK architecture definition — first 2026-06-20, last 2026-06-20, seen 1× (kyber-extensions)
+  - latest: After a conversation with Martin, David maps the KyberAgent Extension SDK landscape: composer (dynamic slash commands, model-aware buttons) and contextual-menu surfaces needing 3-4 worked use cases ea
+- **[RECENT]** loop selector skill — first 2026-06-20, last 2026-06-20, seen 1× (skills-tooling)
+  - latest: After watching a video on six agentic loops, David wants a loop selector/orchestrator skill that lists, invokes, interviews (grilling-style), adds and modifies loops, critiques the six loops from his 
+- **[RECENT]** dark factory daily operating rhythm — first 2026-06-21, last 2026-06-21, seen 1× (dark-factory)
+  - latest: Daily operating vision for the dark factory: David does ~4 focused hours of BA/requirements across 3-4 projects, AI executes 8-12 hours plus overnight slow-cadence work, an agent whose job is to ask h
+- **[RECENT]** dark factory harness ordering — first 2026-06-21, last 2026-06-21, seen 1× (dark-factory)
+  - latest: Get dark-factory and suborch history in order via session archaeology (last 5-10 sessions each, plus brains and system-context refresh), then migrate primary development from Roamy laptop to the M4 ma
