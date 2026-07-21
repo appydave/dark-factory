@@ -1,0 +1,34 @@
+{
+  "target": "http://localhost:7420/designs/11-factory-map/",
+  "image": "tools/design-lint/out/lint/localhost-7420-designs-11-factory-map.png",
+  "ran_at": "2026-07-21",
+  "note_on_provenance": "FIRST REAL RUN of this gate. Commit 76e2512 claimed 11-factory-map 'passes the design-lint taste check' — that gate never executed (playwright was not installed; shoot-one.py crashed on import). A screenshot was eyeballed instead. This file is the actual verdict.",
+  "verdict": "flag",
+  "warm_anchor_present": true,
+  "dominant_palette": "warm",
+  "flags": [
+    {
+      "code": "amber-orange-on-brown",
+      "where": "title accent ('MAP'), the kicker line, all 10 track IDs (T1..T10), and the 'IN PROGRESS' badge fills",
+      "evidence": "Computed colour rgb(200,132,26) = #c8841a used as TEXT on cream (#faf5ec / #fbf1ef) in 14 places and as BACKGROUND FILL in 5. docs/david-design-patterns.md:42-55 restricts #c8841a to 01/02/03 numbered sequences ONLY, 'never as fill or text-on-tint'. None of these uses is a numbered sequence. The correct bright warm highlight #ffde59 appears ONLY in the copykit toolbar chrome (.ck-count) - i.e. in tool furniture, not in the design itself.",
+      "severity": "medium",
+      "fix_hint": "swap #c8841a to yellow #ffde59 for the title accent, kicker, track IDs and IN-PROGRESS badge; leave amber only if a real 01/02/03 sequence appears."
+    }
+  ],
+  "not_flagged": [
+    {
+      "code": "cool-on-content",
+      "reason": "green/blue/red are a declared status legend rendered at the top of the page and applied consistently to pills and badges - a categorical scheme with a visible referent. Rubric says do not flag."
+    },
+    {
+      "code": "missing-warm-anchor",
+      "reason": "the page ground is warm cream with dark-brown architecture bands; it does not read cool or grey. Warm brand is load-bearing. Borderline only because the bright #ffde59 punch is absent from the design proper - noted, not flagged."
+    },
+    {
+      "code": "colour-overload",
+      "reason": "mostly-neutral cream ground, colour confined to small pills and badges, no hue floods the screen. Reads calm."
+    }
+  ],
+  "notes": "Structurally this is a strong page - the status board, the three-band architecture stack, and the gaps board each read cleanly and the colour is restrained. The single real defect is the palette choice for the warm highlight: it uses the restricted amber #c8841a where the brand calls for yellow #ffde59. Small, mechanical fix; no layout change needed.",
+  "tool_limitation_found": "shoot-one.py serves the page's OWN directory, so mochaccino pages that reference ../components/copykit.{css,js} 404 those assets when shot from a file path. Shoot mochaccino designs via the :7420 URL instead, or teach shoot-one.py a --root flag."
+}

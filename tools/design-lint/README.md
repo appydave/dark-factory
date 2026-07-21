@@ -29,13 +29,30 @@ Four **reliable** failures only — the ones David names repeatedly (see `RUBRIC
 the round-04 Goodhart mistake). Cool semantic colour on genuine structure is correct and is **not**
 flagged. When in doubt, don't flag.
 
+## Setup (required — the tool cannot run without this)
+
+Playwright is **not** available on the system python (homebrew 3.14 is PEP-668 externally-managed).
+It lives in a local venv:
+```bash
+python3 -m venv tools/design-lint/.venv
+tools/design-lint/.venv/bin/pip install playwright
+tools/design-lint/.venv/bin/playwright install chromium
+```
+Always invoke via `tools/design-lint/.venv/bin/python`, never bare `python3` — bare `python3` fails
+with `ModuleNotFoundError: playwright`. This exact failure silently voided the gate once already
+(see "History" below).
+
 ## Two modes
 
 **A. Inline gate (one render).** After a render, screenshot it and run the lint agent:
 ```bash
-python3 tools/design-lint/shoot-one.py path/to/index.html --out tools/design-lint/out/lint
+tools/design-lint/.venv/bin/python tools/design-lint/shoot-one.py \
+  http://localhost:7420/designs/<id>/ --out tools/design-lint/out/lint --full
 # then a lint agent Reads the PNG + RUBRIC.md and returns the JSON verdict
 ```
+⚠️ **Shoot mochaccino designs via their `:7420` URL, not a file path.** `shoot-one.py` serves the
+page's *own* directory, so a design referencing `../components/copykit.{css,js}` 404s those assets
+and you lint an incompletely-styled page. (Fix would be a `--root` flag; not built.)
 A `flag` verdict surfaces to the caller (Shelly / Marshall) to revise or escalate — it does not block.
 
 **B. Batch audit (a deck / a set).** Screenshot N pages, then pipeline each through the lint agent.
@@ -61,3 +78,17 @@ whole slide deck or all designs in a repo. (Workflow not built yet — see "Next
 The cortex "brain" screens — see `out/lint-v4/verdicts.json` (cortex-brain-v4 gate, 2026-06-12) and
 `out/lint-v5/` (correctness pass, 2026-06-15, with per-page + index shots). Verdicts land in versioned
 `out/lint-vN/` dirs, not the `out/lint/` default.
+
+## History — the gate that didn't run (2026-07-11 → corrected 2026-07-21)
+
+Commit `76e2512` (Factory Map v1) claimed the design **"passes the design-lint taste check."**
+It did not: playwright was missing, `shoot-one.py` crashed on import, and a screenshot was eyeballed
+manually instead. The gate never executed. Caught by the Chaperone (advisories 0019/0020).
+
+Corrected 2026-07-21: venv installed, gate run for real on `11-factory-map`. **Real verdict = `flag`**
+(`amber-orange-on-brown` — `#c8841a` used as title accent / kicker / track IDs / badge fills on cream,
+where `docs/david-design-patterns.md` restricts it to 01/02/03 numbered sequences). See
+`out/lint/11-factory-map.verdict.json`.
+
+**The lesson is the tool's own rule:** a gate that cannot run is not a gate that passed. If the
+screenshotter errors, the DoD is UNMET — never substitute a manual eyeball and report it as the gate.
