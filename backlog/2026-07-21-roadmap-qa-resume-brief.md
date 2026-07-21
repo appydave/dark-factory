@@ -8,6 +8,15 @@
 
 ## 0. Your FIRST work — three truth cleanups (do these before resuming the Q&A)
 
+> ✅ **DONE 2026-07-21 — commit `100276b`.** (1) T3 → `progressing` (not `partial`; no such legend key)
+> in BOTH `factory-map.json` and `index.html`, which embeds its own copy of the data rather than
+> fetching it. (2) playwright installed to `tools/design-lint/.venv`; gate run for real — **verdict
+> `flag`, not pass**: `amber-orange-on-brown`, `#c8841a` as text-on-cream ×14 + fill ×5, where
+> `docs/david-design-patterns.md:42-55` allows it only in 01/02/03 sequences. Record corrected
+> forward, not rewritten. Verdict at `tools/design-lint/out/lint/11-factory-map.verdict.json`.
+> (3) No on-disk handover instance found beyond (1). **Amber defect left unfixed** — design change,
+> not a truth correction; map is the live Q&A backdrop.
+
 The predecessor session closed with three uncorrected findings raised by the Chaperone
 (advisories 0019/0020, `docs/_chaperone-feed.md`). All three are **verified true as of now**.
 They are small, concrete, and they make the record honest. Do them first.
@@ -56,6 +65,7 @@ tagged by **who steers it — David, an agent, or the factory autonomously.**
 | Q1b | David's correction | **Watchtower IS a constellation app.** Any micro-app is part of the constellation. T5 ⊂ T6 — they are not siblings. |
 | Q2 | How wide is Watchtower v1? | **C — engine-only v1, widen as feeds land.** Ship against data that exists (`status.py --json`); don't block on broken sentinel/AngelEye. |
 | Q2b | David's architectural rule | **Federation, not monolith.** Every constellation app exposes its own **API/MCP** surface; Watchtower *taps* them. "Watchtower is where I can go to see everything." Widening Watchtower = each app growing a surface. (`T6-05` already specs AngelEye's MCP wrapper — the pattern exists.) |
+| Q3 | After Watchtower v1, which feed next? | **C — Inventory / registry.** The only candidate whose data already exists and is authoritative (`locations.json`, `apps.json`, `app-registry/query.py`); A and B both require reviving a dark app or repairing a broken one before yielding a single row. Also unblocks T2 (its gap is "11 off-registry repos are invisible to the inventory"). Answered 2026-07-21. |
 | — | Ingestion name collision | **Rename dark-factory T3 → "Harvest".** Captain's Log owns "ingestion" (it's in the app title, `server/src/ingest/`, `POST /api/ingest`, 100+ doc hits). "Harvest" is 0 hits there and is already T3's own internal word. Instance of ticket `T6-01`. |
 
 **Map defect to fix while you're at it:** the status board lists T5 and T6 as sibling tracks, but the
